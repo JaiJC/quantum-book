@@ -1,0 +1,104 @@
+<section class="beat" data-beat="0">
+  <p class="drop">No instrument has ever displayed a wavefunction. You cannot photograph {{tex:\psi}}, or touch it, or measure it in a single shot. Yet every detector count in every quantum experiment, from the double slit of Chapter 25 to the largest particle collider, is predicted by it, and predicted correctly.</p>
+  <p>This chapter says exactly how. The wavefunction is a complex number at every point in space. Its size sets the odds of finding the particle there; its phase, which no single measurement sees, decides how waves add and cancel.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The Born rule</h2>
+  <p>In 1926 Max Born proposed the rule that turns {{tex:\psi}} into predictions. The probability of finding the particle between {{tex:x}} and {{tex:x + dx}} is</p>
+  <div class="eq">{{texd:P(x)\,dx = |\psi(x)|^2\,dx}}</div>
+  <p>Because the particle must be somewhere, the total probability must be one: {{tex:\int|\psi|^2dx = 1}}. A wavefunction scaled to satisfy this is <em>normalized</em>. <span class="tag">Established</span></p>
+  <p>The plate shows {{tex:|\psi|^2}} as the amber area and the phase as small turning arrows along the axis. <button type="button" class="v" data-act="m1">Measure one particle</button>: you get a single position, at random. <button type="button" class="v" data-act="m100">Measure a hundred</button>, then <button type="button" class="v" data-act="m1000">a thousand</button>, and the histogram grows into the shape of {{tex:|\psi|^2}}.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Averages</h2>
+  <p>With a probability distribution you can compute averages, called <em>expectation values</em>. The average position is {{tex:\langle x\rangle = \int x\,|\psi|^2\,dx}}, and the spread is {{tex:\Delta x = \sqrt{\langle x^2\rangle - \langle x\rangle^2}}}, exactly as in Chapter 10.</p>
+  <p>For the lowest state of a particle in a box of width {{tex:L}}, {{tex:\psi = \sqrt{2/L}\,\sin(\pi x/L)}}, symmetry gives {{tex:\langle x\rangle = L/2}}, and integration gives {{tex:\langle x^2\rangle = L^2\left(\tfrac13 - \tfrac{1}{2\pi^2}\right) \approx 0.283\,L^2}}. Expectation values are what experiments measure when they average over many identically prepared particles.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Phase you cannot see</h2>
+  <p>Multiply the whole wavefunction by the same phase factor {{tex:e^{i\theta}}}. Turn it by <span class="tangle" data-var="g" data-min="0" data-max="360" data-step="10" data-value="0" data-unit="°" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Global phase">0 °</span><button type="button" data-de="1" aria-label="More">›</button></span>. Every arrow on the plate turns, but {{tex:|\psi|^2}} does not change at all, and neither does any prediction. A <em>global phase</em> is unobservable; {{tex:\psi}} and {{tex:e^{i\theta}\psi}} are the same physical state.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Phase you can see</h2>
+  <p>Now build a wavefunction from two overlapping bumps, and change only the phase of one relative to the other: <span class="tangle" data-var="r" data-min="0" data-max="360" data-step="10" data-value="0" data-unit="°" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Relative phase">0 °</span><button type="button" data-de="1" aria-label="More">›</button></span>. Where they overlap, the probability swells at 0° and collapses at 180°. The <em>relative phase</em> between parts of a wavefunction is physical, and it is what made the stripes in the double slit.</p>
+  <div class="eq">{{texd:|\psi_1 + e^{i\phi}\psi_2|^2 = |\psi_1|^2 + |\psi_2|^2 + 2\,\mathrm{Re}\big(e^{i\phi}\,\psi_1^*\psi_2\big)}}</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Probability flows</h2>
+  <p>Probability is conserved locally, like water: it cannot vanish here and reappear there; it has to flow in between. Schrödinger’s equation, which you will meet in Chapter 31, implies a continuity equation, {{tex:\partial_t|\psi|^2 + \partial_x j = 0}}, with a <em>probability current</em></p>
+  <div class="eq">{{texd:j = \frac{\hbar}{m}\,\mathrm{Im}\!\left(\psi^*\frac{\partial\psi}{\partial x}\right)}}</div>
+  <p>For a plane wave {{tex:\psi = Ae^{ikx}}}, the current is {{tex:j = (\hbar k/m)|A|^2}}: density times velocity, with velocity {{tex:\hbar k/m = p/m}}. The phase gradient is the flow. A real wavefunction, with no phase variation, carries no current at all.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The Born rule, normalization, expectation values, the difference between global and relative phase, and the probability current.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does |ψ(x)|² mean?<span class="tap">tap</span></div><div class="a">The probability density for finding the particle at x when its position is measured.</div></div>
+  <div class="qa"><div class="q">Why can a global phase never be measured?<span class="tap">tap</span></div><div class="a">It multiplies every amplitude by the same factor of size one, so every probability |…|² is unchanged.</div></div>
+  <div class="qa"><div class="q">What carries probability current?<span class="tap">tap</span></div><div class="a">The variation of the phase in space; a real wavefunction has zero current.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:\psi = \sqrt{2/L}\sin(\pi x/L)}}, what is the probability of finding the particle in the first quarter of the box, {{tex:0 < x < L/4}}?</p>
+    <form class="calc" data-answer="0.0908" data-tol="0.002" data-ok="Yes: 1/4 − 1/(2π) ≈ 0.091. The particle avoids the walls, so the outer quarter gets less than a quarter." data-alt="0.25~That would be a uniform distribution. |ψ|² is small near the wall." data-hint="Integrate (2/L) sin²(πx/L) from 0 to L/4."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Born, Z. Phys. 37, 863 (1926). D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics, 3rd ed. L. E. Ballentine, Quantum Mechanics. Checked by code (SymPy): ⟨x²⟩ = L²(1/3 − 1/2π²); P(0 &lt; x &lt; L/4) = 1/4 − 1/2π.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { g: 0, r: 0 }, hits = [], NB = 60;
+  function psi(x) {
+    var rp = (beat === 4 ? V.r : 0) * Math.PI / 180, gp = (beat === 3 ? V.g : 0) * Math.PI / 180;
+    var a = Math.exp(-Math.pow((x + 0.9) / 0.7, 2)), b = Math.exp(-Math.pow((x - 0.9) / 0.7, 2));
+    var re = a * Math.cos(3 * x) + b * Math.cos(3 * x + rp), im = a * Math.sin(3 * x) + b * Math.sin(3 * x + rp);
+    return [re * Math.cos(gp) - im * Math.sin(gp), re * Math.sin(gp) + im * Math.cos(gp)];
+  }
+  function P(x) { var p = psi(x); return p[0] * p[0] + p[1] * p[1]; }
+  function sample() { var mx = 0, i; for (i = 0; i <= 200; i++) mx = Math.max(mx, P(-3 + 6 * i / 200)); for (;;) { var x = -3 + 6 * Math.random(); if (Math.random() * mx < P(x)) return x; } }
+  function measure(n) { for (var i = 0; i < n; i++) hits.push(sample()); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; hits = []; },
+    act: function (a) { measure(a === "m1" ? 1 : a === "m100" ? 100 : 1000); },
+    set: function (n, v) { V[n] = v; hits = []; },
+    caption: function () { return ["A wavefunction: |ψ|² and phase.", "Measurements and |ψ|².", "Particle in a box: ⟨x⟩ and spread.", "Global phase " + V.g + "°.", "Relative phase " + V.r + "°.", "Plane wave: phase gradient = flow.", "A wavefunction."][beat]; },
+    readout: function () { return hits.length ? hits.length + " measured" : ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat === 2) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.8, H * 0.72, [0, 1], [0, 2.2], { xt: [0, 0.5, 1], xl: "x / L" });
+        k.plot(A, function (x) { return 2 * Math.pow(Math.sin(Math.PI * x), 2); }, [0, 1], "#ffb547", 2.5);
+        k.line(A.X(0.5), A.Y(0), A.X(0.5), A.Y(2.1), "#ece6da", 1.5, [4, 4]); k.text("⟨x⟩ = L/2", A.X(0.5) + 6, A.Y(2.05), { color: "#ece6da", align: "left" });
+        var sd = Math.sqrt(0.2826727 - 0.25); c.fillStyle = "rgba(236,230,218,.08)"; c.fillRect(A.X(0.5 - sd), A.y0, A.X(0.5 + sd) - A.X(0.5 - sd), A.h); k.text("± Δx", A.X(0.5 + sd) + 4, A.Y(0.3), { align: "left" });
+        return;
+      }
+      if (beat === 5) {
+        A = k.axes(W * 0.06, H * 0.2, W * 0.88, H * 0.5, [0, 10], [-1.2, 1.2], { zeroY: true });
+        k.plot(A, function (x) { return Math.cos(2 * x - now / 400); }, [0, 10], "#ffb547", 2); k.plot(A, function (x) { return Math.sin(2 * x - now / 400); }, [0, 10], "rgba(236,230,218,.5)", 1.5);
+        for (i = 0; i < 8; i++) { var x0 = ((now / 600 + i * 1.3) % 10); k.line(A.X(x0), A.Y(-1.1), A.X(x0) + 18, A.Y(-1.1), "#ece6da", 2); k.line(A.X(x0) + 18, A.Y(-1.1), A.X(x0) + 12, A.Y(-1.1) - 4, "#ece6da", 2); }
+        k.text("real part (amber), imaginary part (white): the phase turns along x, and probability flows", W / 2, H * 0.88, {});
+        return;
+      }
+      A = k.axes(W * 0.06, H * 0.08, W * 0.88, H * 0.6, [-3, 3], [0, 1.4], { xl: "position" });
+      var cc = c; cc.beginPath(); cc.moveTo(A.X(-3), A.Y(0)); for (i = 0; i <= 300; i++) { var x = -3 + 6 * i / 300; cc.lineTo(A.X(x), A.Y(P(x))); } cc.lineTo(A.X(3), A.Y(0)); cc.closePath(); cc.fillStyle = "rgba(255,181,71,.25)"; cc.fill();
+      k.plot(A, P, [-3, 3], "#ffb547", 2, 400);
+      for (i = 0; i <= 30; i++) { var xx = -3 + 6 * i / 30, p = psi(xx), m = Math.hypot(p[0], p[1]), ang = Math.atan2(p[1], p[0]) - (beat === 0 ? now / 900 : 0); if (m < 0.05) continue; var bx = A.X(xx), by = H * 0.82, L = 6 + 12 * m; k.line(bx, by, bx + L * Math.cos(ang), by - L * Math.sin(ang), "rgba(236,230,218," + (0.3 + 0.6 * m) + ")", 1.5); k.circle(bx, by, 1.5, "#4a4540"); }
+      k.text("phase of ψ at each point", W / 2, H * 0.97, {});
+      if (hits.length) {
+        var bins = new Array(NB).fill(0); hits.forEach(function (h) { var b = Math.floor((h + 3) / 6 * NB); if (b >= 0 && b < NB) bins[b]++; });
+        var area = hits.length * 6 / NB, bw = A.w / NB;
+        var norm = 0; for (var q = 0; q <= 300; q++) norm += P(-3 + 6 * q / 300) * 6 / 300;
+        bins.forEach(function (b, j) { var y = A.Y(Math.min(1.4, b / area * norm)); k.rr(A.X(-3) + j * bw + 1, y, bw - 2, A.Y(0) - y, 1, "rgba(236,230,218,.35)"); });
+        hits.slice(-30).forEach(function (h) { k.line(A.X(h), A.Y(0), A.X(h), A.Y(0) + 8, "#ece6da", 1.5); });
+      }
+    }
+  });
+})();
+</script>

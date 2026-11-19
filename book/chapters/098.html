@@ -1,0 +1,60 @@
+<section class="beat" data-beat="0">
+  <p class="drop">One qubit needs two complex numbers to describe. Two qubits need four; three need eight; fifty need about a million billion. Store each as 16 bytes and fifty qubits fill 18 petabytes, more than any supercomputer’s memory. That doubling, one new qubit, twice the description, is both why quantum computers might be powerful and why simulating them classically is so hard. This chapter builds multi-qubit states and introduces the small simulator the rest of Part Three uses.</p>
+  <p>On the plate: the eight amplitudes of a three-qubit register. Height shows magnitude; colour shows phase.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Tensor products</h2>
+  <p>Two systems together are described by the tensor product of their state spaces (Chapter 8). For qubits, {{tex:|a\rangle\otimes|b\rangle = |ab\rangle}}, and the basis of {{tex:n}} qubits is the {{tex:2^n}} bit strings. Matrices combine by the Kronecker product: {{tex:(A\otimes B)_{(ij),(kl)} = A_{ik}B_{jl}}}. A gate {{tex:U}} on qubit 0 alone is {{tex:U\otimes\mathbb 1\otimes\cdots}}. Most states of several qubits are not products of single-qubit states; those are entangled (Chapter 99). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two-qubit gates</h2>
+  <p>The controlled-NOT flips the target if the control is 1: {{tex:|c, t\rangle \to |c, t\oplus c\rangle}}. More generally a controlled-{{tex:U}} applies {{tex:U}} to the target when the control is 1. Build a state: <button type="button" class="v" data-act="H0">H on q0</button> <button type="button" class="v" data-act="H1">H on q1</button> <button type="button" class="v" data-act="X2">X on q2</button> <button type="button" class="v" data-act="CX01">CNOT q0→q1</button> <button type="button" class="v" data-act="CX12">CNOT q1→q2</button> <button type="button" class="v" data-act="CZ01">CZ q0,q1</button> <button type="button" class="v" data-act="T0">T on q0</button> <button type="button" class="v" data-act="reset">reset</button>. H on q0 then two CNOTs gives {{tex:(|000\rangle + |111\rangle)/\sqrt2}}, the three-qubit GHZ state.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Measuring part of a register</h2>
+  <p>Measure just one qubit. The probability of 0 is the sum of {{tex:|\text{amplitude}|^2}} over every basis state with that qubit 0. Afterwards, the amplitudes inconsistent with the result are removed and the rest renormalized. <button type="button" class="v" data-act="M0">Measure q0</button>. On the GHZ state, measuring q0 instantly fixes q1 and q2 too: entanglement. On a product state, the other qubits are unaffected.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Which qubit is first?</h2>
+  <p>This book, and Nielsen and Chuang, write {{tex:|q_0q_1q_2\rangle}} with qubit 0 on the left, the most significant bit. Qiskit writes it on the <em>right</em>: little-endian. The same circuit gives the same physics but lists amplitudes in a different order, and the CNOT with control q0 has a different matrix. Toggle: <button type="button" class="v" data-pick="ord:tb">textbook labels</button> or <button type="button" class="v" data-pick="ord:qk">Qiskit labels</button>. If a result from a toolkit looks scrambled, check this first. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Tensor and Kronecker products, the {{tex:2^n}} growth of the state, controlled gates and the CNOT, partial measurement and collapse, the GHZ state, and the qubit-ordering conventions that trip up most beginners.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How many amplitudes describe 10 qubits?<span class="tap">tap</span></div><div class="a">2¹⁰ = 1024.</div></div>
+  <div class="qa"><div class="q">What does measuring q0 of a GHZ state do to q1 and q2?<span class="tap">tap</span></div><div class="a">Fixes them to the same value as q0.</div></div>
+  <div class="qa"><div class="q">How does Qiskit order qubits?<span class="tap">tap</span></div><div class="a">Little-endian: qubit 0 is the rightmost bit of the label.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Storing every amplitude of 30 qubits at 16 bytes each takes how many gigabytes?</p>
+    <form class="calc" data-answer="17.18" data-tol="0.1" data-ok="Yes: 2³⁰ × 16 B ≈ 17.2 GB, a laptop’s memory. Each extra qubit doubles it." data-hint="2³⁰ = 1.074×10⁹."><span>memory =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Gigabytes"><span>GB</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. A. Nielsen and I. L. Chuang, ch. 2 and 4. R. de Wolf, Quantum Computing: Lecture Notes, ch. 1–2. Qiskit documentation (bit ordering). Checked by code: 2⁵⁰ × 16 B = 18.0 PB, 2³⁰ × 16 B = 17.2 GB; CNOT matrices in both orderings; GHZ state from Book.QSim.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, S = Book.QSim(3), hist = [], seed = 31, msg = "";
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function meas(q) { var p1 = S.pq(q), r = rnd() < p1 ? 1 : 0, b = 1 << (2 - q), nrm = 0; for (var i = 0; i < 8; i++) { if (((i & b) ? 1 : 0) !== r) { S.re[i] = 0; S.im[i] = 0; } else nrm += S.prob(i); } nrm = Math.sqrt(nrm); for (i = 0; i < 8; i++) { S.re[i] /= nrm; S.im[i] /= nrm; } msg = "q" + q + " → " + r; }
+  function col(re, im) { var a = Math.atan2(im, re); if (Math.abs(a) < 0.4) return "#ffb547"; if (Math.abs(a) > 2.7) return "rgba(224,90,70,.95)"; return "#ece6da"; }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    act: function (a) { msg = ""; if (a === "reset") { S.reset(); hist = []; return; } if (a === "M0") { meas(0); hist.push("M0"); return; } if (a[0] === "H") S.g("H", +a[1]); else if (a[0] === "X") S.g("X", +a[1]); else if (a[0] === "T") S.g("T", +a[1]); else if (a.indexOf("CX") === 0) S.cx(+a[2], +a[3]); else if (a.indexOf("CZ") === 0) S.cz(+a[2], +a[3]); hist.push(a); },
+    caption: function () { return ["Three-qubit amplitudes.", "|a⟩ ⊗ |b⟩ ⊗ |c⟩.", "Circuit: " + (hist.join(" ") || "none") + ".", "Partial measurement.", "Labels in " + (Book.state.picks.ord === "qk" ? "Qiskit (little-endian)" : "textbook (big-endian)") + " order.", "Registers."][beat]; },
+    readout: function () { var p = S.probs(), parts = []; var qk = Book.state.picks.ord === "qk"; p.forEach(function (x, i) { if (x > 1e-6) { var l = S.label(i); if (qk) l = l.split("").reverse().join(""); parts.push(l + ": " + x.toFixed(3)); } }); return parts.join(" · ") + (msg ? " · " + msg : ""); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A = k.axes(W * 0.08, H * 0.1, W * 0.86, H * 0.7, [0, 8], [0, 1.05], { yl: "|amplitude|" }), qk = Book.state.picks.ord === "qk", i;
+      for (i = 0; i < 8; i++) { var m = Math.sqrt(S.prob(i)); k.rr(A.X(i + 0.15), A.Y(m), A.X(0.7) - A.X(0), A.Y(0) - A.Y(m), 3, col(S.re[i], S.im[i])); var lab = S.label(i); if (qk) lab = lab.split("").reverse().join(""); k.text("|" + lab + "⟩", A.X(i + 0.5), A.Y(0) + 18, { size: 12, color: "#b9b2a5" }); }
+      k.text("amber: phase 0 · red: phase π · white: other phases", W / 2, H * 0.95, { size: 11, color: "#7c766b" });
+    }
+  });
+})();
+</script>

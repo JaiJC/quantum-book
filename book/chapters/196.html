@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Chapter 168 simulated a radical pair with one nucleus exactly. A realistic flavin–tryptophan radical pair in cryptochrome has about twenty magnetic nuclei that couple significantly to the two electrons: nitrogens and hydrogens on the flavin and the tryptophan. Each nucleus doubles the size of the spin space. Twenty nuclei give over four million amplitudes per wavefunction, and density-matrix methods square that. This is a genuinely exponential quantum simulation problem in biology, small enough in principle for a modest quantum computer. Is it a good target?</p>
+  <p>On the plate: the cost of simulating a radical pair as nuclei are added.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why nuclei make it hard</h2>
+  <p>Two electron spins and {{tex:N}} spin-½ nuclei span a Hilbert space of dimension {{tex:4\times2^N}}. The hyperfine couplings are anisotropic tensors, differ for every nucleus, and do not commute with each other, so no simple symmetry reduces the problem. A singlet yield requires either propagating many wavefunctions and averaging over initial nuclear states, or evolving the full density matrix, with {{tex:(4\times2^N)^2}} elements. Exact calculations reach about 15–20 nuclei with heavy computing; beyond that, approximations are needed. On a quantum computer, the same system needs only {{tex:2+N}} qubits, plus ancillas for the spin-selective reaction. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Count the cost</h2>
+  <p>Nuclei: <span class="tangle" data-var="N" data-min="0" data-max="30" data-step="1" data-value="20" data-px="8"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Nuclei">20</span><button type="button" data-de="1" aria-label="More">›</button></span>. The plate compares memory for a state vector and a density matrix, at 16 bytes per complex number, with the qubit count. At 20 nuclei a single state vector needs 67 megabytes, but the density matrix needs 280 terabytes. Small proofs of concept have simulated radical-pair quantum beats with thermal relaxation on IBM processors (M. Tolunay and colleagues, 2023), using a few spins. A full cryptochrome model, with around twenty nuclei plus relaxation and motion, would need fault-tolerant machines or large analog simulators. <span class="tag">Established</span> for the scaling; <span class="tag">Speculative</span> for advantage.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>Classical approximations do well. Semiclassical methods treat many nuclei as classical vectors precessing in the electron spins’ field (Klaus Schulten and Peter Wolynes, 1978) and capture most of the physics for many weakly coupled nuclei; symmetry-adapted and stochastic wavefunction methods push exact treatment further; and only a few nuclei dominate the anisotropy. Biological questions, such as how sharp the compass can be or how electron hopping and relaxation degrade it, often need relaxation and motion that are harder to put on a quantum computer than static hyperfine couplings. A quantum simulation would be most valuable as an exact benchmark for these approximations at sizes beyond classical exact methods. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The exponential growth of radical-pair spin spaces with nuclei, state-vector versus density-matrix costs, the linear qubit cost, the status of hardware demonstrations, and the semiclassical and symmetry-based classical alternatives.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does the spin space grow with nuclei?<span class="tap">tap</span></div><div class="a">As 4 × 2ᴺ for N spin-½ nuclei.</div></div>
+  <div class="qa"><div class="q">How many qubits would a quantum simulation need?<span class="tap">tap</span></div><div class="a">About 2 + N, plus ancillas for reaction and readout.</div></div>
+  <div class="qa"><div class="q">What classical approximation handles many weak couplings?<span class="tap">tap</span></div><div class="a">Semiclassical treatment of the nuclear spins as classical vectors.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With 20 spin-½ nuclei, what is the dimension {{tex:4\times2^{20}}}?</p>
+    <form class="calc" data-answer="4194304" data-tol="1" data-ok="Yes: 4,194,304, about 4 × 10⁶ amplitudes." data-hint="2²⁰ = 1,048,576."><span>dim =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Dimension"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: K. Schulten and P. G. Wolynes, J. Chem. Phys. 68, 3292 (1978). D. R. Kattnig et al., Nat. Chem. 8, 384 (2016). P. J. Hore and H. Mouritsen, Annu. Rev. Biophys. 45, 299 (2016). M. Tolunay et al., Phys. Chem. Chem. Phys. 25, 15115 (2023). A. Baiardi, M. Christandl and M. Reiher, ChemBioChem (2023), doi:10.1002/cbic.202300120 (review). Checked by code: memory = 16 bytes × (4 × 2ᴺ) or × (4 × 2ᴺ)².</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { N: 20 };
+  function fmt(b) { var u = [["B", 1], ["kB", 1e3], ["MB", 1e6], ["GB", 1e9], ["TB", 1e12], ["PB", 1e15], ["EB", 1e18], ["ZB", 1e21]], i = 0; while (i < u.length - 1 && b >= u[i + 1][1]) i++; return (b / u[i][1]).toPrecision(3) + " " + u[i][0]; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Memory vs nuclei: state vector (amber), density matrix (red).", "Two electrons, N nuclei, anisotropic couplings.", "Classical memory vs qubits needed.", "Semiclassical nuclei: classical vectors precessing.", "Radical-pair simulation."][beat]; },
+    readout: function () { var d = 4 * Math.pow(2, V.N); return V.N + " nuclei · dimension " + d.toLocaleString("en") + " · state vector " + fmt(16 * d) + " · density matrix " + fmt(16 * d * d) + " · qubits " + (2 + V.N); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1 || beat === 3) { var cx = W / 2, cy = H / 2; k.circle(cx - 50, cy, 16, "#ffb547"); k.circle(cx + 50, cy, 16, "#ffb547"); for (var i = 0; i < 14; i++) { var a = i * 0.45 + now / 4000, r = 110 + 30 * Math.sin(i), x = cx + r * Math.cos(a), y = cy + r * 0.7 * Math.sin(a); k.circle(x, y, 5, "rgba(236,230,218,.7)"); if (beat === 3) k.line(x, y, x + 10 * Math.cos(now / 500 + i), y - 10 * Math.sin(now / 500 + i), "rgba(236,230,218,.5)", 1.5); } return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 30], [0, 22], { xl: "nuclei N", yl: "log₁₀ bytes" }); k.plot(A, function (n) { return Math.log10(16 * 4 * Math.pow(2, n)); }, [0, 30], "#ffb547", 2.5); k.plot(A, function (n) { return Math.min(22, Math.log10(16 * Math.pow(4 * Math.pow(2, n), 2))); }, [0, 30], "rgba(224,90,70,.85)", 2.5); k.line(A.X(0), A.Y(16), A.X(30), A.Y(16), "rgba(236,230,218,.3)", 1); k.text("~10 PB supercomputer", A.X(1), A.Y(16) - 5, { size: 10, color: "#b9b2a5", align: "left" }); k.circle(A.X(V.N), A.Y(Math.log10(64 * Math.pow(2, V.N))), 6, "#ece6da");
+    }
+  });
+})();
+</script>

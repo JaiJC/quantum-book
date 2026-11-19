@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>201. Quantum algorithms for sequence alignment and assembly</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="201">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>201</b> &nbsp;·&nbsp; Quantum algorithms for sequence alignment and assembly</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">201</div><div class="part">Part Five · Convergence</div><h1>Quantum algorithms for sequence alignment and assembly</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Your genome is about three billion letters long. Sequencing machines read it in short fragments that must be aligned to a reference and assembled, and comparing sequences across species, patients or tumours is the daily work of genomics. These are classical string problems, and they are expensive at scale. Could Grover-style speedups or quantum annealing help? Here the honest answer is short, and instructive.</p>
+  <p>On the plate: aligning two sequences by dynamic programming.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Alignment and its classical limit</h2>
+  <p>The Smith–Waterman algorithm (1981) finds the best local alignment of two sequences by filling a table: each cell scores the best alignment ending there, from its three neighbours (match or mismatch, gap in one sequence, gap in the other). For sequences of lengths <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> it costs <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(mn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">mn</span><span class="mclose">)</span></span></span></span>. Arturs Backurs and Piotr Indyk proved in 2015 that edit distance cannot be computed in strongly subquadratic time unless the strong exponential time hypothesis (SETH) fails, so the quadratic cost is likely optimal classically. Practical tools such as BLAST and BWA use heuristics and indexing to avoid the full table. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Align, then count queries</h2>
+  <p>Align <button type="button" class="v" data-pick="p:1">GATTACA vs GCATGCU</button> <button type="button" class="v" data-pick="p:2">ACGTTGCA vs TGCATGCA</button>, with mismatch penalty <span class="tangle" data-var="mm" data-min="0" data-max="3" data-step="0.5" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Mismatch">1.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and gap penalty <span class="tangle" data-var="gp" data-min="0.5" data-max="3" data-step="0.5" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gap">1.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> (match +2). The plate fills the table and traces back the best local alignment. For exact pattern matching, Hariharan Ramesh and V. Vinay gave in 2003 a quantum algorithm using about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>N</mi></msqrt><mo>+</mo><msqrt><mi>M</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt N + \sqrt M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;padding-left:0.833em;">N</span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;padding-left:0.833em;">M</span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span> queries for a pattern of length <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> in a text of length <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>; Ashley Montanaro showed in 2017 that average-case speedups can be larger. Annealing-based assembly, such as QuASeR in 2021, maps fragment ordering to a QUBO. <span class="tag">Established</span> as algorithms.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>A quadratic query speedup needs the genome inside a quantum memory that can be queried in superposition, which no hardware provides and which would itself take about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> operations to load (Chapter 120). Ryan Babbush and colleagues showed in 2021 that, after error-correction overheads, quadratic speedups need enormous problem sizes and days of runtime to beat classical computers, and modest-size genomics problems run in seconds on GPUs. Annealing-based assembly has not beaten classical assemblers. Genomics is a poor near-term target for quantum computing. <span class="tag">Speculative</span>; practically unlikely in the near term.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Smith–Waterman alignment, the SETH-based quadratic lower bound, practical heuristics, quantum pattern matching with square-root query counts, annealing-based assembly, and why I/O and error-correction overhead cancel quadratic speedups.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is quadratic alignment likely optimal classically?<span class="tap">tap</span></div><div class="a">Subquadratic edit distance would refute the strong exponential time hypothesis.</div></div>
+  <div class="qa"><div class="q">What does quantum pattern matching need?<span class="tap">tap</span></div><div class="a">Superposition queries to the text, i.e. the data in quantum-accessible memory.</div></div>
+  <div class="qa"><div class="q">Why do quadratic speedups struggle after error correction?<span class="tap">tap</span></div><div class="a">Each logical step is so much slower that the crossover needs very large problems and long runs.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For a text of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>3</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">N = 3\times10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span> letters, about how many queries is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>N</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;padding-left:0.833em;">N</span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span>?</p>
+    <form class="calc" data-answer="54772" data-tol="400" data-ok="Yes: about 55,000, versus reading all 3 billion letters, but only after loading them into quantum memory." data-hint="√(3 × 10⁹)."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Queries"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: T. F. Smith and M. S. Waterman, J. Mol. Biol. 147, 195 (1981). A. Backurs and P. Indyk, Proc. 47th ACM STOC, 51 (2015). H. Ramesh and V. Vinay, J. Discrete Algorithms 1, 103 (2003). A. Montanaro, Algorithmica 77, 16 (2017). A. Sarkar et al., PLoS One 16, e0249850 (2021) (QuASeR). R. Babbush et al., PRX Quantum 2, 010103 (2021).</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 202</div><div class="t">Quantum sensing in biology: NV centers, single-cell magnetometry, MRI advances</div><p style="text-align:left">A brain scanner you wear like a helmet, built on quantum sensors with no superconducting cryogenics.</p><p style="text-align:left"><a class="v" href="202.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="200.html">← 200. Quantum machine learning for genomics, imaging, and drug screening</a><a href="../index.html">Contents</a><a href="202.html">202. Quantum sensing in biology: NV centers, single-cell magnetometry, MRI advances →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { mm: 1, gp: 1 }, P = { "1": ["GATTACA", "GCATGCU"], "2": ["ACGTTGCA", "TGCATGCA"] }, M = null, best = null, path = [];
+  function run() { var p = P[Book.state.picks.p || "1"], a = p[0], b = p[1], i, j; M = []; best = [0, 0, 0]; for (i = 0; i <= a.length; i++) { M.push([]); for (j = 0; j <= b.length; j++) { if (!i || !j) { M[i].push(0); continue; } var v = Math.max(0, M[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 2 : -V.mm), M[i - 1][j] - V.gp, M[i][j - 1] - V.gp); M[i].push(v); if (v > best[0]) best = [v, i, j]; } } path = []; i = best[1]; j = best[2]; while (i > 0 && j > 0 && M[i][j] > 0) { path.push([i, j]); if (M[i][j] === M[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 2 : -V.mm)) { i--; j--; } else if (M[i][j] === M[i - 1][j] - V.gp) i--; else j--; } }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; run(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; run(); },
+    pick: function () { run(); },
+    caption: function () { return ["Smith–Waterman scoring table.", "Each cell from three neighbours.", "Best local alignment traced in amber.", "Load cost and error-correction overhead.", "Sequence alignment."][beat]; },
+    readout: function () { var p = P[Book.state.picks.p || "1"]; return p[0] + " vs " + p[1] + " · best local score " + best[0].toFixed(1) + " · " + (p[0].length * p[1].length) + " cells filled"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, p = P[Book.state.picks.p || "1"], a = p[0], b = p[1];
+      if (beat === 3) { var A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [3, 12], [0, 14], { xl: "log₁₀ N", yl: "log₁₀ seconds" }); k.plot(A, function (l) { return l - 9; }, [3, 12], "rgba(236,230,218,.8)", 2.3); k.plot(A, function (l) { return Math.max(0, l / 2 - 1); }, [3, 12], "#ffb547", 2.3); k.text("GPU (linear, 1 ns/step)", A.X(11.5), A.Y(2.7), { size: 11, color: "#ece6da", align: "right" }); k.text("error-corrected √N (≈ 10 µs/step, schematic)", A.X(11.5), A.Y(6.2), { size: 11, color: "#ffb547", align: "right" }); return; }
+      var n = a.length + 1, m = b.length + 1, c = Math.min(W * 0.8 / m, H * 0.75 / n), x0 = (W - c * m) / 2 + c / 2, y0 = H * 0.1 + c / 2, mx = Math.max(1, best[0]);
+      for (var i = 0; i < n; i++) for (var j = 0; j < m; j++) { var on = path.some(function (q) { return q[0] === i && q[1] === j; }), v = M[i][j] / mx; k.rr(x0 + (j - 0.5) * c + 1, y0 + (i - 0.5) * c + 1, c - 2, c - 2, 3, on ? "#ffb547" : "rgba(236,230,218," + (0.05 + 0.4 * v).toFixed(2) + ")"); if (c > 22) k.text(M[i][j].toFixed(0), x0 + (j - 0.5) * c + c / 2, y0 + (i - 0.5) * c + c / 2 + 4, { size: 10, color: on ? "#14120f" : "#b9b2a5" }); }
+      for (j = 1; j < m; j++) k.text(b[j - 1], x0 + (j - 0.5) * c + c / 2, y0 - c * 0.6, { size: 12, color: "#ece6da" }); for (i = 1; i < n; i++) k.text(a[i - 1], x0 - c * 0.9, y0 + (i - 0.5) * c + c / 2 + 4, { size: 12, color: "#ece6da" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

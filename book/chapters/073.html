@@ -1,0 +1,73 @@
+<section class="beat" data-beat="0">
+  <p class="drop">By 1960 particle physicists had found dozens of strongly interacting particles, with no apparent order: a zoo. Murray Gell-Mann and Yuval Ne’eman independently noticed that, plotted by charge and strangeness, they fell into hexagons and triangles. The pattern was the representation theory of a group called SU(3): the particles were its multiplication table. A gap in one of the triangles predicted a particle no one had seen, and it was found. This chapter gives you the mathematics of those patterns.</p>
+  <p>On the plate: the weight diagrams of SU(3), the shapes the hadrons fill.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Groups from their infinitesimal steps</h2>
+  <p>A continuous symmetry group, a <em>Lie group</em>, is determined almost entirely by its elements near the identity, {{tex:U = e^{i\theta_aT^a} \approx 1 + i\theta_aT^a}}. The generators {{tex:T^a}} close under commutation:</p>
+  <div class="eq">{{texd:[T^a, T^b] = if^{abc}\,T^c}}</div>
+  <p>The numbers {{tex:f^{abc}}}, the <em>structure constants</em>, define the <em>Lie algebra</em>. For rotations (SU(2), Chapter 39) there are three generators and {{tex:f^{abc} = \epsilon^{abc}}}. For SU(3) there are eight, written with Gell-Mann’s 3 × 3 matrices {{tex:T^a = \lambda^a/2}}, with {{tex:f^{123} = 1}}, {{tex:f^{147} = \tfrac12}}, {{tex:f^{458} = \sqrt3/2}} and others. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Representations as diagrams</h2>
+  <p>A <em>representation</em> is a set of matrices obeying the same algebra; its states can be labelled by the eigenvalues of the generators that commute with each other. SU(3) has two such, so every state is a point in a plane: the <em>weight diagram</em>. Choose one: <button type="button" class="v" data-pick="r:3">3</button>, <button type="button" class="v" data-pick="r:3b">3̄</button>, <button type="button" class="v" data-pick="r:8">8</button>, <button type="button" class="v" data-pick="r:10">10</button>.</p>
+  <p>The 3 is the up, down and strange quarks, plotted by isospin {{tex:I_3}} across and hypercharge {{tex:Y}} up; the 3̄ their antiquarks. Combining a quark and an antiquark, {{tex:3\otimes\bar3 = 8\oplus1}}, gives the octet of light mesons, the pions and kaons, plus a singlet. Three quarks, {{tex:3\otimes3\otimes3 = 10\oplus8\oplus8\oplus1}}, gives the octet containing the proton and neutron and the decuplet of Chapter 80.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Casimirs label representations</h2>
+  <p>An operator built from the generators that commutes with all of them, a <em>Casimir</em>, takes one value on a whole representation. For SU(2) it is {{tex:J^2 = j(j+1)}}, which you met as total angular momentum. For SU(3), {{tex:C_2 = \sum_aT^aT^a}} equals {{tex:4/3}} on the 3 and 3 on the 8. These numbers reappear as the colour factors in QCD (Chapter 78), measuring how strongly quarks and gluons radiate.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The Lorentz group in disguise</h2>
+  <p>The six generators of rotations and boosts (Chapter 17) can be recombined into two commuting sets, each obeying the SU(2) algebra. So representations of the Lorentz group are labelled by two spins, {{tex:(j_1, j_2)}}. {{tex:(\tfrac12, 0)}} and {{tex:(0, \tfrac12)}} are the left- and right-handed <em>Weyl spinors</em>, two-component objects; a Dirac spinor (Chapter 57) is one of each. {{tex:(\tfrac12, \tfrac12)}} is a four-vector. The weak force acts only on left-handed Weyl spinors (Chapter 81), so this split is not a technicality.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Lie groups and algebras, structure constants, representations and weight diagrams for SU(3), tensor-product decompositions, Casimir operators, and the Lorentz group as two copies of SU(2) with Weyl spinors.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does 3 ⊗ 3̄ decompose into?<span class="tap">tap</span></div><div class="a">8 ⊕ 1: an octet and a singlet.</div></div>
+  <div class="qa"><div class="q">How many generators does SU(3) have?<span class="tap">tap</span></div><div class="a">Eight, which will become the eight gluons.</div></div>
+  <div class="qa"><div class="q">What is a Dirac spinor in Lorentz-group terms?<span class="tap">tap</span></div><div class="a">(½, 0) ⊕ (0, ½): one left-handed and one right-handed Weyl spinor.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> {{tex:3\otimes3\otimes3 = 10\oplus8\oplus8\oplus1}}. Check the dimensions: what is the total?</p>
+    <form class="calc" data-answer="27" data-tol="0.01" data-ok="Yes: 3³ = 27 = 10 + 8 + 8 + 1." data-hint="Either 3 × 3 × 3 or 10 + 8 + 8 + 1."><span>dimension =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Dimension"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Gell-Mann, Caltech report CTSL-20 (1961); Y. Ne’eman, Nucl. Phys. 26, 222 (1961). H. Georgi, Lie Algebras in Particle Physics. A. Zee, Group Theory in a Nutshell for Physicists. Checked by code: Gell-Mann structure constants f¹²³ = 1, f¹⁴⁷ = ½, f⁴⁵⁸ = √3/2; Casimir on the 3 equals 4/3.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, s3 = Math.sqrt(3);
+  var R = {
+    3: [[0.5, 1 / 3, "u"], [-0.5, 1 / 3, "d"], [0, -2 / 3, "s"]],
+    "3b": [[-0.5, -1 / 3, "ū"], [0.5, -1 / 3, "d̄"], [0, 2 / 3, "s̄"]],
+    8: [[1, 0, "π⁺"], [-1, 0, "π⁻"], [0, 0, "π⁰ η"], [0.5, 1, "K⁺"], [-0.5, 1, "K⁰"], [0.5, -1, "K̄⁰"], [-0.5, -1, "K⁻"]],
+    10: [[-1.5, 1, "Δ⁻"], [-0.5, 1, "Δ⁰"], [0.5, 1, "Δ⁺"], [1.5, 1, "Δ⁺⁺"], [-1, 0, "Σ*⁻"], [0, 0, "Σ*⁰"], [1, 0, "Σ*⁺"], [-0.5, -1, "Ξ*⁻"], [0.5, -1, "Ξ*⁰"], [0, -2, "Ω⁻"]]
+  };
+  Book.plate({
+    beat: function (i) { beat = i; },
+    caption: function () { var r = beat === 3 ? "8" : beat === 0 || beat === 5 ? ["3", "8", "10"][Math.floor(Date.now() / 3000) % 3] : (Book.state.picks.r || "8"); return ["Weight diagrams of SU(3).", "Generators and structure constants.", "Weight diagram: " + (r === "3b" ? "3̄" : r) + ".", "The octet: Casimir C₂ = 3.", "Lorentz group: (j₁, j₂).", "SU(3)."][beat]; },
+    readout: function () { if (beat === 1) return "f¹²³ = 1 · f¹⁴⁷ = ½ · f⁴⁵⁸ = √3/2"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx;
+      if (beat === 1) { var cx = W / 2, cy = H / 2, r = Math.min(W, H) * 0.3; for (var i = 0; i < 8; i++) { var a = i / 8 * 2 * Math.PI; k.circle(cx + r * Math.cos(a), cy + r * Math.sin(a), 16, "#14120f", "#ffb547"); k.text("T" + (i + 1), cx + r * Math.cos(a), cy + r * Math.sin(a) + 4, { size: 12, color: "#ffb547" }); } k.text("[Tᵃ, Tᵇ] = i fᵃᵇᶜ Tᶜ", cx, cy + 5, { size: 14 }); return; }
+      if (beat === 4) { [["(½, 0)", "left Weyl", W * 0.2], ["(0, ½)", "right Weyl", W * 0.5], ["(½, ½)", "four-vector", W * 0.8]].forEach(function (q) { k.rr(q[2] - W * 0.12, H * 0.38, W * 0.24, H * 0.2, 10, "#14120f", "#ffb547"); k.text(q[0], q[2], H * 0.47, { size: 16, color: "#ffb547" }); k.text(q[1], q[2], H * 0.54, { size: 12, color: "#b9b2a5" }); }); k.text("Dirac = (½, 0) ⊕ (0, ½)", W / 2, H * 0.75, { size: 14 }); return; }
+      var r2 = beat === 3 ? "8" : beat === 0 || beat === 5 ? ["3", "8", "10"][Math.floor(now / 3000) % 3] : (Book.state.picks.r || "8"), pts = R[r2];
+      var A = k.axes(W * 0.12, H * 0.08, W * 0.76, H * 0.8, [-2, 2], [-2.4, 1.6], { xl: "I₃", yl: "Y" });
+      c.strokeStyle = "rgba(255,181,71,.35)"; c.lineWidth = 1.5;
+      if (r2 === "8") { c.beginPath(); [[1, 0], [0.5, 1], [-0.5, 1], [-1, 0], [-0.5, -1], [0.5, -1], [1, 0]].forEach(function (p, j) { if (j) c.lineTo(A.X(p[0]), A.Y(p[1])); else c.moveTo(A.X(p[0]), A.Y(p[1])); }); c.stroke(); }
+      if (r2 === "10") { c.beginPath(); [[-1.5, 1], [1.5, 1], [0, -2], [-1.5, 1]].forEach(function (p, j) { if (j) c.lineTo(A.X(p[0]), A.Y(p[1])); else c.moveTo(A.X(p[0]), A.Y(p[1])); }); c.stroke(); }
+      if (r2 === "3" || r2 === "3b") { c.beginPath(); pts.concat([pts[0]]).forEach(function (p, j) { if (j) c.lineTo(A.X(p[0]), A.Y(p[1])); else c.moveTo(A.X(p[0]), A.Y(p[1])); }); c.stroke(); }
+      pts.forEach(function (p) { k.circle(A.X(p[0]), A.Y(p[1]), p[2].indexOf(" ") > 0 ? 11 : 8, p[2] === "Ω⁻" ? "#e05a46" : "#ffb547"); k.text(p[2], A.X(p[0]), A.Y(p[1]) - 16, { size: 12 }); });
+      if (r2 === "10") k.text("Ω⁻: predicted from the gap, found 1964", A.X(0), A.Y(-2) + 26, { size: 11, color: "#e05a46" });
+    }
+  });
+})();
+</script>

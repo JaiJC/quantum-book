@@ -1,0 +1,4 @@
+== 104
+amp damping |1>: z -0.39999999999999997 P1 0.7
+Kraus completeness True
+partial transpose Bell eigs [-0.5  0.5  0.5  0.5]

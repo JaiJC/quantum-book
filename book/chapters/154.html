@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The most mature quantum technology is not computing. It is measurement. Atomic clocks keep time to a second in the age of the universe; magnetometers built from defects in diamond have detected the magnetic signal of a single neuron firing; and the LIGO detectors, which heard black holes merging a billion light-years away, now inject specially prepared “squeezed” vacuum light to listen more sharply. The same fragility that makes qubits hard to protect makes them exquisite sensors.</p>
+  <p>On the plate: how precision improves with the number of probes.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Ramsey interferometry</h2>
+  <p>Put a qubit into superposition with a {{tex:\pi/2}} pulse, let it evolve for time {{tex:T}} so that a frequency difference {{tex:\delta}} accumulates a phase {{tex:\varphi = \delta T}}, then apply a second {{tex:\pi/2}} pulse and measure. The probability of finding the qubit excited is {{tex:\tfrac12(1+\cos\delta T)}}: a fringe whose spacing narrows as {{tex:T}} grows, until decoherence (Chapter 135) washes it out. Interrogation time <span class="tangle" data-var="T" data-min="0.2" data-max="5" data-step="0.1" data-dec="1" data-value="1.0" data-px="8"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="T">1.0</span><button type="button" data-de="1" aria-label="Longer">›</button></span> (in units of the coherence time). Norman Ramsey’s method, which earned the 1989 Nobel Prize, underlies every atomic clock. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Standard quantum limit and Heisenberg limit</h2>
+  <p>With {{tex:N}} independent atoms, the phase uncertainty falls as {{tex:1/\sqrt N}}: the <em>standard quantum limit</em> (SQL), just like averaging coin flips. Entangling the atoms, for example in a GHZ state where the phase accumulates {{tex:N}} times faster, can reach {{tex:1/N}}: the <em>Heisenberg limit</em>. The <em>quantum Cramér–Rao bound</em> {{tex:\Delta\varphi\ge1/\sqrt{\nu F_Q}}}, with {{tex:F_Q}} the quantum Fisher information and {{tex:\nu}} the number of repetitions, sets the ultimate precision for any state and measurement; {{tex:F_Q = N}} for independent atoms and up to {{tex:N^2}} for entangled ones. Vittorio Giovannetti, Seth Lloyd and Lorenzo Maccone laid out the framework in 2004. Choose {{tex:N = 10^x}} with {{tex:x =}} <span class="tangle" data-var="lN" data-min="0" data-max="8" data-step="0.5" data-dec="1" data-value="6.0" data-px="10"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 N">6.0</span><button type="button" data-de="1" aria-label="More">›</button></span>. Entangled states are fragile, so in practice gains come from <em>squeezing</em>: redistributing uncertainty between two quadratures. LIGO’s frequency-dependent squeezing, reported by Dhruva Ganapathy and colleagues in 2023, cut quantum noise by up to 5.8 dB and extended the detection range by 15–18%. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>NV magnetometry</h2>
+  <p>A nitrogen-vacancy (NV) centre in diamond, a nitrogen atom next to a missing carbon, has a spin-1 ground state with a zero-field splitting {{tex:D = 2.87}} GHz between {{tex:m_s = 0}} and {{tex:m_s = \pm1}}. Green light pumps it into {{tex:m_s = 0}}, and it fluoresces less when microwaves drive it to {{tex:\pm1}}: <em>optically detected magnetic resonance</em> (ODMR), readable at room temperature. A magnetic field {{tex:B}} along the NV axis splits the {{tex:\pm1}} lines by {{tex:2\gamma B}}, with {{tex:\gamma\approx28}} GHz/T (the Zeeman effect, Chapter 42). Field <span class="tangle" data-var="B" data-min="0" data-max="5" data-step="0.1" data-dec="1" data-value="1.0" data-px="8"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Field mT">1.0</span><button type="button" data-de="1" aria-label="Stronger">›</button></span> mT. NV sensors work inside living cells and near tissue, which is why they return in Parts 4 and 5 as probes of biology. Christian Degen, Friedemann Reinhard and Paola Cappellaro reviewed quantum sensing in 2017. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Ramsey interferometry, the standard quantum limit and Heisenberg limit, the quantum Cramér–Rao bound and Fisher information, squeezing and LIGO, and NV-centre magnetometry by ODMR.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does independent averaging give 1/√N?<span class="tap">tap</span></div><div class="a">Independent errors add in quadrature, as for coin flips.</div></div>
+  <div class="qa"><div class="q">How does entanglement reach 1/N?<span class="tap">tap</span></div><div class="a">An N-atom GHZ state accumulates phase N times faster, raising the Fisher information to N².</div></div>
+  <div class="qa"><div class="q">Why are NV centres useful in biology?<span class="tap">tap</span></div><div class="a">They read magnetic fields optically at room temperature, at nanometre to micrometre scales.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:\gamma = 28}} GHz/T, what is the ODMR line splitting {{tex:2\gamma B}} at 1 mT, in MHz?</p>
+    <form class="calc" data-answer="56" data-tol="0.5" data-ok="Yes: 2 × 28 MHz = 56 MHz." data-hint="28 GHz/T × 1 mT = 28 MHz."><span>splitting =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Splitting MHz"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: N. F. Ramsey, Rev. Mod. Phys. 62, 541 (1990). V. Giovannetti, S. Lloyd and L. Maccone, Science 306, 1330 (2004). C. L. Degen, F. Reinhard and P. Cappellaro, Rev. Mod. Phys. 89, 035002 (2017). D. Ganapathy et al., Phys. Rev. X 13, 041021 (2023). Checked by code: N = 10⁶ gives 10⁻³ at the SQL and 10⁻⁶ at the Heisenberg limit.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T: 1, lN: 6, B: 1 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Phase uncertainty vs number of probes.", "Ramsey fringe vs detuning.", "SQL 1/√N (white) and Heisenberg 1/N (amber).", "ODMR spectrum of an NV centre.", "Quantum sensing."][beat]; },
+    readout: function () { if (beat === 1) return "T = " + V.T.toFixed(1) + " · fringe period 2π/T · contrast e^(−T) = " + Math.exp(-V.T).toFixed(2); if (beat === 2 || beat === 0) { var N = Math.pow(10, V.lN); return "N = " + N.toExponential(0) + " · SQL " + (1 / Math.sqrt(N)).toExponential(1) + " rad · Heisenberg " + (1 / N).toExponential(1) + " rad"; } if (beat === 3) return "B = " + V.B.toFixed(1) + " mT · lines at " + (2870 - 28 * V.B).toFixed(0) + " and " + (2870 + 28 * V.B).toFixed(0) + " MHz · splitting " + (56 * V.B).toFixed(0) + " MHz"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [-15, 15], [0, 1.05], { xl: "detuning δ (units of 1/T₂)", yl: "excited probability" }); k.plot(A, function (d) { return 0.5 * (1 + Math.exp(-V.T) * Math.cos(d * V.T)); }, [-15, 15], "#ffb547", 2.5, 600); return; }
+      if (beat === 0 || beat === 2 || beat === 4) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 8], [-8, 0], { xl: "log₁₀ N", yl: "log₁₀ Δφ" }); k.plot(A, function (x) { return -x / 2; }, [0, 8], "rgba(236,230,218,.8)", 2.5); k.plot(A, function (x) { return -x; }, [0, 8], "#ffb547", 2.5); k.circle(A.X(V.lN), A.Y(-V.lN / 2), 6, "#ece6da"); k.circle(A.X(V.lN), A.Y(-V.lN), 6, "#ffb547"); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [2700, 3040], [0.8, 1.01], { xl: "microwave frequency (MHz)", yl: "fluorescence" }); var f1 = 2870 - 28 * V.B, f2 = 2870 + 28 * V.B, w = 6; k.plot(A, function (f) { return 1 - 0.08 / (1 + Math.pow((f - f1) / w, 2)) - 0.08 / (1 + Math.pow((f - f2) / w, 2)); }, [2700, 3040], "#ffb547", 2.5, 600); }
+    }
+  });
+})();
+</script>

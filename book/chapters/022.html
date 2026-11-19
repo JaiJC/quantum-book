@@ -1,0 +1,90 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The most perfect glowing object ever measured is the universe itself. In 1990 the COBE satellite measured the faint microwave glow left over from the Big Bang and found it matched the ideal curve for a hot body, at 2.725 kelvin, so precisely that the error bars were smaller than the width of the line drawn through them. <span class="tag">Established</span></p>
+  <p>That ideal curve is Planck’s law, and getting it right was the first step into quantum physics. This chapter derives it the way Planck’s successors did: count the ways light can fit in a box, then decide how much energy each way can hold.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Counting the modes</h2>
+  <p>Light in a closed box must fit standing waves between the walls, like the guitar string of Chapter 5 in three dimensions. Count how many standing waves have frequencies between {{tex:f}} and {{tex:f + df}}: the count grows as {{tex:f^2}}, because higher frequencies have more ways to point. Per unit volume, including two polarizations,</p>
+  <div class="eq">{{texd:g(f)\,df = \frac{8\pi f^2}{c^3}\,df}}</div>
+  <div class="note x-deep"><span class="mark">Deeper</span>In a cube of side {{tex:L}} the allowed wave vectors are {{tex:\mathbf k = \pi(n_x,n_y,n_z)/L}} with positive integers. Each occupies a volume {{tex:(\pi/L)^3}} of k-space. The number with {{tex:|\mathbf k| < k}} is one-eighth of a sphere, {{tex:\tfrac18\cdot\tfrac43\pi k^3/(\pi/L)^3}}, times 2 for polarization. Differentiate with {{tex:k = 2\pi f/c}} and divide by {{tex:L^3}}.</div>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Classical energy per mode: the catastrophe</h2>
+  <p>Give each mode the classical average energy {{tex:k_BT}} and multiply: {{tex:u(f) = 8\pi f^2 k_BT/c^3}}, the Rayleigh–Jeans law, the grey curve on the plate. It fits at low frequencies and runs away to infinity at high ones.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Planck’s lumps</h2>
+  <p>In 1900 Max Planck assumed, as what he later called an act of desperation, that a mode of frequency {{tex:f}} can only hold energy in whole multiples of {{tex:hf}}. Then the Boltzmann factor makes high-frequency modes almost always empty, because even one lump costs far more than {{tex:k_BT}}. The average energy per mode becomes</p>
+  <div class="eq">{{texd:\langle E\rangle = \frac{hf}{e^{hf/k_BT} - 1}, \qquad u(f) = \frac{8\pi h f^3}{c^3}\,\frac{1}{e^{hf/k_BT}-1}}}</div>
+  <p>For {{tex:hf \ll k_BT}} this reduces to {{tex:k_BT}}, the classical value; for {{tex:hf \gg k_BT}} it dies away exponentially, killing the catastrophe. Set the temperature to <span class="tangle" data-var="T" data-min="300" data-max="12000" data-step="100" data-value="5800" data-unit="K" data-px="2"><button type="button" data-de="-1" aria-label="Cooler">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature">5800 K</span><button type="button" data-de="1" aria-label="Hotter">›</button></span> and watch the amber curve’s peak slide. <span class="tag">Established</span></p>
+  <div class="note x-deep"><span class="mark">Deeper</span>{{tex:\langle E\rangle = \sum_n nhf\,e^{-nhf/k_BT}\big/\sum_n e^{-nhf/k_BT}}}. With {{tex:x = e^{-hf/k_BT}}}, the denominator is {{tex:1/(1-x)}} and the numerator is {{tex:hf\,x/(1-x)^2}}, giving {{tex:hf\,x/(1-x) = hf/(e^{hf/k_BT}-1)}}.</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Two laws for free</h2>
+  <p>Where is the peak? Writing Planck’s law in wavelength and setting its derivative to zero gives {{tex:x = 5(1 - e^{-x})}} with {{tex:x = hc/\lambda k_BT}}. Its solution, {{tex:x = 4.965}}, gives <em>Wien’s law</em>, {{tex:\lambda_\text{max}T = 2.898\times10^{-3}}} m·K. The Sun, at 5772 K, peaks at 502 nm, in the green. You, at 310 K, peak at 9.3 µm, deep in the infrared, which is what a thermal camera sees.</p>
+  <p>Integrate over all frequencies and you get the <em>Stefan–Boltzmann law</em>: a black surface radiates {{tex:\sigma T^4}}, with {{tex:\sigma = 2\pi^5k_B^4/15c^2h^3 = 5.67\times10^{-8}}} W m⁻² K⁻⁴. Doubling the temperature multiplies the glow by sixteen. The Sun’s surface pours out 63 megawatts per square metre.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The total energy density is {{tex:\int u\,df \propto T^4\int_0^\infty \frac{x^3}{e^x-1}dx = T^4\,\Gamma(4)\zeta(4) = T^4\cdot 6\cdot\frac{\pi^4}{90}}}. Converting energy density to emitted flux multiplies by {{tex:c/4}}.</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The glow of the Big Bang</h2>
+  <p>The plate now shows Planck’s curve at 2.725 K, the spectrum COBE’s FIRAS instrument measured for the cosmic microwave background. The dots mark where FIRAS took data; its real error bars are smaller than the dots. The best modern fit, by Dale Fixsen in 2009, gives {{tex:T = 2.72548 \pm 0.00057}} K. Its peak is at 160 GHz, a wavelength of 1.9 mm; plotted against wavelength instead, the curve peaks near 1.06 mm, because the two forms of Planck’s law peak in different places. <span class="tag">Established</span></p>
+  <p>The light was released when the universe was about 380,000 years old and has been cooling ever since as space expanded. Planck’s law, invented to explain ovens, describes it to parts in ten thousand.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The density of modes, the Rayleigh–Jeans failure, Planck’s quantized oscillators, Wien’s and Stefan–Boltzmann’s laws, and the cosmic background.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does Planck’s law not diverge at high frequency?<span class="tap">tap</span></div><div class="a">A mode can only hold whole lumps hf; when hf ≫ k_BT even one lump is improbable, so high modes stay almost empty.</div></div>
+  <div class="qa"><div class="q">Where does your body’s thermal glow peak?<span class="tap">tap</span></div><div class="a">Near 9.3 µm, in the infrared (Wien’s law at 310 K).</div></div>
+  <div class="qa"><div class="q">How does total radiated power depend on temperature?<span class="tap">tap</span></div><div class="a">As T⁴ (Stefan–Boltzmann).</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A star’s glow peaks at 290 nm. What is its surface temperature, in kelvin?</p>
+    <form class="calc" data-answer="9992" data-tol="60" data-ok="Yes: 2.898×10⁻³ / 290×10⁻⁹ ≈ 10,000 K, a hot blue-white star." data-hint="T = b/λ_max with b = 2.898×10⁻³ m·K."><span>T =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Temperature in kelvin"><span>K</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Planck, Ann. Phys. 4, 553 (1901). J. C. Mather et al., Astrophys. J. 354, L37 (1990). D. J. Fixsen, Astrophys. J. 707, 916 (2009). Checked by code: x = 4.9651, b = 2.8978×10⁻³ m·K; Sun peak 502 nm; body 9.35 µm; CMB peak 160.2 GHz; σ = 5.670×10⁻⁸.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T: 5800 }, h = 6.62607015e-34, kB = 1.380649e-23, c = 299792458;
+  function planckL(lam, T) { var x = h * c / (lam * kB * T); return 1 / (Math.pow(lam, 5) * (Math.exp(x) - 1)); }
+  function rjL(lam, T) { return kB * T / (h * c) / Math.pow(lam, 4); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["The cosmic microwave background and Planck’s curve.", "Standing waves in a box.", "Rayleigh–Jeans (grey) runs away.", "Planck’s law at " + V.T + " K.", "Wien’s peak and the T⁴ law.", "COBE FIRAS data and Planck’s curve at 2.725 K.", "Planck’s law."][beat]; },
+    readout: function () { if (beat === 3 || beat === 4 || beat === 6) return "peak " + (2.8977719e-3 / V.T * 1e9).toFixed(0) + " nm · σT⁴ = " + (5.670374e-8 * Math.pow(V.T, 4) / 1e6).toFixed(1) + " MW/m²"; if (beat === 0 || beat === 5) return "T = 2.72548 K"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c2 = k.ctx, A, i;
+      if (beat === 0 || beat === 5) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, 650], [0, 1.1], { xt: [0, 200, 400, 600], xl: "frequency (GHz)", yl: "brightness" });
+        var T0 = 2.72548; function Bf(fGHz) { var f = fGHz * 1e9, x = h * f / (kB * T0); return f * f * f / (Math.exp(x) - 1); } var mx = Bf(160.2);
+        k.plot(A, function (f) { return Bf(f) / mx; }, [1, 650], "#ffb547", 2);
+        for (var f = 70; f <= 630; f += 16) { var y = Bf(f) / mx; k.line(A.X(f), A.Y(y) - 4, A.X(f), A.Y(y) + 4, "#ece6da", 1.5); k.circle(A.X(f), A.Y(y), 2.2, "#ece6da"); }
+        k.text("dots: where FIRAS measured; real error bars are smaller than the dots", W / 2, H * 0.95, {});
+        return;
+      }
+      if (beat === 1) {
+        var x0 = W * 0.15, y0 = H * 0.15, bw = W * 0.7, bh = H * 0.7; k.rr(x0, y0, bw, bh, 4, null, "#4a4540");
+        for (var n = 1; n <= 4; n++) { var col = ["#ffb547", "#ece6da", "#b9b2a5", "#7c766b"][n - 1]; k.plot({ X: function (u) { return x0 + u * bw; }, Y: function (v) { return y0 + bh * (n / 5) - v * bh * 0.08; } }, function (u) { return Math.sin(n * Math.PI * u) * Math.cos(now / 1000 * n * 2); }, [0, 1], col, 2); }
+        return;
+      }
+      var T = beat === 2 ? 5800 : V.T, lmax = 2.8977719e-3 / T, l1 = Math.max(lmax * 4, 2e-6), peak = planckL(lmax, T);
+      A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, l1 * 1e9], [0, 1.25], { xl: "wavelength (nm)", yl: "brightness" });
+      if (T >= 3000 && T <= 9000 && l1 > 750e-9) { var ctx = k.ctx; ctx.fillStyle = "rgba(236,230,218,.05)"; ctx.fillRect(A.X(380), A.y0, A.X(750) - A.X(380), A.h); k.text("visible", A.X(565), A.y0 + 14, {}); }
+      k.plot(A, function (lnm) { return Math.min(1.25, rjL(lnm * 1e-9, T) / peak); }, [l1 * 1e9 * 0.05, l1 * 1e9], "#7c766b", 2);
+      if (beat !== 2) { k.plot(A, function (lnm) { return planckL(lnm * 1e-9, T) / peak; }, [1, l1 * 1e9], "#ffb547", 2.5, 500); k.line(A.X(lmax * 1e9), A.Y(0), A.X(lmax * 1e9), A.Y(1), "rgba(255,181,71,.5)", 1, [3, 3]); }
+      k.text(beat === 2 ? "Rayleigh–Jeans: → ∞" : "", A.X(l1 * 1e9 * 0.18), A.Y(1.15), { color: "#b9b2a5", align: "left" });
+    }
+  });
+})();
+</script>

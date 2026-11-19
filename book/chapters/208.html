@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The capstones are where you stop reading and start doing. The first skill is the one every researcher uses daily: reading a paper critically. Not hunting for flaws, but separating what was claimed from what was shown, checking that the controls support the conclusion, and noticing where the abstract or press release reaches further than the data. This chapter gives you a referee’s rubric and walks it through two real papers from this book.</p>
+  <p>On the plate: two papers annotated with the rubric.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The rubric</h2>
+  <p>For any paper, write down: (1) <strong>the claim</strong> in one sentence, in the authors’ strongest form; (2) <strong>the evidence</strong> offered for each part; (3) <strong>the controls</strong>: what alternative explanations were excluded, and how; (4) <strong>the statistics</strong>: sample sizes, error bars, whether the analysis was fixed in advance; (5) <strong>the baseline</strong>: what the result is compared against, and whether it is the strongest available; (6) <strong>the overreach</strong>: where the title, abstract or discussion claims more than the results support; and (7) <strong>the next experiment</strong> that would settle what remains open. A referee report is these seven items, written politely and specifically. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two worked examples</h2>
+  <p>Choose a paper: <button type="button" class="v" data-pick="p:xu">Xu et al. 2021, robin cryptochrome 4 (Nature)</button> <button type="button" class="v" data-pick="p:rm">Robledo-Moreno et al. 2025, iron–sulfur clusters by sample-based quantum diagonalization (Science Advances)</button>, then step through the rubric items with <span class="tangle" data-var="i" data-min="1" data-max="7" data-step="1" data-value="1" data-px="20"><button type="button" data-de="-1" aria-label="Previous">‹</button><span class="num" role="slider" tabindex="0" aria-label="Rubric item">1</span><button type="button" data-de="1" aria-label="Next">›</button></span>. The plate shows this book’s annotation for each item. Both are strong papers; both are careful about their own limits; and in both, popular coverage claimed more than the papers did. The annotations reflect Chapters 169 and 204. <span class="tag">Debated</span> for the judgements, which are this book’s.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Your turn</h2>
+  <p>Pick a paper from this book’s sources that you have not seen annotated, for example the 2007 FMO coherence paper (Chapter 167), the 2018 xenon isotope study (Chapter 175) or the 2025 KRAS paper (Chapter 200). Write a one-page referee report following the rubric, with at least one specific, constructive request. Then find the published follow-ups and check how your report compares with what the field concluded. That comparison is the most useful calibration you can get. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A seven-item referee rubric, worked annotations of two real papers, and an exercise that calibrates your judgement against how the field actually responded.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why state the claim in its strongest form?<span class="tap">tap</span></div><div class="a">So you critique what the authors actually argue, not a weaker version.</div></div>
+  <div class="qa"><div class="q">What is “overreach”?<span class="tap">tap</span></div><div class="a">Where the title, abstract or discussion claims more than the results show.</div></div>
+  <div class="qa"><div class="q">What makes a referee request useful?<span class="tap">tap</span></div><div class="a">It is specific, feasible, and would change the conclusion if it came out differently.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A paper compares two groups of 40 with standard deviation 0.25 each. What is the standard error of the difference in means, {{tex:\sqrt{2\sigma^2/n}}}?</p>
+    <form class="calc" data-answer="0.0559" data-tol="0.001" data-ok="Yes: about 0.056, so a reported difference of 0.10 is only 1.8 standard errors." data-hint="√(2 × 0.0625 / 40)."><span>SE ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Standard error"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Xu et al., Nature 594, 535 (2021). J. Robledo-Moreno et al., Sci. Adv. 11, eadu9991 (2025). Annotations are this book’s judgement.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { i: 1 }, items = ["claim", "evidence", "controls", "statistics", "baseline", "overreach", "next experiment"];
+  var A = { xu: ["Robin CRY4 forms magnetically sensitive flavin–tryptophan radical pairs, more than in non-migratory birds.", "Purified protein: transient absorption and magnetic field effects; tryptophan mutants; spin-dynamics simulations.", "Mutating each tryptophan; comparison with chicken and pigeon CRY4; field-free controls.", "Effects of a few percent measured with replicates; well characterized for in-vitro work.", "Other cryptochromes and earlier in-vitro radical-pair studies.", "Coverage implied the compass mechanism was proven; the paper says in-vivo evidence is still needed.", "Show CRY4 radical pairs drive orientation in living birds (modified or knocked-down CRY4)."], rm: ["SQD treats [2Fe-2S] and [4Fe-4S] models beyond exact diagonalization, using up to 77 qubits and Fugaku.", "Energies from sampled configurations diagonalized classically; comparisons with reference methods.", "Configuration recovery to correct noise; scaling studies.", "Run-to-run variation reported; energies relative to references.", "Selected CI and DMRG are the relevant classical competitors; comparisons are still debated.", "Headlines suggested quantum advantage; a co-author said it does not yet beat classical algorithms.", "Head-to-head with best classical methods at a size where they become uncertain."] };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Claim · evidence · controls · statistics · baseline · overreach · next.", "The seven-item rubric.", "Item " + V.i + ": " + items[V.i - 1] + ".", "Write your own report.", "Reading a paper."][beat]; },
+    readout: function () { if (beat === 2) { var p = Book.state.picks.p || "xu"; return (p === "xu" ? "Xu 2021" : "Robledo-Moreno 2025") + " · " + items[V.i - 1]; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat !== 2) { items.forEach(function (s, j) { k.rr(W * 0.2, H * (0.08 + j * 0.125), W * 0.6, H * 0.1, 6, "#14120f", "rgba(236,230,218,.4)"); k.text((j + 1) + " · " + s, W / 2, H * (0.145 + j * 0.125), { size: 13, color: j === 5 ? "#e05a46" : "#ece6da" }); }); return; }
+      var t = A[Book.state.picks.p || "xu"][V.i - 1], words = t.split(" "), lines = [], cur = ""; words.forEach(function (w) { if ((cur + " " + w).length > 42) { lines.push(cur); cur = w; } else cur = cur ? cur + " " + w : w; }); lines.push(cur); k.text(items[V.i - 1], W / 2, H * 0.18, { size: 16, color: "#ffb547" }); lines.forEach(function (l, j) { k.text(l, W / 2, H * (0.32 + j * 0.08), { size: 13 }); });
+    }
+  });
+})();
+</script>

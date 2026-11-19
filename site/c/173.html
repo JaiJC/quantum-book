@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>173. Quantum effects in ion channels</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="173">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>173</b> &nbsp;·&nbsp; Quantum effects in ion channels</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">173</div><div class="part">Part Four · Quantum biology</div><h1>Quantum effects in ion channels</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">A potassium channel in a nerve cell membrane passes about a hundred million potassium ions a second, close to the rate at which ions can diffuse to it, yet it rejects sodium, a smaller ion with the same charge, by a factor of a thousand. Roderick MacKinnon’s 1998 crystal structure of the bacterial channel KcsA, which earned the 2003 Nobel Prize in Chemistry, showed how: a narrow <em>selectivity filter</em> lined with oxygen atoms that mimic the water shell of a potassium ion. Some physicists have proposed that quantum coherence helps ions move through it. Most biophysicists doubt it.</p>
+  <p>On the plate: ions hopping through the filter, and the timescales that matter.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The selectivity filter</h2>
+  <p>The filter is about 12 Å long with four binding sites, each formed by a ring of carbonyl oxygens. A dehydrated K⁺ fits snugly; Na⁺ is too small to be coordinated well, so stripping its water costs more than the filter repays. Molecular dynamics and crystallography show ions moving in single file, alternating with water molecules or, in more recent analyses, as directly adjacent ions: the <em>knock-on</em> mechanism, in which an ion entering one end pushes the row along and one exits the other. Classical simulations with accurate force fields reproduce conduction rates and selectivity reasonably well. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Knock-on, classically</h2>
+  <p>Watch the classical knock-on cycle on the plate: ions (amber) and water (white) shuffle through four sites. Each step takes tens of picoseconds; a full transit about 10 nanoseconds, consistent with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">10^8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span> ions per second. Now compare a key quantum scale: the thermal de Broglie wavelength of a potassium ion at body temperature, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mi>h</mi><mi mathvariant="normal">/</mi><msqrt><mrow><mn>2</mn><mi>π</mi><mi>m</mi><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\lambda = h/\sqrt{2\pi mk_BT}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1072em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mord">/</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8572em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord mathnormal">πm</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span><span style="top:-2.8172em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1828em;"><span></span></span></span></span></span></span></span></span>, about 0.016 nm, some twenty times smaller than the 0.3 nm spacing of binding sites. Temperature: <span class="tangle" data-var="T" data-min="200" data-max="400" data-step="10" data-value="310" data-px="0.5"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature K">310</span><button type="button" data-de="1" aria-label="Warmer">›</button></span> K. A wave that short behaves essentially as a classical particle. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The quantum proposals and the objections</h2>
+  <p>Alipasha Vaziri and Martin Plenio suggested in 2010 that coherent ion transport might contribute to selectivity and speed, and Johann Summhammer and colleagues proposed in 2012 that quantum interference among ion positions could matter. The objections are quantitative. The ions are heavy and hot, so their wavelengths are tiny; they are surrounded by fluctuating carbonyl groups and water that would decohere any superposition of positions within femtoseconds, while hops take picoseconds. And classical models already explain the data. A positive test would need a measurable isotope or temperature effect inconsistent with classical rate theory. None has been reported. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The structure and selectivity of the potassium channel filter, the knock-on mechanism, the ion’s thermal wavelength against the site spacing, the coherent-transport proposals, and why they face strong timescale objections.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does the filter reject sodium?<span class="tap">tap</span></div><div class="a">Its oxygen rings coordinate K⁺ like its water shell but fit Na⁺ poorly, so Na⁺ pays a dehydration penalty.</div></div>
+  <div class="qa"><div class="q">How does K⁺’s thermal wavelength compare with site spacing?<span class="tap">tap</span></div><div class="a">About 0.016 nm against 0.3 nm, twenty times smaller.</div></div>
+  <div class="qa"><div class="q">What would support a quantum role?<span class="tap">tap</span></div><div class="a">An isotope or temperature dependence that classical rate theory cannot explain.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>6.48</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup></mrow><annotation encoding="application/x-tex">m = 6.48\times10^{-26}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">6.48</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">26</span></span></span></span></span></span></span></span></span></span></span></span> kg and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mo>=</mo><mn>4.28</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>21</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_BT = 4.28\times10^{-21}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4.28</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">21</span></span></span></span></span></span></span></span></span></span></span></span> J, what is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mi>h</mi><mi mathvariant="normal">/</mi><msqrt><mrow><mn>2</mn><mi>π</mi><mi>m</mi><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\lambda = h/\sqrt{2\pi mk_BT}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1072em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mord">/</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8572em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord mathnormal">πm</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span><span style="top:-2.8172em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1828em;"><span></span></span></span></span></span></span></span></span> in nanometres?</p>
+    <form class="calc" data-answer="0.0159" data-tol="0.0005" data-ok="Yes: about 0.016 nm." data-hint="√(2π × 6.48e−26 × 4.28e−21) ≈ 4.17 × 10⁻²³."><span>λ ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Wavelength nm"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. A. Doyle et al., Science 280, 69 (1998). A. Vaziri and M. B. Plenio, New J. Phys. 12, 085001 (2010). J. Summhammer, V. Salari and G. Bernroider, J. Integr. Neurosci. 11, 123 (2012). D. A. Köpfer et al., Science 346, 352 (2014). Checked by code: λ(K⁺, 310 K) = 0.0159 nm.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 174</div><div class="t">Orch-OR, quantum cognition, and why they are contested</div><p style="text-align:left">Is consciousness a quantum gravity effect? A Nobel laureate says maybe. The physics community mostly says no. Here is how to judge.</p><p style="text-align:left"><a class="v" href="174.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="172.html">← 172. Vision and single-photon detection in the retina</a><a href="../index.html">Contents</a><a href="174.html">174. Orch-OR, quantum cognition, and why they are contested →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { T: 310 };
+  function lam(T) { return 6.62607e-34 / Math.sqrt(2 * Math.PI * 39 * 1.66054e-27 * 1.380649e-23 * T) * 1e9; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["The KcsA selectivity filter.", "Four sites, single file.", "Knock-on: ions (amber), water (white).", "Timescales: decoherence vs hopping.", "Ion channels."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "T = " + V.T + " K · K⁺ thermal wavelength " + lam(V.T).toFixed(4) + " nm vs site spacing 0.3 nm"; if (beat === 3) return "decoherence of position superpositions ~fs · hop ~10 ps · transit ~10 ns"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, cx = W / 2;
+      if (beat === 3) { var A = k.axes(W * 0.12, H * 0.3, W * 0.82, H * 0.3, [-16, -6], [0, 1], { xl: "log₁₀ time (s)" }); [[-14.5, "decoherence", "#e05a46"], [-11, "one hop", "#ffb547"], [-8, "transit", "#ece6da"]].forEach(function (p) { k.line(A.X(p[0]), A.Y(0), A.X(p[0]), A.Y(0.9), p[2], 3); k.text(p[1], A.X(p[0]), A.Y(0.9) - 8, { size: 12, color: p[2] }); }); return; }
+      k.rr(cx - 70, H * 0.12, 30, H * 0.76, 6, "rgba(236,230,218,.12)"); k.rr(cx + 40, H * 0.12, 30, H * 0.76, 6, "rgba(236,230,218,.12)"); for (var s = 0; s < 4; s++) { var y = H * (0.25 + s * 0.15); k.circle(cx - 46, y, 4, "#e05a46"); k.circle(cx + 46, y, 4, "#e05a46"); }
+      var ph = (now / 1600) % 1, items = []; for (var j = -1; j < 5; j++) items.push([(j + ph) * 0.15, j % 2 === 0]); items.forEach(function (it) { var y = H * (0.18 + it[0]); if (y < H * 0.1 || y > H * 0.9) return; k.circle(cx, y, it[1] ? 11 : 7, it[1] ? "#ffb547" : "rgba(236,230,218,.75)"); });
+      k.text("carbonyl oxygens (red)", cx + 90, H * 0.5, { size: 11, color: "#b9b2a5", align: "left" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

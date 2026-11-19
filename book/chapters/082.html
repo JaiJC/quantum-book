@@ -1,0 +1,66 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Everything you have learned in Part Two now fits on a single page: the Lagrangian of the Standard Model. A few lines describe every particle ever found and every interaction except gravity, and they have survived every test at every collider for fifty years. Its ingredients are a gauge group, a list of fields with their charges, and nineteen numbers that must be measured. This chapter writes it down, checks a hidden consistency condition that the charges must satisfy, and counts the numbers.</p>
+  <p>On the plate: one generation of matter, with its charges under the three forces.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The Lagrangian</h2>
+  <p>Gauge group SU(3)<sub>c</sub> × SU(2)<sub>L</sub> × U(1)<sub>Y</sub>. In compact form:</p>
+  <div class="eq">{{texd:\begin{gathered}\mathcal L = -\tfrac14\sum F^2 + \sum_\psi\bar\psi\,i\gamma^\mu D_\mu\psi + |D_\mu H|^2 - V(H) \\ - \big(y_u\,\bar Q\tilde H u_R + y_d\,\bar QHd_R + y_e\,\bar LHe_R + \text{h.c.}\big)\end{gathered}}}</div>
+  <p>The first term holds the twelve gauge bosons: eight gluons, {{tex:W^{1,2,3}}} and {{tex:B}}. The second gives every fermion its kinetic energy and all its gauge interactions through the covariant derivative. The third and fourth are the Higgs field and its Mexican-hat potential (Chapters 76–77). The last line, the <em>Yukawa couplings</em>, couples fermions to the Higgs and, once the Higgs takes its vacuum value, gives them mass. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The field content</h2>
+  <p>Each generation has five kinds of field, with these charges (colour representation, weak representation, hypercharge {{tex:Y}}):</p>
+  <p>{{tex:Q_L = (3, 2, \tfrac16)}}, {{tex:u_R = (3, 1, \tfrac23)}}, {{tex:d_R = (3, 1, -\tfrac13)}}, {{tex:L = (1, 2, -\tfrac12)}}, {{tex:e_R = (1, 1, -1)}}; and one Higgs, {{tex:H = (1, 2, \tfrac12)}}. Electric charge is {{tex:Q = T_3 + Y}}. That is 15 Weyl fermions per generation, three generations, identical but for their masses. Why three, and why these numbers, the theory does not say.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Anomalies must cancel</h2>
+  <p>A symmetry of the classical Lagrangian can fail in the quantum theory, through triangle diagrams with chiral fermions running in the loop: an <em>anomaly</em>. For a gauge symmetry this would be fatal, destroying the redundancy that removes unphysical states (Chapter 74). The conditions for cancellation are sums over all left-handed fermions in a generation (right-handed fields counted as left-handed antiparticles): {{tex:\sum Y = 0}}, {{tex:\sum Y^3 = 0}}, and two mixed sums.</p>
+  <p>Change the quark doublet’s hypercharge to <span class="tangle" data-var="yq" data-min="-0.5" data-max="0.5" data-step="0.0833333" data-dec="3" data-value="0.1666667" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Quark doublet hypercharge">0.167</span><button type="button" data-de="1" aria-label="More">›</button></span>, adjusting {{tex:u_R}} and {{tex:d_R}} to keep the quark charges consistent with the Higgs couplings. The plate computes all four anomaly sums. Only the observed value, {{tex:\tfrac16}}, makes them all vanish: the quark charges are tied to the lepton charges, and quarks must come in three colours for it to work. Within each generation, quarks and leptons need each other. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Nineteen numbers</h2>
+  <p>The Standard Model has nineteen free parameters, fixed only by experiment: six quark masses, three charged-lepton masses, four parameters of quark mixing (three angles and a phase, Chapter 83), three gauge couplings, two for the Higgs (its mass and vacuum value), and the strong-CP angle {{tex:\theta_{\text{QCD}}}}, measured to be below about {{tex:10^{-10}}}. Neutrino masses and mixings, discovered after the Standard Model was written (Chapter 85), add seven to nine more. The plate lays them out. The masses alone span a factor of about 340,000 from the electron to the top quark, and about {{tex:10^{12}}} once the neutrinos are included, with no known reason.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>The whole Standard Model Lagrangian, its gauge group and field content with hypercharges, Yukawa couplings, gauge anomaly cancellation and why it links quarks to leptons, and the count of its nineteen parameters.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How many Weyl fermions in one generation?<span class="tap">tap</span></div><div class="a">15: 6 in Q_L, 3 each in u_R and d_R, 2 in L, 1 in e_R (16 with a right-handed neutrino).</div></div>
+  <div class="qa"><div class="q">Why must anomalies cancel?<span class="tap">tap</span></div><div class="a">An anomalous gauge symmetry would leave unphysical states and break the theory’s consistency.</div></div>
+  <div class="qa"><div class="q">Where do fermion masses come from?<span class="tap">tap</span></div><div class="a">Yukawa couplings to the Higgs field, m = y v/√2.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:Q = T_3 + Y}}, what is the electric charge of the lower member ({{tex:T_3 = -\tfrac12}}) of {{tex:Q_L}}, the down quark?</p>
+    <form class="calc" data-answer="-0.3333" data-tol="0.002" data-ok="Yes: −½ + ⅙ = −⅓." data-hint="Y = 1/6 for Q_L."><span>Q =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Charge"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: C. P. Burgess and G. D. Moore, The Standard Model: A Primer (2007). M. D. Schwartz, Quantum Field Theory and the Standard Model, Part IV. Particle Data Group, Review of Particle Physics. Checked by code (exact fractions): for Y_Q = 1/6, Σ Y = Σ Y³ = SU(2)²Y = SU(3)²Y = 0; 15 Weyl fermions per generation; 6 + 3 + 4 + 3 + 2 + 1 = 19 parameters.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { yq: 1 / 6 };
+  function anomalies(yq) { var yu = yq + 0.5, yd = yq - 0.5; var f = [[3, 2, yq], [3, 1, -yu], [3, 1, -yd], [1, 2, -0.5], [1, 1, 1]]; var g = 0, c3 = 0, s2 = 0, s3 = 0; f.forEach(function (x) { g += x[0] * x[1] * x[2]; c3 += x[0] * x[1] * Math.pow(x[2], 3); if (x[1] === 2) s2 += x[0] * x[2]; if (x[0] === 3) s3 += x[1] * x[2]; }); return [g, c3, s2, s3]; }
+  var FIELDS = [["Q_L", "3", "2", "1/6"], ["u_R", "3", "1", "2/3"], ["d_R", "3", "1", "−1/3"], ["L", "1", "2", "−1/2"], ["e_R", "1", "1", "−1"], ["H", "1", "2", "1/2"]];
+  var PARAMS = [["quark masses", 6], ["lepton masses", 3], ["CKM", 4], ["gauge couplings", 3], ["Higgs", 2], ["θ_QCD", 1]];
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["One generation and the Higgs.", "Gauge, fermion, Higgs and Yukawa terms.", "(colour, weak, hypercharge).", "Anomaly sums against the quark hypercharge.", "The nineteen parameters.", "The Standard Model."][beat]; },
+    readout: function () { if (beat === 3) { var a = anomalies(V.yq); return "Y_Q = " + V.yq.toFixed(3) + " · ΣY = " + a[0].toFixed(3) + " · ΣY³ = " + a[1].toFixed(3) + " · SU(2)²Y = " + a[2].toFixed(3) + " · SU(3)²Y = " + a[3].toFixed(3); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat <= 2 || beat === 5) { var y0 = H * 0.16, rh = H * 0.12; ["field", "SU(3)", "SU(2)", "Y"].forEach(function (h, j) { k.text(h, W * (0.18 + j * 0.22), y0, { size: 12, color: "#7c766b" }); }); FIELDS.forEach(function (f, i) { var y = y0 + (i + 1) * rh; k.rr(W * 0.06, y - rh * 0.38, W * 0.88, rh * 0.76, 6, i === 5 ? "rgba(255,181,71,.12)" : "#14120f", "rgba(236,230,218,.2)"); f.forEach(function (v, j) { k.text(v, W * (0.18 + j * 0.22), y + 5, { size: 14, color: j ? "#ece6da" : "#ffb547" }); }); }); return; }
+      if (beat === 3) { var a = anomalies(V.yq); A = k.axes(W * 0.2, H * 0.1, W * 0.7, H * 0.72, [0, 4], [-3, 3], { zeroY: true }); ["ΣY", "ΣY³", "SU(2)²Y", "SU(3)²Y"].forEach(function (lab, j) { var v = Math.max(-3, Math.min(3, a[j] * 3)), ok = Math.abs(a[j]) < 1e-6; k.rr(A.X(j + 0.25), Math.min(A.Y(0), A.Y(v)), A.X(0.5) - A.X(0), Math.max(3, Math.abs(A.Y(v) - A.Y(0))), 3, ok ? "#ffb547" : "rgba(224,90,70,.85)"); k.text(lab, A.X(j + 0.5), A.Y(-3) + 18, { size: 11 }); }); return; }
+      if (beat === 4) { var x = W * 0.06, tot = 0; PARAMS.forEach(function (p) { for (var i = 0; i < p[1]; i++) { var col = tot % 19; k.circle(x + (col + 0.5) * (W * 0.88 / 19), H * 0.42, Math.min(12, W * 0.018), "#ffb547"); tot++; } }); var x2 = W * 0.06, acc = 0; PARAMS.forEach(function (p) { var mid = x2 + (acc + p[1] / 2) * (W * 0.88 / 19); k.text(p[0] + " " + p[1], mid, H * 0.42 + 30 + (PARAMS.indexOf(p) % 2) * 16, { size: 11, color: "#b9b2a5" }); acc += p[1]; }); k.text("19, plus 7–9 for neutrinos", W / 2, H * 0.78, { size: 13 }); }
+    }
+  });
+})();
+</script>

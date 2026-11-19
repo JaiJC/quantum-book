@@ -1,0 +1,73 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The weak force is carried by particles 80 and 91 times heavier than a proton, yet gauge symmetry says force carriers must be massless (Chapter 75). In 1964 three groups, François Englert and Robert Brout, Peter Higgs, and Gerald Guralnik, Carl Hagen and Tom Kibble, found the way out, which Philip Anderson had already glimpsed in superconductors: if a field’s symmetry is spontaneously broken, the would-be Goldstone boson does not appear. The gauge boson swallows it and becomes massive. What is left over is one new particle, found at CERN in 2012.</p>
+  <p>On the plate: counting the ways each field can wobble, before and after.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The abelian Higgs model</h2>
+  <p>Take the Mexican-hat field of Chapter 76, give it electric charge, and couple it to a photon through the covariant derivative: {{tex:|D_\mu\phi|^2 - V(\phi)}} with {{tex:D_\mu = \partial_\mu + ieA_\mu}}. In the vacuum, {{tex:|\phi| = v/\sqrt2}}. Expand {{tex:|D_\mu\phi|^2}} around it and a term appears:</p>
+  <div class="eq">{{texd:\tfrac12e^2v^2\,A_\mu A^\mu \quad\Longrightarrow\quad m_A = ev}}</div>
+  <p>a photon mass. No mass term was put into the Lagrangian, which stays gauge invariant; the mass comes from the photon’s interaction with a field that fills the vacuum. The radial oscillation of {{tex:\phi}} remains as a massive scalar, the <em>Higgs boson</em>, with {{tex:m_h = \sqrt{2\lambda}\,v}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Where the Goldstone went</h2>
+  <p>Count the independent ways each field can vibrate. Choose <button type="button" class="v" data-pick="ph:before">before</button> or <button type="button" class="v" data-pick="ph:after">after</button> symmetry breaking. Before: a massless photon, two polarizations; a complex scalar, two. After: a massive vector, three polarizations; one real Higgs. Four either way. The Goldstone boson became the massive photon’s third, longitudinal polarization. A gauge transformation can rotate the phase of {{tex:\phi}} to zero everywhere, the <em>unitary gauge</em>, and then the Goldstone simply isn’t there; it lives in {{tex:A_\mu}}.</p>
+  <p>Inside a superconductor, exactly this happens to ordinary light: the photon gets a mass from the condensate of electron pairs, and magnetic fields penetrate only tens of nanometres. That is the Meissner effect, Anderson’s 1963 observation.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The Standard Model version</h2>
+  <p>In the Standard Model the Higgs field is a doublet under the weak SU(2) with hypercharge (Chapter 81). Four real components; three are eaten by the {{tex:W^+}}, {{tex:W^-}} and {{tex:Z}}; one is the Higgs boson; the photon, which couples to an unbroken combination, stays massless. The vacuum value is fixed by the strength of the weak force:</p>
+  <div class="eq">{{texd:v = \left(\sqrt2\,G_F\right)^{-1/2} = 246.22\ \text{GeV}}}</div>
+  <p>With {{tex:m_h = 125}} GeV measured, the self-coupling is {{tex:\lambda = m_h^2/2v^2 \approx 0.13}}. Whether the Higgs potential really has that shape, measured by producing two Higgs bosons at once, is one of the LHC’s goals for the 2030s.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What the Higgs does not do</h2>
+  <p>It is often said the Higgs gives everything its mass. It gives mass to the W and Z, and, through separate couplings called Yukawa couplings, to quarks and charged leptons. But the up and down quarks in a proton have masses of only about 2 and 5 MeV. Three of them add up to about 9 MeV, roughly 1% of the proton’s 938 MeV. The other 99% is the energy of the quarks’ motion and the gluon field binding them, {{tex:E = mc^2}} at work (Chapter 79). Since you are made mostly of protons and neutrons, almost all of your mass is not from the Higgs. Choose <button type="button" class="v" data-pick="m:p">the proton</button> or <button type="button" class="v" data-pick="m:e">the electron</button> to see where the mass comes from. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>The abelian Higgs model, gauge-boson mass from a vacuum field, the eaten Goldstone and unitary gauge, degree-of-freedom counting, the superconducting Meissner effect, the Standard Model’s {{tex:v = 246}} GeV, and the true origin of the proton’s mass.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What happens to the Goldstone boson in the Higgs mechanism?<span class="tap">tap</span></div><div class="a">It becomes the longitudinal polarization of the now-massive gauge boson.</div></div>
+  <div class="qa"><div class="q">How many Higgs-field components are eaten in the Standard Model?<span class="tap">tap</span></div><div class="a">Three, by W⁺, W⁻ and Z; one remains as the Higgs boson.</div></div>
+  <div class="qa"><div class="q">How much of the proton’s mass comes from the Higgs?<span class="tap">tap</span></div><div class="a">About 1%, through the light quark masses; the rest is QCD binding energy.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:G_F = 1.16638\times10^{-5}}} GeV⁻², compute {{tex:v = (\sqrt2\,G_F)^{-1/2}}} in GeV.</p>
+    <form class="calc" data-answer="246.22" data-tol="0.1" data-ok="Yes: about 246 GeV, the scale of the electroweak vacuum." data-hint="√2 × G_F = 1.6495×10⁻⁵; take the inverse square root."><span>v =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="v in GeV"><span>GeV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. W. Anderson, Phys. Rev. 130, 439 (1963). F. Englert and R. Brout, Phys. Rev. Lett. 13, 321 (1964). P. W. Higgs, Phys. Rev. Lett. 13, 508 (1964). G. S. Guralnik, C. R. Hagen and T. W. B. Kibble, Phys. Rev. Lett. 13, 585 (1964). Particle Data Group (G_F, quark masses). Checked by code: v = 246.22 GeV; λ = m_h²/2v² = 0.129; 2m_u + m_d ≈ 9 MeV, 1% of m_p.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0;
+  Book.plate({
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Degrees of freedom: 2 + 2 = 3 + 1.", "The vacuum field gives the photon a mass term.", (Book.state.picks.ph === "after" ? "After" : "Before") + " symmetry breaking.", "Higgs doublet: 4 = 3 eaten + 1 Higgs.", (Book.state.picks.m === "e" ? "Electron" : "Proton") + ": where the mass comes from.", "The Higgs mechanism."][beat]; },
+    readout: function () { if (beat === 3) return "v = 246.22 GeV · m_h = 125 GeV · λ ≈ 0.13"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i;
+      function dots(x, y, n, col, lab) { for (var j = 0; j < n; j++) k.circle(x + (j - (n - 1) / 2) * 26, y, 10, col); k.text(lab, x, y + 30, { size: 12, color: "#b9b2a5" }); }
+      if (beat === 0 || beat === 2 || beat === 5 || beat === 1) {
+        var after = beat === 2 ? Book.state.picks.ph === "after" : beat === 0 || beat === 5 ? Math.floor(now / 2500) % 2 === 1 : true;
+        if (!after) { dots(W * 0.3, H * 0.45, 2, "#ffcc33", "massless photon: 2"); dots(W * 0.7, H * 0.45, 2, "#ffb547", "complex scalar: 2"); }
+        else { dots(W * 0.3, H * 0.45, 3, "#ffcc33", "massive vector: 3"); dots(W * 0.7, H * 0.45, 1, "#ffb547", "Higgs boson: 1"); var t = (now % 2500) / 2500; if (beat !== 1) k.circle(W * 0.7 - 13 - (W * 0.4 - 26) * Math.min(1, t * 2), H * 0.45, 7, "rgba(255,181,71,.6)"); }
+        k.text(after ? "total 4" : "total 4", W / 2, H * 0.8, { size: 14 });
+        return;
+      }
+      if (beat === 3) { for (i = 0; i < 4; i++) { var x = W * (0.2 + i * 0.2), lab = ["→ W⁺", "→ W⁻", "→ Z", "Higgs"][i]; k.circle(x, H * 0.45, 14, i < 3 ? "#ffcc33" : "#ffb547"); k.text(lab, x, H * 0.45 + 36, { size: 13 }); } k.text("photon: massless, couples to the unbroken combination", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 4) {
+        var e = Book.state.picks.m === "e", cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.32, parts = e ? [[1, "#ffb547", "Higgs (Yukawa coupling): ~100%"]] : [[0.0096, "#ffb547", "quark masses (Higgs): ~1%"], [0.9904, "rgba(236,230,218,.55)", "QCD energy: ~99%"]], a0 = -Math.PI / 2;
+        parts.forEach(function (p) { c.fillStyle = p[1]; c.beginPath(); c.moveTo(cx, cy); c.arc(cx, cy, R, a0, a0 + p[0] * 2 * Math.PI); c.closePath(); c.fill(); a0 += p[0] * 2 * Math.PI; });
+        parts.forEach(function (p, j) { k.text(p[2], cx, cy + R + 24 + j * 18, { size: 12, color: j ? "#b9b2a5" : "#ffb547" }); });
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,4 @@
+== 077
+v GeV 246.21964023926205
+g=2mW/v 0.6528226789050443 lambda=mh^2/2v^2 0.1292801978686813
+quark current mass contribution to proton: 2mu+md ~ 9.02 MeV of 938.3 -> 0.9613130128956624 %

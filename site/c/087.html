@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>87. Detectors: tracking, calorimetry, triggering</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="87">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>87</b> &nbsp;·&nbsp; Detectors: tracking, calorimetry, triggering</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">87</div><div class="part">Part Two · Quantum fields and particles</div><h1>Detectors: tracking, calorimetry, triggering</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Inside ATLAS and CMS, bunches of protons cross forty million times a second, and each crossing produces dozens of collisions. Recording all of it would mean storing about a petabyte every second. So within four millionths of a second, custom electronics decide whether each crossing is worth a second look, and within a fraction of a second more, computer farms decide whether to keep it. About one crossing in ten thousand is written to disk. Everything else, including any physics no one thought to look for, is gone forever. This chapter is about how a particle detector sees, and what it chooses to remember.</p>
+  <p>On the plate: a slice through a collider detector. Send different particles through it.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Layers, and what each sees</h2>
+  <p>A general-purpose detector is an onion. Innermost, a silicon <em>tracker</em> records the path of every charged particle in a magnetic field. Next, an <em>electromagnetic calorimeter</em> absorbs electrons and photons; then a <em>hadronic calorimeter</em> absorbs protons, pions and neutrons; outermost, <em>muon chambers</em> catch the muons that pass through everything. Send <button type="button" class="v" data-pick="p:e">an electron</button>, <button type="button" class="v" data-pick="p:g">a photon</button>, <button type="button" class="v" data-pick="p:mu">a muon</button>, <button type="button" class="v" data-pick="p:pi">a charged pion</button> or <button type="button" class="v" data-pick="p:nu">a neutrino</button>. Each leaves a distinct signature. The neutrino leaves nothing; it is inferred from the momentum that is missing when everything else is added up. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Momentum from curvature</h2>
+  <p>A charged track in field <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> curves with radius <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>; its momentum across the field is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>T</mi></msub><mo stretchy="false">[</mo><mtext>GeV</mtext><mo stretchy="false">]</mo><mo>=</mo><mn>0.3</mn><mtext> </mtext><mi>B</mi><mo stretchy="false">[</mo><mtext>T</mtext><mo stretchy="false">]</mo><mtext> </mtext><mi>R</mi><mo stretchy="false">[</mo><mtext>m</mtext><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">p_T[\text{GeV}] = 0.3\,B[\text{T}]\,R[\text{m}]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord text"><span class="mord">GeV</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.3</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mopen">[</span><span class="mord text"><span class="mord">T</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">[</span><span class="mord text"><span class="mord">m</span></span><span class="mclose">]</span></span></span></span>. High-momentum tracks are nearly straight, so precision depends on measuring a tiny sagitta: the resolution worsens in proportion to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> and improves as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msup><mi>L</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">BL^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>, with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> the track length. That is why CMS chose a 4-tesla solenoid, and ATLAS a large volume. Set the momentum to <span class="tangle" data-var="pt" data-min="0.5" data-max="100" data-step="0.5" data-dec="1" data-unit=" GeV" data-value="5" data-px="3"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Momentum">5.0 GeV</span><button type="button" data-de="1" aria-label="Higher">›</button></span> in a 4 T field.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How particles lose energy, and proton therapy</h2>
+  <p>A charged particle crossing matter ionizes atoms along its path. Hans Bethe’s formula, refined by Felix Bloch, gives the loss per distance: it rises steeply as the particle slows, roughly as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><msup><mi>β</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">1/\beta^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>. So a proton deposits little energy where it enters, and most of it just before it stops: the <em>Bragg peak</em>.</p>
+  <p>That shape is the reason for proton therapy. Choose the beam energy, <span class="tangle" data-var="E" data-min="70" data-max="230" data-step="5" data-unit=" MeV" data-value="150" data-px="2"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Proton energy">150 MeV</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, and the peak moves to a depth in water (and roughly in tissue) set by it: about 16 cm at 150 MeV. Tumour gets the peak; tissue beyond it gets almost nothing, unlike X-rays, which deposit dose all the way through. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Showers</h2>
+  <p>A high-energy electron in dense material radiates photons; each photon makes an electron–positron pair; each of those radiates. The cascade doubles roughly every <em>radiation length</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">X_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, 0.56 cm in lead and 0.89 cm in the lead tungstate crystals of the CMS calorimeter, until the particles fall below about 10 MeV and stop. The total light collected measures the original energy, with a resolution that improves as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><msqrt><mi>E</mi></msqrt></mrow><annotation encoding="application/x-tex">1/\sqrt E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1767em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;padding-left:0.833em;">E</span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span>. Hadrons shower too, over the longer nuclear interaction length, about 17 cm in iron, and less precisely, because some energy is lost breaking nuclei.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The trigger</h2>
+  <p>Forty million crossings a second, a first hardware decision in microseconds, about 100,000 kept for software, and about one to three thousand a second written out. Set a first-level threshold on the energy of the highest-energy object, <span class="tangle" data-var="thr" data-min="5" data-max="100" data-step="1" data-unit=" GeV" data-value="25" data-px="2"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Threshold">25 GeV</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Lower it and the rate exceeds what the readout can handle; raise it and you lose Higgs bosons decaying to photons of about 60 GeV. Trigger design is a choice of what physics to make possible. Neural networks running on fast programmable chips now make some of these decisions within the microsecond budget.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The layered detector and particle signatures, momentum from curvature and its resolution, Bethe–Bloch energy loss and the Bragg peak with its medical use, electromagnetic and hadronic showers, and the trigger chain from 40 MHz to kilohertz.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How is a neutrino detected at a collider?<span class="tap">tap</span></div><div class="a">As missing transverse momentum: the imbalance after summing every visible particle.</div></div>
+  <div class="qa"><div class="q">Why does proton therapy spare tissue beyond the tumour?<span class="tap">tap</span></div><div class="a">Protons deposit most energy in the Bragg peak near the end of their range, and almost none after.</div></div>
+  <div class="qa"><div class="q">Why must triggers discard most collisions?<span class="tap">tap</span></div><div class="a">The raw data rate is far beyond what can be read out or stored.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A track curves with radius 3.33 m in a 4 T field. What is its transverse momentum, in GeV?</p>
+    <form class="calc" data-answer="4.0" data-tol="0.03" data-ok="Yes: 0.3 × 4 × 3.33 ≈ 4.0 GeV." data-hint="p_T = 0.3 B R."><span>p_T =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Momentum in GeV"><span>GeV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: C. Grupen and B. Shwartz, Particle Detectors (2008). Particle Data Group, “Passage of particles through matter” and detector reviews. ATLAS and CMS technical design reports for the trigger systems. W. D. Newhauser and R. Zhang, Phys. Med. Biol. 60, R155 (2015) (proton therapy physics). Checked by code: Bragg–Kleeman range 0.0022 E^1.77 cm gives 15.7 cm at 150 MeV in water; p_T = 0.3BR.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 88</div><div class="t">Collider data analysis and statistics (5 sigma, look-elsewhere effect)</div><p style="text-align:left">Why 5σ? Because physicists got burned many times at 3σ (p = 1.35×10⁻³ ✓).</p><p style="text-align:left"><a class="v" href="088.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="086.html">← 86. Accelerator physics</a><a href="../index.html">Contents</a><a href="088.html">88. Collider data analysis and statistics (5 sigma, look-elsewhere effect) →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { pt: 5, E: 150, thr: 25 };
+  function range(E) { return 0.0022 * Math.pow(E, 1.77); }
+  function dose(x, E) { var R = range(E), p = 1.77, a = 0.0022; if (x >= R) return 0; return Math.pow(R - x + 0.05, 1 / p - 1) / (p * Math.pow(a, 1 / p)); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var p = Book.state.picks.p || "e"; return ["A slice through a collider detector.", "Signature of " + ({ e: "an electron", g: "a photon", mu: "a muon", pi: "a charged pion", nu: "a neutrino" })[p] + ".", "Track curvature at " + V.pt + " GeV in 4 T.", "Proton dose against depth in water.", "An electromagnetic shower.", "First-level trigger: rate against threshold (toy model).", "Detectors."][beat]; },
+    readout: function () { if (beat === 2) return "R = p/(0.3B) = " + (V.pt / 1.2).toFixed(2) + " m"; if (beat === 3) return V.E + " MeV · range ≈ " + range(V.E).toFixed(1) + " cm"; if (beat === 5) { var rate = 4e7 * Math.exp(-V.thr / 6.5), eff = 1 / (1 + Math.exp((V.thr - 50) / 4)); return "rate ≈ " + (rate / 1e3).toFixed(0) + " kHz (budget 100) · H→γγ kept " + (100 * eff).toFixed(0) + "%"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, cx = W / 2, cy = H / 2, S = Math.min(W, H) * 0.45, i;
+      if (beat <= 2 || beat === 6) {
+        var rings = [[0.28, "rgba(236,230,218,.25)", "tracker"], [0.45, "rgba(255,181,71,.25)", "EM cal"], [0.68, "rgba(224,90,70,.25)", "hadron cal"], [0.95, "rgba(236,230,218,.18)", "muon"]];
+        for (i = rings.length - 1; i >= 0; i--) { k.circle(cx, cy, S * rings[i][0], "#0a0908", rings[i][1], 10); }
+        for (i = 0; i < 4; i++) k.text(rings[i][2], cx + S * rings[i][0] - 6, cy - 6, { size: 9, color: "#7c766b", align: "right" });
+        var p = beat === 2 ? "mu" : (Book.state.picks.p || "e"), a = -0.6, R = beat === 2 ? V.pt / 1.2 : 3, curv = (p === "g" || p === "nu") ? 0 : 0.6 / R;
+        var stop = { e: 0.45, g: 0.45, mu: 1.0, pi: 0.68, nu: 1.0 }[p];
+        c.strokeStyle = p === "nu" ? "rgba(236,230,218,.35)" : "#ffb547"; c.lineWidth = 2.5; if (p === "g" || p === "nu") c.setLineDash([5, 5]); c.beginPath();
+        for (var s = 0; s <= 100; s++) { var r = s / 100 * stop * S, ang = a + curv * r / S * 1.0; var x = cx + r * Math.cos(ang), y = cy + r * Math.sin(ang); if (s) c.lineTo(x, y); else c.moveTo(x, y); if ((p === "g") && r < 0.28 * S) { c.moveTo(x, y); } } c.stroke(); c.setLineDash([]);
+        if (p === "e" || p === "g" || p === "pi") { var ang2 = a + curv * stop, rr = stop * S; k.glow(cx + rr * Math.cos(ang2), cy + rr * Math.sin(ang2), p === "pi" ? 26 : 18, "rgba(255,181,71,.8)"); }
+        if (p === "nu") k.text("missing momentum", cx + S * 0.6, cy - S * 0.5, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 35], [0, 1.05], { xl: "depth in water, cm", yl: "relative dose" }); var R2 = range(V.E), mx = dose(R2 - 0.06, V.E); k.plot(A, function (x) { return Math.min(1.05, dose(x, V.E) / mx); }, [0, 35], "#ffb547", 2.5, 700); k.plot(A, function (x) { return Math.exp(-x / 20) * 0.9 + 0.1 * Math.exp(-Math.pow((x - 1.5) / 1.2, 2)); }, [0, 35], "rgba(236,230,218,.4)", 1.5, 200); k.text("X-ray (white) for comparison", A.X(34), A.Y(0.95), { size: 11, align: "right", color: "#b9b2a5" }); return; }
+      if (beat === 4) { var gens = 6, x0 = W * 0.08, dx = W * 0.84 / gens; var pts = [[x0, cy]]; for (var g = 1; g <= gens; g++) { var np = []; pts.forEach(function (p0, j) { [-1, 1].forEach(function (sg) { var nx = x0 + g * dx, ny = p0[1] + sg * H * 0.3 / Math.pow(2, g); k.line(p0[0], p0[1], nx, ny, g % 2 ? "#ffcc33" : "#ffb547", 1.2); np.push([nx, ny]); }); }); pts = np; } k.text("doubles every radiation length X₀", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 5) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [5, 100], [0, 7.8], { xl: "threshold, GeV", yl: "log₁₀ rate, Hz" }); k.plot(A, function (t) { return Math.log10(4e7 * Math.exp(-t / 6.5)); }, [5, 100], "#ffb547", 2.5); k.line(A.X(5), A.Y(5), A.X(100), A.Y(5), "#e05a46", 1.5, [5, 4]); k.text("readout budget 100 kHz", A.X(98), A.Y(5) - 6, { size: 11, align: "right", color: "#e05a46" }); k.circle(A.X(V.thr), A.Y(Math.log10(4e7 * Math.exp(-V.thr / 6.5))), 6, "#ece6da"); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

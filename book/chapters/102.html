@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Suppose you could copy an unknown qubit. Share an entangled pair; Alice, far away, measures hers in the z or x basis to send a 0 or 1. Bob makes a thousand copies of his qubit and measures them all in z: if Alice used z, all copies agree; if she used x, they split half and half. A message, instantly, across any distance. Relativity would be broken. In 1982 William Wootters and Wojciech Zurek, and independently Dennis Dieks, proved in a few lines that quantum mechanics forbids the copying. Relativity is safe.</p>
+  <p>On the plate: how faithfully different copying machines reproduce a qubit, by where it sits on the Bloch sphere.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>No-cloning, two proofs</h2>
+  <p><em>From linearity.</em> Suppose a unitary {{tex:U}} copies {{tex:|0\rangle\to|00\rangle}} and {{tex:|1\rangle\to|11\rangle}}. By linearity, {{tex:|+\rangle = (|0\rangle + |1\rangle)/\sqrt2 \to (|00\rangle + |11\rangle)/\sqrt2}}, a Bell state, not {{tex:|{+}{+}\rangle}}. <em>From unitarity.</em> If {{tex:U|\psi\rangle|0\rangle = |\psi\rangle|\psi\rangle}} and likewise for {{tex:|\phi\rangle}}, taking inner products gives {{tex:\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2}}, so the overlap is 0 or 1. Only orthogonal states, which are effectively classical, can be copied. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>No deleting, no broadcasting</h2>
+  <p>The reverse fails too. Arun Pati and Samuel Braunstein proved in 2000 that no process can take two copies of an unknown state and delete one, leaving a blank, without the information turning up elsewhere: quantum information can be moved but not destroyed. For mixed states the natural generalization of copying is <em>broadcasting</em>: producing a two-part state each of whose halves equals the original. Howard Barnum and colleagues proved in 1996 that non-commuting mixed states cannot be broadcast. The three theorems together say quantum information behaves like a conserved, uncopyable quantity.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The best imperfect copier</h2>
+  <p>If perfect copies are impossible, how good can approximate ones be? The CNOT “copier” copies {{tex:|0\rangle}} and {{tex:|1\rangle}} perfectly but turns {{tex:|+\rangle}} into an entangled pair, each half with fidelity only 1/2. Vladimír Bužek and Mark Hillery found in 1996 a universal cloner whose two outputs each have fidelity 5/6 with the input, the same for every input state, and this is optimal. Choose: <button type="button" class="v" data-pick="c:cnot">CNOT copier</button> or <button type="button" class="v" data-pick="c:bh">Bužek–Hillery cloner</button>, and set the input’s polar angle to <span class="tangle" data-var="th" data-min="0" data-max="180" data-step="5" data-unit="°" data-value="90" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Polar angle">90°</span><button type="button" data-de="1" aria-label="More">›</button></span>. Averaged over all inputs, the CNOT copier gets 2/3; the optimal cloner 5/6. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Why it matters</h2>
+  <p>No-cloning is what makes quantum key distribution secure (Chapter 132): an eavesdropper cannot copy the qubits in transit to measure later. It is why quantum error correction cannot simply back up qubits and must instead spread information across entangled codes (Chapter 137). And it is why teleportation (next chapter) destroys the original: it moves a state, never copies it.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Two proofs of no-cloning, no-deleting and no-broadcasting, the CNOT copier and the optimal 5/6 universal cloner, and the theorem’s role in cryptography, error correction and teleportation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Which states can be cloned?<span class="tap">tap</span></div><div class="a">Only those from a known orthogonal set.</div></div>
+  <div class="qa"><div class="q">What would cloning allow?<span class="tap">tap</span></div><div class="a">Faster-than-light signalling through entangled pairs.</div></div>
+  <div class="qa"><div class="q">What is the best fidelity of a universal 1 → 2 cloner?<span class="tap">tap</span></div><div class="a">5/6 for each copy, for every input.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The CNOT copier’s fidelity for an input at polar angle {{tex:\theta}} is {{tex:(1 + \cos^2\theta)/2}}. What is it at {{tex:\theta = 45^\circ}}?</p>
+    <form class="calc" data-answer="0.75" data-tol="0.005" data-ok="Yes: (1 + 0.5)/2 = 0.75, below the optimal cloner’s 0.833." data-hint="cos²45° = 0.5."><span>F =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Fidelity"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. K. Wootters and W. H. Zurek, Nature 299, 802 (1982). D. Dieks, Phys. Lett. A 92, 271 (1982). V. Bužek and M. Hillery, Phys. Rev. A 54, 1844 (1996). H. Barnum et al., Phys. Rev. Lett. 76, 2818 (1996). A. K. Pati and S. L. Braunstein, Nature 404, 164 (2000). Checked by code: CNOT copier fidelity (1 + cos²θ)/2, average 2/3; Bužek–Hillery 5/6.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { th: 90 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Copy fidelity against input state.", "|+⟩ through a CNOT: an entangled pair, not two copies.", "Information is moved, not destroyed.", "Fidelity of each copy against polar angle.", "No-cloning in use.", "No-cloning."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) { var t = V.th * Math.PI / 180, cn = (1 + Math.cos(t) * Math.cos(t)) / 2; return "θ = " + V.th + "° · CNOT copier " + cn.toFixed(3) + " · Bužek–Hillery 0.833"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 0 || beat === 3 || beat === 5) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 180], [0.4, 1.02], { xl: "input polar angle, degrees", yl: "fidelity per copy" }); var sel = Book.state.picks.c || "cnot"; k.plot(A, function (d) { var t = d * Math.PI / 180; return (1 + Math.cos(t) * Math.cos(t)) / 2; }, [0, 180], sel === "cnot" ? "#ffb547" : "rgba(236,230,218,.4)", sel === "cnot" ? 2.5 : 1.5); k.plot(A, function () { return 5 / 6; }, [0, 180], sel === "bh" ? "#ffb547" : "rgba(236,230,218,.4)", sel === "bh" ? 2.5 : 1.5); k.circle(A.X(V.th), A.Y(sel === "bh" ? 5 / 6 : (1 + Math.pow(Math.cos(V.th * Math.PI / 180), 2)) / 2), 6, "#ece6da"); return; }
+      if (beat === 1) { var S = Book.QSim(2); S.g("H", 0).cx(0, 1); var p = S.probs(); A = k.axes(W * 0.2, H * 0.12, W * 0.6, H * 0.66, [0, 4], [0, 0.55], { yl: "probability" }); ["00", "01", "10", "11"].forEach(function (l, i) { k.rr(A.X(i + 0.2), A.Y(p[i]), A.X(0.6) - A.X(0), A.Y(0) - A.Y(p[i]), 3, "#ffb547"); k.text(l, A.X(i + 0.5), A.Y(0) + 16, { size: 12 }); }); k.text("|++⟩ would give 0.25 in every bar", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 2 || beat === 4) { var items = beat === 2 ? [["no cloning", "#ffb547"], ["no deleting", "#ffb547"], ["no broadcasting", "#ffb547"]] : [["QKD security", "#ffb547"], ["error correction by entangled codes", "#ffb547"], ["teleportation destroys the original", "#ffb547"]]; items.forEach(function (q, j) { k.rr(W * 0.15, H * (0.24 + j * 0.2) - 22, W * 0.7, 44, 10, "#14120f", q[1]); k.text(q[0], W / 2, H * (0.24 + j * 0.2) + 5, { size: 14, color: q[1] }); }); }
+    }
+  });
+})();
+</script>

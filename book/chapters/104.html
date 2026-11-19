@@ -1,0 +1,62 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A real qubit never evolves by a clean unitary. It leaks energy to its surroundings, its phase wanders, stray fields jostle it. Every such process, however messy, fits one mathematical form: a quantum channel. For a single qubit, any channel can be pictured as squashing, shifting and rotating the Bloch ball into an ellipsoid inside it. And every channel is fully specified by a single 4 × 4 matrix.</p>
+  <p>On the plate: the Bloch ball deformed by a noisy channel.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>What a channel must be</h2>
+  <p>A channel {{tex:\mathcal E}} maps density matrices to density matrices. It must be linear, preserve the trace, and keep states positive, even when it acts on part of a larger entangled system. That last condition, <em>complete positivity</em>, is stronger than positivity. The transpose map is positive, but applied to one half of a Bell pair it produces a matrix with eigenvalue −½ (Chapter 50): not a valid state. So transposition is not a physical channel. Physical processes are completely positive and trace-preserving: <em>CPTP</em>. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Three representations</h2>
+  <p><em>Kraus</em>: every CPTP map can be written</p>
+  <div class="eq">{{texd:\mathcal E(\rho) = \sum_kK_k\,\rho\,K_k^\dagger, \qquad \sum_kK_k^\dagger K_k = \mathbb 1}}</div>
+  <p><em>Stinespring</em>: equivalently, attach an environment in a fixed state, apply a joint unitary, and discard the environment. Every channel is a unitary on a bigger system with part thrown away; noise is entanglement with what you don’t see (Chapter 52). <em>Choi–Jamiołkowski</em>: apply the channel to one half of a maximally entangled pair; the resulting 4 × 4 matrix, the <em>Choi matrix</em>, determines the channel completely, and the channel is CP exactly when that matrix is positive.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The three standard noises</h2>
+  <p>Choose: <button type="button" class="v" data-pick="ch:dep">depolarizing</button>, the ball shrinks uniformly; <button type="button" class="v" data-pick="ch:amp">amplitude damping</button>, the ball shrinks and slides toward {{tex:|0\rangle}}, energy leaking out; <button type="button" class="v" data-pick="ch:dph">dephasing</button>, the ball is squeezed into a cigar along z, phase information lost while populations survive. Set the strength to <span class="tangle" data-var="g" data-min="0" data-max="1" data-step="0.05" data-dec="2" data-value="0.3" data-px="6"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Strength">0.30</span><button type="button" data-de="1" aria-label="Stronger">›</button></span>.</p>
+  <p>Amplitude damping with {{tex:\gamma = 1 - e^{-t/T_1}}} is energy relaxation, characterized by {{tex:T_1}}. Dephasing with its own rate gives {{tex:T_\phi}}. Together, coherences decay with {{tex:T_2}}, where {{tex:1/T_2 = 1/(2T_1) + 1/T_\phi}}, so {{tex:T_2 \le 2T_1}}. These are the numbers every hardware datasheet quotes (Chapter 135). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>CPTP maps and why complete positivity is required, the Kraus, Stinespring and Choi representations, depolarizing, amplitude-damping and dephasing channels as deformations of the Bloch ball, and the meaning of {{tex:T_1}} and {{tex:T_2}}.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why isn’t the transpose a physical channel?<span class="tap">tap</span></div><div class="a">Applied to half of an entangled pair it gives a negative eigenvalue: it is positive but not completely positive.</div></div>
+  <div class="qa"><div class="q">What does amplitude damping do to the Bloch ball?<span class="tap">tap</span></div><div class="a">Shrinks it and shifts it toward |0⟩.</div></div>
+  <div class="qa"><div class="q">Why is T₂ ≤ 2T₁?<span class="tap">tap</span></div><div class="a">Energy relaxation alone already destroys coherence at rate 1/(2T₁); extra dephasing only adds to it.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Start in {{tex:|1\rangle}} ({{tex:z = -1}}) and apply amplitude damping with {{tex:\gamma = 0.3}}, which maps {{tex:z \to \gamma + (1-\gamma)z}}. What is the probability of still finding {{tex:|1\rangle}}?</p>
+    <form class="calc" data-answer="0.7" data-tol="0.005" data-ok="Yes: z → −0.4, so P(1) = (1 − z)/2 = 0.7." data-hint="P(1) = (1 − z)/2."><span>P(1) =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: K. Kraus, States, Effects, and Operations (1983). W. F. Stinespring, Proc. Am. Math. Soc. 6, 211 (1955). M.-D. Choi, Linear Algebra Appl. 10, 285 (1975). A. Jamiołkowski, Rep. Math. Phys. 3, 275 (1972). J. Watrous, The Theory of Quantum Information, ch. 2. M. M. Wilde, Quantum Information Theory, ch. 4. Checked by code: amplitude-damping Kraus completeness; P(1) = 0.7 at γ = 0.3; partial transpose of a Bell state has eigenvalue −½.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { g: 0.3 };
+  function map(v, ch, g) { if (ch === "dep") return [v[0] * (1 - g), v[1] * (1 - g), v[2] * (1 - g)]; if (ch === "amp") { var s = Math.sqrt(1 - g); return [v[0] * s, v[1] * s, g + (1 - g) * v[2]]; } return [v[0] * (1 - g), v[1] * (1 - g), v[2]]; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var ch = Book.state.picks.ch || "amp"; return ["The Bloch ball under noise.", "Transpose on half a Bell pair: eigenvalue −½.", "Unitary on system + environment, environment discarded.", ({ dep: "Depolarizing", amp: "Amplitude damping", dph: "Dephasing" })[ch] + ", strength " + V.g.toFixed(2) + ".", "Channels."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) { var ch = Book.state.picks.ch || "amp", z1 = map([0, 0, -1], ch, V.g); return "|1⟩ → z = " + z1[2].toFixed(2) + " · |+⟩ → x = " + map([1, 0, 0], ch, V.g)[0].toFixed(2); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.34, i, j;
+      if (beat === 1) { var A = k.axes(W * 0.2, H * 0.12, W * 0.6, H * 0.66, [0, 4], [-0.6, 0.6], { zeroY: true, yl: "eigenvalue" }); [-0.5, 0.5, 0.5, 0.5].forEach(function (e, i2) { k.rr(A.X(i2 + 0.2), Math.min(A.Y(0), A.Y(e)), A.X(0.6) - A.X(0), Math.abs(A.Y(e) - A.Y(0)), 3, e < 0 ? "rgba(224,90,70,.9)" : "#ffb547"); }); return; }
+      if (beat === 2) { k.rr(W * 0.15, H * 0.35, W * 0.25, H * 0.3, 8, "#14120f", "#ffb547"); k.text("system ρ", W * 0.275, H * 0.51, { size: 13, color: "#ffb547" }); k.rr(W * 0.6, H * 0.35, W * 0.25, H * 0.3, 8, "#14120f", "rgba(236,230,218,.4)"); k.text("environment", W * 0.725, H * 0.51, { size: 13 }); k.rr(W * 0.42, H * 0.3, W * 0.16, H * 0.4, 8, "rgba(255,181,71,.12)", "#ffb547"); k.text("U", cx, H * 0.52, { size: 16, color: "#ffb547" }); k.text("trace out →", W * 0.725, H * 0.75, { size: 12, color: "#7c766b" }); return; }
+      var ch = beat === 3 ? (Book.state.picks.ch || "amp") : ["dep", "amp", "dph"][Math.floor(now / 3000) % 3], g = beat === 3 ? V.g : 0.4, tilt = 0.3;
+      function P(v) { return [cx + R * (v[0] * 0.9 - v[1] * 0.45), cy - R * (v[2] * 0.96 - v[1] * tilt * 0.9)]; }
+      k.circle(cx, cy, R, null, "rgba(236,230,218,.2)", 1);
+      for (i = 0; i <= 12; i++) { var th = i / 12 * Math.PI; c.strokeStyle = "rgba(255,181,71,.55)"; c.lineWidth = 1; c.beginPath(); for (j = 0; j <= 40; j++) { var ph = j / 40 * 2 * Math.PI, v = map([Math.sin(th) * Math.cos(ph), Math.sin(th) * Math.sin(ph), Math.cos(th)], ch, g), p = P(v); if (j) c.lineTo(p[0], p[1]); else c.moveTo(p[0], p[1]); } c.stroke(); }
+      var z0 = P([0, 0, 1]), z1 = P([0, 0, -1]); k.text("|0⟩", z0[0], z0[1] - 10, { size: 12, color: "#b9b2a5" }); k.text("|1⟩", z1[0], z1[1] + 18, { size: 12, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>

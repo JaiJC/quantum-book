@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>192. Drug binding and docking: where quantum helps and where classical wins</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="192">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>192</b> &nbsp;·&nbsp; Drug binding and docking: where quantum helps and where classical wins</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">192</div><div class="part">Part Five · Convergence</div><h1>Drug binding and docking: where quantum helps and where classical wins</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">The central number in drug design is binding free energy: how tightly a candidate molecule holds onto its target. An error of 1.36 kcal/mol changes the predicted binding constant tenfold at room temperature. Computational methods now routinely predict relative binding energies to about 1 kcal/mol for well-behaved systems. Where does the remaining error come from? If it came mostly from inaccurate electronic structure, quantum computers would help broadly. It mostly does not.</p>
+  <p>On the plate: the error budget of a binding prediction.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>How binding is computed</h2>
+  <p><em>Docking</em> places a molecule in the binding site and scores the pose with a fast function, screening millions of compounds. <em>Free-energy perturbation</em> (FEP) is slower and more rigorous: it uses molecular dynamics with a classical force field to “alchemically” transform one ligand into another, and measures the free-energy difference from many sampled configurations. Modern FEP workflows reach mean errors around 1 kcal/mol on benchmark sets. The free energy relates to the dissociation constant by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>G</mi><mo>=</mo><mi>R</mi><mi>T</mi><mi>ln</mi><mo>⁡</mo><msub><mi>K</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">\Delta G = RT\ln K_d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>; at 298 K, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><mi>ln</mi><mo>⁡</mo><mn>10</mn><mo>=</mo><mn>1.36</mn></mrow><annotation encoding="application/x-tex">RT\ln10 = 1.36</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.36</span></span></span></span> kcal/mol per factor of ten. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Where the error comes from</h2>
+  <p>Set the contributions, in kcal/mol: conformational sampling <span class="tangle" data-var="s" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="0.8" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Sampling">0.8</span><button type="button" data-de="1" aria-label="More">›</button></span>, force field <span class="tangle" data-var="f" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="0.7" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Force field">0.7</span><button type="button" data-de="1" aria-label="More">›</button></span>, solvation and protonation <span class="tangle" data-var="w" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="0.5" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Solvation">0.5</span><button type="button" data-de="1" aria-label="More">›</button></span>, electronic structure <span class="tangle" data-var="e" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="0.3" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Electronic">0.3</span><button type="button" data-de="1" aria-label="More">›</button></span>. Independent errors add in quadrature. For a typical non-covalent drug, the defaults reflect the field’s experience: sampling and force fields dominate. Setting electronic error to zero, which is what a perfect quantum calculation would do, barely changes the total. The picture changes for <em>covalent</em> inhibitors, which form a bond to the protein, and for drugs targeting <em>metalloproteins</em>: there the electronic term can dominate, and QM/MM with an accurate quantum core (Chapter 160) is needed. Nicholas Blunt and colleagues estimated in 2022 that even the covalent drug ibrutinib’s reaction with its kinase target would need an error-corrected quantum computer to beat classical methods. <span class="tag">Established</span> for the budget; <span class="tag">Debated</span> for the quantum role.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>Raffaele Santagati and colleagues, from Boehringer Ingelheim, Google and elsewhere, argued in a 2024 <em>Nature Physics</em> perspective that if quantum advantage is limited to strongly correlated electronic structure, its direct impact on mainstream drug design may be limited, since most drug targets are not of that kind. They saw the clearest value in specific cases (metalloenzymes, covalent chemistry, photochemistry) and in generating accurate reference data to train faster classical and machine-learning models. That is the honest current picture. <span class="tag">Debated</span>, leaning classical for most targets.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Docking and free-energy perturbation, the link between free energy and binding constants, an error budget for binding predictions, why sampling and force fields usually dominate, where electronic structure matters (covalent, metal-binding drugs), and the Santagati et al. outlook.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How large an error changes K_d tenfold?<span class="tap">tap</span></div><div class="a">About 1.36 kcal/mol at 298 K.</div></div>
+  <div class="qa"><div class="q">What usually dominates binding-prediction error?<span class="tap">tap</span></div><div class="a">Conformational sampling and force-field inaccuracy.</div></div>
+  <div class="qa"><div class="q">Where would a quantum core help most?<span class="tap">tap</span></div><div class="a">Covalent inhibitors and drugs binding metal centres.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><mo>=</mo><mn>0.593</mn></mrow><annotation encoding="application/x-tex">RT = 0.593</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.593</span></span></span></span> kcal/mol at 298 K, what is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><mi>ln</mi><mo>⁡</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">RT\ln10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span></span></span></span>?</p>
+    <form class="calc" data-answer="1.365" data-tol="0.01" data-ok="Yes: 1.36 kcal/mol per tenfold change in K_d." data-hint="0.593 × 2.303."><span>≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="kcal/mol"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: L. Wang et al., J. Am. Chem. Soc. 137, 2695 (2015) (FEP+). N. S. Blunt et al., J. Chem. Theory Comput. 18, 7001 (2022). R. Santagati et al., Nat. Phys. 20, 549 (2024). The default error contributions are illustrative, not measured values.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 193</div><div class="t">Protein folding: AlphaFold-style ML versus quantum approaches, honestly compared</div><p style="text-align:left">AlphaFold predicts protein structures with no quantum computer. What is left for quantum?</p><p style="text-align:left"><a class="v" href="193.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="191.html">← 191. Case study: cytochrome P450 and drug metabolism</a><a href="../index.html">Contents</a><a href="193.html">193. Protein folding: AlphaFold-style ML versus quantum approaches, honestly compared →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { s: 0.8, f: 0.7, w: 0.5, e: 0.3 };
+  function tot() { return Math.sqrt(V.s * V.s + V.f * V.f + V.w * V.w + V.e * V.e); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Error budget of a binding prediction.", "Docking scores; FEP transforms one ligand into another.", "Variance shares (bars) and total error.", "Where quantum matters in drug design.", "Drug binding."][beat]; },
+    readout: function () { var t = tot(), t0 = Math.sqrt(V.s * V.s + V.f * V.f + V.w * V.w); return "total " + t.toFixed(2) + " kcal/mol (K_d off by ×" + Math.exp(t / 0.593).toFixed(1) + ") · with perfect electronic structure " + t0.toFixed(2) + " (×" + Math.exp(t0 / 0.593).toFixed(1) + ")"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-4, 0], [0, 6], { xl: "log₁₀ K_d (M)", yl: "−ΔG (kcal/mol)" }); k.plot(A, function (l) { return -0.593 * Math.log(Math.pow(10, l)); }, [-4, 0], "#ffb547", 2.5); [-9, -6, -3].forEach(function () {}); return; }
+      if (beat === 3) { [["most non-covalent targets", "classical wins", "rgba(236,230,218,.7)"], ["covalent inhibitors", "quantum core may help", "#ffb547"], ["metalloenzyme targets", "quantum core may help", "#ffb547"], ["training data for ML", "plausible indirect value", "#ffb547"]].forEach(function (r, j) { var y = H * (0.18 + j * 0.18); k.text(r[0], W * 0.45, y, { size: 13, align: "right" }); k.text(r[1], W * 0.5, y, { size: 12, color: r[2], align: "left" }); }); return; }
+      var parts = [["sampling", V.s, "rgba(236,230,218,.75)"], ["force field", V.f, "rgba(236,230,218,.5)"], ["solvation", V.w, "rgba(224,90,70,.7)"], ["electronic", V.e, "#ffb547"]], T2 = parts.reduce(function (a, p) { return a + p[1] * p[1]; }, 0) || 1, x = W * 0.1; parts.forEach(function (p) { var w = W * 0.8 * p[1] * p[1] / T2; k.rr(x, H * 0.35, Math.max(1, w), H * 0.2, 2, p[2]); if (w > 40) k.text(p[0], x + w / 2, H * 0.62, { size: 11, color: "#b9b2a5" }); x += w; }); k.text("share of error variance", W / 2, H * 0.28, { size: 12, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

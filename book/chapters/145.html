@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A single charged atom, held in empty space by oscillating electric fields, is about as perfect a qubit as nature offers. Every ion of a given isotope is identical, its internal states can live for minutes or longer, and lasers can control it with extraordinary precision. Trapped ions hold the records for gate fidelity. Their weakness is speed: gates take tens to hundreds of microseconds, a thousand times slower than superconducting circuits.</p>
+  <p>On the plate: the stability map of an ion trap.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The Paul trap</h2>
+  <p>A static electric field cannot trap a charge in three dimensions (Earnshaw’s theorem). Wolfgang Paul’s solution, which shared the 1989 Nobel Prize, is a saddle-shaped potential that rotates at radio frequency: the ion feels a force alternately toward and away from the centre, and on average is pushed in. Its motion obeys the Mathieu equation {{tex:\ddot x + (a - 2q\cos2\tau)x = 0}}, with {{tex:a}} set by the static voltage and {{tex:q}} by the RF voltage. Only some {{tex:(q, a)}} give bounded motion. Choose {{tex:q =}} <span class="tangle" data-var="q" data-min="0" data-max="1" data-step="0.02" data-dec="2" data-value="0.30" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="q">0.30</span><button type="button" data-de="1" aria-label="More">›</button></span>, {{tex:a =}} <span class="tangle" data-var="a" data-min="-0.3" data-max="0.3" data-step="0.01" data-dec="2" data-value="0.00" data-px="5"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="a">0.00</span><button type="button" data-de="1" aria-label="More">›</button></span>. The plate integrates one period of the equation and checks the monodromy matrix: motion is stable if its trace is less than 2 in magnitude. The ion’s slow average oscillation, the <em>secular</em> motion, is what gates use as a quantum bus. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Qubits and the Mølmer–Sørensen gate</h2>
+  <p><em>Hyperfine</em> qubits use two ground-state levels split by gigahertz microwaves; they essentially never decay. <em>Optical</em> qubits use a long-lived excited state reached by a laser. Ignacio Cirac and Peter Zoller proposed in 1995 using shared motion to couple ions. Klaus Mølmer and Anders Sørensen’s 1999 gate is more forgiving: laser beams detuned by {{tex:\pm\delta}} from a motional sideband push the ions’ shared motion around a loop in phase space. After time {{tex:2\pi K/\delta}} the loop closes, the motion returns exactly to where it began, so its temperature does not matter, and the spins have acquired a phase proportional to the enclosed area: an entangling {{tex:XX}} rotation. Loops: <span class="tangle" data-var="K" data-min="1" data-max="5" data-step="1" data-value="1" data-px="20"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Loops">1</span><button type="button" data-de="1" aria-label="More">›</button></span>. The light’s momentum kick relative to the ion’s motional spread is the <em>Lamb–Dicke parameter</em> {{tex:\eta = k x_0}}, with {{tex:x_0 = \sqrt{\hbar/2m\omega}}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Scaling: shuttling ions</h2>
+  <p>A single chain of ions gets harder to control as it grows: motional modes crowd together. David Wineland and colleagues proposed the <em>quantum charge-coupled device</em> (QCCD) in 2002: many small trapping zones on a chip, with ions physically moved between memory and gate zones. Quantinuum’s machines use it, so any ion can interact with any other: all-to-all connectivity, at the cost of transport time. Its Helios system, announced in November 2025, holds 98 barium ions with two-qubit gate fidelity 99.921% and single-qubit fidelity 99.9975%. Other approaches link separate traps with photons (Chapter 153). Colin Bruzewicz and colleagues reviewed the platform in 2019. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Paul traps and Mathieu stability, secular motion, hyperfine and optical qubits, the Mølmer–Sørensen gate as a closed phase-space loop, the Lamb–Dicke parameter, and QCCD architectures with current specifications.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why can’t static fields trap an ion?<span class="tap">tap</span></div><div class="a">Earnshaw’s theorem: an electrostatic potential has no 3D minimum in free space.</div></div>
+  <div class="qa"><div class="q">Why is the Mølmer–Sørensen gate insensitive to temperature?<span class="tap">tap</span></div><div class="a">The motional loop closes, returning every motional state to itself; only the spin-dependent phase remains.</div></div>
+  <div class="qa"><div class="q">What does QCCD trade for connectivity?<span class="tap">tap</span></div><div class="a">Time spent moving ions between zones.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A ⁴⁰Ca⁺ ion in a 1 MHz trap has {{tex:x_0\approx11.2}} nm. For 729 nm light along the motion, what is {{tex:\eta = (2\pi/\lambda)x_0}}?</p>
+    <form class="calc" data-answer="0.097" data-tol="0.003" data-ok="Yes: 8.62 × 10⁶ m⁻¹ × 11.2 nm ≈ 0.097, well inside the Lamb–Dicke regime (η ≪ 1)." data-hint="2π / 729 nm ≈ 8.62 × 10⁶ per metre."><span>η ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Lamb-Dicke parameter"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. Paul, Rev. Mod. Phys. 62, 531 (1990). J. I. Cirac and P. Zoller, Phys. Rev. Lett. 74, 4091 (1995). K. Mølmer and A. Sørensen, Phys. Rev. Lett. 82, 1835 (1999). D. Kielpinski, C. Monroe and D. J. Wineland, Nature 417, 709 (2002). C. D. Bruzewicz et al., Appl. Phys. Rev. 6, 021314 (2019). Quantinuum Helios announcement (November 2025); last checked 18 November 2026. Checked by code: Mathieu monodromy test; x₀ = 11.24 nm, η = 0.0969.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { q: 0.3, a: 0, K: 1 }, map = null, MQ = 50, MA = 30;
+  function trace(a, q, n) { n = n || 200; var dt = Math.PI / n, Y = [[1, 0], [0, 1]]; for (var j = 0; j < 2; j++) { var x = Y[0][j], v = Y[1][j]; for (var i = 0; i < n; i++) { var t = i * dt; function acc(tt, xx) { return -(a - 2 * q * Math.cos(2 * tt)) * xx; } var k1x = v, k1v = acc(t, x), k2x = v + dt / 2 * k1v, k2v = acc(t + dt / 2, x + dt / 2 * k1x), k3x = v + dt / 2 * k2v, k3v = acc(t + dt / 2, x + dt / 2 * k2x), k4x = v + dt * k3v, k4v = acc(t + dt, x + dt * k3x); x += dt / 6 * (k1x + 2 * k2x + 2 * k3x + k4x); v += dt / 6 * (k1v + 2 * k2v + 2 * k3v + k4v); } Y[0][j] = x; Y[1][j] = v; } return Y[0][0] + Y[1][1]; }
+  function build() { map = []; for (var i = 0; i < MQ; i++) { var row = []; for (var j = 0; j < MA; j++) { var q = (i + 0.5) / MQ, a = -0.3 + 0.6 * (j + 0.5) / MA; row.push(Math.abs(trace(a, q, 120)) < 2); } map.push(row); } }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; build(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Stable (amber) and unstable regions of a Paul trap.", "(q, a) stability map; white dot is your trap.", "Motion in phase space during an MS gate.", "QCCD: memory zones, gate zones, shuttling.", "Trapped ions."][beat]; },
+    readout: function () { if (beat <= 1) { var tr = trace(V.a, V.q, 400); return "q = " + V.q.toFixed(2) + ", a = " + V.a.toFixed(2) + " · |trace| = " + Math.abs(tr).toFixed(3) + " → " + (Math.abs(tr) < 2 ? "stable" : "unstable"); } if (beat === 2) return V.K + " loop" + (V.K > 1 ? "s" : "") + " · gate time 2πK/δ · motion returns to start · spin phase ∝ enclosed area"; if (beat === 3) return "Helios (Nov 2025): 98 ions · 2Q 99.921% · 1Q 99.9975%"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i, j;
+      if (beat <= 1 || beat === 4) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 1], [-0.3, 0.3], { xl: "q (RF voltage)", yl: "a (static voltage)", zeroY: true }); var cw = (A.X(1) - A.X(0)) / MQ, ch = (A.Y(-0.3) - A.Y(0.3)) / MA; for (i = 0; i < MQ; i++) for (j = 0; j < MA; j++) if (map[i][j]) { k.ctx.fillStyle = "rgba(255,181,71,.35)"; k.ctx.fillRect(A.X(0) + i * cw, A.Y(-0.3) - (j + 1) * ch, cw + 0.5, ch + 0.5); } if (beat === 1) k.circle(A.X(V.q), A.Y(V.a), 6, "#ece6da"); return; }
+      if (beat === 2) { var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.32 / Math.sqrt(V.K), T = (now / 4000) % 1, tot = 2 * Math.PI * V.K, c = k.ctx; k.line(W * 0.1, cy, W * 0.9, cy, "rgba(236,230,218,.2)", 1); k.line(cx, H * 0.1, cx, H * 0.9, "rgba(236,230,218,.2)", 1); c.strokeStyle = "rgba(255,181,71,.35)"; c.lineWidth = 1.5; c.beginPath(); for (i = 0; i <= 200; i++) { var th = tot * i / 200, x = cx + R * Math.sin(th), y = cy - R * (1 - Math.cos(th)) + R; if (i) c.lineTo(x, y - R); else c.moveTo(x, y - R); } c.stroke(); var th2 = tot * T; k.circle(cx + R * Math.sin(th2), cy - R * (1 - Math.cos(th2)), 7, "#ffb547"); k.circle(cx, cy, 4, "#ece6da"); k.text("start = end", cx + 10, cy + 16, { size: 11, color: "#b9b2a5", align: "left" }); k.text("position →", W * 0.88, cy + 16, { size: 11, color: "#b9b2a5", align: "right" }); k.text("momentum ↑", cx + 6, H * 0.12, { size: 11, color: "#b9b2a5", align: "left" }); return; }
+      if (beat === 3) { var zones = ["memory", "gate", "memory", "gate", "memory"]; zones.forEach(function (z, j2) { var x = W * (0.1 + j2 * 0.18); k.rr(x, H * 0.42, W * 0.15, H * 0.16, 6, z === "gate" ? "rgba(255,181,71,.18)" : "#14120f", z === "gate" ? "#ffb547" : "rgba(236,230,218,.4)"); k.text(z, x + W * 0.075, H * 0.64, { size: 11, color: "#b9b2a5" }); }); var t = (now / 3000) % 1, xi = W * (0.175 + 0.36 * (t < 0.5 ? t * 2 : 2 - t * 2)); k.glow(xi, H * 0.5, 12, "rgba(236,230,218,.6)"); k.circle(xi, H * 0.5, 5, "#ece6da"); k.circle(W * 0.355, H * 0.5, 5, "#ece6da"); }
+    }
+  });
+})();
+</script>

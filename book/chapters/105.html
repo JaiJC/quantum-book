@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">How different are two quantum states? There is a precise answer, and it is operational: exactly as different as your best chance of telling them apart in a single shot. The trace distance captures it. A second measure, fidelity, captures how close they are, and an entropy captures how mixed each one is. These three quantities run through every later chapter on error correction, benchmarking and cryptography.</p>
+  <p>On the plate: two states in the Bloch ball, with their distance, fidelity and the best odds of distinguishing them.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Von Neumann entropy</h2>
+  <p>The quantum analogue of Shannon’s entropy (Chapter 95) is {{tex:S(\rho) = -\mathrm{Tr}\,\rho\log_2\rho = -\sum\lambda_i\log_2\lambda_i}}, over the eigenvalues of {{tex:\rho}}. Pure states have {{tex:S = 0}}; the maximally mixed qubit has 1 bit. Benjamin Schumacher showed in 1995 that {{tex:S}} is the number of qubits per copy needed to compress a quantum source, as {{tex:H}} counts bits for a classical one. The <em>relative entropy</em> {{tex:S(\rho\|\sigma) = \mathrm{Tr}\,\rho(\log\rho - \log\sigma)}} measures how distinguishable {{tex:\rho}} is from {{tex:\sigma}} over many copies, and never increases under any channel. <span class="tag">Established</span></p>
+  <div class="note x-deep"><span class="mark">Deeper</span><em>Strong subadditivity</em>, {{tex:S(\rho_{ABC}) + S(\rho_B) \le S(\rho_{AB}) + S(\rho_{BC})}}, proved by Elliott Lieb and Mary Beth Ruskai in 1973, is the deepest inequality in quantum information. It follows from the monotonicity of relative entropy under partial trace, applied to {{tex:\rho_{ABC}}} against {{tex:\rho_A\otimes\rho_{BC}}}.</div>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Trace distance</h2>
+  <p>Define {{tex:D(\rho, \sigma) = \tfrac12\|\rho - \sigma\|_1}}, half the sum of the absolute eigenvalues of the difference. For qubits it is half the Euclidean distance between Bloch vectors. Its meaning: the best single-shot probability of telling them apart, given each with probability one half, is {{tex:\tfrac12(1 + D)}}, the Helstrom bound of Chapter 101 in general form. Move the states: lengths <span class="tangle" data-var="r1" data-min="0" data-max="1" data-step="0.05" data-dec="2" data-value="1" data-px="6"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Length 1">1.00</span><button type="button" data-de="1" aria-label="Longer">›</button></span> and <span class="tangle" data-var="r2" data-min="0" data-max="1" data-step="0.05" data-dec="2" data-value="0.8" data-px="6"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Length 2">0.80</span><button type="button" data-de="1" aria-label="Longer">›</button></span>, angle between them <span class="tangle" data-var="ang" data-min="0" data-max="180" data-step="5" data-unit="°" data-value="60" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Angle">60°</span><button type="button" data-de="1" aria-label="More">›</button></span>. Trace distance can only shrink under a channel: noise makes states harder to tell apart, never easier.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Fidelity</h2>
+  <p>Uhlmann’s fidelity, {{tex:F(\rho, \sigma) = \left(\mathrm{Tr}\sqrt{\sqrt\rho\,\sigma\sqrt\rho}\right)^2}}, reduces to {{tex:|\langle\psi|\phi\rangle|^2}} for pure states. For qubits it has the closed form {{tex:\mathrm{Tr}(\rho\sigma) + 2\sqrt{\det\rho\det\sigma}}}. Distance and fidelity bound each other, by the Fuchs–van de Graaf inequalities:</p>
+  <div class="eq">{{texd:1 - \sqrt F \;\le\; D \;\le\; \sqrt{1 - F}}}</div>
+  <p>with the upper bound an equality for pure states. Gate and state fidelities quoted for hardware, 99.9% and so on, are these numbers (Chapter 150). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Von Neumann and relative entropy, Schumacher compression, strong subadditivity, trace distance and its operational meaning, Uhlmann fidelity and the qubit formula, and the Fuchs–van de Graaf inequalities.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does trace distance mean operationally?<span class="tap">tap</span></div><div class="a">The best single-shot discrimination probability is ½(1 + D).</div></div>
+  <div class="qa"><div class="q">Can a channel increase trace distance?<span class="tap">tap</span></div><div class="a">No; it is contractive under every CPTP map.</div></div>
+  <div class="qa"><div class="q">What does von Neumann entropy count?<span class="tap">tap</span></div><div class="a">Qubits per copy needed to compress a quantum source (Schumacher).</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the trace distance between {{tex:|0\rangle}} (Bloch vector up) and {{tex:|+\rangle}} (along x)?</p>
+    <form class="calc" data-answer="0.7071" data-tol="0.003" data-ok="Yes: ½|r − s| = ½√2 ≈ 0.707; best discrimination 85.4%." data-hint="The Bloch vectors are (0,0,1) and (1,0,0)."><span>D =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Distance"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: B. Schumacher, Phys. Rev. A 51, 2738 (1995). E. H. Lieb and M. B. Ruskai, J. Math. Phys. 14, 1938 (1973). A. Uhlmann, Rep. Math. Phys. 9, 273 (1976). C. A. Fuchs and J. van de Graaf, IEEE Trans. Inf. Theory 45, 1216 (1999). M. M. Wilde, Quantum Information Theory. J. Watrous, ch. 5. Checked by code: D = ½|r − s|; Uhlmann fidelity equals Tr(ρσ) + 2√(det ρ det σ) (e.g. 0.897 for r = (0,0,0.6), s = (0.5,0,0.2)); Fuchs–van de Graaf holds.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { r1: 1, r2: 0.8, ang: 60 };
+  function vecs() { var a = V.ang * Math.PI / 180; return [[0, 0, V.r1], [V.r2 * Math.sin(a), 0, V.r2 * Math.cos(a)]]; }
+  function meas() { var v = vecs(), r = v[0], s = v[1], D = 0.5 * Math.hypot(r[0] - s[0], r[1] - s[1], r[2] - s[2]); var dot = r[0] * s[0] + r[1] * s[1] + r[2] * s[2], tr = 0.5 * (1 + dot), dr = 0.25 * (1 - V.r1 * V.r1), ds = 0.25 * (1 - V.r2 * V.r2), F = tr + 2 * Math.sqrt(Math.max(0, dr * ds)); function S(l) { var a = (1 + l) / 2, b = (1 - l) / 2; return (a > 0 ? -a * Math.log2(a) : 0) + (b > 0 ? -b * Math.log2(b) : 0); } return { D: D, F: F, S1: S(V.r1), S2: S(V.r2) }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Two states in the Bloch ball.", "Entropy against Bloch-vector length.", "Trace distance = half the separation.", "Fidelity and the Fuchs–van de Graaf band.", "Distinguishability."][beat]; },
+    readout: function () { var m = meas(); return "D = " + m.D.toFixed(3) + " · best odds " + (50 * (1 + m.D)).toFixed(1) + "% · F = " + m.F.toFixed(3) + " · S = " + m.S1.toFixed(2) + ", " + m.S2.toFixed(2) + " bits"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.36;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 1], [0, 1.05], { xl: "Bloch-vector length |r|", yl: "S, bits" }); k.plot(A, function (l) { var a = (1 + l) / 2, b = (1 - l) / 2; return (a > 0 ? -a * Math.log2(a) : 0) + (b > 1e-12 ? -b * Math.log2(b) : 0); }, [0, 1], "#ffb547", 2.5); return; }
+      if (beat === 3) { var m = meas(); A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 1], [0, 1.05], { xl: "fidelity F", yl: "trace distance D" }); k.plot(A, function (f) { return Math.sqrt(1 - f); }, [0, 1], "rgba(236,230,218,.6)", 1.5); k.plot(A, function (f) { return 1 - Math.sqrt(f); }, [0, 1], "rgba(236,230,218,.6)", 1.5); k.circle(A.X(m.F), A.Y(m.D), 7, "#ffb547"); k.text("allowed band between the curves", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      var v = vecs(); k.circle(cx, cy, R, null, "rgba(236,230,218,.3)"); [[v[0], "#ffb547"], [v[1], "#ece6da"]].forEach(function (q) { k.line(cx, cy, cx + R * q[0][0], cy - R * q[0][2], q[1], 3); k.circle(cx + R * q[0][0], cy - R * q[0][2], 5, q[1]); }); k.line(cx + R * v[0][0], cy - R * v[0][2], cx + R * v[1][0], cy - R * v[1][2], "rgba(224,90,70,.9)", 2, [5, 4]); k.text("red: 2D", cx, cy + R + 22, { size: 11, color: "#e05a46" });
+    }
+  });
+})();
+</script>

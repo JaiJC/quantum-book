@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>123. Barren plateaus and trainability</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="123">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>123</b> &nbsp;·&nbsp; Barren plateaus and trainability</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">123</div><div class="part">Part Three · B · Algorithms</div><h1>Barren plateaus and trainability</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Training a variational circuit means walking downhill on an energy landscape. In 2018 Jarrod McClean and colleagues at Google showed that for generic, expressive circuits the landscape is almost perfectly flat: gradients are exponentially small in the number of qubits, everywhere except in a vanishing fraction of parameter space. To see the slope, you need exponentially many measurements. They called these regions <em>barren plateaus</em>, and they reshaped the field.</p>
+  <p>On the plate: the spread of gradients in random circuits, as qubits are added.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why the landscape is flat</h2>
+  <p>A circuit deep and random enough behaves like a random unitary (technically, a <em>2-design</em>). Then the cost <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mi>O</mi><mi mathvariant="normal">∣</mi><mi>ψ</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle\psi(\theta)|O|\psi(\theta)\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal" style="margin-right:0.03588em;">ψ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.03588em;">ψ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)⟩</span></span></span></span> concentrates around its average, just as the overlap of two random vectors in a huge space concentrates near zero. The mean gradient is zero and its variance shrinks like <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">1/2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> or faster. This is <em>concentration of measure</em>, the same effect that makes random high-dimensional vectors nearly orthogonal. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Global versus local cost</h2>
+  <p>The plate shows gradient variances computed by exact simulation of a layered circuit of random <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">R_y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">R_z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> rotations and controlled-Z gates, with as many layers as qubits. Show <button type="button" class="v" data-pick="c:both">both costs</button>, <button type="button" class="v" data-pick="c:glob">global only</button>, <button type="button" class="v" data-pick="c:loc">local only</button>. A <em>global</em> cost asks whether the whole register is in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mn>0</mn><mo>⋯</mo><mn>0</mn><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">|0\cdots0\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣0</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">⟩</span></span></span></span>; its gradient variance falls from 0.037 at 2 qubits to 1.2 × 10⁻⁶ at 10. A <em>local</em> cost averages single-qubit measurements; it falls from 0.026 to 2.5 × 10⁻⁴, far more slowly. Marco Cerezo and colleagues proved in 2021 that local costs with shallow circuits avoid barren plateaus. Samson Wang and colleagues showed the same year that hardware noise causes plateaus of its own, whatever the cost function. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The twist: trainable may mean simulable</h2>
+  <p>In 2024 two groups, Michael Ragone and colleagues and Enrico Fontana and colleagues, tied gradient variance to the dimension of the Lie algebra generated by the circuit’s gates: a small algebra means no plateau. But a small algebra also means the dynamics lives in a small subspace. In 2025 Cerezo and colleagues argued that most provably plateau-free models can then be simulated classically, possibly after collecting some data from the quantum device. If true in general, the structure that makes a model trainable is the same structure that removes its quantum advantage. Exceptions, and how far the argument extends, are actively debated. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Barren plateaus as concentration of measure, the exponential decay of gradient variance, the advantage of local costs, noise-induced plateaus, the Lie-algebraic theory, and the trainability–simulability tension.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What causes a barren plateau?<span class="tap">tap</span></div><div class="a">Concentration of measure: expressive random circuits make the cost nearly constant, with exponentially small gradients.</div></div>
+  <div class="qa"><div class="q">Why do local costs help?<span class="tap">tap</span></div><div class="a">Each term depends on a light cone of few qubits, so its gradient decays polynomially with shallow circuits.</div></div>
+  <div class="qa"><div class="q">Why might plateau-free imply classically simulable?<span class="tap">tap</span></div><div class="a">Avoiding plateaus needs a small dynamical Lie algebra, which also confines the state to a small, classically tractable subspace.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Suppose gradient variance halves with each added qubit, and the shots needed scale as 1 / variance. By what factor do shots grow from 10 to 20 qubits?</p>
+    <form class="calc" data-answer="1024" data-tol="2" data-ok="Yes: 2¹⁰ = 1024 times more shots, just to see the slope." data-hint="Ten halvings."><span>factor</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. R. McClean et al., Nat. Commun. 9, 4812 (2018). M. Cerezo et al., Nat. Commun. 12, 1791 (2021). S. Wang et al., Nat. Commun. 12, 6961 (2021). M. Ragone et al., Nat. Commun. 15, 7172 (2024). E. Fontana et al., Nat. Commun. 15, 7171 (2024). M. Cerezo et al., Nat. Commun. 16, 7907 (2025). Checked by code: exact state-vector simulation, 120–300 random circuits per size, parameter-shift gradients of the first angle.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 124</div><div class="t">Quantum machine learning: kernels, QNNs, data loading, provable separations</div><p style="text-align:left">Your ML intuition says more expressive is better. In quantum ML, extra expressiveness can make the model untrainable.</p><p style="text-align:left"><a class="v" href="124.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="122.html">← 122. Variational algorithms: VQE and QAOA</a><a href="../index.html">Contents</a><a href="124.html">124. Quantum machine learning: kernels, QNNs, data loading, provable separations →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, data = [[2, 0.0374, 0.0260], [4, 0.00256, 0.00331], [6, 1.84e-4, 1.16e-3], [8, 8.66e-6, 4.88e-4], [10, 1.21e-6, 2.45e-4]];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Gradient spread vs qubit count.", "Random vectors in 2ⁿ dimensions are nearly orthogonal.", "Gradient variance: global (amber), local (white). Log scale.", "Small Lie algebra: trainable, but small.", "Barren plateaus."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return data.map(function (d) { return d[0] + "q: " + d[1].toExponential(1) + " / " + d[2].toExponential(1); }).join(" · "); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, c = Book.state.picks.c || "both";
+      if (beat === 1) { var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.35, t = now / 2000; k.circle(cx, cy, R, null, "rgba(236,230,218,.25)"); for (var i = 0; i < 60; i++) { var a = i * 2.39996 + t * 0.1, r = R * Math.pow(Math.abs(Math.sin(i * 1.7 + t * 0.3)), 6); k.circle(cx + r * Math.cos(a), cy + r * Math.sin(a), 2.5, "rgba(255,181,71,.8)"); } k.text("overlaps of random states cluster near zero", cx, H * 0.93, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { var cx2 = W / 2, cy2 = H / 2, R2 = Math.min(W, H) * 0.36; k.circle(cx2, cy2, R2, null, "rgba(236,230,218,.35)"); k.text("full space: 4ⁿ dimensions", cx2, cy2 - R2 - 10, { size: 12, color: "#b9b2a5" }); k.circle(cx2, cy2, R2 * 0.18, "rgba(255,181,71,.25)", "#ffb547"); k.text("small Lie algebra", cx2, cy2 + 4, { size: 12, color: "#ffb547" }); k.text("trainable · and often classically simulable", cx2, H * 0.94, { size: 12, color: "#ece6da" }); return; }
+      A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [1, 11], [-6.5, -1], { xl: "qubits", yl: "log₁₀ variance" });
+      function series(idx, col) { var pts = data.map(function (d) { return [A.X(d[0]), A.Y(Math.log10(d[idx]))]; }); for (var i = 1; i < pts.length; i++) k.line(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], col, 2); pts.forEach(function (p) { k.circle(p[0], p[1], 5, col); }); }
+      if (c !== "loc") series(1, "#ffb547"); if (c !== "glob") series(2, "rgba(236,230,218,.85)");
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

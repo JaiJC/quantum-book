@@ -1,0 +1,2 @@
+== 108
+|C1| mod phase 24 ; |C2| known 11520

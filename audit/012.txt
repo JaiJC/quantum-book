@@ -1,0 +1,8 @@
+cycloid time to bottom (pi,-2r): 1.0030333403553238
+straight line time: 1.1890429254666885
+cycloid numeric 1.0030313109641813
+a -0.3 S -3.78777
+a -0.1 S -3.98516
+a 0 S -4.00984
+a 0.1 S -3.98516
+a 0.3 S -3.78777

@@ -1,0 +1,126 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A sample of radon gas fading away, a capacitor draining through a resistor, and a footbridge settling after a crowd crosses it look like three unrelated stories. They are told by the same few equations. Learn those equations once and you can read all three, along with most of the physics in this book.</p>
+  <p>An ordinary differential equation says how a quantity changes in terms of what it currently is. Physics is mostly written this way, because nature is local in time: what happens next depends on what is happening now.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Decay</h2>
+  <p>Each radon-222 nucleus has the same small chance of decaying in any given second, so the number decaying is proportional to the number left: {{tex:dN/dt = -\lambda N}}. Separate the variables and integrate, and you get</p>
+  <div class="eq">{{texd:N(t) = N_0\,e^{-\lambda t}, \qquad t_{1/2} = \frac{\ln 2}{\lambda}}}</div>
+  <p>Radon-222 has a half-life of 3.82 days. After <span class="tangle" data-var="t" data-min="0" data-max="30" data-step="0.5" data-dec="1" data-value="3.8" data-unit="days" data-px="5"><button type="button" data-de="-1" aria-label="Earlier">‹</button><span class="num" role="slider" tabindex="0" aria-label="Time">3.8 days</span><button type="button" data-de="1" aria-label="Later">›</button></span>, a fraction <span class="live" id="frac">0.50</span> is left. <span class="tag">Established</span></p>
+  <p>A capacitor discharging through a resistor obeys the same equation with {{tex:\lambda = 1/RC}}. After one time constant {{tex:RC}}, 63% of the charge has gone, because {{tex:1 - e^{-1} = 0.632}}.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Oscillation and the phase plane</h2>
+  <p>A mass on a spring obeys Newton’s law with a restoring force and some friction: {{tex:\ddot x = -\omega_0^2 x - \gamma \dot x}}. Two numbers describe its state at any moment: where it is and how fast it moves. Plot them as a point in a plane and the motion becomes a path. That is the <em>phase plane</em>, shown on the right of the plate.</p>
+  <p>Set the friction to <span class="tangle" data-var="g" data-min="0" data-max="3" data-step="0.05" data-dec="2" data-value="0.2" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Damping">0.20</span><button type="button" data-de="1" aria-label="More">›</button></span> (with {{tex:\omega_0 = 1}}). With no friction the path is a closed loop: the energy never leaves. With a little, it spirals inward. At {{tex:\gamma = 2}} the system is <em>critically damped</em> and returns to rest as fast as possible without overshooting, which is how car suspensions and door closers are tuned.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Driving and resonance</h2>
+  <p>Now push the oscillator back and forth at a frequency {{tex:\omega}} of your choosing: <span class="tangle" data-var="w" data-min="0.2" data-max="2" data-step="0.01" data-dec="2" data-value="0.6" data-px="3"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Drive frequency">0.60</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Near the natural frequency the swings grow large. That is <em>resonance</em>.</p>
+  <p>How sharp the peak is depends on the friction. The <em>quality factor</em> {{tex:Q = \omega_0/\gamma}} counts roughly how many swings the oscillator makes before its energy fades, and the width of the peak is about {{tex:\omega_0/Q}}. With your friction setting, {{tex:Q}} = <span class="live" id="Q">5</span>.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Try {{tex:x = A\cos(\omega t - \delta)}} in {{tex:\ddot x + \gamma\dot x + \omega_0^2 x = F\cos\omega t}}. The amplitude is {{tex:A = F/\sqrt{(\omega_0^2-\omega^2)^2 + \gamma^2\omega^2}}}. The energy {{tex:\propto A^2}} falls to half its peak value at {{tex:\omega \approx \omega_0 \pm \gamma/2}}, so the full width is {{tex:\gamma = \omega_0/Q}}.</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The bridge that was not a resonance</h2>
+  <p>Textbooks often say the Tacoma Narrows Bridge collapsed in 1940 because the wind pushed it at its resonant frequency. That is not what happened. A steady wind does not push at a single frequency. The deck’s own twisting changed how the air flowed around it, and that flow fed energy back into the twisting. The motion drove itself. <span class="tag">Established</span></p>
+  <p>Engineers call this aerodynamic flutter, a kind of <em>self-excitation</em>. In the equation it looks like negative damping: {{tex:\gamma}} turns negative, and the spiral in the phase plane runs outward instead of in. K. Yusuf Billah and Robert Scanlan set the record straight in a 1991 paper written for physics teachers.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>When the computer lies</h2>
+  <p>Most equations in this book cannot be solved with a pen, so we step them forward on a computer. The simplest method, Euler’s, takes the current slope and walks in a straight line for a time step {{tex:h}}. For an oscillator with no friction, that is quietly wrong: every step adds a little energy. Watch the outer spiral on the plate.</p>
+  <p>Set the step to <span class="tangle" data-var="h" data-min="0.01" data-max="0.4" data-step="0.01" data-dec="2" data-value="0.1" data-px="5"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Time step">0.10</span><button type="button" data-de="1" aria-label="Larger">›</button></span>. With {{tex:h = 0.1}}, after ten time units Euler’s energy has grown by a factor of 2.7. The fourth-order Runge–Kutta method, which samples the slope four times per step, keeps it correct to six decimal places in the same run.</p>
+  <p>The lesson goes beyond oscillators: a simulation that does not conserve what physics conserves will drift into nonsense. Always check.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Exponential decay, oscillation with friction, resonance and its sharpness, a picture of motion as a path in the phase plane, and a healthy suspicion of naive numerical methods.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does the quality factor Q tell you?<span class="tap">tap</span></div><div class="a">Roughly how many oscillations happen before the energy fades, and how sharp the resonance peak is: its width is about ω₀/Q.</div></div>
+  <div class="qa"><div class="q">Why did the Tacoma Narrows Bridge fail, if not by resonance?<span class="tap">tap</span></div><div class="a">Aerodynamic flutter: the bridge’s own motion changed the airflow so that the wind fed energy in, which acts like negative damping.</div></div>
+  <div class="qa"><div class="q">What goes wrong with Euler’s method for a frictionless oscillator?<span class="tap">tap</span></div><div class="a">Each step adds energy, so the orbit spirals outward instead of closing.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What fraction of a radon-222 sample is left after 7.64 days?</p>
+    <form class="calc" data-answer="0.25" data-tol="0.005" data-ok="Yes: two half-lives, so (1/2)² = 0.25." data-alt="0.5~That is one half-life. 7.64 days is two." data-hint="7.64 days is how many half-lives of 3.82 days?"><span>fraction =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Fraction left"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. H. Strogatz, Nonlinear Dynamics and Chaos. W. E. Boyce and R. C. DiPrima, Elementary Differential Equations. K. Y. Billah and R. H. Scanlan, Am. J. Phys. 59, 118 (1991). Radon-222 half-life 3.82 days (NNDC). Checked by code: Euler energy ×2.70 after t = 10 at h = 0.1; RK4 error below 10⁻⁶.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { t: 3.8, g: 0.2, w: 0.6, h: 0.1 }, st = [1, 0], trail = [], eu = null, rk = null, last = 0;
+  function amp(w, g) { return 1 / Math.sqrt(Math.pow(1 - w * w, 2) + g * g * w * w); }
+  function resetNum() { eu = { s: [1, 0], path: [] }; rk = { s: [1, 0], path: [] }; last = 0; }
+  function f(s) { return [s[1], -s[0]]; }
+  function step(m, h) {
+    var s = m.s;
+    if (m === eu) { var d = f(s); m.s = [s[0] + h * d[0], s[1] + h * d[1]]; }
+    else { var k1 = f(s), k2 = f([s[0] + h / 2 * k1[0], s[1] + h / 2 * k1[1]]), k3 = f([s[0] + h / 2 * k2[0], s[1] + h / 2 * k2[1]]), k4 = f([s[0] + h * k3[0], s[1] + h * k3[1]]); m.s = [s[0] + h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]), s[1] + h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])]; }
+    m.path.push(m.s.slice()); if (m.path.length > 2000) m.path.shift();
+  }
+  function upd() { Book.text("frac", Math.pow(0.5, V.t / 3.82).toFixed(2)); Book.text("Q", V.g > 0 ? (1 / V.g).toFixed(1) : "∞"); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; resetNum(); upd(); },
+    beat: function (i) { beat = i; st = [1, 0]; trail = []; if (i === 5) resetNum(); },
+    set: function (n, v) { V[n] = v; upd(); if (n === "g") { st = [1, 0]; trail = []; } if (n === "h") resetNum(); },
+    caption: function () { return ["Three systems, one equation.", "Exponential decay.", "Damped oscillator: time and phase plane.", "Resonance curve.", "Negative damping: flutter.", "Euler (grey) and RK4 (amber).", "Exponential decay."][beat] || ""; },
+    readout: function () {
+      if (beat === 1) return Math.round(Math.pow(0.5, V.t / 3.82) * 100) + "% left";
+      if (beat === 2) return "γ = " + V.g.toFixed(2) + (Math.abs(V.g - 2) < 0.03 ? " · critical" : V.g > 2 ? " · overdamped" : "");
+      if (beat === 3) return "amplitude ×" + amp(V.w, V.g).toFixed(1);
+      if (beat === 5 && eu) return "energy: Euler " + (0.5 * (eu.s[0] * eu.s[0] + eu.s[1] * eu.s[1])).toFixed(3) + " · RK4 " + (0.5 * (rk.s[0] * rk.s[0] + rk.s[1] * rk.s[1])).toFixed(6);
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat <= 1 || beat === 6) {
+        A = k.axes(W * 0.1, H * 0.12, W * 0.8, H * 0.7, [0, 20], [0, 1.05], { xt: [0, 5, 10, 15, 20], yt: [0, 0.5, 1], xl: "days", yl: "fraction left" });
+        k.plot(A, function (t) { return Math.pow(0.5, t / 3.82); }, [0, 20], "#ffb547", 2.5);
+        if (beat === 0) { k.plot(A, function (t) { return Math.exp(-t / 3); }, [0, 20], "rgba(236,230,218,.3)", 1); k.text("radon-222", A.X(5), A.Y(0.45) - 10, { color: "#ffb547", align: "left" }); k.text("capacitor discharging", A.X(7), A.Y(0.12), { align: "left" }); }
+        else { var tt = Math.min(20, V.t); k.line(A.X(tt), A.Y(0), A.X(tt), A.Y(Math.pow(0.5, tt / 3.82)), "rgba(236,230,218,.4)", 1, [3, 4]); k.circle(A.X(tt), A.Y(Math.pow(0.5, tt / 3.82)), 6, "#ffb547"); k.line(A.X(3.82), A.Y(0.5), A.X(0), A.Y(0.5), "rgba(236,230,218,.2)", 1, [2, 4]); k.text("half-life 3.82 d", A.X(3.82) + 6, A.Y(0.5) - 8, { align: "left" }); }
+        return;
+      }
+      if (beat === 2 || beat === 4) {
+        var gam = beat === 4 ? -0.08 : V.g, dt = 0.02;
+        for (var i = 0; i < 3; i++) { var a = -st[0] - gam * st[1]; st = [st[0] + st[1] * dt, st[1] + a * dt]; trail.push(st.slice()); }
+        if (trail.length > 1600 || Math.abs(st[0]) > 3) { st = [beat === 4 ? 0.1 : 1, 0]; trail = []; }
+        var B = k.axes(W * 0.08, H * 0.15, W * 0.4, H * 0.62, [0, 1600], [-1.6, 1.6], { zeroY: true, xl: "time" });
+        var c = k.ctx; c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.beginPath(); trail.forEach(function (p, j) { var x = B.X(j), y = B.Y(p[0]); if (j) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke();
+        var cx = W * 0.75, cy = H * 0.46, R = Math.min(W * 0.18, H * 0.3);
+        k.line(cx - R * 1.3, cy, cx + R * 1.3, cy, "#3a3631"); k.line(cx, cy - R * 1.3, cx, cy + R * 1.3, "#3a3631");
+        k.text("position", cx + R * 1.3, cy + 16, { align: "right" }); k.text("speed", cx + 6, cy - R * 1.3, { align: "left" });
+        c.strokeStyle = "rgba(255,181,71,.8)"; c.lineWidth = 1.5; c.beginPath(); trail.forEach(function (p, j) { var x = cx + p[0] * R / 1.2, y = cy - p[1] * R / 1.2; if (j) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke();
+        k.circle(cx + st[0] * R / 1.2, cy - st[1] * R / 1.2, 5, "#ffb547");
+        if (beat === 4) k.text("γ < 0: energy fed in, spiral runs outward", cx, cy + R * 1.5, { color: "#ffb547" });
+        return;
+      }
+      if (beat === 3) {
+        var gg = Math.max(0.05, V.g);
+        A = k.axes(W * 0.1, H * 0.12, W * 0.8, H * 0.7, [0.2, 2], [0, Math.min(22, amp(1, gg) * 1.15)], { xt: [0.5, 1, 1.5, 2], xl: "drive frequency ω/ω₀", yl: "amplitude" });
+        k.plot(A, function (w) { return amp(w, gg); }, [0.2, 2], "#ece6da", 2, 500);
+        k.circle(A.X(V.w), A.Y(Math.min(A.y0, amp(V.w, gg))), 6, "#ffb547"); k.line(A.X(V.w), A.Y(0), A.X(V.w), A.Y(amp(V.w, gg)), "rgba(255,181,71,.5)", 1, [3, 4]);
+        var x0 = A.X(V.w), y0 = A.y0 + 10, sw = Math.min(40, amp(V.w, gg) * 4) * Math.sin(now / 1000 * V.w * 6);
+        return;
+      }
+      if (beat === 5) {
+        if (now - last > 30) { last = now; for (var q = 0; q < 2; q++) { step(eu, V.h); step(rk, V.h); } }
+        var cx2 = W / 2, cy2 = H / 2, R2 = Math.min(W, H) * 0.14;
+        k.circle(cx2, cy2, R2, null, "#24211d");
+        [[eu, "#8a8478"], [rk, "#ffb547"]].forEach(function (m) {
+          var c2 = k.ctx; c2.strokeStyle = m[1]; c2.lineWidth = m[0] === rk ? 2.5 : 1.2; c2.beginPath();
+          m[0].path.forEach(function (p, j) { var x = cx2 + p[0] * R2, y = cy2 - p[1] * R2; if (j) c2.lineTo(x, y); else c2.moveTo(x, y); }); c2.stroke();
+          k.circle(cx2 + m[0].s[0] * R2, cy2 - m[0].s[1] * R2, 5, m[1]);
+        });
+        if (Math.hypot(eu.s[0], eu.s[1]) > 3) resetNum();
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,2 @@
+== 054
+GRW: lambda=1e-16/s per nucleon -> 1/lambda = 316856780.7351077 years; 1e23 nucleons -> 1e7/s -> 1e-7 s

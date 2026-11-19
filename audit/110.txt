@@ -1,0 +1,3 @@
+== 110
+BV recovers every s for n=4: OK
+DJ classical exact n=10: 513

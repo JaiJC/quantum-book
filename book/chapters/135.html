@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A quantum computer’s datasheet says “two-qubit gate fidelity 99.9%”. That one number hides a great deal. An error that randomly flips a qubit one time in a thousand, and an error that rotates every qubit by the same tiny angle every time, can have exactly the same average fidelity. After a thousand gates the first has caused about one error. The second has added up coherently into a large rotation. Error correction (Chapters 136–141) starts from an honest description of noise, and this chapter is about getting one.</p>
+  <p>On the plate: two kinds of noise with the same fidelity per gate, diverging as gates accumulate.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>T₁ and T₂</h2>
+  <p>Two times summarize a qubit’s memory. {{tex:T_1}} is the energy-relaxation time: an excited qubit decays to {{tex:|0\rangle}} as {{tex:e^{-t/T_1}}} (the amplitude-damping channel of Chapter 104). {{tex:T_2}} is the coherence time: a superposition’s phase is lost as {{tex:e^{-t/T_2}}}. Decay itself destroys coherence, so {{tex:1/T_2 = 1/2T_1 + 1/T_\varphi}}, where {{tex:T_\varphi}} is pure dephasing, and therefore {{tex:T_2 \le 2T_1}}. A <em>Ramsey</em> experiment (two {{tex:\pi/2}} pulses separated by a delay) measures {{tex:T_2^*}}, including slow drifts; adding a {{tex:\pi}} pulse in the middle, a <em>Hahn echo</em>, refocuses slow noise and measures {{tex:T_2}}. Set {{tex:T_1 =}} <span class="tangle" data-var="T1" data-min="10" data-max="300" data-step="10" data-value="100" data-px="2"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="T1">100</span><button type="button" data-de="1" aria-label="Longer">›</button></span> µs and {{tex:T_\varphi =}} <span class="tangle" data-var="Tp" data-min="10" data-max="1000" data-step="10" data-value="200" data-px="1"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="T phi">200</span><button type="button" data-de="1" aria-label="Longer">›</button></span> µs. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Coherent versus stochastic</h2>
+  <p>Over-rotate every gate by {{tex:\varepsilon =}} <span class="tangle" data-var="e" data-min="1" data-max="50" data-step="1" data-value="10" data-px="4"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Epsilon mrad">10</span><button type="button" data-de="1" aria-label="Larger">›</button></span> milliradians. The infidelity per gate is {{tex:\sin^2(\varepsilon/2)\approx\varepsilon^2/4}}. A stochastic error with the same per-gate probability accumulates linearly: after {{tex:N}} gates, infidelity {{tex:\approx N\varepsilon^2/4}}. The coherent rotations add as amplitudes: {{tex:\sin^2(N\varepsilon/2)\approx N^2\varepsilon^2/4}}. At {{tex:\varepsilon = 0.01}} and {{tex:N = 100}}, stochastic noise gives 0.0025; coherent gives 0.23. Other failure modes escape the simple picture too: <em>leakage</em> out of the qubit subspace, and errors <em>correlated</em> across qubits or in time, such as those from cosmic-ray bursts in superconducting chips. Error-correction thresholds assume errors are local and not too correlated. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Randomized benchmarking and gate set tomography</h2>
+  <p>To measure average gate quality without being fooled by state-preparation and measurement errors, Emanuel Knill and colleagues (2008) and Easwar Magesan, Jay Gambetta and Joseph Emerson (2011) developed <em>randomized benchmarking</em> (RB). Run random sequences of {{tex:m}} Clifford gates followed by the inverse, and fit the survival probability to</p>
+  <div class="eq">{{texd:P(m) = Ap^m + B,\qquad r = \frac{(d-1)(1-p)}{d}}}</div>
+  <p>where {{tex:r}} is the average error per gate and {{tex:d = 2^n}}. Random Cliffords <em>twirl</em> any noise into depolarizing noise, so RB reports one honest average, but it hides the coherent part that can be lethal in a structured algorithm. <em>Gate set tomography</em> (Robin Blume-Kohout and colleagues, 2017; Erik Nielsen and colleagues, 2021) reconstructs every gate, preparation and measurement self-consistently, revealing coherent errors at the cost of many more experiments. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>T₁, T₂ and T_φ and why {{tex:T_2\le 2T_1}}, Ramsey and echo experiments, coherent versus stochastic accumulation, leakage and correlated noise, randomized benchmarking and its fitting model, and gate set tomography.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is T₂ at most 2T₁?<span class="tap">tap</span></div><div class="a">Energy decay also destroys phase coherence, contributing 1/2T₁ to the dephasing rate.</div></div>
+  <div class="qa"><div class="q">Why do coherent errors grow as N²?<span class="tap">tap</span></div><div class="a">Small rotations add as amplitudes, and infidelity is the square of the accumulated angle.</div></div>
+  <div class="qa"><div class="q">What does RB measure, and what does it miss?<span class="tap">tap</span></div><div class="a">An average error per gate free of SPAM errors; it hides coherence and correlations.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Each of 100 gates over-rotates by 0.01 rad. What is the infidelity {{tex:\sin^2(N\varepsilon/2)}}?</p>
+    <form class="calc" data-answer="0.2298" data-tol="0.003" data-ok="Yes: sin²(0.5) ≈ 0.23, about 90 times the stochastic 0.0025." data-hint="N ε / 2 = 0.5 rad."><span>1 − F ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Infidelity"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Knill et al., Phys. Rev. A 77, 012307 (2008). E. Magesan, J. M. Gambetta and J. Emerson, Phys. Rev. Lett. 106, 180504 (2011). R. Blume-Kohout et al., Nat. Commun. 8, 14485 (2017). E. Nielsen et al., Quantum 5, 557 (2021). M. McEwen et al., Nat. Phys. 18, 107 (2022) (cosmic-ray bursts). Checked by code: sin²(0.5) = 0.2298 vs 100 × 0.01²/4 = 0.0025.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T1: 100, Tp: 200, e: 10 }, seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function T2() { return 1 / (1 / (2 * V.T1) + 1 / V.Tp); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Infidelity vs number of gates.", "Ramsey fringes (amber) and T₁ decay (white).", "Coherent (red) vs stochastic (amber), same per-gate fidelity.", "Randomized benchmarking: survival vs sequence length.", "Noise."][beat]; },
+    readout: function () { if (beat === 1) return "T₁ = " + V.T1 + " µs · T₂ = " + T2().toFixed(0) + " µs ≤ 2T₁ = " + 2 * V.T1 + " µs"; if (beat === 2 || beat === 0) { var e = V.e / 1000; return "per-gate infidelity " + (Math.sin(e / 2) ** 2).toExponential(2) + " · after 100 gates: coherent " + (Math.sin(50 * e) ** 2).toFixed(4) + ", stochastic " + (100 * Math.sin(e / 2) ** 2).toFixed(4); } if (beat === 3) return "p = 0.995 · r = (1 − p)/2 = 0.0025 per gate (one qubit)"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { var T = 3 * V.T1; A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [0, T], [-1.05, 1.05], { xl: "delay (µs)", zeroY: true }); var t2 = T2(); k.plot(A, function (t) { return Math.exp(-t / t2) * Math.cos(2 * Math.PI * t / (T / 12)); }, [0, T], "#ffb547", 2, 500); k.plot(A, function (t) { return Math.exp(-t / t2); }, [0, T], "rgba(255,181,71,.4)", 1, 200); k.plot(A, function (t) { return Math.exp(-t / V.T1); }, [0, T], "rgba(236,230,218,.7)", 1.8, 200); return; }
+      if (beat === 0 || beat === 2 || beat === 4) { var e = V.e / 1000, Nm = Math.min(600, Math.PI / e); A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [0, Nm], [0, 1.05], { xl: "gates N", yl: "infidelity" }); k.plot(A, function (n) { return Math.sin(n * e / 2) ** 2; }, [0, Nm], "rgba(224,90,70,.9)", 2.5, 300); k.plot(A, function (n) { var q = Math.sin(e / 2) ** 2; return (1 - Math.pow(1 - 2 * q, n)) / 2; }, [0, Nm], "#ffb547", 2.5, 300); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [0, 500], [0.4, 1.02], { xl: "Clifford sequence length m", yl: "survival" }); k.plot(A, function (m) { return 0.48 * Math.pow(0.995, m) + 0.5; }, [0, 500], "#ffb547", 2.5, 200); seed = 7; for (var m = 10; m <= 500; m += 20) for (var j = 0; j < 4; j++) { var y = 0.48 * Math.pow(0.995, m) + 0.5 + 0.02 * (rnd() - 0.5) * 2; k.circle(A.X(m), A.Y(y), 2.5, "rgba(236,230,218,.7)"); } }
+    }
+  });
+})();
+</script>

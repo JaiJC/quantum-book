@@ -1,0 +1,72 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Hit a proton hard enough and the quarks inside behave as if they were almost free. Try to pull one out, and the force between it and the rest never weakens: it stays at about 15 tonnes, however far you pull, until the energy stored in the stretched field snaps into a new quark–antiquark pair. You never get a single quark, only more hadrons. The first half of that story is proven and won the 2004 Nobel Prize. Proving the second half is one of the seven Millennium Prize Problems, with a million dollars attached.</p>
+  <p>On the plate: two quarks joined by a tube of gluon field. Pull them apart.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Antiscreening</h2>
+  <p>In QED, virtual pairs screen charge, and {{tex:\alpha}} grows at short distance (Chapter 70). In QCD, quark loops screen too, but gluon loops, possible because gluons carry colour (Chapter 75), do the opposite and win. At one loop,</p>
+  <div class="eq">{{texd:\mu\frac{d\alpha_s}{d\mu} = -\frac{b_0}{2\pi}\,\alpha_s^2, \qquad b_0 = 11 - \tfrac23n_f}}</div>
+  <p>The 11 comes from gluons and is positive; each quark flavour subtracts {{tex:2/3}}. With up to 16 flavours {{tex:b_0 > 0}}, and the coupling <em>falls</em> at high energy: <em>asymptotic freedom</em>. David Gross and Frank Wilczek, and independently David Politzer, found it in 1973. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The running strong coupling</h2>
+  <p>Integrating gives {{tex:\alpha_s(Q) = \alpha_s(M)/[1 + \frac{b_0\alpha_s(M)}{4\pi}\ln(Q^2/M^2)]}}. Anchor it at {{tex:\alpha_s(m_Z) = 0.118}} and move to <span class="tangle" data-var="Q" data-min="0.2" data-max="3.5" data-step="0.05" data-dec="2" data-value="1.96" data-px="6"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 Q in GeV">1.96</span><button type="button" data-de="1" aria-label="Higher">›</button></span> (log₁₀ GeV). The one-loop curve gives 0.27 at the tau mass, where tau decays measure about 0.31, and 0.088 at 1 TeV, close to jet measurements. Higher loops close the gap. Going down, the coupling grows toward one near a few hundred MeV, the scale {{tex:\Lambda_{\text{QCD}}}}, where perturbation theory stops working and protons are made.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Confinement</h2>
+  <p>At large distance the gluon field between a quark and an antiquark does not spread like electric field lines; it squeezes into a narrow tube with constant energy per length, the <em>string tension</em> {{tex:\sigma \approx 0.18}} GeV², about 0.9 GeV per fermi, a force near 15 tonnes. Stretch the tube by <span class="tangle" data-var="r" data-min="0.2" data-max="2" data-step="0.05" data-dec="2" data-unit=" fm" data-value="0.6" data-px="6"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Separation">0.60 fm</span><button type="button" data-de="1" aria-label="Farther">›</button></span>. Past about 1.2 fm the stored energy exceeds what it takes to make a light quark pair, and the tube breaks into two mesons. This is why high-energy quarks emerge as jets of hadrons.</p>
+  <p>The evidence is strong: computer simulations of QCD on a spacetime lattice (Chapter 74) show the linear potential, and compute the proton’s mass from first principles to within a few percent. But no one has proven mathematically that Yang–Mills theory has a <em>mass gap</em>, a lightest particle with nonzero mass, which is what confinement requires. That is the Clay Institute’s Millennium Problem. <span class="tag">Established</span> in practice; <span class="tag">Debated</span> only in the sense of being unproven.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Where your mass comes from</h2>
+  <p>The proton’s mass, almost all of it, is the energy of confined quarks and gluons (Chapter 77). Without quark masses at all, QCD would still produce protons with nearly the same mass, set by {{tex:\Lambda_{\text{QCD}}}}, a scale that appears from the running of a dimensionless coupling: <em>dimensional transmutation</em>. A theory with no mass scale generates one, and that scale makes up most of the visible universe.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Antiscreening by gluons, the one-loop β-function with {{tex:b_0 = 11 - 2n_f/3}}, asymptotic freedom, the running of {{tex:\alpha_s}} and {{tex:\Lambda_{\text{QCD}}}}, confinement as a flux tube with string tension, string breaking and jets, lattice QCD, the mass-gap problem, and dimensional transmutation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the strong coupling fall at high energy?<span class="tap">tap</span></div><div class="a">Gluon self-interaction antiscreens colour, outweighing quark screening when n_f ≤ 16.</div></div>
+  <div class="qa"><div class="q">What happens when you pull quarks apart?<span class="tap">tap</span></div><div class="a">The flux tube’s energy grows linearly until it breaks into a new quark–antiquark pair.</div></div>
+  <div class="qa"><div class="q">What is the Yang–Mills mass gap problem?<span class="tap">tap</span></div><div class="a">Prove that quantum Yang–Mills theory exists and that its lightest particle has positive mass.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is {{tex:b_0 = 11 - 2n_f/3}} with all six quark flavours?</p>
+    <form class="calc" data-answer="7" data-tol="0.01" data-ok="Yes: 11 − 4 = 7, still positive, so QCD stays asymptotically free." data-hint="2 × 6 / 3 = 4."><span>b₀ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="b0"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. J. Gross and F. Wilczek, Phys. Rev. Lett. 30, 1343 (1973). H. D. Politzer, Phys. Rev. Lett. 30, 1346 (1973). K. G. Wilson, Phys. Rev. D 10, 2445 (1974). S. Dürr et al., Science 322, 1224 (2008) (light hadron masses from lattice QCD). A. Jaffe and E. Witten, Clay Mathematics Institute problem description, Yang–Mills existence and mass gap. Particle Data Group, QCD review (α_s(m_Z) = 0.118). Checked by code: one-loop α_s 0.273 (1.777 GeV), 0.203 (5 GeV), 0.088 (1 TeV); σ = 0.18 GeV² = 0.91 GeV/fm ≈ 1.5×10⁵ N.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Q: 1.96, r: 0.6 }, a0 = 0.118, M = 91.1876;
+  function as(Q) { var b = 23 / 3, d = 1 + b * a0 / (4 * Math.PI) * Math.log(Q * Q / (M * M)); return d > 0.05 ? a0 / d : NaN; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["A flux tube between two quarks.", "Gluon loops antiscreen.", "α_s against energy: one loop (amber), measurements (white).", "Flux tube at " + V.r.toFixed(2) + " fm.", "Dimensional transmutation.", "Asymptotic freedom and confinement."][beat]; },
+    readout: function () { if (beat === 2) { var Q = Math.pow(10, V.Q); return "Q = " + Q.toPrecision(3) + " GeV · α_s ≈ " + (isNaN(as(Q)) ? "> 1 (non-perturbative)" : as(Q).toFixed(3)); } if (beat === 3 || beat === 0) return "energy in tube ≈ " + (0.91 * (beat === 3 ? V.r : 1)).toFixed(2) + " GeV" + (beat === 3 && V.r > 1.2 ? " · broken into two mesons" : ""); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, cy = H / 2;
+      if (beat === 2) {
+        A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 3.5], [0, 0.5], { xl: "log₁₀ Q, GeV", yl: "α_s" });
+        k.plot(A, function (l) { var v = as(Math.pow(10, l)); return isNaN(v) ? NaN : Math.min(0.5, v); }, [0, 3.5], "#ffb547", 2.5, 300);
+        [[Math.log10(1.777), 0.314, "τ decays"], [Math.log10(91.19), 0.118, "Z"], [3, 0.09, "jets"]].forEach(function (p) { k.circle(A.X(p[0]), A.Y(p[1]), 5, "#ece6da"); k.text(p[2], A.X(p[0]) + 8, A.Y(p[1]) - 6, { size: 11, align: "left" }); });
+        k.circle(A.X(V.Q), A.Y(Math.min(0.5, as(Math.pow(10, V.Q)) || 0.5)), 5, "#ffb547");
+        return;
+      }
+      if (beat === 1) { var cx = W / 2; k.circle(cx, cy, 10, "#ffb547"); for (var i = 0; i < 10; i++) { var a = i / 10 * 6.283, r = 50 + 20 * Math.sin(now / 500 + i); k.circle(cx + r * Math.cos(a), cy + r * Math.sin(a), 4, i % 2 ? "rgba(236,230,218,.5)" : "#ffb547"); } k.text("gluon loops spread colour outward: weaker up close", cx, H * 0.85, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 4) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [-1, 3], [0, 1.1], { xl: "log₁₀ Q, GeV", yl: "α_s" }); k.plot(A, function (l) { var v = as(Math.pow(10, l)); return isNaN(v) ? NaN : Math.min(1.1, v); }, [-1, 3], "#ffb547", 2.5, 300); k.text("coupling reaches ~1 near Λ_QCD: a mass scale from nowhere", W / 2, H * 0.94, { size: 12, color: "#b9b2a5" }); return; }
+      var r = beat === 3 ? V.r : 0.5 + 0.5 * Math.sin(now / 1500) + 0.4, sc = W * 0.3, broken = r > 1.2, cx2 = W / 2, x1 = cx2 - r * sc / 2, x2 = cx2 + r * sc / 2;
+      if (!broken) { c.fillStyle = "rgba(255,181,71,.25)"; c.fillRect(x1, cy - 9, x2 - x1, 18); k.circle(x1, cy, 12, "#ffb547"); k.circle(x2, cy, 12, "#ece6da"); }
+      else { var g = 18; c.fillStyle = "rgba(255,181,71,.25)"; c.fillRect(x1, cy - 9, (x2 - x1) / 2 - g, 18); c.fillRect(cx2 + g, cy - 9, (x2 - x1) / 2 - g, 18); k.circle(x1, cy, 12, "#ffb547"); k.circle(cx2 - g, cy, 10, "#ece6da"); k.circle(cx2 + g, cy, 10, "#ffb547"); k.circle(x2, cy, 12, "#ece6da"); k.text("new pair", cx2, cy - 26, { size: 12, color: "#ffb547" }); }
+    }
+  });
+})();
+</script>

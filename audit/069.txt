@@ -1,0 +1,5 @@
+== 069
+Q/m 10 renorm Pi(-Q^2) 0.0023193129993030006 leading log -(a/3pi)ln(Q^2/m^2)+5/9 -0.002275204393034152
+Q/m 100 renorm Pi(-Q^2) 0.005841328157114897 leading log -(a/3pi)ln(Q^2/m^2)+5/9 -0.005840864045621391
+Q/m 1000 renorm Pi(-Q^2) 0.009406528343811954 leading log -(a/3pi)ln(Q^2/m^2)+5/9 -0.00940652369820863
+electron self-energy D 1.0

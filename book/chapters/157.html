@@ -1,0 +1,61 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Orotidine 5′-phosphate decarboxylase, an enzyme in the pathway that makes DNA’s building blocks, speeds its reaction by a factor of about {{tex:10^{17}}}. Without it, the reaction has a half-life of 78 million years; with it, milliseconds. How enzymes achieve such accelerations is one of the central questions of biochemistry, and one place where quantum tunnelling turns out to matter. First, the classical framework every claim must be measured against.</p>
+  <p>On the plate: fit an enzyme’s kinetics to data.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Michaelis–Menten</h2>
+  <p>Leonor Michaelis and Maud Menten proposed in 1913 that an enzyme E binds substrate S into a complex ES, which then forms product: {{tex:E + S \rightleftharpoons ES \to E + P}}. Assuming the complex reaches a steady state, the rate is</p>
+  <div class="eq">{{texd:v = \frac{V_\text{max}[S]}{K_m + [S]},\qquad V_\text{max} = k_\text{cat}[E]_0}}</div>
+  <p>At low substrate the rate rises linearly; at high substrate it saturates, every enzyme busy. {{tex:K_m}} is the substrate concentration giving half the maximum rate; {{tex:k_\text{cat}}} is the turnover number, reactions per enzyme per second; their ratio {{tex:k_\text{cat}/K_m}} measures efficiency. Some enzymes approach the diffusion limit, about {{tex:10^8}}–{{tex:10^9}} M⁻¹s⁻¹: they react with nearly every substrate molecule they meet. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Fit the data</h2>
+  <p>The plate shows measured rates at ten substrate concentrations, with experimental noise. Adjust {{tex:K_m =}} <span class="tangle" data-var="Km" data-min="0.2" data-max="10" data-step="0.1" data-dec="1" data-value="5.0" data-px="5"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Km mM">5.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> mM and {{tex:V_\text{max} =}} <span class="tangle" data-var="Vm" data-min="2" data-max="20" data-step="0.2" data-dec="1" data-value="14.0" data-px="5"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Vmax">14.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> µM/s to minimize the squared residuals. The best fit is near {{tex:K_m = 2}} mM, {{tex:V_\text{max} = 10}} µM/s, the values used to make the data. Older textbooks linearize with a double-reciprocal (Lineweaver–Burk) plot, which badly overweights the noisiest low-concentration points; direct nonlinear fitting is better. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Transition-state theory and its limits</h2>
+  <p>Henry Eyring’s 1935 transition-state theory gives the rate of crossing an energy barrier:</p>
+  <div class="eq">{{texd:\begin{aligned}k &= \frac{k_BT}{h}\,e^{-\Delta G^\ddagger/RT}\\ &= \frac{k_BT}{h}\,e^{\Delta S^\ddagger/R}\,e^{-\Delta H^\ddagger/RT}\end{aligned}}}</div>
+  <p>Plot {{tex:\ln(k/T)}} against {{tex:1/T}}: the slope gives {{tex:\Delta H^\ddagger}}, the intercept {{tex:\Delta S^\ddagger}}. Set {{tex:\Delta H^\ddagger =}} <span class="tangle" data-var="dH" data-min="20" data-max="120" data-step="1" data-value="60" data-px="1"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Delta H kJ/mol">60</span><button type="button" data-de="1" aria-label="Higher">›</button></span> kJ/mol and {{tex:\Delta S^\ddagger =}} <span class="tangle" data-var="dS" data-min="-150" data-max="50" data-step="5" data-value="-50" data-px="0.5"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Delta S J/mol K">-50</span><button type="button" data-de="1" aria-label="Higher">›</button></span> J/(mol K). Enzymes lower {{tex:\Delta G^\ddagger}} by binding the transition state more tightly than the substrate, positioning catalytic groups, and organizing electrostatics, as Alan Fersht’s textbook explains. But transition-state theory treats the reacting atom as a classical particle passing over the barrier. For light particles, especially hydrogen, it can pass <em>through</em>. When rates show weak temperature dependence or huge isotope effects, classical theory is not enough (Chapters 164–165). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Michaelis–Menten kinetics, K_m, k_cat and catalytic efficiency, nonlinear fitting, transition-state theory and Eyring plots, enzymes’ catalytic strategies, and the point where classical rate theory stops.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does K_m mean?<span class="tap">tap</span></div><div class="a">The substrate concentration at which the rate is half its maximum.</div></div>
+  <div class="qa"><div class="q">What does an Eyring plot give?<span class="tap">tap</span></div><div class="a">ΔH‡ from the slope and ΔS‡ from the intercept of ln(k/T) against 1/T.</div></div>
+  <div class="qa"><div class="q">Where does transition-state theory fail?<span class="tap">tap</span></div><div class="a">When light particles such as hydrogen tunnel through the barrier.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:\Delta G^\ddagger = 80}} kJ/mol at 298 K, and {{tex:k_BT/h = 6.21\times10^{12}}} s⁻¹, what is {{tex:k}} in s⁻¹?</p>
+    <form class="calc" data-answer="0.0589" data-tol="0.002" data-ok="Yes: 6.21 × 10¹² × e^(−32.3) ≈ 0.059 s⁻¹, one event every 17 seconds per molecule." data-hint="80,000 / (8.314 × 298) = 32.3."><span>k ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Rate"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: L. Michaelis and M. L. Menten, Biochem. Z. 49, 333 (1913). H. Eyring, J. Chem. Phys. 3, 107 (1935). A. Radzicka and R. Wolfenden, Science 267, 90 (1995). A. Fersht, Structure and Mechanism in Protein Science (Freeman, 1999). Checked by code: k_BT/h(298 K) = 6.209 × 10¹² s⁻¹; k = 0.0589 s⁻¹ at 80 kJ/mol.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Km: 5, Vm: 14, dH: 60, dS: -50 }, S = [0.25, 0.5, 1, 1.5, 2, 3, 5, 8, 12, 20], D = [];
+  var seed = 19; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  S.forEach(function (s) { D.push(10 * s / (2 + s) * (1 + 0.06 * (rnd() - 0.5) * 2)); });
+  function ssr() { var t = 0; S.forEach(function (s, i) { var r = D[i] - V.Vm * s / (V.Km + s); t += r * r; }); return t; }
+  function k(T) { return 1.380649e-23 * T / 6.62607e-34 * Math.exp(V.dS / 8.314) * Math.exp(-V.dH * 1000 / (8.314 * T)); }
+  Book.plate({
+    init: function (kk, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Rate vs substrate: data (white) and model (amber).", "Saturation kinetics.", "Fit by eye; squared residuals in the readout.", "Eyring plot: ln(k/T) vs 1/T.", "Enzyme kinetics."][beat]; },
+    readout: function () { if (beat <= 2) return "K_m = " + V.Km.toFixed(1) + " mM · V_max = " + V.Vm.toFixed(1) + " µM/s · squared residuals " + ssr().toFixed(2); if (beat === 3) return "k(298 K) = " + k(298).toExponential(2) + " s⁻¹ · ΔG‡ = " + (V.dH - 298 * V.dS / 1000).toFixed(1) + " kJ/mol"; return ""; },
+    draw: function (kk, now) {
+      var W = kk.W, H = kk.H, A;
+      if (beat === 3) { A = kk.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [3.0, 3.6], [-30, 10], { xl: "1000/T (K⁻¹)", yl: "ln(k/T)" }); kk.plot(A, function (x) { var T = 1000 / x; return Math.log(k(T) / T); }, [3.0, 3.6], "#ffb547", 2.5); [280, 298, 310, 330].forEach(function (T) { kk.circle(A.X(1000 / T), A.Y(Math.log(k(T) / T)), 4, "#ece6da"); }); return; }
+      A = kk.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 21], [0, 14], { xl: "[S] (mM)", yl: "v (µM/s)" }); kk.plot(A, function (s) { return V.Vm * s / (V.Km + s); }, [0, 21], "#ffb547", 2.5, 200); kk.line(A.X(0), A.Y(V.Vm), A.X(21), A.Y(V.Vm), "rgba(255,181,71,.3)", 1); kk.line(A.X(V.Km), A.Y(0), A.X(V.Km), A.Y(V.Vm / 2), "rgba(255,181,71,.3)", 1); S.forEach(function (s, i) { kk.circle(A.X(s), A.Y(D[i]), 4.5, "#ece6da"); if (beat === 2) kk.line(A.X(s), A.Y(D[i]), A.X(s), A.Y(V.Vm * s / (V.Km + s)), "rgba(224,90,70,.7)", 1.5); });
+    }
+  });
+})();
+</script>

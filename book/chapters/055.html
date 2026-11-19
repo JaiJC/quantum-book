@@ -1,0 +1,95 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Try to pin an electron down more and more tightly. In ordinary quantum mechanics this costs momentum, by the uncertainty principle, and nothing worse. But squeeze it into a region much smaller than about 400 femtometres, its Compton wavelength, and the momentum spread carries enough energy to create a new electron and its antiparticle out of nothing. You do not get a better-located electron. You get three particles. Quantum mechanics and special relativity, taken together, will not allow a fixed number of particles. This chapter shows why, and why the answer is quantum field theory.</p>
+  <p>On the plate: the energy it costs to confine an electron, rising past the threshold for making a pair.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Natural units</h2>
+  <p>Particle physicists set {{tex:\hbar = c = 1}}. Then energy, mass, momentum and inverse length all share one unit, usually MeV or GeV, and the single conversion you need is</p>
+  <div class="eq">{{texd:\hbar c = 197.327\ \text{MeV fm}}}</div>
+  <p>A mass of 197 MeV corresponds to a length of 1 fm. Convert <span class="tangle" data-var="E" data-min="0.5" data-max="200000" data-step="0.5" data-value="938" data-px="0.3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Energy in MeV">938</span><button type="button" data-de="1" aria-label="More">›</button></span> MeV into a length. Cross sections come out in {{tex:\text{GeV}^{-2}}}, and {{tex:1\ \text{GeV}^{-2} = 0.389}} millibarn. From here on, the book writes {{tex:m}} for {{tex:mc^2}} and {{tex:1/m}} for {{tex:\hbar/mc}} without comment. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Four-vectors and the metric</h2>
+  <p>Gather time and space into {{tex:x^\mu = (t, \mathbf x)}} and energy and momentum into {{tex:p^\mu = (E, \mathbf p)}}. This book uses the metric {{tex:\eta_{\mu\nu} = \mathrm{diag}(+1, -1, -1, -1)}}, so</p>
+  <div class="eq">{{texd:p\cdot p = E^2 - |\mathbf p|^2 = m^2, \qquad p\cdot x = Et - \mathbf p\cdot\mathbf x}}</div>
+  <p>These products are the same in every inertial frame (Chapter 17). A plane wave {{tex:e^{-ip\cdot x}}} is then manifestly relativistic. The relation {{tex:E^2 = p^2 + m^2}} has two branches, {{tex:E = \pm\sqrt{p^2 + m^2}}}, drawn on the plate as a hyperbola above and its mirror below, separated by a gap of {{tex:2m}}. The lower branch will not go away.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>A single relativistic particle leaks</h2>
+  <p>The obvious way to make a relativistic Schrödinger equation is to keep only positive energies: {{tex:i\partial_t\psi = \sqrt{-\nabla^2 + m^2}\,\psi}}. Start a particle exactly at the origin and ask for its amplitude to be found at distance {{tex:r}} a time {{tex:t}} later. For {{tex:r > t}}, outside the light cone, it should vanish. It doesn’t: it falls as {{tex:e^{-m\sqrt{r^2 - t^2}}}}, small but not zero.</p>
+  <p>Set the mass to <span class="tangle" data-var="m" data-min="0.2" data-max="5" data-step="0.1" data-dec="1" data-value="1" data-px="8"><button type="button" data-de="-1" aria-label="Lighter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Mass">1.0</span><button type="button" data-de="1" aria-label="Heavier">›</button></span>. The leak extends about one Compton wavelength {{tex:1/m}} beyond the light cone. A one-particle theory violates causality. In quantum field theory the same leak is cancelled exactly by the amplitude for an antiparticle to travel the other way, and measurements at spacelike separation commute (Chapter 60). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The price of confinement</h2>
+  <p>Localize a particle to {{tex:\Delta x}}. Its momentum spread is at least {{tex:1/(2\Delta x)}} in natural units, and its energy spread rises with it. When that energy exceeds {{tex:2m}}, the particle and its surroundings have enough energy to create a particle–antiparticle pair. Set the confinement to <span class="tangle" data-var="dx" data-min="10" data-max="2000" data-step="10" data-unit=" fm" data-value="100" data-px="1"><button type="button" data-de="-1" aria-label="Tighter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Confinement">100 fm</span><button type="button" data-de="1" aria-label="Looser">›</button></span> for an electron.</p>
+  <p>On this rough estimate the threshold is crossed near 70 fm, a fraction of the reduced Compton wavelength {{tex:\hbar/mc = 386}} fm; for the proton the same scale is 0.21 fm. The exact number depends on how you define the spread; the scale does not. Below it, “the position of one electron” stops being meaningful, because there need not be just one.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Why fields</h2>
+  <p>Three facts now point the same way. Particle number is not conserved at high energy; colliders make particles by the dozen. Negative-energy solutions cannot be thrown away, because a consistent, causal theory needs them. And causality requires particles and antiparticles to cancel each other’s leaks. A theory with these properties has a field at every point of space, whose excitations are the particles and whose equations are relativistic. Particles become quanta of fields, as photons were already quanta of the electromagnetic field in Chapter 36. The next chapters build such theories, one equation at a time.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Natural units and {{tex:\hbar c = 197.3}} MeV fm, four-vectors in the metric {{tex:(+,-,-,-)}}, the two energy branches, the causality leak of one-particle theory, the Compton wavelength as the scale of pair creation, and the case for quantum fields.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What length corresponds to 1 GeV?<span class="tap">tap</span></div><div class="a">ħc/1 GeV ≈ 0.197 fm.</div></div>
+  <div class="qa"><div class="q">Why does a one-particle relativistic theory fail?<span class="tap">tap</span></div><div class="a">Its amplitude leaks outside the light cone, and it cannot account for particle creation at energies above 2m.</div></div>
+  <div class="qa"><div class="q">Below what size does locating one electron stop making sense?<span class="tap">tap</span></div><div class="a">About its Compton wavelength, ħ/mc ≈ 386 fm.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The proton’s mass is 938.27 MeV. What is its reduced Compton wavelength {{tex:\hbar/mc}}, in fm?</p>
+    <form class="calc" data-answer="0.2103" data-tol="0.002" data-ok="Yes: 197.33/938.27 ≈ 0.210 fm, about a quarter of the proton’s own radius." data-hint="Divide ħc = 197.33 MeV fm by 938.27 MeV."><span>λ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Length in fm"><span>fm</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. E. Peskin and D. V. Schroeder, An Introduction to Quantum Field Theory, ch. 2. M. D. Schwartz, Quantum Field Theory and the Standard Model, ch. 1–2. CODATA 2022 constants. Checked by code: ħc = 197.327 MeV fm; ħ/mc = 386.16 fm (electron), 0.2103 fm (proton); 1 GeV⁻² = 0.3894 mb.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { E: 938, m: 1, dx: 100 }, hc = 197.327;
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Energy spread of a confined electron.", "Energy and length: one unit.", "E = ±√(p² + m²).", "Amplitude outside the light cone.", "Confinement energy against the pair threshold.", "Pairs from the vacuum.", "Confinement and pairs."][beat]; },
+    readout: function () {
+      if (beat === 1) return V.E + " MeV ↔ " + (hc / V.E).toPrecision(4) + " fm";
+      if (beat === 3) return "leak length ≈ 1/m = " + (1 / V.m).toFixed(2);
+      if (beat === 4 || beat === 0) { var dE = Math.sqrt(Math.pow(hc / (2 * V.dx), 2) + 0.511 * 0.511) - 0.511; return "Δx = " + V.dx + " fm · ΔE ≈ " + dE.toFixed(3) + " MeV · pair threshold 1.022 MeV"; }
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat === 0 || beat === 4 || beat === 6) {
+        A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [1, 3.4], [-3, 1.5], { xl: "log₁₀ Δx, fm", yl: "log₁₀ ΔE, MeV" });
+        k.plot(A, function (lx) { var dx = Math.pow(10, lx); return Math.log10(Math.sqrt(Math.pow(hc / (2 * dx), 2) + 0.261) - 0.511); }, [1, 3.4], "#ffb547", 2.5, 300);
+        k.line(A.X(1), A.Y(Math.log10(1.022)), A.X(3.4), A.Y(Math.log10(1.022)), "#ece6da", 1.5, [5, 4]); k.text("2mc² = 1.022 MeV", A.X(3.35), A.Y(Math.log10(1.022)) - 6, { size: 12, align: "right" });
+        k.line(A.X(Math.log10(386)), A.Y(-3), A.X(Math.log10(386)), A.Y(1.5), "rgba(236,230,218,.25)", 1, [3, 4]); k.text("ħ/mc", A.X(Math.log10(386)) + 4, A.Y(1.5) + 14, { size: 11, align: "left", color: "#7c766b" });
+        var lx = Math.log10(V.dx); k.circle(A.X(lx), A.Y(Math.log10(Math.sqrt(Math.pow(hc / (2 * V.dx), 2) + 0.261) - 0.511)), 6, "#ece6da");
+        return;
+      }
+      if (beat === 1) { var L = hc / V.E, sc = Math.min(W * 0.35, 120 * Math.max(0.2, Math.min(3, L))); k.rr(W / 2 - sc / 2, H / 2 - sc / 2, sc, sc, 6, "rgba(255,181,71,.15)", "#ffb547"); k.text(L.toPrecision(3) + " fm", W / 2, H / 2 + 6, { size: 16 }); k.text("ħc = 197.327 MeV fm", W / 2, H * 0.9, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 2 || beat === 5) {
+        A = k.axes(W * 0.1, H * 0.06, W * 0.84, H * 0.84, [-3, 3], [-3.5, 3.5], { xl: "p", yl: "E", zeroY: true });
+        k.plot(A, function (p) { return Math.sqrt(p * p + 1); }, [-3, 3], "#ffb547", 2.5); k.plot(A, function (p) { return -Math.sqrt(p * p + 1); }, [-3, 3], "rgba(224,90,70,.9)", 2.5);
+        k.line(A.X(0), A.Y(-1), A.X(0), A.Y(1), "rgba(236,230,218,.4)", 1.5, [3, 3]); k.text("2m", A.X(0) + 8, A.Y(0) + 4, { size: 12, align: "left" });
+        if (beat === 5) { var t = (now / 1500) % 1; k.circle(A.X(-0.6 - t), A.Y(Math.sqrt(1 + Math.pow(0.6 + t, 2))), 5, "#ffb547"); k.circle(A.X(0.6 + t), A.Y(Math.sqrt(1 + Math.pow(0.6 + t, 2))), 5, "#ece6da"); k.text("particle and antiparticle, both with positive energy", W / 2, H * 0.97, { size: 12, color: "#b9b2a5" }); }
+        return;
+      }
+      if (beat === 3) {
+        var tt = 2; A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 6], [-8, 0.5], { xl: "distance r (light travels 2)", yl: "log₁₀ |amplitude|" });
+        c.fillStyle = "rgba(224,90,70,.08)"; c.fillRect(A.X(tt), A.Y(0.5), A.X(6) - A.X(tt), A.Y(-8) - A.Y(0.5));
+        k.line(A.X(tt), A.Y(-8), A.X(tt), A.Y(0.5), "#ece6da", 1.5, [5, 4]); k.text("light cone", A.X(tt) + 4, A.Y(0.5) + 14, { size: 11, align: "left" });
+        k.plot(A, function (r) { return r <= tt ? -0.2 : Math.max(-8, -V.m * Math.sqrt(r * r - tt * tt) / Math.LN10 - 0.2); }, [0, 6], "#ffb547", 2.5, 400);
+        k.text("outside the cone: should be zero, isn’t", A.X(4.2), A.Y(-1), { size: 12, color: "#e05a46" });
+      }
+    }
+  });
+})();
+</script>

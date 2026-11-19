@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A century after quantum mechanics was completed, physicists still disagree about what it says about reality. In 2025 <em>Nature</em> surveyed over a thousand researchers who use quantum mechanics: the most popular interpretation, Copenhagen, was chosen by only about a third, and fewer than a quarter thought their favoured interpretation was actually correct. This capstone is a debate. You defend one interpretation, then argue the strongest case for a rival, as well as its own supporters would.</p>
+  <p>On the plate: what physicists said in 2025.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The positions</h2>
+  <p>From Chapter 54: <strong>Copenhagen</strong>, the wavefunction is a tool for predicting measurement outcomes, and measurement is primitive; <strong>many-worlds</strong>, the wavefunction is everything, never collapses, and branches; <strong>Bohmian mechanics</strong>, particles have definite positions guided by the wavefunction; <strong>spontaneous collapse</strong> (GRW, Diósi–Penrose), the Schrödinger equation is modified so that collapse is a physical process, testable in principle; <strong>QBism and other epistemic views</strong>, the wavefunction encodes an agent’s beliefs or information. All reproduce the same predictions for standard experiments, except collapse models, which predict tiny deviations already being constrained (Chapter 174). <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The survey</h2>
+  <p>The <em>Nature</em> survey of July 2025 drew 1,101 responses. Copenhagen: about 36%; epistemic views including QBism: about 17%; many-worlds: about 15%; the remainder split among Bohmian mechanics, spontaneous collapse, other views and none. Only about 24% said they thought their preferred interpretation was correct, and 86% said work on interpretations is valuable. Researchers in quantum foundations and philosophy chose Copenhagen least often, about 20%. Choose a group to highlight: <button type="button" class="v" data-pick="g:all">all respondents</button> <button type="button" class="v" data-pick="g:conf">confidence</button>. <span class="tag">Established</span> as survey data.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The debate and its rubric</h2>
+  <p>Part one: a 600-word defence of the interpretation you find most persuasive, stating what it says the wavefunction is, how it handles measurement, what it costs (extra structure, extra worlds, non-locality, agent-dependence), and what would count against it. Part two: a 600-word steelman of the interpretation you find least persuasive, good enough that a supporter would sign it. Graded on: accuracy (does each position say what its proponents actually say?), clarity about costs, honesty about what experiment can and cannot decide, and the quality of the steelman. The “Argue it” habit, stating the strongest objection to your own view, applies here most of all. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The five main families of interpretation, the 2025 survey of physicists’ views, which interpretations make testable predictions, and a debate format with a steelman rubric.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Which interpretations are experimentally distinguishable?<span class="tap">tap</span></div><div class="a">Spontaneous-collapse models, which modify the dynamics; the others agree on standard predictions.</div></div>
+  <div class="qa"><div class="q">What did most survey respondents not claim?<span class="tap">tap</span></div><div class="a">That their favoured interpretation is correct; only about a quarter did.</div></div>
+  <div class="qa"><div class="q">What makes a good steelman?<span class="tap">tap</span></div><div class="a">A version of the opposing view its own supporters would endorse.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> About 36% of 1,101 respondents chose Copenhagen. Roughly how many people is that?</p>
+    <form class="calc" data-answer="396" data-tol="8" data-ok="Yes: about 400." data-hint="0.36 × 1101."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="People"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Gibney, “Physicists disagree wildly on what quantum mechanics says about reality, Nature survey shows”, Nature (July 2025). M. Schlosshauer, J. Kofler and A. Zeilinger, Stud. Hist. Phil. Mod. Phys. 44, 222 (2013) (earlier poll). Chapter 54 of this book. Last checked 18 November 2026.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, D = [["Copenhagen", 36], ["epistemic / QBism", 17], ["many-worlds", 15], ["other, Bohmian, collapse, none", 32]];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Nature survey, 2025 (1,101 respondents).", "Five families.", (Book.state.picks.g || "all") === "conf" ? "Do you think your interpretation is correct?" : "Preferred interpretation (%).", "Defend one; steelman another.", "Interpretations debate."][beat]; },
+    readout: function () { return "Copenhagen ~36% · epistemic ~17% · many-worlds ~15% · confident theirs is correct ~24% · interpretations valuable 86%"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { ["Copenhagen", "many-worlds", "Bohmian", "spontaneous collapse", "QBism / epistemic"].forEach(function (s, j) { var a = -Math.PI / 2 + j * 2 * Math.PI / 5, x = W / 2 + Math.min(W, H) * 0.32 * Math.cos(a), y = H / 2 + Math.min(W, H) * 0.32 * Math.sin(a); k.circle(x, y, 8, j === 3 ? "#e05a46" : "#ffb547"); k.text(s, x, y + 22, { size: 11 }); }); k.text("ψ", W / 2, H / 2 + 8, { size: 24, color: "#ece6da" }); return; }
+      if (beat === 3) { k.rr(W * 0.08, H * 0.25, W * 0.38, H * 0.45, 10, "#14120f", "#ffb547"); k.text("defend", W * 0.27, H * 0.47, { size: 16, color: "#ffb547" }); k.rr(W * 0.54, H * 0.25, W * 0.38, H * 0.45, 10, "#14120f", "rgba(236,230,218,.6)"); k.text("steelman", W * 0.73, H * 0.47, { size: 16 }); return; }
+      if ((Book.state.picks.g || "all") === "conf") { A = k.axes(W * 0.2, H * 0.12, W * 0.7, H * 0.65, [0, 100], [0, 2], { xl: "%" }); k.rr(A.X(0), A.Y(1.5) - 16, A.X(24) - A.X(0), 32, 4, "#ffb547"); k.text("think it is correct: 24%", A.X(0) - 6, A.Y(1.5) + 4, { size: 11, align: "right" }); k.rr(A.X(0), A.Y(0.6) - 16, A.X(86) - A.X(0), 32, 4, "rgba(236,230,218,.6)"); k.text("interpretations valuable: 86%", A.X(0) - 6, A.Y(0.6) + 4, { size: 11, align: "right" }); return; }
+      A = k.axes(W * 0.36, H * 0.08, W * 0.58, H * 0.76, [0, 40], [0, 4], { xl: "%" }); D.forEach(function (d, j) { var y = A.Y(3.5 - j); k.rr(A.X(0), y - 14, A.X(d[1]) - A.X(0), 28, 4, j === 0 ? "#ffb547" : "rgba(255,181,71,.45)"); k.text(d[0], A.X(0) - 8, y + 4, { size: 11, align: "right" }); k.text(d[1] + "%", A.X(d[1]) + 6, y + 4, { size: 11, align: "left" }); });
+    }
+  });
+})();
+</script>

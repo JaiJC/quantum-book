@@ -1,0 +1,5 @@
+== 113
+4/pi^2 0.4052847345693511
+phi 0.25 t=4 nearest prob 1.0 sum 1.0
+phi 0.3 t=4 nearest prob 0.8756 sum 1.0
+phi 0.3333333333333333 t=4 nearest prob 0.6849 sum 1.0

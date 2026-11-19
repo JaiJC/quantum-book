@@ -1,0 +1,2 @@
+== 076
+vev [mu/sqrt(lam)] radial mass^2 2*mu**2

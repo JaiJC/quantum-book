@@ -1,0 +1,60 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Electrons are fermions: no two share a state, and swapping two flips the sign of the wavefunction. Qubits are not fermions: they are independent two-level systems whose operators on different qubits simply commute. To simulate electrons on qubits, the mapping must build the fermion sign rule into the operators. The oldest way, from Pascual Jordan and Eugene Wigner in 1928, attaches a string of Z gates to every operator; Sergey Bravyi and Alexei Kitaev found in 2002 a cleverer encoding with much shorter strings. The choice changes circuit cost.</p>
+  <p>On the plate: a fermion operator turned into Pauli strings under three mappings.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Jordan–Wigner</h2>
+  <p>Store the occupation of spin orbital {{tex:j}} directly in qubit {{tex:j}}. Creating an electron in orbital {{tex:j}} must also apply a sign {{tex:(-1)}} for every occupied orbital before it, so:</p>
+  <div class="eq">{{texd:a_j^\dagger = Z_0Z_1\cdots Z_{j-1}\,\frac{X_j - iY_j}{2}}}</div>
+  <p>The Z string counts the parity of the occupied orbitals to the left. One can check directly that these operators satisfy {{tex:\{a_i, a_j^\dagger\} = \delta_{ij}}} and {{tex:\{a_i, a_j\} = 0}}; this book’s code checks it for 4 and 8 modes. The cost: an operator on orbital {{tex:j}} acts on {{tex:j+1}} qubits, so terms involving distant orbitals become long Pauli strings, up to the number of orbitals. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Compare mappings</h2>
+  <p>Choose a mapping: <button type="button" class="v" data-pick="m:jw">Jordan–Wigner</button> <button type="button" class="v" data-pick="m:par">parity</button> <button type="button" class="v" data-pick="m:bk">Bravyi–Kitaev</button>, and orbital {{tex:j =}} <span class="tangle" data-var="j" data-min="0" data-max="7" data-step="1" data-value="6" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Orbital">6</span><button type="button" data-de="1" aria-label="Higher">›</button></span> of 8. The plate shows the two Pauli strings that make up {{tex:a_j^\dagger}}. The <em>parity</em> mapping stores in qubit {{tex:j}} the parity of orbitals 0 to {{tex:j}}, so the sign is local but updating an occupation flips all qubits to the right. Bravyi–Kitaev stores partial parity sums arranged as a binary tree (a Fenwick tree), so both updating and reading parity touch only about {{tex:\log_2 n}} qubits. For 8 orbitals, every Bravyi–Kitaev string has weight at most 4, against up to 8 for Jordan–Wigner; the gap widens with size. This book’s code checks the anticommutation relations for the Bravyi–Kitaev operators too. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Tapering with symmetries</h2>
+  <p>Molecular Hamiltonians conserve electron number and spin, and often have point-group symmetries. Each such symmetry, expressed as a Pauli operator commuting with the Hamiltonian, lets one qubit be removed by fixing its eigenvalue. For H₂ in STO-3G, the parity mapping turns 4 spin orbitals into 4 qubits, two of which store the total and spin parities and are fixed: two qubits remain, and the Hamiltonian is the five-term one used in Chapter 122, {{tex:g_0 + g_1(Z_1 - Z_0) + g_2Z_0Z_1 + g_3X_0X_1}}. Its lowest eigenvalue reproduces the exact energy of Chapter 184. Tapering is free accuracy-preserving compression, and every practical calculation uses it. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The Jordan–Wigner transformation and its Z strings, the parity and Bravyi–Kitaev mappings with their update and parity sets, Pauli weight scaling (linear versus logarithmic), and qubit tapering using symmetries, ending at the two-qubit H₂ Hamiltonian.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What do Jordan–Wigner Z strings do?<span class="tap">tap</span></div><div class="a">Supply the fermion sign by counting the parity of occupied orbitals to the left.</div></div>
+  <div class="qa"><div class="q">How does Bravyi–Kitaev weight scale?<span class="tap">tap</span></div><div class="a">Logarithmically in the number of orbitals.</div></div>
+  <div class="qa"><div class="q">What does tapering remove?<span class="tap">tap</span></div><div class="a">One qubit per Pauli symmetry of the Hamiltonian, such as particle-number and spin parity.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Under Jordan–Wigner, on how many qubits does {{tex:a_{99}^\dagger}} act, for 100 spin orbitals numbered from 0?</p>
+    <form class="calc" data-answer="100" data-tol="0.5" data-ok="Yes: 99 Z’s plus one X/Y, 100 qubits. Bravyi–Kitaev needs about log₂ 100 ≈ 7." data-hint="j + 1."><span>qubits =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Qubits"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. Jordan and E. Wigner, Z. Phys. 47, 631 (1928). S. B. Bravyi and A. Yu. Kitaev, Ann. Phys. 298, 210 (2002). J. T. Seeley, M. J. Richard and P. J. Love, J. Chem. Phys. 137, 224109 (2012). S. Bravyi et al., arXiv:1701.08213 (2017) (tapering). Checked by code: anticommutation relations hold exactly for Jordan–Wigner (4 modes) and Bravyi–Kitaev (8 modes); BK string weights at most 4 for 8 modes.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { j: 6 }, n = 8;
+  function bk(j) { var i = j + 1, U = [], P = [], F = [], k = i + (i & -i); while (k <= n) { U.push(k - 1); k += k & -k; } k = i - 1; while (k > 0) { P.push(k - 1); k -= k & -k; } k = i - 1; while (k > i - (i & -i)) { F.push(k - 1); k -= k & -k; } var R = P.filter(function (p) { return F.indexOf(p) < 0; }); return { U: U, P: P, R: R }; }
+  function strings() { var m = Book.state.picks.m || "bk", j = V.j, a = new Array(n).fill("I"), b = new Array(n).fill("I"), q; if (m === "jw") { for (q = 0; q < j; q++) { a[q] = "Z"; b[q] = "Z"; } a[j] = "X"; b[j] = "Y"; } else if (m === "par") { if (j > 0) a[j - 1] = "Z"; a[j] = "X"; b[j] = "Y"; for (q = j + 1; q < n; q++) { a[q] = "X"; b[q] = "X"; } } else { var s = bk(j); s.U.forEach(function (u) { a[u] = "X"; b[u] = "X"; }); s.P.forEach(function (p) { a[p] = "Z"; }); s.R.forEach(function (p) { b[p] = "Z"; }); a[j] = "X"; b[j] = "Y"; } return [a, b]; }
+  function w(s) { return s.filter(function (c) { return c !== "I"; }).length; }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["a†ⱼ as Pauli strings on 8 qubits.", "Jordan–Wigner: a Z string to the left.", "a†ⱼ = ½(first string − i · second string).", "H₂: 4 qubits → 2 after tapering.", "Fermion-to-qubit mappings."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var s = strings(); return ({ jw: "Jordan–Wigner", par: "parity", bk: "Bravyi–Kitaev" })[Book.state.picks.m || "bk"] + " · a†" + V.j + " · weights " + w(s[0]) + " and " + w(s[1]); } if (beat === 3) { var r = Book.H2(1.4); return "2-qubit H₂ at 1.4 bohr · exact energy " + r.Efci.toFixed(5) + " Ha"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, cw = W * 0.8 / n, x0 = W * 0.1;
+      if (beat === 3) { ["4 spin orbitals", "4 qubits (parity map)", "fix 2 symmetry qubits", "2 qubits: g₀ + g₁(Z₁ − Z₀) + g₂Z₀Z₁ + g₃X₀X₁"].forEach(function (s, j) { k.rr(W * 0.1, H * (0.1 + j * 0.21), W * 0.8, H * 0.15, 8, "#14120f", j === 3 ? "#ffb547" : "rgba(236,230,218,.4)"); k.text(s, W / 2, H * (0.19 + j * 0.21), { size: 12, color: j === 3 ? "#ffb547" : "#ece6da" }); }); return; }
+      var m = beat === 1 ? "jw" : null, s; if (m) { var old = Book.state.picks.m; Book.state.picks.m = "jw"; s = strings(); Book.state.picks.m = old; } else s = strings();
+      s.forEach(function (row, r) { var y = H * (0.25 + r * 0.3); row.forEach(function (c, q) { var col = c === "I" ? "#14120f" : c === "Z" ? "rgba(236,230,218,.75)" : c === "X" ? "rgba(255,181,71,.85)" : "rgba(224,90,70,.85)"; k.rr(x0 + q * cw + 3, y, cw - 6, H * 0.16, 5, col, "rgba(185,178,165,.3)"); k.text(c, x0 + (q + 0.5) * cw, y + H * 0.1, { size: 15, color: c === "I" ? "#7c766b" : "#14120f" }); }); k.text(r ? "second string (with Y)" : "first string (with X)", W / 2, y - 8, { size: 11, color: "#b9b2a5" }); });
+      for (var q = 0; q < n; q++) k.text("q" + q, x0 + (q + 0.5) * cw, H * 0.9, { size: 10, color: "#7c766b" });
+    }
+  });
+})();
+</script>

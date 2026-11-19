@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Solving a system of linear equations, {{tex:A\mathbf x = \mathbf b}}, underlies almost all of scientific computing, from finite-element models of bones to the reconstruction of CT images. In 2009 Aram Harrow, Avinatan Hassidim and Seth Lloyd gave a quantum algorithm whose cost grows only logarithmically with the number of unknowns: an exponential speedup. The algorithm is correct. But the speedup comes with conditions so restrictive that Scott Aaronson wrote an article called “Read the fine print.” This chapter reads it.</p>
+  <p>On the plate: a checklist. Describe your problem, and see whether an exponential advantage survives.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>How HHL works</h2>
+  <p>Load {{tex:\mathbf b}} as a quantum state {{tex:|b\rangle}}. Run phase estimation (Chapter 113) with {{tex:e^{iAt}}} to write each eigenvalue {{tex:\lambda_j}} of {{tex:A}} into a register. Rotate an ancilla by an angle proportional to {{tex:1/\lambda_j}}, uncompute the eigenvalue register, and keep the result when the ancilla reads 1. What remains is proportional to {{tex:A^{-1}|b\rangle = |x\rangle}}. The cost is about {{tex:\log N\cdot s^2\kappa^2/\varepsilon}}, with {{tex:s}} the sparsity (non-zeros per row) and {{tex:\kappa}} the condition number, the ratio of largest to smallest eigenvalue. Andrew Childs, Robin Kothari and Rolando Somma improved the accuracy dependence to {{tex:\mathrm{polylog}(1/\varepsilon)}} in 2017, and Pedro Costa and colleagues reached the optimal linear dependence on {{tex:\kappa}} in 2022, using the QSVT ideas of Chapter 119. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The fine print</h2>
+  <p>Set your problem: size <span class="tangle" data-var="lN" data-min="3" data-max="12" data-step="1" data-value="6" data-px="10"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 N">6</span><button type="button" data-de="1" aria-label="Larger">›</button></span> (log₁₀ unknowns), condition number <span class="tangle" data-var="lk" data-min="0" data-max="6" data-step="0.5" data-dec="1" data-value="2" data-px="8"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 kappa">2.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span> (log₁₀ κ). Then answer: input is <button type="button" class="v" data-pick="in:fast">computable by a short circuit</button> or <button type="button" class="v" data-pick="in:data">a large classical dataset</button>; output needed is <button type="button" class="v" data-pick="out:ev">one expectation value</button> or <button type="button" class="v" data-pick="out:full">the whole solution vector</button>; matrix is <button type="button" class="v" data-pick="mat:sparse">sparse with entries computable on demand</button> or <button type="button" class="v" data-pick="mat:dense">dense, stored as data</button>.</p>
+  <p>Each caveat can erase the advantage. Loading {{tex:N}} arbitrary numbers into amplitudes costs about {{tex:N}} operations, unless a special memory device exists. Reading out the full vector needs about {{tex:N}} repetitions, since each run yields one sample. A dense matrix stored as data has the same loading problem. And if {{tex:\kappa}} grows with {{tex:N}}, as it does for many discretized differential equations, the speedup shrinks to polynomial. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Where it might still matter</h2>
+  <p>The favourable cases are those where the matrix and the right-hand side come from a compact physical description, and you want a global property of the solution: the average stress in a region, a scattering amplitude, the probability that a particle is in a cell. Recent work targets linear differential equations in physics and engineering on this basis. Whether practically valuable problems fit all the conditions, at sizes where the quantum overhead pays off, is open. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The HHL algorithm, its dependence on size, sparsity, condition number and accuracy, the improved algorithms, and the four pieces of fine print: input loading, output readout, matrix access, and condition number.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does HHL output?<span class="tap">tap</span></div><div class="a">A quantum state |x⟩ proportional to the solution, not the numbers themselves.</div></div>
+  <div class="qa"><div class="q">Why does loading classical data cancel the speedup?<span class="tap">tap</span></div><div class="a">Preparing an arbitrary N-amplitude state costs about N operations.</div></div>
+  <div class="qa"><div class="q">What is the condition number’s role?<span class="tap">tap</span></div><div class="a">Cost grows with κ; if κ grows with N, the advantage shrinks.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> To read out every entry of a solution with {{tex:N = 10^6}} unknowns by sampling, at least how many runs are needed (to one significant figure)?</p>
+    <form class="calc" data-answer="1000000" data-tol="1000" data-ok="Yes: at least about N = 10⁶ runs, which wipes out the logarithmic cost per run." data-hint="Each run gives one sample of one index."><span>runs ≥</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Runs"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. W. Harrow, A. Hassidim and S. Lloyd, Phys. Rev. Lett. 103, 150502 (2009). A. M. Childs, R. Kothari and R. D. Somma, SIAM J. Comput. 46, 1920 (2017). P. C. S. Costa et al., PRX Quantum 3, 040303 (2022). S. Aaronson, Nat. Phys. 11, 291 (2015). Checked by the plate’s cost model: quantum cost ~ κ s log N per run, classical conjugate gradient ~ N s √κ; readout and loading terms ~ N.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { lN: 6, lk: 2 };
+  function verdict() { var p = Book.state.picks, N = Math.pow(10, V.lN), k = Math.pow(10, V.lk), s = 10, q = k * s * Math.log2(N), cl = N * s * Math.sqrt(k), why = []; if (p.in === "data") { q += N; why.push("loading ~N"); } if (p.out === "full") { q *= N; why.push("readout ×N"); } if (p.mat === "dense") { q += N * N; why.push("dense access ~N²"); } return { q: q, c: cl, why: why }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Does the exponential advantage survive?", "Phase estimation, inverse rotation, uncompute.", "Quantum vs classical cost estimate (log scale).", "Global properties of physical solutions.", "HHL."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var v = verdict(), r = v.c / v.q; return "quantum ≈ 10^" + Math.log10(v.q).toFixed(1) + " · classical ≈ 10^" + Math.log10(v.c).toFixed(1) + " · " + (r > 10 ? "advantage survives (×10^" + Math.log10(r).toFixed(1) + ")" : "no advantage") + (v.why.length ? " · " + v.why.join(", ") : ""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 0 || beat === 2 || beat === 4) { var v = verdict(); A = k.axes(W * 0.25, H * 0.15, W * 0.65, H * 0.6, [0, 26], [0, 2.6], { xl: "log₁₀ operations" }); k.rr(A.X(0), A.Y(2) - 14, A.X(Math.min(26, Math.log10(v.q))) - A.X(0), 28, 4, "#ffb547"); k.text("quantum", A.X(0) - 8, A.Y(2) + 5, { size: 12, align: "right" }); k.rr(A.X(0), A.Y(1) - 14, A.X(Math.min(26, Math.log10(v.c))) - A.X(0), 28, 4, "rgba(236,230,218,.6)"); k.text("classical", A.X(0) - 8, A.Y(1) + 5, { size: 12, align: "right" }); return; }
+      if (beat === 1) { [["|b⟩", "load"], ["QPE", "λⱼ"], ["rotate", "∝ 1/λⱼ"], ["uncompute", ""], ["|x⟩", "post-select"]].forEach(function (q, j) { var x = W * (0.1 + j * 0.2); k.rr(x - W * 0.08, H * 0.42, W * 0.16, H * 0.16, 8, "#14120f", "#ffb547"); k.text(q[0], x, H * 0.5, { size: 13, color: "#ffb547" }); k.text(q[1], x, H * 0.55, { size: 10, color: "#b9b2a5" }); }); return; }
+      if (beat === 3) { var cx = W / 2, cy = H / 2; for (var i = 0; i < 12; i++) for (var j = 0; j < 8; j++) { var val = Math.sin(i * 0.6) * Math.cos(j * 0.8); k.rr(W * 0.15 + i * W * 0.058, H * 0.2 + j * H * 0.07, W * 0.054, H * 0.064, 2, "rgba(255,181,71," + (0.15 + 0.6 * Math.abs(val)).toFixed(2) + ")"); } k.rr(W * 0.15 + 4 * W * 0.058, H * 0.2 + 2 * H * 0.07, W * 0.058 * 3, H * 0.07 * 3, 3, null, "#ece6da"); k.text("want: the average in this region, not every cell", cx, H * 0.88, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

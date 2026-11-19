@@ -1,0 +1,304 @@
+<section class="beat" data-beat="0">
+      <p class="drop">Shoot a single electron at a wall with two narrow slits in it, and see where it lands on a screen behind. That is the whole experiment. People have argued about what it means for a hundred years, and by the end of this chapter you will have run it yourself.</p>
+      <p>Look at the plate. On the left is the <em>gun</em>, which fires electrons one at a time. In the middle is the <em>wall</em>, with its two slits. On the right is the <em>screen</em>, which glows wherever an electron strikes it. The tall panel beyond is the same screen turned to face you, so you can watch the hits pile up.</p>
+      <p class="x-std">This is the double-slit experiment. Feynman thought it held the central mystery of quantum mechanics, and that once you understood it, the rest would follow.</p>
+    </section>
+
+    <section class="beat" data-beat="1">
+      <h2>One electron</h2>
+      <p>Now <button type="button" class="v" data-act="fire1">fire one electron</button>. Watch it leave the gun, reach the wall, and strike the screen.</p>
+      <p>It lands in one place and leaves one dot, the way a very small bullet would. Whatever an electron is, it <em>arrives</em> like a particle.</p>
+    </section>
+
+    <section class="beat" data-beat="2">
+      <h2>A few more</h2>
+      <p>Fire <button type="button" class="v" data-act="fire1">another</button>, and <button type="button" class="v" data-act="fire1">another</button>, and <button type="button" class="v" data-act="fire1">one more</button>. That makes <span class="live" data-count>0</span> so far.</p>
+      <p>Each one lands somewhere new, and nothing tells you in advance where the next will go. It looks random. Keep that word in mind.</p>
+    </section>
+
+    <section class="beat" data-beat="3">
+      <h2>A guess</h2>
+      <p>Before going further, commit to a prediction. If electrons are bullets, each passes through either the top slit or the bottom one. After two thousand of them, I think the screen will show <button type="button" class="v" data-pick="pred:two">two bands, one behind each slit</button>, or <button type="button" class="v" data-pick="pred:stripes">many stripes, bright and dark</button>, or <button type="button" class="v" data-pick="pred:blob">one soft glow in the middle</button>.</p>
+      <p class="hint" data-if-nopick="pred">Tap the phrase you believe. Or don’t; read on and see.</p><p class="hint" data-if-pick="pred:two">Your guess: two bands. Read on to see.</p><p class="hint" data-if-pick="pred:stripes">Your guess: many stripes. Read on to see.</p><p class="hint" data-if-pick="pred:blob">Your guess: one soft glow. Read on to see.</p>
+    </section>
+
+    <section class="beat" data-beat="4">
+      <h2>Two thousand</h2>
+      <p>Press and <button type="button" class="v" data-hold="fire">hold here to keep the gun firing</button>, or <button type="button" class="v" data-act="burst">fire five hundred at once</button>. The face-on screen fills as you watch.</p>
+      <p><em>Stripes.</em> Bright, dark, bright, dark, fading towards the edges. <span data-if-pick="pred:two">You guessed two bands, the bullet answer, which is what nearly everyone guesses.</span><span data-if-pick="pred:stripes">You guessed stripes, which almost nobody does.</span><span data-if-pick="pred:blob">You guessed a single glow; the screen disagrees.</span></p>
+      <p>Every electron still landed as one dot. The stripes appear only when thousands are added together.</p>
+    </section>
+
+    <section class="beat" data-beat="5">
+      <h2>The strange part</h2>
+      <p>I have closed the top slit. Tap <button type="button" class="v" data-act="slit">the top slit</button> to open or close it, and compare.</p>
+      <p>With one slit, the stripes vanish into a single smooth band. Now think about a spot where a <em>dark</em> stripe used to be. With one slit open, electrons land there. Open the second slit and <em>fewer</em> land there.</p>
+      <p>More ways through, fewer hits. Bullets cannot do that. Waves can.</p>
+    </section>
+
+    <section class="beat" data-beat="6">
+      <h2>The wave</h2>
+      <p>Both slits are open again, and the plate now shows the wave. Tap <button type="button" class="v" data-act="wave">the wave</button> to hide it or bring it back.</p>
+      <p>Each electron travels as a wave, and the wave goes through <em>both</em> slits. Behind the wall the two halves overlap. Where crest meets crest the wave is strong, and you get a bright stripe. Where crest meets trough the two cancel, and you get a dark one. Follow the bright rays: they end on the bright stripes.</p>
+      <p>The wave does not say where the electron <em>is</em>. It sets the odds of where it will land. When it reaches the screen, it still makes one dot.</p>
+      <div class="note x-std"><span class="mark">Note</span>Physicists call this wave the wavefunction. The chance of a hit at a spot is the square of the wave’s size there. <span class="tag">Established</span></div>
+    </section>
+
+    <section class="beat" data-beat="7">
+      <h2>Peeking</h2>
+      <p>Now cheat. Put a detector beside each slit, so that every electron flashes the one it passes. <button type="button" class="v" data-act="detector">The detectors</button> are on; tap to switch them off and on.</p>
+      <p>With the detectors on, the stripes are gone, and you get the bullet answer after all: two blurred bands, overlapping. Knowing the path destroys the stripes. You can have one or the other, never both.</p>
+      <div class="note x-deep"><span class="mark">Deeper</span>No one has to look at the detector. Any physical record of the path entangles the electron with its surroundings, and the two halves of its wave can no longer interfere. This is decoherence. <span class="tag">Established</span></div>
+    </section>
+
+    <section class="beat" data-beat="8">
+      <h2>Your turn</h2>
+      <p>Faster electrons have shorter waves, and shorter waves make tighter stripes. The small marks beside the screen show where the dark stripes fall at one particular energy.</p>
+      <p>Drag this number sideways. The electrons now carry <span class="tangle" data-var="E" data-min="10" data-max="200" data-value="110" data-unit="eV" data-px="4"><button type="button" data-de="-1" aria-label="Lower the energy">‹</button><span class="num" role="slider" tabindex="0" aria-label="Electron energy">110 eV</span><button type="button" data-de="1" aria-label="Raise the energy">›</button></span>, which gives them a wavelength of <span class="live" id="lam">0.117 nm</span>. Find the energy where the dark lanes of the wave meet the marks, then <button type="button" class="v" data-act="burst">fire five hundred</button> to check.</p>
+      <p class="hint" id="tune-hint">The dark lanes are too close together. Lower the energy.</p>
+      <div class="reveal" id="tune-reveal">
+        <p>That is it: <em>54 electronvolts</em>, and a wavelength of 0.167 nanometres. It is the energy Clinton Davisson and Lester Germer used in 1927, when they first caught electrons behaving as waves. <span class="tag">Established</span></p>
+      </div>
+      <p class="x-std">The rule behind the dial is de Broglie’s: a particle with momentum {{tex:p}} has wavelength {{tex:\lambda = h/p}}, where {{tex:h}} is Planck’s constant. More energy, more momentum, shorter wave.</p>
+      <div class="note x-deep"><span class="mark">Deeper</span>
+        <p>For an electron with kinetic energy {{tex:E}} far below its rest energy, {{tex:p = \sqrt{2 m_e E}}}, so</p>
+        <div class="eq">{{texd:\lambda = \frac{h}{\sqrt{2 m_e E}} \approx \frac{1.226\ \text{nm}}{\sqrt{E/\text{eV}}}}}</div>
+        <p>The stripe spacing on the screen is {{tex:\Delta y \approx \lambda L / d}}, with {{tex:L}} the distance to the screen and {{tex:d}} the gap between the slits.</p>
+      </div>
+    </section>
+
+    <section class="beat" data-beat="9">
+      <h2>What you found</h2>
+      <p>An electron travels as a wave, through both slits at once, and arrives as a single dot. The wave sets the odds. Watching which way it went wipes the stripes out.</p>
+      <p class="ornament">· · ·</p>
+      <p><em>Three questions to carry with you.</em> Answer each in your head, then tap to check.</p>
+      <div class="qa"><div class="q">Why does a dark stripe get fewer hits with two slits open than with one?<span class="tap">tap</span></div><div class="a">The waves from the two slits arrive there crest-to-trough and cancel, so the chance of landing there drops.</div></div>
+      <div class="qa"><div class="q">What happened when you watched which slit each electron used?<span class="tap">tap</span></div><div class="a">The stripes vanished, leaving two blurred bands. Path information destroys the interference.</div></div>
+      <div class="qa"><div class="q">You raise the electron energy. What do the stripes do?<span class="tap">tap</span></div><div class="a">They squeeze closer together: more energy, a shorter wavelength, tighter stripes.</div></div>
+      <div class="x-std" style="margin-top:1.6rem">
+        <p><em>And one to work out.</em> Using {{tex:\lambda \approx 1.226\ \text{nm}/\sqrt{E/\text{eV}}}}, what wavelength does a 100 eV electron have?</p>
+        <form class="calc" data-answer="0.1226" data-tol="0.002" data-ok="Yes: 1.226 ÷ √100 = 0.1226 nm, about the width of an atom." data-alt="1.226~That is in ångströms. In nanometres it is 0.1226.|122.6~That is in picometres. In nanometres it is 0.1226." data-hint="Not quite. Divide 1.226 by the square root of 100."><span>λ =</span><input id="ans" inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Wavelength in nanometres"><span>nm</span><button type="submit">check</button></form>
+        <div class="fb" aria-live="polite"></div>
+      </div>
+<p class="sources">Sources: L. de Broglie, thesis (1924). C. Davisson and L. H. Germer, Phys. Rev. 30, 705 (1927). A. Tonomura et al., Am. J. Phys. 57, 117 (1989). Wavelengths from CODATA constants: λ(54 eV) = 0.1669 nm, λ(100 eV) = 0.1226 nm.</p>
+    </section>
+<script type="plate">
+(function () {
+  var LC = 1.2264259653;                        // nm·sqrt(eV): λ = h/sqrt(2 m_e E)
+  function lam(E) { return LC / Math.sqrt(E); }
+  function sinc(x) { return Math.abs(x) < 1e-6 ? 1 : Math.sin(x) / x; }
+  var C = { E: 54, topClosed: false, detector: false, wave: false }, G = {}, K = null, beatNow = 0, tuneE = 110, tuned = false;
+  function Lam(E) { return G.K * lam(E) / lam(54); }
+  function layout() {
+    var W = K.W, H = K.H, wide = W / H > 1.25, setupW = W * (wide ? 0.68 : 0.6);
+    G = { W: W, H: H };
+    G.top = H * (wide ? 0.13 : 0.1); G.bottom = H * (wide ? 0.86 : 0.88);
+    G.cy = (G.top + G.bottom) / 2; G.Hs = (G.bottom - G.top) / 2;
+    G.gun = Math.max(52, setupW * 0.1); G.xb = setupW * 0.34; G.xs = setupW * 0.97; G.L = G.xs - G.xb;
+    G.ds = G.Hs * 0.15; G.d = 2 * G.ds; G.a = G.d * 0.26; G.so = Math.max(4, G.Hs * 0.03);
+    G.px0 = W * (wide ? 0.74 : 0.68); G.px1 = W - Math.max(14, W * 0.03);
+    G.K = 0.29 * G.Hs * G.d / G.L;
+    buildPanel(); buildSampler(); buildField(); computeTargets();
+  }
+  function intensityAt(y, E, cfg) {
+    var Lm = G.K * lam(E) / lam(54);
+    var r1 = Math.hypot(G.L, y - (G.cy - G.ds)), r2 = Math.hypot(G.L, y - (G.cy + G.ds));
+    var A1 = sinc(Math.PI * G.a * ((y - (G.cy - G.ds)) / r1) / Lm), A2 = sinc(Math.PI * G.a * ((y - (G.cy + G.ds)) / r2) / Lm);
+    if (cfg.topClosed) return A2 * A2;
+    if (cfg.detector) return A1 * A1 + A2 * A2;
+    return A1 * A1 + A2 * A2 + 2 * A1 * A2 * Math.cos(2 * Math.PI * (r1 - r2) / Lm);
+  }
+  var NB = 700, cdf = new Float64Array(NB + 1);
+  function buildSampler() { cdf[0] = 0; for (var i = 0; i < NB; i++) cdf[i + 1] = cdf[i] + Math.max(0, intensityAt(G.cy - G.Hs + (i + 0.5) / NB * 2 * G.Hs, C.E, C)); }
+  function sampleU() { var t = Math.random() * cdf[NB], lo = 0, hi = NB; while (hi - lo > 1) { var m = (lo + hi) >> 1; if (cdf[m] < t) lo = m; else hi = m; } return -1 + (lo + Math.random()) / NB * 2; }
+  function whichSlit(u) {
+    var y = G.cy + u * G.Hs, r1 = Math.hypot(G.L, y - (G.cy - G.ds)), r2 = Math.hypot(G.L, y - (G.cy + G.ds));
+    var A1 = sinc(Math.PI * G.a * ((y - (G.cy - G.ds)) / r1) / Lam(C.E)), A2 = sinc(Math.PI * G.a * ((y - (G.cy + G.ds)) / r2) / Lam(C.E));
+    return Math.random() * (A1 * A1 + A2 * A2) < A1 * A1 ? 1 : 2;
+  }
+  var hitsU = [], hitsV = [], HB = 90, hist = new Float32Array(HB), pc = document.createElement("canvas"), pctx = pc.getContext("2d");
+  function buildPanel() { pc.width = Math.max(1, Math.round((G.px1 - G.px0) * K.dpr)); pc.height = Math.max(1, Math.round(2 * G.Hs * K.dpr)); pctx.clearRect(0, 0, pc.width, pc.height); for (var i = 0; i < hitsU.length; i++) dot(hitsU[i], hitsV[i]); }
+  function dot(u, v) {
+    var x = (0.06 + v * 0.88) * pc.width, y = (u + 1) / 2 * pc.height, r = 1.4 * K.dpr;
+    pctx.globalCompositeOperation = "lighter";
+    pctx.fillStyle = "rgba(255,170,60,0.13)"; pctx.beginPath(); pctx.arc(x, y, r * 2.8, 0, 6.2832); pctx.fill();
+    pctx.fillStyle = "rgba(255,225,175,0.95)"; pctx.fillRect(x - r / 2, y - r / 2, r, r);
+    pctx.globalCompositeOperation = "source-over";
+  }
+  function addHit(u) { var v = Math.random(); hitsU.push(u); hitsV.push(v); dot(u, v); hist[Math.min(HB - 1, Math.max(0, Math.floor((u + 1) / 2 * HB)))]++; }
+  function n() { return hitsU.length; }
+  function clearHits() { hitsU = []; hitsV = []; hist.fill(0); flights = []; stream = 0; buildPanel(); }
+  var CELL = 3, wc = document.createElement("canvas"), wctx = wc.getContext("2d"), field = null, img = null;
+  function buildField() {
+    var gw = Math.max(2, Math.ceil(G.xs / CELL)), gh = Math.max(2, Math.ceil((2 * G.Hs + 30) / CELL));
+    wc.width = gw; wc.height = gh; img = wctx.createImageData(gw, gh);
+    var Lm = Lam(C.E), N = gw * gh, y0 = G.cy - G.Hs - 15;
+    field = { gw: gw, gh: gh, y0: y0, ph1: new Float32Array(N), ph2: new Float32Array(N), a1: new Float32Array(N), a2: new Float32Array(N), left: new Uint8Array(N) };
+    for (var j = 0; j < gh; j++) for (var i = 0; i < gw; i++) {
+      var x = (i + 0.5) * CELL, y = y0 + (j + 0.5) * CELL, idx = j * gw + i;
+      if (x < G.xb) { field.left[idx] = x > G.gun + 40 && Math.abs(y - G.cy) < G.Hs * 0.5 ? 1 : 2; field.ph1[idx] = 2 * Math.PI * x / Lm; continue; }
+      var dx = x - G.xb + 1, r1 = Math.hypot(dx, y - (G.cy - G.ds)), r2 = Math.hypot(dx, y - (G.cy + G.ds));
+      field.ph1[idx] = 2 * Math.PI * r1 / Lm; field.ph2[idx] = 2 * Math.PI * r2 / Lm;
+      field.a1[idx] = sinc(Math.PI * G.a * ((y - (G.cy - G.ds)) / r1) / Lm) * Math.min(1, Math.sqrt(Lm / r1) * 1.3);
+      field.a2[idx] = sinc(Math.PI * G.a * ((y - (G.cy + G.ds)) / r2) / Lm) * Math.min(1, Math.sqrt(Lm / r2) * 1.3);
+    }
+  }
+  function paintField(c, t) {
+    var d = img.data, N = field.gw * field.gh, w = 2.2 * t, open1 = !C.topClosed;
+    for (var idx = 0; idx < N; idx++) {
+      var lf = field.left[idx], v;
+      if (lf === 2) v = 0; else if (lf === 1) v = 0.26 * Math.cos(field.ph1[idx] - w);
+      else v = 1.15 * ((open1 ? field.a1[idx] * Math.cos(field.ph1[idx] - w) : 0) + field.a2[idx] * Math.cos(field.ph2[idx] - w));
+      var o = idx * 4, al = Math.pow(Math.min(1, Math.abs(v)), 0.75);
+      if (v > 0) { d[o] = 255; d[o + 1] = 176; d[o + 2] = 72; d[o + 3] = al * 230; } else { d[o] = 120; d[o + 1] = 80; d[o + 2] = 40; d[o + 3] = al * 70; }
+    }
+    wctx.putImageData(img, 0, 0);
+    c.save(); c.imageSmoothingEnabled = true; c.globalCompositeOperation = "lighter"; c.drawImage(wc, 0, field.y0, field.gw * CELL, field.gh * CELL); c.restore();
+  }
+  var targets = [];
+  function computeTargets() {
+    targets = []; var N = 900, max = 0, vals = [];
+    for (var i = 0; i <= N; i++) { vals.push(intensityAt(G.cy - G.Hs + i / N * 2 * G.Hs, 54, {})); max = Math.max(max, vals[i]); }
+    for (i = 1; i < N; i++) if (vals[i] <= vals[i - 1] && vals[i] < vals[i + 1] && vals[i] < 0.08 * max) targets.push(-1 + i / N * 2);
+  }
+  var flights = [], detFlash = [0, 0, 0], holding = false, holdStart = 0, lastSpawn = 0, stream = 0, dwellT = 0, trickle = 0;
+  function fireOne(fast) { var u = sampleU(), slit = C.detector ? whichSlit(u) : (C.topClosed ? 2 : 0); flights.push({ t0: performance.now(), dur: fast ? 520 : 1300, u: u, slit: slit, fast: !!fast }); }
+  function setConfig(cfg) {
+    var before = C.E + "|" + C.topClosed + "|" + C.detector;
+    for (var k in cfg) C[k] = cfg[k];
+    if (before !== C.E + "|" + C.topClosed + "|" + C.detector) { buildSampler(); buildField(); clearHits(); }
+    sync();
+  }
+  function sync() {
+    [].forEach.call(document.querySelectorAll('[data-act="slit"]'), function (b) { b.classList.toggle("on", C.topClosed); });
+    [].forEach.call(document.querySelectorAll('[data-act="wave"]'), function (b) { b.classList.toggle("on", C.wave); });
+    [].forEach.call(document.querySelectorAll('[data-act="detector"]'), function (b) { b.classList.toggle("on", C.detector); });
+    tune();
+  }
+  function tune() {
+    Book.text("lam", lam(tuneE).toFixed(3) + " nm");
+    if (beatNow !== 8) return;
+    var ok = Math.abs(C.E - 54) <= 1;
+    Book.text("tune-hint", ok ? "The dark lanes meet the marks. Fire to see the stripes land there." : C.E > 54 ? "The dark lanes are too close together. Lower the energy." : "The dark lanes are too far apart. Raise the energy.");
+    if (ok) tuned = true;
+    Book.reveal("tune-reveal", ok || tuned);
+  }
+  var plan = [
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false } },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false }, dwell: function () { if (n() === 0) fireOne(false); } },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false }, dwell: function () { clearInterval(trickle); trickle = setInterval(function () { if (beatNow !== 2 || n() >= 10) { clearInterval(trickle); return; } fireOne(false); }, 750); } },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false } },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false }, fill: 2000, lazy: true },
+    { cfg: { E: 54, topClosed: true, detector: false, wave: false }, fill: 1500 },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: true }, fill: 2000 },
+    { cfg: { E: 54, topClosed: false, detector: true, wave: false }, fill: 1500 },
+    { cfg: { E: 110, topClosed: false, detector: false, wave: true } },
+    { cfg: { E: 54, topClosed: false, detector: false, wave: false }, fill: 2000 }
+  ];
+  function rr(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+  Book.plate({
+    init: function (k, st) { K = k; if (st.vals && st.vals.E) tuneE = st.vals.E; layout(); },
+    resize: function () { layout(); },
+    beat: function (i) {
+      beatNow = i; holding = false; clearTimeout(dwellT); clearInterval(trickle);
+      var P = plan[i] || plan[0], cfg = {}; for (var k in P.cfg) cfg[k] = P.cfg[k];
+      if (i === 8) cfg.E = tuneE;
+      setConfig(cfg);
+      if (P.fill && n() < P.fill) { if (P.lazy) dwellT = setTimeout(function () { if (beatNow === i && !holding && n() < P.fill) stream = P.fill; }, 2600); else stream = P.fill; }
+      if (P.dwell) dwellT = setTimeout(P.dwell, 2400);
+    },
+    act: function (a) {
+      clearTimeout(dwellT); clearInterval(trickle);
+      if (a === "fire1") { if (flights.length < 12) fireOne(false); }
+      else if (a === "burst") { stream = 0; for (var i = 0; i < 500; i++) addHit(sampleU()); }
+      else if (a === "slit") { setConfig({ topClosed: !C.topClosed }); stream = 1200; }
+      else if (a === "wave") { C.wave = !C.wave; sync(); }
+      else if (a === "detector") { setConfig({ detector: !C.detector }); stream = 1200; }
+    },
+    hold: function (name, on) { holding = on; if (on) { stream = 0; holdStart = performance.now(); } },
+    set: function (name, v, k, first) { if (name !== "E") return; tuneE = v; if (beatNow === 8 && !first) setConfig({ E: v }); else tune(); },
+    caption: function () {
+      if (beatNow === 8) return C.E + " eV · λ = " + lam(C.E).toFixed(3) + " nm";
+      if (C.detector) return "Detectors on: each electron flashes its slit.";
+      if (C.topClosed) return "Top slit closed.";
+      if (C.wave) return "Both slits open, wave shown.";
+      return beatNow === 0 ? "The experiment." : "Both slits open.";
+    },
+    readout: function () {
+      var s = n().toLocaleString("en-US");
+      [].forEach.call(document.querySelectorAll("[data-count]"), function (e) { e.textContent = s; });
+      return s + (n() === 1 ? " electron" : " electrons");
+    },
+    draw: function (k, now) {
+      var c = k.ctx, cy = G.cy, Hs = G.Hs, i;
+      if (holding) {
+        var rate = Math.min(16, 1 + (now - holdStart) / 140);
+        if (now - lastSpawn > 110 && flights.length < 8) { fireOne(true); lastSpawn = now; }
+        for (i = 0; i < Math.floor(rate); i++) addHit(sampleU());
+      } else if (stream > n()) {
+        var kk = Math.max(4, Math.ceil(stream / 150));
+        if (now - lastSpawn > 140 && flights.length < 6) { fireOne(true); lastSpawn = now; }
+        for (i = 0; i < kk && n() < stream; i++) addHit(sampleU());
+      }
+      var fl = c.createLinearGradient(0, 0, G.W, 0); fl.addColorStop(0, "rgba(236,230,218,0)"); fl.addColorStop(0.5, "rgba(236,230,218,.12)"); fl.addColorStop(1, "rgba(236,230,218,0)");
+      c.fillStyle = fl; c.fillRect(0, cy + Hs + 26, G.W, 1);
+      if (C.wave && field) paintField(c, now / 1000);
+      k.line(G.gun + 34, cy, G.xb, cy, "rgba(236,230,218,0.12)", 1, [2, 6]);
+      var gg = c.createLinearGradient(0, cy - 22, 0, cy + 22); gg.addColorStop(0, "#3a3631"); gg.addColorStop(0.5, "#201e1b"); gg.addColorStop(1, "#121110");
+      c.fillStyle = gg; rr(c, G.gun - 38, cy - 22, 62, 44, 9); c.fill(); c.strokeStyle = "rgba(236,230,218,.22)"; c.lineWidth = 1; c.stroke();
+      c.fillStyle = "#2a2724"; rr(c, G.gun + 20, cy - 10, 12, 20, 3); c.fill();
+      for (i = 0; i < 3; i++) k.line(G.gun - 24 + i * 13, cy - 22, G.gun - 24 + i * 13, cy + 22, "rgba(255,181,71," + (0.18 + 0.12 * i) + ")");
+      k.glow(G.gun + 32, cy, 20 * (0.75 + 0.25 * Math.sin(now / 700)));
+      var wallTop = cy - Hs - 10, wallBot = cy + Hs + 10, s1 = cy - G.ds, s2 = cy + G.ds, so = G.so, bw = 12;
+      var wg = c.createLinearGradient(G.xb - bw / 2, 0, G.xb + bw / 2, 0); wg.addColorStop(0, "#4a4540"); wg.addColorStop(0.45, "#2a2724"); wg.addColorStop(1, "#151413");
+      c.fillStyle = wg; rr(c, G.xb - bw / 2, wallTop, bw, s1 - so - wallTop, 2); c.fill(); rr(c, G.xb - bw / 2, s1 + so, bw, s2 - so - s1 - so, 2); c.fill(); rr(c, G.xb - bw / 2, s2 + so, bw, wallBot - s2 - so, 2); c.fill();
+      [s1, s2].forEach(function (sy, kk2) {
+        if (kk2 === 0 && C.topClosed) { c.fillStyle = "#8a8478"; rr(c, G.xb - bw / 2 - 2, sy - so - 1, bw + 4, 2 * so + 2, 2); c.fill(); return; }
+        k.glow(G.xb, sy, 22, "rgba(255,200,120,.3)");
+        c.fillStyle = "rgba(255,205,140,.8)"; c.fillRect(G.xb - bw / 2, sy - so - 1.2, bw, 1.2); c.fillRect(G.xb - bw / 2, sy + so, bw, 1.2);
+      });
+      if (beatNow === 5) { var pulse = 0.5 + 0.5 * Math.sin(now / 260); k.circle(G.xb, s1, 15 + 4 * pulse, null, "rgba(236,230,218," + (0.15 + 0.35 * pulse) + ")"); }
+      if (C.detector) [1, 2].forEach(function (q) { var y = q === 1 ? s1 : s2, f = Math.max(0, 1 - (now - detFlash[q]) / 450); k.circle(G.xb - 20, y, 4 + 5 * f, "rgba(236,230,218," + (0.18 + 0.8 * f) + ")"); k.circle(G.xb - 20, y, 8, null, "rgba(236,230,218,.35)"); });
+      var scg = c.createLinearGradient(G.xs - 4, 0, G.xs + 4, 0); scg.addColorStop(0, "#45403a"); scg.addColorStop(1, "#1c1a18");
+      c.fillStyle = scg; rr(c, G.xs - 3, cy - Hs, 7, 2 * Hs, 2); c.fill();
+      var hmax = 12; for (i = 0; i < HB; i++) hmax = Math.max(hmax, hist[i]);
+      c.fillStyle = "rgba(255,181,71,.5)";
+      for (i = 0; i < HB; i++) { var len = hist[i] / hmax * Math.min(44, G.L * 0.22); if (len > 0.5) c.fillRect(G.xs - 4 - len, cy - Hs + i / HB * 2 * Hs, len, 2 * Hs / HB - 0.6); }
+      k.line(G.xs + 4, cy - Hs, G.px0, cy - Hs, "rgba(236,230,218,.07)"); k.line(G.xs + 4, cy + Hs, G.px0, cy + Hs, "rgba(236,230,218,.07)");
+      c.fillStyle = "#070605"; rr(c, G.px0, cy - Hs, G.px1 - G.px0, 2 * Hs, 8); c.fill(); c.strokeStyle = "rgba(236,230,218,.14)"; c.stroke();
+      c.save(); rr(c, G.px0, cy - Hs, G.px1 - G.px0, 2 * Hs, 8); c.clip(); c.drawImage(pc, G.px0, cy - Hs, G.px1 - G.px0, 2 * Hs); c.restore();
+      if (beatNow === 8) targets.forEach(function (u) { var y = cy + u * Hs; k.line(G.px0 - 9, y, G.px0 + 5, y, "#ece6da", 1.5); k.line(G.px1 - 5, y, G.px1 + 7, y, "#ece6da", 1.5); k.line(G.xs + 5, y, G.xs + 14, y, "#ece6da", 1.5); });
+      var Lm = Lam(C.E);
+      for (var f = flights.length - 1; f >= 0; f--) {
+        var F = flights[f], p = (now - F.t0) / F.dur;
+        if (p >= 1) { flights.splice(f, 1); continue; }
+        var yHit = cy + F.u * Hs;
+        if (p < 0.3) { var q0 = p / 0.3, x = G.gun + 32 + (G.xb - G.gun - 32) * q0; k.glow(x, cy, F.fast ? 6 : 10, "rgba(255,235,195,1)"); }
+        else if (p < 0.85) {
+          var q2 = (p - 0.3) / 0.55, R = q2 * G.L * 1.08, alpha = (1 - q2) * (F.fast ? 0.32 : 0.85);
+          if (F.slit && !F.flashed) { detFlash[F.slit] = now; F.flashed = true; }
+          var srcs = F.slit === 1 ? [s1] : F.slit === 2 ? [s2] : [s1, s2];
+          c.save(); c.beginPath(); c.rect(G.xb, cy - Hs - 20, G.xs - G.xb - 4, 2 * Hs + 40); c.clip(); c.lineWidth = F.fast ? 1.1 : 2;
+          srcs.forEach(function (sy) { for (var cc = 0; cc < 4; cc++) { var rad = R - cc * Lm; if (rad <= 2) break; c.strokeStyle = "rgba(255,190,95," + (alpha * (1 - cc * 0.24)) + ")"; c.beginPath(); c.arc(G.xb, sy, rad, -1.15, 1.15); c.stroke(); } });
+          c.restore(); c.lineWidth = 1;
+        } else {
+          if (!F.landed) { F.landed = true; addHit(F.u); F.v = hitsV[hitsV.length - 1]; }
+          var q3 = (p - 0.85) / 0.15, ring = 4 + q3 * (F.fast ? 10 : 22);
+          k.circle(G.xs, yHit, ring, null, "rgba(255,225,175," + (1 - q3) + ")", 1.6);
+          k.circle(G.px0 + (G.px1 - G.px0) * (0.06 + F.v * 0.88), yHit, ring, null, "rgba(255,225,175," + (1 - q3) + ")", 1.6);
+        }
+      }
+      var la = beatNow === 0 ? 0.55 + 0.45 * Math.abs(Math.sin(now / 700)) : 0.7;
+      k.text("gun", G.gun - 6, cy + 40, { alpha: la, color: "#8a8478" });
+      k.text("two slits", G.xb, cy - Hs - 18, { alpha: la, color: "#8a8478" });
+      k.text("screen", G.xs, cy + Hs + 20, { alpha: la, color: "#8a8478" });
+      k.text("the screen, face on", (G.px0 + G.px1) / 2, cy + Hs + 20, { alpha: la, color: "#8a8478" });
+    }
+  });
+  document.getElementById("stage").addEventListener("pointerdown", function (e) {
+    if (beatNow !== 5) return;
+    var r = K.canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    if (Math.hypot(x - G.xb, y - (G.cy - G.ds)) < 40) { setConfig({ topClosed: !C.topClosed }); stream = 1200; }
+  });
+})();
+</script>

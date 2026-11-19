@@ -1,0 +1,68 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The electron is a tiny magnet, and Dirac’s equation says its strength, measured by {{tex:g}}, is exactly 2. It isn’t. It is 2.00231930436118, give or take one in the last digit. The difference comes from the electron’s interaction with the quantum fields around it, and QED computes it, through five loops and more than twelve thousand diagrams, to agree with experiment to about a part in a trillion. It is the most precise agreement between theory and experiment in science. Its cousin, the muon’s, was a famous anomaly, and in 2025 the story changed.</p>
+  <p>On the plate: the contributions to the muon’s anomaly, from QED down to the error bars.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Schwinger’s term</h2>
+  <p>Write {{tex:g = 2(1 + a)}}, where {{tex:a}} is the <em>anomalous magnetic moment</em>. At one loop, the electron emits and reabsorbs a virtual photon around the vertex where it meets the external magnetic field. Julian Schwinger computed it in 1948:</p>
+  <div class="eq">{{texd:a = \frac{\alpha}{2\pi} = 0.0011614}}</div>
+  <p>Measured: 0.0011596. The one-loop term gets the first three digits. It was one of the first great successes of renormalized QED, and the formula is engraved on Schwinger’s gravestone. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The electron, to a part in a trillion</h2>
+  <p>Higher loops add terms in {{tex:(\alpha/\pi)^n}}, with coefficients computed by Toichiro Kinoshita, Tatsumi Aoyama and collaborators up to five loops. Hadronic and weak contributions are tiny for the electron. In 2023 Gerald Gabrielse’s group at Northwestern, trapping a single electron for months, measured {{tex:g/2}} to 0.13 parts per trillion.</p>
+  <p>Theory and experiment agree, but only once you know {{tex:\alpha}}, and here is a puzzle. The best independent values of {{tex:\alpha}} come from measuring how atoms recoil when they absorb light: one with caesium (Berkeley, 2018) and one with rubidium (Paris, 2020). They disagree with each other by more than five standard deviations. Until that is resolved, the electron test is limited by our knowledge of {{tex:\alpha}}, not by QED. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The muon budget</h2>
+  <p>The muon is 207 times heavier, so it is far more sensitive to heavy virtual particles, including undiscovered ones. Its anomaly has three parts. Choose a part: <button type="button" class="v" data-pick="b:qed">QED</button>, <button type="button" class="v" data-pick="b:had">hadronic</button>, <button type="button" class="v" data-pick="b:ew">electroweak</button>. QED is enormous and known essentially exactly. Electroweak is small and well known. The hadronic part, from virtual quarks and gluons, is small but hard: it can’t be computed with Feynman diagrams, because the strong force at low energy is not weak (Chapter 79). Its uncertainty dominates. The plate shows each piece against the size of the error bars, on a logarithmic scale.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What changed in 2025</h2>
+  <p>For two decades, measurements at Brookhaven and then Fermilab sat above the Standard Model prediction by four to five standard deviations, and many hoped for new physics. The hadronic part was taken from data: the rate at which electron–positron collisions make hadrons. Then lattice QCD, computing the strong force directly on supercomputers (Chapter 79), gave a larger hadronic contribution, closing most of the gap. In 2023 the CMD-3 experiment measured the key hadron rate higher than earlier experiments, in line with the lattice.</p>
+  <p>In June 2025 Fermilab released its final result, to 127 parts per billion, and the Muon g−2 Theory Initiative’s new white paper adopted the lattice value. The two now agree within about 0.6 standard deviations. Why the older data-driven estimates disagree is still argued. <span class="tag">Established</span> that experiment and the lattice-based prediction agree; <span class="tag">Debated</span> why the e⁺e⁻ data disagree among themselves.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Schwinger’s {{tex:\alpha/2\pi}}, the five-loop electron test and the α tension, the muon’s three-part budget, why the hadronic part is hard, and the 2025 resolution of the muon anomaly.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is the muon more sensitive to new physics than the electron?<span class="tap">tap</span></div><div class="a">Heavy-particle contributions scale roughly as m², and the muon is 207 times heavier.</div></div>
+  <div class="qa"><div class="q">Which part of the muon’s anomaly limits the theory?<span class="tap">tap</span></div><div class="a">The hadronic vacuum polarization, from low-energy strong interactions.</div></div>
+  <div class="qa"><div class="q">What limits the electron test today?<span class="tap">tap</span></div><div class="a">The disagreement between caesium and rubidium values of α.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is Schwinger’s term {{tex:\alpha/2\pi}}, with {{tex:\alpha = 1/137.036}}, to five significant figures?</p>
+    <form class="calc" data-answer="0.0011614" data-tol="0.0000002" data-ok="Yes: 0.0011614. Measured a_e = 0.0011597; higher loops fix the difference." data-hint="Divide 1/137.036 by 2π."><span>α/2π =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000000" aria-label="Anomaly"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Schwinger, Phys. Rev. 73, 416 (1948). T. Aoyama, T. Kinoshita and M. Nio, Atoms 7, 28 (2019). X. Fan et al., Phys. Rev. Lett. 130, 071801 (2023). R. H. Parker et al., Science 360, 191 (2018); L. Morel et al., Nature 588, 61 (2020). F. V. Ignatov et al. (CMD-3), Phys. Rev. Lett. 132, 231903 (2024). Muon g−2 Collaboration, final Fermilab result (June 2025); Muon g−2 Theory Initiative white paper (2025). Checked by code: α/2π = 0.00116141; experiment−theory ≈ 38 ± 64 ×10⁻¹¹, about 0.6σ.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0;
+  var B = { qed: ["QED", 1.165847e-3], had: ["hadronic", 7.0e-8], ew: ["electroweak", 1.54e-9], th: ["theory error", 6.2e-10], ex: ["experiment error", 1.45e-10] };
+  Book.plate({
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Contributions to the muon anomaly a_μ.", "The one-loop vertex correction.", "Electron g/2: QED through five loops.", "Muon budget (log scale).", "Experiment against prediction, before and after.", "g − 2."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) { var p = B[Book.state.picks.b || "had"]; return p[0] + " ≈ " + p[1].toExponential(2); } if (beat === 1) return "a = α/2π = 0.0011614"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat === 0 || beat === 3 || beat === 5) {
+        A = k.axes(W * 0.28, H * 0.06, W * 0.66, H * 0.84, [-11, -2], [0, 5.5], { xl: "log₁₀ contribution to a_μ" });
+        var keys = ["qed", "had", "ew", "th", "ex"], sel = Book.state.picks.b || "had";
+        keys.forEach(function (kk, j) { var y = A.Y(5 - j), on = kk === sel, err = j >= 3; k.rr(A.X(-11), y - 11, A.X(Math.log10(B[kk][1])) - A.X(-11), 22, 4, err ? "rgba(224,90,70,.7)" : on ? "#ffb547" : "rgba(255,181,71,.3)"); k.text(B[kk][0], A.X(-11) - 8, y + 4, { size: 12, align: "right", color: on ? "#ece6da" : "#b9b2a5" }); });
+        return;
+      }
+      if (beat === 1) { var cx = W / 2, cy = H * 0.6, L = Math.min(W, H) * 0.3; k.line(cx - L, cy + L * 0.4, cx, cy - L * 0.2, "#ece6da", 2.5); k.line(cx, cy - L * 0.2, cx + L, cy + L * 0.4, "#ece6da", 2.5); c.strokeStyle = "#ffcc33"; c.lineWidth = 2; c.beginPath(); for (var i = 0; i <= 30; i++) c.lineTo(cx + 7 * Math.sin(i * 1.4), cy - L * 0.2 - i * L * 0.025); c.stroke(); c.beginPath(); for (i = 0; i <= 40; i++) { var t = i / 40, x = cx - L * 0.6 + t * L * 1.2, y = cy + L * 0.16 - 40 * Math.sin(t * Math.PI) + 5 * Math.sin(i * 1.5); c.lineTo(x, y); } c.stroke(); k.text("external field", cx + 14, cy - L * 0.9, { size: 11, align: "left", color: "#ffcc33" }); k.text("virtual photon", cx, cy + L * 0.16 - 52, { size: 11, color: "#ffcc33" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0.5, 5.5], [-16, -2], { xl: "loops", yl: "log₁₀ size of term in a_e" }); [[1, 1.16e-3], [2, 1.77e-6], [3, 1.48e-8], [4, 5.6e-11], [5, 4.5e-13]].forEach(function (p) { k.rr(A.X(p[0]) - 12, A.Y(Math.log10(p[1])), 24, A.Y(-16) - A.Y(Math.log10(p[1])), 3, "#ffb547"); }); k.line(A.X(0.5), A.Y(Math.log10(1.5e-13)), A.X(5.5), A.Y(Math.log10(1.5e-13)), "#e05a46", 1.5, [4, 4]); k.text("measurement precision", A.X(5.4), A.Y(Math.log10(1.5e-13)) - 6, { size: 11, align: "right", color: "#e05a46" }); return; }
+      if (beat === 4) { A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [-100, 400], [0, 3], { xl: "a_μ − 116 591 700, ×10⁻¹¹" }); [["experiment (2025)", 371.5, 14.5, 2.5, "#ece6da"], ["theory, data-driven HVP (2020)", 110, 43, 1.6, "rgba(224,90,70,.9)"], ["theory, lattice HVP (2025)", 333, 62, 0.7, "#ffb547"]].forEach(function (p) { var y = A.Y(p[3]); k.line(A.X(p[1] - p[2]), y, A.X(p[1] + p[2]), y, p[4], 3); k.circle(A.X(p[1]), y, 5, p[4]); k.text(p[0], A.X(p[1]), y - 12, { size: 11, color: p[4] }); }); }
+    }
+  });
+})();
+</script>

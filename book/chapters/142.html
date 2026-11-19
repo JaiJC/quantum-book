@@ -1,0 +1,65 @@
+<section class="beat" data-beat="0">
+  <p class="drop">An algorithm on paper uses any gate between any qubits. A real chip offers a few native gates, each qubit wired to only a few neighbours, and, after error correction, a steep price for every T gate. The <em>compiler</em> translates one into the other, and a good compiler can cut the cost several times over. The same algorithm can cost ten times more on the wrong chip layout.</p>
+  <p>On the plate: a circuit routed onto three chip layouts.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>T-count and synthesis</h2>
+  <p>In fault-tolerant machines, Clifford gates are cheap and T gates expensive (Chapter 140), so the cost of a circuit is its <em>T-count</em>, and its time is the <em>T-depth</em>. A Toffoli gate needs 7 T gates in the standard decomposition. An arbitrary rotation {{tex:R_z(\theta)}} must be approximated from Clifford and T gates; Solovay–Kitaev (Chapter 100) gives polylogarithmic length, but Neil Ross and Peter Selinger’s 2016 <em>gridsynth</em> algorithm is optimal, using about {{tex:3\log_2(1/\varepsilon)}} T gates for accuracy {{tex:\varepsilon}}. For accuracy 10^<span class="tangle" data-var="le" data-min="-15" data-max="-2" data-step="1" data-value="-10" data-px="12"><button type="button" data-de="-1" aria-label="More accurate">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 epsilon">-10</span><button type="button" data-de="1" aria-label="Less accurate">›</button></span>, see the count. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Routing</h2>
+  <p>A CNOT between qubits that are not connected requires SWAPs (three CNOTs each) to bring them together. Choose a chip: <button type="button" class="v" data-pick="topo:line">a line</button>, <button type="button" class="v" data-pick="topo:grid">a 3 × 3 grid</button>, <button type="button" class="v" data-pick="topo:all">all-to-all (trapped ions)</button>, and a circuit of <span class="tangle" data-var="g" data-min="5" data-max="60" data-step="5" data-value="30" data-px="4"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gates">30</span><button type="button" data-de="1" aria-label="More">›</button></span> random two-qubit gates on 9 qubits, then <button type="button" class="v" data-act="new">draw a new circuit</button>. The plate routes greedily, moving one qubit along a shortest path until the pair is adjacent. Optimal routing is NP-hard; Gushu Li, Yufei Ding and Yuan Xie’s 2019 SABRE heuristic, now standard in IBM’s Qiskit, routes forwards and backwards to pick a good starting layout and looks ahead at upcoming gates. IBM’s chips use a sparse “heavy-hex” lattice to reduce crosstalk, at a routing cost. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Optimization: peepholes, ZX, Pauli-based computation</h2>
+  <p>Local <em>peephole</em> rules cancel adjacent inverse gates and merge rotations. The ZX-calculus (Chapter 109) goes further: rewrite the whole circuit as a graph of spiders, simplify with a few rules, and extract a circuit again. Aleks Kissinger and John van de Wetering showed in 2020 that this reduces T-counts substantially on standard benchmarks. At the fault-tolerant level, Daniel Litinski’s Pauli-based computation commutes all Clifford gates to the end, leaving a sequence of multi-qubit Pauli rotations by {{tex:\pi/8}}, each consuming one magic state; the Cliffords disappear into the final measurements. Much of the drop in factoring estimates (Chapter 143) came from such compilation advances rather than better hardware. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>T-count and T-depth, the Toffoli’s 7 T gates, optimal single-qubit synthesis with gridsynth, routing with SWAPs and SABRE, peephole and ZX-based optimization, and Pauli-based computation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is T-count the main cost?<span class="tap">tap</span></div><div class="a">Each T gate consumes a distilled or cultivated magic state; Cliffords are nearly free.</div></div>
+  <div class="qa"><div class="q">What does a SWAP cost?<span class="tap">tap</span></div><div class="a">Three CNOTs.</div></div>
+  <div class="qa"><div class="q">How does gridsynth’s T-count scale?<span class="tap">tap</span></div><div class="a">About 3 log₂(1/ε), which is optimal.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:3\log_2(1/\varepsilon)}}, about how many T gates approximate a rotation to {{tex:\varepsilon = 10^{-10}}}?</p>
+    <form class="calc" data-answer="100" data-tol="3" data-ok="Yes: 3 × 33.2 ≈ 100 T gates per rotation." data-hint="log₂(10¹⁰) ≈ 33.2."><span>T ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="T count"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: N. J. Ross and P. Selinger, Quantum Inf. Comput. 16, 901 (2016). G. Li, Y. Ding and Y. Xie, Proc. ASPLOS 2019, 1001. A. Kissinger and J. van de Wetering, Phys. Rev. A 102, 022406 (2020). D. Litinski, Quantum 3, 128 (2019). M. Amy, D. Maslov, M. Mosca and M. Roetteler, IEEE Trans. CAD 32, 818 (2013) (T-depth of Toffoli). Checked by the plate: greedy shortest-path routing on each topology.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { le: -10, g: 30 }, seed = 91, circ = [], res = {};
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var pos = [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [0, 2], [1, 2], [2, 2]];
+  function adj(topo) { var A = []; for (var i = 0; i < 9; i++) { A.push([]); for (var j = 0; j < 9; j++) { var e = false; if (topo === "all") e = i !== j; else if (topo === "line") e = Math.abs(i - j) === 1; else e = Math.abs(pos[i][0] - pos[j][0]) + Math.abs(pos[i][1] - pos[j][1]) === 1; A[i].push(e); } } return A; }
+  function path(A, s, t) { var prev = new Array(9).fill(-1), q = [s], seen = [s]; while (q.length) { var u = q.shift(); if (u === t) break; for (var v = 0; v < 9; v++) if (A[u][v] && seen.indexOf(v) < 0) { seen.push(v); prev[v] = u; q.push(v); } } var p = [t]; while (p[0] !== s) p.unshift(prev[p[0]]); return p; }
+  function route(topo) { var A = adj(topo), l2p = [0, 1, 2, 3, 4, 5, 6, 7, 8], p2l = l2p.slice(), sw = 0; circ.forEach(function (g) { var a = l2p[g[0]], b = l2p[g[1]]; if (A[a][b]) return; var pth = path(A, a, b); for (var i = 0; i < pth.length - 2; i++) { var x = pth[i], y = pth[i + 1], lx = p2l[x], ly = p2l[y]; p2l[x] = ly; p2l[y] = lx; l2p[lx] = y; l2p[ly] = x; sw++; } }); return sw; }
+  function gen() { circ = []; for (var i = 0; i < V.g; i++) { var a = Math.floor(rnd() * 9), b = Math.floor(rnd() * 8); if (b >= a) b++; circ.push([a, b]); } res = { line: route("line"), grid: route("grid"), all: route("all") }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; gen(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; if (n === "g") gen(); },
+    act: function () { gen(); },
+    caption: function () { var t = Book.state.picks.topo || "grid"; return ["Routing a circuit onto chips.", "T gates per rotation vs accuracy.", "Chip: " + t + " · SWAPs inserted to connect gate pairs.", "Spider fusion: two Z-phases merge into one.", "Compilation."][beat]; },
+    readout: function () { if (beat === 1) { var e = Math.pow(10, V.le); return "ε = 1e" + V.le + " → ~" + Math.round(3 * Math.log2(1 / e)) + " T gates per rotation · Toffoli: 7"; } if (beat === 2 || beat === 0) return V.g + " gates · SWAPs: line " + res.line + " · grid " + res.grid + " · all-to-all " + res.all + " · extra CNOTs on the line: " + 3 * res.line; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i, j;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [2, 15], [0, 160], { xl: "−log₁₀ ε", yl: "T count" }); k.plot(A, function (x) { return 3 * x * Math.log2(10); }, [2, 15], "#ffb547", 2.5); k.circle(A.X(-V.le), A.Y(3 * -V.le * Math.log2(10)), 6, "#ece6da"); return; }
+      if (beat === 3) { var cx = W / 2, cy = H / 2, t = (now / 2500) % 1, sep = W * 0.18 * (1 - Math.min(1, t * 1.6)); k.line(W * 0.1, cy, W * 0.9, cy, "rgba(236,230,218,.5)", 1.5); if (sep > 2) { k.circle(cx - sep, cy, 18, "#ffb547"); k.text("α", cx - sep, cy + 5, { size: 13, color: "#14120f" }); k.circle(cx + sep, cy, 18, "#ffb547"); k.text("β", cx + sep, cy + 5, { size: 13, color: "#14120f" }); } else { k.circle(cx, cy, 22, "#ffb547"); k.text("α+β", cx, cy + 5, { size: 12, color: "#14120f" }); } return; }
+      var topo = Book.state.picks.topo || "grid", Ad = adj(topo), P2 = topo === "line" ? pos.map(function (_, i2) { return [i2 / 8 * 2, 1]; }) : topo === "all" ? pos.map(function (_, i2) { return [1 + Math.cos(i2 * 2 * Math.PI / 9), 1 + Math.sin(i2 * 2 * Math.PI / 9)]; }) : pos, S = Math.min(W * 0.8, H * 0.7) / 2, ox = W / 2 - S, oy = H * 0.45 - S;
+      for (i = 0; i < 9; i++) for (j = i + 1; j < 9; j++) if (Ad[i][j]) k.line(ox + P2[i][0] * S, oy + P2[i][1] * S, ox + P2[j][0] * S, oy + P2[j][1] * S, "rgba(236,230,218,.35)", 1.5);
+      var gi = Math.floor(now / 700) % circ.length, g = circ[gi]; k.line(ox + P2[g[0]][0] * S, oy + P2[g[0]][1] * S, ox + P2[g[1]][0] * S, oy + P2[g[1]][1] * S, Ad[g[0]][g[1]] ? "#ffb547" : "rgba(224,90,70,.85)", 3);
+      for (i = 0; i < 9; i++) { k.circle(ox + P2[i][0] * S, oy + P2[i][1] * S, 12, g.indexOf(i) >= 0 ? "#ffb547" : "#ece6da"); k.text(String(i), ox + P2[i][0] * S, oy + P2[i][1] * S + 4, { size: 11, color: "#14120f" }); }
+      k.text("current gate: " + (Ad[g[0]][g[1]] ? "adjacent" : "needs SWAPs"), W / 2, H * 0.94, { size: 12, color: Ad[g[0]][g[1]] ? "#ffb547" : "#e05a46" });
+    }
+  });
+})();
+</script>

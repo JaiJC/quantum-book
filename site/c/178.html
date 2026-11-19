@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>178. Quantum computing for drug discovery and protein folding (overview; detail in Part 5)</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="178">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>178</b> &nbsp;·&nbsp; Quantum computing for drug discovery and protein folding (overview; detail in Part 5)</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">178</div><div class="part">Part Four · Quantum biology</div><h1>Quantum computing for drug discovery and protein folding (overview; detail in Part 5)</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">In 2024 the Nobel Prize in Chemistry went to Demis Hassabis and John Jumper for AlphaFold, which predicts protein structures from sequence with near-experimental accuracy, and to David Baker for designing new proteins. Neither used a quantum computer. So where, if anywhere, would quantum computing help drug discovery? The honest answer is narrow but real: problems that are fundamentally about electrons in strongly correlated arrangements. This chapter maps the pipeline and marks where quantum methods might plug in; Part 5 goes into depth.</p>
+  <p>On the plate: the drug-discovery pipeline, stage by stage.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The pipeline</h2>
+  <p>Bringing a drug to market typically takes 10–15 years and costs on the order of a billion US dollars or more, most of it in clinical trials, and roughly nine in ten candidates entering human trials fail. The early, computational stages are: choosing a target protein; finding its structure; screening millions of molecules for ones that bind (hit discovery); optimizing hits for potency, selectivity and drug-like properties (lead optimization); and predicting absorption, distribution, metabolism, excretion and toxicity (ADMET). Computation already saves time at every stage, through physics-based simulation and, increasingly, machine learning. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Where would quantum help?</h2>
+  <p>Choose a stage: <button type="button" class="v" data-pick="st:struct">structure prediction</button> <button type="button" class="v" data-pick="st:screen">virtual screening</button> <button type="button" class="v" data-pick="st:bind">binding free energy</button> <button type="button" class="v" data-pick="st:metal">metalloenzymes and covalent drugs</button> <button type="button" class="v" data-pick="st:admet">ADMET</button> <button type="button" class="v" data-pick="st:fold">protein folding dynamics</button>. For each, the plate shows the classical state of the art, the quantum proposal and its status. The pattern: where the bottleneck is sampling, data or approximate force fields, classical methods and machine learning dominate. Where it is the electronic structure of a small, strongly correlated region, such as a metal cofactor in an enzyme active site, or a reaction pathway that DFT cannot rank reliably (Chapter 159), quantum computers could eventually give reference energies, plugged into QM/MM (Chapter 160) and used to train cheaper models. <span class="tag">Speculative</span> for practical advantage in drug discovery.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Honest expectations</h2>
+  <p>Binding affinity needs accuracy around 1 kcal/mol: that error changes a predicted dissociation constant by a factor of about 5. Electronic-structure error is only one contributor; conformational sampling, solvation and protein flexibility often matter more. Resource estimates (Chapter 143) put useful chemistry calculations at around a million physical qubits, and the most promising targets are small, hard active sites rather than whole drug–protein complexes. Alexander Dalzell and colleagues’ 2023 survey concludes that chemistry and materials remain the most credible application area, with end-to-end advantage not yet shown. Expect quantum computers, if they arrive, to be one specialized instrument among many in a pipeline dominated by classical computing and AI. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The drug-discovery pipeline and its costs, AlphaFold’s impact, which stages are electronic-structure problems, where a quantum subroutine would sit, the accuracy target for binding, and a realistic view of timelines.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Did AlphaFold use quantum mechanics?<span class="tap">tap</span></div><div class="a">No; it is a deep-learning model trained on known structures.</div></div>
+  <div class="qa"><div class="q">Which stages are electronic-structure problems?<span class="tap">tap</span></div><div class="a">Reaction mechanisms, metal cofactors, covalent binding, and accurate interaction energies of small regions.</div></div>
+  <div class="qa"><div class="q">What else limits binding predictions?<span class="tap">tap</span></div><div class="a">Conformational sampling, solvation and protein flexibility.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> At 298 K, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><mo>=</mo><mn>0.593</mn></mrow><annotation encoding="application/x-tex">RT = 0.593</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.593</span></span></span></span> kcal/mol. By what factor does a 1 kcal/mol error change the predicted dissociation constant, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>R</mi><mi>T</mi></mrow></msup></mrow><annotation encoding="application/x-tex">e^{1/RT}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">RT</span></span></span></span></span></span></span></span></span></span></span></span>?</p>
+    <form class="calc" data-answer="5.4" data-tol="0.1" data-ok="Yes: e^1.69 ≈ 5.4." data-hint="exp(1 / 0.593)."><span>factor ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Jumper et al., Nature 596, 583 (2021). Nobel Prize in Chemistry 2024. A. M. Dalzell et al., arXiv:2310.03011 (2023). S. McArdle et al., Rev. Mod. Phys. 92, 015003 (2020). Y. Cao et al., Chem. Rev. 119, 10856 (2019).</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 179</div><div class="t">Origin of life and quantum arguments</div><p style="text-align:left">Did quantum mechanics choose which way life's molecules twist?</p><p style="text-align:left"><a class="v" href="179.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="177.html">← 177. Quantum imaging and MRI physics</a><a href="../index.html">Contents</a><a href="179.html">179. Origin of life and quantum arguments →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, D = { struct: ["Structure prediction", "AlphaFold, cryo-EM, crystallography", "none needed", "Classical wins"], screen: ["Virtual screening", "docking, ML scoring of ~10⁹ molecules", "quantum ML / Grover search", "Speculative"], bind: ["Binding free energy", "free-energy perturbation, ~1 kcal/mol", "quantum energies within sampling", "Speculative"], metal: ["Metalloenzymes, covalent drugs", "DFT, CASSCF/DMRG; unreliable spin states", "phase estimation on active sites", "Most credible target"], admet: ["ADMET", "ML on assay data", "quantum ML", "Speculative"], fold: ["Folding dynamics", "MD, enhanced sampling, ML", "annealing / QAOA lattice models", "Speculative"] };
+  var order = ["struct", "screen", "bind", "metal", "admet", "fold"];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["The computational drug-discovery pipeline.", "Target → structure → hits → leads → ADMET.", "Chosen stage: classical state of the art and quantum status.", "1 kcal/mol ≈ 5× in K_d.", "Drug discovery."][beat]; },
+    readout: function () { if (beat === 2) { var d = D[Book.state.picks.st || "metal"]; return d[0] + " · classical: " + d[1] + " · quantum: " + d[2] + " · " + d[3]; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, sel = Book.state.picks.st || "metal";
+      if (beat === 3) { var A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 3], [0, 160], { xl: "energy error (kcal/mol)", yl: "K_d error factor" }); k.plot(A, function (e) { return Math.min(160, Math.exp(e / 0.593)); }, [0, 3], "#ffb547", 2.5); k.circle(A.X(1), A.Y(5.4), 6, "#ece6da"); return; }
+      order.forEach(function (key, j) { var x = W * (0.1 + (j % 3) * 0.3), y = H * (0.22 + Math.floor(j / 3) * 0.4), d = D[key], on = key === sel && beat === 2, col = d[3] === "Most credible target" ? "#ffb547" : d[3] === "Classical wins" ? "rgba(236,230,218,.6)" : "rgba(224,90,70,.7)"; k.rr(x, y, W * 0.24, H * 0.26, 10, on ? "#1d1a15" : "#14120f", on ? "#ffb547" : col); k.text(d[0], x + W * 0.12, y + H * 0.1, { size: 12, color: "#ece6da" }); k.text(d[3], x + W * 0.12, y + H * 0.18, { size: 10, color: col }); });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

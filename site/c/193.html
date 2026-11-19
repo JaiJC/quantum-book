@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>193. Protein folding: AlphaFold-style ML versus quantum approaches, honestly compared</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="193">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>193</b> &nbsp;·&nbsp; Protein folding: AlphaFold-style ML versus quantum approaches, honestly compared</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">193</div><div class="part">Part Five · Convergence</div><h1>Protein folding: AlphaFold-style ML versus quantum approaches, honestly compared</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">For fifty years the protein-folding problem, predicting a protein’s 3D structure from its amino-acid sequence, was one of biology’s grand challenges. In 2020 DeepMind’s AlphaFold 2 solved it for most single-chain proteins, at accuracy rivalling experiment, and its database now holds predicted structures for over 200 million proteins. No quantum computer was involved. Meanwhile, quantum-computing papers have folded tiny lattice proteins of ten residues. This chapter compares the two honestly.</p>
+  <p>On the plate: fold a lattice protein.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Lattice models</h2>
+  <p>The HP model, introduced by Ken Dill in 1985, reduces a protein to a chain of hydrophobic (H) and polar (P) beads on a square or cubic lattice. The chain cannot cross itself, and each pair of H beads that sit next to each other without being bonded lowers the energy by one unit, mimicking the hydrophobic effect (Chapter 156). Finding the lowest-energy fold is NP-hard, as Bonnie Berger and Tom Leighton proved in 1998 for the 3D model. The number of possible folds grows exponentially, about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.6</mn><msup><mn>4</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2.64^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord">2.6</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> self-avoiding walks on the square lattice. Lattice models capture the logic of folding, burying hydrophobic residues, but nothing of real protein geometry. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Fold it</h2>
+  <p>Choose a sequence: <button type="button" class="v" data-pick="q:a">HPHPPHHPHH</button> <button type="button" class="v" data-pick="q:b">HHPPHPPHPH</button>, and <button type="button" class="v" data-act="rand">try a random fold</button>. The plate searches all self-avoiding walks exhaustively to find the true optimum, and shows a random fold for comparison. For ten residues there are a few thousand distinct folds, trivial for a laptop. In 2021 Anton Robert, Panagiotis Barkoutsos, Stefan Woerner and Ivano Tavernelli at IBM encoded lattice folding of a ten-residue peptide on 22 qubits and folded a seven-residue chain on 9 qubits of real hardware, using a variational algorithm. It was a careful demonstration of an encoding, not an advantage: classical exact search solves these instantly. <span class="tag">Established</span> as a demonstration.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What is actually left</h2>
+  <p>AlphaFold 2 (John Jumper and colleagues, 2021) and AlphaFold 3 (2024), which also predicts complexes with DNA, RNA and small molecules, earned the 2024 Nobel Prize in Chemistry together with David Baker’s protein design. Open problems remain: dynamics and conformational change, intrinsically disordered proteins, the effects of mutations, and binding energies. Most of these are sampling or data problems, where classical computing and machine learning are advancing fast. A quantum computer could matter only where a step needs accurate electronic structure, such as a metal site or a reaction in an enzyme, not for folding itself. Quantum annealing and QAOA for lattice folding (Chapter 199) have shown no advantage. <span class="tag">Established</span> for AlphaFold’s success; <span class="tag">Speculative</span> for any quantum advantage in folding.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The HP lattice model and its NP-hardness, exhaustive folding of a short chain, the 2021 quantum lattice-folding demonstration and its limits, AlphaFold’s achievement, and where open problems in structural biology actually lie.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does the HP model reward?<span class="tap">tap</span></div><div class="a">Non-bonded contacts between hydrophobic beads.</div></div>
+  <div class="qa"><div class="q">Why is a 10-residue quantum fold not an advantage?<span class="tap">tap</span></div><div class="a">A laptop enumerates all its few thousand folds instantly.</div></div>
+  <div class="qa"><div class="q">What remains open after AlphaFold?<span class="tap">tap</span></div><div class="a">Dynamics, disorder, mutational effects and binding energies.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.63</mn><msup><mn>8</mn><mrow><mtext> </mtext><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">2.638^{\,n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord">2.63</span><span class="mord"><span class="mord">8</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span> self-avoiding walks of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> steps, roughly how many folds does a 20-residue chain (19 steps) have? Give <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">\log_{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+    <form class="calc" data-answer="8.0" data-tol="0.1" data-ok="Yes: about 10⁸, still enumerable; 100 residues would give about 10⁴², which is not." data-hint="19 × log₁₀ 2.638."><span>log₁₀ ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="log10 folds"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: K. A. Dill, Biochemistry 24, 1501 (1985). B. Berger and T. Leighton, J. Comput. Biol. 5, 27 (1998). A. Robert et al., npj Quantum Inf. 7, 38 (2021). J. Jumper et al., Nature 596, 583 (2021). J. Abramson et al., Nature 630, 493 (2024). Checked by the plate: exhaustive enumeration of self-avoiding walks.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 194</div><div class="t">Simulating tunneling in enzymes on a quantum device</div><p style="text-align:left">Watch a proton tunnel on a simulated quantum computer, then check it against the exact answer.</p><p style="text-align:left"><a class="v" href="194.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="192.html">← 192. Drug binding and docking: where quantum helps and where classical wins</a><a href="../index.html">Contents</a><a href="194.html">194. Simulating tunneling in enzymes on a quantum device →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, seqs = { a: "HPHPPHHPHH", b: "HHPPHPPHPH" }, best = null, rnd = null, count = 0, seed = 7;
+  function rr() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var D = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+  function energy(seq, path) { var m = {}, e = 0; path.forEach(function (p, i) { m[p[0] + "," + p[1]] = i; }); path.forEach(function (p, i) { if (seq[i] !== "H") return; D.forEach(function (d) { var j = m[(p[0] + d[0]) + "," + (p[1] + d[1])]; if (j !== undefined && j > i + 1 && seq[j] === "H") e--; }); }); return e; }
+  function solve() { var seq = seqs[Book.state.picks.q || "a"], n = seq.length, path = [[0, 0], [1, 0]], used = { "0,0": 1, "1,0": 1 }; best = { e: 1, p: null }; count = 0; (function rec() { if (path.length === n) { count++; var e = energy(seq, path); if (e < best.e) best = { e: e, p: path.slice() }; return; } var last = path[path.length - 1]; D.forEach(function (d) { var q = [last[0] + d[0], last[1] + d[1]], key = q[0] + "," + q[1]; if (used[key]) return; if (path.length === 2 && q[1] < 0) return; used[key] = 1; path.push(q); rec(); path.pop(); delete used[key]; }); })(); randomFold(); }
+  function randomFold() { var seq = seqs[Book.state.picks.q || "a"], n = seq.length; for (var tries = 0; tries < 500; tries++) { var path = [[0, 0]], used = { "0,0": 1 }, ok = true; for (var i = 1; i < n && ok; i++) { var last = path[i - 1], opts = D.map(function (d) { return [last[0] + d[0], last[1] + d[1]]; }).filter(function (q) { return !used[q[0] + "," + q[1]]; }); if (!opts.length) { ok = false; break; } var q = opts[Math.floor(rr() * opts.length)]; used[q[0] + "," + q[1]] = 1; path.push(q); } if (ok) { rnd = { p: path, e: energy(seq, path) }; return; } } }
+  function drawFold(k, f, ox, oy, s, seq) { var p = f.p, mn = [1e9, 1e9], mx = [-1e9, -1e9]; p.forEach(function (q) { mn[0] = Math.min(mn[0], q[0]); mn[1] = Math.min(mn[1], q[1]); mx[0] = Math.max(mx[0], q[0]); mx[1] = Math.max(mx[1], q[1]); }); var cx = ox - (mn[0] + mx[0]) / 2 * s, cy = oy + (mn[1] + mx[1]) / 2 * s; for (var i = 1; i < p.length; i++) k.line(cx + p[i - 1][0] * s, cy - p[i - 1][1] * s, cx + p[i][0] * s, cy - p[i][1] * s, "rgba(236,230,218,.5)", 2.5); p.forEach(function (q, i) { k.circle(cx + q[0] * s, cy - q[1] * s, s * 0.28, seq[i] === "H" ? "#ffb547" : "#14120f", seq[i] === "H" ? null : "#ece6da"); }); }
+  Book.plate({
+    init: function () { solve(); },
+    beat: function (i) { beat = i; },
+    pick: function () { solve(); },
+    act: function () { randomFold(); },
+    caption: function () { return ["HP lattice protein: H amber, P white.", "Hydrophobic contacts lower the energy.", "Optimal fold (left) vs a random fold (right).", "AlphaFold and what remains.", "Protein folding."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return seqs[Book.state.picks.q || "a"] + " · " + count + " folds searched · optimum E = " + best.e + " · random fold E = " + rnd.e; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, seq = seqs[Book.state.picks.q || "a"], s = Math.min(W, H) * 0.08;
+      if (beat === 3) { [["AlphaFold 2 (2021)", "static structures, ~200 M predicted"], ["AlphaFold 3 (2024)", "complexes with DNA, RNA, ligands"], ["open", "dynamics, disorder, mutations, binding"]].forEach(function (r, j) { k.text(r[0], W * 0.42, H * (0.3 + j * 0.2), { size: 13, color: j < 2 ? "#ffb547" : "#e05a46", align: "right" }); k.text(r[1], W * 0.46, H * (0.3 + j * 0.2), { size: 12, align: "left" }); }); return; }
+      drawFold(k, best, W * 0.28, H * 0.5, s, seq); if (beat === 2) drawFold(k, rnd, W * 0.74, H * 0.5, s, seq); else drawFold(k, rnd, W * 0.74, H * 0.5, s, seq);
+      k.text("optimum E = " + best.e, W * 0.28, H * 0.92, { size: 12, color: "#ffb547" }); k.text("random E = " + rnd.e, W * 0.74, H * 0.92, { size: 12, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

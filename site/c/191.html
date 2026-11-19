@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>191. Case study: cytochrome P450 and drug metabolism</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="191">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>191</b> &nbsp;·&nbsp; Case study: cytochrome P450 and drug metabolism</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">191</div><div class="part">Part Five · Convergence</div><h1>Case study: cytochrome P450 and drug metabolism</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">A handful of liver enzymes, the cytochrome P450 family, metabolize most of the drugs you will ever take; one of them, CYP3A4, handles about half. When two drugs compete for the same P450, or one switches it off, the other can build up to dangerous levels: the source of many drug–drug interactions. P450s do their chemistry with an iron atom held in a heme ring, passing through high-valent iron–oxo states whose spin configurations are delicate. They are a natural test case for quantum computing in pharmacology.</p>
+  <p>On the plate: where a quantum computer would overtake classical methods for P450 models.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The chemistry and the difficulty</h2>
+  <p>P450 activates molecular oxygen and inserts one oxygen atom into a carbon–hydrogen bond of the drug, making it more water-soluble so the body can excrete it. The key intermediate, “compound I”, an iron(IV)–oxo with a radical spread over the heme ring, has nearly degenerate spin states, and which spin surface the reaction follows (the “two-state reactivity” proposed by Sason Shaik and colleagues) affects rates and products. Different density functionals disagree on spin-state energy gaps by many kcal/mol, which is exactly the regime where multireference methods, and eventually quantum computers, are needed. <span class="tag">Established</span> as a hard problem.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The advantage frontier</h2>
+  <p>In 2022 Joshua Goings and colleagues at Google and Boehringer Ingelheim built a ladder of P450 active-space models of increasing size, solved the small ones with classical methods, and estimated quantum resources for the large ones, to locate where a fault-tolerant quantum computer would beat the best classical heuristics. The plate shows a schematic of that comparison: classical cost rising exponentially with active-space size at rate <span class="tangle" data-var="a" data-min="0.1" data-max="0.5" data-step="0.02" data-dec="2" data-value="0.25" data-px="40"><button type="button" data-de="-1" aria-label="Slower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Classical growth">0.25</span><button type="button" data-de="1" aria-label="Faster">›</button></span> decades per orbital, against a quantum cost that grows polynomially but starts high, here <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span> seconds. The crossover moves sharply with assumptions about classical growth, which is why the frontier is uncertain: better classical heuristics push it right. Their conclusion was that quantum advantage for such problems is plausible at active spaces beyond what classical methods can handle reliably, with error-corrected machines of millions of physical qubits. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>Predicting drug metabolism in practice depends on much more than the energy of compound I: which drug binds, in which orientation, how often, which site is oxidized, and how fast the products leave. Machine-learning models trained on metabolism data already predict likely sites of metabolism reasonably well. A quantum computer could sharpen the electronic-structure step, the spin-state energetics, but its value to drug development depends on the whole workflow, and on whether that step is the bottleneck for a given question. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why P450s matter for drug interactions, compound I and two-state reactivity, why DFT is unreliable for its spin states, the Goings et al. advantage-frontier study, and why the workflow, not one energy, determines value.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does P450 do to drugs?<span class="tap">tap</span></div><div class="a">Inserts an oxygen into a C–H bond, making the molecule easier to excrete.</div></div>
+  <div class="qa"><div class="q">Why are its spin states hard?<span class="tap">tap</span></div><div class="a">Nearly degenerate iron–oxo configurations on which density functionals disagree.</div></div>
+  <div class="qa"><div class="q">What moves the advantage frontier?<span class="tap">tap</span></div><div class="a">The growth rate of the best classical methods and the overhead of quantum hardware.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Classical time is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mn>0.25</mn><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">10^{0.25n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.25</span><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span> seconds for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> orbitals; quantum time is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span> seconds. At what <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> do they cross?</p>
+    <form class="calc" data-answer="16" data-tol="0.5" data-ok="Yes: 0.25n = 4 gives n = 16 in this toy model." data-hint="Solve 0.25n = 4."><span>n =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Orbitals"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: F. P. Guengerich, Chem. Res. Toxicol. 14, 611 (2001). S. Shaik et al., Chem. Rev. 110, 949 (2010). J. J. Goings et al., Proc. Natl Acad. Sci. USA 119, e2203533119 (2022). The frontier plot is a schematic with adjustable assumptions, not Goings et al.’s data.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 192</div><div class="t">Drug binding and docking: where quantum helps and where classical wins</div><p style="text-align:left">A 1.36 kcal/mol error changes predicted binding affinity by 10× ✓. Where does that error come from?</p><p style="text-align:left"><a class="v" href="192.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="190.html">← 190. Case study: nitrogenase (FeMoco) and nitrogen fixation</a><a href="../index.html">Contents</a><a href="192.html">192. Drug binding and docking: where quantum helps and where classical wins →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { a: 0.25 };
+  function qc(n) { return 4 + 4 * Math.log10(n / 16); }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["Heme iron with oxo ligand: compound I.", "O inserted into a C–H bond.", "log₁₀ time: classical (white) vs quantum (amber).", "Energy is one step of the workflow.", "Cytochrome P450."][beat]; },
+    readout: function () { if (beat === 2) { var cross = null; for (var n = 4; n <= 100; n += 0.5) if (V.a * n > qc(n)) { cross = n; break; } return "classical grows 10^" + V.a.toFixed(2) + " per orbital · crossover at " + (cross ? "≈ " + cross.toFixed(0) + " orbitals" : "> 100 orbitals"); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 0 || beat === 1 || beat === 4) { var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.3; for (var i = 0; i < 4; i++) { var a = i * Math.PI / 2 + Math.PI / 4; k.circle(cx + R * Math.cos(a), cy + R * Math.sin(a), 14, "rgba(236,230,218,.4)"); k.text("N", cx + R * Math.cos(a), cy + R * Math.sin(a) + 4, { size: 10, color: "#14120f" }); k.line(cx, cy, cx + R * Math.cos(a), cy + R * Math.sin(a), "rgba(236,230,218,.3)", 1.5); } k.circle(cx, cy, 16, "#e05a46"); k.text("Fe", cx, cy + 4, { size: 11, color: "#14120f" }); k.line(cx, cy, cx, cy - R * 0.6, "#ffb547", 3); k.circle(cx, cy - R * 0.6, 10, "#ffb547"); k.text("O", cx, cy - R * 0.6 + 4, { size: 10, color: "#14120f" }); return; }
+      if (beat === 3) { ["binding & pose", "site selectivity", "spin-state energetics", "kinetics & product release"].forEach(function (s, j) { var x = W * (0.13 + j * 0.25); k.rr(x - W * 0.11, H * 0.42, W * 0.22, H * 0.16, 8, "#14120f", j === 2 ? "#ffb547" : "rgba(236,230,218,.5)"); k.text(s, x, H * 0.51, { size: 10, color: j === 2 ? "#ffb547" : "#ece6da" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [4, 80], [0, 14], { xl: "active-space orbitals", yl: "log₁₀ seconds" }); k.plot(A, function (n) { return Math.min(14, V.a * n); }, [4, 80], "rgba(236,230,218,.8)", 2.5); k.plot(A, qc, [4, 80], "#ffb547", 2.5);
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

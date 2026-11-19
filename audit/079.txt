@@ -1,0 +1,7 @@
+== 079
+Q 1.777 1-loop nf5 alpha_s 0.2725
+Q 5 1-loop nf5 alpha_s 0.2028
+Q 91.19 1-loop nf5 alpha_s 0.118
+Q 1000 1-loop nf5 alpha_s 0.0877
+b0 nf=5 7.666666666666666 =23/3 7.666666666666667 nf=6 7
+string tension GeV/fm 0.9123162696401419 N 146153.0663963507 tonnes-force 14.898375779444516

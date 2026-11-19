@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A warm, wet cell destroys most quantum superpositions within femtoseconds: a molecule is struck by its neighbours some {{tex:10^{13}}} times a second. Erwin Schrödinger, in his 1944 lectures <em>What Is Life?</em>, already wondered how ordered quantum structure could persist in that chaos. The modern answer is that two kinds of quantum effect plausibly survive: tunnelling, which needs no long-lived coherence, and electron-spin coherence, which is weakly coupled to its surroundings. Most others do not.</p>
+  <p>On the plate: a survival map of quantum effects in biology.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Compare the clocks</h2>
+  <p>A quantum effect can do biological work only if it acts faster than the environment destroys it. Electronic coherence in a protein at 300 K typically decays within tens to hundreds of femtoseconds; vibrational coherence within picoseconds; electron spins, coupled to their surroundings only through weak magnetic interactions, can stay coherent for microseconds. The plate places each candidate effect by its decoherence time and by how long coherence must last for the effect to work. Above the diagonal, coherence is destroyed before the job is done; below it, the effect can survive. Tunnelling sits low because a particle crosses a barrier in femtoseconds or less. <span class="tag">Established</span> as a framework.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Why tunnelling is robust</h2>
+  <p>Tunnelling through a barrier does not require a superposition to last; it is a transition probability, like a reaction rate. The probability through a rectangular barrier of height {{tex:V}} and width {{tex:d}} is about {{tex:T\approx e^{-2d\sqrt{2mV}/\hbar}}} (Chapter 34). Choose the particle: <button type="button" class="v" data-pick="p:e">electron</button> <button type="button" class="v" data-pick="p:h">proton</button> <button type="button" class="v" data-pick="p:d">deuteron</button>, width <span class="tangle" data-var="d" data-min="0.1" data-max="20" data-step="0.1" data-dec="1" data-value="0.5" data-px="6"><button type="button" data-de="-1" aria-label="Narrower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Width Å">0.5</span><button type="button" data-de="1" aria-label="Wider">›</button></span> Å, height <span class="tangle" data-var="V" data-min="0.05" data-max="2" data-step="0.05" data-dec="2" data-value="0.50" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Height eV">0.50</span><button type="button" data-de="1" aria-label="Higher">›</button></span> eV. Through 0.5 Å at 0.5 eV, an electron passes 70% of the time, a proton {{tex:2\times10^{-7}}}. Electrons tunnel over 10–20 Å in proteins (Chapter 163); protons and hydride ions over fractions of an ångström (Chapter 164). The mass dependence gives tunnelling a fingerprint: large kinetic isotope effects when hydrogen is replaced by deuterium. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Why spin coherence can survive</h2>
+  <p>An electron spin’s energy in Earth’s 50 µT field is about {{tex:2\times10^{-7}k_BT}}. That sounds hopeless, but it cuts both ways: the spin is so weakly coupled to its surroundings that molecular collisions barely disturb it. Two electron spins created together in a <em>radical pair</em> can stay correlated for microseconds, long enough for a tiny magnetic field to steer a chemical outcome. This is the basis of the radical-pair mechanism (Chapter 168) and the leading theory of bird magnetoreception (Chapter 169). By contrast, the claims that long-lived <em>electronic</em> coherence drives photosynthesis (Chapter 167) or that coherence underlies cognition (Chapter 174) run against these clocks. Lambert and colleagues (2013) and Jianshu Cao and colleagues (2020) weigh the evidence. <span class="tag">Established</span> for the timescales; individual claims are labelled in their chapters.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A way to compare decoherence and functional timescales, why tunnelling survives warmth while long-lived electronic coherence usually does not, the strong mass dependence of tunnelling, and why weakly coupled spin coherence can survive in cells.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why doesn’t tunnelling need long coherence?<span class="tap">tap</span></div><div class="a">It is a transition probability across a barrier, not a superposition that must be maintained.</div></div>
+  <div class="qa"><div class="q">How long do electronic coherences last in proteins at 300 K?<span class="tap">tap</span></div><div class="a">Typically tens to hundreds of femtoseconds.</div></div>
+  <div class="qa"><div class="q">Why can spin coherence last microseconds?<span class="tap">tap</span></div><div class="a">Spins couple only weakly, magnetically, to their thermal surroundings.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A proton tunnels 0.5 Å through a 0.5 eV barrier with {{tex:T\approx1.8\times10^{-7}}}. What is {{tex:\log_{10}T}}?</p>
+    <form class="calc" data-answer="-6.74" data-tol="0.05" data-ok="Yes: about −6.7. The electron’s is −0.16: a factor of a million in probability from the mass alone." data-hint="log₁₀(1.8) − 7."><span>log₁₀ T =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="log10 T"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Schrödinger, What Is Life? (CUP, 1944). N. Lambert et al., Nat. Phys. 9, 10 (2013). J. Cao et al., Sci. Adv. 6, eaaz4888 (2020). Checked by code: T = 1.81 × 10⁻⁷ (proton) and 0.696 (electron) for 0.5 Å, 0.5 eV; Zeeman 2.2 × 10⁻⁷ k_BT.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { d: 0.5, V: 0.5 }, hb = 1.054571817e-34, eV = 1.602176634e-19, M = { e: 9.109e-31, h: 1.67262e-27, d: 3.3436e-27 };
+  function T() { var m = M[Book.state.picks.p || "h"], k = Math.sqrt(2 * m * V.V * eV) / hb; return Math.exp(-2 * k * V.d * 1e-10); }
+  var eff = [["long-lived excitonic coherence, photosynthesis", -13.5, -12, 1], ["electron tunnelling, proteins", -13, -15, 0], ["proton tunnelling, enzymes", -12.5, -14, 0], ["radical-pair spin dynamics", -5.7, -6.3, 0], ["coherence in neurons (Orch-OR)", -13, -1.6, 1], ["vision: retinal isomerization", -13, -13.7, 0]];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Decoherence time vs coherence time needed.", "Below the diagonal: survives.", "Tunnelling probability through a barrier.", "Spin: tiny energy, weak coupling, long coherence.", "What survives at room temperature."][beat]; },
+    readout: function () { if (beat === 2) { var t = T(); return ({ e: "electron", h: "proton", d: "deuteron" })[Book.state.picks.p || "h"] + " · " + V.d.toFixed(1) + " Å · " + V.V.toFixed(2) + " eV · T ≈ " + t.toExponential(2) + " (log₁₀ " + Math.log10(t).toFixed(2) + ")"; } if (beat === 3) return "Zeeman energy in 50 µT ≈ 2 × 10⁻⁷ k_BT · radical-pair spin coherence: ~µs"; return ""; },
+    set: function (n, v) { V[n] = v; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 3], [-12, 0], { xl: "barrier width (Å)", yl: "log₁₀ T" }); ["e", "h", "d"].forEach(function (p, j) { var m = M[p], kk = Math.sqrt(2 * m * V.V * eV) / hb; k.plot(A, function (d) { return Math.max(-12, -2 * kk * d * 1e-10 / Math.LN10); }, [0, 3], ["#ece6da", "#ffb547", "rgba(224,90,70,.85)"][j], p === (Book.state.picks.p || "h") ? 3 : 1.5, 200); }); k.text("electron (white) · proton (amber) · deuteron (red)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [-15, 0], [-15, 0], { xl: "log₁₀ decoherence time (s)", yl: "log₁₀ coherence needed (s)" }); k.plot(A, function (x) { return x; }, [-15, 0], "rgba(224,90,70,.5)", 1.2); eff.forEach(function (e) { var ok = e[2] <= e[1] + 0.5; k.circle(A.X(e[1]), A.Y(e[2]), 6, ok ? "#ffb547" : "rgba(224,90,70,.9)"); k.text(e[0], A.X(e[1]) + 9, A.Y(e[2]) + 4, { size: 10, color: ok ? "#ece6da" : "#b9b2a5", align: "left" }); });
+    }
+  });
+})();
+</script>

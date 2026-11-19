@@ -1,0 +1,72 @@
+<section class="beat" data-beat="0">
+  <p class="drop">All of particle physics comes down to one question, asked again and again with bigger machines: if these particles go in, what comes out, and how often? The answer is a single object, the S-matrix, short for scattering matrix. Every cross section at the Large Hadron Collider, every decay rate in the Particle Data Group’s tables, is one of its entries. This chapter defines it and shows how to compute it.</p>
+  <p>On the plate: two particles go in from the left and right; what comes out depends on how strongly they interact.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>In and out</h2>
+  <p>Long before a collision, the incoming particles are far apart and move freely: an <em>in</em> state {{tex:|i\rangle}}. Long after, the products are far apart again: an <em>out</em> state {{tex:|f\rangle}}. The S-matrix gives the amplitude for one to become the other, and is unitary, since probabilities must add to one (Chapter 48). Taking out the part where nothing happens and the delta function that enforces energy-momentum conservation leaves the <em>invariant amplitude</em> {{tex:\mathcal M}}:</p>
+  <div class="eq">{{texd:\langle f|S|i\rangle = \langle f|i\rangle + i(2\pi)^4\delta^4\!\Big(\sum p_f - \sum p_i\Big)\,\mathcal M_{fi}}}</div>
+  <p>All the physics is in {{tex:\mathcal M}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>A toy theory</h2>
+  <p>The simplest interacting field theory adds one term to the free scalar Lagrangian of Chapter 58:</p>
+  <div class="eq">{{texd:\mathcal L = \tfrac12(\partial\phi)^2 - \tfrac12m^2\phi^2 - \frac{\lambda}{4!}\phi^4}}</div>
+  <p>The {{tex:\phi^4}} term lets four quanta meet at a point: two in, two out. It is a toy, but the Higgs field has exactly such a self-interaction. Set the coupling {{tex:\lambda =}} <span class="tangle" data-var="lam" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="1" data-px="8"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Coupling">1.0</span><button type="button" data-de="1" aria-label="Stronger">›</button></span> and watch the machine. To lowest order {{tex:\mathcal M = -\lambda}}, the same for every angle, so the outgoing pair flies off in all directions equally, and the fraction that scatters grows as {{tex:\lambda^2}}.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The Dyson series</h2>
+  <p>In the interaction picture of Chapter 45, states change only because of the interaction {{tex:H_I = \int\frac{\lambda}{4!}\phi^4\,d^3x}}. The S-matrix is the total evolution from the distant past to the distant future, written with time ordering {{tex:T}}, which puts later operators to the left:</p>
+  <div class="eq">{{texd:\begin{gathered}S = T\exp\!\left(-i\int_{-\infty}^{\infty}H_I(t)\,dt\right)\\ = 1 - i\!\int\! H_I + \frac{(-i)^2}{2!}\iint T\{H_IH_I\} + \cdots\end{gathered}}}</div>
+  <p>Each term is one more power of {{tex:\lambda}}. For weak couplings, the first few terms are enough. The plate shows how the orders build up: the first gives direct scattering; the second, scattering through an intermediate pair. Chapter 63 shows how to evaluate each term, and Chapter 64 how to draw it.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>From fields to amplitudes</h2>
+  <p>What can actually be calculated are averages of time-ordered products of fields in the vacuum, the <em>correlation functions</em> {{tex:\langle\Omega|T\{\phi(x_1)\cdots\phi(x_n)\}|\Omega\rangle}}. In 1955 Harry Lehmann, Kurt Symanzik and Wolfhart Zimmermann showed how to read {{tex:\mathcal M}} off them: Fourier transform, and pick out the parts that behave like free particles on each external leg. This is the <em>LSZ reduction formula</em>. In practice it says: compute correlation functions with Feynman diagrams, then cut off the external propagators. The details are long; the idea is that scattering amplitudes are what remains when the incoming and outgoing particles are treated as free.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>In and out states, the S-matrix and the invariant amplitude {{tex:\mathcal M}}, φ⁴ theory with its tree-level amplitude {{tex:-\lambda}}, the Dyson series, and the LSZ idea of reading amplitudes from correlation functions.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why must S be unitary?<span class="tap">tap</span></div><div class="a">The probabilities of all possible outcomes must add to one.</div></div>
+  <div class="qa"><div class="q">What is the tree-level amplitude in φ⁴ theory?<span class="tap">tap</span></div><div class="a">𝓜 = −λ, the same at every angle.</div></div>
+  <div class="qa"><div class="q">What does the LSZ formula connect?<span class="tap">tap</span></div><div class="a">Vacuum correlation functions of fields and S-matrix elements between particle states.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For φ⁴ at tree level, identical particles, the total cross section is {{tex:\sigma = \lambda^2/(32\pi s)}}. With {{tex:\lambda = 0.5}} and {{tex:s = 1}} (natural units), what is {{tex:\sigma}}?</p>
+    <form class="calc" data-answer="0.002487" data-tol="0.00003" data-ok="Yes: 0.25/(32π) ≈ 0.00249." data-hint="0.25 ÷ 100.53."><span>σ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0000" aria-label="Cross section"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: F. J. Dyson, Phys. Rev. 75, 486 (1949). H. Lehmann, K. Symanzik and W. Zimmermann, Nuovo Cimento 1, 205 (1955). M. E. Peskin and D. V. Schroeder, ch. 4. M. Srednicki, Quantum Field Theory, ch. 5. Checked by code: σ = λ²/(32πs) = 0.002487 for λ = 0.5, s = 1; Dyson coefficients (−i)ⁿ/n!.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { lam: 1 }, seed = 9, ev = [];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Two in, what out?", "In state, collision, out state.", "φ⁴ scattering machine.", "Orders of the Dyson series.", "Correlation functions to amplitudes.", "The S-matrix."][beat]; },
+    readout: function () { if (beat === 2) { var p = Math.min(1, 0.12 * V.lam * V.lam); return "λ = " + V.lam.toFixed(1) + " · scattering probability ∝ λ² ≈ " + (100 * p).toFixed(0) + "% (illustrative)"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, i;
+      if (beat === 3) { var labels = ["1", "−i∫H_I", "(−i)²/2! ∫∫T{H_I H_I}"]; for (i = 0; i < 3; i++) { var x = W * (0.18 + i * 0.32); k.text(labels[i], x, H * 0.18, { size: 13, color: "#ffb547" }); if (i === 0) { k.line(x - 40, H * 0.4, x + 40, H * 0.4, "#ece6da", 2); k.line(x - 40, H * 0.6, x + 40, H * 0.6, "#ece6da", 2); } if (i === 1) { k.line(x - 40, H * 0.35, x + 40, H * 0.65, "#ece6da", 2); k.line(x - 40, H * 0.65, x + 40, H * 0.35, "#ece6da", 2); k.circle(x, H * 0.5, 5, "#ffb547"); } if (i === 2) { k.line(x - 50, H * 0.35, x - 20, H * 0.5, "#ece6da", 2); k.line(x - 50, H * 0.65, x - 20, H * 0.5, "#ece6da", 2); c.strokeStyle = "#ece6da"; c.beginPath(); c.arc(x, H * 0.5, 20, 0, 2 * Math.PI); c.stroke(); k.line(x + 20, H * 0.5, x + 50, H * 0.35, "#ece6da", 2); k.line(x + 20, H * 0.5, x + 50, H * 0.65, "#ece6da", 2); k.circle(x - 20, H * 0.5, 5, "#ffb547"); k.circle(x + 20, H * 0.5, 5, "#ffb547"); } k.text(["no scattering", "order λ", "order λ²"][i], x, H * 0.82, { size: 12, color: "#b9b2a5" }); } return; }
+      if (beat === 4) { k.rr(W * 0.1, H * 0.3, W * 0.32, H * 0.3, 8, "#14120f", "rgba(236,230,218,.4)"); k.text("⟨Ω|T{φ…φ}|Ω⟩", W * 0.26, H * 0.46, { size: 14 }); k.line(W * 0.44, H * 0.45, W * 0.56, H * 0.45, "#ffb547", 2); k.text("LSZ", W * 0.5, H * 0.42, { size: 12, color: "#ffb547" }); k.rr(W * 0.58, H * 0.3, W * 0.32, H * 0.3, 8, "#14120f", "#ffb547"); k.text("𝓜", W * 0.74, H * 0.47, { size: 22, color: "#ffb547" }); return; }
+      var T = 2600, t = (now % T) / T, n = Math.floor(now / T);
+      if (!ev[n % 50]) { var s = rnd() < Math.min(1, 0.12 * V.lam * V.lam), a = rnd() * Math.PI; ev[n % 50] = [s, a]; if (n % 50 === 49) ev = []; }
+      var e = ev[n % 50] || [false, 0], sc = beat === 2 ? e[0] : true, ang = beat === 2 ? e[1] : 0.6, R = Math.min(W, H) * 0.42;
+      k.circle(cx, cy, R, null, "rgba(236,230,218,.18)", 1.5); k.line(cx - R * 1.1, cy, cx + R * 1.1, cy, "rgba(236,230,218,.12)", 1, [4, 4]); k.text("detector", cx, cy - R - 10, { size: 11, color: "#7c766b" });
+      if (t < 0.5) { var d = R * (1 - 2 * t); k.circle(cx - d, cy, 6, "#ffb547"); k.circle(cx + d, cy, 6, "#ffb547"); }
+      else { var d2 = R * (2 * t - 1); if (sc) { k.circle(cx + d2 * Math.cos(ang), cy - d2 * Math.sin(ang), 6, "#ece6da"); k.circle(cx - d2 * Math.cos(ang), cy + d2 * Math.sin(ang), 6, "#ece6da"); } else { k.circle(cx + d2, cy, 6, "#ffb547"); k.circle(cx - d2, cy, 6, "#ffb547"); } }
+      k.glow(cx, cy, 30, "rgba(255,181,71," + (0.06 + 0.06 * V.lam).toFixed(2) + ")");
+    }
+  });
+})();
+</script>

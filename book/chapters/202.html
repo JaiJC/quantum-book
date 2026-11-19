@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Of everything in Part 5, quantum sensing is the part already reaching patients. Magnetoencephalography (MEG) measures the femtotesla magnetic fields of brain activity; for fifty years it needed superconducting sensors in a helmet of liquid helium, rigid and expensive. In 2018 Elena Boto, Matthew Brookes and colleagues at Nottingham showed a wearable MEG using optically pumped magnetometers, quantum sensors that work at room temperature, recording brain activity while people nodded, drank and played with a ball. For a biomedical engineer, this is the closest bridge from quantum physics to a career.</p>
+  <p>On the plate: how close a sensor sits to the brain, and why it matters.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Optically pumped magnetometers</h2>
+  <p>Shine circularly polarized laser light through a small glass cell of alkali vapour (rubidium or caesium). The light pumps the atoms’ spins into alignment (optical pumping, a consequence of angular-momentum selection rules, Chapter 41). A magnetic field makes the spins precess, changing how much light passes; measuring the transmitted light measures the field. In the <em>spin-exchange-relaxation-free</em> regime, achieved by heating the cell and operating near zero field, sensitivity reaches a few femtotesla per root hertz. Unlike superconducting sensors (SQUIDs), OPMs need no cryogenics and can sit directly on the scalp. They still need a magnetically shielded room and active field nulling. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Standoff</h2>
+  <p>A cortical source lies about <span class="tangle" data-var="d" data-min="10" data-max="60" data-step="1" data-value="30" data-px="2"><button type="button" data-de="-1" aria-label="Shallower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Depth mm">30</span><button type="button" data-de="1" aria-label="Deeper">›</button></span> mm below the scalp. A SQUID sensor sits behind the dewar wall, about <span class="tangle" data-var="sq" data-min="10" data-max="50" data-step="1" data-value="25" data-px="2"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="SQUID standoff mm">25</span><button type="button" data-de="1" aria-label="Farther">›</button></span> mm off the scalp, and the helmet fits average heads, so children sit farther away still; an OPM sits about 6 mm off. The field of a current source falls roughly as the inverse square of distance at these ranges, so moving the sensor closer raises the signal by the square of the distance ratio, and improves spatial resolution. Boto and colleagues reported OPM signals several times larger than SQUID-MEG, with the subject free to move. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Cells, metabolism, and the clinic</h2>
+  <p>NV-diamond sensors (Chapter 176) measure fields from single cells and magnetic nanoparticles, and nanodiamond thermometers measure temperature inside cells. Hyperpolarized carbon-13 MRI (Chapter 177) images metabolism in real time; Sarah Nelson and colleagues first imaged pyruvate-to-lactate conversion in human prostate cancer in 2013. Each faces the same path to the clinic: cost, shielding and robustness outside physics labs, and clinical validation trials showing that patients benefit, which take years. OPM-MEG is now in clinical research for epilepsy and paediatric neurology. For a biomedical engineer, the skills that matter are instrumentation, signal processing, shielding design, and clinical study design. <span class="tag">Established</span> technology; clinical adoption emerging.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>How optically pumped magnetometers work, the spin-exchange-relaxation-free regime, why sensor standoff controls MEG signal, wearable MEG, NV single-cell sensing, hyperpolarized metabolic MRI, and the path to clinical use.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does optical pumping do?<span class="tap">tap</span></div><div class="a">Aligns atomic spins using polarized light, so field-induced precession can be read optically.</div></div>
+  <div class="qa"><div class="q">Why are OPMs better placed than SQUIDs?<span class="tap">tap</span></div><div class="a">They need no cryogenics, so they sit millimetres from the scalp.</div></div>
+  <div class="qa"><div class="q">What limits clinical adoption?<span class="tap">tap</span></div><div class="a">Cost, shielding, robustness and clinical validation.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A source 30 mm deep is 55 mm from a SQUID and 36 mm from an OPM. With an inverse-square falloff, by what factor is the OPM signal larger?</p>
+    <form class="calc" data-answer="2.33" data-tol="0.05" data-ok="Yes: (55/36)² ≈ 2.3, and more for superficial sources and children." data-hint="(55/36)²."><span>factor ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Boto et al., Nature 555, 657 (2018). I. K. Kominis et al., Nature 422, 596 (2003) (SERF magnetometry). S. J. Nelson et al., Sci. Transl. Med. 5, 198ra108 (2013). M. J. Brookes et al., Trends Neurosci. 45, 621 (2022) (OPM-MEG review). The inverse-square model is a simplification for illustration.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { d: 30, sq: 25 }, opm = 6;
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Signal vs distance from source.", "Pump, precess, probe.", "SQUID (white) vs OPM (amber) distances.", "From sensor to clinic.", "Sensing in medicine."][beat]; },
+    readout: function () { var ds = V.d + V.sq, d0 = V.d + opm; return "source " + V.d + " mm deep · SQUID " + ds + " mm away · OPM " + d0 + " mm away · OPM signal ×" + Math.pow(ds / d0, 2).toFixed(2); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { k.rr(W * 0.4, H * 0.35, W * 0.2, H * 0.3, 10, "rgba(255,181,71,.12)", "#ffb547"); k.line(W * 0.1, H * 0.5, W * 0.4, H * 0.5, "rgba(224,90,70,.8)", 3); k.line(W * 0.6, H * 0.5, W * 0.9, H * 0.5, "rgba(224,90,70,.5)", 3); for (var i = 0; i < 6; i++) { var x = W * (0.43 + (i % 3) * 0.06), y = H * (0.42 + Math.floor(i / 3) * 0.14), a = now / 600 + i; k.line(x, y, x + 10 * Math.sin(a), y - 10 * Math.cos(a), "#ece6da", 2); } k.text("laser → Rb vapour → detector", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { ["OPM-MEG: epilepsy, paediatrics", "NV: single cells, nanoparticles", "hyperpolarized ¹³C MRI: metabolism", "barriers: cost, shielding, trials"].forEach(function (s, j) { k.text(s, W / 2, H * (0.22 + j * 0.17), { size: 13, color: j === 3 ? "#e05a46" : "#ece6da" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [10, 110], [0, 1.05], { xl: "distance from source (mm)", yl: "relative signal" }); k.plot(A, function (r) { return Math.min(1, Math.pow(V.d / r, 2)); }, [V.d, 110], "rgba(236,230,218,.6)", 2, 300); var ds = V.d + V.sq, d0 = V.d + opm; k.circle(A.X(ds), A.Y(Math.pow(V.d / ds, 2)), 7, "#ece6da"); k.text("SQUID", A.X(ds), A.Y(Math.pow(V.d / ds, 2)) - 12, { size: 11 }); k.circle(A.X(d0), A.Y(Math.pow(V.d / d0, 2)), 7, "#ffb547"); k.text("OPM", A.X(d0), A.Y(Math.pow(V.d / d0, 2)) - 12, { size: 11, color: "#ffb547" }); k.line(A.X(V.d), A.Y(0), A.X(V.d), A.Y(1.05), "rgba(224,90,70,.5)", 1); k.text("scalp", A.X(V.d) + 4, A.Y(1), { size: 10, color: "#e05a46", align: "left" });
+    }
+  });
+})();
+</script>

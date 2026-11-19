@@ -1,0 +1,87 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Place two uncharged, perfectly flat metal plates a micrometre apart in a vacuum. Nothing is between them, nothing is on them, and yet they are pushed together. In 1948 Hendrik Casimir predicted the force and its size exactly; in 1997 Steve Lamoreaux measured it to within 5%. The usual story is that the vacuum between the plates holds fewer modes of the electromagnetic field than the vacuum outside. This chapter quantizes that field, and then asks whether the usual story is right.</p>
+  <p>On the plate: two plates, and the field modes that fit between them.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Too many components</h2>
+  <p>The electromagnetic field is described by the four-potential {{tex:A^\mu}} with Lagrangian {{tex:-\tfrac14F_{\mu\nu}F^{\mu\nu}}} (Chapter 58). Four components, but light has only two polarizations. The extra two are not physical: changing {{tex:A_\mu \to A_\mu + \partial_\mu\chi}} leaves {{tex:F}} and all physics unchanged (Chapter 42). To quantize, fix the freedom with a <em>gauge</em>. In the Coulomb gauge, {{tex:\nabla\cdot\mathbf A = 0}}, and {{tex:A^0}} is fixed by the charges; what remains are two transverse components for each wave vector.</p>
+  <p>Each wave vector and polarization is a harmonic oscillator, quantized exactly as in Chapter 60. One quantum is one photon: energy {{tex:\hbar\omega = \hbar c|\mathbf k|}}, momentum {{tex:\hbar\mathbf k}}, two possible polarizations. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two polarizations</h2>
+  <p>A massless particle moving along {{tex:\mathbf k}} can have its spin only along or against its motion, helicity {{tex:\pm1}}: a spin-1 particle loses the zero state when it has no mass. Choose <button type="button" class="v" data-pick="pol:lin">linear</button> or <button type="button" class="v" data-pick="pol:circ">circular</button> polarization to see the two basis choices. A massive spin-1 particle, like the W and Z, has three states; Chapter 77 shows where the third comes from.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Counting modes between plates</h2>
+  <p>Between perfectly conducting plates a distance {{tex:d}} apart, the field must vanish at the metal, so only waves with {{tex:k_z = n\pi/d}} fit, like the box of Chapter 33. Outside, every {{tex:k_z}} is allowed. Both regions have infinite zero-point energy (Chapter 60), but the difference between them, carefully computed, is finite. The result is an attractive pressure</p>
+  <div class="eq">{{texd:\frac{F}{A} = -\frac{\pi^2\hbar c}{240\,d^4}}}</div>
+  <p>Set the gap to <span class="tangle" data-var="d" data-min="0.1" data-max="5" data-step="0.1" data-dec="1" data-unit=" µm" data-value="1" data-px="8"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gap">1.0 µm</span><button type="button" data-de="1" aria-label="Farther">›</button></span>. At 1 µm the pressure is 1.3 mPa, a hundred-millionth of atmospheric pressure; at 100 nm it is 13 Pa, and at that scale it makes the tiny moving parts of microelectromechanical devices stick.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The mode sum involves {{tex:\sum n^3}}, which diverges. Regularized with a smooth cutoff or with the Riemann zeta function, {{tex:\zeta(-3) = 1/120}}, the cutoff-dependent part cancels between inside and outside, and {{tex:\pi^2/240}} remains. The same trick famously assigns {{tex:\zeta(-1) = -1/12}} to {{tex:1 + 2 + 3 + \cdots}}.</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Measured</h2>
+  <p>Parallel plates are nearly impossible to align, so Lamoreaux in 1997 used a lens-shaped surface near a flat plate on a torsion pendulum, at separations of 0.6 to 6 µm, and found the predicted force within 5%. Umar Mohideen’s group, with an atomic-force microscope, soon reached 1%. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Is it really the vacuum?</h2>
+  <p>Robert Jaffe pointed out in 2005 that the Casimir force can be derived without mentioning zero-point energy at all: it is the relativistic, retarded version of the van der Waals attraction between the fluctuating charges in the two metals. His calculation shows the force depends on the fine-structure constant and vanishes if the plates’ coupling to light is turned off, which a pure vacuum-energy effect would not. So the Casimir effect is consistent with vacuum energy but does not prove it exists. Whether vacuum energy is “real”, independent of the matter it interacts with, is argued over, and it bears directly on the cosmological constant problem of Chapter 60. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Gauge freedom and gauge fixing, the photon as a quantum of the electromagnetic field with two polarizations, the Casimir force and its {{tex:1/d^4}} law, the experiments, and Jaffe’s caution about what it proves.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the photon have only two polarizations?<span class="tap">tap</span></div><div class="a">Two of A^μ’s four components are gauge freedom; a massless spin-1 particle has only helicity ±1.</div></div>
+  <div class="qa"><div class="q">How does the Casimir pressure scale with gap?<span class="tap">tap</span></div><div class="a">As 1/d⁴: halving the gap multiplies it by 16.</div></div>
+  <div class="qa"><div class="q">Does the Casimir effect prove the vacuum has energy?<span class="tap">tap</span></div><div class="a">Not uniquely; it can be derived as a retarded van der Waals force between the plates’ charges.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The Casimir pressure at 1 µm is 1.30 mPa. What is it at 0.5 µm, in mPa?</p>
+    <form class="calc" data-answer="20.8" data-tol="0.2" data-ok="Yes: 1.30 × 2⁴ = 20.8 mPa." data-alt="5.2~The force goes as 1/d⁴, not 1/d²." data-hint="Halving d multiplies the pressure by 16."><span>F/A =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Pressure in mPa"><span>mPa</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H. B. G. Casimir, Proc. K. Ned. Akad. Wet. 51, 793 (1948). S. K. Lamoreaux, Phys. Rev. Lett. 78, 5 (1997). U. Mohideen and A. Roy, Phys. Rev. Lett. 81, 4549 (1998). R. L. Jaffe, Phys. Rev. D 72, 021301 (2005). Checked by code: π²ħc/(240d⁴) = 13.0 Pa at 0.1 µm, 1.30 mPa at 1 µm; ζ(−1) = −1/12, ζ(−3) = 1/120.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { d: 1 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Two plates and the modes between them.", "Two transverse field components per wave vector.", "Polarization basis: " + (Book.state.picks.pol === "circ" ? "circular." : "linear."), "Casimir pressure against gap.", "Sphere and plate, as measured.", "Fluctuating charges in the plates.", "Casimir."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) { var P = 1.3001e-3 / Math.pow(V.d, 4); return "d = " + V.d.toFixed(1) + " µm · pressure " + (P >= 1 ? P.toFixed(2) + " Pa" : (P * 1e3).toPrecision(3) + " mPa"); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat === 0 || beat === 6 || beat === 1) {
+        var gap = W * 0.12 + W * 0.25 * Math.min(1, V.d / 5), xL = W / 2 - gap / 2, xR = W / 2 + gap / 2;
+        c.fillStyle = "#b9b2a5"; c.fillRect(xL - 10, H * 0.15, 10, H * 0.7); c.fillRect(xR, H * 0.15, 10, H * 0.7);
+        for (var n = 1; n <= 4; n++) k.plot({ X: function (x) { return xL + (x / Math.PI) * gap; }, Y: function (y) { return H * (0.2 + n * 0.15) - y * 14; } }, function (x) { return Math.sin(n * x) * Math.cos(now / 400 * n); }, [0, Math.PI], "#ffb547", 1.8, 80);
+        for (i = 0; i < 6; i++) { var y0 = H * (0.2 + i * 0.12), kk = 0.6 + i * 0.37; k.plot({ X: function (x) { return x; }, Y: function (y) { return y0 - y * 10; } }, function (x) { return Math.sin(kk * x / 12 + now / 500); }, [W * 0.02, xL - 14], "rgba(236,230,218,.3)", 1, 80); k.plot({ X: function (x) { return x; }, Y: function (y) { return y0 - y * 10; } }, function (x) { return Math.sin(kk * x / 12 + now / 500); }, [xR + 14, W * 0.98], "rgba(236,230,218,.3)", 1, 80); }
+        k.text("only nπ/d fits between", W / 2, H * 0.94, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 2) {
+        var circ = Book.state.picks.pol === "circ", t = now / 500, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.3;
+        k.circle(cx, cy, R, null, "rgba(236,230,218,.2)"); k.text("k (out of the page)", cx, cy + R + 24, { size: 12, color: "#7c766b" });
+        if (circ) { k.line(cx, cy, cx + R * Math.cos(t), cy - R * Math.sin(t), "#ffb547", 3); k.line(cx, cy, cx + R * 0.6 * Math.cos(-t), cy - R * 0.6 * Math.sin(-t), "rgba(224,90,70,.8)", 2); k.text("helicity +1 and −1", cx, H * 0.08, { size: 12, color: "#b9b2a5" }); }
+        else { k.line(cx - R * Math.cos(t), cy, cx + R * Math.cos(t), cy, "#ffb547", 3); k.line(cx, cy - R * 0.6 * Math.sin(t), cx, cy + R * 0.6 * Math.sin(t), "rgba(224,90,70,.8)", 2); k.text("x and y polarizations", cx, H * 0.08, { size: 12, color: "#b9b2a5" }); }
+        return;
+      }
+      if (beat === 3) {
+        A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [-1, 0.7], [-5, 2], { xl: "log₁₀ gap, µm", yl: "log₁₀ pressure, Pa" });
+        k.plot(A, function (x) { return Math.log10(1.3001e-3) - 4 * x; }, [-1, 0.7], "#ffb547", 2.5); k.circle(A.X(Math.log10(V.d)), A.Y(Math.log10(1.3001e-3 / Math.pow(V.d, 4))), 6, "#ece6da"); k.text("slope −4", A.X(0.3), A.Y(-2.5), { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) { var cx2 = W / 2; c.fillStyle = "#b9b2a5"; c.fillRect(W * 0.15, H * 0.7, W * 0.7, 10); c.strokeStyle = "#b9b2a5"; c.lineWidth = 3; c.beginPath(); c.arc(cx2, H * 0.7 - 14 - W * 0.6, W * 0.6, 0.3 * Math.PI + 0.2, 0.7 * Math.PI - 0.2); c.stroke(); k.text("0.6–6 µm", cx2 + 30, H * 0.67, { size: 12, align: "left", color: "#ffb547" }); return; }
+      if (beat === 5) { for (i = 0; i < 8; i++) { var y = H * (0.18 + i * 0.09), p = Math.sin(now / 300 + i * 1.3); k.circle(W * 0.3 + 8 * p, y, 5, "#ffb547"); k.circle(W * 0.7 + 8 * Math.sin(now / 300 + i * 1.3 + 0.4), y, 5, "#ffb547"); k.line(W * 0.3 + 8 * p, y, W * 0.7, y, "rgba(255,181,71,.12)", 1); } k.text("correlated fluctuations of charges, not of empty space", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

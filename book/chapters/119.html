@@ -1,0 +1,61 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Grover’s search, Hamiltonian simulation, matrix inversion and phase estimation were discovered separately, over twenty years. In 2019 András Gilyén, Yuan Su, Guang Hao Low and Nathan Wiebe showed they are all one algorithm with different settings: choose a polynomial, and a sequence of simple phase rotations applies that polynomial to the singular values of a matrix. The framework, the quantum singular value transformation, has become the common language of quantum algorithms.</p>
+  <p>On the plate: a sequence of phase angles and the polynomial it produces.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Quantum signal processing</h2>
+  <p>Take a single-qubit “signal” rotation that encodes a number {{tex:x\in[-1, 1]}}:</p>
+  <div class="eq">{{texd:W(x) = \begin{pmatrix}x & i\sqrt{1-x^2}\\ i\sqrt{1-x^2} & x\end{pmatrix}}}</div>
+  <p>Interleave it with phase rotations {{tex:e^{i\phi_kZ}}}: {{tex:e^{i\phi_0Z}\prod_{k=1}^dW(x)e^{i\phi_kZ}}}. The top-left entry is a polynomial {{tex:P(x)}} of degree {{tex:d}}. Low and Chuang proved in 2016–17 that, with appropriate phases, {{tex:P}} can be essentially any polynomial of definite parity with {{tex:|P| \le 1}} on {{tex:[-1, 1]}}. All phases zero give the Chebyshev polynomial {{tex:T_d(x) = \cos(d\arccos x)}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Shape a polynomial</h2>
+  <p>Choose the degree {{tex:d =}} <span class="tangle" data-var="d" data-min="1" data-max="9" data-step="1" data-value="3" data-px="14"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Degree">3</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and a phase pattern: <button type="button" class="v" data-pick="p:zero">all zero</button>, <button type="button" class="v" data-pick="p:alt">alternating ±π/4</button>, <button type="button" class="v" data-pick="p:ends">π/4 at the ends</button>, or set a common phase <span class="tangle" data-var="phi" data-min="-1.6" data-max="1.6" data-step="0.05" data-dec="2" data-value="0" data-px="5"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Common phase">0.00</span><button type="button" data-de="1" aria-label="More">›</button></span> added to the middle phases. The plate computes the 2 × 2 product exactly and plots {{tex:\mathrm{Re}\,P(x)}} and {{tex:|P(x)|^2}}. Finding phases for a target polynomial, such as a step function for search or {{tex:1/x}} for inversion, is a classical preprocessing problem with efficient, stable algorithms.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Block encodings and QSVT</h2>
+  <p>To act on a matrix {{tex:A}} rather than a number, embed it in the top-left block of a larger unitary, a <em>block encoding</em>, {{tex:U = \begin{pmatrix}A/\alpha & \cdot\\ \cdot & \cdot\end{pmatrix}}}, built for instance by linear combinations of unitaries (Chapter 118). Alternating {{tex:U}}, {{tex:U^\dagger}} and phase rotations on the ancilla then applies {{tex:P}} to every singular value of {{tex:A/\alpha}} at once. That is the QSVT. Its special cases: {{tex:P}} close to a step function gives search and amplitude amplification; {{tex:P(x) \approx e^{-ixt}}} gives Hamiltonian simulation with optimal cost; {{tex:P(x) \approx 1/x}} on the relevant range gives matrix inversion (Chapter 120); and phase estimation can be phrased the same way. John Martyn and colleagues called it a “grand unification” in 2021.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Quantum signal processing and the polynomials it produces, Chebyshev polynomials from zero phases, block encodings, the quantum singular value transformation, and how search, simulation and inversion are special cases.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does QSP with all phases zero produce?<span class="tap">tap</span></div><div class="a">The Chebyshev polynomial T_d(x) = cos(d arccos x).</div></div>
+  <div class="qa"><div class="q">What is a block encoding?<span class="tap">tap</span></div><div class="a">A unitary whose top-left block is the matrix of interest, scaled to norm at most 1.</div></div>
+  <div class="qa"><div class="q">Which polynomial gives matrix inversion?<span class="tap">tap</span></div><div class="a">An approximation to 1/x on the range of singular values.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With all phases zero and {{tex:d = 3}}, {{tex:P(x) = T_3(x) = 4x^3 - 3x}}. What is {{tex:P(0.5)}}?</p>
+    <form class="calc" data-answer="-1" data-tol="0.005" data-ok="Yes: 4(0.125) − 1.5 = −1, which is cos(3 × 60°)." data-hint="4 × 0.125 − 3 × 0.5."><span>P(0.5) =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Value"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. H. Low and I. L. Chuang, Phys. Rev. Lett. 118, 010501 (2017). A. Gilyén, Y. Su, G. H. Low and N. Wiebe, Proc. 51st ACM STOC, 193 (2019). J. M. Martyn, Z. M. Rossi, A. K. Tan and I. L. Chuang, PRX Quantum 2, 040203 (2021). L. Lin, arXiv:2201.08309. Checked by code: QSP with zero phases equals T_d(x) to 10⁻¹⁶ for d = 1, 2, 3, 5; the plate computes the full 2 × 2 product.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { d: 3, phi: 0 };
+  function phases() { var d = V.d, p = Book.state.picks.p || "zero", ph = []; for (var i = 0; i <= d; i++) { var v = p === "alt" ? (i % 2 ? -Math.PI / 4 : Math.PI / 4) : p === "ends" ? ((i === 0 || i === d) ? Math.PI / 4 : 0) : 0; if (i > 0 && i < d) v += V.phi; ph.push(v); } return ph; }
+  function P(x, ph) { var s = Math.sqrt(Math.max(0, 1 - x * x)); var a = [Math.cos(ph[0]), Math.sin(ph[0])], b = [0, 0], c = [0, 0], d = [Math.cos(ph[0]), -Math.sin(ph[0])];
+    function cm(u, v) { return [u[0] * v[0] - u[1] * v[1], u[0] * v[1] + u[1] * v[0]]; } function ad(u, v) { return [u[0] + v[0], u[1] + v[1]]; }
+    for (var k = 1; k < ph.length; k++) { var w00 = [x, 0], w01 = [0, s]; var na = ad(cm(a, w00), cm(b, w01)), nb = ad(cm(a, w01), cm(b, w00)), nc = ad(cm(c, w00), cm(d, w01)), nd = ad(cm(c, w01), cm(d, w00)); var e = [Math.cos(ph[k]), Math.sin(ph[k])], ec = [Math.cos(ph[k]), -Math.sin(ph[k])]; a = cm(na, e); b = cm(nb, ec); c = cm(nc, e); d = cm(nd, ec); }
+    return a; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["A polynomial from phase angles.", "Signal rotation W(x).", "Re P(x) (amber) and |P(x)|² (white), degree " + V.d + ".", "Search, simulation, inversion as polynomials.", "QSVT."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var ph = phases(), p = P(0.5, ph); return "phases (" + ph.map(function (q) { return q.toFixed(2); }).join(", ") + ") · P(0.5) = " + p[0].toFixed(3) + (Math.abs(p[1]) > 1e-9 ? (p[1] >= 0 ? " + " : " − ") + Math.abs(p[1]).toFixed(3) + "i" : ""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 0 || beat === 2 || beat === 4) { var ph = phases(); A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [-1, 1], [-1.1, 1.1], { xl: "signal x", zeroY: true }); k.plot(A, function (x) { var p = P(x, ph); return p[0] * p[0] + p[1] * p[1]; }, [-1, 1], "rgba(236,230,218,.6)", 1.8, 400); k.plot(A, function (x) { return P(x, ph)[0]; }, [-1, 1], "#ffb547", 2.5, 400); return; }
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [-1, 1], [-1.1, 1.1], { xl: "x", zeroY: true }); k.plot(A, function (x) { return x; }, [-1, 1], "#ffb547", 2.5); k.plot(A, function (x) { return Math.sqrt(1 - x * x); }, [-1, 1], "rgba(236,230,218,.6)", 2); k.text("diagonal x (amber), off-diagonal √(1 − x²) (white)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [0.05, 1], [-1.1, 1.1], { xl: "singular value σ", zeroY: true }); k.plot(A, function (x) { return Math.tanh(20 * (x - 0.3)); }, [0.05, 1], "#ffb547", 2.2, 300); k.plot(A, function (x) { return Math.cos(6 * x); }, [0.05, 1], "rgba(236,230,218,.6)", 1.8, 300); k.plot(A, function (x) { return Math.min(1.1, 0.12 / x); }, [0.05, 1], "rgba(224,90,70,.85)", 1.8, 300); k.text("step (search) · cos(σt) (simulation) · 1/σ (inversion)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

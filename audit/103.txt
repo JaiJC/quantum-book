@@ -1,0 +1,6 @@
+== 103
+branch 0 0 prob 0.25 fidelity 1.0
+branch 0 1 prob 0.25 fidelity 1.0
+branch 1 0 prob 0.25 fidelity 1.0
+branch 1 1 prob 0.25 fidelity 1.0
+classical limit 2/3; Ren 2017 fidelity 0.80+-0.01

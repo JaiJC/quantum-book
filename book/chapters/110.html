@@ -1,0 +1,65 @@
+<section class="beat" data-beat="0">
+  <p class="drop">You are handed a sealed box computing a function {{tex:f}} on {{tex:n}}-bit strings, promised to be either constant (same output for every input) or balanced (0 for exactly half the inputs). To be <em>certain</em> which, a classical computer may need to ask {{tex:2^{n-1} + 1}} questions. A quantum computer needs one. That is the Deutsch–Jozsa algorithm, the first clear quantum speedup. It is also a cautionary tale: a classical computer that is allowed to guess, and be wrong one time in a million, needs only about twenty questions. Separations in this oracle model are real, but you must ask exactly what they are separating.</p>
+  <p>On the plate: an oracle box and a quantum circuit that queries it once.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Oracles and phase kickback</h2>
+  <p>A classical function is made reversible as {{tex:U_f|x\rangle|y\rangle = |x\rangle|y\oplus f(x)\rangle}} (Chapter 94). Put the output qubit in {{tex:|-\rangle = (|0\rangle - |1\rangle)/\sqrt2}}: flipping it multiplies it by −1, so</p>
+  <div class="eq">{{texd:U_f|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle}}</div>
+  <p>The function value has been <em>kicked back</em> into a phase on the input. Apply this to a superposition of all inputs and every {{tex:x}} gets its own sign, in a single query. That is the engine of every algorithm in this part. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Deutsch–Jozsa</h2>
+  <p>Hadamards on all {{tex:n}} qubits make the uniform superposition; one oracle call adds the signs; Hadamards again; measure. The amplitude of {{tex:|0\cdots0\rangle}} is the average of {{tex:(-1)^{f(x)}}}: ±1 if {{tex:f}} is constant, exactly 0 if balanced. Choose an oracle: <button type="button" class="v" data-pick="f:c0">constant 0</button>, <button type="button" class="v" data-pick="f:c1">constant 1</button>, <button type="button" class="v" data-pick="f:b1">balanced (first bit)</button>, <button type="button" class="v" data-pick="f:b2">balanced (parity)</button>. The plate runs the circuit with three input qubits.</p>
+  <p>The honest comparison: a deterministic classical algorithm needs {{tex:2^{n-1} + 1}} queries in the worst case; a randomized one that checks {{tex:k}} random inputs is wrong with probability at most {{tex:2^{1-k}}}. So the exponential gap is only against exact classical algorithms. David Deutsch posed the one-bit version in 1985; Deutsch and Richard Jozsa generalized it in 1992. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Bernstein–Vazirani</h2>
+  <p>Now {{tex:f(x) = s\cdot x \bmod 2}} for a hidden string {{tex:s}}. Classically, each query reveals at most one bit of {{tex:s}}, so you need {{tex:n}} queries, even with randomness. The same circuit, one query, outputs {{tex:s}} exactly, because the Hadamard transform of {{tex:(-1)^{s\cdot x}}} is a single spike at {{tex:s}}. Hide <span class="tangle" data-var="s" data-min="0" data-max="7" data-step="1" data-value="5" data-px="12"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Hidden string">5</span><button type="button" data-de="1" aria-label="More">›</button></span> (as three bits) and run it. Ethan Bernstein and Umesh Vazirani introduced it in 1993; their recursive version gave the first super-polynomial oracle separation against randomized classical computers.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What oracle separations mean</h2>
+  <p>Query complexity counts calls to a black box and ignores everything else. It allows clean, provable separations, which are otherwise rare in complexity theory. But real problems don’t come in black boxes: someone must build the oracle as a circuit, and if the function is simple enough to write down, a classical computer may exploit its structure directly. Oracle separations show what quantum mechanics <em>can</em> do; whether a real problem benefits is a separate question, asked again in every chapter that follows.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Reversible oracles and phase kickback, the Deutsch–Jozsa algorithm and its honest comparison with randomized classical methods, the Bernstein–Vazirani algorithm, and what query separations do and do not prove.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does phase kickback do?<span class="tap">tap</span></div><div class="a">Turns a function value f(x) into a sign (−1)^f(x) on the input register.</div></div>
+  <div class="qa"><div class="q">Does Deutsch–Jozsa beat randomized classical algorithms exponentially?<span class="tap">tap</span></div><div class="a">No; a few random queries succeed with tiny error.</div></div>
+  <div class="qa"><div class="q">How many classical queries does Bernstein–Vazirani need?<span class="tap">tap</span></div><div class="a">n, one per bit of s; the quantum algorithm needs one.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:n = 10}} input bits, how many queries does a deterministic classical algorithm need in the worst case for Deutsch–Jozsa?</p>
+    <form class="calc" data-answer="513" data-tol="0.01" data-ok="Yes: 2⁹ + 1 = 513. One more than half the inputs." data-hint="2^(n−1) + 1."><span>queries =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Queries"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. Deutsch, Proc. R. Soc. A 400, 97 (1985). D. Deutsch and R. Jozsa, Proc. R. Soc. A 439, 553 (1992). R. Cleve, A. Ekert, C. Macchiavello and M. Mosca, Proc. R. Soc. A 454, 339 (1998). E. Bernstein and U. Vazirani, SIAM J. Comput. 26, 1411 (1997). R. de Wolf, Quantum Computing: Lecture Notes. Checked by code: Bernstein–Vazirani recovers every s for n = 4 in one query; Deutsch–Jozsa outputs 000 with probability 1 for constant and 0 for balanced oracles (Book.QSim).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { s: 5 };
+  var F = { c0: function () { return 0; }, c1: function () { return 1; }, b1: function (x) { return (x >> 2) & 1; }, b2: function (x) { return (x ^ (x >> 1) ^ (x >> 2)) & 1; } };
+  function run(f) { var S = Book.QSim(3); for (var q = 0; q < 3; q++) S.g("H", q); for (var x = 0; x < 8; x++) if (f(x)) { S.re[x] = -S.re[x]; S.im[x] = -S.im[x]; } for (q = 0; q < 3; q++) S.g("H", q); return S.probs(); }
+  function bv() { var s = V.s; return run(function (x) { var b = x & s, p = 0; while (b) { p ^= b & 1; b >>= 1; } return p; }); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["An oracle and a one-query circuit.", "|x⟩|−⟩ → (−1)^f(x) |x⟩|−⟩.", "Deutsch–Jozsa output, 3 qubits.", "Bernstein–Vazirani: hidden s = " + V.s.toString(2).padStart(3, "0") + ".", "Queries are not the whole story.", "Oracles."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var p = run(F[Book.state.picks.f || "b1"]); return "P(000) = " + p[0].toFixed(3) + " → " + (p[0] > 0.99 ? "constant" : "balanced"); } if (beat === 3) { var q = bv(), m = q.indexOf(Math.max.apply(null, q)); return "measured " + m.toString(2).padStart(3, "0") + " with probability " + q[m].toFixed(3); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat === 2 || beat === 3 || beat === 0 || beat === 5) { var p = beat === 3 ? bv() : run(F[Book.state.picks.f || "b1"]); A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 8], [0, 1.05], { yl: "probability" }); for (i = 0; i < 8; i++) { k.rr(A.X(i + 0.15), A.Y(p[i]), A.X(0.7) - A.X(0), A.Y(0) - A.Y(p[i]), 3, "#ffb547"); k.text(i.toString(2).padStart(3, "0"), A.X(i + 0.5), A.Y(0) + 16, { size: 11, color: "#b9b2a5" }); } return; }
+      if (beat === 1) { var x0 = W * 0.1, y1 = H * 0.4, y2 = H * 0.6; k.line(x0, y1, W * 0.9, y1, "rgba(236,230,218,.5)", 2); k.line(x0, y2, W * 0.9, y2, "rgba(236,230,218,.5)", 2); k.rr(W * 0.4, y1 - 24, W * 0.2, y2 - y1 + 48, 8, "#14120f", "#ffb547"); k.text("U_f", W / 2, H / 2 + 5, { size: 16, color: "#ffb547" }); k.text("|x⟩", x0 - 4, y1 - 8, { size: 13, align: "left" }); k.text("|−⟩", x0 - 4, y2 - 8, { size: 13, align: "left" }); k.text("(−1)^f(x) |x⟩", W * 0.9, y1 - 8, { size: 13, align: "right", color: "#ffb547" }); k.text("|−⟩", W * 0.9, y2 - 8, { size: 13, align: "right" }); return; }
+      if (beat === 4) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [1, 20], [0, 1], { xl: "random classical queries k", yl: "worst-case error" }); k.plot(A, function (kk) { return Math.min(1, Math.pow(2, 1 - kk)); }, [1, 20], "#ffb547", 2.5); }
+    }
+  });
+})();
+</script>

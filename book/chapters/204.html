@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">No quantum computer will replace a drug-discovery or materials pipeline. The realistic picture, already being built, is a quantum processor inside a supercomputer, called for one narrow task while classical machine learning, density functional theory and molecular dynamics do everything else. In 2025 a team from IBM and RIKEN ran such a workflow on iron–sulfur clusters, the same kind of active sites as in FeMoco, with up to 77 qubits on IBM’s Heron processor and Japan’s Fugaku supercomputer doing the heavy classical lifting. This chapter shows how the pieces fit, and what the 2025 result did and did not show.</p>
+  <p>On the plate: a pipeline you assemble, with its costs.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Funnels</h2>
+  <p>Discovery pipelines are funnels: cheap methods screen millions of candidates; progressively more expensive and accurate methods examine fewer. Machine learning trained on past data scores a million molecules in hours; docking or semi-empirical methods trim to thousands; DFT examines hundreds; correlated methods, or one day a quantum subroutine, examine a handful of hard cases; free-energy simulations rank the finalists; and the lab tests a few. A quantum step makes sense only where it is the accuracy bottleneck for the few cases that reach it. <span class="tag">Established</span> as practice.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Build a pipeline</h2>
+  <p>Include stages: ML pre-screen <button type="button" class="v" data-pick="ml:on">on</button> <button type="button" class="v" data-pick="ml:off">off</button>; DFT refinement <button type="button" class="v" data-pick="dft:on">on</button> <button type="button" class="v" data-pick="dft:off">off</button>; quantum active-space step <button type="button" class="v" data-pick="q:on">on</button> <button type="button" class="v" data-pick="q:off">off</button>; free-energy ranking <button type="button" class="v" data-pick="fe:on">on</button> <button type="button" class="v" data-pick="fe:off">off</button>. The plate tracks candidates and compute cost through each stage from a library of a million molecules, with illustrative costs per molecule. Notice that without the ML screen, every later stage is swamped; that the quantum step’s cost is small in total because few candidates reach it; and that its value depends on whether the candidates at that stage have hard electronic structure. <span class="tag">Established</span> as a design pattern; numbers are illustrative.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Sample-based quantum diagonalization</h2>
+  <p>In 2025 Javier Robledo-Moreno, Antonio Mezzacapo and colleagues at IBM, with RIKEN collaborators, published in <em>Science Advances</em> a method called sample-based quantum diagonalization (SQD): the quantum processor samples electronic configurations from a circuit approximating the ground state, and a supercomputer diagonalizes the Hamiltonian in the subspace spanned by the sampled configurations, correcting noise along the way. They treated [2Fe-2S] and [4Fe-4S] cluster models with up to 77 qubits. It is the largest quantum-centric chemistry workflow to date. A co-author was quoted as saying the result does not yet show that it beats any classical algorithm, and comparisons against selected CI and DMRG on the same problems remain under discussion. <span class="tag">Established</span> as a workflow; <span class="tag">Debated</span> for advantage.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Discovery funnels, where a quantum subroutine would sit, how stage ordering controls cost, the 2025 sample-based quantum diagonalization of iron–sulfur clusters, and why benchmarks against the best classical methods are the open question.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why put ML first in a funnel?<span class="tap">tap</span></div><div class="a">It is cheapest per molecule and removes most candidates before expensive stages.</div></div>
+  <div class="qa"><div class="q">What does SQD use the quantum processor for?<span class="tap">tap</span></div><div class="a">Sampling important electronic configurations; classical diagonalization does the rest.</div></div>
+  <div class="qa"><div class="q">What remains contested about the 2025 result?<span class="tap">tap</span></div><div class="a">Whether it outperforms the best classical methods, such as selected CI and DMRG.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An ML screen keeps the top 1% of a million molecules. How many go on?</p>
+    <form class="calc" data-answer="10000" data-tol="1" data-ok="Yes: 10,000, and DFT on 10,000 is affordable where DFT on a million is not." data-hint="0.01 × 10⁶."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Molecules"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Robledo-Moreno et al., Sci. Adv. 11, eadu9991 (2025). R. Santagati et al., Nat. Phys. 20, 549 (2024). Stage costs in the plate are illustrative orders of magnitude.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, S = [["ML pre-screen", "ml", 0.01, 1e-3], ["DFT refinement", "dft", 0.02, 10], ["quantum active space", "q", 0.1, 1e4], ["free-energy ranking", "fe", 0.2, 1e3]];
+  function run() { var n = 1e6, cost = 0, rows = []; S.forEach(function (s) { var on = (Book.state.picks[s[1]] || "on") === "on"; if (on) { var c = n * s[3]; cost += c; rows.push([s[0], n, c]); n = Math.max(1, Math.round(n * s[2])); } else rows.push([s[0] + " (off)", n, 0]); }); return { rows: rows, cost: cost, out: n }; }
+  function fmt(h) { return h >= 1e6 ? (h / 1e6).toFixed(1) + " M CPU-h" : h >= 1e3 ? (h / 1e3).toFixed(1) + " k CPU-h" : h.toFixed(0) + " CPU-h"; }
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["A discovery funnel.", "Cheap and wide to expensive and narrow.", "Candidates entering each stage and its compute cost.", "Quantum samples, supercomputer diagonalizes.", "Hybrid pipelines."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var r = run(); return "total " + fmt(r.cost) + " · " + r.out + " candidates to the lab"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 3) { k.rr(W * 0.08, H * 0.35, W * 0.3, H * 0.3, 10, "#14120f", "#ffb547"); k.text("quantum: sample configurations", W * 0.23, H * 0.5, { size: 11, color: "#ffb547" }); k.rr(W * 0.62, H * 0.35, W * 0.3, H * 0.3, 10, "#14120f", "rgba(236,230,218,.6)"); k.text("HPC: diagonalize subspace", W * 0.77, H * 0.5, { size: 11 }); var t = (now / 1500) % 1; k.glow(W * (0.38 + 0.24 * t), H * 0.45, 8, "rgba(255,181,71,.8)"); k.glow(W * (0.62 - 0.24 * t), H * 0.55, 8, "rgba(236,230,218,.6)"); return; }
+      var r = run(); r.rows.forEach(function (row, j) { var y = H * (0.1 + j * 0.2), w = W * 0.75 * Math.max(0.02, Math.log10(Math.max(1, row[1])) / 6); k.rr(W / 2 - w / 2, y, w, H * 0.12, 4, row[2] ? "rgba(255,181,71,.7)" : "rgba(236,230,218,.15)"); k.text(row[0] + " · " + Math.round(row[1]).toLocaleString("en") + (row[2] ? " · " + fmt(row[2]) : ""), W / 2, y + H * 0.08, { size: 11, color: row[2] ? "#14120f" : "#b9b2a5" }); });
+    }
+  });
+})();
+</script>

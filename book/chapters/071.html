@@ -1,0 +1,72 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Heat water in a sealed vessel to 374 °C under 218 atmospheres and the difference between liquid and vapour vanishes. Near that critical point, the density fluctuates on every scale at once, and the way it does so is described by exactly the same numbers as a magnet losing its magnetism, or a binary alloy unmixing. The microscopic details are completely different; the behaviour is identical. Kenneth Wilson explained why in 1971, with an idea that also explains why quantum field theory works at all: the renormalization group.</p>
+  <p>On the plate: a magnet, simulated spin by spin, and the same magnet seen with blurrier and blurrier eyes.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Throw away the small scales</h2>
+  <p>Wilson’s idea: describe a system at some resolution, then average away the finest details and ask what theory describes what is left. For a lattice of spins, group them into 2 × 2 blocks and replace each block by its majority vote. The new lattice has the same kind of description, with different couplings. Repeat. The couplings <em>flow</em>.</p>
+  <p>Set the temperature to <span class="tangle" data-var="T" data-min="0.6" data-max="1.6" data-step="0.02" data-dec="2" data-value="1" data-px="5"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature over critical">1.00</span><button type="button" data-de="1" aria-label="Hotter">›</button></span> times the critical temperature of the two-dimensional Ising model (Chapter 19) and <button type="button" class="v" data-act="go">simulate</button>. Below it, blocking makes the picture more and more uniform: the flow goes to perfect order. Above, it becomes random noise: the flow goes to disorder. At exactly 1.00, every level looks statistically like the last. That is a <em>fixed point</em>. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>An exact flow in one dimension</h2>
+  <p>For a chain of spins with coupling {{tex:K = J/k_BT}}, summing out every second spin gives a chain with half as many spins and a new coupling:</p>
+  <div class="eq">{{texd:\tanh K' = \tanh^2K}}</div>
+  <p>Since {{tex:\tanh K < 1}}, {{tex:K'}} is always smaller than {{tex:K}}. Every starting point flows to {{tex:K = 0}}, infinite temperature, so a one-dimensional magnet never orders at any nonzero temperature, a result Ising found in 1925 by other means. The plate iterates the map from {{tex:K = 1}}: 0.66, 0.35, 0.11, 0.01.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Relevant and irrelevant</h2>
+  <p>Near a fixed point, small changes to the couplings either grow under the flow, <em>relevant</em>; shrink, <em>irrelevant</em>; or stay put to first order, <em>marginal</em>. Temperature is relevant at the critical point, which is why you must tune it exactly. Almost every microscopic detail, the shape of the molecules, the lattice structure, is irrelevant: it shrinks away. That is <em>universality</em>. Water near its critical point and a uniaxial magnet share the critical exponents of the three-dimensional Ising class, such as {{tex:\beta \approx 0.326}}, because they flow to the same fixed point.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The same story in particle physics</h2>
+  <p>Run the flow backwards and you get the quantum field theories of Chapter 70. The running of {{tex:\alpha}} is a renormalization group flow, with energy in place of block size. Renormalizable couplings are the marginal and relevant ones; non-renormalizable terms are irrelevant, which is why low-energy physics can ignore them. And the reason a field theory with a cutoff gives cutoff-independent predictions is the same reason boiling water ignores its molecules. Wilson received the 1982 Nobel Prize for this unification of critical phenomena and quantum fields.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Coarse-graining and flowing couplings, block spins and fixed points, the exact one-dimensional decimation, relevant, marginal and irrelevant directions, universality, and the link to running couplings in field theory.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What is a fixed point of the RG?<span class="tap">tap</span></div><div class="a">A set of couplings that coarse-graining leaves unchanged: the system looks the same at every scale.</div></div>
+  <div class="qa"><div class="q">Why doesn’t a 1D Ising chain order?<span class="tap">tap</span></div><div class="a">tanh K′ = tanh²K always shrinks K, so every flow ends at infinite temperature.</div></div>
+  <div class="qa"><div class="q">What is universality?<span class="tap">tap</span></div><div class="a">Different systems flowing to the same fixed point share critical exponents, because their differences are irrelevant.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Starting from {{tex:K = 1}}, one decimation gives {{tex:\tanh K' = \tanh^21}}. What is {{tex:K'}}?</p>
+    <form class="calc" data-answer="0.6625" data-tol="0.005" data-ok="Yes: tanh 1 = 0.7616, squared 0.580, artanh gives 0.6625." data-hint="tanh 1 ≈ 0.7616."><span>K′ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="New coupling"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: K. G. Wilson, Phys. Rev. B 4, 3174 (1971); K. G. Wilson and J. Kogut, Phys. Rep. 12, 75 (1974). M. Kardar, Statistical Physics of Fields (2007). E. Ising, Z. Phys. 31, 253 (1925). Checked by code: decimation flow 1 → 0.6625 → 0.3501 → 0.1137 → 0.0128; 2D Ising K_c = 0.4407.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T: 1 }, N = 64, s = null, seed = 13, Kc = 0.4406868;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function init() { s = new Int8Array(N * N); for (var i = 0; i < N * N; i++) s[i] = rnd() < 0.5 ? 1 : -1; }
+  function sweep(n) { var K = Kc / V.T; for (var q = 0; q < n * N * N; q++) { var i = Math.floor(rnd() * N), j = Math.floor(rnd() * N), id = i * N + j, nb = s[((i + 1) % N) * N + j] + s[((i + N - 1) % N) * N + j] + s[i * N + (j + 1) % N] + s[i * N + (j + N - 1) % N], dE = 2 * K * s[id] * nb; if (dE <= 0 || rnd() < Math.exp(-dE)) s[id] = -s[id]; } }
+  function block(a, n) { var m = n / 2, b = new Int8Array(m * m); for (var i = 0; i < m; i++) for (var j = 0; j < m; j++) { var t = a[2 * i * n + 2 * j] + a[2 * i * n + 2 * j + 1] + a[(2 * i + 1) * n + 2 * j] + a[(2 * i + 1) * n + 2 * j + 1]; b[i * m + j] = t > 0 ? 1 : t < 0 ? -1 : (rnd() < 0.5 ? 1 : -1); } return b; }
+  function draw(k, a, n, x0, y0, S) { var c = k.ctx, p = S / n; for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) { c.fillStyle = a[i * n + j] > 0 ? "#ffb547" : "#14120f"; c.fillRect(x0 + j * p, y0 + i * p, p + 0.3, p + 0.3); } k.rr(x0, y0, S, S, 2, null, "rgba(236,230,218,.3)"); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; init(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    act: function () { init(); sweep(30); },
+    caption: function () { return ["A 2D Ising magnet and its block-spin images.", "T = " + V.T.toFixed(2) + " T_c: 64², 32², 16², 8².", "1D decimation: tanh K′ = tanh²K.", "Flows near a fixed point.", "Energy as the scale of a flow.", "Coarse-graining."][beat]; },
+    readout: function () { if (beat === 2) return "K: 1 → 0.663 → 0.350 → 0.114 → 0.013"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat <= 1 || beat === 5) {
+        if (!s) init(); sweep(beat === 1 ? 2 : 1);
+        var S = Math.min(W * 0.21, H * 0.6), a = s, n = N; for (var l = 0; l < 4; l++) { draw(k, a, n, W * 0.03 + l * (S + W * 0.03), (H - S) / 2, S); k.text(n + "²", W * 0.03 + l * (S + W * 0.03) + S / 2, (H + S) / 2 + 18, { size: 11, color: "#7c766b" }); if (l < 3) { a = block(a, n); n = n / 2; } }
+        return;
+      }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 1.6], [0, 1.6], { xl: "K", yl: "K′" }); k.plot(A, function (x) { var t = Math.tanh(x); return Math.atanh(Math.min(0.999999, t * t)); }, [0, 1.6], "#ffb547", 2.5); k.plot(A, function (x) { return x; }, [0, 1.6], "rgba(236,230,218,.35)", 1); var K = 1; c.strokeStyle = "#ece6da"; c.lineWidth = 1.5; c.beginPath(); c.moveTo(A.X(K), A.Y(0)); for (var i = 0; i < 5; i++) { var K2 = Math.atanh(Math.pow(Math.tanh(K), 2)); c.lineTo(A.X(K), A.Y(K2)); c.lineTo(A.X(K2), A.Y(K2)); K = K2; } c.stroke(); return; }
+      if (beat === 3 || beat === 4) { var cx = W / 2, cy = H / 2; k.circle(cx, cy, 7, "#ffb547"); for (var j = 0; j < 12; j++) { var ang = j / 12 * 2 * Math.PI, r0 = 30, r1 = Math.min(W, H) * 0.4, t = ((now / 2500) + j / 12) % 1, rel = Math.abs(Math.cos(ang)) > 0.7, r = rel ? r0 + t * (r1 - r0) : r1 - t * (r1 - r0); k.circle(cx + r * Math.cos(ang), cy + r * Math.sin(ang), 3.5, rel ? "#e05a46" : "#ece6da"); } k.text("red: relevant (flows away) · white: irrelevant (flows in)", cx, H * 0.95, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

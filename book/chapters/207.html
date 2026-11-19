@@ -1,0 +1,84 @@
+<section class="beat" data-beat="0">
+  <p class="drop">This is the project that ties Part 5 together: take a molecule from a biological question to a quantum-computed answer and back, doing every step yourself. The plate runs the whole chain for the hydrogen molecule, the smallest case where every number can be checked. Then the chapter gives you code to repeat it with real tools and a slightly bigger, biologically flavoured molecule, and a rubric for the two-page report you write at the end. It is educational: it shows no quantum advantage, and claims none.</p>
+  <p>On the plate: the pipeline, one step at a time.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The seven steps</h2>
+  <p>(1) <strong>Question and molecule</strong>: a bond-breaking energy, the simplest model of what enzymes do to bonds. (2) <strong>Integrals</strong>: STO-3G integrals (Chapter 184). (3) <strong>Mapping and tapering</strong>: four spin orbitals; with particle number, spin and spatial symmetry, the problem reduces to the two configurations {{tex:\sigma_g^2}} and {{tex:\sigma_u^2}}, a single qubit (Chapter 186). (4) <strong>VQE</strong>: one rotation, {{tex:R_y(\theta)}}, with shot noise (Chapter 187). (5) <strong>Phase estimation</strong>: ideal phase estimation from the Hartree–Fock state and from the exact state (Chapter 188). (6) <strong>Resource estimate</strong> for scaling the method to a real target (Chapter 189). (7) <strong>Critique</strong> against classical methods. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Run it</h2>
+  <p>Bond length <span class="tangle" data-var="R" data-min="0.8" data-max="4" data-step="0.05" data-dec="2" data-value="1.40" data-px="4"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Bond length bohr">1.40</span><button type="button" data-de="1" aria-label="Longer">›</button></span> bohr; phase-estimation bits <span class="tangle" data-var="m" data-min="2" data-max="8" data-step="1" data-value="5" data-px="16"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Bits">5</span><button type="button" data-de="1" aria-label="More">›</button></span>. Show step <button type="button" class="v" data-pick="st:h">Hamiltonian</button> <button type="button" class="v" data-pick="st:v">VQE</button> <button type="button" class="v" data-pick="st:q">phase estimation</button>. The one-qubit Hamiltonian is {{tex:g_0I + g_zZ + g_xX}}, with {{tex:g_x}} the exchange integral coupling the two configurations. Phase estimation from the Hartree–Fock state returns the ground energy with probability equal to the overlap squared, high near equilibrium and falling to one half as the bond breaks, where the two configurations mix equally: the overlap problem of Chapter 188 in miniature. To repeat with real tools:</p>
+  <pre class="code">from pyscf import gto, scf, ao2mo
+import numpy as np
+mol = gto.M(atom="H 0 0 0; H 0 0 0.7408", basis="sto-3g")   <span class="cm"># 1.4 bohr</span>
+mf = scf.RHF(mol).run()
+C = mf.mo_coeff
+h = C.T @ mf.get_hcore() @ C
+eri = ao2mo.kernel(mol, C, compact=False).reshape(2, 2, 2, 2)
+Enuc = mol.energy_nuc()
+Ehf = 2*h[0, 0] + eri[0, 0, 0, 0] + Enuc
+E2  = 2*h[1, 1] + eri[1, 1, 1, 1] + Enuc
+K   = eri[0, 1, 0, 1]
+print(np.linalg.eigvalsh([[Ehf, K], [K, E2]])[0])   <span class="cm"># about -1.1373</span>
+
+from qiskit import QuantumCircuit
+from qiskit.circuit import Parameter
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.primitives import StatevectorEstimator
+op = SparsePauliOp(["I", "Z", "X"], [(Ehf + E2)/2, (Ehf - E2)/2, K])
+t = Parameter("t"); qc = QuantumCircuit(1); qc.ry(t, 0)
+est = StatevectorEstimator()
+E = [float(est.run([(qc, op, [x])]).result()[0].data.evs)
+     for x in np.linspace(-np.pi, np.pi, 201)]
+print(min(E))</pre>
+  <p>Then choose a biologically flavoured target, formaldehyde (a carbonyl model) in a small active space such as CAS(4e, 3o), and repeat with a general mapping. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Report and rubric</h2>
+  <p>Write two pages. Your report is graded on: (a) a correct chain, every number reproducible; (b) a resource estimate for scaling to a meaningful target, with assumptions stated; (c) a comparison with CCSD(T) and, for the larger case, DMRG or selected CI, run or cited; (d) an honest status label for any advantage; (e) a limitations paragraph naming the basis set, active space and noise model. A strong report says plainly what the quantum computation added, which for these molecules is nothing a laptop could not do, and what would have to change for that to be otherwise. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A complete, checkable pipeline from molecule to quantum result: integrals, symmetry reduction to one qubit, VQE, phase estimation with the overlap effect, the path to resource estimation, runnable PySCF and Qiskit code, and a rubric for reporting honestly.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does minimal-basis H₂ need only one qubit?<span class="tap">tap</span></div><div class="a">Symmetry leaves two configurations, σg² and σu², coupled by one exchange integral.</div></div>
+  <div class="qa"><div class="q">What happens to the HF overlap as H₂ dissociates?<span class="tap">tap</span></div><div class="a">It falls toward 1/√2, so phase estimation from HF succeeds only half the time.</div></div>
+  <div class="qa"><div class="q">What must a good report admit?<span class="tap">tap</span></div><div class="a">That for small molecules the quantum computation adds nothing a classical computer cannot do.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> At 1.4 bohr, what is the coupling {{tex:g_x}} (the exchange integral {{tex:K_{gu}}}) in hartree, to three decimals?</p>
+    <form class="calc" data-answer="0.181" data-tol="0.002" data-ok="Yes: 0.181 Ha, Szabo and Ostlund’s K₁₂." data-hint="Shown on the plate’s Hamiltonian step."><span>g_x ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Coupling"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Szabo and N. S. Ostlund, Modern Quantum Chemistry (Dover, 1996). Q. Sun et al., J. Chem. Phys. 153, 024109 (2020) (PySCF). Qiskit 2.x documentation (2026). Checked by the plate: one-qubit Hamiltonian from Book.H2; VQE minimum equals FCI; ideal phase-estimation probabilities from exact overlaps.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { R: 1.4, m: 5 }, r = null;
+  function comp() { r = Book.H2(V.R); }
+  function H1() { return { g0: (r.Ehf + r.E2) / 2, gz: (r.Ehf - r.E2) / 2, gx: r.Kgu }; }
+  function eig() { var h = H1(), d = Math.sqrt(h.gz * h.gz + h.gx * h.gx), th = Math.atan2(h.gx, h.gz); return { E0: h.g0 - d, E1: h.g0 + d, c0: Math.sin(th / 2), s0: -Math.cos(th / 2) }; }
+  function qpe(ov2) { var e = eig(), lo = e.E0 - 0.2, span = (e.E1 + 0.2) - lo, M = Math.pow(2, V.m), out = new Array(M).fill(0); [[e.E0, ov2], [e.E1, 1 - ov2]].forEach(function (pair) { var phi = (pair[0] - lo) / span; for (var j = 0; j < M; j++) { var d = phi - j / M, num = Math.sin(Math.PI * M * d), den = M * Math.sin(Math.PI * d), p = Math.abs(den) < 1e-12 ? 1 : (num * num) / (den * den); out[j] += pair[1] * p; } }); return { p: out, lo: lo, span: span }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; comp(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; comp(); },
+    caption: function () { var st = Book.state.picks.st || "h"; return ["Molecule → integrals → qubit → answer.", "Seven steps.", st === "h" ? "One-qubit Hamiltonian coefficients (Ha)." : st === "v" ? "VQE energy vs Ry angle; exact (red line)." : "Phase estimation outcomes from HF (amber) vs exact state (white).", "Report rubric.", "Build project."][beat]; },
+    readout: function () { var h = H1(), e = eig(), ov = Math.pow(Math.abs(e.c0), 2); return "R = " + V.R.toFixed(2) + " · g₀ " + h.g0.toFixed(4) + ", g_z " + h.gz.toFixed(4) + ", g_x " + h.gx.toFixed(4) + " · E₀ = " + e.E0.toFixed(5) + " · HF overlap² " + ov.toFixed(3); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, st = Book.state.picks.st || "h";
+      if (beat === 1 || beat === 0) { ["question", "integrals", "map & taper", "VQE", "phase est.", "resources", "critique"].forEach(function (s, j) { var x = W * (0.08 + j * 0.14); k.circle(x, H / 2, 16, j < 5 ? "#ffb547" : "rgba(236,230,218,.6)"); k.text(String(j + 1), x, H / 2 + 5, { size: 12, color: "#14120f" }); k.text(s, x, H / 2 + 34, { size: 9, color: "#b9b2a5" }); if (j) k.line(x - W * 0.14 + 16, H / 2, x - 16, H / 2, "rgba(236,230,218,.3)", 1.5); }); return; }
+      if (beat === 3) { ["(a) correct, reproducible chain", "(b) stated resource estimate", "(c) CCSD(T) / DMRG comparison", "(d) honest status label", "(e) limitations"].forEach(function (s, j) { k.text(s, W * 0.15, H * (0.2 + j * 0.15), { size: 13, align: "left" }); }); return; }
+      if (st === "h") { var h = H1(); [["g₀ (identity)", h.g0], ["g_z (Z)", h.gz], ["g_x (X)", h.gx]].forEach(function (row, j) { k.text(row[0], W * 0.45, H * (0.3 + j * 0.15), { size: 15, align: "right" }); k.text(row[1].toFixed(5), W * 0.5, H * (0.3 + j * 0.15), { size: 15, color: "#ffb547", align: "left" }); }); return; }
+      if (st === "v") { var hh = H1(), e = eig(); A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-Math.PI, Math.PI], [e.E0 - 0.1, e.E1 + 0.1], { xl: "Ry angle θ", yl: "energy (Ha)" }); k.plot(A, function (t) { return hh.g0 + hh.gz * Math.cos(t) + hh.gx * Math.sin(t); }, [-Math.PI, Math.PI], "#ffb547", 2.5, 300); k.line(A.X(-Math.PI), A.Y(e.E0), A.X(Math.PI), A.Y(e.E0), "rgba(224,90,70,.6)", 1); return; }
+      var e2 = eig(), ov = Math.pow(Math.abs(e2.c0), 2), q1 = qpe(ov), q2 = qpe(1), M = q1.p.length; A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, M], [0, 1.05], { xl: V.m + "-bit outcome (energy ↑)", yl: "probability" }); for (var j = 0; j < M; j++) { var w = (A.X(1) - A.X(0)); k.rr(A.X(j) + 1, A.Y(q2.p[j]), w / 2 - 1, A.Y(0) - A.Y(q2.p[j]), 1, "rgba(236,230,218,.6)"); k.rr(A.X(j) + w / 2, A.Y(q1.p[j]), w / 2 - 1, A.Y(0) - A.Y(q1.p[j]), 1, "#ffb547"); }
+    }
+  });
+})();
+</script>

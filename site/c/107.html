@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>107. Nonlocality and contextuality as resources</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="107">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>107</b> &nbsp;·&nbsp; Nonlocality and contextuality as resources</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">107</div><div class="part">Part Three · A · Foundations of quantum information</div><h1>Nonlocality and contextuality as resources</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Fill a 3 × 3 grid with 0s and 1s so that every row has an even number of 1s and every column an odd number. Try it: it can’t be done, since the rows say the total is even and the columns say it is odd. Now turn it into a game for two players who can’t communicate, and give them an entangled pair. They win every single time. No classical pair can do better than eight times in nine. This is the Mermin–Peres magic square, and the quantum feature it exposes, contextuality, may be what makes quantum computers powerful.</p>
+  <p>On the plate: the magic-square game. Play rounds with a classical strategy or a quantum one.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>A hierarchy of correlations</h2>
+  <p>Entanglement (Chapter 106), <em>steering</em> (one party’s choice controls which set of states the other ends up with, Chapter 50) and <em>Bell nonlocality</em> (Chapter 51) are distinct: every nonlocal state is steerable, every steerable state entangled, but not the other way round, as noisy Werner states show. Beyond quantum mechanics there are hypothetical correlations that still forbid signalling: Sandu Popescu and Daniel Rohrlich’s 1994 “PR box” wins the CHSH game every time, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">S = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>, beyond Tsirelson’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">2\sqrt2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord">2</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span></span></span></span>. Why nature stops at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">2\sqrt2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord">2</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span></span></span></span> is an open question. <span class="tag">Established</span> for the hierarchy; <span class="tag">Debated</span> for why.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Contextuality</h2>
+  <p>Simon Kochen and Ernst Specker proved in 1967 that in three or more dimensions you cannot assign a fixed value to every observable in a way that is independent of which other compatible observables are measured with it: measurement outcomes depend on the <em>context</em>. Unlike Bell’s theorem, this needs no separated parties; it is a property of a single system. The Mermin–Peres square makes it concrete with nine two-qubit Pauli observables: each row and column commutes, the product of each row is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn mathvariant="double-struck">1</mn></mrow><annotation encoding="application/x-tex">+\mathbb 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span>, and of each column is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn mathvariant="double-struck">1</mn></mrow><annotation encoding="application/x-tex">+\mathbb 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span> except the last, which is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn mathvariant="double-struck">1</mn></mrow><annotation encoding="application/x-tex">-\mathbb 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>. No assignment of ±1 values can satisfy all six products. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The game</h2>
+  <p>A referee gives Alice a row and Bob a column, at random. Alice returns three bits for her row with even parity; Bob three for his column with odd parity. They win if they agree on the shared cell. <button type="button" class="v" data-pick="s:c">Classical strategy</button> (a fixed grid satisfying eight of nine constraints) or <button type="button" class="v" data-pick="s:q">quantum strategy</button> (two Bell pairs, each player measuring the Pauli observables of their row or column). <button type="button" class="v" data-act="play">Play 900 rounds</button>. Classical tops out at 8/9; quantum wins every round, because the commuting observables in each row and column can be measured together and multiply as required. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Contextuality as a resource</h2>
+  <p>Mark Howard, Joel Wallman, Victor Veitch and Joseph Emerson showed in 2014 that, in a standard model of fault-tolerant computing, the states that let you go beyond efficiently simulable Clifford circuits (Chapter 108) are exactly the contextual ones: contextuality is the “magic”. In 2018 Sergey Bravyi, David Gosset and Robert König proved an <em>unconditional</em> separation: a problem solved by constant-depth quantum circuits that constant-depth classical circuits cannot solve, using nonlocal games of this kind. And in 2020 Zhengfeng Ji and colleagues proved MIP* = RE: verifiers interrogating entangled provers can check answers to any problem whose yes-instances can be enumerated, including the halting problem, a result that also refuted a decades-old conjecture in operator algebras (Connes’ embedding conjecture). <span class="tag">Established</span>, as theorems.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Entanglement, steering and nonlocality as a hierarchy, PR boxes, the Kochen–Specker theorem and the Mermin–Peres square, the magic-square game with its 8/9 classical limit, and contextuality as the resource behind quantum advantage.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does contextuality differ from nonlocality?<span class="tap">tap</span></div><div class="a">It needs no separated parties: it concerns value assignments to compatible observables in one system.</div></div>
+  <div class="qa"><div class="q">Why can’t a classical grid win the magic-square game always?<span class="tap">tap</span></div><div class="a">Even row parities and odd column parities contradict each other on the total.</div></div>
+  <div class="qa"><div class="q">What is a PR box?<span class="tap">tap</span></div><div class="a">A hypothetical no-signalling correlation that wins CHSH always, beyond quantum mechanics.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the best classical winning probability in the magic-square game, as a decimal?</p>
+    <form class="calc" data-answer="0.889" data-tol="0.002" data-ok="Yes: 8/9 ≈ 0.889; the quantum strategy wins with probability 1." data-hint="One of the nine row–column pairs must fail."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. Kochen and E. P. Specker, J. Math. Mech. 17, 59 (1967). N. D. Mermin, Phys. Rev. Lett. 65, 3373 (1990); A. Peres, Phys. Lett. A 151, 107 (1990). S. Popescu and D. Rohrlich, Found. Phys. 24, 379 (1994). N. Brunner et al., Rev. Mod. Phys. 86, 419 (2014). M. Howard et al., Nature 510, 351 (2014). S. Bravyi, D. Gosset and R. König, Science 362, 308 (2018). Z. Ji et al., Commun. ACM 64(11), 131 (2021) (MIP* = RE). Checked by code: exhaustive search over all 512 grids gives at most 8 of 9 wins.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 108</div><div class="t">Stabilizer formalism, Clifford group, Gottesman–Knill theorem</div><p style="text-align:left">Some circuits with millions of gates simulate on a laptop in seconds. Here is how to recognize them.</p><p style="text-align:left"><a class="v" href="108.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="106.html">← 106. Entanglement theory: measures, distillation, monotones</a><a href="../index.html">Contents</a><a href="108.html">108. Stabilizer formalism, Clifford group, Gottesman–Knill theorem →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, res = null, seed = 51;
+  var SQ = [["XI", "IX", "XX"], ["IZ", "ZI", "ZZ"], ["XZ", "ZX", "YY"]];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    pick: function () { res = null; },
+    act: function () { var q = Book.state.picks.s === "q", w = 0; for (var i = 0; i < 900; i++) { var r = Math.floor(rnd() * 3), c = Math.floor(rnd() * 3); if (q || !(r === 2 && c === 2)) w++; } res = w; },
+    caption: function () { return ["The magic-square game.", "Entangled ⊃ steerable ⊃ Bell-nonlocal.", "Mermin–Peres observables: rows multiply to +𝟙, columns to +𝟙, +𝟙, −𝟙.", (Book.state.picks.s === "q" ? "Quantum" : "Classical") + " strategy, 900 rounds.", "Contextuality and advantage.", "Contextuality."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) return res === null ? "press play" : "won " + res + " of 900 = " + (res / 9).toFixed(1) + "%"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, s = Math.min(W, H) * 0.2, x0 = (W - 3 * s) / 2, y0 = (H - 3 * s) / 2 - 10, i, j;
+      if (beat === 1) { [[0.42, "entangled", "rgba(236,230,218,.35)"], [0.3, "steerable", "rgba(236,230,218,.55)"], [0.18, "Bell-nonlocal", "#ffb547"]].forEach(function (q) { k.circle(W / 2, H / 2, Math.min(W, H) * q[0], null, q[2], 2); k.text(q[1], W / 2, H / 2 - Math.min(W, H) * q[0] + 16, { size: 12, color: q[2] }); }); return; }
+      if (beat === 4) { [["magic states = contextual states", 0.3], ["constant-depth circuits: unconditional separation", 0.5], ["MIP* = RE", 0.7]].forEach(function (q) { k.text(q[0], W / 2, H * q[1], { size: 14, color: "#ffb547" }); }); return; }
+      var cl = [[0, 0, 0], [0, 0, 0], [1, 1, 0]];
+      for (i = 0; i < 3; i++) for (j = 0; j < 3; j++) { var hot = beat === 3 && Book.state.picks.s !== "q" && i === 2 && j === 2; k.rr(x0 + j * s + 3, y0 + i * s + 3, s - 6, s - 6, 8, hot ? "rgba(224,90,70,.35)" : "#14120f", "rgba(255,181,71,.5)"); k.text(beat === 3 && Book.state.picks.s !== "q" ? String(cl[i][j]) : SQ[i][j], x0 + j * s + s / 2, y0 + i * s + s / 2 + 6, { size: beat === 3 && Book.state.picks.s !== "q" ? 20 : 15, color: "#ece6da" }); }
+      for (i = 0; i < 3; i++) { k.text(i < 2 || true ? "+" : "", x0 + 3 * s + 14, y0 + i * s + s / 2 + 5, { size: 13, color: "#ffb547", align: "left" }); k.text(i < 2 ? "+" : "−", x0 + i * s + s / 2, y0 + 3 * s + 20, { size: 13, color: i < 2 ? "#ffb547" : "#e05a46" }); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

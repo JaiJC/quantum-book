@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>149. Control systems, cryogenics, and scaling</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="149">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>149</b> &nbsp;·&nbsp; Control systems, cryogenics, and scaling</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">149</div><div class="part">Part Three · E · Hardware, simulation and practice</div><h1>Control systems, cryogenics, and scaling</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Photographs of quantum computers show a golden chandelier: a stack of plates hanging inside a cylinder, tangled with coaxial cables. That chandelier is a dilution refrigerator, and the cables carry the microwave pulses that control each qubit. A million qubits would mean millions of cables running into a space colder than intergalactic space, each one leaking heat. Scaling a quantum computer is, to a large extent, a problem of plumbing, wiring and electronics.</p>
+  <p>On the plate: the heat budget of a refrigerator, stage by stage.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>How a dilution refrigerator works</h2>
+  <p>Below about 0.87 K, a mixture of helium-3 and helium-4 separates into two phases, one rich in helium-3 and one dilute. Helium-3 atoms crossing from the rich phase into the dilute phase absorb heat, like evaporation, and keep doing so down to the lowest temperatures because the dilute phase retains about 6.6% helium-3 even near absolute zero. A pump circulates helium-3 continuously through the <em>mixing chamber</em>, reaching 10 mK. The cooling power falls as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">T^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> (Chapter 18), so it is tiny where it matters most: around 20 µW at 20 mK. Above the mixing chamber sit stages at about 50 K, 4 K, 1 K (the “still”) and 100 mK (the cold plate), each intercepting heat before it reaches the stage below. Frank Pobell’s book is the standard reference. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The wiring bottleneck</h2>
+  <p>Each coaxial cable conducts heat from warmer stages. Sebastian Krinner and colleagues at ETH Zurich measured the passive heat load of each line type in 2019. Using their numbers for a drive line, choose <span class="tangle" data-var="N" data-min="10" data-max="2000" data-step="10" data-value="100" data-px="0.5"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Qubits">100</span><button type="button" data-de="1" aria-label="More">›</button></span> qubits with <span class="tangle" data-var="L" data-min="1" data-max="4" data-step="0.5" data-dec="1" data-value="2.5" data-px="15"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Lines per qubit">2.5</span><button type="button" data-de="1" aria-label="More">›</button></span> lines each. The plate compares heat load with cooling power at every stage. The 100 mK cold plate saturates first, at a few hundred lines; the authors concluded that their fridge could support about 150 qubits as configured, perhaps a thousand with modifications. Active heating from the pulses themselves adds more. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Ways out, and the decoding clock</h2>
+  <p>Remedies include multiplexing many readout signals on one line, flexible superconducting ribbon cables, and putting control electronics inside the fridge: <em>cryo-CMOS</em> chips at 4 K, or <em>single-flux-quantum</em> logic that switches with picosecond pulses and dissipates little heat. Each must avoid disturbing the qubits it controls. Another clock constrains everything: error correction produces syndromes every cycle, about 1.1 µs on Google’s Willow, and the decoder must keep up. Google reported an average decoder latency of 63 µs in 2025, fine for a memory experiment but too slow if every logical gate had to wait for it. The reaction time in resource estimates (Chapter 143) is exactly this latency. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>How dilution refrigeration reaches millikelvin temperatures, the T² fall of cooling power, stage-by-stage heat budgets, the wiring bottleneck with measured line loads, cryo-CMOS and SFQ control, and decoder latency against cycle time.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does dilution cooling keep working near absolute zero?<span class="tap">tap</span></div><div class="a">The dilute phase retains about 6.6% ³He, so atoms can always cross and absorb heat.</div></div>
+  <div class="qa"><div class="q">Which stage limits wiring in Krinner’s fridge?<span class="tap">tap</span></div><div class="a">The roughly 100 mK cold plate, at a few hundred lines.</div></div>
+  <div class="qa"><div class="q">Why does decoder latency matter?<span class="tap">tap</span></div><div class="a">Logical operations that depend on measurement results must wait for decoding.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A 63 µs decoder latency against a 1.1 µs cycle: how many cycles behind is the decoder?</p>
+    <form class="calc" data-answer="57.3" data-tol="1" data-ok="Yes: about 57 cycles, during which syndrome data keep arriving." data-hint="63 ÷ 1.1."><span>cycles ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Cycles"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: F. Pobell, Matter and Methods at Low Temperatures, 3rd ed. (Springer, 2007). S. Krinner et al., EPJ Quantum Technol. 6, 2 (2019). Google Quantum AI and collaborators, Nature 638, 920 (2025). Per-line loads and stage cooling powers from Krinner et al., drive line (stainless coax). Last checked 18 November 2026.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 150</div><div class="t">Benchmarking and evaluating advantage claims</div><p style="text-align:left">Since 2019 the industry has claimed quantum advantage many times. Classical computers have taken several of those claims back.</p><p style="text-align:left"><a class="v" href="150.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="148.html">← 148. Spin and topological qubits</a><a href="../index.html">Contents</a><a href="150.html">150. Benchmarking and evaluating advantage claims →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { N: 100, L: 2.5 }, st = [["50 K", 30, 45e-3], ["4 K", 1.5, 1.0e-3], ["still 1 K", 40e-3, 4e-6], ["cold plate 0.1 K", 200e-6, 0.4e-6], ["mixing 20 mK", 19e-6, 0.013e-6]];
+  function fmt(w) { return w >= 1 ? w.toFixed(1) + " W" : w >= 1e-3 ? (w * 1e3).toFixed(1) + " mW" : (w * 1e6).toFixed(1) + " µW"; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Heat load as a fraction of cooling power.", "Cooling power ∝ T² at the mixing chamber.", "Load / capacity per stage (red beyond 100%).", "Decoder latency vs code cycle.", "Cryogenics."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var lines = V.N * V.L, worst = st.reduce(function (a, s) { var f = lines * s[2] / s[1]; return f > a[0] ? [f, s[0]] : a; }, [0, ""]); return lines.toFixed(0) + " lines · tightest stage: " + worst[1] + " at " + (worst[0] * 100).toFixed(0) + "% of capacity"; } if (beat === 3) return "cycle 1.1 µs · latency 63 µs · ≈ 57 cycles behind"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [5, 100], [0, 500], { xl: "mixing-chamber temperature (mK)", yl: "cooling power (µW)" }); k.plot(A, function (T) { return 19 * (T / 20) * (T / 20); }, [5, 100], "#ffb547", 2.5); k.circle(A.X(20), A.Y(19), 6, "#ece6da"); k.text("19 µW at 20 mK", A.X(20) + 8, A.Y(19) - 8, { size: 11, align: "left" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.3, W * 0.84, H * 0.3, [0, 80], [0, 1], { xl: "time (µs)" }); for (var t = 0; t < 80; t += 1.1) k.line(A.X(t), A.Y(0), A.X(t), A.Y(0.6), "rgba(236,230,218,.4)", 1); k.rr(A.X(0), A.Y(0.95), A.X(63) - A.X(0), 12, 3, "#ffb547"); k.text("decoder latency 63 µs", A.X(31), A.Y(0.95) - 6, { size: 12, color: "#ffb547" }); return; }
+      var lines = V.N * V.L, bw = W * 0.8 / st.length; st.forEach(function (s, j) { var f = lines * s[2] / s[1], h = Math.min(1.5, f) / 1.5 * H * 0.62, x = W * 0.1 + j * bw; k.rr(x + 8, H * 0.78 - h, bw - 16, h, 4, f > 1 ? "rgba(224,90,70,.85)" : "rgba(255,181,71,.8)"); k.text(s[0], x + bw / 2, H * 0.84, { size: 10, color: "#b9b2a5" }); k.text(fmt(lines * s[2]) + " / " + fmt(s[1]), x + bw / 2, H * 0.9, { size: 9, color: "#7c766b" }); }); var y100 = H * 0.78 - H * 0.62 / 1.5; k.line(W * 0.1, y100, W * 0.9, y100, "rgba(236,230,218,.5)", 1); k.text("100%", W * 0.09, y100 + 4, { size: 10, color: "#b9b2a5", align: "right" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Proving that an algorithm exists is a matter of finding it. Proving that no faster algorithm exists, including every clever idea nobody has had yet, needs a different kind of argument. In the query model, where cost is the number of times you look at the input, quantum lower bounds can actually be proved. Two methods dominate: one turns algorithms into polynomials, the other tracks how fast an algorithm can tell inputs apart. Together they show that Grover’s search is optimal and that quantum computers cannot compute parity faster than halfway.</p>
+  <p>On the plate: a polynomial trying to imitate the OR function.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The polynomial method</h2>
+  <p>Robert Beals, Harry Buhrman, Richard Cleve, Michele Mosca and Ronald de Wolf observed in 1998 that after {{tex:T}} queries, every amplitude of a quantum algorithm is a polynomial of degree at most {{tex:T}} in the input bits, so every acceptance probability is a polynomial of degree at most {{tex:2T}}. If an algorithm computes {{tex:f}} with error at most 1/3, that polynomial approximates {{tex:f}} to within 1/3 on every input. So {{tex:T \ge \widetilde{\deg}(f)/2}}, where {{tex:\widetilde{\deg}}} is the <em>approximate degree</em>. For symmetric functions, Minsky and Papert’s symmetrization reduces this to a polynomial in one variable, the number of 1s in the input. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Imitating OR</h2>
+  <p>OR is 0 when the Hamming weight {{tex:|x| = 0}} and 1 otherwise. A polynomial must jump from 0 to near 1 between {{tex:|x| = 0}} and {{tex:|x| = 1}}, then stay flat out to {{tex:N}}. Chebyshev polynomials grow fastest just outside {{tex:[-1, 1]}}, so they do it best. With {{tex:N =}} <span class="tangle" data-var="N" data-min="4" data-max="100" data-step="1" data-value="36" data-px="2"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="N">36</span><button type="button" data-de="1" aria-label="Larger">›</button></span> and degree {{tex:d =}} <span class="tangle" data-var="d" data-min="1" data-max="20" data-step="1" data-value="4" data-px="10"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Degree">4</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, the plate draws {{tex:p(w) = 1 - T_d\big(\tfrac{N-w}{N-1}\big)/T_d\big(\tfrac{N}{N-1}\big)}}. Its error is {{tex:1/T_d(1 + \tfrac{1}{N-1})}}, below 1/3 once {{tex:d}} is about {{tex:1.25\sqrt N}}. A linear program finds the true optimum: approximate degree 2, 3, 4, 6, 7 for {{tex:N}} = 9, 16, 25, 64, 100, about {{tex:0.7\sqrt N}}. Either way degree grows as {{tex:\sqrt N}}, so search needs {{tex:\Omega(\sqrt N)}} queries: Grover is optimal. For PARITY the polynomial must alternate at every weight, needing degree {{tex:N}}, so {{tex:T \ge N/2}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The adversary method</h2>
+  <p>Andris Ambainis introduced in 2000 a different argument. Imagine an adversary holding a superposition of inputs that the algorithm must tell apart, such as “no marked item” against “one marked item, somewhere”. Each query can increase the distinguishability of the paired states by only a bounded amount; total distinguishability must reach a constant; so the number of queries is bounded below. For search this gives {{tex:\Omega(\sqrt N)}} again. The two methods are complementary: the {{tex:\Omega(N^{2/3})}} bound for element distinctness came from the polynomial method, through Scott Aaronson and Yaoyun Shi’s 2004 collision bound, where the basic adversary method falls short. Peter Høyer, Troy Lee and Robert Špalek added negative weights in 2007, the <em>generalized adversary</em>; Ben Reichardt proved in 2009 that it is tight: for every function, it equals the true quantum query complexity up to a constant. Lower bounds in the query model are therefore, in principle, completely understood. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Queries as polynomials, approximate degree, symmetrization, Chebyshev constructions and the {{tex:\sqrt N}} bound for OR, the {{tex:N/2}} bound for parity, and the adversary method with Reichardt’s tightness theorem.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is the acceptance probability a polynomial of degree ≤ 2T?<span class="tap">tap</span></div><div class="a">Each query multiplies amplitudes by input-dependent signs, raising their degree by one; probabilities are squares.</div></div>
+  <div class="qa"><div class="q">Why does OR need degree about √N?<span class="tap">tap</span></div><div class="a">A bounded polynomial jumping sharply near the edge of its range must have degree ~√N, by Chebyshev extremality.</div></div>
+  <div class="qa"><div class="q">What did Reichardt prove?<span class="tap">tap</span></div><div class="a">The generalized adversary bound equals quantum query complexity up to a constant factor.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> At least how many quantum queries does PARITY of 100 bits need?</p>
+    <form class="calc" data-answer="50" data-tol="0.5" data-ok="Yes: N/2 = 50, and 50 suffices, by computing parity of pairs with one query each." data-hint="Degree N, divided by 2."><span>T ≥</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Queries"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. Beals et al., J. ACM 48, 778 (2001). A. Ambainis, J. Comput. Syst. Sci. 64, 750 (2002). P. Høyer, T. Lee and R. Špalek, Proc. 39th ACM STOC, 526 (2007). B. W. Reichardt, Proc. 50th IEEE FOCS, 544 (2009). S. Aaronson and Y. Shi, J. ACM 51, 595 (2004). R. de Wolf, Quantum Computing: Lecture Notes, arXiv:1907.09415 (v5). Checked by code: linear-programming approximate degree of OR at error 1/3; Chebyshev construction degrees 4, 5, 7, 10, 13 for N = 9, 16, 25, 64, 100.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { N: 36, d: 4 };
+  function Td(d, x) { if (Math.abs(x) <= 1) return Math.cos(d * Math.acos(x)); return Math.cosh(d * Math.acosh(Math.abs(x))) * (x < 0 && d % 2 ? -1 : 1); }
+  function p(w, N, d) { return 1 - Td(d, (N - w) / (N - 1)) / Td(d, N / (N - 1)); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["A polynomial imitating OR.", "T queries → degree ≤ 2T.", "p(w) (amber) vs OR (white); band ±1/3.", "Adversary: queries can only separate so fast.", "Lower bounds."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var N = V.N, d = V.d, e = 1 / Td(d, N / (N - 1)), need = 1; while (1 / Td(need, N / (N - 1)) > 1 / 3) need++; return "N = " + N + ", d = " + d + " · error " + e.toFixed(3) + (e <= 1 / 3 ? " ✓" : " ✗") + " · Chebyshev needs d = " + need + " · √N = " + Math.sqrt(N).toFixed(1); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, N = V.N, d = V.d, w;
+      if (beat <= 2 || beat === 4) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [0, N], [-0.6, 1.8], { xl: "Hamming weight |x|", zeroY: true }); k.ctx.fillStyle = "rgba(236,230,218,.07)"; k.ctx.fillRect(A.X(1), A.Y(4 / 3), A.X(N) - A.X(1), A.Y(2 / 3) - A.Y(4 / 3)); k.ctx.fillRect(A.X(0) - 4, A.Y(1 / 3), 8, A.Y(-1 / 3) - A.Y(1 / 3)); k.plot(A, function (x) { return p(x, N, d); }, [0, N], "rgba(255,181,71,.45)", 1.5, 400); k.line(A.X(0), A.Y(0), A.X(0.5), A.Y(0), "#ece6da", 2); k.line(A.X(1), A.Y(1), A.X(N), A.Y(1), "#ece6da", 2); for (w = 0; w <= N; w++) { var v = p(w, N, d), bad = w === 0 ? Math.abs(v) > 1 / 3 : Math.abs(v - 1) > 1 / 3; k.circle(A.X(w), A.Y(Math.max(-0.6, Math.min(1.8, v))), N > 50 ? 2.5 : 3.5, bad ? "#e05a46" : "#ffb547"); } return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 20], [0, 1.05], { xl: "queries", yl: "distinguishability" }); k.plot(A, function (t) { return Math.min(1, Math.pow(Math.sin((2 * t + 1) * Math.asin(1 / 10)), 2)); }, [0, 20], "#ffb547", 2.5, 200); k.line(A.X(0), A.Y(2 / 3), A.X(20), A.Y(2 / 3), "rgba(236,230,218,.4)", 1); k.text("each query adds at most ~1/√N", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

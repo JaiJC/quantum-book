@@ -1,0 +1,3 @@
+== 111
+valid y count 8 = 2^(n-1)
+classical birthday n=40 ~ 2^20 = 1048576

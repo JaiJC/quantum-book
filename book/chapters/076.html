@@ -1,0 +1,69 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Balance a pencil on its tip. The situation is perfectly symmetric: no direction is special. But the pencil cannot stay; it falls, and when it does it points one way. The laws were symmetric; the outcome is not. A magnet below its Curie temperature does the same: the equations have no preferred direction, but the magnetization picks one. When this happens in a field theory, the symmetry is said to be spontaneously broken, and its fingerprints are massless particles, or, as for the pions, nearly massless ones.</p>
+  <p>On the plate: the “Mexican hat” potential. A ball at the top is symmetric and unstable; in the brim it has chosen a direction.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The Mexican hat</h2>
+  <p>Take a complex scalar field with potential {{tex:V(\phi) = -\mu^2|\phi|^2 + \lambda|\phi|^4}}. It is unchanged by any phase rotation {{tex:\phi \to e^{i\alpha}\phi}}. But {{tex:\phi = 0}} is a maximum, not a minimum. The minima form a circle at</p>
+  <div class="eq">{{texd:|\phi| = \frac{v}{\sqrt2}, \qquad v = \sqrt{\mu^2/\lambda}}}</div>
+  <p>The vacuum must sit somewhere on that circle, and wherever it sits, it breaks the symmetry. The theory is still symmetric: rotating the chosen vacuum gives another equally good vacuum. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two kinds of ripple</h2>
+  <p>Expand around the chosen vacuum. Push the field <button type="button" class="v" data-act="radial">outward, up the wall</button>: it rolls back and oscillates, a massive particle with {{tex:m^2 = 2\mu^2}}. Push it <button type="button" class="v" data-act="around">around the brim</button>: it costs no energy and nothing pushes it back, a massless particle. That flat direction is a <em>Goldstone boson</em>.</p>
+  <p>Jeffrey Goldstone’s theorem (1961, proved generally with Abdus Salam and Steven Weinberg in 1962): every continuous global symmetry that is spontaneously broken gives one massless spin-0 particle for each broken generator. Breaking O(N) rotations of {{tex:N}} real fields down to O(N − 1) gives {{tex:N - 1}} Goldstones.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Where you meet them</h2>
+  <p>In a ferromagnet, the broken symmetry is spin rotation, and the Goldstone modes are spin waves, magnons, which cost almost no energy at long wavelength. In a crystal, broken translations give sound waves, phonons. In a superfluid, the broken phase symmetry gives the sound mode of helium-4. These are all examples where the theorem, carried over from field theory to materials, predicts gapless excitations.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Pions</h2>
+  <p>Yoichiro Nambu proposed in 1960, by analogy with superconductivity, that the strong force spontaneously breaks a symmetry of nearly massless quarks, <em>chiral symmetry</em>, which rotates left- and right-handed quarks separately. Three generators are broken, so there should be three Goldstone bosons: the three pions. Pions are not exactly massless because the up and down quarks have small masses that break the symmetry slightly to begin with, but at 140 MeV they are far lighter than the proton at 938 MeV. Their mass squared grows in proportion to the quark masses, as lattice QCD confirms. Nambu shared the 2008 Nobel Prize. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>The Mexican-hat potential and its circle of vacua, radial (massive) and angular (massless) excitations, Goldstone’s theorem and its counting, Goldstone modes in magnets, crystals and superfluids, and pions as pseudo-Goldstone bosons of chiral symmetry.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Is a spontaneously broken theory still symmetric?<span class="tap">tap</span></div><div class="a">The laws are; the vacuum isn’t. Symmetry maps one vacuum to another equally valid one.</div></div>
+  <div class="qa"><div class="q">Why is a Goldstone boson massless?<span class="tap">tap</span></div><div class="a">Moving along the circle of vacua costs no energy.</div></div>
+  <div class="qa"><div class="q">Why are pions light but not massless?<span class="tap">tap</span></div><div class="a">They are Goldstones of chiral symmetry, which small quark masses already break slightly.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Four real scalar fields with an O(4) symmetry broken to O(3): how many Goldstone bosons?</p>
+    <form class="calc" data-answer="3" data-tol="0.01" data-ok="Yes: 4 − 1 = 3. This is exactly the pattern of chiral symmetry breaking with two quark flavours, and the three are the pions." data-hint="O(N) → O(N − 1) gives N − 1."><span>Goldstones =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Number"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Y. Nambu, Phys. Rev. Lett. 4, 380 (1960); Y. Nambu and G. Jona-Lasinio, Phys. Rev. 122, 345 (1961). J. Goldstone, Nuovo Cimento 19, 154 (1961). J. Goldstone, A. Salam and S. Weinberg, Phys. Rev. 127, 965 (1962). Checked by code: for V = −μ²|φ|² + λ|φ|⁴, radial mass² = 2μ², angular mass 0; O(N) → O(N−1) leaves N − 1 flat directions.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, st = { r: 1, th: 0, vr: 0, vth: 0 };
+  function V(r) { return -r * r + 0.5 * r * r * r * r; }
+  Book.plate({
+    beat: function (i) { beat = i; st = { r: 1, th: 0, vr: 0, vth: 0 }; },
+    act: function (n) { if (n === "radial") { st.r = 1; st.vr = 1.0; st.vth = 0; } else { st.r = 1; st.vr = 0; st.vth = 1.2; } },
+    caption: function () { return ["The Mexican hat.", "A circle of vacua.", "Radial push oscillates; push around the brim glides.", "Goldstone modes: magnons, phonons.", "Pions: nearly flat directions.", "Broken symmetry."][beat]; },
+    readout: function () { if (beat === 2) return "radius " + st.r.toFixed(2) + " · angle " + (st.th % 6.283).toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H * 0.58, R = Math.min(W, H) * 0.32, tilt = 0.35, i, j;
+      if (beat === 3) { var x0 = W * 0.08, n = 18; for (i = 0; i < n; i++) { var a = 0.8 * Math.sin(i * 0.5 - now / 400); k.line(x0 + i * W * 0.047, H * 0.5, x0 + i * W * 0.047 + 18 * Math.sin(a), H * 0.5 - 18 * Math.cos(a), "#ffb547", 2.5); } k.text("a spin wave: neighbouring spins tilt by tiny amounts", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 4) { var A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 3], [0, 1100], { yl: "mass, MeV" }); [["π", 139.6], ["K", 494], ["proton", 938.3]].forEach(function (q, j2) { k.rr(A.X(j2 + 0.2), A.Y(q[1]), A.X(0.6) - A.X(0), A.Y(0) - A.Y(q[1]), 4, j2 ? "rgba(236,230,218,.4)" : "#ffb547"); k.text(q[0], A.X(j2 + 0.5), A.Y(0) + 18, { size: 12 }); }); return; }
+      function P(r, th) { var z = V(Math.min(r, 1.6)); return [cx + R * r * Math.cos(th) / 1.4, cy + R * r * Math.sin(th) * tilt / 1.4 - z * R * 0.55]; }
+      c.strokeStyle = "rgba(236,230,218,.18)"; c.lineWidth = 1;
+      for (i = 1; i <= 8; i++) { var r = i * 0.18; c.beginPath(); for (j = 0; j <= 60; j++) { var p = P(r, j / 60 * 2 * Math.PI); if (j) c.lineTo(p[0], p[1]); else c.moveTo(p[0], p[1]); } c.stroke(); }
+      for (j = 0; j < 16; j++) { c.beginPath(); for (i = 0; i <= 30; i++) { var p2 = P(i / 30 * 1.5, j / 16 * 2 * Math.PI); if (i) c.lineTo(p2[0], p2[1]); else c.moveTo(p2[0], p2[1]); } c.stroke(); }
+      c.strokeStyle = "rgba(255,181,71,.6)"; c.lineWidth = 2; c.beginPath(); for (j = 0; j <= 60; j++) { var p3 = P(1, j / 60 * 2 * Math.PI); if (j) c.lineTo(p3[0], p3[1]); else c.moveTo(p3[0], p3[1]); } c.stroke();
+      if (beat === 2) { for (var s = 0; s < 6; s++) { var dt = 0.01, Fr = -(-2 * st.r + 2 * st.r * st.r * st.r) + st.r * st.vth * st.vth; st.vr += Fr * dt; st.r += st.vr * dt; st.vth *= 1; st.th += st.vth * dt; } }
+      var b = beat === 2 ? P(st.r, st.th) : beat === 0 || beat === 5 ? P(0.02, 0) : P(1, now / 2000);
+      k.glow(b[0], b[1] - 8, 16, "rgba(255,181,71,.6)"); k.circle(b[0], b[1] - 8, 7, "#ffb547");
+    }
+  });
+})();
+</script>

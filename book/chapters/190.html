@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Half the nitrogen atoms in your body passed through a factory. The Haber–Bosch process makes ammonia for fertilizer from nitrogen and hydrogen at about 450 °C and 200 atmospheres, using roughly 1–2% of the world’s energy. Bacteria do the same job at room temperature with an enzyme, nitrogenase, whose active site is a cluster of seven irons, a molybdenum, nine sulfurs and a central carbon: the FeMo cofactor, or FeMoco. How it breaks the triple bond of N₂ is still not fully understood. It is the flagship problem for quantum chemistry on quantum computers.</p>
+  <p>On the plate: the FeMoco problem, from biology to qubits.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The biology question and why it is hard</h2>
+  <p>Nitrogenase’s overall reaction is</p>
+  <div class="eq">{{texd:\begin{gathered}\mathrm{N_2 + 8H^+ + 8e^- + 16\,ATP}\\ \to \mathrm{2NH_3 + H_2 + 16\,ADP + 16\,P_i}\end{gathered}}}</div>
+  <p>The cofactor cycles through several states, each adding an electron and a proton, before N₂ binds and is reduced. Which irons bind it, which intermediates form, and why the enzyme makes one H₂ per N₂ remain under study. Answering requires the relative energies of many electronic states of the cluster, whose seven iron atoms each carry several unpaired d electrons coupled together: a textbook strongly correlated system. Density functional theory gives answers that depend on the functional chosen, and the spin coupling is hard for any approximate method (Chapter 159). <span class="tag">Established</span> as a hard problem.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>From cluster to qubits</h2>
+  <p>Step through the chain: <button type="button" class="v" data-pick="s:1">active space</button> <button type="button" class="v" data-pick="s:2">qubits</button> <button type="button" class="v" data-pick="s:3">logical cost</button> <button type="button" class="v" data-pick="s:4">physical cost</button>. Reiher and colleagues’ 2017 model used CAS(54e, 54o), 108 spin orbitals; Li and colleagues’ 2019 model used CAS(113e, 76o), 152 spin orbitals (Chapter 185). Lee and colleagues’ 2021 tensor-hypercontraction algorithm needs 2,142 logical qubits and about {{tex:5.3\times10^9}} Toffolis; on a surface-code machine with 0.1% errors, about four million physical qubits for under four days (Chapter 189). In October 2025 the company Alice & Bob reported, in a preliminary blog post rather than a peer-reviewed paper, that a cat-qubit architecture could reduce the requirement to about 99,000 cat qubits, from an earlier 2.7 million. <span class="tag">Established</span> as calculations; <span class="tag">Speculative</span> for the 2025 company estimate.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>Three cautions. Classical methods keep improving: DMRG and AFQMC calculations on iron–sulfur clusters, by Garnet Chan’s group and others, have already clarified spin structures once thought out of reach. The active space defines the question, and the original one was too small. And a perfect ground-state energy at one geometry is not a mechanism: understanding nitrogenase needs many states, many geometries, protein environment (QM/MM), and kinetics. A quantum computer could supply the hardest energies in that workflow; it would not replace the workflow. What the answer would change: a better understanding of biological nitrogen fixation could guide catalysts that work under mild conditions, a large energy prize. <span class="tag">Speculative</span> until fault-tolerant hardware exists.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why nitrogen fixation matters, nitrogenase’s reaction and FeMoco’s structure, why its electronic structure defeats approximate methods, the chain from active space to physical qubits, the 2017–2025 estimates, and the critique.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is FeMoco strongly correlated?<span class="tap">tap</span></div><div class="a">Seven irons with many unpaired d electrons coupled together give many near-degenerate spin configurations.</div></div>
+  <div class="qa"><div class="q">What would a quantum computer actually provide?<span class="tap">tap</span></div><div class="a">Accurate energies of the cluster’s electronic states, within a larger classical workflow.</div></div>
+  <div class="qa"><div class="q">Why is one energy not a mechanism?<span class="tap">tap</span></div><div class="a">Mechanisms need many states, geometries, protein effects and kinetics.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many ATP does nitrogenase consume per N₂ reduced?</p>
+    <form class="calc" data-answer="16" data-tol="0.5" data-ok="Yes: 16 ATP per N₂: breaking the triple bond is expensive even for biology." data-hint="From the overall equation."><span>ATP =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="ATP"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: B. M. Hoffman et al., Chem. Rev. 114, 4041 (2014). M. Reiher et al., Proc. Natl Acad. Sci. USA 114, 7555 (2017). Z. Li et al., J. Chem. Phys. 150, 024302 (2019). J. Lee et al., PRX Quantum 2, 030305 (2021). Alice & Bob, company blog (October 2025), preliminary. Last checked 18 November 2026.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, steps = { "1": ["Active space", "CAS(54e,54o) → CAS(113e,76o)", "10^30.6 → 10^35.6 determinants"], "2": ["Qubits", "2 per spatial orbital", "108 → 152 system qubits"], "3": ["Logical cost (2021)", "2,142 logical qubits", "5.3 × 10⁹ Toffolis"], "4": ["Physical cost", "~4 M surface-code qubits, < 4 days", "2025 cat-qubit claim: ~99,000 (preliminary)"] };
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["FeMoco: 7 Fe, Mo, 9 S, C.", "N₂ + 8H⁺ + 8e⁻ + 16 ATP → 2NH₃ + H₂.", "From cluster to qubits.", "Classical progress, scope, and mechanism.", "Nitrogenase."][beat]; },
+    readout: function () { if (beat === 2) { var s = steps[Book.state.picks.s || "1"]; return s[0] + " · " + s[1] + " · " + s[2]; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.22, i;
+      if (beat === 0 || beat === 1 || beat === 4) { var t = now / 4000; k.circle(cx, cy, 8, "rgba(236,230,218,.6)"); for (i = 0; i < 6; i++) { var a = t + i * Math.PI / 3, x = cx + R * Math.cos(a), y = cy + R * 0.6 * Math.sin(a); k.line(cx, cy, x, y, "rgba(236,230,218,.2)", 1); k.circle(x, y, 11, "#e05a46"); k.text("Fe", x, y + 4, { size: 9, color: "#14120f" }); } k.circle(cx - R * 1.5, cy, 11, "#e05a46"); k.text("Fe", cx - R * 1.5, cy + 4, { size: 9, color: "#14120f" }); k.circle(cx + R * 1.5, cy, 13, "#ffb547"); k.text("Mo", cx + R * 1.5, cy + 4, { size: 9, color: "#14120f" }); for (i = 0; i < 9; i++) { var b = -t * 0.7 + i * 2 * Math.PI / 9; k.circle(cx + R * 1.15 * Math.cos(b), cy + R * 0.9 * Math.sin(b), 6, "rgba(255,181,71,.6)"); } k.text("C", cx, cy + 4, { size: 9, color: "#14120f" }); return; }
+      if (beat === 2) { var keys = ["1", "2", "3", "4"], sel = Book.state.picks.s || "1"; keys.forEach(function (key, j) { var s = steps[key], y = H * (0.08 + j * 0.22), on = key === sel; k.rr(W * 0.08, y, W * 0.84, H * 0.18, 8, on ? "#1d1a15" : "#14120f", on ? "#ffb547" : "rgba(236,230,218,.3)"); k.text(s[0], W * 0.12, y + H * 0.07, { size: 13, color: on ? "#ffb547" : "#ece6da", align: "left" }); k.text(s[1] + " · " + s[2], W * 0.12, y + H * 0.13, { size: 10, color: "#b9b2a5", align: "left" }); }); return; }
+      if (beat === 3) { [["classical DMRG/AFQMC improving", "#ece6da"], ["active space defines the question", "#ece6da"], ["one energy ≠ a mechanism", "#e05a46"]].forEach(function (c, j) { k.text(c[0], W / 2, H * (0.3 + j * 0.2), { size: 14, color: c[1] }); }); }
+    }
+  });
+})();
+</script>

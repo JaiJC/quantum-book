@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Marcus theory (Chapter 163) treats the environment’s motions classically. That works when the relevant vibrations are slow and thermally excited. But high-frequency molecular vibrations, carbon–carbon and carbon–oxygen stretches with quanta far above {{tex:k_BT}}, cannot be treated classically, and they change the inverted region dramatically. In 2024 a trapped-ion experiment simulated electron transfer with a tunable environment, reproducing these regimes on demand. This chapter shows the physics and the experiment.</p>
+  <p>On the plate: electron-transfer rates with and without a quantum vibration.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Beyond classical Marcus</h2>
+  <p>Treat the slow environment classically, with reorganization energy {{tex:\lambda_s}}, and add one high-frequency vibration of energy {{tex:\hbar\omega}} with Huang–Rhys factor {{tex:S}} (how much it is displaced by the transfer). The electron can now land in the product state with {{tex:n}} quanta of vibration excited, each channel with Franck–Condon weight {{tex:e^{-S}S^n/n!}}:</p>
+  <div class="eq">{{texd:k\propto\sum_{n}\frac{e^{-S}S^n}{n!}\exp\Big[-\frac{(\Delta G+\lambda_s+n\hbar\omega)^2}{4\lambda_sk_BT}\Big]}}</div>
+  <p>This Marcus–Levich–Jortner form, developed by Veniamin Levich, Joshua Jortner and others, softens the inverted region: very exothermic transfers dump their excess energy into vibrational quanta instead of climbing a barrier. Formally it is a spin-boson model, a two-level system coupled to a bath of oscillators. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Compare the rates</h2>
+  <p>Solvent reorganization {{tex:\lambda_s =}} <span class="tangle" data-var="L" data-min="0.1" data-max="1" data-step="0.05" data-dec="2" data-value="0.40" data-px="30"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Lambda eV">0.40</span><button type="button" data-de="1" aria-label="Larger">›</button></span> eV, vibration {{tex:\hbar\omega =}} <span class="tangle" data-var="w" data-min="0.05" data-max="0.3" data-step="0.01" data-dec="2" data-value="0.18" data-px="80"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Vibration eV">0.18</span><button type="button" data-de="1" aria-label="Higher">›</button></span> eV (a C=C stretch is about 0.18 eV), Huang–Rhys factor {{tex:S =}} <span class="tangle" data-var="S" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Huang-Rhys">1.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span>. The plate plots log rate against driving force for classical Marcus (white) and with the quantum mode (amber). In the normal region they agree; in the inverted region the quantum curve falls far more slowly. In December 2024 Visal So, Guido Pagano and colleagues at Rice University published in <em>Science Advances</em> a trapped-ion simulation of electron transfer, encoding donor and acceptor in an ion’s spin and the environment in its motion, with dissipation engineered by laser cooling, and measured transfer rates across normal and inverted regimes. <span class="tag">Established</span> for the demonstration.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>A single spin coupled to one damped mode is classically solvable, and Marcus–Levich–Jortner theory already describes most experiments. The value of analog simulators lies in regimes classical methods find hard: strong, structured coupling to many modes, non-Markovian memory, and multi-site networks where coherent and incoherent transfer compete. Those regimes do matter for biology, for instance in photosynthetic reaction centres and multi-cofactor chains, but no simulation has yet produced a biological result classical methods could not. <span class="tag">Speculative</span> for advantage.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why high-frequency vibrations need quantum treatment, the Marcus–Levich–Jortner rate with Franck–Condon factors, the softened inverted region, the spin-boson connection, the 2024 trapped-ion simulation, and where analog simulators might eventually help.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does a quantum vibration soften the inverted region?<span class="tap">tap</span></div><div class="a">Excess energy goes into vibrational quanta instead of a barrier.</div></div>
+  <div class="qa"><div class="q">What does the Huang–Rhys factor measure?<span class="tap">tap</span></div><div class="a">How strongly the vibration is displaced by the transfer, setting the Franck–Condon weights.</div></div>
+  <div class="qa"><div class="q">What did the 2024 ion experiment encode?<span class="tap">tap</span></div><div class="a">Donor and acceptor in a spin, the environment in motion, with engineered dissipation.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> In classical Marcus theory with {{tex:\lambda = 0.5}} eV, at what driving force {{tex:\Delta G}} (in eV) is the rate maximal?</p>
+    <form class="calc" data-answer="-0.5" data-tol="0.01" data-ok="Yes: ΔG = −λ = −0.5 eV." data-hint="The barrier vanishes at ΔG = −λ."><span>ΔG =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Delta G"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Jortner, J. Chem. Phys. 64, 4860 (1976). R. A. Marcus, Rev. Mod. Phys. 65, 599 (1993). V. So et al., Sci. Adv. 10 (December 2024). Checked by code: the plate sums Franck–Condon channels n = 0–30 at 300 K.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { L: 0.4, w: 0.18, S: 1 }, kT = 0.02585;
+  function cl(G) { return -(G + V.L) * (G + V.L) / (4 * V.L * kT) / Math.LN10; }
+  function qm(G) { var s = 0, f = 1; for (var n = 0; n <= 30; n++) { if (n) f *= V.S / n; s += Math.exp(-V.S) * f * Math.exp(-(G + V.L + n * V.w) * (G + V.L + n * V.w) / (4 * V.L * kT)); } return Math.log10(s + 1e-300); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["log rate vs driving force.", "Franck–Condon channels n = 0, 1, 2, …", "Classical Marcus (white) vs with quantum mode (amber).", "Where analog simulators might matter.", "Electron transfer simulation."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var G = -1.5; return "at ΔG = −1.5 eV: classical log₁₀ k = " + cl(G).toFixed(1) + " · with mode " + qm(G).toFixed(1) + " (relative to peak 0)"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 8], [0, 0.45], { xl: "quanta n", yl: "weight e^(−S)Sⁿ/n!" }); var f = 1; for (var n = 0; n <= 8; n++) { if (n) f *= V.S / n; var wgt = Math.exp(-V.S) * f; k.rr(A.X(n) - 10, A.Y(wgt), 20, A.Y(0) - A.Y(wgt), 3, "#ffb547"); } return; }
+      if (beat === 3) { ["one spin + one mode: classical", "many structured modes: hard", "non-Markovian memory: hard", "multi-site networks: hard"].forEach(function (s, j) { k.text(s, W / 2, H * (0.2 + j * 0.18), { size: 13, color: j ? "#ffb547" : "#b9b2a5" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-2, 0.3], [-20, 0.5], { xl: "ΔG (eV)", yl: "log₁₀ relative rate" }); k.plot(A, function (G) { return Math.max(-20, cl(G)); }, [-2, 0.3], "rgba(236,230,218,.8)", 2.3, 400); k.plot(A, function (G) { return Math.max(-20, qm(G)); }, [-2, 0.3], "#ffb547", 2.5, 400);
+    }
+  });
+})();
+</script>

@@ -1,0 +1,4 @@
+Carnot 800K/300K 0.625  power plant 823K/300K 0.6354799513973268
+mixing 1 mol + 1 mol ideal gases dS J/K 11.526292643075523
+Joule 772 ft-lbf per Btu -> J/cal 4.15081312556556
+ATP standard dG0' -30.5 kJ/mol; per molecule eV -0.31611022451599635

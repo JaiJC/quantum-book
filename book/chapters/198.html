@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Everywhere else in this book, hardware noise is the enemy: it limits circuits, demands error correction, and costs millions of qubits. Biology, though, happens in noisy environments, and simulating a molecule in a protein means simulating the noise too, which classically costs extra. Why not let the quantum computer’s own decoherence play the role of the protein’s? Several groups have tried, with some success. The idea is appealing and hard to make rigorous.</p>
+  <p>On the plate: matching a device’s noise to a target environment.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The idea</h2>
+  <p>An open biological system evolves by a master equation with dephasing and relaxation (Chapter 161). A real qubit evolves by approximately the same kind of equation, with relaxation rate {{tex:1/T_1}} and pure dephasing rate {{tex:\gamma_\varphi = 1/T_2 - 1/2T_1}} (Chapter 135). If a simulated time step is mapped to a physical time chosen so that the qubit’s accumulated dephasing equals the target environment’s, the device’s own noise implements the bath. Groups simulating radical-pair dynamics on IBM processors reported that leaning on the native noise reproduced noisy quantum beats better than some simple classical approximations, with good agreement with experimental data. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Match the bath</h2>
+  <p>Device {{tex:T_1 =}} <span class="tangle" data-var="T1" data-min="20" data-max="300" data-step="5" data-value="100" data-px="1"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="T1 µs">100</span><button type="button" data-de="1" aria-label="Longer">›</button></span> µs and {{tex:T_2 =}} <span class="tangle" data-var="T2" data-min="10" data-max="400" data-step="5" data-value="80" data-px="1"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="T2 µs">80</span><button type="button" data-de="1" aria-label="Longer">›</button></span> µs; target dephasing over one simulated time unit <span class="tangle" data-var="g" data-min="0.01" data-max="2" data-step="0.01" data-dec="2" data-value="0.50" data-px="40"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Target dephasing">0.50</span><button type="button" data-de="1" aria-label="More">›</button></span>. The plate computes the device’s pure dephasing rate and the physical idle time per simulated time unit needed to match. Then it adds the catch: device parameters drift by tens of percent over hours, and the noise spectrum is not the one the protein has. The target curve (white) and the device-emulated curve (amber, with its drift band) separate. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>Device noise is uncontrolled. It includes relaxation, dephasing, crosstalk, leakage and slow drift, with spectra set by fabrication defects, not by biology. Matching a single rate is easy; matching a structured, temperature-dependent spectral density with memory is not. And results can be hard to verify: if a noisy simulation agrees with experiment, is it because the noise models the protein, or because the observable is insensitive to the details? Controlled noise injection, as in the analog experiments of Chapter 195, is more defensible than relying on native noise. The approach is a clever use of imperfect hardware, not yet a reliable method. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The idea of using hardware decoherence as a simulated bath, how to compute a device’s pure dephasing rate and match a target, why drift and spectral mismatch limit it, and why controlled noise injection is preferable.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How is pure dephasing obtained from T₁ and T₂?<span class="tap">tap</span></div><div class="a">γ_φ = 1/T₂ − 1/(2T₁).</div></div>
+  <div class="qa"><div class="q">Why is native noise hard to trust as a bath?<span class="tap">tap</span></div><div class="a">It drifts and has the wrong spectrum and memory for a protein environment.</div></div>
+  <div class="qa"><div class="q">What is more defensible?<span class="tap">tap</span></div><div class="a">Deliberate, calibrated noise injection.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:T_1 = 100}} µs and {{tex:T_2 = 80}} µs, what is {{tex:\gamma_\varphi}} in µs⁻¹?</p>
+    <form class="calc" data-answer="0.0075" data-tol="0.0002" data-ok="Yes: 1/80 − 1/200 = 0.0075 µs⁻¹." data-hint="0.0125 − 0.005."><span>γ_φ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Rate"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (OUP, 2002). P. Krantz et al., Appl. Phys. Rev. 6, 021318 (2019) (T₁, T₂ and drift in superconducting qubits). A. Potočnik et al., Nat. Commun. 9, 904 (2018) (controlled noise injection). Radical-pair simulations on IBM hardware: see the sources of Chapter 196. The drift band (±20%) is illustrative.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T1: 100, T2: 80, g: 0.5 };
+  function gphi() { return Math.max(1e-6, 1 / V.T2 - 1 / (2 * V.T1)); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Hardware decoherence as a simulated bath.", "Map simulated time to idle time.", "Target coherence (white) vs device emulation (amber, ±20% drift).", "Native noise vs controlled noise.", "Noise as a feature."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var gp = gphi(); return "γ_φ = " + gp.toFixed(4) + " µs⁻¹ · idle " + (V.g / gp).toFixed(1) + " µs per simulated time unit" + (1 / V.T2 - 1 / (2 * V.T1) <= 0 ? " · (T₂ > 2T₁ is unphysical)" : ""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.3, W * 0.82, H * 0.3, [0, 5], [0, 1], { xl: "simulated time" }); for (var t = 0; t < 5; t++) { k.rr(A.X(t) + 4, A.Y(0.8), A.X(1) - A.X(0) - 8, A.Y(0.2) - A.Y(0.8), 4, "rgba(255,181,71,.25)", "#ffb547"); k.text("gates + idle", A.X(t + 0.5), A.Y(0.5) + 4, { size: 10 }); } return; }
+      if (beat === 3) { k.text("native noise: uncontrolled, drifting", W / 2, H * 0.35, { size: 14, color: "#e05a46" }); k.text("injected noise: calibrated, tunable", W / 2, H * 0.6, { size: 14, color: "#ffb547" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 6], [0, 1.05], { xl: "simulated time", yl: "coherence" }); k.ctx.fillStyle = "rgba(255,181,71,.12)"; k.ctx.beginPath(); for (var i = 0; i <= 60; i++) { var x = i / 10; k.ctx.lineTo(A.X(x), A.Y(Math.exp(-V.g * 0.8 * x))); } for (i = 60; i >= 0; i--) { x = i / 10; k.ctx.lineTo(A.X(x), A.Y(Math.exp(-V.g * 1.2 * x))); } k.ctx.fill(); k.plot(A, function (x) { return Math.exp(-V.g * x) * (1 + 0.15 * Math.sin(3 * x) * Math.exp(-x)); }, [0, 6], "rgba(236,230,218,.85)", 2.2, 300); k.plot(A, function (x) { return Math.exp(-V.g * x); }, [0, 6], "#ffb547", 2.5, 300);
+    }
+  });
+})();
+</script>

@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The previous chapters asked whether biology uses quantum mechanics. This one turns the question around: quantum devices are becoming tools for biology. A nitrogen-vacancy centre in diamond, a single defect a few atoms across, works at room temperature, survives inside living cells, and measures magnetic fields, temperature and electric fields at the nanometre scale. In 2013 researchers used a diamond chip to map the magnetic fields of individual magnetotactic bacteria. These are quantum technologies applied to biology, not quantum effects in biology, and they are firmly established.</p>
+  <p>On the plate: the magnetic field of a tiny magnet, read by an NV centre.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The NV centre as a sensor</h2>
+  <p>As Chapter 154 showed, the NV centre’s spin-1 ground state has a zero-field splitting {{tex:D = 2.87}} GHz, is initialized and read out with green light, and shifts its {{tex:m_s = \pm1}} lines by 28 kHz per microtesla of field along its axis. Its sensitivity is limited by photon shot noise and spin coherence: roughly {{tex:\delta B\approx\frac{1}{\gamma}\frac{1}{C\sqrt{\eta T_2^*}}}} per root hertz, where {{tex:C}} is readout contrast and {{tex:\eta}} photon count rate. Single NVs reach about 1 µT/√Hz; dense ensembles in a diamond chip reach picotesla levels over larger areas. Romana Schirhagl and colleagues reviewed biological applications in 2014. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Imaging a magnetic bacterium</h2>
+  <p>Magnetotactic bacteria build chains of magnetite nanocrystals, magnetosomes, and swim along Earth’s field. David Le Sage, Ronald Walsworth and colleagues placed bacteria on a diamond with a thin layer of NV centres and imaged the field from each cell in 2013. Model a magnetic dipole with moment 10^<span class="tangle" data-var="lm" data-min="-18" data-max="-13" data-step="0.1" data-dec="1" data-value="-15.0" data-px="10"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 moment">-15.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span> A·m², typical of a magnetosome chain, at a distance of <span class="tangle" data-var="r" data-min="0.1" data-max="10" data-step="0.1" data-dec="1" data-value="1.0" data-px="6"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Distance µm">1.0</span><button type="button" data-de="1" aria-label="Farther">›</button></span> µm. On axis, {{tex:B = \tfrac{\mu_0}{4\pi}\tfrac{2m}{r^3}}}: the field falls as {{tex:1/r^3}}, so standoff distance is everything. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Thermometry and neurons</h2>
+  <p>The zero-field splitting {{tex:D}} also depends on temperature, falling about 74 kHz per kelvin, because the lattice expands. Georg Kucsko, Mikhail Lukin and colleagues put nanodiamonds inside human cells in 2013 and measured local temperature to millikelvin precision, even creating temperature gradients with laser-heated gold nanoparticles. In 2016 John Barry, Walsworth and colleagues detected the magnetic signal of single action potentials from a marine worm’s and a squid’s giant axons with an NV ensemble. Mammalian neurons are smaller and their fields weaker, so imaging individual human neuron activity this way remains a goal, not an achievement. For a biomedical engineer, NV magnetometry, optically pumped magnetometers for wearable brain imaging (MEG), and NV-based detection of magnetic labels in diagnostics are the most direct entry points into quantum technology. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The NV centre as a magnetometer and its sensitivity, imaging of magnetotactic bacteria, the 1/r³ falloff of dipole fields, nanodiamond thermometry in cells, neuron detection and its limits, and the routes into quantum sensing for biomedicine.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How large is the NV field shift?<span class="tap">tap</span></div><div class="a">28 kHz per microtesla along the NV axis.</div></div>
+  <div class="qa"><div class="q">Why does standoff distance matter so much?<span class="tap">tap</span></div><div class="a">Dipole fields fall as 1/r³.</div></div>
+  <div class="qa"><div class="q">How does an NV measure temperature?<span class="tap">tap</span></div><div class="a">The zero-field splitting shifts by about −74 kHz per kelvin.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A field of 10 µT along the NV axis shifts each ODMR line by how many kHz?</p>
+    <form class="calc" data-answer="280" data-tol="3" data-ok="Yes: 28 × 10 = 280 kHz." data-hint="28 kHz per µT."><span>shift =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Shift kHz"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. Le Sage et al., Nature 496, 486 (2013). G. Kucsko et al., Nature 500, 54 (2013). J. F. Barry et al., Proc. Natl Acad. Sci. USA 113, 14133 (2016). R. Schirhagl et al., Annu. Rev. Phys. Chem. 65, 83 (2014). V. M. Acosta et al., Phys. Rev. Lett. 104, 070801 (2010) (−74 kHz/K).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { lm: -15, r: 1 };
+  function B(lm, r) { return 1e-7 * 2 * Math.pow(10, lm) / Math.pow(r * 1e-6, 3); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Field from a magnetic dipole vs distance.", "ODMR: 2.87 GHz ± 28 kHz/µT.", "On-axis dipole field (log–log).", "Temperature shifts D by −74 kHz/K.", "NV sensing in biology."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var b = B(V.lm, V.r); return "m = 10^" + V.lm.toFixed(1) + " A·m² at " + V.r.toFixed(1) + " µm → B = " + (b * 1e6).toExponential(2) + " µT · line shift " + (b * 1e6 * 28).toExponential(2) + " kHz"; } if (beat === 3) return "ΔT = 1 K → ΔD = −74 kHz"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [2.86, 2.88], [0.8, 1.01], { xl: "microwave frequency (GHz)", yl: "fluorescence" }); var sh = 0.0028 * (0.5 + 0.5 * Math.sin(now / 1500)); k.plot(A, function (f) { return 1 - 0.1 / (1 + Math.pow((f - 2.87 + sh) / 0.0006, 2)) - 0.1 / (1 + Math.pow((f - 2.87 - sh) / 0.0006, 2)); }, [2.86, 2.88], "#ffb547", 2.5, 500); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [290, 320], [2.868, 2.8715], { xl: "temperature (K)", yl: "D (GHz)" }); k.plot(A, function (T) { return 2.8701 - 74e-6 * (T - 298); }, [290, 320], "#ffb547", 2.5); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-1, 1], [-6, 4], { xl: "log₁₀ distance (µm)", yl: "log₁₀ B (µT)" }); k.plot(A, function (lr) { return Math.log10(B(V.lm, Math.pow(10, lr)) * 1e6); }, [-1, 1], "#ffb547", 2.5); k.line(A.X(-1), A.Y(0), A.X(1), A.Y(0), "rgba(236,230,218,.3)", 1); k.text("1 µT ≈ single-NV sensitivity in 1 s", A.X(0.95), A.Y(0) - 6, { size: 10, color: "#b9b2a5", align: "right" }); k.circle(A.X(Math.log10(V.r)), A.Y(Math.log10(B(V.lm, V.r) * 1e6)), 6, "#ece6da");
+    }
+  });
+})();
+</script>

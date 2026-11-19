@@ -1,0 +1,64 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Drug designers would like to compute how strongly a candidate molecule binds its target, to within about 1 kcal/mol, the difference between a drug and a dud. The equation that governs it is just the Schrödinger equation for electrons and nuclei, written down in 1926. Yet getting one drug-sized molecule’s energy right to that accuracy can take a supercomputer, and for some molecules no classical method succeeds at all. This chapter shows where the difficulty comes from, using the smallest molecule there is.</p>
+  <p>On the plate: the hydrogen molecule, computed two ways.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Born–Oppenheimer and orbitals</h2>
+  <p>Nuclei are thousands of times heavier than electrons, so Max Born and J. Robert Oppenheimer proposed in 1927 to freeze the nuclei, solve for the electrons, and treat the resulting energy as a potential surface on which the nuclei move. Molecular orbitals are then built as <em>linear combinations of atomic orbitals</em> (LCAO). For H₂, two hydrogen 1s orbitals {{tex:\phi_A}} and {{tex:\phi_B}} combine into a bonding orbital {{tex:\sigma_g\propto\phi_A+\phi_B}}, which piles electron density between the nuclei, and an antibonding {{tex:\sigma_u\propto\phi_A-\phi_B}}. In practice each atomic orbital is itself a sum of Gaussians, a <em>basis set</em>; the minimal STO-3G basis uses three Gaussians per orbital, and larger basis sets add more functions, at rapidly rising cost. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Hartree–Fock, and where it fails</h2>
+  <p><em>Hartree–Fock</em> (HF) theory puts each electron in an orbital that feels only the average field of the others, and solves self-consistently. For H₂ in STO-3G, both electrons occupy {{tex:\sigma_g}}. The plate computes every integral exactly (overlaps, kinetic energy, nuclear attraction, electron repulsion) and plots the HF energy against bond length {{tex:R =}} <span class="tangle" data-var="R" data-min="0.6" data-max="6" data-step="0.05" data-dec="2" data-value="1.40" data-px="3"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Bond length bohr">1.40</span><button type="button" data-de="1" aria-label="Longer">›</button></span> bohr, alongside the exact answer in the same basis (<em>full configuration interaction</em>, mixing in the doubly-excited {{tex:\sigma_u^2}} configuration). Near equilibrium they differ by 20.6 millihartree, the <em>correlation energy</em>: 13 kcal/mol, more than ten times chemical accuracy. As the bond stretches, HF goes badly wrong: it insists both electrons share one orbital, giving a 50% chance of finding both on the same atom (H⁺ + H⁻), which costs far too much energy. These values match Attila Szabo and Neil Ostlund’s classic textbook. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Why correlation is hard</h2>
+  <p>Full configuration interaction is exact in a basis but its size grows combinatorially: the number of ways to place {{tex:N}} electrons in {{tex:M}} orbitals. Practical methods trade accuracy for cost: HF scales as about {{tex:M^4}}, second-order perturbation theory {{tex:M^5}}, coupled cluster CCSD(T), the “gold standard”, as {{tex:M^7}}. That gold standard works when one configuration dominates. It fails for <em>strongly correlated</em> molecules, with many nearly degenerate configurations: stretched bonds, transition-metal clusters such as the iron–sulfur and iron–molybdenum cofactors of enzymes. There the number of important configurations is exponential, and that is precisely where quantum computers (Chapter 122, Part 5) might help. Trygve Helgaker, Poul Jørgensen and Jeppe Olsen’s textbook covers the methods in depth. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The Born–Oppenheimer approximation, LCAO orbitals and basis sets, Hartree–Fock theory, an exactly computed H₂ curve, the correlation energy, HF’s failure on bond breaking, the cost ladder of correlated methods, and strong correlation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does Hartree–Fock leave out?<span class="tap">tap</span></div><div class="a">Correlation: the instantaneous avoidance of electrons beyond their average field.</div></div>
+  <div class="qa"><div class="q">Why does HF fail when H₂ dissociates?<span class="tap">tap</span></div><div class="a">A single doubly occupied orbital forces 50% ionic character, H⁺ + H⁻.</div></div>
+  <div class="qa"><div class="q">When does CCSD(T) fail?<span class="tap">tap</span></div><div class="a">In strongly correlated systems with many important configurations, such as metal clusters.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> At {{tex:R = 1.4}} bohr in STO-3G, {{tex:E_\text{HF} = -1.1167}} and {{tex:E_\text{FCI} = -1.1373}} hartree. What is the correlation energy, in millihartree?</p>
+    <form class="calc" data-answer="-20.6" data-tol="0.3" data-ok="Yes: −20.6 mHa, about −13 kcal/mol." data-hint="E_FCI − E_HF, times 1000."><span>E_corr =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Correlation energy mHa"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Born and R. Oppenheimer, Ann. Phys. 389, 457 (1927). A. Szabo and N. S. Ostlund, Modern Quantum Chemistry (Dover, 1996). T. Helgaker, P. Jørgensen and J. Olsen, Molecular Electronic-Structure Theory (Wiley, 2000). Checked by code: STO-3G integrals evaluated analytically; E_HF(1.4) = −1.11672, E_FCI(1.4) = −1.13728 Ha, overlap 0.6593, matching Szabo and Ostlund.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { R: 1.4 }, curve = [], d = [0.444635, 0.535328, 0.154329], a = [0.109818, 0.405771, 2.22766].map(function (x) { return x * 1.24 * 1.24; });
+  function erf(x) { var t = 1 / (1 + 0.5 * Math.abs(x)), y = 1 - t * Math.exp(-x * x - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277))))))))); return x >= 0 ? y : -y; }
+  function F0(t) { return t < 1e-10 ? 1 : 0.5 * Math.sqrt(Math.PI / t) * erf(Math.sqrt(t)); }
+  function nrm(al) { return Math.pow(2 * al / Math.PI, 0.75); }
+  function h2(R) { var pos = [0, R], c = d.map(function (x, i) { return x * nrm(a[i]); }), S = [[0, 0], [0, 0]], H = [[0, 0], [0, 0]], G = {}, i, j, p, q, r, t, PI = Math.PI;
+    for (i = 0; i < 2; i++) for (j = 0; j < 2; j++) for (p = 0; p < 3; p++) for (q = 0; q < 3; q++) { var ap = a[p], aq = a[q], s = ap + aq, R2 = (pos[i] - pos[j]) * (pos[i] - pos[j]), P = (ap * pos[i] + aq * pos[j]) / s, cc = c[p] * c[q], ov = Math.pow(PI / s, 1.5) * Math.exp(-ap * aq / s * R2); S[i][j] += cc * ov; var kin = ap * aq / s * (3 - 2 * ap * aq / s * R2) * ov, pot = 0; [0, 1].forEach(function (n) { pot += -2 * PI / s * Math.exp(-ap * aq / s * R2) * F0(s * (P - pos[n]) * (P - pos[n])); }); H[i][j] += cc * (kin + pot); }
+    function eri(i, j, k, l) { var key = [i, j, k, l].join(""); if (G[key] !== undefined) return G[key]; var sum = 0; for (var p = 0; p < 3; p++) for (var q = 0; q < 3; q++) for (var r = 0; r < 3; r++) for (var t = 0; t < 3; t++) { var A = a[p], B = a[q], C = a[r], D = a[t], P = (A * pos[i] + B * pos[j]) / (A + B), Q = (C * pos[k] + D * pos[l]) / (C + D); sum += c[p] * c[q] * c[r] * c[t] * 2 * Math.pow(PI, 2.5) / ((A + B) * (C + D) * Math.sqrt(A + B + C + D)) * Math.exp(-A * B / (A + B) * (pos[i] - pos[j]) * (pos[i] - pos[j]) - C * D / (C + D) * (pos[k] - pos[l]) * (pos[k] - pos[l])) * F0((A + B) * (C + D) / (A + B + C + D) * (P - Q) * (P - Q)); } return (G[key] = sum); }
+    var s12 = S[0][1], g = [1 / Math.sqrt(2 + 2 * s12), 1 / Math.sqrt(2 + 2 * s12)], u = [1 / Math.sqrt(2 - 2 * s12), -1 / Math.sqrt(2 - 2 * s12)];
+    function mo(X, Y) { var v = 0; for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) v += X[i] * Y[j] * H[i][j]; return v; }
+    function two(X, Y, Z, Wv) { var v = 0; for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) for (var k = 0; k < 2; k++) for (var l = 0; l < 2; l++) v += X[i] * Y[j] * Z[k] * Wv[l] * eri(i, j, k, l); return v; }
+    var Ehf = 2 * mo(g, g) + two(g, g, g, g), E2 = 2 * mo(u, u) + two(u, u, u, u), K = two(g, u, g, u), tr = Ehf + E2, det = Ehf * E2 - K * K, Efci = tr / 2 - Math.sqrt(tr * tr / 4 - det); return [Ehf + 1 / R, Efci + 1 / R, s12]; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; curve = []; for (var R = 0.6; R <= 6.001; R += 0.1) curve.push([R].concat(h2(R))); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["H₂ energy vs bond length (STO-3G).", "Bonding σg and antibonding σu.", "Hartree–Fock (white) and exact FCI (amber).", "Cost scaling of correlated methods.", "Molecular orbitals."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var e = h2(V.R); return "R = " + V.R.toFixed(2) + " bohr · E_HF = " + e[0].toFixed(5) + " · E_FCI = " + e[1].toFixed(5) + " Ha · correlation " + ((e[1] - e[0]) * 1000).toFixed(1) + " mHa"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [-4, 5.4], [-0.75, 0.85], { xl: "position along the bond (bohr)", zeroY: true }); var s1 = function (x, c) { return Math.exp(-Math.abs(x - c)) / Math.sqrt(Math.PI); }; k.plot(A, function (x) { return (s1(x, 0) + s1(x, 1.4)) / Math.sqrt(2 + 2 * 0.66); }, [-4, 5.4], "#ffb547", 2.5, 300); k.plot(A, function (x) { return (s1(x, 0) - s1(x, 1.4)) / Math.sqrt(2 - 2 * 0.66); }, [-4, 5.4], "rgba(236,230,218,.7)", 2, 300); k.circle(A.X(0), A.Y(0), 5, "#ece6da"); k.circle(A.X(1.4), A.Y(0), 5, "#ece6da"); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [1, 3], [0, 20], { xl: "log₁₀ basis functions M", yl: "log₁₀ cost" }); [[4, "rgba(236,230,218,.7)", "HF M⁴"], [5, "rgba(236,230,218,.9)", "MP2 M⁵"], [7, "#ffb547", "CCSD(T) M⁷"]].forEach(function (s) { k.plot(A, function (x) { return s[0] * x; }, [1, 3], s[1], 2.2); k.text(s[2], A.X(2.9), A.Y(Math.min(19, s[0] * 2.9)) - 6, { size: 11, color: s[1], align: "right" }); }); k.plot(A, function (x) { var M = Math.pow(10, x); return Math.min(20, 2 * M * Math.log10(2) * 0.5); }, [1, 3], "rgba(224,90,70,.85)", 2.2); k.text("FCI: exponential", A.X(1.3), A.Y(18), { size: 11, color: "#e05a46", align: "left" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0.6, 6], [-1.2, 0.2], { xl: "bond length R (bohr)", yl: "energy (Ha)" }); k.line(A.X(0.6), A.Y(-0.933), A.X(6), A.Y(-0.933), "rgba(185,178,165,.35)", 1); [1, 2].forEach(function (col) { var c = k.ctx; c.strokeStyle = col === 1 ? "rgba(236,230,218,.85)" : "#ffb547"; c.lineWidth = 2.4; c.beginPath(); curve.forEach(function (p, i) { var y = A.Y(Math.max(-1.2, Math.min(0.2, p[col]))); if (i) c.lineTo(A.X(p[0]), y); else c.moveTo(A.X(p[0]), y); }); c.stroke(); }); var e = h2(V.R); k.circle(A.X(V.R), A.Y(e[0]), 5, "#ece6da"); k.circle(A.X(V.R), A.Y(e[1]), 5, "#ffb547"); k.text("2 H atoms in this basis: −0.933", A.X(5.9), A.Y(-0.933) - 6, { size: 10, color: "#b9b2a5", align: "right" });
+    }
+  });
+})();
+</script>

@@ -1,0 +1,2 @@
+== 109
+fusion, colour change, identity, pi-copy verified numerically in page (max diff ~1e-16)

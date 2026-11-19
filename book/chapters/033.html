@@ -1,0 +1,127 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A vial of tiny crystals, all made of the same material, glows red, orange, green or blue depending only on how big the crystals are. Nothing about their chemistry differs; only their size. The reason is the simplest problem in quantum mechanics, a particle trapped in a box, and it won the 2023 Nobel Prize in Chemistry.</p>
+  <p>On the plate: the allowed states of a particle in a box. There are only certain energies, and between them, none.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why energy comes in steps</h2>
+  <p>Put a particle between two impenetrable walls a distance {{tex:L}} apart. Inside, there is no force, so the time-independent Schrödinger equation (Chapter 31) is {{tex:-\frac{\hbar^2}{2m}\phi'' = E\phi}}, solved by sines and cosines. At the walls the wavefunction must vanish, so only waves that fit a whole number of half-wavelengths survive, exactly like a guitar string:</p>
+  <div class="eq">{{texd:\phi_n(x) = \sqrt{\tfrac{2}{L}}\sin\frac{n\pi x}{L}, \qquad E_n = \frac{n^2h^2}{8mL^2}, \quad n = 1, 2, 3, \dots}}</div>
+  <p>Step through <span class="tangle" data-var="n" data-min="1" data-max="8" data-step="1" data-value="1" data-px="16"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Quantum number">1</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Each step adds a node, and the energy climbs as {{tex:n^2}}. Quantization here is not imposed; it is forced by the boundary conditions. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The zero-point energy</h2>
+  <p>There is no state with {{tex:n = 0}}: that would be {{tex:\phi = 0}}, no particle at all. The lowest energy is {{tex:E_1 > 0}}. A confined particle can never sit still, because confining it to {{tex:L}} forces a momentum spread of order {{tex:\hbar/L}} (Chapter 30).</p>
+  <p>Make it real. An electron in a box <span class="tangle" data-var="L" data-min="0.3" data-max="5" data-step="0.1" data-dec="1" data-unit=" nm" data-value="1" data-px="8"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Box length">1.0 nm</span><button type="button" data-de="1" aria-label="Larger">›</button></span> wide has {{tex:E_1 =}} <span class="live" id="E1">0.376</span> eV. The jump from {{tex:n = 1}} to {{tex:n = 2}} absorbs light of wavelength <span class="live" id="lam">1100</span> nm. Atoms and molecules are a few tenths of a nanometre to a few nanometres across, which is why their energies are electron-volts and their light is visible or near it.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Walls that are not infinite</h2>
+  <p>Real wells have finite depth. Set the depth to <span class="tangle" data-var="V0" data-min="1" data-max="40" data-step="1" data-value="10" data-px="6"><button type="button" data-de="-1" aria-label="Shallower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Depth">10</span><button type="button" data-de="1" aria-label="Deeper">›</button></span> and the width to <span class="tangle" data-var="a" data-min="0.4" data-max="3" data-step="0.1" data-dec="1" data-value="1" data-px="10"><button type="button" data-de="-1" aria-label="Narrower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Half width">1.0</span><button type="button" data-de="1" aria-label="Wider">›</button></span> (half-width, in units with {{tex:\hbar = m = 1}}). The plate solves for the bound states exactly.</p>
+  <p>Three things change. The wavefunction leaks into the walls, decaying as {{tex:e^{-\kappa|x|}}} with {{tex:\kappa = \sqrt{2m(V_0 - E)}/\hbar}}: the particle has a real chance of being found where classically it has too little energy to go. The levels sit lower than in the infinite box, because the wave has more room. And there are only finitely many bound states, but always at least one in one dimension, however shallow the well.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Match {{tex:\phi}} and {{tex:\phi'}} at {{tex:x = a}}. With {{tex:z = ka}} and {{tex:z_0 = a\sqrt{2mV_0}/\hbar}}, even states satisfy {{tex:z\tan z = \sqrt{z_0^2 - z^2}}} and odd states {{tex:-z\cot z = \sqrt{z_0^2 - z^2}}}. The number of bound states is the number of half-multiples of {{tex:\pi}} below {{tex:z_0}}, rounded up. For depth 10 and half-width 1, {{tex:z_0 = 4.47}} and there are three.</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Colours from size</h2>
+  <p>A quantum dot is a crystal of semiconductor a few nanometres across. An electron and the hole it leaves behind are both confined, and the energy of the light they emit when they recombine is the bulk band gap plus their confinement energies, which grow as {{tex:1/R^2}}. Choose a cadmium selenide dot of radius <button type="button" class="v" data-pick="qd:4">4 nm</button>, <button type="button" class="v" data-pick="qd:2.5">2.5 nm</button> or <button type="button" class="v" data-pick="qd:1.5">1.5 nm</button>.</p>
+  <p>Smaller dots, bluer light. Louis Brus worked out this model in 1983, Alexei Ekimov had seen the effect in coloured glass, and Moungi Bawendi learned in 1993 to make the dots with precise sizes. They shared the 2023 Nobel Prize in Chemistry; quantum dots now set the colours of some television screens and are being developed as bright labels for imaging tissue. <span class="tag">Established</span></p>
+  <div class="note x-std"><span class="mark">Note</span>The plate uses Brus’s simple formula, with effective masses for the electron and hole and a correction for their attraction. It gets the trend and the rough colours right; accurate predictions for small dots need more detailed models.</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A box made of a molecule</h2>
+  <p>In the late 1940s Hans Kuhn treated the electrons of a long dye molecule as particles in a box the length of its chain. Fill the levels two electrons at a time; the colour is the jump from the highest filled level to the first empty one, {{tex:\Delta E = (N + 1)\,h^2/8mL^2}} for {{tex:N}} electrons. Try <span class="tangle" data-var="N" data-min="4" data-max="16" data-step="2" data-value="10" data-px="14"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Pi electrons">10</span><button type="button" data-de="1" aria-label="More">›</button></span> electrons, with the chain about 0.14 nm longer per electron.</p>
+  <p>Longer chains, redder absorption. Ten electrons over 1.4 nm predicts about 590 nm, and real dyes of this family absorb in that region. A biomedical engineer meets this in every fluorescent label: the cyanine dyes used in imaging, such as Cy3 and Cy5, differ by a two-carbon extension of the chain, and their colours shift accordingly.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Quantization from boundary conditions, {{tex:E_n \propto n^2/L^2}}, zero-point energy, penetration into finite walls, at least one bound state in any one-dimensional well, quantum-dot colours and Kuhn’s dye model.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is there no n = 0 state in a box?<span class="tap">tap</span></div><div class="a">It would be ψ = 0 everywhere, meaning no particle. Confinement forces a minimum kinetic energy.</div></div>
+  <div class="qa"><div class="q">Why do smaller quantum dots emit bluer light?<span class="tap">tap</span></div><div class="a">Confinement energy grows as 1/R², raising the energy of the emitted photon.</div></div>
+  <div class="qa"><div class="q">Can a particle be found inside the wall of a finite well?<span class="tap">tap</span></div><div class="a">Yes. The wavefunction decays exponentially into the wall rather than stopping, so there is a nonzero probability there.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The electron in a 1 nm box has {{tex:E_1 = 0.376}} eV. What is {{tex:E_1}} for a 0.5 nm box, in eV?</p>
+    <form class="calc" data-answer="1.504" data-tol="0.01" data-ok="Yes: halving L multiplies E by four: 1.50 eV." data-alt="0.752~E scales as 1/L², not 1/L.|0.094~That is for a wider box; the energy rises when the box shrinks." data-hint="E₁ ∝ 1/L²."><span>E₁ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Energy in eV"><span>eV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: L. E. Brus, J. Chem. Phys. 79, 5566 (1983); C. B. Murray, D. J. Norris and M. G. Bawendi, J. Am. Chem. Soc. 115, 8706 (1993); Nobel Prize in Chemistry 2023 (Bawendi, Brus, Ekimov). H. Kuhn, J. Chem. Phys. 17, 1198 (1949). Checked by code: E₁(1 nm) = 0.376 eV; finite well (depth 10, half-width 1) has 3 bound states at −9.18, −6.78, −3.05; Kuhn N = 10, L = 1.4 nm → 2.11 eV, 587 nm; Brus CdSe radii 1.5, 2.5, 4 nm → about 380, 550, 650 nm.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 1, L: 1, V0: 10, a: 1, N: 10 };
+  var QD = { "4": [648, 1.91], "2.5": [554, 2.24], "1.5": [383, 3.23] };
+  function E1(L) { return 0.37603 / (L * L); }
+  function upd() { Book.text("E1", E1(V.L).toFixed(3)); Book.text("lam", Math.round(1239.84 / (3 * E1(V.L))).toString()); }
+  function bound(V0, a) {
+    var z0 = a * Math.sqrt(2 * V0), out = [];
+    for (var n = 0; n * Math.PI / 2 < z0; n++) {
+      var lo = n * Math.PI / 2 + 1e-9, hi = Math.min((n + 1) * Math.PI / 2 - 1e-9, z0 - 1e-12);
+      var f = n % 2 === 0 ? function (z) { return z * Math.tan(z) - Math.sqrt(z0 * z0 - z * z); } : function (z) { return -z / Math.tan(z) - Math.sqrt(z0 * z0 - z * z); };
+      if (f(lo) * f(hi) > 0) continue;
+      for (var it = 0; it < 80; it++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; }
+      var z = (lo + hi) / 2; out.push({ E: z * z / (2 * a * a) - V0, k: z / a, kap: Math.sqrt(Math.max(0, z0 * z0 - z * z)) / a, even: n % 2 === 0 });
+    }
+    return out;
+  }
+  function wl2rgb(l) { var r = 0, g = 0, b = 0; if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else { r = 1; } var f = l < 420 ? 0.4 + 0.6 * (l - 380) / 40 : 1; return "rgb(" + [r, g, b].map(function (v) { return Math.round(255 * Math.max(0, Math.min(1, v)) * f); }).join(",") + ")"; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; upd(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; upd(); },
+    caption: function () { return ["The allowed states of a particle in a box.", "The nth state of the infinite well.", "An electron in a box.", "Bound states of a finite well.", "Quantum-dot colour from size.", "Kuhn’s dye: filled levels and the first jump.", "The allowed states of a particle in a box."][beat]; },
+    readout: function () {
+      if (beat === 1) return "E" + V.n + " = " + (V.n * V.n) + " E₁ · nodes " + (V.n - 1);
+      if (beat === 2) return "E₁ = " + E1(V.L).toFixed(3) + " eV · 1→2: " + Math.round(1239.84 / (3 * E1(V.L))) + " nm";
+      if (beat === 3) { var b = bound(V.V0, V.a); return b.length + " bound state" + (b.length === 1 ? "" : "s") + " · E = " + b.map(function (s) { return s.E.toFixed(2); }).join(", "); }
+      if (beat === 4) { var q = QD[Book.state.picks.qd || "4"]; return "CdSe, R = " + (Book.state.picks.qd || "4") + " nm · ≈ " + q[1].toFixed(2) + " eV · ≈ " + q[0] + " nm"; }
+      if (beat === 5) { var L = V.N * 0.14, dE = 0.37603 * (V.N + 1) / (L * L); return "L = " + L.toFixed(2) + " nm · ΔE = " + dE.toFixed(2) + " eV · λ ≈ " + Math.round(1239.84 / dE) + " nm"; }
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, j;
+      if (beat === 3) {
+        var a = V.a, V0 = V.V0, b = bound(V0, a), xr = [-Math.max(3, a * 2.2), Math.max(3, a * 2.2)];
+        A = k.axes(W * 0.06, H * 0.06, W * 0.88, H * 0.86, xr, [-V0 * 1.05, V0 * 0.25], {});
+        c.strokeStyle = "rgba(236,230,218,.6)"; c.lineWidth = 2; c.beginPath(); c.moveTo(A.X(xr[0]), A.Y(0)); c.lineTo(A.X(-a), A.Y(0)); c.lineTo(A.X(-a), A.Y(-V0)); c.lineTo(A.X(a), A.Y(-V0)); c.lineTo(A.X(a), A.Y(0)); c.lineTo(A.X(xr[1]), A.Y(0)); c.stroke();
+        var amp = V0 * 0.12;
+        b.forEach(function (s) {
+          k.line(A.X(xr[0]), A.Y(s.E), A.X(xr[1]), A.Y(s.E), "rgba(255,181,71,.25)", 1, [3, 4]);
+          var edge = s.even ? Math.cos(s.k * a) : Math.sin(s.k * a);
+          k.plot(A, function (x) { var ax = Math.abs(x), v = ax < a ? (s.even ? Math.cos(s.k * x) : Math.sin(s.k * x)) : edge * Math.exp(-s.kap * (ax - a)) * (s.even ? 1 : Math.sign(x)); return s.E + amp * v; }, xr, "#ffb547", 2, 500);
+        });
+        return;
+      }
+      if (beat === 4) {
+        var sel = Book.state.picks.qd || "4";
+        ["4", "2.5", "1.5"].forEach(function (r, i) { var R = parseFloat(r), cx = W * (0.22 + i * 0.28), cy = H * 0.45, rad = Math.min(W, H) * 0.035 * R; k.glow(cx, cy, rad * 2.2, wl2rgb(QD[r][0])); k.circle(cx, cy, rad, wl2rgb(QD[r][0]), r === sel ? "#ece6da" : null, 2); k.text(r + " nm", cx, H * 0.8, { color: r === sel ? "#ece6da" : "#7c766b" }); k.text(QD[r][0] + " nm light", cx, H * 0.88, { size: 11, color: "#7c766b" }); });
+        return;
+      }
+      if (beat === 5) {
+        var N = V.N, nl = N / 2 + 2;
+        A = k.axes(W * 0.12, H * 0.06, W * 0.5, H * 0.86, [0, 1], [0, (nl + 0.5) * (nl + 0.5)], { yl: "energy" });
+        for (j = 1; j <= nl; j++) { var y = A.Y(j * j), filled = j <= N / 2; k.line(A.X(0.1), y, A.X(0.9), y, filled ? "#ece6da" : "rgba(236,230,218,.3)", 2); if (filled) { k.circle(A.X(0.42), y - 5, 4, "#ffb547"); k.circle(A.X(0.58), y - 5, 4, "#ffb547"); } }
+        var h1 = N / 2, h2 = h1 + 1; c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.moveTo(A.X(0.75), A.Y(h1 * h1)); c.lineTo(A.X(0.75), A.Y(h2 * h2) + 6); c.stroke(); k.circle(A.X(0.75), A.Y(h2 * h2) + 6, 4, "#ffb547");
+        var L = N * 0.14, lam = 1239.84 / (0.37603 * (N + 1) / (L * L));
+        k.glow(W * 0.8, H * 0.45, Math.min(W, H) * 0.14, wl2rgb(Math.min(700, Math.max(380, lam))));
+        k.text(lam < 380 ? "ultraviolet" : lam > 700 ? "infrared" : "absorbs ≈ " + Math.round(lam) + " nm", W * 0.8, H * 0.75, {});
+        return;
+      }
+      var nmax = beat === 1 ? 0 : 4, L0 = W * 0.28, x0 = W * 0.36, E0 = H * 0.9, sc = (H * 0.8) / 17;
+      c.strokeStyle = "rgba(236,230,218,.6)"; c.lineWidth = 3; c.beginPath(); c.moveTo(x0, H * 0.05); c.lineTo(x0, E0); c.lineTo(x0 + L0, E0); c.lineTo(x0 + L0, H * 0.05); c.stroke();
+      var list = beat === 1 ? [V.n] : [1, 2, 3, 4], scale = beat === 1 ? (H * 0.8) / 70 : sc;
+      list.forEach(function (n) {
+        var y0 = E0 - (beat === 1 ? H * 0.42 : n * n * scale), amp = beat === 1 ? H * 0.32 : sc * 1.3, ph = Math.cos(now / (900 / n / n));
+        k.line(x0, y0, x0 + L0, y0, "rgba(255,181,71,.25)", 1, [3, 4]);
+        c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.beginPath(); for (var i = 0; i <= 160; i++) { var u = i / 160, v = Math.sin(n * Math.PI * u) * ph; if (i) c.lineTo(x0 + u * L0, y0 - amp * v); else c.moveTo(x0 + u * L0, y0 - amp * v); } c.stroke();
+        k.text("n = " + n, x0 + L0 + 30, y0 + 4, { size: 12, color: "#b9b2a5", align: "left" });
+      });
+    }
+  });
+})();
+</script>

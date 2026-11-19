@@ -1,0 +1,3 @@
+unitary? True
+H^2 = I: True
+|<+|psi>|^2 for psi=(cos20,sin20): 0.8213938048432696

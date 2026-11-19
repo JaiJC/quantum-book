@@ -1,0 +1,10 @@
+== 089
+SM BR (mH=125.09, LHCHXSWG): {'bb': 0.582, 'WW': 0.214, 'gg': 0.0818, 'tautau': 0.0627, 'cc': 0.0289, 'ZZ': 0.0262, 'gamgam': 0.00227, 'Zgam': 0.00153, 'mumu': 0.000218} sum 0.999618
+mu kappa-free coupling 0.00042912842173665827
+tau kappa-free coupling 0.007217122898221103
+b kappa-free coupling 0.01697668751523028
+t kappa-free coupling 0.7009991064901308
+W kappa-free coupling 0.3264154008610186
+Z kappa-free coupling 0.37035984079278694
+HH rate: sigma 0.034 pb x 3000 fb^-1 = 102000.00000000001 events; bbgg BR 0.00264228 -> 269.51256
+== 089 calc: H->gg produced in 140 fb^-1 at 55 pb: 17479.0

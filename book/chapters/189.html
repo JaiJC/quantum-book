@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">“How big a quantum computer would we need to simulate nitrogenase?” In 2017 the answer involved about {{tex:10^{14}}} T gates. By 2021 the logical cost had fallen to about {{tex:5\times10^9}} Toffoli gates on 2,142 logical qubits, and the physical estimate to about four million physical qubits running for under four days. Neither the molecule nor the target accuracy changed. This chapter shows where the savings came from and lets you rebuild the estimate.</p>
+  <p>On the plate: a resource calculator for a chemistry problem.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>From logical to physical</h2>
+  <p>The pipeline is Chapter 143’s, applied to chemistry. Logical counts come from the algorithm: qubits for the orbitals, the block encoding and phase register; Toffolis from the number of walk steps, {{tex:\pi\lambda/2\varepsilon}}, times the cost of each step. Then pick a code distance so that the whole computation fails with probability below about 1%, add magic-state factories, and multiply out. The estimate depends most strongly on four inputs: the Hamiltonian’s 1-norm {{tex:\lambda}} (set by the factorization), the target precision {{tex:\varepsilon}} (chemical accuracy), the physical error rate, and the code cycle time. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Rebuild the FeMoco estimate</h2>
+  <p>Logical qubits <span class="tangle" data-var="Q" data-min="100" data-max="5000" data-step="50" data-value="2150" data-px="0.2"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Logical qubits">2150</span><button type="button" data-de="1" aria-label="More">›</button></span>, Toffolis 10^<span class="tangle" data-var="lN" data-min="7" data-max="15" data-step="0.1" data-dec="1" data-value="9.7" data-px="10"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 Toffolis">9.7</span><button type="button" data-de="1" aria-label="More">›</button></span>, physical error 10^<span class="tangle" data-var="lp" data-min="-4" data-max="-2.3" data-step="0.1" data-dec="1" data-value="-3.0" data-px="10"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 p">-3.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, cycle 1 µs, reaction 10 µs, plain surface code. With Lee and colleagues’ 2021 logical counts, the book’s simplified model gives distance 31, about 4.5 million physical qubits and about two days: close to their detailed “about four million qubits, under four days”. Move the Toffoli count to {{tex:10^{14}}}, the 2017 regime, and the run time becomes over a century. Lower the error rate to {{tex:10^{-4}}} and the distance halves, to 15, so the footprint falls to about a quarter, near 1.1 million qubits. <span class="tag">Established</span> as a calculation; the model is simplified.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Where the savings came from</h2>
+  <p>From 2017 to 2021, roughly: replacing Trotter steps with qubitization, which removes Trotter error and its overhead; factorizing the Coulomb interaction to cut the 1-norm {{tex:\lambda}}, first by single then double factorization and then tensor hypercontraction; and better arithmetic for loading Hamiltonian coefficients. Later work explored cat-qubit architectures, where biased noise reduces overhead (Chapter 141), and ever-cheaper magic states (Chapter 140). The same pattern appeared for factoring RSA (Chapter 143). The lesson: resource estimates are moving targets, typically falling by orders of magnitude as algorithms improve, so a single number in a press release says little without its date and assumptions. Hardware able to run them does not yet exist. <span class="tag">Speculative</span> for the hardware.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The chemistry resource pipeline, the four most sensitive inputs, a calculator that reproduces the 2021 FeMoco physical estimate, and the sources of the roughly twenty-thousand-fold drop in logical cost since 2017.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What cut FeMoco’s logical cost most?<span class="tap">tap</span></div><div class="a">Qubitization plus factorizations (ending in tensor hypercontraction) that shrink the 1-norm λ.</div></div>
+  <div class="qa"><div class="q">Which hardware parameter matters most for footprint?<span class="tap">tap</span></div><div class="a">The physical error rate, through the code distance needed.</div></div>
+  <div class="qa"><div class="q">How should you read a single resource number?<span class="tap">tap</span></div><div class="a">With its date, algorithm and hardware assumptions; estimates fall quickly.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The Toffoli count fell from about {{tex:10^{14}}} to {{tex:5.3\times10^9}}. By what factor (nearest thousand)?</p>
+    <form class="calc" data-answer="18900" data-tol="1000" data-ok="Yes: about 19,000-fold in Toffolis; part of the 2017 count was in T gates, so the exact factor depends on accounting." data-hint="10¹⁴ ÷ 5.3 × 10⁹."><span>factor ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Reiher et al., Proc. Natl Acad. Sci. USA 114, 7555 (2017). J. Lee et al., PRX Quantum 2, 030305 (2021). V. von Burg et al., Phys. Rev. Research 3, 033055 (2021). A. M. Dalzell et al. (CUP, 2025). Checked by code: the plate’s model gives d = 31, 4.45 million physical qubits and 1.9 days for 2,142 logical qubits and 5.3 × 10⁹ Toffolis at p = 10⁻³.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Q: 2150, lN: 9.7, lp: -3 };
+  function est() { var p = Math.pow(10, V.lp), tau = 1e-6, tr = 10e-6, NT = Math.pow(10, V.lN), d, T, pL; for (d = 3; d < 200; d += 2) { T = NT * Math.max(tr, d * tau); pL = 0.1 * Math.pow(p / 0.01, (d + 1) / 2); if (V.Q * (T / tau) * pL <= 0.01) break; } return { d: d, phys: V.Q * 2 * (d + 1) * (d + 1) + 8 * 4 * 2 * (d + 1) * (d + 1), days: T / 86400 }; }
+  function fmt(days) { return days > 365 ? (days / 365).toFixed(0) + " years" : days >= 1 ? days.toFixed(1) + " days" : (days * 24).toFixed(1) + " hours"; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["FeMoco: logical to physical.", "Counts → distance → footprint → time.", "Physical qubits (bar) and run time.", "Logical cost over time (log scale).", "Resource estimation."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var e = est(); return "d = " + e.d + " · " + (e.phys / 1e6).toFixed(2) + " M physical qubits · run time " + fmt(e.days); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { ["λ, ε → Toffolis", "failure budget → d", "2(d+1)² per qubit", "factories", "time"].forEach(function (s, j) { var x = W * (0.12 + j * 0.19); k.rr(x - W * 0.08, H * 0.42, W * 0.16, H * 0.16, 8, "#14120f", j === 1 ? "#ffb547" : "rgba(236,230,218,.6)"); k.text(s, x, H * 0.51, { size: 10, color: j === 1 ? "#ffb547" : "#ece6da" }); }); return; }
+      if (beat === 3) { A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [2016, 2026], [8, 15], { xl: "year", yl: "log₁₀ non-Clifford gates" }); [[2017, 14, "Reiher 2017"], [2021.5, 9.72, "Lee 2021 (THC)"]].forEach(function (p) { k.circle(A.X(p[0]), A.Y(p[1]), 7, "#ffb547"); k.text(p[2], A.X(p[0]) + 10, A.Y(p[1]) - 8, { size: 12, align: "left" }); }); k.line(A.X(2017), A.Y(14), A.X(2021.5), A.Y(9.72), "rgba(255,181,71,.5)", 2); return; }
+      var e = est(), mx = Math.max(8, e.phys / 1e6 * 1.2); A = k.axes(W * 0.16, H * 0.1, W * 0.74, H * 0.72, [0, 1], [0, mx], { yl: "million physical qubits" }); k.rr(A.X(0.3), A.Y(e.phys / 1e6), A.X(0.4) - A.X(0), A.Y(0) - A.Y(e.phys / 1e6), 4, "#ffb547"); k.text(fmt(e.days), A.X(0.5), A.Y(e.phys / 1e6) - 10, { size: 13 });
+    }
+  });
+})();
+</script>

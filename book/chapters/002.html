@@ -1,0 +1,151 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Type sin 0.3 into a calculator and it answers 0.2955202067 at once. But the chip inside can only add, subtract, multiply and divide. It has no little triangle to measure. So how does it know?</p>
+  <p>The answer is the most useful idea in this chapter: almost any smooth curve can be imitated, as closely as you like, by a polynomial, and a polynomial needs nothing but arithmetic. To build that polynomial we need derivatives, and to trust it we need to know how wrong it is. That is the whole of calculus you will need for a long while.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Zooming in</h2>
+  <p>Pick a point on the sine curve and a second point a short distance {{tex:h}} further along. The straight line through them, the <em>secant</em>, has a slope you can work out with arithmetic. Now shrink the gap: {{tex:h}} = <span class="tangle" data-var="h" data-min="0.01" data-max="1.5" data-step="0.01" data-dec="2" data-value="1" data-px="3"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gap h">1.00</span><button type="button" data-de="1" aria-label="Larger">›</button></span>.</p>
+  <p>As {{tex:h}} shrinks, the secant swings into the <em>tangent</em>, the line that just touches the curve, and its slope settles on a single number. That number is the derivative:</p>
+  <div class="eq">{{texd:f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}}}</div>
+  <p>For the sine curve the slope always comes out as the height of the cosine curve at the same point. Watch the readout: the secant slope closes in on {{tex:\cos x}}.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two rules that do most of the work</h2>
+  <p>You rarely need the limit itself. Two rules, both proved from it, handle almost every case. The <em>product rule</em> says that if two quantities are multiplied, a small change in the product comes from changing each in turn: {{tex:(fg)' = f'g + fg'}}. The <em>chain rule</em> says that if one quantity depends on another, the rates multiply: {{tex:\frac{d}{dx}f(g(x)) = f'(g(x))\,g'(x)}}.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>
+    <p>For the product rule, write {{tex:f(x+h)g(x+h) - f(x)g(x) = [f(x+h)-f(x)]\,g(x+h) + f(x)\,[g(x+h)-g(x)]}}. Divide by {{tex:h}} and let {{tex:h\to0}}; {{tex:g(x+h)\to g(x)}} because a differentiable function is continuous.</p>
+    <p>For the chain rule, the change in {{tex:g}} is {{tex:\Delta g \approx g'(x)\,h}}, and the change in {{tex:f}} is {{tex:\Delta f \approx f'(g)\,\Delta g}}. Multiply. (A careful proof handles the case {{tex:\Delta g = 0}} separately.)</p>
+  </div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Building sine out of arithmetic</h2>
+  <p>Here is the calculator’s trick. Choose a polynomial that matches sine at 0: same height, same slope, same curvature, same rate of change of curvature, and so on. Each match fixes one coefficient, and the result is the Taylor series:</p>
+  <div class="eq">{{texd:\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots}}</div>
+  <p>Use <span class="tangle" data-var="N" data-min="1" data-max="8" data-step="1" data-value="1" data-px="22"><button type="button" data-de="-1" aria-label="Fewer terms">‹</button><span class="num" role="slider" tabindex="0" aria-label="Number of terms">1</span><button type="button" data-de="1" aria-label="More terms">›</button></span> terms and watch the amber polynomial wrap itself around the sine curve. At {{tex:x = 0.3}} it gives <span class="live" id="tay">0.3</span>, against the true <span class="live">0.2955202067</span>.</p>
+  <p>With three terms the answer is already right to seven decimal places, using only multiplication and division. That is, roughly, what the chip does.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>How wrong is it?</h2>
+  <p>A series you cannot trust is useless, so we need an error bound. For a series like this one, whose terms alternate in sign and shrink, the error is smaller than the first term you left out. With three terms at {{tex:x = 0.3}}, that next term is {{tex:0.3^7/7! \approx 4\times10^{-8}}}, and the true error is {{tex:4.3\times10^{-8}}}.</p>
+  <p>Now move away from zero: evaluate at {{tex:x}} = <span class="tangle" data-var="x" data-min="0" data-max="6" data-step="0.1" data-dec="1" data-value="0.3" data-px="6"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Point x">0.3</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. With few terms the polynomial peels away from the curve and the error explodes.</p>
+  <p>So a real calculator first uses the symmetries of sine to bring any angle into a small range near zero, and only then runs a short series. Knowing where an approximation fails is as important as the approximation.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Adding up</h2>
+  <p>The other half of calculus runs the other way. Instead of a slope, ask for an accumulated total: the area under a curve from 0 up to some point {{tex:x}}. The <em>fundamental theorem of calculus</em> says that the rate at which this area grows is just the height of the curve at the edge. So areas and slopes undo each other:</p>
+  <div class="eq">{{texd:\frac{d}{dx}\int_0^x f(t)\,dt = f(x)}}</div>
+  <p>The plate shades the area under the cosine curve, and the area traces out the sine curve. Slide the edge to <span class="tangle" data-var="X" data-min="0" data-max="6.2" data-step="0.1" data-dec="1" data-value="1.5" data-px="6"><button type="button" data-de="-1" aria-label="Left">‹</button><span class="num" role="slider" tabindex="0" aria-label="Upper limit">1.5</span><button type="button" data-de="1" aria-label="Right">›</button></span>. Area below the axis counts as negative.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The bell curve’s secret</h2>
+  <p>One integral appears so often in quantum mechanics that it deserves a name. The bell curve {{tex:e^{-x^2}}} has no antiderivative made of ordinary functions, yet its total area is known exactly:</p>
+  <div class="eq">{{texd:\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi} \approx 1.7725}}</div>
+  <p>The plate adds up the area between {{tex:-R}} and {{tex:R}}, with {{tex:R}} = <span class="tangle" data-var="R" data-min="0.1" data-max="4" data-step="0.1" data-dec="1" data-value="1" data-px="6"><button type="button" data-de="-1" aria-label="Narrower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Range R">1.0</span><button type="button" data-de="1" aria-label="Wider">›</button></span>. By {{tex:R = 3}} you already have {{tex:\sqrt\pi}} to four decimal places: the tails are tiny.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>
+    <p>Call the integral {{tex:I}}. Then {{tex:I^2 = \int\!\!\int e^{-(x^2+y^2)}\,dx\,dy}} over the whole plane. In polar coordinates {{tex:dx\,dy = r\,dr\,d\theta}}, so {{tex:I^2 = \int_0^{2\pi}\!d\theta\int_0^\infty e^{-r^2} r\,dr = 2\pi\cdot\tfrac12 = \pi}}. The extra {{tex:r}} is what makes the radial integral easy.</p>
+  </div>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>A preview of relativity</h2>
+  <p>Taylor series also explain why old physics still works. Einstein’s energy of a moving body contains the factor {{tex:1/\sqrt{1-v^2/c^2}}}. Expand it for speeds far below light:</p>
+  <div class="eq">{{texd:\frac{1}{\sqrt{1-u}} = 1 + \frac{u}{2} + \frac{3u^2}{8} + \cdots}}</div>
+  <p>With {{tex:u = v^2/c^2}}, the energy {{tex:mc^2/\sqrt{1-v^2/c^2}}} becomes {{tex:mc^2 + \tfrac12 mv^2 + \cdots}}. Newton’s kinetic energy is the second term of a series. Many of the classical laws you learned are the first terms of something deeper, and this book will keep showing you which.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Derivatives as limits, two rules that compute almost any of them, integrals as accumulated totals, and Taylor series with an honest error bound. That kit carries you through the next hundred chapters.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why can a chip that only does arithmetic compute sin x?<span class="tap">tap</span></div><div class="a">It evaluates a polynomial, a Taylor series cut off after a few terms, after first using symmetry to move the angle close to zero.</div></div>
+  <div class="qa"><div class="q">For an alternating series with shrinking terms, how big is the error after stopping?<span class="tap">tap</span></div><div class="a">Smaller than the first term you left out.</div></div>
+  <div class="qa"><div class="q">What does the fundamental theorem of calculus connect?<span class="tap">tap</span></div><div class="a">Slopes and areas: differentiating the accumulated area under a curve gives back the curve.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:\sqrt{1+x}\approx 1 + x/2}}, estimate {{tex:\sqrt{1.02}}}.</p>
+    <form class="calc" data-answer="1.01" data-tol="0.0006" data-ok="Yes: 1 + 0.02/2 = 1.01. The true value is 1.00995, so the error is about 0.00005." data-hint="Put x = 0.02 into 1 + x/2."><span>≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Estimate"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. P. Thompson, Calculus Made Easy (1910). M. Spivak, Calculus. J. Stewart, Calculus. Values checked by code: sin 0.3 = 0.2955202067; three-term error 4.3×10⁻⁸; ∫e^(−x²)dx = √π (SymPy).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var V = { h: 1, N: 1, x: 0.3, X: 1.5, R: 1 }, beat = 0;
+  function fact(n) { var f = 1; for (var i = 2; i <= n; i++) f *= i; return f; }
+  function tay(x, N) { var s = 0; for (var k = 0; k < N; k++) s += Math.pow(-1, k) * Math.pow(x, 2 * k + 1) / fact(2 * k + 1); return s; }
+  function erf(x) { var t = 1 / (1 + 0.3275911 * Math.abs(x)), y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; }
+  function upd() {
+    Book.text("tay", tay(beat === 4 ? V.x : 0.3, V.N).toFixed(10).replace(/0+$/, "").replace(/\.$/, ""));
+  }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; upd(); },
+    beat: function (i) { beat = i; upd(); },
+    set: function (n, v) { V[n] = v; upd(); },
+    caption: function () {
+      return ["The sine curve.", "Secant and tangent.", "Secant and tangent.", "sin x and its Taylor polynomial.", "Where the polynomial fails.", "Area under cos traces out sin.", "The bell curve e^(−x²).", "1/√(1−u) and its first terms.", "The sine curve."][beat] || "";
+    },
+    readout: function () {
+      if (beat === 1 || beat === 2) return "secant " + ((Math.sin(1 + V.h) - Math.sin(1)) / V.h).toFixed(4) + " · cos 1 = " + Math.cos(1).toFixed(4);
+      if (beat === 3) return "error " + Math.abs(tay(0.3, V.N) - Math.sin(0.3)).toExponential(1);
+      if (beat === 4) return "x = " + V.x.toFixed(1) + " · error " + Math.abs(tay(V.x, V.N) - Math.sin(V.x)).toExponential(1);
+      if (beat === 5) return "area = " + Math.sin(V.X).toFixed(3);
+      if (beat === 6) return "area " + (Math.sqrt(Math.PI) * erf(V.R)).toFixed(4) + " · √π = 1.7725";
+      return "sin 0.3 = 0.29552";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 6) {
+        A = k.axes(W * 0.08, H * 0.1, W * 0.84, H * 0.72, [-4, 4], [0, 1.1], { xt: [-3, -2, -1, 0, 1, 2, 3], yt: [0, 1] });
+        var c = k.ctx; c.beginPath(); c.moveTo(A.X(-V.R), A.Y(0));
+        for (var i = 0; i <= 120; i++) { var x = -V.R + 2 * V.R * i / 120; c.lineTo(A.X(x), A.Y(Math.exp(-x * x))); }
+        c.lineTo(A.X(V.R), A.Y(0)); c.closePath(); c.fillStyle = "rgba(255,181,71,.22)"; c.fill();
+        k.plot(A, function (x) { return Math.exp(-x * x); }, [-4, 4], "#ffb547", 2);
+        return;
+      }
+      if (beat === 7) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.8, H * 0.72, [0, 0.9], [1, 3.2], { xt: [0, 0.3, 0.6, 0.9], yt: [1, 2, 3], xl: "u = v²/c²" });
+        k.plot(A, function (u) { return 1 / Math.sqrt(1 - u); }, [0, 0.9], "#ece6da", 2);
+        k.plot(A, function (u) { return 1 + u / 2; }, [0, 0.9], "#7c766b", 1.5);
+        k.plot(A, function (u) { return 1 + u / 2 + 3 * u * u / 8; }, [0, 0.9], "#ffb547", 2);
+        k.text("exact", A.X(0.82), A.Y(2.6), { color: "#ece6da" }); k.text("1 + u/2 + 3u²/8", A.X(0.75), A.Y(1.75), { color: "#ffb547" }); k.text("1 + u/2", A.X(0.8), A.Y(1.32), {});
+        return;
+      }
+      var xr = beat === 4 ? [-0.5, 6.5] : [-0.5, 6.5];
+      A = k.axes(W * 0.08, H * 0.1, W * 0.84, H * 0.74, xr, [-1.6, 1.6], { zeroY: true, xt: [0, 1, 2, 3, 4, 5, 6], yt: [-1, 0, 1] });
+      if (beat === 5) {
+        var c2 = k.ctx; c2.beginPath(); c2.moveTo(A.X(0), A.Y(0));
+        for (var j = 0; j <= 120; j++) { var t = V.X * j / 120; c2.lineTo(A.X(t), A.Y(Math.cos(t))); }
+        c2.lineTo(A.X(V.X), A.Y(0)); c2.closePath(); c2.fillStyle = "rgba(255,181,71,.2)"; c2.fill();
+        k.plot(A, Math.cos, xr, "#7c766b", 1.5);
+        k.plot(A, Math.sin, [0, V.X], "#ffb547", 2.5);
+        k.circle(A.X(V.X), A.Y(Math.sin(V.X)), 5, "#ffb547");
+        k.text("cos x", A.X(5.8), A.Y(Math.cos(5.8)) - 10, {}); k.text("area so far", A.X(V.X) + 6, A.Y(Math.sin(V.X)) - 12, { color: "#ffb547", align: "left" });
+        return;
+      }
+      k.plot(A, Math.sin, xr, "#ece6da", 2);
+      if (beat === 1 || beat === 2) {
+        var x0 = 1, x1 = 1 + V.h, s = (Math.sin(x1) - Math.sin(x0)) / V.h;
+        k.plot(A, function (x) { return Math.sin(x0) + s * (x - x0); }, [x0 - 1.5, x1 + 1.5], "#ffb547", 1.8);
+        k.plot(A, function (x) { return Math.sin(x0) + Math.cos(x0) * (x - x0); }, [x0 - 1.5, x0 + 1.5], "rgba(236,230,218,.35)", 1);
+        k.circle(A.X(x0), A.Y(Math.sin(x0)), 5, "#ffb547"); k.circle(A.X(x1), A.Y(Math.sin(x1)), 5, null, "#ffb547", 2);
+        return;
+      }
+      if (beat === 3 || beat === 4) {
+        k.plot(A, function (x) { var y = tay(x, V.N); return Math.max(-3, Math.min(3, y)); }, xr, "#ffb547", 2, 500);
+        var px = beat === 4 ? V.x : 0.3;
+        k.line(A.X(px), A.y0, A.X(px), A.y0 + A.h, "rgba(236,230,218,.25)", 1, [3, 4]);
+        k.circle(A.X(px), A.Y(Math.sin(px)), 4, "#ece6da"); k.circle(A.X(px), A.Y(Math.max(-1.6, Math.min(1.6, tay(px, V.N)))), 5, null, "#ffb547", 2);
+        return;
+      }
+      k.circle(A.X(0.3), A.Y(Math.sin(0.3)), 5, "#ffb547"); k.text("sin 0.3 = 0.2955…", A.X(0.3) + 10, A.Y(Math.sin(0.3)) - 10, { color: "#ffb547", align: "left" });
+    }
+  });
+})();
+</script>

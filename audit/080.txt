@@ -1,0 +1,3 @@
+== 080
+decuplet spacings 153 145 -> Omega pred 1675 measured 1672.45
+mu_p/mu_n quark model -3/2 = -1.5; measured -1.4599059069524307

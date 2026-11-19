@@ -1,0 +1,124 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Wind a long, thin coil of wire and run a current through it. The magnetic field is all inside; outside, there is none at all. Send electrons around the outside, never through, and recombine them. Their interference pattern shifts as you change the current. The electrons respond to a magnetic field they never touch. Yakir Aharonov and David Bohm predicted this in 1959, and Akira Tonomura’s team confirmed it beyond doubt in 1986.</p>
+  <p>On the plate: two electron paths passing either side of a sealed magnetic region, and the fringes where they meet.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>How a charge feels a magnetic field</h2>
+  <p>In Chapter 15 the magnetic field was written as {{tex:\mathbf B = \nabla\times\mathbf A}}, with {{tex:\mathbf A}} the vector potential. Quantum mechanics brings in the field through {{tex:\mathbf A}}, not {{tex:\mathbf B}}, by the rule called <em>minimal coupling</em>:</p>
+  <div class="eq">{{texd:H = \frac{(\mathbf p - q\mathbf A)^2}{2m} + q\phi}}</div>
+  <p>{{tex:\mathbf A}} is not unique: adding the gradient of any function {{tex:\chi}} leaves {{tex:\mathbf B}} unchanged. The Schrödinger equation stays the same if the wavefunction changes phase at the same time, {{tex:\psi \to e^{iq\chi/\hbar}\psi}}. This <em>gauge invariance</em> looks like bookkeeping here. In Part Five it becomes the principle from which the forces of the Standard Model are built. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Landau levels</h2>
+  <p>A classical electron in a uniform field circles at the cyclotron frequency {{tex:\omega_c = eB/m}}. Quantum mechanically, the motion in the plane is a harmonic oscillator (Chapter 35), so the energies are</p>
+  <div class="eq">{{texd:E_n = \hbar\omega_c\left(n + \tfrac12\right)}}</div>
+  <p>These are <em>Landau levels</em>. Each is enormously degenerate: one state for every flux quantum {{tex:h/e}} passing through the sample, about {{tex:2.4\times10^{14}}} per square metre per tesla. Set the field to <span class="tangle" data-var="B" data-min="1" data-max="30" data-step="1" data-unit=" T" data-value="10" data-px="5"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Field">10 T</span><button type="button" data-de="1" aria-label="Stronger">›</button></span>. The spacing grows with {{tex:B}} and each level holds more states. When a two-dimensional sheet of electrons fills a whole number of these levels, its Hall resistance locks to {{tex:h/ne^2}} with astonishing precision: the quantum Hall effect, which Part Four takes up.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Splitting spectral lines</h2>
+  <p>In 1896 Pieter Zeeman put a sodium flame between the poles of a magnet and saw its yellow lines broaden. A magnetic moment {{tex:\boldsymbol\mu}} in a field has energy {{tex:-\boldsymbol\mu\cdot\mathbf B}}, so each level shifts by {{tex:g_J\,m_J\,\mu_B B}}, with the Bohr magneton {{tex:\mu_B = 5.788\times10^{-5}}} eV/T and the Landé factors of Chapter 41.</p>
+  <p>Raise the field to <span class="tangle" data-var="Bz" data-min="0" data-max="3" data-step="0.1" data-dec="1" data-unit=" T" data-value="1" data-px="10"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Field">1.0 T</span><button type="button" data-de="1" aria-label="Stronger">›</button></span>. Because the upper and lower levels have different {{tex:g_J}}, the D₁ line splits into four components and D₂ into six. This pattern was called <em>anomalous</em>, because the simple three-line splitting that classical theory predicted only appears for atoms with no net spin. Its explanation needed spin and {{tex:g_s = 2}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>When the field wins</h2>
+  <p>The Zeeman formula assumes the field is weak compared with spin–orbit coupling, so {{tex:\mathbf L}} and {{tex:\mathbf S}} stay locked into {{tex:\mathbf J}}. In a strong field, they decouple and each precesses about {{tex:\mathbf B}} separately, and the energies become {{tex:\mu_B B(m_\ell + 2m_s)}}: the <em>Paschen–Back</em> regime.</p>
+  <p>The plate solves the sodium 3p levels exactly for any field. Stretch the range to <span class="tangle" data-var="Bmax" data-min="5" data-max="100" data-step="5" data-unit=" T" data-value="60" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Field range">60 T</span><button type="button" data-de="1" aria-label="More">›</button></span>. At low field, two groups fan out with slopes {{tex:g_J m_J}}. Around 25 T, where {{tex:\mu_B B}} matches the spin–orbit energy, the levels reorganize into groups set by {{tex:m_\ell + 2m_s}}.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A field it never touches</h2>
+  <p>Back to the coil. Outside it, {{tex:\mathbf B = 0}} but {{tex:\mathbf A}} is not zero; it circles the coil. An electron going round one side picks up a phase {{tex:\frac{e}{\hbar}\int\mathbf A\cdot d\mathbf l}}, and the difference between the two sides is {{tex:e\Phi/\hbar}}, set by the flux {{tex:\Phi}} inside, which neither path enters.</p>
+  <p>Change the enclosed flux to <span class="tangle" data-var="flux" data-min="0" data-max="2" data-step="0.05" data-dec="2" data-value="0.25" data-px="6"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Flux">0.25</span><button type="button" data-de="1" aria-label="More">›</button></span> flux quanta {{tex:h/e}}. The fringes slide by that fraction of a fringe. Tonomura’s group shielded a tiny ring magnet inside a superconductor, so no field could leak out and the electrons could not reach it, and still saw the shift. The vector potential, or more precisely the phase it produces around a loop, is physical. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Minimal coupling and gauge invariance, Landau levels and their degeneracy, the Zeeman effect and the anomalous pattern, the Paschen–Back regime, and the Aharonov–Bohm effect.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does sodium’s D₂ line split into six?<span class="tap">tap</span></div><div class="a">The upper ²P₃/₂ level has four m_J values with g = 4/3, the lower ²S₁/₂ has two with g = 2; allowed jumps (Δm = 0, ±1) give six different energies.</div></div>
+  <div class="qa"><div class="q">What sets the degeneracy of a Landau level?<span class="tap">tap</span></div><div class="a">One state per flux quantum h/e through the sample: eB/h per unit area.</div></div>
+  <div class="qa"><div class="q">What does the Aharonov–Bohm effect show?<span class="tap">tap</span></div><div class="a">That electrons respond to the vector potential’s loop phase eΦ/ħ even where B = 0.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An electron spin ({{tex:g \approx 2.0023}}) flips when {{tex:h f = g\mu_B B}}. With {{tex:\mu_B/h = 14.00}} GHz/T, what frequency flips it at 0.35 T, in GHz? (This is how electron spin resonance spectrometers work.)</p>
+    <form class="calc" data-answer="9.81" data-tol="0.05" data-ok="Yes: 2.0023 × 14.00 × 0.35 ≈ 9.81 GHz, the ‘X band’ used by most spectrometers." data-alt="4.9~Remember g ≈ 2 for the electron spin." data-hint="Multiply g × 14.00 GHz/T × 0.35 T."><span>f =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Frequency in GHz"><span>GHz</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. Zeeman, Phil. Mag. 43, 226 (1897). Y. Aharonov and D. Bohm, Phys. Rev. 115, 485 (1959). A. Tonomura et al., Phys. Rev. Lett. 56, 792 (1986). L. D. Landau, Z. Phys. 64, 629 (1930). CODATA 2022 μ_B. Checked by code: μ_B = 5.788×10⁻⁵ eV/T = 13.996 GHz/T; ħω_c = 0.1158 meV/T; eB/h = 2.42×10¹⁴ m⁻² T⁻¹; Na 3p spin–orbit ζ = 1.42 meV; 6×6 Hamiltonian agrees with the 2×2 block solution.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { B: 10, Bz: 1, Bmax: 60, flux: 0.25 }, muB = 0.057884, zeta = 1.42097;
+  function p3(B) {
+    var mb = muB * B, out = [];
+    out.push([zeta * 0.5 + mb * 2, "3/2"]); out.push([zeta * 0.5 - mb * 2, "−3/2"]);
+    [[1, -0.5, 0, 0.5, 0.5], [0, -0.5, -1, 0.5, -0.5]].forEach(function (b) {
+      var a = zeta * b[0] * b[1] + mb * (b[0] + 2 * b[1]), d = zeta * b[2] * b[3] + mb * (b[2] + 2 * b[3]), o = zeta / Math.SQRT2, m = (a + d) / 2, r = Math.sqrt((a - d) * (a - d) / 4 + o * o);
+      out.push([m + r, b[4] > 0 ? "1/2" : "−1/2"]); out.push([m - r, b[4] > 0 ? "1/2" : "−1/2"]);
+    });
+    return out.map(function (x) { return x[0]; }).sort(function (a, b) { return a - b; });
+  }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Two paths around a sealed magnetic flux.", "A vector potential circling a solenoid; B = 0 outside.", "Landau levels.", "Sodium D lines in a magnetic field.", "Sodium 3p levels from weak to strong field.", "Aharonov–Bohm fringes.", "Two paths around a sealed flux."][beat]; },
+    readout: function () {
+      if (beat === 2) return "ħω_c = " + (0.11577 * V.B).toFixed(2) + " meV · " + (2.418 * V.B).toFixed(1) + "×10¹⁴ states per m² per level";
+      if (beat === 3) return "μ_B B = " + (muB * V.Bz * 1000).toFixed(1) + " µeV · " + (13.996 * V.Bz).toFixed(1) + " GHz";
+      if (beat === 5) return "phase difference eΦ/ħ = " + (2 * V.flux).toFixed(2) + "π · fringe shift " + V.flux.toFixed(2);
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 0 || beat === 5 || beat === 6) {
+        var fl = beat === 5 ? V.flux : (Math.sin(now / 2500) + 1) / 2, sx = W * 0.08, cx = W * 0.42, scx = W * 0.82, cy = H * 0.42, r = Math.min(W, H) * 0.06;
+        k.circle(cx, cy, r, "#14120f", "rgba(236,230,218,.5)", 2); k.text("Φ", cx, cy + 5, { size: 14, color: "#ffb547" });
+        c.strokeStyle = "rgba(255,181,71,.6)"; c.lineWidth = 2; c.beginPath(); c.moveTo(sx, cy); c.quadraticCurveTo(cx, cy - H * 0.32, scx, cy); c.stroke(); c.beginPath(); c.moveTo(sx, cy); c.quadraticCurveTo(cx, cy + H * 0.32, scx, cy); c.stroke();
+        for (i = 0; i < 2; i++) { var t = ((now / 1500) + i * 0.5) % 1, s = i ? 1 : -1, x = (1 - t) * (1 - t) * sx + 2 * t * (1 - t) * cx + t * t * scx, y = (1 - t) * (1 - t) * cy + 2 * t * (1 - t) * (cy + s * H * 0.32) + t * t * cy; k.circle(x, y, 4, "#ffb547"); }
+        var top = H * 0.08, bot = H * 0.78, fx = W * 0.9;
+        for (var py = top; py < bot; py += 2) { var I = 0.5 + 0.5 * Math.cos(2 * Math.PI * ((py - (top + bot) / 2) / (H * 0.08)) + 2 * Math.PI * fl); c.fillStyle = "rgba(255,181,71," + (I * 0.9).toFixed(2) + ")"; c.fillRect(fx, py, W * 0.06, 2); }
+        k.line(fx - 4, (top + bot) / 2, fx - 14, (top + bot) / 2, "rgba(236,230,218,.4)", 1);
+        k.text("flux " + fl.toFixed(2) + " h/e", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 1) {
+        var cx1 = W / 2, cy1 = H / 2, rs = Math.min(W, H) * 0.08;
+        k.circle(cx1, cy1, rs, "rgba(255,181,71,.25)", "rgba(255,181,71,.8)", 2); k.text("B", cx1, cy1 + 5, { color: "#ffb547" });
+        for (var rr = 1.6; rr < 5; rr += 0.8) { var R1 = rs * rr, n = Math.round(10 * rr / 2); for (i = 0; i < n; i++) { var a = i / n * 2 * Math.PI + now / (1200 * rr), x1 = cx1 + R1 * Math.cos(a), y1 = cy1 + R1 * Math.sin(a), L = 14 / rr; k.line(x1, y1, x1 - L * Math.sin(a), y1 + L * Math.cos(a), "rgba(236,230,218," + (0.7 / rr * 1.6).toFixed(2) + ")", 1.5); } }
+        k.text("A circles the coil and falls as 1/r; B outside is exactly zero", cx1, H * 0.95, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 2) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.5, H * 0.84, [0, 1], [0, 30 * 0.11577 * 5.5], { yl: "energy, meV" });
+        var hw = 0.11577 * V.B; for (var nn = 0; nn < 40; nn++) { var E = hw * (nn + 0.5); if (E > 30 * 0.11577 * 5.5) break; k.line(A.X(0.05), A.Y(E), A.X(0.95), A.Y(E), "#ffb547", 1 + Math.min(4, V.B / 6)); }
+        var cx2 = W * 0.8, cy2 = H * 0.5, rc = Math.min(W, H) * 0.25 / Math.sqrt(V.B / 3), ang = now / 400;
+        k.circle(cx2, cy2, rc, null, "rgba(236,230,218,.3)"); k.circle(cx2 + rc * Math.cos(ang), cy2 + rc * Math.sin(ang), 5, "#ffb547"); k.text("cyclotron orbit", cx2, H * 0.9, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 3) {
+        var gU = [[4 / 3, [1.5, 0.5, -0.5, -1.5]], [2 / 3, [0.5, -0.5]]], lines = [], B3 = V.Bz;
+        [[0, 588.995], [1, 589.592]].forEach(function (d) { var g = gU[d[0]]; g[1].forEach(function (mu) { [0.5, -0.5].forEach(function (ml) { var dm = mu - ml; if (Math.abs(dm) > 1) return; var dE = muB * 1e-3 * B3 * (g[0] * mu - 2 * ml); lines.push([d[1] - d[1] * d[1] * dE / 1239.84, Math.abs(dm) < 0.1 ? 1 : 0.6]); }); }); });
+        A = k.axes(W * 0.06, H * 0.2, W * 0.88, H * 0.5, [588.85, 589.75], [0, 1.1], { xl: "wavelength, nm" });
+        lines.forEach(function (l) { k.line(A.X(l[0]), A.Y(0), A.X(l[0]), A.Y(l[1]), "#ffcc33", 2); });
+        k.text("D₂: " + (B3 > 0 ? "6" : "1") + " lines", A.X(588.995), A.Y(1.1) - 2, { size: 12, color: "#b9b2a5" }); k.text("D₁: " + (B3 > 0 ? "4" : "1") + " lines", A.X(589.592), A.Y(1.1) - 2, { size: 12, color: "#b9b2a5" });
+        k.text("drawn to scale: at 1 T the splitting is about 0.02 nm", W / 2, H * 0.9, { size: 11, color: "#7c766b" });
+        return;
+      }
+      if (beat === 4) {
+        var Bm = V.Bmax, Emax = Math.max(2, muB * Bm * 2.2 + 1);
+        A = k.axes(W * 0.12, H * 0.06, W * 0.82, H * 0.84, [0, Bm], [-Emax, Emax], { xl: "field, T", yl: "meV", zeroY: true });
+        var cols = 6, curves = []; for (i = 0; i < cols; i++) curves.push([]);
+        for (var s = 0; s <= 160; s++) { var b = Bm * s / 160, e = p3(b); for (i = 0; i < cols; i++) curves[i].push([b, e[i]]); }
+        curves.forEach(function (cv, idx) { c.strokeStyle = idx < 2 ? "rgba(224,90,70,.9)" : "#ffb547"; c.lineWidth = 2; c.beginPath(); cv.forEach(function (p, j) { if (j) c.lineTo(A.X(p[0]), A.Y(p[1])); else c.moveTo(A.X(p[0]), A.Y(p[1])); }); c.stroke(); });
+        if (Bm >= 25) { k.line(A.X(24.5), A.Y(-Emax), A.X(24.5), A.Y(Emax), "rgba(236,230,218,.2)", 1, [3, 4]); k.text("μ_B B ≈ ζ", A.X(24.5) + 4, A.Y(Emax) + 14, { align: "left", size: 11, color: "#7c766b" }); }
+      }
+    }
+  });
+})();
+</script>

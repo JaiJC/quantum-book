@@ -1,0 +1,2 @@
+== 064
+figure-eight symmetry factor 1/8 (3 Wick pairings / 4!)

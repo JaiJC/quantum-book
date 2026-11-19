@@ -1,0 +1,61 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Someone hands you a qubit prepared in one of two states that are not orthogonal, say {{tex:|0\rangle}} or a state tilted 30° from it, each with equal probability. No measurement can always tell which. But you have choices. You can maximize your chance of guessing right. Or you can insist on never being wrong, at the price of sometimes answering “I don’t know”. These are different measurements, and neither is the textbook projective measurement in a fixed basis. Quantum measurement is richer than Chapter 27 let on.</p>
+  <p>On the plate: a discrimination game. Choose a strategy and play rounds.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>POVMs</h2>
+  <p>The most general measurement assigns to each outcome {{tex:i}} a positive operator {{tex:E_i}}, with {{tex:\sum_iE_i = \mathbb 1}}, and the probability of {{tex:i}} is {{tex:\mathrm{Tr}(\rho E_i)}}. This is a <em>positive operator-valued measure</em>. The {{tex:E_i}} need not be projectors, need not be orthogonal, and there can be more outcomes than the dimension. Every POVM can be realized as an ordinary projective measurement on a larger system, the qubit plus an auxiliary one, by <em>Naimark’s dilation</em>. So nothing new is assumed; it is projective measurement seen from inside a subsystem. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Three strategies</h2>
+  <p>The two states are {{tex:|0\rangle}} and {{tex:\cos\theta|0\rangle + \sin\theta|1\rangle}}, overlap {{tex:\cos\theta}}. Set {{tex:\theta =}} <span class="tangle" data-var="th" data-min="5" data-max="90" data-step="5" data-unit="°" data-value="30" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Angle">30°</span><button type="button" data-de="1" aria-label="More">›</button></span>. Choose: <button type="button" class="v" data-pick="s:naive">measure in z</button>, <button type="button" class="v" data-pick="s:hel">Helstrom</button>, <button type="button" class="v" data-pick="s:usd">never wrong</button>, then <button type="button" class="v" data-act="play">play 500 rounds</button>.</p>
+  <p>Measuring in z succeeds with probability {{tex:\tfrac12(1 + \sin^2\theta)}}. Carl Helstrom showed in 1969 that the best possible is</p>
+  <div class="eq">{{texd:P_{\text{correct}} = \tfrac12\left(1 + \sqrt{1 - |\langle\psi|\phi\rangle|^2}\right)}}</div>
+  <p>achieved by measuring in the eigenbasis of the difference of the two density matrices. <em>Unambiguous discrimination</em>, a three-outcome POVM, is never wrong but succeeds only with probability {{tex:1 - |\langle\psi|\phi\rangle|}} and otherwise says “inconclusive”. At 30°: 62.5%, 75%, and 13% with no errors. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Weak measurement</h2>
+  <p>Couple a system only slightly to a meter, so each reading is very noisy and barely disturbs the system. Averaged over many runs, a weak measurement gives the expectation value without collapsing the state. Yakir Aharonov, David Albert and Lev Vaidman showed in 1988 that if you also <em>post-select</em> on a later outcome, the average reading is a <em>weak value</em>, {{tex:\langle\phi|A|\psi\rangle/\langle\phi|\psi\rangle}}, which can lie far outside the eigenvalue range: a spin-½ reading of 100. Weak values were used to map average photon trajectories in a double slit (Chapter 54) and to amplify tiny signals. What they mean physically is argued over. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>POVMs and Naimark dilation, the Helstrom bound for minimum-error discrimination, unambiguous discrimination with an inconclusive outcome, and weak measurement and weak values.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Can non-orthogonal states be distinguished perfectly?<span class="tap">tap</span></div><div class="a">Not always; but unambiguously some of the time, with an inconclusive answer otherwise.</div></div>
+  <div class="qa"><div class="q">What does Naimark’s theorem say?<span class="tap">tap</span></div><div class="a">Any POVM is a projective measurement on the system plus an ancilla.</div></div>
+  <div class="qa"><div class="q">Can a weak value exceed the eigenvalues?<span class="tap">tap</span></div><div class="a">Yes, with post-selection on nearly orthogonal final states.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Two equally likely pure states have overlap 0.6. What is the Helstrom success probability?</p>
+    <form class="calc" data-answer="0.9" data-tol="0.003" data-ok="Yes: ½(1 + √(1 − 0.36)) = ½(1 + 0.8) = 0.9." data-hint="√(1 − 0.6²) = 0.8."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: C. W. Helstrom, J. Stat. Phys. 1, 231 (1969); Quantum Detection and Estimation Theory (1976). I. D. Ivanovic, Phys. Lett. A 123, 257 (1987); D. Dieks, Phys. Lett. A 126, 303 (1988); A. Peres, Phys. Lett. A 128, 19 (1988). Y. Aharonov, D. Z. Albert and L. Vaidman, Phys. Rev. Lett. 60, 1351 (1988). A. Peres, Quantum Theory: Concepts and Methods. J. Watrous, The Theory of Quantum Information, ch. 2–3. Checked by code: at θ = 30°, naive 0.625, Helstrom 0.750 (also by eigen-decomposition), unambiguous 0.134.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { th: 30 }, res = null, seed = 41;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function probs(s, t) { var ov = Math.cos(t); if (s === "naive") return [0.5 * (1 + Math.sin(t) * Math.sin(t)), 0, 0.5 * (1 - Math.sin(t) * Math.sin(t))]; if (s === "usd") return [1 - ov, 1 - (1 - ov), 0]; return [0.5 * (1 + Math.sqrt(1 - ov * ov)), 0, 0.5 * (1 - Math.sqrt(1 - ov * ov))]; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; res = null; },
+    pick: function () { res = null; },
+    act: function () { var p = probs(Book.state.picks.s || "hel", V.th * Math.PI / 180), r = [0, 0, 0]; for (var i = 0; i < 500; i++) { var u = rnd(); r[u < p[0] ? 0 : u < p[0] + p[1] ? 1 : 2]++; } res = r; },
+    caption: function () { return ["Two non-orthogonal states.", "POVM elements on the Bloch circle.", "Strategy: " + ({ naive: "measure in z", hel: "Helstrom", usd: "unambiguous" })[Book.state.picks.s || "hel"] + ".", "A weak value outside the spectrum.", "Measurement."][beat]; },
+    readout: function () { if (beat === 2) { var p = probs(Book.state.picks.s || "hel", V.th * Math.PI / 180); return "expected: correct " + (100 * p[0]).toFixed(1) + "% · inconclusive " + (100 * p[1]).toFixed(1) + "% · wrong " + (100 * p[2]).toFixed(1) + "%" + (res ? " · played: " + res[0] + " / " + res[1] + " / " + res[2] : ""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.34, t = V.th * Math.PI / 180;
+      if (beat <= 1 || beat === 4) { k.circle(cx, cy, R, null, "rgba(236,230,218,.25)"); k.line(cx, cy, cx, cy - R, "#ffb547", 3); k.text("|0⟩", cx, cy - R - 8, { size: 12 }); var a = 2 * t; k.line(cx, cy, cx + R * Math.sin(a), cy - R * Math.cos(a), "#ece6da", 3); k.text("|φ⟩", cx + R * Math.sin(a) + 10, cy - R * Math.cos(a), { size: 12, align: "left" }); if (beat === 1) { var h = Math.PI / 2 + t; k.line(cx - R * Math.sin(t - Math.PI / 4) * 0, cy, cx + R * 1.1 * Math.sin(t - Math.PI / 4 + Math.PI), cy - R * 1.1 * Math.cos(t - Math.PI / 4 + Math.PI), "rgba(224,90,70,.6)", 1.5, [4, 4]); k.text("Bloch-circle angles double: 30° in Hilbert space = 60° here", cx, H * 0.95, { size: 11, color: "#7c766b" }); } return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.1, W * 0.82, H * 0.72, [5, 90], [0, 1.05], { xl: "angle between states θ, degrees", yl: "probability correct" }); k.plot(A, function (d) { var r = d * Math.PI / 180; return 0.5 * (1 + Math.sin(r) * Math.sin(r)); }, [5, 90], "rgba(236,230,218,.55)", 2); k.plot(A, function (d) { var r = d * Math.PI / 180; return 0.5 * (1 + Math.sin(r)); }, [5, 90], "#ffb547", 2.5); k.plot(A, function (d) { var r = d * Math.PI / 180; return 1 - Math.cos(r); }, [5, 90], "rgba(224,90,70,.9)", 2); k.line(A.X(V.th), A.Y(0), A.X(V.th), A.Y(1.05), "rgba(236,230,218,.25)", 1, [3, 4]); k.text("amber Helstrom · white z-basis · red never-wrong success", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [-5, 105], [0, 1.05], { xl: "meter reading" }); k.plot(A, function (x) { return Math.exp(-Math.pow((x - 0) / 30, 2)) * 0.6 + Math.exp(-Math.pow((x - 100) / 30, 2)) * 0; }, [-5, 105], "rgba(236,230,218,.45)", 1.5, 300); k.plot(A, function (x) { return Math.exp(-Math.pow((x - 100) / 30, 2)); }, [-5, 105], "#ffb547", 2.5, 300); k.line(A.X(1), A.Y(0), A.X(1), A.Y(1.05), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("eigenvalue range ±1", A.X(1) + 6, A.Y(0.95), { size: 11, align: "left" }); k.text("post-selected average ≈ 100", A.X(100), A.Y(1.02), { size: 11, color: "#ffb547" }); }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,71 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The electron’s charge is not a fixed number. Measured from far away, the fine-structure constant is 1/137.036. Measured at the energy of the Z boson, at LEP, it is about 1/128. The vacuum around an electron is full of fleeting electron–positron pairs that line up and partly screen it, like a charge in water; probe more closely and you see more of the bare charge. Renormalization is the theory of how such couplings change with the scale you look at, and it turns the infinities of Chapter 69 into predictions.</p>
+  <p>On the plate: the strength of electromagnetism against the energy at which you measure it.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Bare and measured</h2>
+  <p>Write the QED Lagrangian with “bare” mass {{tex:m_0}} and charge {{tex:e_0}}. Split each into the measured value plus a <em>counterterm</em>: {{tex:e_0 = e + \delta e}}, {{tex:m_0 = m + \delta m}}, and so on. Choose the counterterms to cancel the divergences of Chapter 69 exactly, by demanding <em>renormalization conditions</em>: for example, that the charge measured in very-low-energy scattering is 1/137.036. Every other prediction is then finite and expressed in terms of measured quantities. The bare values are infinite, but they are never observed. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The running coupling</h2>
+  <p>The finite part of the photon loop depends on momentum. Absorbing it into an <em>effective</em> coupling at scale {{tex:Q}} gives, at leading order,</p>
+  <div class="eq">{{texd:\frac{1}{\alpha(Q)} = \frac{1}{\alpha(0)} - \frac{2}{3\pi}\sum_f N_cQ_f^2\,\ln\frac{Q}{m_f}}}</div>
+  <p>summed over every charged particle lighter than {{tex:Q}}, with {{tex:N_c = 3}} colours for quarks. Each new particle that becomes light enough adds to the screening. Probe up to <span class="tangle" data-var="Q" data-min="-3" data-max="2.5" data-step="0.1" data-dec="1" data-value="1.96" data-px="6"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 energy in GeV">1.96</span><button type="button" data-de="1" aria-label="Higher">›</button></span> (log₁₀ GeV). This crude estimate reaches about 1/127.8 at the Z mass; the precise value, using measured hadron production for the quark loops, is 1/127.95. The plate marks both. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The Landau pole</h2>
+  <p>Follow the QED formula upward and {{tex:1/\alpha}} eventually hits zero: the coupling becomes infinite at a scale Lev Landau identified in the 1950s. With the electron alone it is around {{tex:10^{280}}} MeV, absurdly far beyond the Planck scale, where gravity takes over anyway. So the pole is not a practical problem, but it tells you QED cannot be the complete theory at arbitrarily short distances. The strong force runs the other way (Chapter 79).</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What “renormalizable” means today</h2>
+  <p>Old textbooks divided theories into renormalizable ones, like QED, where a finite number of counterterms suffice, and the rest, which were considered sick. Kenneth Wilson’s view, now standard, is different. Every theory is an <em>effective field theory</em>, valid below some scale {{tex:M}}. Terms in the Lagrangian with dimension above four come with powers of {{tex:1/M}} and so are tiny at low energy. Renormalizable theories are simply the ones that survive when {{tex:M}} is far away. Fermi’s theory of the weak force (Chapter 65) is non-renormalizable and works perfectly well below the W mass, where it should. General relativity is the same kind of theory, with {{tex:M}} the Planck mass. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Bare and renormalized parameters, counterterms and renormalization conditions, the running of {{tex:\alpha}} from 1/137 to 1/128, the Landau pole, and the effective-field-theory meaning of renormalizability.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is α larger at higher energy?<span class="tap">tap</span></div><div class="a">Vacuum pairs screen the charge; at short distances you see through more of the screening.</div></div>
+  <div class="qa"><div class="q">Are bare parameters measurable?<span class="tap">tap</span></div><div class="a">No. Only renormalized quantities, fixed by measurement, appear in predictions.</div></div>
+  <div class="qa"><div class="q">Is a non-renormalizable theory useless?<span class="tap">tap</span></div><div class="a">No; it is an effective theory, accurate below its scale M, with corrections suppressed by powers of E/M.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> By how much does {{tex:1/\alpha}} change from zero energy to the Z mass, using 137.036 and 127.95?</p>
+    <form class="calc" data-answer="9.09" data-tol="0.05" data-ok="Yes: about 9.1, a 7% increase in the coupling." data-hint="137.036 − 127.95."><span>Δ(1/α) =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Change"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Particle Data Group, Review of Particle Physics, electroweak review (α(m_Z)⁻¹ = 127.95 in the MS-bar scheme). L. D. Landau, in Niels Bohr and the Development of Physics (1955). K. G. Wilson and J. Kogut, Phys. Rep. 12, 75 (1974). M. D. Schwartz, ch. 22–23. Checked by code: leading-log running with lepton and approximate quark thresholds gives 1/α(m_Z) ≈ 127.8; Landau pole for the electron alone at 10²⁸⁰ MeV.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Q: 1.96 }, a0 = 1 / 137.035999;
+  var F = [[0.000511, 1], [0.10566, 1], [1.777, 1], [0.07, 4 / 3], [0.07, 1 / 3], [0.2, 1 / 3], [1.27, 4 / 3], [4.18, 1 / 3]];
+  function inv(Q) { var s = 1 / a0; F.forEach(function (f) { if (Q > f[0]) s -= 2 / (3 * Math.PI) * f[1] * Math.log(Q / f[0]); }); return s; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["1/α against energy.", "Bare = measured + counterterm.", "Running α: leading-log estimate (amber) and precise value at m_Z.", "1/α falling toward zero, far away.", "Effective theories, valid below M.", "Running coupling."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var Q = Math.pow(10, V.Q); return "Q = " + (Q < 1 ? (Q * 1000).toPrecision(3) + " MeV" : Q.toPrecision(3) + " GeV") + " · 1/α ≈ " + inv(Q).toFixed(2); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat <= 2 || beat === 5) {
+        A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [-4, 2.5], [126, 138], { xl: "log₁₀ energy, GeV", yl: "1/α" });
+        k.plot(A, function (l) { return inv(Math.pow(10, l)); }, [-4, 2.5], "#ffb547", 2.5, 400);
+        k.circle(A.X(-4), A.Y(137.036), 5, "#ece6da"); k.text("137.036", A.X(-4) + 8, A.Y(137.036) + 14, { size: 11, align: "left" });
+        k.circle(A.X(Math.log10(91.19)), A.Y(127.95), 6, "#ece6da"); k.text("m_Z: 127.95", A.X(Math.log10(91.19)) - 8, A.Y(127.95) + 18, { size: 11, align: "right" });
+        k.circle(A.X(V.Q), A.Y(inv(Math.pow(10, V.Q))), 5, "#ffb547");
+        return;
+      }
+      if (beat === 1) { [["bare e₀", "∞", W * 0.2], ["=", "", W * 0.37], ["measured e", "0.303", W * 0.52], ["+ δe", "∞", W * 0.78]].forEach(function (q) { k.text(q[0], q[2], H * 0.45, { size: 18, color: q[0] === "measured e" ? "#ffb547" : "#ece6da" }); k.text(q[1], q[2], H * 0.58, { size: 13, color: "#7c766b" }); }); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 300], [0, 140], { xl: "log₁₀ energy, MeV", yl: "1/α (electron only)" }); k.plot(A, function (l) { return Math.max(0, 137.036 - 2 / (3 * Math.PI) * l * Math.LN10); }, [0, 300], "#ffb547", 2.5); k.line(A.X(22), A.Y(0), A.X(22), A.Y(140), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("Planck scale", A.X(22) + 4, A.Y(130), { size: 11, align: "left", color: "#7c766b" }); return; }
+      if (beat === 4) { var cx = W / 2; for (var i = 0; i < 4; i++) { var y = H * (0.2 + i * 0.18); k.rr(W * 0.15, y - 18, W * 0.7, 36, 8, "#14120f", i ? "rgba(236,230,218,.35)" : "#ffb547"); k.text(["dimension ≤ 4: survives", "dimension 5: ∝ E/M", "dimension 6: ∝ (E/M)²", "…"][i], cx, y + 5, { size: 13, color: i ? "#b9b2a5" : "#ffb547" }); } }
+    }
+  });
+})();
+</script>

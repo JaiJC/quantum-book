@@ -1,0 +1,7 @@
+== 083
+beta 22.73153363942674 gamma 65.69588648649137 alpha 91.57257987408188 sin2beta 0.7127984965859553
+Jarlskog approx 3.0405212964765944e-05
+gens 2 angles 1 phases 0
+gens 3 angles 3 phases 1
+gens 4 angles 6 phases 3
+Cabibbo angle deg 13.003466199369875

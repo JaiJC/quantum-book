@@ -1,0 +1,63 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The security of most internet traffic rests on a simple asymmetry: multiplying two large primes is easy, and recovering them from their product is, as far as anyone knows, practically impossible for an ordinary computer. In 1994 Peter Shor found a quantum algorithm that factors in polynomial time. The algorithm is certain. What is uncertain is when a machine big and reliable enough to run it against real keys will exist. This chapter runs Shor’s algorithm end to end for 15, then gives you an honest account of the distance to 2048-bit RSA.</p>
+  <p>On the plate: the output of the quantum period-finding step for 15.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>From factoring to a period</h2>
+  <p>Pick {{tex:a}} coprime to {{tex:N}}. The sequence {{tex:a^x \bmod N}} repeats with some period {{tex:r}}, the <em>order</em> of {{tex:a}}. If {{tex:r}} is even and {{tex:a^{r/2}\not\equiv -1}}, then {{tex:(a^{r/2} - 1)(a^{r/2} + 1)}} is a multiple of {{tex:N}} without either factor being one, so {{tex:\gcd(a^{r/2}\pm1, N)}} gives nontrivial factors. For a random {{tex:a}} this works with probability at least one half. Finding {{tex:r}} classically is as hard as factoring. Quantumly, it is phase estimation (Chapter 113) on the unitary {{tex:|y\rangle\to|ay \bmod N\rangle}}, whose eigenphases are {{tex:k/r}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Run it for 15</h2>
+  <p>Choose {{tex:a}}: <button type="button" class="v" data-pick="a:2">2</button> <button type="button" class="v" data-pick="a:4">4</button> <button type="button" class="v" data-pick="a:7">7</button> <button type="button" class="v" data-pick="a:11">11</button> <button type="button" class="v" data-pick="a:13">13</button> <button type="button" class="v" data-pick="a:14">14</button>. With eight counting qubits, the outcomes are multiples of {{tex:256/r}}. For {{tex:a = 7}}, {{tex:r = 4}}: peaks at 0, 64, 128 and 192. Measure 192: {{tex:192/256 = 3/4}}, and the denominator gives {{tex:r = 4}}. Then {{tex:7^2 = 49}}, and {{tex:\gcd(48, 15) = 3}}, {{tex:\gcd(50, 15) = 5}}. For {{tex:a = 14}}, {{tex:r = 2}} but {{tex:14 \equiv -1}}: a failure, so pick another {{tex:a}}.</p>
+  <p>When {{tex:r}} does not divide {{tex:2^t}}, peaks blur, and the <em>continued-fraction expansion</em> of the measured fraction finds the closest fraction with a small denominator, which is {{tex:k/r}}.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The expensive part</h2>
+  <p>The quantum Fourier transform is cheap. The cost is <em>modular exponentiation</em>, computing {{tex:a^x \bmod N}} reversibly for a superposition of {{tex:x}}: thousands of qubits of arithmetic with uncomputation (Chapter 94). The same structure breaks discrete logarithms, including the elliptic-curve cryptography in most web connections, with fewer qubits than RSA of equivalent strength. Beware of “record” factorings: John Smolin, Graeme Smith and Alexander Vargo showed in 2013 that most published demonstrations used the known answer to simplify the circuit, which proves nothing. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>How far from RSA-2048</h2>
+  <p>Estimates assume surface-code error correction (Chapter 139) on hardware with about 0.1% gate error and a 1 µs cycle. Craig Gidney and Martin Ekerå’s 2019 estimate: about 20 million physical qubits for 8 hours. Gidney’s 2025 estimate: under one million physical qubits for under a week, by trading time for space with better arithmetic and storage. Choose: <button type="button" class="v" data-pick="e:2019">2019 estimate</button> or <button type="button" class="v" data-pick="e:2025">2025 estimate</button>. Oded Regev’s 2023 algorithm, published in 2025, uses fewer gates per run, about {{tex:n^{1.5}}}, at the cost of more runs and a number-theoretic assumption.</p>
+  <p>Today’s largest machines have hundreds to a few thousand physical qubits with error rates near that 0.1% threshold. When a machine of a million good qubits will exist, if ever, is genuinely uncertain. Because encrypted data can be stored now and decrypted later, standards bodies are already moving to post-quantum cryptography (Chapter 133). <span class="tag">Debated</span> on timing.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>The reduction from factoring to order finding, the quantum period-finding step as phase estimation, Shor’s algorithm run for 15, continued fractions, why modular exponentiation dominates, the extension to discrete logarithms, and the current resource estimates for RSA-2048.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does the quantum computer actually find?<span class="tap">tap</span></div><div class="a">The order r of a modulo N, by phase estimation.</div></div>
+  <div class="qa"><div class="q">Why does a = 14 fail for N = 15?<span class="tap">tap</span></div><div class="a">r = 2 and 14 ≡ −1 mod 15, so gcd gives only 1 and 15.</div></div>
+  <div class="qa"><div class="q">What is the 2025 estimate for RSA-2048?<span class="tap">tap</span></div><div class="a">Under a million noisy qubits running for under a week, under stated hardware assumptions.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:N = 15}}, {{tex:a = 7}}, {{tex:r = 4}}: what is {{tex:\gcd(7^2 - 1, 15)}}?</p>
+    <form class="calc" data-answer="3" data-tol="0.01" data-ok="Yes: gcd(48, 15) = 3, and gcd(50, 15) = 5." data-hint="7² − 1 = 48."><span>gcd =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. W. Shor, SIAM J. Comput. 26, 1484 (1997) (FOCS 1994). C. Gidney and M. Ekerå, Quantum 5, 433 (2021) (arXiv 2019). C. Gidney, arXiv:2505.15917 (2025). O. Regev, J. ACM (2025), arXiv:2308.06572. J. A. Smolin, G. Smith and A. Vargo, Nature 499, 163 (2013). Checked by code: orders mod 15 (a = 2, 7, 8, 13 → 4; 4, 11, 14 → 2), peaks k·256/r, factors 3 and 5, and the a = 14 failure.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, N = 15;
+  function gcd(a, b) { while (b) { var t = b; b = a % b; a = t; } return a; }
+  function order(a) { var r = 1, v = a % N; while (v !== 1) { v = v * a % N; r++; } return r; }
+  function powm(a, e) { var r = 1; for (var i = 0; i < e; i++) r = r * a % N; return r; }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    caption: function () { var a = +(Book.state.picks.a || 7); return ["Period finding for 15.", "a^x mod 15 repeats.", "Counting-register outcomes for a = " + a + ".", "Modular exponentiation dominates.", "Resource estimates for RSA-2048.", "Shor."][beat]; },
+    readout: function () { var a = +(Book.state.picks.a || 7), r = order(a); if (beat === 2 || beat === 0) { var h = powm(a, r / 2); var ok = r % 2 === 0 && h !== N - 1; return "order r = " + r + " · peaks at " + Array.from({ length: r }, function (_, k) { return k * 256 / r; }).join(", ") + " · " + (ok ? "factors " + gcd(h - 1, N) + " × " + gcd(h + 1, N) : "a^(r/2) ≡ −1: try another a"); } if (beat === 4) return Book.state.picks.e === "2019" ? "2019: ~20 million qubits, ~8 hours" : "2025: < 1 million qubits, < 1 week"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i, a = +(Book.state.picks.a || 7), r = order(a);
+      if (beat === 0 || beat === 2 || beat === 5) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 256], [0, 0.55], { xl: "counting-register outcome", yl: "probability" }); for (i = 0; i < r; i++) { var x = i * 256 / r; k.rr(A.X(x) - 3, A.Y(1 / r), 6, A.Y(0) - A.Y(1 / r), 1, "#ffb547"); k.text(String(x), A.X(x), A.Y(1 / r) - 8, { size: 11 }); } return; }
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [0, 12], [0, 15], { xl: "x", yl: "a^x mod 15" }); for (i = 0; i <= 12; i++) k.circle(A.X(i), A.Y(powm(a, i)), 5, "#ffb547"); k.text("period " + r, W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { [["QFT", 0.06], ["modular exponentiation", 0.94]].forEach(function (q, j) { k.rr(W * 0.1, H * (0.35 + j * 0.2), W * 0.8 * q[1], H * 0.1, 4, j ? "#ffb547" : "rgba(236,230,218,.5)"); k.text(q[0], W * 0.1 + 8, H * (0.35 + j * 0.2) - 6, { size: 12, align: "left" }); }); k.text("share of gates (schematic)", W / 2, H * 0.85, { size: 11, color: "#7c766b" }); return; }
+      if (beat === 4) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [5, 8], [-1, 2.5], { xl: "log₁₀ physical qubits", yl: "log₁₀ days" }); [[Math.log10(2e7), Math.log10(8 / 24), "2019", Book.state.picks.e === "2019"], [Math.log10(1e6), Math.log10(7), "2025", Book.state.picks.e !== "2019"]].forEach(function (p) { k.circle(A.X(p[0]), A.Y(p[1]), p[3] ? 9 : 6, p[3] ? "#ffb547" : "rgba(255,181,71,.4)"); k.text(p[2], A.X(p[0]) + 12, A.Y(p[1]) + 4, { size: 12, align: "left" }); }); k.line(A.X(Math.log10(3000)), A.Y(-1), A.X(Math.log10(3000)), A.Y(2.5), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("largest machines today", A.X(Math.log10(3000)) + 4, A.Y(2.3), { size: 11, align: "left", color: "#7c766b" }); }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,104 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In May 1935 Einstein, Boris Podolsky and Nathan Rosen published four pages arguing that quantum mechanics is incomplete. Their logic was careful and, step by step, sound. It rested on two assumptions that almost everyone would accept without thinking. Thirty years later John Bell showed that the two together make a prediction that can be tested, and the experiments say one of them is false. This chapter reconstructs the argument exactly, so that you can see which.</p>
+  <p>On the plate: a source sends pairs of particles to two distant detectors. Each detector flashes at random; together, they agree.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The argument</h2>
+  <p>EPR used positions and momenta; David Bohm’s 1951 version uses spins, and it is cleaner. A source emits two spin-½ particles in the singlet state of Chapter 41, one to Alice and one to Bob, far apart. Whatever axis Alice measures along, Bob will find the opposite result along that axis, with certainty.</p>
+  <p>Let Alice choose: <button type="button" class="v" data-pick="a:z">measure along z</button> or <button type="button" class="v" data-pick="a:x">measure along x</button>. Either way she can predict Bob’s result for that axis without touching his particle. EPR then reasoned: (1) <em>locality</em>, nothing Alice does can change Bob’s particle instantly; (2) <em>reality</em>, if you can predict a value with certainty without disturbing a system, there is an element of reality corresponding to it. Since Alice could have chosen either axis, Bob’s particle must have had definite values for both {{tex:S_z}} and {{tex:S_x}} all along. Quantum mechanics says no state has both. So, they concluded, quantum mechanics is incomplete. <span class="tag">Established</span>, as a statement of the argument.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Bohr’s reply and Schrödinger’s word</h2>
+  <p>Niels Bohr answered within months, in a paper with the same title. He accepted that Alice does not disturb Bob’s particle mechanically, but argued that her choice determines which kinds of prediction about it can meaningfully be made: the experimental arrangement is part of what defines a physical quantity. Many found this obscure, and the debate stalled.</p>
+  <p>That same year, Erwin Schrödinger gave the phenomenon its name. He called it <em>Verschränkung</em>, entanglement, and called it “not one but rather the characteristic trait of quantum mechanics”. He also noticed that Alice, by choosing her measurement, steers Bob’s particle into one set of states or another, a feature now called <em>steering</em>.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Telling entangled from not</h2>
+  <p>Any pure state of two systems can be rewritten, by choosing bases well, as a single sum, the <em>Schmidt decomposition</em>:</p>
+  <div class="eq">{{texd:|\Psi\rangle = \sum_i \sqrt{\lambda_i}\;|a_i\rangle|b_i\rangle, \qquad \lambda_i \ge 0,\ \ \sum\lambda_i = 1}}</div>
+  <p>If only one {{tex:\lambda_i}} is nonzero, the state is a product and there is no entanglement; otherwise there is. The {{tex:\lambda_i}} are the eigenvalues of each half’s density matrix from Chapter 49. For {{tex:\cos\theta|00\rangle + \sin\theta|11\rangle}} with {{tex:\theta =}} <span class="tangle" data-var="t" data-min="0" data-max="45" data-step="1" data-unit="°" data-value="30" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Angle">30°</span><button type="button" data-de="1" aria-label="More">›</button></span>, the plate shows the two Schmidt weights.</p>
+  <p>For mixed states the question is harder. A state is <em>separable</em> if it can be made by preparing product states at random; otherwise it is entangled. Mix a singlet with noise, {{tex:\rho = p\,|\Psi^-\rangle\langle\Psi^-| + (1-p)\,\mathbb 1/4}}: it is entangled only for {{tex:p > 1/3}}, a result found by checking whether a partial transpose of {{tex:\rho}} has a negative eigenvalue (Peres, Horodecki, 1996).</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Trying to send a message</h2>
+  <p>If Alice’s choice steers Bob’s particle, can she use it to signal? Try. Alice wants to send “0” by measuring along z and “1” by measuring along x. Pick her setting, <button type="button" class="v" data-pick="s:z">z</button> or <button type="button" class="v" data-pick="s:x">x</button>, and watch Bob’s results pile up. He always measures along z.</p>
+  <p>His counts come out fifty-fifty either way. Bob’s particle alone is in the state {{tex:\mathbb 1/2}} whatever Alice does: her z measurement leaves him an equal mixture of up and down, her x measurement an equal mixture of left and right, and Chapter 49 showed those are the same density matrix. Only when Alice phones Bob her results, at light speed or slower, do the correlations appear. This is the <em>no-signalling theorem</em>. Entanglement creates correlations, never messages. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Which assumption?</h2>
+  <p>EPR’s two premises together imply that every particle carries predetermined answers to all questions, fixed locally at the source. That is a <em>local hidden-variable</em> theory. It reproduces perfect anti-correlation along any single shared axis easily. The question Bell asked was whether it can reproduce the correlations at <em>different</em> axes. It cannot, and the next chapter derives the inequality and the experiments that settled it.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The EPR argument and its two premises, Bohr’s reply, Schrödinger’s entanglement and steering, the Schmidt decomposition, separability and the noisy singlet, and the no-signalling theorem.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What two assumptions did EPR combine?<span class="tap">tap</span></div><div class="a">Locality (no instantaneous influence) and a criterion of reality (certain prediction without disturbance implies a real value).</div></div>
+  <div class="qa"><div class="q">Why can’t Alice signal to Bob?<span class="tap">tap</span></div><div class="a">Bob’s reduced state is 𝟙/2 whatever Alice measures; different ensembles, same density matrix.</div></div>
+  <div class="qa"><div class="q">When is a pure two-part state entangled?<span class="tap">tap</span></div><div class="a">When its Schmidt decomposition has more than one nonzero term.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:\cos 30^\circ|00\rangle + \sin 30^\circ|11\rangle}}, what is the larger Schmidt weight {{tex:\lambda_1}}?</p>
+    <form class="calc" data-answer="0.75" data-tol="0.003" data-ok="Yes: cos²30° = 0.75, and λ₂ = 0.25." data-alt="0.866~That is cos 30°, the amplitude. λ is its square." data-hint="λ₁ = cos²θ."><span>λ₁ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Schmidt weight"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Einstein, B. Podolsky and N. Rosen, Phys. Rev. 47, 777 (1935). N. Bohr, Phys. Rev. 48, 696 (1935). E. Schrödinger, Proc. Camb. Phil. Soc. 31, 555 (1935). D. Bohm, Quantum Theory (1951). A. Peres, Phys. Rev. Lett. 77, 1413 (1996); M., P. and R. Horodecki, Phys. Lett. A 223, 1 (1996). Checked by code: Schmidt weights cos²θ, sin²θ; noisy singlet partial-transpose eigenvalue (1 − 3p)/4, negative for p &gt; 1/3; Bob’s marginal 𝟙/2 for either of Alice’s settings.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { t: 30 }, counts = { z: [0, 0], x: [0, 0] }, seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    pick: function () { counts = { z: [0, 0], x: [0, 0] }; },
+    caption: function () { return ["A source of entangled pairs and two detectors.", "Alice measures along " + (Book.state.picks.a || "z") + "; Bob’s result along that axis is fixed.", "Steering: Alice’s choice decides Bob’s ensemble.", "Schmidt weights, and the noisy singlet.", "Bob’s counts while Alice measures along " + (Book.state.picks.s || "z") + ".", "Local hidden variables: answers fixed at the source.", "Entangled pairs."][beat]; },
+    readout: function () {
+      if (beat === 3) { var c = Math.pow(Math.cos(V.t * Math.PI / 180), 2); return "λ₁ = " + c.toFixed(3) + " · λ₂ = " + (1 - c).toFixed(3); }
+      if (beat === 4) { var s = Book.state.picks.s || "z", n = counts[s][0] + counts[s][1]; return "Alice: " + s + " · Bob up " + counts[s][0] + ", down " + counts[s][1] + (n ? " · " + (100 * counts[s][0] / n).toFixed(1) + "% up" : ""); }
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i;
+      if (beat === 0 || beat === 1 || beat === 2 || beat === 6) {
+        var sx = W / 2, sy = H * 0.5, ax = W * 0.12, bx = W * 0.88, t = (now / 1300) % 1, n = Math.floor(now / 1300);
+        k.circle(sx, sy, 10, "#ffb547"); k.glow(sx, sy, 22, "rgba(255,181,71,.4)");
+        k.circle(sx - (sx - ax) * t, sy, 4, "#ffb547"); k.circle(sx + (bx - sx) * t, sy, 4, "#ffb547");
+        var axis = beat === 1 ? (Book.state.picks.a || "z") : "z", r = ((n * 9301 + 49297) % 233280) / 233280 < 0.5 ? 1 : -1;
+        k.rr(ax - 24, sy - 34, 48, 68, 6, "#14120f", "rgba(236,230,218,.4)"); k.rr(bx - 24, sy - 34, 48, 68, 6, "#14120f", "rgba(236,230,218,.4)");
+        if (t > 0.9) { k.glow(ax, sy - r * 18, 16, "rgba(255,181,71,.8)"); k.glow(bx, sy + r * 18, 16, "rgba(255,181,71,.8)"); }
+        k.text("Alice", ax, sy + 54, { size: 12, color: "#b9b2a5" }); k.text("Bob", bx, sy + 54, { size: 12, color: "#b9b2a5" });
+        if (beat === 1) { k.text("Alice: " + (r > 0 ? "+" : "−") + " along " + axis, ax + 20, H * 0.2, { size: 13, align: "left", color: "#ffb547" }); k.text("so Bob will get " + (r > 0 ? "−" : "+") + " along " + axis, bx - 20, H * 0.2, { size: 13, align: "right", color: "#ece6da" }); }
+        if (beat === 2) { k.text("Alice z → Bob: ↑ or ↓", W / 2, H * 0.18, { size: 13, color: "#ffb547" }); k.text("Alice x → Bob: ← or →", W / 2, H * 0.82, { size: 13, color: "#ffb547" }); }
+        return;
+      }
+      if (beat === 3) {
+        var l1 = Math.pow(Math.cos(V.t * Math.PI / 180), 2), A = k.axes(W * 0.08, H * 0.1, W * 0.36, H * 0.72, [0, 3], [0, 1], { yl: "λ" });
+        k.rr(A.X(0.4), A.Y(l1), A.X(1.2) - A.X(0.4), A.Y(0) - A.Y(l1), 3, "#ffb547"); k.rr(A.X(1.8), A.Y(1 - l1), A.X(2.6) - A.X(1.8), A.Y(0) - A.Y(1 - l1), 3, "#ffb547");
+        var B = k.axes(W * 0.56, H * 0.1, W * 0.4, H * 0.72, [0, 1], [-0.55, 0.3], { xl: "singlet fraction p", yl: "min eigenvalue of ρ^T_B", zeroY: true });
+        k.plot(B, function (p) { return (1 - 3 * p) / 4; }, [0, 1], "#ffb547", 2.5); k.line(B.X(1 / 3), B.Y(-0.55), B.X(1 / 3), B.Y(0.3), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("entangled →", B.X(0.36), B.Y(0.25), { size: 11, align: "left", color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) {
+        var s = Book.state.picks.s || "z"; if (rnd() < 0.6) { counts[s][rnd() < 0.5 ? 0 : 1]++; }
+        var tot = counts[s][0] + counts[s][1] || 1, A4 = k.axes(W * 0.2, H * 0.1, W * 0.6, H * 0.72, [0, 2], [0, 1], { yl: "fraction" });
+        k.rr(A4.X(0.25), A4.Y(counts[s][0] / tot), A4.X(0.75) - A4.X(0.25), A4.Y(0) - A4.Y(counts[s][0] / tot), 3, "#ffb547"); k.rr(A4.X(1.25), A4.Y(counts[s][1] / tot), A4.X(1.75) - A4.X(1.25), A4.Y(0) - A4.Y(counts[s][1] / tot), 3, "#ffb547");
+        k.line(A4.X(0), A4.Y(0.5), A4.X(2), A4.Y(0.5), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("Bob ↑", A4.X(0.5), A4.Y(0) + 18, { size: 12, color: "#b9b2a5" }); k.text("Bob ↓", A4.X(1.5), A4.Y(0) + 18, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 5) {
+        var cx = W / 2, cy = H / 2;
+        for (i = 0; i < 2; i++) { var x0 = i ? W * 0.72 : W * 0.28; k.rr(x0 - 70, cy - 60, 140, 120, 8, "#14120f", "rgba(236,230,218,.35)"); ["z: " + (i ? "−" : "+"), "x: " + (i ? "+" : "−"), "45°: " + (i ? "−" : "+")].forEach(function (s, j) { k.text(s, x0, cy - 24 + j * 24, { size: 13, color: "#ffb547" }); }); k.text(i ? "Bob’s card" : "Alice’s card", x0, cy + 82, { size: 12, color: "#b9b2a5" }); }
+        k.text("each particle carries a card of answers, written at the source", cx, H * 0.12, { size: 12, color: "#b9b2a5" });
+      }
+    }
+  });
+})();
+</script>

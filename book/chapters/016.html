@@ -1,0 +1,122 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Put Maxwell’s equations in empty space, with no charges anywhere, and they still have something to say. A changing magnetic field makes an electric field; a changing electric field, thanks to Maxwell’s extra term, makes a magnetic field. Each keeps the other going, and the pair can travel on their own. Maxwell worked out how fast, and got the speed of light.</p>
+  <p>This chapter shows how light falls out of the equations, what it carries, and then how the same equations predict that every atom should destroy itself in a hundred-billionth of a second. That failure is where quantum physics begins.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The wave equation hiding in Maxwell’s</h2>
+  <p>Take the curl of Faraday’s law and use Ampère–Maxwell to replace the curl of {{tex:\mathbf B}}. In empty space the result is the wave equation of Chapter 5 for every component of the field:</p>
+  <div class="eq">{{texd:\nabla^2\mathbf E = \mu_0\varepsilon_0\frac{\partial^2\mathbf E}{\partial t^2}, \qquad c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} = 299{,}792{,}458\ \text{m/s}}}</div>
+  <p>The two constants come from tabletop measurements of electric and magnetic forces. In 1856 Wilhelm Weber and Rudolf Kohlrausch measured their ratio and found a speed of about {{tex:3.1\times10^8}} m/s; Hippolyte Fizeau had timed light itself in 1849 with a spinning toothed wheel at about {{tex:3.1\times10^8}} m/s too. Maxwell concluded that light <em>is</em> an electromagnetic wave. <span class="tag">Established</span></p>
+  <div class="note x-deep"><span class="mark">Deeper</span>{{tex:\nabla\times(\nabla\times\mathbf E) = \nabla(\nabla\cdot\mathbf E) - \nabla^2\mathbf E = -\nabla^2\mathbf E}} in empty space. And {{tex:\nabla\times(-\partial_t\mathbf B) = -\partial_t(\mu_0\varepsilon_0\partial_t\mathbf E)}}. Equate the two.</div>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>What a light wave looks like</h2>
+  <p>In a plane wave, {{tex:\mathbf E}} and {{tex:\mathbf B}} oscillate in step, at right angles to each other and to the direction of travel. The plate shows them in perspective; <button type="button" class="v" data-act="turn">turn the view</button> to see that the two fields stay perpendicular. Their sizes are tied: {{tex:B = E/c}}.</p>
+  <p>Heinrich Hertz made and detected such waves with sparks and wire loops in 1887–88, at radio frequencies, and measured their speed. The visible light you read by is the same thing with a wavelength a million times shorter.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Light carries energy and push</h2>
+  <p>The energy flowing through each square metre per second is the Poynting vector, {{tex:\mathbf S = \mathbf E\times\mathbf B/\mu_0}}. Sunlight at Earth delivers about 1361 W per square metre, which means an electric field swinging with an amplitude of about 1000 V/m.</p>
+  <p>Light also carries momentum: absorbing it pushes with a pressure {{tex:S/c}}, and reflecting it twice that. For sunlight on a mirror that is 9 micropascals, a force of 9 newtons on a square kilometre. Tiny, but in space it never stops, and solar sails such as JAXA’s IKAROS (2010) have flown on it. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Shaking a charge makes light</h2>
+  <p>A charge moving steadily carries its field along. A charge that <em>accelerates</em> sends out a ripple. The power radiated is the Larmor formula:</p>
+  <div class="eq">{{texd:P = \frac{q^2 a^2}{6\pi\varepsilon_0 c^3}}}</div>
+  <p>A charge oscillating up and down radiates most strongly sideways and not at all along its line of motion, the doughnut pattern on the plate. Every radio antenna has this pattern.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The atom that should not exist</h2>
+  <p>Now the crisis. In the planetary picture of the atom, an electron circles the nucleus. Circling is accelerating, so the electron must radiate, lose energy and spiral inward. Use the Larmor formula and you can work out how long the fall takes, from the size of a hydrogen atom down to the nucleus:</p>
+  <div class="eq">{{texd:t = \frac{a_0^3}{4 r_e^2 c} \approx 1.6\times10^{-11}\ \text{s}}}</div>
+  <p>Here {{tex:a_0}} is the atom’s radius and {{tex:r_e}} the classical electron radius. <button type="button" class="v" data-act="spiral">Start the clock</button>; the plate slows time about five hundred billion times so you can watch.</p>
+  <p>Atoms have lasted 13.8 billion years. Classical physics is not slightly wrong here; it is wrong by more than 28 powers of ten. Fixing that is the business of Part One.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The freedom in the potentials</h2>
+  <p>The fields can be written using potentials, {{tex:\mathbf B = \nabla\times\mathbf A}} and {{tex:\mathbf E = -\nabla\phi - \partial_t\mathbf A}}. The potentials are not unique: change them by {{tex:\mathbf A \to \mathbf A + \nabla\chi}} and {{tex:\phi \to \phi - \partial_t\chi}}, for any function {{tex:\chi}}, and the fields do not change at all. This <em>gauge freedom</em> looks like a nuisance. In Part Two it becomes the organizing principle of every force in the Standard Model.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Check: {{tex:\nabla\times\nabla\chi = 0}}, so {{tex:\mathbf B}} is unchanged; and {{tex:-\nabla(\phi - \partial_t\chi) - \partial_t(\mathbf A + \nabla\chi) = -\nabla\phi - \partial_t\mathbf A}}, so {{tex:\mathbf E}} is unchanged.</div>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>Light as an electromagnetic wave with speed {{tex:1/\sqrt{\mu_0\varepsilon_0}}}, energy flow and radiation pressure, radiation from accelerating charges, gauge freedom, and a clear failure of classical physics.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does a classical orbiting electron radiate?<span class="tap">tap</span></div><div class="a">Moving in a circle means accelerating, and accelerating charges radiate (Larmor).</div></div>
+  <div class="qa"><div class="q">How were E and B oriented in a light wave?<span class="tap">tap</span></div><div class="a">Perpendicular to each other and to the direction of travel, oscillating in step, with B = E/c.</div></div>
+  <div class="qa"><div class="q">What does a gauge transformation change?<span class="tap">tap</span></div><div class="a">The potentials φ and A, but not the fields E and B, so nothing measurable.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What pressure, in micropascals, does sunlight (1361 W/m²) exert on a perfectly absorbing surface?</p>
+    <form class="calc" data-answer="4.54" data-tol="0.03" data-ok="Yes: S/c = 1361/(3×10⁸) ≈ 4.5 µPa." data-alt="9.08~That is for a mirror, which doubles the push. An absorber gets S/c." data-hint="Divide the intensity by the speed of light."><span>p =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Pressure in micropascals"><span>µPa</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. J. Griffiths, Introduction to Electrodynamics. J. D. Jackson, Classical Electrodynamics. H. Hertz, Ann. Phys. 34 (1888). Solar constant 1361 W/m² (Kopp and Lean 2011). Checked by code: collapse time 1.56×10⁻¹¹ s; c = 1/√(μ₀ε₀); sunlight pressure 4.54 µPa.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, yaw = 0.5, sp = -1;
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; if (i === 5) sp = performance.now(); },
+    act: function (a) { if (a === "turn") yaw += 0.6; if (a === "spiral") sp = performance.now(); },
+    caption: function () { return ["An electromagnetic wave.", "A wave in empty space.", "E (amber) and B (white).", "Sunlight on a sail.", "Radiation from a shaken charge.", "The classical hydrogen atom.", "Potentials and fields.", "An electromagnetic wave."][beat]; },
+    readout: function () {
+      if (beat === 5 && sp > 0) { var tt = Math.min(1, (performance.now() - sp) / 8000); return "t = " + (tt * 1.56e-11).toExponential(2) + " s"; }
+      if (beat === 3) return "1361 W/m² · 9 µPa on a mirror";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, t = now / 1000, i;
+      if (beat <= 2 || beat === 7) {
+        var cy2 = Math.cos(yaw), sy = Math.sin(yaw);
+        function P(x, y, z) { return [cx + (x * cy2 - z * sy) * W * 0.4, cy - y * H * 0.32 + (x * sy + z * cy2) * H * 0.08]; }
+        var a0 = P(-1, 0, 0), a1 = P(1, 0, 0); k.line(a0[0], a0[1], a1[0], a1[1], "#3a3631", 1);
+        c.lineWidth = 2;
+        [[0, "#ffb547"], [1, "#ece6da"]].forEach(function (f) {
+          c.strokeStyle = f[1]; c.beginPath();
+          for (i = 0; i <= 200; i++) { var x = -1 + 2 * i / 200, v = Math.cos(9 * x - 4 * t) * 0.8, p = f[0] ? P(x, 0, v * 0.9) : P(x, v, 0); if (i) c.lineTo(p[0], p[1]); else c.moveTo(p[0], p[1]); }
+          c.stroke();
+          for (i = 0; i <= 40; i++) { var x2 = -1 + 2 * i / 40, v2 = Math.cos(9 * x2 - 4 * t) * 0.8, b = P(x2, 0, 0), p2 = f[0] ? P(x2, 0, v2 * 0.9) : P(x2, v2, 0); k.line(b[0], b[1], p2[0], p2[1], f[0] ? "rgba(236,230,218,.18)" : "rgba(255,181,71,.25)", 1); }
+        });
+        k.text("E", P(-0.9, 1, 0)[0], P(-0.9, 1, 0)[1], { color: "#ffb547", size: 16 }); k.text("B", P(-0.9, 0, 1)[0], P(-0.9, 0, 1)[1], { color: "#ece6da", size: 16 }); k.text("direction of travel →", a1[0] - 40, a1[1] + 24, {});
+        return;
+      }
+      if (beat === 3) {
+        for (i = 0; i < 14; i++) { var y = H * 0.12 + i * H * 0.055, ph = (t * 140 + i * 37) % (W * 0.5); k.line(ph, y, ph + 30, y, "rgba(255,200,120,.6)", 2); }
+        c.save(); c.translate(W * 0.68, cy); c.rotate(-0.15 + 0.03 * Math.sin(t)); k.rr(-6, -H * 0.38, 12, H * 0.76, 3, "#ece6da"); c.restore();
+        k.line(W * 0.75, cy, W * 0.9, cy, "#ffb547", 2.5); k.line(W * 0.9, cy, W * 0.88, cy - 6, "#ffb547", 2.5); k.line(W * 0.9, cy, W * 0.88, cy + 6, "#ffb547", 2.5); k.text("push", W * 0.82, cy - 12, { color: "#ffb547" });
+        return;
+      }
+      if (beat === 4) {
+        var amp = Math.min(W, H) * 0.06, y0 = cy + amp * Math.sin(t * 6);
+        for (var r = 1; r < 9; r++) { var R = ((t * 70 + r * 50) % 420); c.strokeStyle = "rgba(255,181,71," + (0.5 * (1 - R / 420)) + ")"; c.lineWidth = 2; c.beginPath(); for (i = 0; i <= 120; i++) { var th = i / 120 * 2 * Math.PI, wgt = Math.pow(Math.sin(th), 2), px = cx + R * Math.cos(th), py = cy + R * Math.sin(th) * 0.95; c.globalAlpha = wgt; if (i) c.lineTo(px, py); else c.moveTo(px, py); } c.globalAlpha = 1; c.stroke(); }
+        c.globalAlpha = 1; k.glow(cx, y0, 16); k.circle(cx, y0, 6, "#ece6da"); k.line(cx, cy - amp * 1.4, cx, cy + amp * 1.4, "rgba(236,230,218,.3)", 1, [3, 3]);
+        k.text("no radiation along the motion", cx, H * 0.08, {});
+        return;
+      }
+      if (beat === 5) {
+        var tt = sp < 0 ? 0 : Math.min(1, (now - sp) / 8000), R0 = Math.min(W, H) * 0.42, rr = R0 * Math.pow(Math.max(0, 1 - tt), 1 / 3), ang = t * 6 + 30 * (1 - Math.pow(1 - tt, 0.5));
+        c.strokeStyle = "rgba(255,181,71,.3)"; c.beginPath(); for (i = 0; i <= 300; i++) { var u = tt * i / 300, r2 = R0 * Math.pow(Math.max(0, 1 - u), 1 / 3), a2 = 30 * (1 - Math.pow(1 - u, 0.5)) * 3 + i * 0.2; if (i) c.lineTo(cx + r2 * Math.cos(a2), cy + r2 * Math.sin(a2)); else c.moveTo(cx + r2 * Math.cos(a2), cy + r2 * Math.sin(a2)); } c.stroke();
+        k.glow(cx, cy, 20); k.circle(cx, cy, 6, "#ffb547");
+        if (tt < 1) { k.circle(cx + rr * Math.cos(ang), cy + rr * Math.sin(ang), 5, "#ece6da"); for (i = 1; i < 4; i++) k.circle(cx + rr * Math.cos(ang), cy + rr * Math.sin(ang), i * 9 * ((t * 3) % 1), null, "rgba(236,230,218," + (0.3 / i) + ")"); }
+        else k.text("collapsed", cx, cy + 34, { color: "#ffb547", size: 16 });
+        return;
+      }
+      if (beat === 6) {
+        var A = k.axes(W * 0.1, H * 0.15, W * 0.8, H * 0.6, [0, 10], [-2, 2], { zeroY: true });
+        k.plot(A, function (x) { return Math.sin(x); }, [0, 10], "#ece6da", 2);
+        k.plot(A, function (x) { return Math.sin(x) + 0.8 * Math.sin(t) ; }, [0, 10], "rgba(255,181,71,.7)", 1.5);
+        k.text("shifting the potential by a constant leaves its slope, the field, unchanged", W / 2, H * 0.9, {});
+      }
+    }
+  });
+})();
+</script>

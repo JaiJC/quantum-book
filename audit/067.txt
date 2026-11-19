@@ -1,0 +1,3 @@
+== 067
+sigma ee->mumu = 86.8 nb/s; coefficient 86.8544832055109 at sqrt s=10 GeV nb 0.868544832055109
+angular: int (1+cos^2) dOmega = 16.755160819145562 =16pi/3 16.755160819145562

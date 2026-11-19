@@ -1,0 +1,67 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Every electron in the universe is exactly identical to every other: same mass, same charge, same magnetism, to as many digits as anyone has measured. Why? John Wheeler once suggested to Richard Feynman that there might be only one electron, zigzagging back and forth through time. The real answer is almost as striking. Every electron is an excitation of the same field, the electron field, which fills all of space. They are identical because they are ripples on one thing.</p>
+  <p>On the plate: a board of field modes. Add quanta to them, as bosons or as fermions.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>States with any number of particles</h2>
+  <p>Chapter 60 built single-particle states, {{tex:a^\dagger_{\mathbf k}|0\rangle}}. Apply more creation operators and you get two, three, any number of particles. The space of all such states, with any particle count, is <em>Fock space</em>, after Vladimir Fock (1932). A convenient basis lists how many quanta sit in each mode: {{tex:|n_1, n_2, n_3, \dots\rangle}}.</p>
+  <p>Choose <button type="button" class="v" data-pick="st:b">bosons</button> or <button type="button" class="v" data-pick="st:f">fermions</button> and <button type="button" class="v" data-act="add">add a quantum to a random mode</button> a few times; <button type="button" class="v" data-act="clear">empty the board</button> to start again. The number operator {{tex:N = \sum_k a^\dagger_ka_k}} counts them. Because the field creates particles in modes, not as labelled individuals, swapping two particles gives nothing new: identity is built in. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Bosons: commutators</h2>
+  <p>With {{tex:[a_k, a^\dagger_{k'}] = \delta_{kk'}}}, as for the oscillator, creation operators commute, {{tex:a^\dagger_1a^\dagger_2 = a^\dagger_2a^\dagger_1}}, so the two-particle state is automatically symmetric: bosons. Any number can share a mode, and putting the {{tex:n}}th quantum into a mode already holding {{tex:n - 1}} comes with a factor {{tex:\sqrt n}}. That factor is why stimulated emission and lasers work (Chapter 45): photons prefer modes already occupied.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Fermions: anticommutators</h2>
+  <p>Now demand instead {{tex:\{b_k, b^\dagger_{k'}\} = \delta_{kk'}}} and {{tex:\{b^\dagger_k, b^\dagger_{k'}\} = 0}}, with {{tex:\{A, B\} = AB + BA}}. Then {{tex:b^\dagger_1b^\dagger_2 = -b^\dagger_2b^\dagger_1}}: swapping two particles flips the sign, so states are antisymmetric. And setting {{tex:k = k'}} gives {{tex:(b^\dagger_k)^2 = 0}}: no mode can hold two. The Pauli exclusion principle of Chapter 43 is now a one-line consequence of the algebra. On the plate, fermion modes refuse a second quantum.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Which particles get which rule</h2>
+  <p>In 1940 Wolfgang Pauli proved that the choice is not free. If you quantize a spin-0 field with anticommutators, measurements at spacelike separation fail to commute, breaking causality (Chapter 60). If you quantize a spin-½ field with commutators, the energy has no lower bound: the vacuum would be unstable. Only integer spin with commutators, and half-integer spin with anticommutators, give a consistent relativistic theory. This is the <em>spin–statistics theorem</em>. It has no proof within non-relativistic quantum mechanics; it needs relativity. <span class="tag">Established</span></p>
+  <div class="note x-deep"><span class="mark">Deeper</span>In two space dimensions the argument changes, and particles called <em>anyons</em>, whose exchange gives any phase {{tex:e^{i\theta}}}, are allowed. They have been observed in fractional quantum Hall systems (Part Four) and underlie proposals for topological quantum computing.</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Fock space and occupation-number states, the number operator, why identical particles are identical, commutators and Bose enhancement, anticommutators and exclusion, and the spin–statistics theorem.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why are all electrons identical?<span class="tap">tap</span></div><div class="a">They are quanta of a single electron field.</div></div>
+  <div class="qa"><div class="q">How does exclusion follow from anticommutators?<span class="tap">tap</span></div><div class="a">{b†, b†} = 0 means (b†)² = 0: you cannot create two fermions in one mode.</div></div>
+  <div class="qa"><div class="q">What forces half-integer spin to go with anticommutators?<span class="tap">tap</span></div><div class="a">Relativity: the other choice gives either acausal commutators or an energy with no minimum.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the squared norm {{tex:\langle0|a^2(a^\dagger)^2|0\rangle}} of the state with two bosons in one mode?</p>
+    <form class="calc" data-answer="2" data-tol="0.01" data-ok="Yes: (a†)²|0⟩ = √2 |2⟩, so its squared norm is 2; the normalized state is (a†)²|0⟩/√2." data-alt="1~Each a† brings a factor √n: √1 × √2." data-hint="a†|0⟩ = |1⟩ and a†|1⟩ = √2 |2⟩."><span>norm² =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Squared norm"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: V. Fock, Z. Phys. 75, 622 (1932). W. Pauli, Phys. Rev. 58, 716 (1940). R. P. Feynman, Nobel Lecture (1965) (Wheeler’s one-electron idea). M. Srednicki, Quantum Field Theory, ch. 3–4. Checked by code: (a†)²|0⟩ has norm² 2; (b†)² = 0 for the 2 × 2 fermion matrices.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, NM = 8, occ = [], seed = 5, msg = "";
+  for (var i = 0; i < NM; i++) occ.push(0);
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function ferm() { return beat === 3 || (beat !== 2 && Book.state.picks.st === "f"); }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    pick: function () { for (var i = 0; i < NM; i++) occ[i] = 0; msg = ""; },
+    act: function (name) { if (name === "clear") { for (var i = 0; i < NM; i++) occ[i] = 0; msg = ""; return; } var m = Math.floor(rnd() * NM); if (ferm() && occ[m] >= 1) { msg = "mode " + (m + 1) + " already holds a fermion: b†² = 0"; return; } occ[m]++; msg = "added to mode " + (m + 1) + (occ[m] > 1 ? " · factor √" + occ[m] : ""); },
+    caption: function () { return ["One field, many identical quanta.", (ferm() ? "Fermion" : "Boson") + " occupation board.", "Bosons: any number per mode.", "Fermions: at most one per mode.", "Spin and statistics.", "Fock space."][beat]; },
+    readout: function () { var n = occ.reduce(function (a, b) { return a + b; }, 0); return "N = " + n + " · |" + occ.join(", ") + "⟩" + (msg ? " · " + msg : ""); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, i, j;
+      if (beat === 0 || beat === 5) { for (i = 0; i < 40; i++) { var x = (i * 97 % 100) / 100 * W, y = (i * 61 % 100) / 100 * H, p = Math.sin(now / 700 + i); k.glow(x, y, 8 + 4 * p, "rgba(255,181,71,.35)"); k.circle(x, y, 2.5, "#ffb547"); } k.text("every dot an identical excitation of one field", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 4) { [["spin 0, 1, 2 …", "commutators", "bosons"], ["spin ½, 3⁄2 …", "anticommutators", "fermions"]].forEach(function (r, j) { var y = H * (0.35 + j * 0.25); k.rr(W * 0.08, y - 26, W * 0.84, 52, 10, "#14120f", j ? "#e05a46" : "#ffb547"); k.text(r[0], W * 0.2, y + 5, { size: 14 }); k.text("→ " + r[1], W * 0.5, y + 5, { size: 14, color: "#b9b2a5" }); k.text(r[2], W * 0.8, y + 5, { size: 14, color: j ? "#e05a46" : "#ffb547" }); }); return; }
+      var bw = W * 0.84 / NM, x0 = W * 0.08, yb = H * 0.85, cap = ferm() ? 1 : 6;
+      for (i = 0; i < NM; i++) { k.rr(x0 + i * bw + 4, H * 0.15, bw - 8, yb - H * 0.15, 6, "#0e0d0c", "rgba(236,230,218,.25)"); if (ferm()) k.line(x0 + i * bw + 4, yb - (yb - H * 0.15) / 6, x0 + (i + 1) * bw - 4, yb - (yb - H * 0.15) / 6, "rgba(224,90,70,.6)", 1, [3, 3]);
+        for (j = 0; j < Math.min(occ[i], 6); j++) k.circle(x0 + i * bw + bw / 2, yb - 14 - j * 22, 9, ferm() ? "#e05a46" : "#ffb547");
+        k.text("k" + (i + 1), x0 + i * bw + bw / 2, yb + 18, { size: 11, color: "#7c766b" }); }
+    }
+  });
+})();
+</script>

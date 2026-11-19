@@ -1,0 +1,4 @@
+== 101
+overlap 0.866 naive 0.625 Helstrom 0.75 unambiguous success 0.1339745962155613
+overlap 0.6 naive 0.8199991425193813 Helstrom 0.8999994640742544 unambiguous success 0.3999985708673375
+Helstrom numeric 0.75

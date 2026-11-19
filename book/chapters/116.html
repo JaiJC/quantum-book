@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Monte Carlo methods estimate an average by sampling: the price of an option, the dose a tumour receives in radiotherapy planning, the probability a protein folds a certain way. The error shrinks as one over the square root of the number of samples, so ten times more accuracy costs a hundred times more work. Quantum amplitude estimation shrinks the error as one over the number of samples. On paper, that is a quadratic speedup for one of the most widely used computational methods there is.</p>
+  <p>On the plate: error against number of samples, classical and quantum, on a log–log scale.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The problem</h2>
+  <p>Suppose a quantum circuit {{tex:\mathcal A}} prepares {{tex:\sqrt a\,|\text{good}\rangle + \sqrt{1-a}\,|\text{bad}\rangle}}, where {{tex:a}} is the quantity you want, such as an expected payoff rescaled to lie between 0 and 1. Classically you would run {{tex:\mathcal A}} and measure {{tex:M}} times, estimating {{tex:a}} with error about {{tex:\sqrt{a(1-a)/M}}}. Gilles Brassard, Peter Høyer, Michele Mosca and Alain Tapp showed in 2002 that phase estimation (Chapter 113) on the Grover operator built from {{tex:\mathcal A}} (Chapter 115) gives error about {{tex:\pi/M}} after {{tex:M}} uses of {{tex:\mathcal A}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Quadratically fewer samples</h2>
+  <p>Set the target error to <span class="tangle" data-var="le" data-min="1" data-max="6" data-step="0.5" data-dec="1" data-value="3" data-px="8"><button type="button" data-de="-1" aria-label="Looser">‹</button><span class="num" role="slider" tabindex="0" aria-label="minus log10 error">3.0</span><button type="button" data-de="1" aria-label="Tighter">›</button></span> (as {{tex:10^{-x}}}). Classical sampling needs about {{tex:1/\varepsilon^2}} runs, a million for {{tex:10^{-3}}}; amplitude estimation about {{tex:\pi/\varepsilon}}, about three thousand. Ashley Montanaro showed in 2015 how to extend this to general Monte Carlo with bounded variance.</p>
+  <p>Phase estimation needs deep circuits. Yohichi Suzuki and colleagues showed in 2020 that the same scaling can be reached without it: run Grover powers {{tex:0, 1, 2, 4, \dots}}, measure each a few times, and combine all the results by maximum likelihood. That version is what current experiments run.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The crossover</h2>
+  <p>Each quantum sample is far more expensive than a classical one: it is a whole fault-tolerant circuit, including state preparation and the payoff calculation done reversibly. Shouvanik Chakrabarti and colleagues estimated in 2021 what pricing a realistic financial derivative would need: about 8,000 logical qubits and a sequence of tens of millions of T gates, and logical gate speeds far faster than current projections to beat a classical cluster in useful time. Set the cost of one quantum sample relative to a classical one, <span class="tangle" data-var="ov" data-min="1" data-max="9" data-step="0.5" data-dec="1" data-value="6" data-px="8"><button type="button" data-de="-1" aria-label="Cheaper">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 overhead">6.0</span><button type="button" data-de="1" aria-label="Costlier">›</button></span> (as {{tex:10^x}}), and see where the curves cross. <span class="tag">Debated</span> when, if ever, it pays.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Amplitude estimation as phase estimation of a Grover operator, the {{tex:1/\varepsilon}} versus {{tex:1/\varepsilon^2}} scaling, maximum-likelihood amplitude estimation without phase estimation, and why the crossover with classical Monte Carlo depends on the overhead of each quantum sample.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does classical Monte Carlo error scale with samples?<span class="tap">tap</span></div><div class="a">As 1/√M.</div></div>
+  <div class="qa"><div class="q">How does amplitude estimation scale?<span class="tap">tap</span></div><div class="a">As 1/M, a quadratic improvement.</div></div>
+  <div class="qa"><div class="q">Why might it not help in practice?<span class="tap">tap</span></div><div class="a">Each quantum sample costs many orders of magnitude more time than a classical one.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For error {{tex:\varepsilon = 10^{-3}}}, about how many uses of {{tex:\mathcal A}} does amplitude estimation need, {{tex:\pi/\varepsilon}}?</p>
+    <form class="calc" data-answer="3142" data-tol="10" data-ok="Yes: about 3,100, against a million classical samples." data-hint="π / 0.001."><span>M ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Uses"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. Brassard, P. Høyer, M. Mosca and A. Tapp, Contemp. Math. 305, 53 (2002). A. Montanaro, Proc. R. Soc. A 471, 20150301 (2015). Y. Suzuki et al., Quantum Inf. Process. 19, 75 (2020). S. Chakrabarti et al., Quantum 5, 463 (2021). Checked by code: 1/ε² = 10⁶ and π/ε = 3142 at ε = 10⁻³.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { le: 3, ov: 6 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Error against samples.", "Good and bad amplitudes.", "Samples needed for error 10^−" + V.le.toFixed(1) + ".", "Wall-clock cost with quantum overhead 10^" + V.ov.toFixed(1) + ".", "Amplitude estimation."][beat]; },
+    readout: function () { var e = Math.pow(10, -V.le); if (beat === 2 || beat === 0) return "classical ≈ " + (1 / (e * e)).toExponential(1) + " · quantum ≈ " + (Math.PI / e).toExponential(1); if (beat === 3) { var cross = Math.pow(10, V.ov) / Math.PI; return "quantum wins below error ε ≈ " + (1 / cross).toExponential(1); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [1, 8], [0, 18], { xl: "−log₁₀ ε", yl: "log₁₀ cost (classical-sample units)" }); k.plot(A, function (x) { return 2 * x; }, [1, 8], "rgba(236,230,218,.6)", 2); k.plot(A, function (x) { return x + Math.log10(Math.PI) + V.ov; }, [1, 8], "#ffb547", 2.5); return; }
+      if (beat === 1) { var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.35, a = 0.3, th = Math.asin(Math.sqrt(a)); k.line(cx - R, cy, cx + R, cy, "rgba(236,230,218,.35)", 1); k.line(cx, cy + R * 0.2, cx, cy - R, "rgba(236,230,218,.35)", 1); k.line(cx, cy, cx + R * Math.cos(th), cy - R * Math.sin(th), "#ffb547", 3); k.text("|bad⟩", cx + R, cy + 16, { size: 11, align: "right", color: "#7c766b" }); k.text("|good⟩", cx + 6, cy - R, { size: 11, align: "left", color: "#7c766b" }); k.text("sin²θ = a", cx + R * 0.5, cy - R * 0.1, { size: 12, color: "#ffb547" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 7], [-7, 0], { xl: "log₁₀ samples M", yl: "log₁₀ error" }); k.plot(A, function (m) { return -0.5 * m; }, [0, 7], "rgba(236,230,218,.6)", 2); k.plot(A, function (m) { return Math.log10(Math.PI) - m; }, [0.5, 7], "#ffb547", 2.5); k.line(A.X(0), A.Y(-V.le), A.X(7), A.Y(-V.le), "rgba(224,90,70,.5)", 1, [4, 4]); k.text("classical slope −½ (white) · quantum slope −1 (amber)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>

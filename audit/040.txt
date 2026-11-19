@@ -1,0 +1,7 @@
+== 040
+Larmor 3T 127.731 1.5T 63.8655
+Rabi detuning 0 max err 4.440892098500626e-16
+Rabi detuning 0.5 max err 9.992007221626409e-16
+Rabi detuning 1 max err 3.885780586188048e-16
+Rabi detuning 2 max err 3.3306690738754696e-16
+zxz final fraction each 0.125

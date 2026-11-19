@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A quantum computer cannot hold every orbital of a large molecule, and does not need to. Most electrons sit in deep core orbitals or in well-behaved bonds that simple methods describe well. The hard part is a handful of orbitals where electrons are torn between configurations. Choosing that <em>active space</em> is the most consequential decision in a quantum chemistry calculation. When Markus Reiher and colleagues published the first quantum-computing resource estimate for FeMoco in 2017, later work argued their active space missed important electronic character, and estimates changed accordingly.</p>
+  <p>On the plate: choose an active space from a molecule’s orbital occupations.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Second quantization</h2>
+  <p>Instead of wavefunctions of numbered electrons, describe which orbitals are occupied, using creation and annihilation operators {{tex:a_p^\dagger}}, {{tex:a_p}} for spin orbital {{tex:p}} (Fock space, Chapter 61). Fermions obey {{tex:\{a_p, a_q^\dagger\} = \delta_{pq}}} and {{tex:\{a_p, a_q\} = 0}}, which builds in the Pauli principle automatically. The electronic Hamiltonian becomes</p>
+  <div class="eq">{{texd:\begin{aligned}H = E_\text{nuc} &+ \sum_{pq}h_{pq}a_p^\dagger a_q\\ &+ \tfrac12\sum_{pqrs}(pq|rs)\,a_p^\dagger a_r^\dagger a_s a_q\end{aligned}}}</div>
+  <p>with the integrals of Chapter 184. With {{tex:N}} spin orbitals there are about {{tex:N^4/8}} distinct two-body terms after symmetry: the main reason quantum chemistry Hamiltonians are expensive to simulate and to measure. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Pick an active space</h2>
+  <p>Run an approximate correlated calculation and diagonalize its one-particle density matrix: its eigenvectors are <em>natural orbitals</em>, and their occupations lie between 0 and 2. Orbitals near 2 are essentially full, near 0 essentially empty; those in between carry the correlation. The plate shows occupations for a model transition-metal cluster with 40 orbitals. Choose a threshold {{tex:\varepsilon =}} <span class="tangle" data-var="eps" data-min="0.005" data-max="0.3" data-step="0.005" data-dec="3" data-value="0.020" data-px="200"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Threshold">0.020</span><button type="button" data-de="1" aria-label="Larger">›</button></span>: orbitals with occupation between {{tex:\varepsilon}} and {{tex:2-\varepsilon}} become active. The plate reports the active space, the qubits needed (two per orbital), the FCI dimension, and the fraction of the total correlation captured. Smaller thresholds capture more but cost exponentially more. Automated schemes, such as those of Christopher Stein and Reiher based on orbital entanglement, make the choice reproducible. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Why the choice matters</h2>
+  <p>An active space that is too small gives a precise answer to the wrong problem. For FeMoco, Reiher and colleagues used 54 electrons in 54 orbitals; Zhendong Li, Garnet Chan and colleagues argued in 2019 that a larger space, 113 electrons in 76 orbitals, with orbitals better suited to the iron–sulfur bonding, was needed to describe the cluster’s low-energy states. Different active spaces led to resource estimates differing by orders of magnitude. Orbital-entanglement measures, single-orbital entropies and mutual information, computed cheaply with DMRG, indicate which orbitals are strongly correlated with which. The lesson for any quantum chemistry claim: ask which active space was used, how it was chosen, and what was left out. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Creation and annihilation operators and their anticommutation relations, the second-quantized Hamiltonian, the N⁴/8 term count, natural orbitals and occupation-based active-space selection, entanglement-based selection, and the FeMoco active-space history.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What enforces the Pauli principle in second quantization?<span class="tap">tap</span></div><div class="a">The anticommutation relations of fermion operators.</div></div>
+  <div class="qa"><div class="q">Which orbitals belong in the active space?<span class="tap">tap</span></div><div class="a">Those with natural occupations far from 0 and 2, or high orbital entanglement.</div></div>
+  <div class="qa"><div class="q">How do two-body terms scale?<span class="tap">tap</span></div><div class="a">About N⁴/8 for N spin orbitals.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> About how many two-body terms, {{tex:N^4/8}}, does a 20-spin-orbital active space have?</p>
+    <form class="calc" data-answer="20000" data-tol="200" data-ok="Yes: 160,000 / 8 = 20,000." data-hint="20⁴ = 160,000."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Terms"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Reiher et al., Proc. Natl Acad. Sci. USA 114, 7555 (2017). Z. Li et al., J. Chem. Phys. 150, 024302 (2019) (FeMoco active space). C. J. Stein and M. Reiher, J. Chem. Theory Comput. 12, 1760 (2016). T. Helgaker, P. Jørgensen and J. Olsen, Molecular Electronic-Structure Theory (Wiley, 2000). The 40-orbital occupations are a model, for illustration.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { eps: 0.02 }, occ = [];
+  (function () { var s = 41; function r() { s = (s * 16807) % 2147483647; return s / 2147483647; } for (var i = 0; i < 40; i++) { var x = (i - 19.5) / 4; occ.push(Math.max(0, Math.min(2, 1 - Math.tanh(x * (1.2 + 0.6 * r())) + (r() - 0.5) * 0.01))); } occ.sort(function (a, b) { return b - a; }); })();
+  function lgC(n, k) { var s = 0; for (var i = 1; i <= k; i++) s += Math.log10((n - k + i) / i); return s; }
+  function act() { var A = [], e = 0; occ.forEach(function (o, i) { if (o > V.eps && o < 2 - V.eps) { A.push(i); e += o; } }); var w = 0, wt = 0; occ.forEach(function (o, i) { var c = Math.min(o, 2 - o); wt += c; if (A.indexOf(i) >= 0) w += c; }); return { n: A.length, e: Math.round(e), cap: w / wt, A: A }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Natural orbital occupations (model cluster).", "a†, a and the Pauli principle.", "Active orbitals (amber) between ε and 2 − ε.", "Active spaces for FeMoco.", "Active spaces."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var a = act(), ne = a.e, no = a.n, ld = no ? lgC(no, Math.min(no, Math.floor(ne / 2))) + lgC(no, Math.min(no, Math.ceil(ne / 2))) : 0; return "CAS(" + ne + "e, " + no + "o) · " + 2 * no + " qubits · log₁₀ FCI dim ≈ " + ld.toFixed(1) + " · correlation captured ≈ " + (a.cap * 100).toFixed(0) + "%"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat === 1) { for (i = 0; i < 6; i++) { var x = W * (0.15 + i * 0.13); k.line(x - 20, H * 0.6, x + 20, H * 0.6, "rgba(236,230,218,.6)", 2); if (i < 3) { k.text("↑", x - 7, H * 0.57, { size: 16, color: "#ffb547" }); k.text("↓", x + 7, H * 0.57, { size: 16, color: "#ffb547" }); } } var t = Math.floor(now / 1200) % 2; k.text(t ? "a†₄ a₂ moves an electron" : "occupation-number basis", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { [["Reiher 2017", "CAS(54e, 54o)", 30.6], ["Li et al. 2019", "CAS(113e, 76o)", 35.6]].forEach(function (p, j) { var y = H * (0.3 + j * 0.3); k.text(p[0], W * 0.3, y, { size: 14, color: "#ffb547" }); k.text(p[1] + " · 10^" + p[2] + " determinants", W * 0.6, y, { size: 13 }); }); return; }
+      var a = act(); A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 40], [0, 2.05], { xl: "natural orbital (sorted)", yl: "occupation" }); occ.forEach(function (o, j) { var on = a.A.indexOf(j) >= 0; k.rr(A.X(j) + 1, A.Y(o), A.X(1) - A.X(0) - 2, A.Y(0) - A.Y(o), 2, on ? "#ffb547" : "rgba(236,230,218,.35)"); }); [V.eps, 2 - V.eps].forEach(function (y) { k.line(A.X(0), A.Y(y), A.X(40), A.Y(y), "rgba(224,90,70,.5)", 1); });
+    }
+  });
+})();
+</script>

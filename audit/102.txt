@@ -1,0 +1,6 @@
+== 102
+BH cloner fidelity 5/6 0.8333333333333334
+theta 0 CNOT-copy fidelity 1.0
+theta 45 CNOT-copy fidelity 0.75
+theta 90 CNOT-copy fidelity 0.5
+CNOT copier average fidelity 0.6666683333333333

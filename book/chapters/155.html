@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Where are we, really? After Part 3, you can read a hardware announcement, an algorithm claim and a resource estimate, and judge each. This chapter puts the platforms side by side on one scorecard with dates and sources, separates what has been demonstrated from what is promised, names the evidence that would change the picture, and looks at the landscape in India for anyone thinking of building a career here.</p>
+  <p>On the plate: a platform scorecard, last checked 18 November 2026.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Demonstrated, as of late 2026</h2>
+  <p>Logical qubits below threshold, with error falling as codes grow (superconducting, Google 2024–25; neutral atoms, Harvard–MIT–QuEra 2025). Two-qubit fidelities above 99.9% (trapped ions, Quantinuum Helios 2025). Arrays of thousands of physical qubits (neutral atoms, Caltech 2025). Sampling tasks beyond straightforward classical simulation, repeatedly contested (Chapter 127). Certified randomness (Chapter 134). Not yet demonstrated: a useful computation that is out of classical reach and verified; a logical qubit sustained through deep, universal, error-corrected computation; a topological qubit. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The scorecard</h2>
+  <p>Sort the platforms by <button type="button" class="v" data-pick="m:fid">fidelity</button> <button type="button" class="v" data-pick="m:scale">scale</button> <button type="button" class="v" data-pick="m:speed">speed</button> <button type="button" class="v" data-pick="m:conn">connectivity</button> <button type="button" class="v" data-pick="m:qec">error-correction status</button>. Ratings run from 0 (not shown) to 3 (leading), and are this book’s judgement from the sources in Chapters 144–148. No platform leads on everything: ions lead on fidelity and connectivity but are slow; superconducting circuits are fast but wired to neighbours and need millikelvin fridges; neutral atoms scale and move but cycle in milliseconds; photonics networks naturally but fights loss; spins promise manufacturing but are small so far; topological qubits remain unproven.</p>
+  <p>Roadmaps are promises: IBM’s Starling, 200 logical qubits and 100 million gates by 2029, and DARPA’s 2033 value test (Chapter 150). What would change this picture? A verified useful computation beyond classical reach; logical error rates of {{tex:10^{-6}}} or below sustained over many logical operations; or a clean demonstration of topological protection. <span class="tag">Speculative</span> for every roadmap date.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>India</h2>
+  <p>The National Quantum Mission, approved in April 2023, commits ₹6,003.65 crore from 2023–24 to 2030–31. It funds four thematic hubs: quantum computing at IISc Bengaluru, communication at IIT Madras with C-DOT, sensing and metrology at IIT Bombay, and materials and devices at IIT Delhi. Its targets include 50–1,000 physical-qubit machines, satellite-based secure communication over 2,000 km, and magnetometers and atomic clocks; in 2026 it reported a 1,000 km secure network (Chapter 153). Research groups at TIFR, RRI, IISER Pune and the IITs work across platforms, and startups such as QNu Labs (communication) and QpiAI (superconducting hardware) are building products.</p>
+  <p>For a biomedical engineer, the strongest bridges are quantum sensing (NV magnetometry and optically pumped magnetometers for brain and heart signals), quantum chemistry for drug discovery (Part 5), and the instrumentation skills every platform needs: microwave and optical engineering, cryogenics, control software and signal processing. <span class="tag">Established</span> for the mission’s structure; <span class="tag">Speculative</span> for its targets.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A dated scorecard of the platforms, a line between demonstrated results and roadmaps, the evidence that would change the assessment, and the shape of India’s National Quantum Mission and the routes into it.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Argue it.</em> Write one page answering: “Will a quantum computer do something useful that no classical computer can, before 2035?” Then write the strongest objection to your own answer, and reply to it.</p>
+  <div class="qa"><div class="q">Which platform leads on fidelity?<span class="tap">tap</span></div><div class="a">Trapped ions, with two-qubit fidelity above 99.9%.</div></div>
+  <div class="qa"><div class="q">What has not yet been demonstrated?<span class="tap">tap</span></div><div class="a">A verified, useful computation beyond classical reach, and a topological qubit.</div></div>
+  <div class="qa"><div class="q">What does the NQM fund?<span class="tap">tap</span></div><div class="a">Four hubs: computing, communication, sensing and metrology, and materials and devices.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> ₹6,003.65 crore over eight years: roughly how many crore per year?</p>
+    <form class="calc" data-answer="750" data-tol="5" data-ok="Yes: about ₹750 crore a year." data-hint="6003.65 ÷ 8."><span>₹ crore/yr ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Crore per year"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Preskill, Quantum 2, 79 (2018). Government of India, Department of Science and Technology, National Quantum Mission (2023) and hub announcements. IBM quantum roadmap (2025). DARPA Quantum Benchmarking Initiative (2025). Platform data from the sources of Chapters 139–148. Last checked 18 November 2026.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, cols = ["fid", "scale", "speed", "conn", "qec"], lab = { fid: "fidelity", scale: "scale", speed: "speed", conn: "connectivity", qec: "QEC" };
+  var rows = [["superconducting", [2, 2, 3, 1, 3], "Willow 105 q · below threshold"], ["trapped ions", [3, 1, 0, 3, 2], "Helios 98 q · 99.921%"], ["neutral atoms", [2, 3, 0, 2, 3], "6,100 atoms · 448-atom FT"], ["photonic", [1, 1, 2, 2, 1], "Aurora 35 chips · loss-limited"], ["spin (silicon)", [2, 0, 2, 1, 0], "foundry >99% · few qubits"], ["topological", [0, 0, 0, 0, 0], "not yet demonstrated"]];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Six platforms, five criteria.", "Demonstrated vs promised.", "Ratings 0–3; sorted by " + lab[Book.state.picks.m || "qec"] + ".", "India’s National Quantum Mission hubs.", "Scorecard."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "last checked 18 Nov 2026 · ratings are the book’s judgement"; if (beat === 3) return "₹6,003.65 crore · 2023–24 to 2030–31 · ≈ ₹750 crore/year"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 3) { [["IISc Bengaluru", "computing"], ["IIT Madras + C-DOT", "communication"], ["IIT Bombay", "sensing & metrology"], ["IIT Delhi", "materials & devices"]].forEach(function (h, j) { var x = W * (0.25 + (j % 2) * 0.5), y = H * (0.3 + Math.floor(j / 2) * 0.35); k.rr(x - W * 0.2, y - H * 0.12, W * 0.4, H * 0.24, 10, "#14120f", "rgba(255,181,71,.7)"); k.text(h[0], x, y - 4, { size: 13, color: "#ffb547" }); k.text(h[1], x, y + 18, { size: 11, color: "#b9b2a5" }); }); return; }
+      if (beat === 1) { var items = [["below-threshold logical qubits", 1], [">99.9% two-qubit gates", 1], ["thousands of physical qubits", 1], ["certified randomness", 1], ["verified useful advantage", 0], ["deep universal FT computation", 0], ["topological qubit", 0]]; items.forEach(function (it, j) { var y = H * (0.12 + j * 0.11); k.circle(W * 0.18, y, 7, it[1] ? "#ffb547" : "rgba(224,90,70,.85)"); k.text(it[0], W * 0.23, y + 4, { size: 13, color: it[1] ? "#ece6da" : "#b9b2a5", align: "left" }); }); return; }
+      var m = cols.indexOf(Book.state.picks.m || "qec"), R = rows.slice().sort(function (a, b) { return b[1][m] - a[1][m]; }), x0 = W * 0.3, cw = W * 0.62 / 5, rh = H * 0.8 / (R.length + 1);
+      cols.forEach(function (c, j) { k.text(lab[c], x0 + (j + 0.5) * cw, H * 0.08, { size: 11, color: j === m ? "#ffb547" : "#b9b2a5" }); });
+      R.forEach(function (r, i) { var y = H * 0.08 + (i + 0.6) * rh; k.text(r[0], x0 - 10, y + rh * 0.35, { size: 12, color: "#ece6da", align: "right" }); k.text(r[2], x0 - 10, y + rh * 0.7, { size: 9, color: "#7c766b", align: "right" }); r[1].forEach(function (v, j) { k.rr(x0 + j * cw + 4, y + 4, cw - 8, rh - 8, 4, v === 0 ? "#14120f" : "rgba(255,181,71," + (0.2 + 0.25 * v).toFixed(2) + ")", "rgba(185,178,165,.25)"); k.text(String(v), x0 + (j + 0.5) * cw, y + rh / 2 + 4, { size: 12, color: v >= 2 ? "#14120f" : "#ece6da" }); }); });
+    }
+  });
+})();
+</script>

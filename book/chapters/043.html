@@ -1,0 +1,127 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Send two identical photons at the same moment into opposite sides of a half-silvered mirror. Each, alone, would pass or reflect with equal odds, so you would expect them to leave by different exits half the time. They never do. They always leave together. Two electrons, on the other hand, can never be found in the same state at all. Every particle in nature belongs to one of these two clubs, and the rule that sorts them builds the periodic table, holds up dead stars, and makes metals conduct.</p>
+  <p>On the plate: two photons meet at a beam splitter, and leave as a pair.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Swapping identical particles</h2>
+  <p>Two electrons have no labels. If {{tex:\psi(x_1, x_2)}} describes them, swapping them cannot change anything measurable, so {{tex:|\psi(x_2, x_1)|^2 = |\psi(x_1, x_2)|^2}}. Swapping twice is doing nothing, so the swap can only multiply {{tex:\psi}} by {{tex:+1}} or {{tex:-1}}. Particles whose wavefunctions are symmetric are <em>bosons</em>; antisymmetric ones are <em>fermions</em>. <span class="tag">Established</span></p>
+  <p>Put one particle in each of the two lowest box states (Chapter 33). The plate maps the probability of finding particle one at {{tex:x_1}} (across) and particle two at {{tex:x_2}} (up), for <button type="button" class="v" data-pick="st:d">distinguishable particles</button>, <button type="button" class="v" data-pick="st:b">bosons</button> or <button type="button" class="v" data-pick="st:f">fermions</button>. Fermions vanish along the diagonal: they are never found at the same place, as if they repelled. Bosons crowd onto it, as if they attracted. No force is involved; it is pure symmetry.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The exclusion principle</h2>
+  <p>For fermions, the antisymmetric combination of states {{tex:a}} and {{tex:b}} is {{tex:\frac{1}{\sqrt2}[\phi_a(x_1)\phi_b(x_2) - \phi_b(x_1)\phi_a(x_2)]}}. Put both in the same state, {{tex:a = b}}, and it is zero. Two identical fermions cannot occupy the same quantum state: Pauli’s exclusion principle, which he proposed in 1925 to explain atomic spectra before anyone knew why it held.</p>
+  <p>For {{tex:N}} fermions, the antisymmetric state is a determinant, the <em>Slater determinant</em>, {{tex:\det[\phi_i(x_j)]/\sqrt{N!}}}. A determinant with two equal rows is zero, which is the exclusion principle again. Electrons, protons, neutrons and quarks, all with half-integer spin, are fermions. Photons, gluons, the Higgs and helium-4 atoms, with integer spin, are bosons. Why spin decides this is the spin–statistics theorem, proved from relativity in Chapter 61.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Two photons that always leave together</h2>
+  <p>At a 50:50 beam splitter, the two ways both photons can leave by different exits are both-transmitted and both-reflected. Reflection gives each photon a factor {{tex:i}}, so the two amplitudes are {{tex:1\cdot1}} and {{tex:i\cdot i = -1}}, and for identical bosons they cancel exactly. Chong Ki Hong, Zhe-Yu Ou and Leonard Mandel saw this in 1987: as they slid one photon’s arrival time past the other’s, the rate of coincidences dropped almost to zero.</p>
+  <p>Set the delay to <span class="tangle" data-var="dt" data-min="-400" data-max="400" data-step="20" data-unit=" fs" data-value="120" data-px="1"><button type="button" data-de="-1" aria-label="Earlier">‹</button><span class="num" role="slider" tabindex="0" aria-label="Delay">120 fs</span><button type="button" data-de="1" aria-label="Later">›</button></span>. The dip’s width is the photons’ coherence time, here about a hundred femtoseconds. Distinguishable in time, they behave independently; indistinguishable, they bunch. This <em>Hong–Ou–Mandel dip</em> is now a standard test that two photons from different sources are truly identical, which photonic quantum computers depend on. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The exchange interaction</h2>
+  <p>Electrons also carry spin, and it is the whole state, space and spin together, that must be antisymmetric. The spin triplet of Chapter 41 is symmetric, so it needs an antisymmetric spatial part, which keeps the electrons apart; the singlet allows a symmetric one, which lets them come close. Since electrons repel, the triplet has lower repulsion energy.</p>
+  <p>In helium with one electron excited to 2s, the triplet sits at 19.82 eV above the ground state and the singlet at 20.62 eV: an 0.8 eV gap made by symmetry acting through the Coulomb force. This <em>exchange energy</em> is behind Hund’s rule that electrons in an atom prefer parallel spins, and behind ferromagnetism in iron. It is not a new force, only the old one seen through the exclusion principle.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Building the periodic table</h2>
+  <p>Fill the hydrogen-like orbitals of Chapter 38, each holding two electrons of opposite spin, from the lowest energy up. Choose an element with <span class="tangle" data-var="Z" data-min="1" data-max="36" data-step="1" data-value="11" data-px="6"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Atomic number">11</span><button type="button" data-de="1" aria-label="More">›</button></span> electrons.</p>
+  <p>In a real atom the other electrons screen the nucleus, and s orbitals, which reach the nucleus (Chapter 37), are screened less than p and d. So 4s fills before 3d, and the order runs 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p. Each row of the table ends when a p shell closes, giving the inert noble gases. The rule has exceptions, chromium and copper among them, where a half-full or full d shell wins.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Crowds of fermions, crowds of bosons</h2>
+  <p>Fill a metal’s conduction electrons into states one by one and the last ones sit far up, at the <em>Fermi energy</em>: about 7 eV in copper, moving at 1,600 km/s even at absolute zero. The same pressure of exclusion holds up white dwarf stars against gravity, up to about 1.4 solar masses. Bosons do the opposite: below a critical temperature, a large fraction pile into the single lowest state, a <em>Bose–Einstein condensate</em>.</p>
+  <p>Compare how particles share out energy at temperature <span class="tangle" data-var="T" data-min="0.05" data-max="2" data-step="0.05" data-dec="2" data-value="0.3" data-px="8"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature">0.30</span><button type="button" data-de="1" aria-label="Hotter">›</button></span>. Fermions fill to a sharp edge; bosons pile up at low energy; at high temperature both look classical. Eric Cornell and Carl Wieman condensed rubidium atoms at about 170 billionths of a kelvin in 1995, and Wolfgang Ketterle sodium soon after; they shared the 2001 Nobel Prize. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>Exchange symmetry, bosons and fermions, the exclusion principle and Slater determinants, the Hong–Ou–Mandel effect, the exchange interaction in helium and magnets, the shape of the periodic table, Fermi energies, white dwarfs and Bose–Einstein condensates.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do two identical photons leave a beam splitter together?<span class="tap">tap</span></div><div class="a">The two ways to leave separately (both transmitted, both reflected) have amplitudes 1 and −1, which cancel for indistinguishable bosons.</div></div>
+  <div class="qa"><div class="q">Why is the helium triplet lower than the singlet?<span class="tap">tap</span></div><div class="a">Its antisymmetric spatial wavefunction keeps the electrons apart, reducing their Coulomb repulsion.</div></div>
+  <div class="qa"><div class="q">What holds up a white dwarf?<span class="tap">tap</span></div><div class="a">Electron degeneracy pressure: the exclusion principle forces electrons into high-momentum states.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Copper has {{tex:n = 8.47\times10^{28}}} free electrons per m³. Its Fermi energy is {{tex:E_F = \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}}}. What is it, in eV?</p>
+    <form class="calc" data-answer="7.03" data-tol="0.08" data-ok="Yes: about 7.0 eV, equivalent to a temperature of about 80,000 K." data-hint="(3π²n)^(2/3) ≈ 1.85×10²⁰ m⁻²; multiply by ħ²/2m = 6.10×10⁻³⁹ J m², then divide by 1.602×10⁻¹⁹."><span>E_F =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Fermi energy in eV"><span>eV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. Pauli, Z. Phys. 31, 765 (1925). C. K. Hong, Z. Y. Ou and L. Mandel, Phys. Rev. Lett. 59, 2044 (1987). M. H. Anderson et al., Science 269, 198 (1995); K. B. Davis et al., Phys. Rev. Lett. 75, 3969 (1995). NIST levels for He 2³S (19.82 eV) and 2¹S (20.62 eV). Checked by code: E_F(Cu) = 7.03 eV, v_F = 1,570 km/s; two-particle box: ⟨(x₁−x₂)²⟩ = 0.103 distinguishable, 0.038 bosons, 0.168 fermions.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { dt: 120, Z: 11, T: 0.3 }, G = 90, buf = null, img = null, key = "";
+  var ORB = [["1s", 2], ["2s", 2], ["2p", 6], ["3s", 2], ["3p", 6], ["4s", 2], ["3d", 10], ["4p", 6]];
+  var SYM = "H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr".split(" ");
+  function config(Z) { var out = [], left = Z; if (Z === 24) return [["1s", 2], ["2s", 2], ["2p", 6], ["3s", 2], ["3p", 6], ["4s", 1], ["3d", 5]]; if (Z === 29) return [["1s", 2], ["2s", 2], ["2p", 6], ["3s", 2], ["3p", 6], ["4s", 1], ["3d", 10]]; for (var i = 0; i < ORB.length && left > 0; i++) { var n = Math.min(left, ORB[i][1]); out.push([ORB[i][0], n]); left -= n; } return out; }
+  function heat(k, st, x0, y0, S) {
+    if (!buf) { buf = document.createElement("canvas"); buf.width = buf.height = G; img = buf.getContext("2d").createImageData(G, G); }
+    if (key !== st) { key = st; var d = img.data, mx = 0, vals = [];
+      for (var j = 0; j < G; j++) for (var i = 0; i < G; i++) { var x1 = (i + 0.5) / G, x2 = 1 - (j + 0.5) / G, a = Math.sin(Math.PI * x1) * Math.sin(2 * Math.PI * x2), b = Math.sin(2 * Math.PI * x1) * Math.sin(Math.PI * x2), v = st === "d" ? a * a : st === "b" ? (a + b) * (a + b) / 2 : (a - b) * (a - b) / 2; vals.push(v); mx = Math.max(mx, v); }
+      for (var q = 0; q < vals.length; q++) { var o = 4 * q, w = vals[q] / mx; d[o] = 255; d[o + 1] = 181; d[o + 2] = 71; d[o + 3] = Math.round(255 * Math.pow(w, 0.8)); }
+      buf.getContext("2d").putImageData(img, 0, 0); }
+    k.ctx.drawImage(buf, x0, y0, S, S); k.rr(x0, y0, S, S, 2, null, "rgba(236,230,218,.3)");
+    k.line(x0, y0 + S, x0 + S, y0, "rgba(236,230,218,.35)", 1, [3, 4]);
+    k.text("x₁", x0 + S / 2, y0 + S + 18, { size: 12, color: "#b9b2a5" }); k.text("x₂", x0 - 14, y0 + S / 2, { size: 12, color: "#b9b2a5" });
+  }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var s = Book.state.picks.st || "f"; return ["Two photons at a beam splitter.", "Probability of positions (x₁, x₂): " + ({ d: "distinguishable", b: "bosons", f: "fermions" })[s] + ". Dashed: x₁ = x₂.", "Fermions in states 1 and 2; the diagonal is empty.", "Hong–Ou–Mandel: coincidences against delay.", "Helium excited states: singlet and triplet.", SYM[V.Z - 1] + ", Z = " + V.Z + ".", "Occupation of states against energy.", "Two photons at a beam splitter."][beat]; },
+    readout: function () {
+      if (beat === 3) { var c = 1 - Math.exp(-Math.pow(V.dt / 100, 2)); return "delay " + V.dt + " fs · coincidences " + (50 * c).toFixed(1) + "% (50% if distinguishable)"; }
+      if (beat === 5) return config(V.Z).map(function (o) { return o[0] + "<sup>" + o[1] + "</sup>"; }).join(" ").replace(/<sup>(\d+)<\/sup>/g, function (m, d) { return d.split("").map(function (ch) { return "⁰¹²³⁴⁵⁶⁷⁸⁹"[+ch]; }).join(""); });
+      if (beat === 6) return "T = " + V.T.toFixed(2) + " · amber: fermions · red: bosons · white: classical";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 0 || beat === 7) {
+        var cx = W / 2, cy = H / 2, L = Math.min(W, H) * 0.38, t = (now / 2200) % 1;
+        k.line(cx - L * 0.6, cy - L * 0.6, cx + L * 0.6, cy + L * 0.6, "rgba(236,230,218,.6)", 3);
+        var pin = Math.min(1, t * 2), pout = Math.max(0, t * 2 - 1);
+        if (t < 0.5) { k.circle(cx - L + L * pin, cy, 6, "#ffb547"); k.circle(cx, cy - L + L * pin, 6, "#ffb547"); }
+        else { var ex = Math.floor(now / 2200) % 2, dx = ex ? L * pout : 0, dy = ex ? 0 : L * pout; k.circle(cx + dx + (ex ? -6 : 0), cy + dy, 6, "#ffb547"); k.circle(cx + dx + (ex ? 6 : 0), cy + dy + (ex ? 0 : 12), 6, "#ffb547"); }
+        k.text("both out the same side, never one each", cx, H * 0.95, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 1 || beat === 2) { var S = Math.min(W, H) * 0.72; heat(k, beat === 2 ? "f" : (Book.state.picks.st || "f"), (W - S) / 2, (H - S) / 2 - 10, S); return; }
+      if (beat === 3) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.84, H * 0.72, [-400, 400], [0, 0.6], { xl: "delay, fs", yl: "coincidence probability" });
+        k.line(A.X(-400), A.Y(0.5), A.X(400), A.Y(0.5), "rgba(236,230,218,.3)", 1, [3, 4]);
+        k.plot(A, function (d) { return 0.5 * (1 - Math.exp(-Math.pow(d / 100, 2))); }, [-400, 400], "#ffb547", 2.5, 400);
+        k.circle(A.X(V.dt), A.Y(0.5 * (1 - Math.exp(-Math.pow(V.dt / 100, 2)))), 6, "#ece6da");
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.14, H * 0.06, W * 0.8, H * 0.84, [0, 2], [19.4, 21.4], { yl: "eV above ground" });
+        [["2¹S", 20.616, 0], ["2¹P", 21.218, 0], ["2³S", 19.820, 1], ["2³P", 20.964, 1]].forEach(function (s) { var x = A.X(s[3] + 0.15), x2 = A.X(s[3] + 0.85); k.line(x, A.Y(s[1]), x2, A.Y(s[1]), s[3] ? "#ffb547" : "rgba(236,230,218,.8)", 2.5); k.text(s[0] + "  " + s[1].toFixed(2), x2 + 4, A.Y(s[1]) + 4, { align: "left", size: 12 }); });
+        k.text("singlet (para)", A.X(0.5), A.Y(21.4) + 14, { size: 12, color: "#b9b2a5" }); k.text("triplet (ortho)", A.X(1.5), A.Y(21.4) + 14, { size: 12, color: "#ffb547" });
+        return;
+      }
+      if (beat === 5) {
+        var cfg = config(V.Z), en = { "1s": 0, "2s": 1, "2p": 2, "3s": 3, "3p": 4, "4s": 5, "3d": 6, "4p": 7 }, rowH = H * 0.1, y0 = H * 0.9;
+        ORB.forEach(function (o, idx) { var y = y0 - idx * rowH, boxes = o[1] / 2, bw = Math.min(34, W * 0.06), x0 = W * 0.3; k.text(o[0], x0 - 12, y + 4, { size: 12, align: "right", color: "#b9b2a5" }); var filled = 0; cfg.forEach(function (q) { if (q[0] === o[0]) filled = q[1]; });
+          for (var b = 0; b < boxes; b++) { var bx = x0 + b * (bw + 4); k.rr(bx, y - bw / 2, bw, bw, 3, null, "rgba(236,230,218,.35)"); var up = b < filled ? 1 : 0, dn = b + boxes < filled ? 1 : 0; if (up) k.text("↑", bx + bw * 0.35, y + 6, { size: 16, color: "#ffb547" }); if (dn) k.text("↓", bx + bw * 0.68, y + 6, { size: 16, color: "#ffb547" }); } });
+        k.text(SYM[V.Z - 1], W * 0.85, H * 0.3, { size: 48, color: "#ffb547" });
+        return;
+      }
+      if (beat === 6) {
+        A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 3], [0, 2], { xl: "energy", yl: "occupation" });
+        var T = V.T;
+        k.plot(A, function (E) { return 1 / (Math.exp((E - 1) / T) + 1); }, [0, 3], "#ffb547", 2.5, 400);
+        k.plot(A, function (E) { return Math.exp(-(E - 1) / T) > 0 ? Math.min(2, Math.exp(-(E - 1) / T)) : 0; }, [0, 3], "rgba(236,230,218,.5)", 1.5, 400);
+        k.plot(A, function (E) { var x = (E + 0.02) / T; return Math.min(2, 1 / (Math.exp(x) - 1)); }, [0, 3], "rgba(224,90,70,.9)", 2, 400);
+      }
+    }
+  });
+})();
+</script>

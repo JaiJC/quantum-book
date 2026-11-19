@@ -1,0 +1,6 @@
+== 057
+anticomm max err 0.0
+Tr(g0 g0) 4.0 Tr g1g1 -4.0 Tr g0g1g0g1 4.0
+Dirac 2P3/2-2P1/2 GHz 10.94966194953583 1S eV -13.605874258209951
+zitter amp fm hbar/2mc 193.0795 freq 2mc^2/h Hz 2.4711799281854097e+20
+Anderson positron 1932: 63 MeV, lead plate 6 mm

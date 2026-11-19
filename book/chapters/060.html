@@ -1,0 +1,78 @@
+<section class="beat" data-beat="0">
+  <p class="drop">So far particles were put into physics by hand: here is an electron, there a photon. Quantum field theory does something different. Take a field, the mattress of springs from Chapter 58, and quantize it the way Chapter 36 quantized a single oscillator. Each wavelength of the field is an oscillator; each rung of its ladder is one more quantum. Those quanta have definite energy and momentum, obey {{tex:E^2 = p^2 + m^2}}, and are absolutely identical. They are particles. Nobody put them in.</p>
+  <p>On the plate: a field made of many oscillator modes, one per wavenumber. Raise one by one rung and you have made one particle.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Fields as oscillators</h2>
+  <p>Take the Klein–Gordon field and expand it in plane waves. Each Fourier component {{tex:\phi_{\mathbf k}}} obeys {{tex:\ddot\phi_{\mathbf k} = -(k^2 + m^2)\phi_{\mathbf k}}}: a harmonic oscillator with frequency {{tex:\omega_{\mathbf k} = \sqrt{k^2 + m^2}}}. A field is an infinite set of independent oscillators, one per wavenumber. Quantize each one with its own ladder operators (Chapter 36):</p>
+  <div class="eq">{{texd:\phi(\mathbf x) = \int\!\frac{d^3k}{(2\pi)^3}\,\frac{1}{\sqrt{2\omega_{\mathbf k}}}\left(a_{\mathbf k}\,e^{i\mathbf k\cdot\mathbf x} + a_{\mathbf k}^\dagger\,e^{-i\mathbf k\cdot\mathbf x}\right)}}</div>
+  <p>with {{tex:[a_{\mathbf k}, a_{\mathbf k'}^\dagger] = (2\pi)^3\delta^3(\mathbf k - \mathbf k')}}, which follows from the canonical rule {{tex:[\phi(\mathbf x), \pi(\mathbf y)] = i\delta^3(\mathbf x - \mathbf y)}}, where {{tex:\pi = \dot\phi}} is the field’s momentum. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>One rung is one particle</h2>
+  <p>The energy becomes {{tex:H = \int\frac{d^3k}{(2\pi)^3}\,\omega_{\mathbf k}\,a^\dagger_{\mathbf k}a_{\mathbf k}}} plus a constant. The state {{tex:a^\dagger_{\mathbf k}|0\rangle}} has energy {{tex:\omega_{\mathbf k} = \sqrt{k^2 + m^2}}} and momentum {{tex:\mathbf k}}: exactly a relativistic particle of mass {{tex:m}}. Raising the same mode twice makes two identical particles; raising different modes makes particles with different momenta.</p>
+  <p>Excite <button type="button" class="v" data-pick="ex:one">one mode</button>, then <button type="button" class="v" data-pick="ex:pack">a range of modes</button> with chosen phases. One mode is a particle with definite momentum, spread everywhere. A range is a wave packet, a particle somewhere in particular. The plate shows the occupation of each mode, below, and the field’s expected shape, above.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>An infinite constant</h2>
+  <p>Each oscillator keeps its zero-point energy {{tex:\tfrac12\omega_{\mathbf k}}} even with no particles present, and there are infinitely many. Summed, the vacuum has infinite energy. For most of physics this is harmless: only energy differences matter, so we drop it by <em>normal ordering</em>, writing every {{tex:a^\dagger}} to the left of every {{tex:a}}.</p>
+  <p>Gravity, though, feels absolute energy. Cut the sum off at the Planck scale and the vacuum energy density comes out about {{tex:10^{120}}} times larger than the dark energy astronomers measure (Chapter 91). This is the <em>cosmological constant problem</em>, the worst mismatch between estimate and observation in physics, and it is unsolved. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Microcausality</h2>
+  <p>Chapter 55 found that a single relativistic particle leaks outside the light cone. In field theory, the quantity that decides whether a measurement here can affect one there is the commutator of the field at the two points. Compute it, and the particle and antiparticle contributions cancel exactly outside the light cone:</p>
+  <div class="eq">{{texd:[\phi(x), \phi(y)] = 0 \quad\text{whenever}\quad (x - y)^2 < 0}}</div>
+  <p>The plate shows this commutator in one space dimension at a fixed time <span class="tangle" data-var="t" data-min="1" data-max="8" data-step="0.5" data-dec="1" data-value="4" data-px="10"><button type="button" data-de="-1" aria-label="Earlier">‹</button><span class="num" role="slider" tabindex="0" aria-label="Time">4.0</span><button type="button" data-de="1" aria-label="Later">›</button></span>: a Bessel function inside the cone, and exactly zero outside. This is the precise sense in which quantum field theory respects relativity, and why entanglement cannot signal (Chapter 50).</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>A field as infinitely many oscillators, canonical commutators and mode expansions, particles as quanta with {{tex:E = \sqrt{k^2 + m^2}}}, wave packets, normal ordering and the cosmological constant problem, and microcausality.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What is a particle, in quantum field theory?<span class="tap">tap</span></div><div class="a">One quantum of excitation of a field mode, created by a†.</div></div>
+  <div class="qa"><div class="q">Why is the vacuum energy infinite, and why is it usually ignored?<span class="tap">tap</span></div><div class="a">Every mode has ½ω of zero-point energy; only differences matter except for gravity.</div></div>
+  <div class="qa"><div class="q">What does microcausality guarantee?<span class="tap">tap</span></div><div class="a">Field operators at spacelike separation commute, so no measurement can influence another outside its light cone.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A quantum of a field with mass 3 (in natural units) has momentum 4. What is its energy?</p>
+    <form class="calc" data-answer="5" data-tol="0.01" data-ok="Yes: √(4² + 3²) = 5." data-alt="7~Energies add in quadrature: E² = k² + m²." data-hint="ω = √(k² + m²)."><span>E =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Energy"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. E. Peskin and D. V. Schroeder, An Introduction to Quantum Field Theory, ch. 2. D. Tong, Lectures on Quantum Field Theory, ch. 2. S. Weinberg, Rev. Mod. Phys. 61, 1 (1989) (cosmological constant problem). Checked by code: 1+1-dimensional commutator −(i/2) sgn(t) θ(t² − x²) J₀(m√(t² − x²)); vacuum energy with a Planck cutoff exceeds the observed dark-energy density by about 10¹²⁰.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { t: 4 }, NM = 24;
+  function J0(x) { var ax = Math.abs(x); if (ax < 8) { var y = x * x; return (57568490574.0 + y * (-13362590354.0 + y * (651619640.7 + y * (-11214424.18 + y * (77392.33017 + y * -184.9052456))))) / (57568490411.0 + y * (1029532985.0 + y * (9494680.718 + y * (59272.64853 + y * (267.8532712 + y))))); } var z = 8 / ax, y2 = z * z, xx = ax - 0.785398164; return Math.sqrt(0.636619772 / ax) * (Math.cos(xx) * (1 + y2 * (-0.1098628627e-2 + y2 * (0.2734510407e-4 + y2 * (-0.2073370639e-5 + y2 * 0.2093887211e-6)))) - z * Math.sin(xx) * (-0.1562499995e-1 + y2 * (0.1430488765e-3 + y2 * (-0.6911147651e-5 + y2 * (0.7621095161e-6 - y2 * 0.934935152e-7))))); }
+  function occ() { var p = Book.state.picks.ex || "one", o = []; for (var i = 0; i < NM; i++) o.push(p === "one" ? (i === 8 ? 1 : 0) : Math.exp(-Math.pow((i - 8) / 2.5, 2))); return o; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Field modes, one per wavenumber.", "Each mode an oscillator: ω = √(k² + m²).", "Mode occupations (below) and field shape (above).", "Zero-point energy of every mode.", "[φ(x, t), φ(0, 0)] at fixed t.", "Particles as quanta."][beat]; },
+    readout: function () { if (beat === 4) return "t = " + V.t.toFixed(1) + " · zero for |x| > t"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 4) {
+        A = k.axes(W * 0.06, H * 0.1, W * 0.88, H * 0.75, [-10, 10], [-0.6, 0.6], { zeroY: true, xl: "x" });
+        var t = V.t; c.fillStyle = "rgba(255,181,71,.06)"; c.fillRect(A.X(-t), A.Y(0.6), A.X(t) - A.X(-t), A.Y(-0.6) - A.Y(0.6));
+        k.plot(A, function (x) { return Math.abs(x) < t ? -0.5 * J0(Math.sqrt(t * t - x * x)) : 0; }, [-10, 10], "#ffb547", 2.5, 800);
+        k.line(A.X(-t), A.Y(-0.6), A.X(-t), A.Y(0.6), "rgba(236,230,218,.35)", 1, [3, 4]); k.line(A.X(t), A.Y(-0.6), A.X(t), A.Y(0.6), "rgba(236,230,218,.35)", 1, [3, 4]);
+        return;
+      }
+      var o = beat === 2 ? occ() : null, ph = now / 400;
+      var x0 = W * 0.06, bw = W * 0.88 / NM, yb = H * 0.92;
+      for (i = 0; i < NM; i++) { var w = Math.sqrt(Math.pow(0.25 * i, 2) + 1), amp = beat === 2 ? o[i] : (beat === 3 ? 0.18 : 0.12 + 0.08 * Math.sin(ph * w + i)), h = H * 0.35 * amp; k.rr(x0 + i * bw + 2, yb - h, bw - 4, h, 2, beat === 3 ? "rgba(236,230,218,.35)" : "#ffb547"); }
+      k.text(beat === 3 ? "every mode keeps ½ω, even with no particles" : beat === 2 ? "occupation of each mode" : "modes, low k to high k", W / 2, yb + 4 - H * 0.42, { size: 11, color: "#7c766b" });
+      A = k.axes(W * 0.06, H * 0.06, W * 0.88, H * 0.36, [0, 20], [-1.2, 1.2], { zeroY: true });
+      if (beat === 2) { var p = Book.state.picks.ex || "one"; k.plot(A, function (x) { if (p === "one") return Math.cos(2 * x - ph * 2.2); var s = 0, n = 0; for (var j = 0; j < NM; j++) { s += o[j] * Math.cos(0.25 * j * (x - 10) - ph * Math.sqrt(Math.pow(0.25 * j, 2) + 1) + ph * 2.2); n += o[j]; } return s / n; }, [0, 20], "#ffb547", 2, 500); }
+      else k.plot(A, function (x) { var s = 0; for (var j = 1; j < 8; j++) s += 0.25 * Math.sin(0.5 * j * x - ph * Math.sqrt(0.25 * j * j + 1) + j); return s; }, [0, 20], "rgba(255,181,71,.7)", 1.5, 400);
+    }
+  });
+})();
+</script>

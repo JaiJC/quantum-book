@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Part 4 asks whether living things use quantum mechanics in ways beyond the ordinary chemistry every molecule relies on. Before any claim can be judged, you need the stage on which life plays out: warm, wet, crowded and noisy. Every protein and membrane in your body is jostled constantly by water molecules carrying a thermal energy of about 27 milli-electronvolts. Any quantum effect that matters biologically must survive that jostling. This chapter sets out the energy scales and forces that decide what can.</p>
+  <p>On the plate: the energy ladder of life, from Earth’s magnetic field to a visible photon.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Two kinds of quantum effect</h2>
+  <p>Neill Lambert and colleagues drew a line in 2013 that runs through all of Part 4. <em>Trivial</em> quantum effects are the ordinary quantum mechanics behind all chemistry: why bonds form, why chlorophyll is green, why DNA bases pair. No one doubts these. <em>Non-trivial</em> effects are cases where coherence, entanglement or tunnelling does a specific biological job that a classical description would miss. These are the interesting claims, and they range from well established (enzyme tunnelling) to highly contested (quantum effects in consciousness). Every chapter here says which kind it concerns, with a status label and the strongest objection. <span class="tag">Established</span> as a framework.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The energy ladder</h2>
+  <p>At body temperature, 310 K, {{tex:k_BT = 26.7}} meV, or 2.58 kJ/mol. Compare: a hydrogen bond is worth about 5–30 kJ/mol, a few to ten {{tex:k_BT}}, so they form and break constantly, which is why proteins can fold and unfold and DNA can unzip. Hydrolysing ATP releases about 50 kJ/mol in the cell, some 20 {{tex:k_BT}}: enough to drive a molecular motor one step. A carbon–carbon covalent bond holds about 3.6 eV, so it never breaks thermally. A green photon at 500 nm carries 2.48 eV, enough to excite an electron. At the bottom, the Zeeman energy of an electron spin in Earth’s 50 µT field is about {{tex:2\times10^{-7}k_BT}}: absurdly small, which makes its role in bird navigation (Chapter 169) so surprising. The probability of occupying a state {{tex:\Delta E}} above another is {{tex:e^{-\Delta E/k_BT}}}; set {{tex:\Delta E =}} <span class="tangle" data-var="dE" data-min="0" data-max="20" data-step="0.5" data-dec="1" data-value="5.0" data-px="6"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Energy kT">5.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> {{tex:k_BT}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Forces in water</h2>
+  <p>Water is unusual: a small molecule with a large dipole, forming a dynamic hydrogen-bonded network, with a dielectric constant of about 80 that weakens electrostatic forces eightyfold. Dissolved ions screen charges further: a charge’s field falls off as {{tex:e^{-r/\lambda_D}/r}}, with the <em>Debye length</em> {{tex:\lambda_D\approx0.304/\sqrt{I}}} nm for ionic strength {{tex:I}} in mol/L. Set {{tex:I =}} <span class="tangle" data-var="I" data-min="0.001" data-max="1" data-step="0.005" data-dec="3" data-value="0.150" data-px="80"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Ionic strength">0.150</span><button type="button" data-de="1" aria-label="Higher">›</button></span> M; physiological saline, 150 mM, gives under a nanometre. Electrostatic interactions in cells are therefore short-ranged. Van der Waals forces, from correlated fluctuations of electron clouds (a trivial quantum effect), hold nonpolar groups together, and the <em>hydrophobic effect</em>, water’s preference to keep its hydrogen-bond network intact, drives proteins to bury their oily residues and membranes to form. Rob Phillips, Jané Kondev and Julie Theriot’s <em>Physical Biology of the Cell</em> and Philip Nelson’s <em>Biological Physics</em> develop all of this. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The trivial and non-trivial distinction, the energy ladder from Zeeman energies to photons, Boltzmann populations, hydrogen bonds, ATP and covalent bonds in units of k_BT, water’s dielectric screening, the Debye length, van der Waals forces and the hydrophobic effect.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do hydrogen bonds break constantly in cells?<span class="tap">tap</span></div><div class="a">They are worth only a few to ten k_BT.</div></div>
+  <div class="qa"><div class="q">Why are electrostatic forces short-ranged in cells?<span class="tap">tap</span></div><div class="a">Water’s high dielectric constant and ionic screening, with a Debye length under 1 nm.</div></div>
+  <div class="qa"><div class="q">What makes an effect “non-trivially” quantum?<span class="tap">tap</span></div><div class="a">Coherence, entanglement or tunnelling performing a biological function that classical physics would miss.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the Debye length, in nm, at 150 mM ionic strength?</p>
+    <form class="calc" data-answer="0.785" data-tol="0.01" data-ok="Yes: 0.304/√0.15 ≈ 0.78 nm, about three water molecules." data-hint="0.304 / √0.15."><span>λ_D ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Debye length"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: N. Lambert et al., Nat. Phys. 9, 10 (2013). R. Phillips, J. Kondev and J. Theriot, Physical Biology of the Cell, 2nd ed. (Garland, 2012). P. Nelson, Biological Physics (Freeman, 2004). Checked by code: k_BT(310 K) = 26.71 meV = 2.577 kJ/mol; 500 nm = 2.480 eV; 2μ_B × 50 µT = 2.2 × 10⁻⁷ k_BT; λ_D = 0.785 nm.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { dE: 5, I: 0.15 }, kT = 0.02671;
+  var L = [["electron Zeeman, 50 µT", 5.8e-9], ["k_BT at 310 K", kT], ["hydrogen bond", 0.2], ["ATP hydrolysis", 0.52], ["green photon", 2.48], ["C–C bond", 3.6]];
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Energies of life (log scale, eV).", "Trivial vs non-trivial quantum effects.", "Energy ladder; Boltzmann factor for ΔE.", "Screened potential at ionic strength " + V.I.toFixed(3) + " M.", "Biophysics foundations."][beat]; },
+    readout: function () { if (beat === 2) return "ΔE = " + V.dE.toFixed(1) + " k_BT = " + (V.dE * 26.7).toFixed(0) + " meV · population ratio e^(−ΔE/k_BT) = " + Math.exp(-V.dE).toExponential(2); if (beat === 3) return "Debye length " + (0.304 / Math.sqrt(V.I)).toFixed(2) + " nm"; if (beat === 0) return "k_BT = 26.7 meV = 2.58 kJ/mol at 310 K"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { k.rr(W * 0.06, H * 0.2, W * 0.4, H * 0.6, 10, "#14120f", "rgba(236,230,218,.5)"); k.text("trivial", W * 0.26, H * 0.3, { size: 15 }); ["bonds", "colours", "base pairing", "van der Waals"].forEach(function (s, j) { k.text(s, W * 0.26, H * (0.42 + j * 0.08), { size: 12, color: "#b9b2a5" }); }); k.rr(W * 0.54, H * 0.2, W * 0.4, H * 0.6, 10, "#14120f", "#ffb547"); k.text("non-trivial", W * 0.74, H * 0.3, { size: 15, color: "#ffb547" }); ["tunnelling as function", "spin coherence", "excitonic coherence?", "cognition??"].forEach(function (s, j) { k.text(s, W * 0.74, H * (0.42 + j * 0.08), { size: 12, color: "#b9b2a5" }); }); return; }
+      if (beat === 3) { var lam = 0.304 / Math.sqrt(V.I); A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0.2, 4], [0, 1.05], { xl: "distance (nm)", yl: "potential (relative)" }); k.plot(A, function (r) { return 0.2 / r; }, [0.2, 4], "rgba(236,230,218,.6)", 2); k.plot(A, function (r) { return 0.2 * Math.exp(-r / lam) / r; }, [0.2, 4], "#ffb547", 2.5, 300); k.line(A.X(lam), A.Y(0), A.X(lam), A.Y(1.05), "rgba(224,90,70,.6)", 1); k.text("λ_D", A.X(lam) + 4, A.Y(0.95), { size: 11, color: "#e05a46", align: "left" }); return; }
+      A = k.axes(W * 0.42, H * 0.06, W * 0.52, H * 0.82, [0, 1], [-9, 1], { yl: "log₁₀ eV" }); L.forEach(function (l, j) { var y = A.Y(Math.log10(l[1])); k.line(A.X(0), y, A.X(0.25), y, j === 1 ? "#ffb547" : "rgba(236,230,218,.8)", 2.5); k.text(l[0], A.X(0) - 8, y + 4, { size: 11, color: j === 1 ? "#ffb547" : "#ece6da", align: "right" }); });
+      if (beat === 2) { var y2 = A.Y(Math.log10(V.dE * kT)); k.line(A.X(0.3), y2, A.X(0.6), y2, "rgba(224,90,70,.85)", 2.5); k.text("ΔE", A.X(0.62), y2 + 4, { size: 11, color: "#e05a46", align: "left" }); }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Part 5 brings the book’s threads together: quantum computers applied to biology and medicine. Every chapter follows one chain of reasoning: the biological question, why classical computers struggle, how the problem becomes a quantum one, the algorithm, the resource cost, the state of the hardware, what the answer would change, the strongest critique, and an honest status. This first chapter draws the map. Only a small part of biology needs a quantum computer, and it pays to know exactly which part.</p>
+  <p>On the plate: biological problems placed by how quantum they are and how valuable an answer would be. Tap a point.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Needs quantum mechanics, or needs a quantum computer?</h2>
+  <p>All of chemistry needs quantum mechanics. Very little of it needs a quantum computer, because classical approximations, from force fields to density functional theory, work well for most molecules. A problem needs a quantum computer only if three things hold: its answer depends on electrons or nuclei behaving quantum mechanically in a way that classical methods cannot approximate reliably; the system is small enough to fit a realistic quantum machine; and the answer is worth the cost. Three groups emerge. <strong>Strongly correlated electronic structure</strong>: transition-metal active sites, bond-breaking, excited states with many configurations. <strong>Quantum dynamics and open systems</strong>: energy and charge transfer, radical-pair spin dynamics, tunnelling. <strong>Classical problems with a speculative quantum angle</strong>: folding, docking, sequence analysis, machine learning. <span class="tag">Established</span> as a framework.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The map</h2>
+  <p>The plate places ten problems. The horizontal axis is how essential quantum simulation is, judged by how badly the best classical methods do; the vertical axis is the value of a better answer, scientific or medical. Colour gives the status of any quantum advantage: amber for credible with fault-tolerant hardware, white for debated, red for speculative. Tap a point to read why it sits there. The upper right holds nitrogenase’s FeMoco cofactor (Chapter 190) and cytochrome P450 (Chapter 191). Protein folding sits far left despite its value, because AlphaFold-style machine learning and classical simulation dominate (Chapter 193). <span class="tag">Debated</span> for individual placements.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How to use the map</h2>
+  <p>When you meet a claim that a quantum computer will transform some area of medicine, place the problem. Ask: which step is the quantum step; is that step the bottleneck; and what does the best classical method achieve today? Many published proposals fail the second question: they speed up a part that was never the slow part. The map is not fixed. Better classical methods move points left, as tensor networks and quantum Monte Carlo keep doing; better hardware and algorithms move the cost line. The remaining chapters examine each region in turn. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The reasoning chain used in every Part 5 chapter, the distinction between needing quantum mechanics and needing a quantum computer, three groups of problems, and a map placing ten of them by quantumness and value.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why doesn’t all of chemistry need a quantum computer?<span class="tap">tap</span></div><div class="a">Classical approximations work well for most molecules; only strongly correlated or dynamical cases defeat them.</div></div>
+  <div class="qa"><div class="q">Where does protein folding sit?<span class="tap">tap</span></div><div class="a">High value but low need for quantum computing, because machine learning and classical simulation dominate.</div></div>
+  <div class="qa"><div class="q">What three questions place a claim?<span class="tap">tap</span></div><div class="a">Which step is quantum, is it the bottleneck, and what does the best classical method do today?</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Roughly a third of proteins need a metal ion or cluster. Of about 20,000 human proteins, about how many is that?</p>
+    <form class="calc" data-answer="6700" data-tol="400" data-ok="Yes: around 6,700. Only a small fraction have strongly correlated metal clusters that defeat DFT." data-hint="20,000 ÷ 3."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Proteins"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. Santagati et al., Nat. Phys. 20, 549 (2024). A. M. Dalzell et al., Quantum Algorithms: A Survey of Applications and End-to-End Complexities (CUP, 2025). S. Lee et al., Nat. Commun. 14, 1952 (2023). K. J. Waldron et al., Nature 460, 823 (2009) (metalloproteins). Placements are this book’s judgement.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, sel = 0, P = [["FeMoco (nitrogen fixation)", 0.9, 0.85, 0, "multi-metal cluster; DFT unreliable; leading quantum target"], ["Cytochrome P450 reactivity", 0.75, 0.8, 0, "iron–oxo spin states; drug metabolism"], ["Photosynthetic reaction centre", 0.6, 0.55, 1, "charge separation dynamics; classical models good"], ["Radical-pair spin dynamics", 0.7, 0.45, 1, "many nuclear spins; classical simulation strained"], ["Enzyme tunnelling rates", 0.5, 0.5, 1, "path integrals and semiclassical methods work"], ["Drug binding affinity", 0.35, 0.9, 1, "sampling, not electrons, usually limits"], ["Excited states of chromophores", 0.6, 0.4, 1, "multireference cases are hard"], ["Protein folding", 0.08, 0.95, 2, "AlphaFold and MD dominate"], ["Docking / virtual screening", 0.1, 0.7, 2, "classical ML and physics scoring"], ["Genomic sequence analysis", 0.05, 0.6, 2, "classical algorithms near-linear"]];
+  function geo(k) { return k.axes(k.W * 0.12, k.H * 0.08, k.W * 0.82, k.H * 0.76, [0, 1], [0, 1], { xl: "how essential quantum simulation is →", yl: "value of a better answer →" }); }
+  var cols = ["#ffb547", "rgba(236,230,218,.85)", "rgba(224,90,70,.85)"];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    tap: function (x, y, k) { var A = { X: function (v) { return k.W * 0.12 + v * k.W * 0.82; }, Y: function (v) { return k.H * 0.84 - v * k.H * 0.76; } }, bd = 30; P.forEach(function (p, i) { var d = Math.hypot(x - A.X(p[1]), y - A.Y(p[2])); if (d < bd) { bd = d; sel = i; } }); },
+    caption: function () { return ["Ten problems: quantumness vs value.", "Three groups.", "Amber credible · white debated · red speculative.", "Place a claim, find the bottleneck.", "The map."][beat]; },
+    readout: function () { var p = P[sel]; return p[0] + " · " + p[4]; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 1) { [["strongly correlated electronic structure", "#ffb547"], ["quantum dynamics & open systems", "rgba(236,230,218,.85)"], ["classical problems, speculative quantum angle", "rgba(224,90,70,.85)"]].forEach(function (g, j) { k.rr(W * 0.1, H * (0.15 + j * 0.25), W * 0.8, H * 0.18, 10, "#14120f", g[1]); k.text(g[0], W / 2, H * (0.25 + j * 0.25), { size: 13, color: g[1] }); }); return; }
+      var A = geo(k); P.forEach(function (p, i) { k.circle(A.X(p[1]), A.Y(p[2]), i === sel ? 9 : 6, cols[p[3]]); if (i === sel) k.circle(A.X(p[1]), A.Y(p[2]), 14, null, "#ece6da"); k.text(p[0], A.X(p[1]) + (p[1] > 0.6 ? -10 : 10), A.Y(p[2]) - 8, { size: 10, color: "#b9b2a5", align: p[1] > 0.6 ? "right" : "left" }); });
+    }
+  });
+})();
+</script>

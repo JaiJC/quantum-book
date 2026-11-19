@@ -1,0 +1,11 @@
+p=0.5 n=1 numeric 0.810569 formula 0.810569
+p=0.5 n=2 numeric -0.000000 formula 0.000000
+p=0.5 n=3 numeric -0.090063 formula -0.090063
+p=0.2 n=1 numeric 0.744439 formula 0.744439
+p=0.2 n=2 numeric 0.301132 formula 0.301132
+p=0.2 n=3 numeric 0.133836 formula 0.133836
+p=0.1 n=1 numeric 0.695777 formula 0.695777
+p=0.1 n=2 numeric 0.330862 formula 0.330862
+p=0.1 n=3 numeric 0.202396 formula 0.202396
+E2 harmonics [82.4, 164.8, 247.2, 329.6]
+heat mode decay ratio n=2 vs n=1: rate ratio 4

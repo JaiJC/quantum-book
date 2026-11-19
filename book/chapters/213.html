@@ -1,0 +1,55 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The second debate puts four live controversies from this book on trial: Google’s 2025 “Quantum Echoes” advantage claim, D-Wave’s 2025 beyond-classical simulation claim, long-lived coherence in photosynthesis, and the robin’s quantum compass. For each you argue for and against, then weigh the evidence explicitly. The tool is simple Bayesian bookkeeping: start from a prior, multiply by how much more likely each piece of evidence is if the claim is true than if it is false, and see where you end up.</p>
+  <p>On the plate: an evidence-weighing ledger for each case.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Weighing evidence</h2>
+  <p>Write the claim’s odds as {{tex:P/(1-P)}}. Each piece of evidence {{tex:E}} has a <em>likelihood ratio</em> {{tex:\mathrm{LR} = P(E\mid\text{true})/P(E\mid\text{false})}}: above 1 supports the claim, below 1 opposes it. Posterior odds are prior odds times the product of the likelihood ratios, assuming the pieces are independent. Independent replication is worth far more than a second result from the same group, because it removes shared errors; a classical simulation that reproduces a claimed quantum result is strong evidence against advantage. Assigning likelihood ratios is a judgement, which is the point: it makes your judgement visible and arguable. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The four cases</h2>
+  <p>Case: <button type="button" class="v" data-pick="c:echo">Quantum Echoes (2025)</button> <button type="button" class="v" data-pick="c:dw">D-Wave simulation (2025)</button> <button type="button" class="v" data-pick="c:fmo">FMO coherence</button> <button type="button" class="v" data-pick="c:robin">robin compass</button>; prior probability <span class="tangle" data-var="p" data-min="0.05" data-max="0.95" data-step="0.05" data-dec="2" data-value="0.50" data-px="80"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Prior">0.50</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. The plate lists the main pieces of evidence for each claim with this book’s likelihood ratios (from Chapters 125, 126, 150, 167 and 169) and computes the posterior. The FMO claim (long-lived electronic coherence plays a functional role) ends low; the robin compass (a radical-pair mechanism) ends high but short of proof; the two 2025 advantage claims sit in between, pending independent classical attempts. Change the prior and watch how much the evidence, rather than your starting belief, decides. <span class="tag">Debated</span> for every likelihood ratio.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The debate</h2>
+  <p>For one case, write 400 words for the claim and 400 against, each citing specific evidence, then a 200-word verdict that states your likelihood ratios and why. Graded on: whether each side uses the strongest evidence available to it, whether the likelihood ratios are justified, whether independence between pieces of evidence is respected, and whether the verdict says what new evidence would change it. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Likelihood ratios and posterior odds as a way to weigh evidence, why independent replication and classical reproductions carry so much weight, four worked cases, and a debate format with a verdict that names what would change it.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does a likelihood ratio below 1 mean?<span class="tap">tap</span></div><div class="a">The evidence is more likely if the claim is false: it counts against.</div></div>
+  <div class="qa"><div class="q">Why does independence matter?<span class="tap">tap</span></div><div class="a">Correlated evidence shares errors; multiplying its ratios double-counts.</div></div>
+  <div class="qa"><div class="q">Why is a classical reproduction strong evidence?<span class="tap">tap</span></div><div class="a">It directly shows the task does not need a quantum computer.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Prior probability 0.5, then evidence with likelihood ratio 4. What is the posterior probability?</p>
+    <form class="calc" data-answer="0.8" data-tol="0.005" data-ok="Yes: odds 1 × 4 = 4, probability 4/5 = 0.8." data-hint="Posterior odds = prior odds × LR."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Chapters 125, 126, 150, 167 and 169 and their sources. E. T. Jaynes, Probability Theory: The Logic of Science (CUP, 2003). Likelihood ratios are this book’s judgements, offered to be argued with.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { p: 0.5 }, C = { echo: [["verifiable OTOC signal on 65 qubits", 3], ["classical cost estimates by the authors", 2], ["independent classical attempts pending", 1], ["history of retracted advantage claims", 0.6]], dw: [["dynamics on thousands of qubits", 2], ["tensor-network simulations within days", 0.3], ["authors’ rebuttal of those simulations", 1.5], ["no independent confirmation", 0.8]], fmo: [["2007 long-lived beats", 3], ["beats explained as vibrational (2017)", 0.15], ["electronic dephasing < 240 fs even at 77 K", 0.2], ["2020 joint review: no functional role", 0.3]], robin: [["inclination compass, light dependence", 3], ["RF disruption near Larmor frequency", 4], ["Oldenburg electrosmog experiment", 2], ["CRY4 magnetic sensitivity in vitro", 2], ["no in-vivo mechanism proof yet", 0.7]] };
+  function post() { var c = C[Book.state.picks.c || "robin"], o = V.p / (1 - V.p); c.forEach(function (e) { o *= e[1]; }); return o / (1 + o); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Evidence ledgers.", "Prior odds × likelihood ratios = posterior odds.", "Evidence and likelihood ratios (this book’s).", "For, against, verdict.", "Advantage and biology debate."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "prior " + V.p.toFixed(2) + " → posterior " + post().toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 1) { var A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-2, 2], [0, 1], { xl: "log₁₀ likelihood ratio", yl: "posterior (prior 0.5)" }); k.plot(A, function (l) { var o = Math.pow(10, l); return o / (1 + o); }, [-2, 2], "#ffb547", 2.5); return; }
+      if (beat === 3) { ["400 words for", "400 words against", "200-word verdict with LRs"].forEach(function (s, j) { k.rr(W * 0.15, H * (0.15 + j * 0.25), W * 0.7, H * 0.17, 8, "#14120f", j === 2 ? "#ffb547" : "rgba(236,230,218,.4)"); k.text(s, W / 2, H * (0.25 + j * 0.25), { size: 13, color: j === 2 ? "#ffb547" : "#ece6da" }); }); return; }
+      var c = C[Book.state.picks.c || "robin"], o = V.p / (1 - V.p); c.forEach(function (e, j) { var y = H * (0.1 + j * 0.13); o *= e[1]; k.text(e[0], W * 0.62, y + 4, { size: 11, align: "right" }); k.text("×" + e[1], W * 0.66, y + 4, { size: 12, color: e[1] >= 1 ? "#ffb547" : "#e05a46", align: "left" }); k.text((o / (1 + o)).toFixed(2), W * 0.85, y + 4, { size: 12, color: "#b9b2a5" }); }); k.text("running posterior", W * 0.85, H * 0.05, { size: 10, color: "#7c766b" }); var p = post(); k.rr(W * 0.1, H * 0.85, W * 0.8 * p, H * 0.05, 3, "#ffb547"); k.rr(W * 0.1, H * 0.85, W * 0.8, H * 0.05, 3, null, "rgba(236,230,218,.4)");
+    }
+  });
+})();
+</script>

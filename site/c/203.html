@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>203. Quantum-enhanced imaging and spectroscopy for medicine</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="203">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>203</b> &nbsp;·&nbsp; Quantum-enhanced imaging and spectroscopy for medicine</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">203</div><div class="part">Part Five · Convergence</div><h1>Quantum-enhanced imaging and spectroscopy for medicine</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Light damages living cells. Push more photons into a microscope to beat shot noise and you start cooking the sample. Quantum light offers a way around that trade-off: squeezed light has less noise than the shot-noise limit in one quadrature, so it buys signal-to-noise without adding photons. In 2021 a team in Brisbane used it to image molecular vibrations inside living cells more gently. Other quantum-spectroscopy claims fared worse under scrutiny. This chapter separates the two.</p>
+  <p>On the plate: signal-to-noise against light dose, with and without squeezing.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Shot noise and squeezing</h2>
+  <p>With coherent laser light, photon counts fluctuate as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>N</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;padding-left:0.833em;">N</span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span>, so signal-to-noise grows only as the square root of power: the standard quantum limit (Chapter 154). <em>Squeezed</em> light redistributes quantum uncertainty, reducing amplitude noise below shot noise at the cost of more phase noise. A squeezing of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> decibels reduces noise power by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mi>s</mi><mi mathvariant="normal">/</mi><mn>10</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-s/10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">s</span><span class="mord mtight">/10</span></span></span></span></span></span></span></span></span></span></span></span> and raises amplitude signal-to-noise by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mi>s</mi><mi mathvariant="normal">/</mi><mn>20</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{s/20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mtight">/20</span></span></span></span></span></span></span></span></span></span></span></span>. Losses destroy squeezing fast: every lost photon mixes in ordinary vacuum noise. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Gentler microscopy</h2>
+  <p>In stimulated Raman microscopy, two lasers excite molecular vibrations, mapping chemicals inside cells without labels. Catxere Casacio, Warwick Bowen and colleagues injected squeezed light and reported in <em>Nature</em> in 2021 a 35% improvement in signal-to-noise, at powers where the classical limit is set by photodamage. Set the squeezing to <span class="tangle" data-var="s" data-min="0" data-max="10" data-step="0.1" data-dec="1" data-value="2.6" data-px="10"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Squeezing dB">2.6</span><button type="button" data-de="1" aria-label="More">›</button></span> dB. The plate shows signal-to-noise rising with power until the damage threshold; squeezing lifts the whole curve, so the same image quality comes at lower dose. Related ideas, ghost imaging and imaging with undetected photons (Gabriela Barreto Lemos and colleagues, 2014), image with light that never touches the detector, useful at wavelengths where detectors are poor. <span class="tag">Established</span>, modest gains.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The ETPA controversy</h2>
+  <p>Entangled photon pairs can in principle be absorbed together by a molecule much more efficiently than independent photons at low flux, which promised two-photon fluorescence microscopy at tiny, harmless intensities. Several groups reported large “entangled two-photon absorption” cross-sections, for example Dmitri Tabakaev and colleagues in 2021. Careful follow-ups then found the effects absent or far smaller: Tiemo Landes and colleagues set upper bounds orders of magnitude below the claims in 2021, Kristen Parzuchowski and colleagues found null results the same year, and Alexander Mikhaylov and colleagues showed in 2022 that ordinary one-photon “hot-band” absorption and fluorescence can mimic the signal. The large-enhancement claims have not survived. It is a useful lesson in controls (Chapter 180). <span class="tag">Debated</span>, large ETPA enhancement effectively refuted.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Shot noise and squeezed light, the decibel arithmetic of squeezing, the 2021 squeezed Raman microscopy result, imaging with undetected photons, and the rise and fall of large entangled two-photon absorption claims.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does squeezing trade?<span class="tap">tap</span></div><div class="a">Lower noise in one quadrature for higher noise in the other.</div></div>
+  <div class="qa"><div class="q">Why does squeezing help live-cell imaging?<span class="tap">tap</span></div><div class="a">It raises signal-to-noise without increasing the photon dose that damages cells.</div></div>
+  <div class="qa"><div class="q">What undid the large ETPA claims?<span class="tap">tap</span></div><div class="a">Careful upper bounds, null replications, and a classical one-photon explanation.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many decibels of effective squeezing give a 35% improvement in amplitude signal-to-noise, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mn>1.35</mn></mrow><annotation encoding="application/x-tex">20\log_{10}1.35</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mord">20</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1.35</span></span></span></span>?</p>
+    <form class="calc" data-answer="2.61" data-tol="0.05" data-ok="Yes: about 2.6 dB." data-hint="log₁₀ 1.35 ≈ 0.130."><span>dB ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Decibels"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: C. A. Casacio et al., Nature 594, 201 (2021). G. B. Lemos et al., Nature 512, 409 (2014). D. Tabakaev et al., Phys. Rev. A (2021). T. Landes et al., Opt. Express (2021). K. M. Parzuchowski et al., Phys. Rev. Applied (2021). A. Mikhaylov et al., J. Phys. Chem. Lett. (2022).</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 204</div><div class="t">Hybrid pipelines: classical ML, quantum subroutines, and HPC working together</div><p style="text-align:left">The near-term pattern is a quantum chip inside a supercomputer, with each doing the part it is best at.</p><p style="text-align:left"><a class="v" href="204.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="202.html">← 202. Quantum sensing in biology: NV centers, single-cell magnetometry, MRI advances</a><a href="../index.html">Contents</a><a href="204.html">204. Hybrid pipelines: classical ML, quantum subroutines, and HPC working together →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { s: 2.6 };
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Signal-to-noise vs light dose.", "Squeezed noise ellipse.", "Coherent (white) vs squeezed (amber); damage limit (red).", "Claims vs careful bounds.", "Quantum imaging."][beat]; },
+    readout: function () { return V.s.toFixed(1) + " dB squeezing → SNR ×" + Math.pow(10, V.s / 20).toFixed(2) + " at the same dose, or the same SNR at " + (100 * Math.pow(10, -V.s / 10)).toFixed(0) + "% of the dose"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { var cx = W / 2, cy = H / 2, r = Math.min(W, H) * 0.12, sq = Math.pow(10, -V.s / 20); k.circle(cx - r * 2, cy, r, null, "rgba(236,230,218,.7)"); k.text("coherent", cx - r * 2, cy + r + 18, { size: 11 }); k.ctx.save(); k.ctx.translate(cx + r * 2, cy); k.ctx.scale(sq, 1 / sq); k.ctx.beginPath(); k.ctx.arc(0, 0, r, 0, 6.283); k.ctx.restore(); k.ctx.strokeStyle = "#ffb547"; k.ctx.lineWidth = 2; k.ctx.stroke(); k.text("squeezed", cx + r * 2, cy + r / sq + 18, { size: 11, color: "#ffb547" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [2020.5, 2022.5], [-25, -15], { xl: "year", yl: "log₁₀ ETPA cross-section (schematic)" }); k.circle(A.X(2021), A.Y(-17), 7, "#e05a46"); k.text("claimed", A.X(2021) + 10, A.Y(-17), { size: 11, color: "#e05a46", align: "left" }); k.line(A.X(2021.3), A.Y(-21), A.X(2022.3), A.Y(-21), "#ffb547", 2); k.text("upper bounds / nulls", A.X(2021.8), A.Y(-21) + 16, { size: 11, color: "#ffb547" }); k.text("(schematic)", W * 0.88, H * 0.12, { size: 10, color: "#7c766b", align: "right" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 1.3], [0, 3.4], { xl: "light dose (relative)", yl: "signal-to-noise (relative)" }); k.plot(A, function (p) { return Math.sqrt(p); }, [0, 1], "rgba(236,230,218,.8)", 2.3); k.plot(A, function (p) { return Math.sqrt(p) * Math.pow(10, V.s / 20); }, [0, 1], "#ffb547", 2.5); k.line(A.X(1), A.Y(0), A.X(1), A.Y(3.4), "rgba(224,90,70,.7)", 2); k.text("photodamage limit", A.X(1) + 4, A.Y(3.2), { size: 11, color: "#e05a46", align: "left" });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

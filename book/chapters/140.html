@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Error correction is not enough on its own. The circuits that measure syndromes are made of the same faulty gates as everything else, and a gate applied to a code block could spread one error into several. <em>Fault tolerance</em> is the discipline of computing on encoded data so that errors never cascade. Its crowning result, proved independently by several groups in 1996–97, says that if every component fails less often than some threshold, arbitrarily long quantum computations are possible with only polylogarithmic overhead. The heart of the proof is one inequality.</p>
+  <p>On the plate: error rates through levels of encoding.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The threshold theorem by concatenation</h2>
+  <p>Encode each qubit in a distance-3 code, and build every gadget so that one fault anywhere causes at most one error per block. Then a logical failure needs at least two faults, out of some number {{tex:A}} of fault locations: {{tex:p_1 \le cp^2}} with {{tex:c\approx\binom{A}{2}}}. Now encode each physical qubit of that code again, and again. After {{tex:k}} levels,</p>
+  <div class="eq">{{texd:\begin{gathered}p_k \le \frac{(cp)^{2^k}}{c} = p_\text{th}\Big(\frac{p}{p_\text{th}}\Big)^{2^k}\\ p_\text{th} = 1/c\end{gathered}}}</div>
+  <p>Below threshold the error falls <em>doubly</em> exponentially in the number of levels, while the size grows only exponentially: polylogarithmic overhead. Set {{tex:p =}} 10^<span class="tangle" data-var="lp" data-min="-5" data-max="-1" data-step="0.1" data-dec="1" data-value="-3.0" data-px="6"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 p">-3.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and {{tex:c =}} <span class="tangle" data-var="c" data-min="10" data-max="10000" data-step="10" data-value="100" data-px="1"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="c">100</span><button type="button" data-de="1" aria-label="Larger">›</button></span>. Dorit Aharonov and Michael Ben-Or; Emanuel Knill, Raymond Laflamme and Wojciech Zurek; and Alexei Kitaev proved versions in 1996–97. Topological codes such as the surface code reach the same conclusion without concatenation, with thresholds near 1%. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Magic states</h2>
+  <p>By Eastin–Knill (Chapter 138), the surface code’s easy gates are Clifford gates, which a classical computer can simulate (Chapter 108). Universality needs a T gate, applied by consuming a <em>magic state</em> {{tex:|T\rangle = (|0\rangle + e^{i\pi/4}|1\rangle)/\sqrt2}} through a short teleportation circuit. Magic states prepared directly are noisy. Sergey Bravyi and Kitaev showed in 2005 how to <em>distil</em> them: 15 noisy copies go in, and the 15-qubit Reed–Muller code’s checks reject bad batches, so one cleaner copy comes out with error {{tex:\approx35p^3}}. Input error <span class="tangle" data-var="lm" data-min="-4" data-max="-1.5" data-step="0.1" data-dec="1" data-value="-3.0" data-px="8"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 input error">-3.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span> (log₁₀). Two rounds take 10⁻³ to below 10⁻²⁰. Distillation factories once dominated every resource estimate. In 2024 Craig Gidney, Noah Shutty and Cody Jones proposed <em>magic-state cultivation</em>: grow a magic state inside a small code, checking it repeatedly, reaching about 2 × 10⁻⁹ error at 10⁻³ physical noise for roughly the cost of a CNOT. It has been benchmarked in simulation for state preparation; its place in full computations is still being worked out. <span class="tag">Established</span> for distillation; <span class="tag">Debated</span> for cultivation’s full role.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Lattice surgery</h2>
+  <p>Surface-code patches cannot easily apply a transversal CNOT to each other on a flat chip. Dominic Horsman, Austin Fowler, Simon Devitt and Rodney Van Meter introduced <em>lattice surgery</em> in 2012: measure joint operators such as {{tex:Z_AZ_B}} by temporarily merging two patches along a boundary for {{tex:d}} rounds, then splitting them. A CNOT becomes a sequence of joint measurements plus a classical correction. Daniel Litinski’s 2019 “A Game of Surface Codes” turned layout into a board game of tiles and time steps, and showed that a whole algorithm can be compiled into Pauli-product measurements and magic-state consumption. Watch the plate merge and split two patches. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Fault-tolerant gadgets, the threshold theorem by concatenation and its doubly exponential suppression, magic states and 15-to-1 distillation, cultivation, and lattice surgery.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does concatenation give a threshold?<span class="tap">tap</span></div><div class="a">Each level maps p to cp²; below p = 1/c, iterating drives p to zero doubly exponentially.</div></div>
+  <div class="qa"><div class="q">Why are magic states needed?<span class="tap">tap</span></div><div class="a">Easy encoded gates are Clifford only; a non-Clifford gate such as T needs a consumed resource state.</div></div>
+  <div class="qa"><div class="q">What does lattice surgery replace?<span class="tap">tap</span></div><div class="a">Transversal two-qubit gates between patches, with merge-and-split joint measurements.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> One round of 15-to-1 distillation with input error {{tex:10^{-3}}}: output {{tex:35p^3}} = ?</p>
+    <form class="calc" data-answer="3.5e-8" data-tol="0.1e-8" data-ok="Yes: 35 × 10⁻⁹ = 3.5 × 10⁻⁸." data-hint="35 × (10⁻³)³."><span>p_out =</span><input inputmode="decimal" autocomplete="off" placeholder="3.5e-8" aria-label="Output error"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. Aharonov and M. Ben-Or, Proc. 29th ACM STOC, 176 (1997). E. Knill, R. Laflamme and W. H. Zurek, Science 279, 342 (1998). A. Yu. Kitaev, Russ. Math. Surv. 52, 1191 (1997). S. Bravyi and A. Kitaev, Phys. Rev. A 71, 022316 (2005). C. Horsman, A. G. Fowler, S. Devitt and R. Van Meter, New J. Phys. 14, 123011 (2012). D. Litinski, Quantum 3, 128 (2019). C. Gidney, N. Shutty and C. Jones, arXiv:2409.17595 (2024). Checked by code: 35 × 10⁻⁹ = 3.5 × 10⁻⁸.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { lp: -3, c: 100, lm: -3 };
+  function levels() { var p = Math.pow(10, V.lp), out = [p]; for (var k = 0; k < 4; k++) { p = Math.min(1, V.c * p * p); out.push(p); } return out; }
+  function dist() { var p = Math.pow(10, V.lm), out = [p]; for (var k = 0; k < 3; k++) { p = 35 * p * p * p; out.push(p); } return out; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Logical error by level of concatenation.", "p → c p², level by level (log scale).", "15-to-1 distillation rounds (log scale).", "Lattice surgery: merge, measure Z_A Z_B, split.", "Fault tolerance."][beat]; },
+    readout: function () { if (beat <= 1) { var L = levels(); return "threshold 1/c = " + (1 / V.c).toExponential(1) + " · " + L.map(function (p, k) { return "L" + k + " " + p.toExponential(1); }).join(" · "); } if (beat === 2) { var D = dist(); return D.map(function (p, k) { return "round " + k + ": " + p.toExponential(1); }).join(" · ") + " · cost 15^k inputs"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat <= 1 || beat === 4) { var L = levels(); A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [-0.5, 4.5], [-30, 0], { xl: "concatenation level", yl: "log₁₀ error" }); k.line(A.X(-0.5), A.Y(Math.log10(1 / V.c)), A.X(4.5), A.Y(Math.log10(1 / V.c)), "rgba(224,90,70,.6)", 1); for (i = 0; i < L.length; i++) { var y = Math.max(-30, Math.log10(L[i])); k.rr(A.X(i) - 16, A.Y(0), 32, A.Y(y) - A.Y(0), 3, "rgba(255,181,71,.8)"); } return; }
+      if (beat === 2) { var D = dist(); A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [-0.5, 3.5], [-40, 0], { xl: "distillation rounds", yl: "log₁₀ error" }); for (i = 0; i < D.length; i++) { var y2 = Math.max(-40, Math.log10(D[i])); k.rr(A.X(i) - 18, A.Y(0), 36, A.Y(y2) - A.Y(0), 3, "rgba(255,181,71,.8)"); } k.line(A.X(-0.5), A.Y(-8.7), A.X(3.5), A.Y(-8.7), "rgba(236,230,218,.5)", 1); k.text("cultivation ≈ 2 × 10⁻⁹", A.X(3.4), A.Y(-8.7) - 6, { size: 11, color: "#b9b2a5", align: "right" }); return; }
+      if (beat === 3) { var t = (now / 3000) % 3, ph = Math.floor(t), s = Math.min(W, H) * 0.3, gx = W / 2 - s - 10, gy = H / 2 - s / 2; function patch(x, y, lab) { for (var a = 0; a < 5; a++) for (var b = 0; b < 5; b++) k.rr(x + a * s / 5 + 1, y + b * s / 5 + 1, s / 5 - 2, s / 5 - 2, 2, (a + b) % 2 ? "rgba(255,181,71,.25)" : "rgba(236,230,218,.12)"); k.text(lab, x + s / 2, y - 10, { size: 13 }); } patch(gx, gy, "A"); patch(gx + s + 20, gy, "B"); if (ph === 1) { k.rr(gx + s, gy, 20, s, 3, "rgba(255,181,71,.7)"); k.text("merged: measuring Z_A Z_B for d rounds", W / 2, gy + s + 26, { size: 12, color: "#ffb547" }); } else k.text(ph === 0 ? "two separate patches" : "split again: CNOT step done", W / 2, gy + s + 26, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

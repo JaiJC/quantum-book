@@ -1,0 +1,90 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In 1928 Paul Dirac wanted a relativistic equation that, unlike Klein–Gordon, was first order in time, so that probability would stay positive. To take the square root of {{tex:E^2 = p^2 + m^2}} he had to use matrices instead of numbers. What came out was not what he asked for. The equation described particles with spin ½, predicted that the electron’s magnet is exactly twice as strong as a simple spinning charge, and insisted on a second kind of electron with positive charge. Four years later Carl Anderson photographed one.</p>
+  <p>On the plate: the four Dirac matrices, and the rule that ties them together.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Taking a square root</h2>
+  <p>Seek {{tex:i\partial_t\psi = (\boldsymbol\alpha\cdot\mathbf p + \beta m)\psi}} whose square gives {{tex:E^2 = p^2 + m^2}}. Squaring, the cross terms must cancel and the squares must be one: {{tex:\alpha_i\alpha_j + \alpha_j\alpha_i = 2\delta_{ij}}}, {{tex:\alpha_i\beta + \beta\alpha_i = 0}}, {{tex:\beta^2 = 1}}. No numbers do that; the smallest matrices that do are 4 × 4. Writing {{tex:\gamma^0 = \beta}}, {{tex:\gamma^i = \beta\alpha_i}}:</p>
+  <div class="eq">{{texd:(i\gamma^\mu\partial_\mu - m)\,\psi = 0, \qquad \{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}}}</div>
+  <p>Choose a matrix: <button type="button" class="v" data-pick="g:0">γ⁰</button> <button type="button" class="v" data-pick="g:1">γ¹</button> <button type="button" class="v" data-pick="g:2">γ²</button> <button type="button" class="v" data-pick="g:3">γ³</button> <button type="button" class="v" data-pick="g:5">γ⁵</button>. The plate shows its entries in the Dirac representation, built from the Pauli matrices of Chapter 40, and the table of anticommutators: twice the metric, as required. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Four components, two of them spin</h2>
+  <p>Because the matrices are 4 × 4, {{tex:\psi}} has four components, a <em>Dirac spinor</em>. Under a Lorentz transformation it changes by a matrix built from {{tex:[\gamma^\mu, \gamma^\nu]}}, and the equation keeps its form in every frame. The orbital angular momentum {{tex:\mathbf L}} is not conserved by the Dirac Hamiltonian, but {{tex:\mathbf J = \mathbf L + \tfrac12\boldsymbol\Sigma}} is, where {{tex:\boldsymbol\Sigma}} is a pair of Pauli matrices. Spin ½ was not put in. It is required for the equation to respect rotations.</p>
+  <p>Two of the four components describe the electron’s two spin states; the other two describe a second particle.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>g = 2</h2>
+  <p>Put the electron in a magnetic field and take the slow-motion limit. The Dirac equation reduces to Pauli’s equation with an extra term, {{tex:-\frac{e}{2m}\,g\,\mathbf S\cdot\mathbf B}}, and {{tex:g = 2}} exactly. A classical spinning charge has {{tex:g = 1}}. The value 2, measured in the Zeeman effect (Chapter 42), had to be put in by hand before Dirac. Dirac’s equation also gives hydrogen’s fine structure exactly as in Chapter 44, including the 10.95 GHz splitting of the {{tex:n = 2}} level, and leaves 2s and 2p<sub>1/2</sub> together until QED splits them. The tiny deviation of {{tex:g}} from 2 is the subject of Chapter 72.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Antimatter</h2>
+  <p>The equation has negative-energy solutions, and an electron, it seemed, should fall into them and radiate away. Dirac’s 1930 answer: they are all already full, a “sea”, and the exclusion principle (Chapter 43) forbids falling in. A missing electron in the sea, a hole, behaves like a particle of positive energy and positive charge. In 1931 he predicted it: an anti-electron, with the electron’s mass.</p>
+  <p>In August 1932 Carl Anderson, photographing cosmic rays in a cloud chamber in a magnetic field, saw a track that curved like an electron’s but the wrong way. A lead plate in the chamber showed which way it was moving: it lost energy crossing the plate, from 63 to 23 MeV, so it was a positive particle as light as an electron. The positron. The sea picture was later replaced by field theory (Chapter 60), but the prediction stood. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The trembling electron</h2>
+  <p>In a free Dirac particle built from both positive and negative energies, the position jitters at frequency {{tex:2m}} with amplitude about half a Compton wavelength, 193 fm for an electron. Schrödinger called it <em>Zitterbewegung</em>. Mix in a negative-energy share of <span class="tangle" data-var="mix" data-min="0" data-max="0.5" data-step="0.05" data-dec="2" data-value="0.2" data-px="8"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Negative-energy share">0.20</span><button type="button" data-de="1" aria-label="More">›</button></span> and watch the drift and the tremble. For an electron the frequency is {{tex:2.5\times10^{20}}} Hz, far too fast to see. In 2010 Rainer Blatt’s group simulated the Dirac equation with a trapped ion, where the parameters can be tuned, and recorded the jitter directly.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The Dirac equation and the Clifford algebra {{tex:\{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}}}, four-component spinors, spin as a consequence of relativity, {{tex:g = 2}}, exact hydrogen fine structure, the prediction and discovery of the positron, and Zitterbewegung.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why must the Dirac matrices be at least 4 × 4?<span class="tap">tap</span></div><div class="a">Four mutually anticommuting matrices that square to ±1 cannot exist in fewer dimensions.</div></div>
+  <div class="qa"><div class="q">What did Anderson’s lead plate establish?<span class="tap">tap</span></div><div class="a">The direction of travel, from the energy lost crossing it, which fixed the sign of the charge as positive.</div></div>
+  <div class="qa"><div class="q">What value of g does the Dirac equation give?<span class="tap">tap</span></div><div class="a">Exactly 2.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}}} and that the trace of the 4 × 4 identity is 4, what is {{tex:\mathrm{Tr}(\gamma^1\gamma^1)}}?</p>
+    <form class="calc" data-answer="-4" data-tol="0.01" data-ok="Yes: γ¹γ¹ = η¹¹ 𝟙 = −𝟙, so the trace is −4." data-alt="4~Check the metric: η¹¹ = −1 in (+,−,−,−)." data-hint="Set μ = ν = 1: 2γ¹γ¹ = 2η¹¹ 𝟙."><span>Tr =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Trace"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. A. M. Dirac, Proc. R. Soc. A 117, 610 (1928); Proc. R. Soc. A 133, 60 (1931). C. D. Anderson, Phys. Rev. 43, 491 (1933). R. Gerritsma et al., Nature 463, 68 (2010). Checked by code: {γ^μ, γ^ν} = 2η^μν exactly in the Dirac representation; Tr(γ¹γ¹) = −4; Dirac n = 2 fine-structure splitting 10.950 GHz; Zitterbewegung amplitude ħ/2mc = 193 fm, frequency 2.47×10²⁰ Hz.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { mix: 0.2 };
+  var I = [[1, 0], [0, 1]], Z = [[0, 0], [0, 0]];
+  function blk(a, b, c, d) { return [a[0].concat(b[0]), a[1].concat(b[1]), c[0].concat(d[0]), c[1].concat(d[1])]; }
+  function neg(m) { return m.map(function (r) { return r.map(function (x) { return typeof x === "string" ? (x[0] === "−" ? x.slice(1) : "−" + x) : -x; }); }); }
+  var sx = [[0, 1], [1, 0]], sy = [[0, "−i"], ["i", 0]], sz = [[1, 0], [0, -1]];
+  var G = { 0: blk(I, Z, Z, neg(I)), 1: blk(Z, sx, neg(sx), Z), 2: blk(Z, sy, neg(sy), Z), 3: blk(Z, sz, neg(sz), Z), 5: blk(Z, I, I, Z) };
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["The Dirac matrices.", "γ" + ({ 0: "⁰", 1: "¹", 2: "²", 3: "³", 5: "⁵" })[Book.state.picks.g || "0"] + " and the anticommutator table {γ^μ, γ^ν}/2.", "A Dirac spinor: two spin states, two antiparticle states.", "Electron magnet: g = 2.", "A positron track crossing a lead plate.", "Position of a mixed-energy Dirac packet.", "The Dirac matrices."][beat]; },
+    readout: function () { if (beat === 5) return "drift plus jitter at 2m · amplitude ∝ " + V.mix.toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, j, A;
+      if (beat <= 1 || beat === 6) {
+        var m = G[Book.state.picks.g || "0"], s = Math.min(W * 0.4 / 4, H * 0.6 / 4, 46), x0 = W * 0.06, y0 = (H - 4 * s) / 2;
+        for (i = 0; i < 4; i++) for (j = 0; j < 4; j++) { var v = m[i][j], nz = v !== 0; k.rr(x0 + j * s + 1, y0 + i * s + 1, s - 2, s - 2, 4, nz ? (String(v).indexOf("−") === 0 || v === -1 ? "rgba(224,90,70,.6)" : "rgba(255,181,71,.55)") : "#0e0d0c"); if (nz) k.text(String(v).replace("-1", "−1"), x0 + j * s + s / 2, y0 + i * s + s / 2 + 5, { size: 14, color: "#000" }); }
+        var t = Math.min(W * 0.4 / 4, H * 0.6 / 4, 46), x1 = W * 0.56, eta = [1, -1, -1, -1];
+        for (i = 0; i < 4; i++) for (j = 0; j < 4; j++) { var e = i === j ? eta[i] : 0; k.rr(x1 + j * t + 1, y0 + i * t + 1, t - 2, t - 2, 4, e ? (e > 0 ? "rgba(255,181,71,.55)" : "rgba(224,90,70,.6)") : "#0e0d0c"); k.text(String(e).replace("-1", "−1"), x1 + j * t + t / 2, y0 + i * t + t / 2 + 5, { size: 13, color: e ? "#000" : "#7c766b" }); }
+        k.text("matrix", x0 + 2 * s, y0 - 12, { size: 12, color: "#b9b2a5" }); k.text("{γ^μ, γ^ν}/2 = η^μν", x1 + 2 * t, y0 - 12, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 2) { var lab = ["e⁻ spin ↑", "e⁻ spin ↓", "e⁺ spin ↑", "e⁺ spin ↓"]; for (i = 0; i < 4; i++) { var y = H * (0.2 + i * 0.17); k.rr(W * 0.3, y - 20, W * 0.4, 40, 8, i < 2 ? "rgba(255,181,71,.18)" : "rgba(224,90,70,.2)", i < 2 ? "#ffb547" : "#e05a46"); k.text("ψ" + (i + 1) + "   " + lab[i], W / 2, y + 5, { size: 14 }); } return; }
+      if (beat === 3) { A = k.axes(W * 0.2, H * 0.12, W * 0.6, H * 0.7, [0, 3], [0, 2.4], { yl: "g" }); [["classical", 1, "rgba(236,230,218,.5)"], ["Dirac", 2, "#ffb547"], ["measured", 2.00232, "#ece6da"]].forEach(function (q, j) { k.rr(A.X(j + 0.25), A.Y(q[1]), A.X(0.5) - A.X(0), A.Y(0) - A.Y(q[1]), 3, q[2]); k.text(q[0], A.X(j + 0.5), A.Y(0) + 18, { size: 12, color: "#b9b2a5" }); }); return; }
+      if (beat === 4) {
+        var cx = W / 2, plateY = H * 0.5; c.fillStyle = "rgba(236,230,218,.25)"; c.fillRect(W * 0.12, plateY - 6, W * 0.76, 12); k.text("lead, 6 mm", W * 0.86, plateY - 10, { size: 11, align: "right", color: "#7c766b" });
+        c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.beginPath(); c.arc(cx - W * 0.9, plateY, W * 0.95, -0.42, 0); c.stroke(); c.beginPath(); c.arc(cx - W * 0.3, plateY, W * 0.36, -0.2, 0.9); c.stroke();
+        k.text("63 MeV", cx + W * 0.1, H * 0.18, { size: 12, color: "#b9b2a5" }); k.text("23 MeV: tighter curl after the plate", cx - W * 0.05, H * 0.86, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 5) {
+        A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 20], [-1, 12], { xl: "time", yl: "⟨x⟩" });
+        k.plot(A, function (t) { return 0.5 * t + V.mix * 1.6 * Math.sin(4 * t); }, [0, 20], "#ffb547", 2, 800); k.plot(A, function (t) { return 0.5 * t; }, [0, 20], "rgba(236,230,218,.35)", 1, 100);
+      }
+    }
+  });
+})();
+</script>

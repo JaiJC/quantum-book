@@ -1,0 +1,63 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Shor’s and Steane’s codes are two members of a vast family, and one language describes them all. Daniel Gottesman’s 1997 PhD thesis recast quantum codes in terms of the Pauli operators that leave them unchanged, the stabilizer formalism of Chapter 108. In that language you can read off how many logical qubits a code holds, which operators act on them, and how many errors it survives. It also leads to a theorem that shapes the architecture of every planned quantum computer.</p>
+  <p>On the plate: a stabilizer-code explorer that computes each code’s parameters from its generators.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>[[n, k, d]]</h2>
+  <p>A stabilizer code on {{tex:n}} qubits is defined by {{tex:n-k}} independent, commuting Pauli generators; the code space is their common +1 eigenspace, of dimension {{tex:2^k}}. <em>Logical operators</em> are Paulis that commute with every stabilizer but are not themselves in the stabilizer group: they move between codewords without being detected. The <em>distance</em> {{tex:d}} is the smallest weight of a logical operator. A code of distance {{tex:d}} detects {{tex:d-1}} errors and corrects {{tex:\lfloor(d-1)/2\rfloor}}. Double brackets distinguish quantum codes from classical {{tex:[n,k,d]}} codes. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Explore codes</h2>
+  <p>Choose a code: <button type="button" class="v" data-pick="c:rep">3-qubit bit-flip</button> <button type="button" class="v" data-pick="c:422">[[4,2,2]]</button> <button type="button" class="v" data-pick="c:513">5-qubit</button> <button type="button" class="v" data-pick="c:steane">Steane</button> <button type="button" class="v" data-pick="c:shor">Shor</button>. The plate shows the generators, checks that they commute, computes {{tex:k}} by Gaussian elimination over pairs of bits, and finds the distance by searching all Pauli operators up to weight 4 for the lightest logical one.</p>
+  <p>Notice the bit-flip code: as a <em>quantum</em> code it has distance 1, because a single Z on any qubit is a logical error. The five-qubit code, found by Raymond Laflamme and colleagues and by Charles Bennett and colleagues in 1996, is the smallest that corrects any single-qubit error. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Bounds, transversal gates, and Eastin–Knill</h2>
+  <p>The <em>quantum Singleton bound</em> says {{tex:n - k \ge 2(d-1)}}: to correct one error in one logical qubit you need {{tex:n\ge5}}. The <em>quantum Hamming bound</em> for nondegenerate codes, {{tex:2^{n-k}\ge 1 + 3n}} for single errors, is met with equality at {{tex:n = 5}}: the five-qubit code is <em>perfect</em>, every syndrome used exactly once.</p>
+  <p>The easiest fault-tolerant gates are <em>transversal</em>: apply a gate to each physical qubit separately, so one fault cannot spread within a code block. The Steane code has transversal H, S and CNOT, the whole Clifford group, but not T. Bryan Eastin and Emanuel Knill proved in 2009 that no code that detects errors can have a universal set of transversal gates. Every architecture must therefore supply at least one gate another way, usually by consuming specially prepared “magic states” (Chapter 140). That single theorem is why magic-state factories dominate resource estimates (Chapter 143). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>[[n, k, d]] notation, logical operators as the normalizer modulo the stabilizer, distance, the quantum Singleton and Hamming bounds, the perfect five-qubit code, transversal gates, and the Eastin–Knill theorem.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How is k determined?<span class="tap">tap</span></div><div class="a">k = n minus the number of independent stabilizer generators.</div></div>
+  <div class="qa"><div class="q">Why is the 3-qubit bit-flip code distance 1 as a quantum code?<span class="tap">tap</span></div><div class="a">A single Z commutes with all its ZZ stabilizers and flips the logical phase.</div></div>
+  <div class="qa"><div class="q">What does Eastin–Knill forbid?<span class="tap">tap</span></div><div class="a">An error-detecting code with a universal set of transversal gates.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> By the quantum Singleton bound, what is the smallest {{tex:n}} for {{tex:k = 1}}, {{tex:d = 3}}?</p>
+    <form class="calc" data-answer="5" data-tol="0.1" data-ok="Yes: n − 1 ≥ 4, so n ≥ 5, achieved by the five-qubit code." data-hint="n − k ≥ 2(d − 1)."><span>n ≥</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="n"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. Gottesman, PhD thesis, Caltech (1997), arXiv:quant-ph/9705052. D. Gottesman, Surviving as a Quantum Computer in a Classical World (draft, 2026). R. Laflamme et al., Phys. Rev. Lett. 77, 198 (1996). C. H. Bennett et al., Phys. Rev. A 54, 3824 (1996). E. Knill and R. Laflamme, Phys. Rev. A 55, 900 (1997). B. Eastin and E. Knill, Phys. Rev. Lett. 102, 110502 (2009). Checked by the plate: k and d computed from generators; it returns [[3,1,1]], [[4,2,2]], [[5,1,3]], [[7,1,3]], [[9,1,3]].</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, codes = { rep: ["ZZI", "IZZ"], "422": ["XXXX", "ZZZZ"], "513": ["XZZXI", "IXZZX", "XIXZZ", "ZXIXZ"], steane: ["XXXXIII", "XXIIXXI", "XIXIXIX", "ZZZZIII", "ZZIIZZI", "ZIZIZIZ"].map(function (s) { return s; }), shor: ["ZZIIIIIII", "IZZIIIIII", "IIIZZIIII", "IIIIZZIII", "IIIIIIZZI", "IIIIIIIZZ", "XXXXXXIII", "IIIXXXXXX"] }, res = {};
+  codes.steane = ["XXIXXII", "XIXXIXI", "IXXXIIX", "ZZIZZII", "ZIZZIZI", "IZZZIIZ"];
+  function sym(s) { var x = 0, z = 0; for (var i = 0; i < s.length; i++) { var c = s[i], m = 1 << i; if (c === "X" || c === "Y") x |= m; if (c === "Z" || c === "Y") z |= m; } return [x, z]; }
+  function pc(v) { var c = 0; while (v) { c += v & 1; v >>>= 1; } return c; }
+  function comm(a, b) { return pc((a[0] & b[1]) ^ (a[1] & b[0])) % 2 === 0; }
+  function basis(vs, n) { var rows = vs.map(function (v) { return v[0] | (v[1] << n); }), B = []; rows.forEach(function (r) { B.forEach(function (b) { if ((r ^ b) < r) r ^= b; }); if (r) { B.push(r); B.sort(function (a, b) { return b - a; }); } }); return B; }
+  function inSpan(B, r) { B.forEach(function (b) { if ((r ^ b) < r) r ^= b; }); return r === 0; }
+  function analyse(name) { if (res[name]) return res[name]; var g = codes[name], n = g[0].length, S = g.map(sym), ok = S.every(function (a) { return S.every(function (b) { return comm(a, b); }); }), B = basis(S, n), k = n - B.length, d = null, lo = ""; for (var w = 1; w <= 4 && d === null; w++) { var idx = []; (function rec(st, left) { if (d !== null) return; if (!left) { var tot = Math.pow(3, w); for (var t = 0; t < tot && d === null; t++) { var x = 0, z = 0, tt = t, str = new Array(n).fill("I"); idx.forEach(function (q) { var c = tt % 3; tt = Math.floor(tt / 3); var ch = "XYZ"[c]; str[q] = ch; if (ch !== "Z") x |= 1 << q; if (ch !== "X") z |= 1 << q; }); var P = [x, z]; if (S.every(function (s) { return comm(s, P); }) && !inSpan(B, x | (z << n))) { d = w; lo = str.join(""); } } return; } for (var q = st; q < n; q++) { idx.push(q); rec(q + 1, left - 1); idx.pop(); } })(0, w); } return (res[name] = { n: n, k: k, d: d, ok: ok, lo: lo, g: g }); }
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { var c = analyse(Book.state.picks.c || "513"); return ["Stabilizer generators of a code.", "Generators: X amber, Z white, Y both.", "[[" + c.n + "," + c.k + "," + c.d + "]] · lightest logical " + c.lo, "Transversal: one gate per qubit, no spreading.", "Stabilizer codes."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var c = analyse(Book.state.picks.c || "513"); return (c.ok ? "generators commute ✓" : "generators do not commute ✗") + " · n = " + c.n + ", k = " + c.k + ", d = " + c.d + " · e.g. logical " + c.lo; } if (beat === 3) return "Singleton: n − k ≥ 2(d − 1) · Hamming (n = 5): 2⁴ = 16 = 1 + 3·5"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 3) { for (var b = 0; b < 2; b++) for (var i = 0; i < 7; i++) { var x = W * (0.15 + i * 0.1), y = H * (0.3 + b * 0.3); k.circle(x, y, 12, "#ece6da"); } for (i = 0; i < 7; i++) { var x2 = W * (0.15 + i * 0.1); k.line(x2, H * 0.3 + 12, x2, H * 0.6 - 12, "#ffb547", 2); k.circle(x2, H * 0.3, 4, "#ffb547"); } k.text("transversal CNOT between two Steane blocks", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      var c = analyse(Book.state.picks.c || "513"), n = c.n, g = c.g, cw = Math.min(46, W * 0.8 / n), ch = Math.min(40, H * 0.75 / g.length), x0 = (W - cw * n) / 2, y0 = H * 0.08;
+      g.forEach(function (s, r) { for (var j = 0; j < n; j++) { var p = s[j], col = p === "X" ? "rgba(255,181,71,.85)" : p === "Z" ? "rgba(236,230,218,.75)" : p === "Y" ? "rgba(224,90,70,.85)" : "#14120f"; k.rr(x0 + j * cw + 2, y0 + r * ch + 2, cw - 4, ch - 4, 4, col, "rgba(185,178,165,.25)"); if (p !== "I") k.text(p, x0 + (j + 0.5) * cw, y0 + (r + 0.5) * ch + 5, { size: 13, color: "#14120f" }); } });
+      var yl = y0 + g.length * ch + 18; for (var j2 = 0; j2 < n; j2++) { var p2 = c.lo[j2]; if (p2 !== "I") { k.rr(x0 + j2 * cw + 2, yl, cw - 4, ch - 4, 4, null, "#e05a46"); k.text(p2, x0 + (j2 + 0.5) * cw, yl + ch / 2 + 3, { size: 13, color: "#e05a46" }); } } k.text("lightest logical operator", W / 2, yl + ch + 14, { size: 11, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>

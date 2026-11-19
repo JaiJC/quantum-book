@@ -1,0 +1,88 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In the winter of 1925, before he found the equation that bears his name, Schrödinger wrote down a relativistic one. He applied it to hydrogen, got the fine structure wrong, and put it aside. Oskar Klein and Walter Gordon published it in 1926, and for a decade it seemed a dead end: its probability could go negative. It came back as the equation of every particle with no spin. The Higgs boson obeys it.</p>
+  <p>On the plate: a Klein–Gordon wave packet made of positive- and negative-frequency parts.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The equation</h2>
+  <p>Take {{tex:E^2 = \mathbf p^2 + m^2}} and replace {{tex:E \to i\partial_t}}, {{tex:\mathbf p \to -i\nabla}}, as in Chapter 31:</p>
+  <div class="eq">{{texd:\left(\partial_t^2 - \nabla^2 + m^2\right)\phi = 0 \quad\Longleftrightarrow\quad (\partial_\mu\partial^\mu + m^2)\,\phi = 0}}</div>
+  <p>It is second order in time and manifestly relativistic. Its plane waves {{tex:e^{-i(Et - \mathbf p\cdot\mathbf x)}}} come with both signs of {{tex:E}}. A packet travels at the group velocity {{tex:p/E}}, always below light speed. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>A density that can go negative</h2>
+  <p>Like the Schrödinger equation, Klein–Gordon has a conserved current, {{tex:j^\mu = i(\phi^*\partial^\mu\phi - \phi\,\partial^\mu\phi^*)}}, with {{tex:\partial_\mu j^\mu = 0}}. But its time component, {{tex:\rho = i(\phi^*\dot\phi - \phi\dot\phi^*)}}, is not {{tex:|\phi|^2}}. For a positive-frequency wave it is positive; for a negative-frequency wave, negative.</p>
+  <p>Mix in negative frequencies: <span class="tangle" data-var="f" data-min="0" data-max="1" data-step="0.05" data-dec="2" data-value="0.3" data-px="6"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Negative-frequency share">0.30</span><button type="button" data-de="1" aria-label="More">›</button></span>. The plate shows {{tex:\rho}}: amber where positive, red where negative. The two parts move apart, and {{tex:\rho}} cannot be a probability. In 1934 Wolfgang Pauli and Victor Weisskopf reinterpreted it as <em>charge</em> density: the positive parts are particles, the negative parts antiparticles of opposite charge.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Negative energy, read correctly</h2>
+  <p>A negative-frequency solution moving forward in time, {{tex:e^{+iEt}}}, has the same form as a positive-energy one moving backward. Ernst Stückelberg and later Feynman read it that way: a negative-energy particle going into the past is an antiparticle with positive energy going into the future. Nothing ever has negative energy. In the field theory of Chapter 60, the negative-frequency part of {{tex:\phi}} becomes the operator that creates antiparticles, and the energy of every state is positive.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Forces from massive particles</h2>
+  <p>Put a point source in the static equation: {{tex:(-\nabla^2 + m^2)\phi = g\,\delta^3(\mathbf r)}}. The solution is</p>
+  <div class="eq">{{texd:\phi(r) = \frac{g}{4\pi}\,\frac{e^{-mr}}{r}}}</div>
+  <p>Coulomb’s {{tex:1/r}}, cut off beyond a distance {{tex:1/m}}. Hideki Yukawa proposed in 1935 that the force holding nuclei together comes from exchanging a particle of mass about 100–200 MeV, to give a range of about 1 fm. The pion, found in 1947 at 139.6 MeV, fits: {{tex:1/m = 1.41}} fm. Set the mediator mass to <span class="tangle" data-var="mu" data-min="0" data-max="500" data-step="10" data-unit=" MeV" data-value="140" data-px="1"><button type="button" data-de="-1" aria-label="Lighter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Mediator mass">140 MeV</span><button type="button" data-de="1" aria-label="Heavier">›</button></span>; zero mass gives back Coulomb’s law. Heavy mediators give short-range forces: the W and Z, at 80–91 GeV, reach only about 0.002 fm, which is why the weak force is weak. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Where it lives now</h2>
+  <p>As a single-particle wave equation, Klein–Gordon fails, for the reasons of Chapter 55. As a <em>field</em> equation it is exactly right for spin-0 particles: pions in effective theories, and the Higgs field, whose excitation was discovered in 2012 at 125 GeV. Schrödinger’s discarded equation turned out to be the first piece of the Standard Model.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The Klein–Gordon equation, its conserved current and why its density can be negative, the charge reinterpretation, antiparticles as negative frequencies, and the Yukawa potential with its range {{tex:1/m}}.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why isn’t ρ a probability density?<span class="tap">tap</span></div><div class="a">It is negative for negative-frequency solutions; it is a charge density instead.</div></div>
+  <div class="qa"><div class="q">What sets the range of a Yukawa force?<span class="tap">tap</span></div><div class="a">The mediator’s mass: range ≈ 1/m = ħ/mc.</div></div>
+  <div class="qa"><div class="q">Which known elementary particle obeys Klein–Gordon?<span class="tap">tap</span></div><div class="a">The Higgs boson, the only elementary spin-0 particle found so far.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The pion has mass 139.57 MeV. What is the range of the Yukawa force it carries, {{tex:\hbar c/m}}, in fm?</p>
+    <form class="calc" data-answer="1.414" data-tol="0.01" data-ok="Yes: 197.33/139.57 ≈ 1.41 fm, about the size of a nucleon." data-hint="Divide 197.33 MeV fm by 139.57 MeV."><span>range =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Range in fm"><span>fm</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: O. Klein, Z. Phys. 37, 895 (1926). W. Gordon, Z. Phys. 40, 117 (1926). W. Pauli and V. Weisskopf, Helv. Phys. Acta 7, 709 (1934). H. Yukawa, Proc. Phys.-Math. Soc. Japan 17, 48 (1935). M. D. Schwartz, Quantum Field Theory and the Standard Model. Checked by code: ranges 1.414 fm (π), 0.0022 fm (Z), 0.0016 fm (Higgs); KG packet density sign follows frequency sign.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { f: 0.3, mu: 140 }, NK = 96, ks = [], amp = [];
+  for (var i = 0; i < NK; i++) { var k = 2 + (i - NK / 2) * 0.04; ks.push(k); amp.push(Math.exp(-Math.pow((k - 2) / 0.4, 2))); }
+  function field(x, t, f) { var re = 0, im = 0, dre = 0, dim = 0; for (var i = 0; i < NK; i++) { var k = ks[i], w = Math.sqrt(k * k + 1), a = amp[i];
+      var p1 = k * x - w * t, c1 = (1 - f) * a; re += c1 * Math.cos(p1); im += c1 * Math.sin(p1); dre += c1 * w * Math.sin(p1); dim += -c1 * w * Math.cos(p1);
+      var p2 = k * x + w * t, c2 = f * a; re += c2 * Math.cos(p2); im += c2 * Math.sin(p2); dre += -c2 * w * Math.sin(p2); dim += c2 * w * Math.cos(p2); }
+    return -2 * (re * dim - im * dre); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Charge density of a Klein–Gordon packet.", "Positive-frequency packet: ρ > 0.", "ρ with negative frequencies mixed in.", "Antiparticles: negative frequency, read forwards.", "Yukawa potential (amber) against Coulomb (white).", "A spin-0 field.", "Klein–Gordon."][beat]; },
+    readout: function () { if (beat === 4) return "m = " + V.mu + " MeV · range " + (V.mu ? (197.327 / V.mu).toFixed(2) + " fm" : "infinite"); if (beat === 2) return "negative-frequency share " + V.f.toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, j;
+      if (beat === 4) {
+        A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0.1, 5], [0, 1.05], { xl: "r, fm", yl: "potential (scaled)" });
+        k.plot(A, function (r) { return Math.min(1.05, 0.1 / r); }, [0.1, 5], "rgba(236,230,218,.6)", 1.5, 300);
+        k.plot(A, function (r) { return Math.min(1.05, 0.1 * Math.exp(-V.mu * r / 197.327) / r); }, [0.1, 5], "#ffb547", 2.5, 300);
+        if (V.mu) { var R = 197.327 / V.mu; if (R < 5) { k.line(A.X(R), A.Y(0), A.X(R), A.Y(1.05), "rgba(236,230,218,.25)", 1, [3, 4]); k.text("1/m", A.X(R) + 4, A.Y(1.05) + 14, { size: 11, align: "left", color: "#7c766b" }); } }
+        return;
+      }
+      if (beat === 3 || beat === 5) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.8, H * 0.84, [-3, 3], [0, 6], { xl: "space", yl: "time" });
+        var t = (now / 1500) % 1; k.line(A.X(-2), A.Y(0.5), A.X(-2 + 4 * 0.4), A.Y(3), "#ffb547", 2.5); k.line(A.X(-0.4), A.Y(3), A.X(2), A.Y(5.5), "#ffb547", 2.5); k.line(A.X(-0.4), A.Y(3), A.X(2.2), A.Y(0.5), "rgba(224,90,70,.9)", 2.5, [6, 4]);
+        k.text("e⁻ forward", A.X(-1.5), A.Y(1.4), { size: 12, color: "#ffb547", align: "right" }); k.text("negative energy backwards = e⁺ forwards", A.X(1.4), A.Y(1.2), { size: 12, color: "#e05a46", align: "left" });
+        return;
+      }
+      var f = beat === 2 ? V.f : 0, tt = (now / 300) % 20 - 4;
+      A = k.axes(W * 0.04, H * 0.1, W * 0.92, H * 0.78, [-20, 20], [-1, 1], { zeroY: true, xl: "x" });
+      var vals = [], mx = 1e-9; for (j = 0; j <= 400; j++) { var x = -20 + 40 * j / 400, r = field(x, tt, f); vals.push([x, r]); mx = Math.max(mx, Math.abs(r)); }
+      for (j = 0; j < vals.length - 1; j++) { var v = vals[j][1] / mx; c.fillStyle = v >= 0 ? "rgba(255,181,71,.55)" : "rgba(224,90,70,.65)"; c.fillRect(A.X(vals[j][0]), Math.min(A.Y(0), A.Y(v)), A.X(vals[j + 1][0]) - A.X(vals[j][0]) + 0.5, Math.abs(A.Y(v) - A.Y(0))); }
+    }
+  });
+})();
+</script>

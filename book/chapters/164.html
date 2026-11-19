@@ -1,0 +1,57 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Many enzymes break carbon–hydrogen bonds, moving a proton, a hydrogen atom or a hydride ion from one molecule to another. Classical chemistry pictures the hydrogen climbing over an energy barrier. Since the late 1980s, Judith Klinman, Nigel Scrutton and others have shown that in many enzymes the hydrogen goes <em>through</em> the barrier instead. That it tunnels is established. How the protein helps it tunnel, and whether evolution tuned protein motions for the purpose, is still argued.</p>
+  <p>On the plate: a hydrogen tunnelling between donor and acceptor while the protein breathes.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why mass matters so much</h2>
+  <p>Tunnelling probability falls as {{tex:e^{-2d\sqrt{2mV}/\hbar}}} (Chapter 162): exponentially in the square root of the mass. Hydrogen is the lightest nucleus, so it tunnels far more readily than anything else, and its isotopes give a built-in experiment. Through a barrier 0.5 eV high and 0.5 Å wide, hydrogen passes with probability about {{tex:2\times10^{-7}}}, deuterium {{tex:3\times10^{-10}}}, tritium {{tex:2\times10^{-12}}}. Doubling the mass costs a factor of 600. The WKB approximation (Chapter 47) generalizes this to curved barriers: {{tex:T\approx\exp\big(-\tfrac2\hbar\int\sqrt{2m(V(x)-E)}\,dx\big)}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Distance is everything, and the protein moves</h2>
+  <p>Because the barrier width is set by how far apart donor and acceptor atoms are, small changes in distance make large changes in rate. In <em>environmentally coupled</em> or <em>vibrationally assisted</em> tunnelling models, developed by Klinman, Amnon Kohen, Sharon Hammes-Schiffer, Scrutton and others, the reaction needs the protein first to bring donor and acceptor close, a “gating” motion, then the hydrogen tunnels from the compressed geometry. The plate oscillates the donor–acceptor distance by <span class="tangle" data-var="amp" data-min="0" data-max="0.3" data-step="0.01" data-dec="2" data-value="0.10" data-px="40"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Amplitude Å">0.10</span><button type="button" data-de="1" aria-label="More">›</button></span> Å around its mean. Because the rate is exponential in distance, the brief close approaches dominate: the average rate exceeds the rate at the average distance, by more for deuterium than hydrogen. That is one reason the temperature dependence of isotope effects carries information about protein motion (Chapter 165). <span class="tag">Established</span> that tunnelling occurs.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The dynamics debate</h2>
+  <p>A sharper claim is that enzymes evolved specific fast motions, “promoting vibrations” on femtosecond to picosecond timescales, that couple to the reaction and speed tunnelling. Supporters point to mutations far from the active site that change isotope-effect temperature dependence, and to heavy-enzyme experiments, in which replacing all of a protein’s carbon, nitrogen and hydrogen with heavier isotopes changes its catalysis. Critics, prominently Arieh Warshel, argue that the electrostatic preorganization of the active site explains catalysis, and that dynamical effects are small or are already included in transition-state theory with tunnelling corrections. Klinman and Kohen’s 2013 review sets out one side. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why hydrogen tunnelling depends so strongly on mass and distance, WKB rates for H, D and T, gating and environmentally coupled tunnelling models, why fluctuations raise the average rate, and the open debate over evolved promoting motions.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does hydrogen tunnel more than heavier atoms?<span class="tap">tap</span></div><div class="a">Tunnelling falls exponentially in √(mass), and hydrogen is lightest.</div></div>
+  <div class="qa"><div class="q">Why do distance fluctuations raise the average rate?<span class="tap">tap</span></div><div class="a">The rate is exponential in distance, so brief close approaches contribute far more than distant ones subtract.</div></div>
+  <div class="qa"><div class="q">What is debated?<span class="tap">tap</span></div><div class="a">Whether evolved fast protein motions specifically promote tunnelling, beyond electrostatic preorganization.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Through the same barrier, H passes with {{tex:1.8\times10^{-7}}} and D with {{tex:2.9\times10^{-10}}}. What is the ratio (nearest hundred)?</p>
+    <form class="calc" data-answer="620" data-tol="40" data-ok="Yes: about 600. Real enzymes show smaller ratios, because barriers are not rectangular and much of the reaction is thermally activated." data-hint="1.8 × 10⁻⁷ ÷ 2.9 × 10⁻¹⁰."><span>ratio ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Ratio"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. P. Klinman, Pure Appl. Chem. 75, 601 (2003). J. P. Klinman and A. Kohen, Annu. Rev. Biochem. 82, 471 (2013). S. Hammes-Schiffer, Biochemistry 52, 2012 (2013). A. Warshel and R. P. Bora, J. Chem. Phys. 144, 180901 (2016). Checked by code: T(H) = 1.81 × 10⁻⁷, T(D) = 2.94 × 10⁻¹⁰, T(T) = 2.17 × 10⁻¹² at 0.5 eV, 0.5 Å.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { amp: 0.1 }, hb = 1.054571817e-34, eV = 1.602e-19, M = [1.67262e-27, 3.3436e-27, 5.0074e-27];
+  function kap(m) { return Math.sqrt(2 * m * 0.5 * eV) / hb * 1e-10 * 2; }
+  function avg(m, d0, a) { var s = 0, n = 200; for (var i = 0; i < n; i++) s += Math.exp(-kap(m) * (d0 + a * Math.cos(2 * Math.PI * i / n))); return s / n; }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["A hydrogen between donor and acceptor.", "log₁₀ T vs width: H (amber), D (white), T (red).", "Distance (top) and instantaneous rate (bottom, log).", "Preorganization or promoting motion?", "Proton tunnelling."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var d0 = 0.5, gH = avg(M[0], d0, V.amp) / Math.exp(-kap(M[0]) * d0), gD = avg(M[1], d0, V.amp) / Math.exp(-kap(M[1]) * d0); return "±" + V.amp.toFixed(2) + " Å breathing · average rate enhanced ×" + gH.toFixed(2) + " for H, ×" + gD.toFixed(2) + " for D · KIE " + (avg(M[0], d0, V.amp) / avg(M[1], d0, V.amp)).toFixed(0); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 1], [-25, 0], { xl: "barrier width (Å)", yl: "log₁₀ T" }); M.forEach(function (m, j) { k.plot(A, function (d) { return -kap(m) * d / Math.LN10; }, [0, 1], ["#ffb547", "#ece6da", "rgba(224,90,70,.85)"][j], 2.4); }); return; }
+      if (beat === 3) { k.text("electrostatic preorganization", W * 0.28, H * 0.4, { size: 13, color: "#ece6da" }); k.text("vs", W / 2, H * 0.5, { size: 13, color: "#b9b2a5" }); k.text("promoting vibrations", W * 0.72, H * 0.6, { size: 13, color: "#ffb547" }); return; }
+      var t = now / 1000, d = 0.5 + V.amp * Math.cos(2 * Math.PI * t * 0.7), cx = W / 2, sc = W * 0.5; k.circle(cx - d * sc / 2 - 40, H * 0.22, 14, "#ece6da"); k.text("D", cx - d * sc / 2 - 40, H * 0.22 + 5, { size: 12, color: "#14120f" }); k.circle(cx + d * sc / 2 + 40, H * 0.22, 14, "#ece6da"); k.text("A", cx + d * sc / 2 + 40, H * 0.22 + 5, { size: 12, color: "#14120f" }); var hx = cx + (Math.sin(t * 9) > 0.7 ? 1 : -1) * (d * sc / 2 + 10); k.glow(hx, H * 0.22, 10, "rgba(255,181,71,.7)"); k.circle(hx, H * 0.22, 5, "#ffb547");
+      A = k.axes(W * 0.12, H * 0.4, W * 0.82, H * 0.44, [0, 3], [-12, -4], { xl: "time (periods)", yl: "log₁₀ rate" }); [0, 1].forEach(function (j) { k.plot(A, function (tt) { return -kap(M[j]) * (0.5 + V.amp * Math.cos(2 * Math.PI * tt)) / Math.LN10; }, [0, 3], j ? "#ece6da" : "#ffb547", 2, 300); });
+    }
+  });
+})();
+</script>

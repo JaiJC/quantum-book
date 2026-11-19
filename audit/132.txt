@@ -1,0 +1,16 @@
+clock gap T=1..6 [np.float64(1.0), np.float64(0.5), np.float64(0.2929), np.float64(0.191), np.float64(0.134), np.float64(0.099)]
+T 3 gap 0.2928932188134525
+T 10 gap 0.04050702638550268
+OR N 4 adeg (2, 0.16666666666666666) cheb-construction d 3
+OR N 9 adeg (2, 0.3199999999999999) cheb-construction d 4
+OR N 16 adeg (3, 0.2916666666666667) cheb-construction d 5
+OR N 25 adeg (4, 0.27394328517924077) cheb-construction d 7
+OR N 36 adeg (4, 0.3276209677419353) cheb-construction d 8
+OR N 64 adeg (6, 0.29654613325289425) cheb-construction d 10
+OR N 100 adeg (7, 0.3163770237742877) cheb-construction d 13
+PARITY N 4 (4, 0.0)
+PARITY N 8 (8, 0.0)
+BB84 threshold 0.1101000000000003
+DI rate 0.5870415828464594
+wiesner n=20 0.0031712119389339932 paths 2^20 1048576 2^-10 0.0009765625
+grover aes 18446744073709551616

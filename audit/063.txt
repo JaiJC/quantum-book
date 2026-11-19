@@ -1,0 +1,6 @@
+== 063
+fields 2 pairings 1 (n-1)!!
+fields 4 pairings 3 (n-1)!!
+fields 6 pairings 15 (n-1)!!
+fields 8 pairings 105 (n-1)!!
+<phi^4> single point 4 fields -> 3 pairings; two vertices phi^4 phi^4 (8 fields) pairings 105

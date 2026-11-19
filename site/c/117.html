@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>117. Quantum walks and element distinctness</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="117">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>117</b> &nbsp;·&nbsp; Quantum walks and element distinctness</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">117</div><div class="part">Part Three · B · Algorithms</div><h1>Quantum walks and element distinctness</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">A drunkard taking random steps left and right ends up, after a hundred steps, typically about ten steps from where he started: the spread grows as the square root of time. A quantum walker, taking steps in superposition, ends up typically about fifty-four steps away: the spread grows in proportion to time, like a wave. On some specially built graphs the quantum walker reaches the far side exponentially faster than any classical algorithm can. Quantum walks are a second toolbox for algorithms, alongside the Fourier transform.</p>
+  <p>On the plate: a quantum walk and a classical random walk, starting from the same point.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>A coined walk on a line</h2>
+  <p>Give the walker a two-state “coin”. Each step: apply a Hadamard to the coin, then move left if the coin is 0 and right if 1, all in superposition. Paths interfere. Yakir Aharonov, Luiz Davidovich and Nicim Zagury introduced quantum walks in 1993. Run <span class="tangle" data-var="t" data-min="5" data-max="100" data-step="5" data-value="60" data-px="2"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Steps">60</span><button type="button" data-de="1" aria-label="More">›</button></span> steps. The quantum distribution, amber, has two sharp peaks near <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mi>t</mi><mi mathvariant="normal">/</mi><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\pm t/\sqrt2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1572em;vertical-align:-0.25em;"></span><span class="mord">±</span><span class="mord mathnormal">t</span><span class="mord">/</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span></span></span></span> and a spread of about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.54</mn><mi>t</mi></mrow><annotation encoding="application/x-tex">0.54t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.54</span><span class="mord mathnormal">t</span></span></span></span>; the classical one, white, is a bell curve of width <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>t</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1475em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8925em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="padding-left:0.833em;">t</span></span><span style="top:-2.8525em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1475em;"><span></span></span></span></span></span></span></span></span>. Quantum walks spread <em>ballistically</em>; random walks <em>diffusively</em>. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Continuous time, and an exponential speedup</h2>
+  <p>Edward Farhi and Sam Gutmann defined continuous-time quantum walks in 1998: evolve with the graph’s adjacency matrix as the Hamiltonian, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mo>−</mo><mi>i</mi><mi>A</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">e^{-iAt}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span></span></span></span></span>. In 2003 Andrew Childs and colleagues built a graph of two binary trees glued together at their leaves with a random cycle, with entrance and exit at the two roots. A quantum walk from one root reaches the other in time polynomial in the depth. Any classical algorithm, even one allowed to explore the graph cleverly, gets lost in the exponentially many middle vertices. It was an exponential oracle separation from a physical-looking process. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Element distinctness</h2>
+  <p>Given <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> numbers, are any two equal? Classically you must look at all of them: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> queries. Grover search over pairs gives about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">N^{3/4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3/4</span></span></span></span></span></span></span></span></span></span></span></span>. Andris Ambainis found in 2004 a quantum walk on a graph whose vertices are subsets of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">N^{2/3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2/3</span></span></span></span></span></span></span></span></span></span></span></span> elements, giving <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^{2/3})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2/3</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> queries, which is optimal. Mario Szegedy’s 2004 framework turns any classical Markov-chain search into a quantum walk with quadratically fewer steps in its spectral gap. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Discrete-time coined walks and continuous-time walks, ballistic versus diffusive spreading, the glued-trees exponential speedup, Ambainis’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">N^{2/3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2/3</span></span></span></span></span></span></span></span></span></span></span></span> algorithm for element distinctness, and Szegedy’s quantization of Markov chains.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does a quantum walk’s spread grow?<span class="tap">tap</span></div><div class="a">In proportion to t, ballistically; a classical walk spreads as √t.</div></div>
+  <div class="qa"><div class="q">What makes the glued-trees graph hard classically?<span class="tap">tap</span></div><div class="a">The exponentially many middle vertices; a classical walker cannot find the exit efficiently.</div></div>
+  <div class="qa"><div class="q">How many queries does element distinctness need quantumly?<span class="tap">tap</span></div><div class="a">Θ(N^(2/3)), by Ambainis’s quantum walk.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A classical random walk of ±1 steps: what is its spread <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>t</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1475em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8925em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="padding-left:0.833em;">t</span></span><span style="top:-2.8525em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1475em;"><span></span></span></span></span></span></span></span></span> after 100 steps?</p>
+    <form class="calc" data-answer="10" data-tol="0.05" data-ok="Yes: 10. The Hadamard quantum walk’s spread after 100 steps is about 54." data-hint="√100."><span>σ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Spread"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Y. Aharonov, L. Davidovich and N. Zagury, Phys. Rev. A 48, 1687 (1993). E. Farhi and S. Gutmann, Phys. Rev. A 58, 915 (1998). A. M. Childs et al., Proc. 35th ACM STOC, 59 (2003). A. Ambainis, SIAM J. Comput. 37, 210 (2007). M. Szegedy, FOCS 2004, 32. Checked by code: Hadamard walk spread 54.1 after 100 steps (0.541 t), total probability 1; classical spread 10.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 118</div><div class="t">Hamiltonian simulation: Trotter, qDRIFT, LCU, qubitization</div><p style="text-align:left">This is the reason Feynman proposed quantum computers in the first place.</p><p style="text-align:left"><a class="v" href="118.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="116.html">← 116. Amplitude estimation and quantum Monte Carlo</a><a href="../index.html">Contents</a><a href="118.html">118. Hamiltonian simulation: Trotter, qDRIFT, LCU, qubitization →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { t: 60 }, cache = {};
+  function qwalk(T) { if (cache[T]) return cache[T]; var L = 2 * T + 1, a0r = new Float64Array(L), a0i = new Float64Array(L), a1r = new Float64Array(L), a1i = new Float64Array(L), r2 = Math.SQRT1_2; a0r[T] = r2; a1i[T] = r2; for (var s = 0; s < T; s++) { var b0r = new Float64Array(L), b0i = new Float64Array(L), b1r = new Float64Array(L), b1i = new Float64Array(L); for (var x = 0; x < L; x++) { var c0r = (a0r[x] + a1r[x]) * r2, c0i = (a0i[x] + a1i[x]) * r2, c1r = (a0r[x] - a1r[x]) * r2, c1i = (a0i[x] - a1i[x]) * r2; if (x > 0) { b0r[x - 1] = c0r; b0i[x - 1] = c0i; } if (x < L - 1) { b1r[x + 1] = c1r; b1i[x + 1] = c1i; } } a0r = b0r; a0i = b0i; a1r = b1r; a1i = b1i; } var p = []; for (x = 0; x < L; x++) p.push(a0r[x] * a0r[x] + a0i[x] * a0i[x] + a1r[x] * a1r[x] + a1i[x] * a1i[x]); return (cache[T] = p); }
+  function sigma(p, T) { var m = 0, m2 = 0; p.forEach(function (q, i) { var x = i - T; m += q * x; m2 += q * x * x; }); return Math.sqrt(m2 - m * m); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Quantum (amber) and classical (white) walks.", "After " + V.t + " steps.", "Glued trees: entrance to exit.", "Element distinctness query counts.", "Walks."][beat]; },
+    readout: function () { if (beat <= 1) { var T = beat === 1 ? V.t : 60, p = qwalk(T); return "quantum σ = " + sigma(p, T).toFixed(1) + " · classical σ = " + Math.sqrt(T).toFixed(1); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i, c = k.ctx;
+      if (beat <= 1 || beat === 4) { var T = beat === 1 ? V.t : 60, p = qwalk(T), mx = 0; p.forEach(function (q) { mx = Math.max(mx, q); }); A = k.axes(W * 0.06, H * 0.08, W * 0.88, H * 0.78, [-T, T], [0, mx * 1.1], { xl: "position" }); c.strokeStyle = "#ffb547"; c.lineWidth = 1.8; c.beginPath(); var first = true; for (i = 0; i < p.length; i++) { if (p[i] < 1e-15) continue; var x = A.X(i - T), y = A.Y(p[i]); if (first) { c.moveTo(x, y); first = false; } else c.lineTo(x, y); } c.stroke(); k.plot(A, function (x) { return 2 * Math.exp(-x * x / (2 * T)) / Math.sqrt(2 * Math.PI * T); }, [-T, T], "rgba(236,230,218,.7)", 1.8, 400); return; }
+      if (beat === 2) { var d = 4, cx = W / 2, cy = H / 2; function tree(x0, dir) { var pts = [[x0, cy]]; for (var lv = 1; lv <= d; lv++) { var n = Math.pow(2, lv), xs = x0 + dir * lv * W * 0.08; for (var j = 0; j < n; j++) { var y = cy + (j - (n - 1) / 2) * H * 0.75 / 16; k.circle(xs, y, 2.5, "rgba(236,230,218,.6)"); var par = Math.floor(j / 2), pn = Math.pow(2, lv - 1), py = cy + (par - (pn - 1) / 2) * H * 0.75 / 16; k.line(xs - dir * W * 0.08, py, xs, y, "rgba(236,230,218,.25)", 1); } } } tree(W * 0.12, 1); tree(W * 0.88, -1); k.circle(W * 0.12, cy, 7, "#ffb547"); k.circle(W * 0.88, cy, 7, "#ffb547"); k.text("entrance", W * 0.12, cy + 22, { size: 11 }); k.text("exit", W * 0.88, cy + 22, { size: 11 }); var t = (now / 3000) % 1; k.glow(W * 0.12 + t * W * 0.76, cy, 18, "rgba(255,181,71,.6)"); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [2, 9], [0, 9], { xl: "log₁₀ N", yl: "log₁₀ queries" }); k.plot(A, function (l) { return l; }, [2, 9], "rgba(236,230,218,.6)", 2); k.plot(A, function (l) { return 0.75 * l; }, [2, 9], "rgba(224,90,70,.8)", 2); k.plot(A, function (l) { return 2 * l / 3; }, [2, 9], "#ffb547", 2.5); k.text("classical N · Grover N^¾ · walk N^⅔", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

@@ -1,0 +1,102 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Pass an electric spark through hydrogen and look at the glow through a prism. Instead of a rainbow you see four sharp lines: red, blue-green, blue and violet. Every hydrogen atom in the universe, in a lamp or in a galaxy billions of light years away, shows the same barcode. Decode it and you learn the size of the atom.</p>
+  <p>Niels Bohr decoded it in 1913 with a model that is wrong in almost every detail and right in its most important claim: atoms have only certain allowed energies, and light is emitted when an electron jumps between them.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The nucleus</h2>
+  <p>First, what is inside an atom? In 1909 Hans Geiger and Ernest Marsden fired alpha particles at gold foil a few hundred atoms thick. Most passed straight through. About one in eight thousand bounced back. Ernest Rutherford said it was as if you fired a shell at tissue paper and it came back and hit you. <button type="button" class="v" data-act="fire">Fire alpha particles</button> at the foil on the plate.</p>
+  <p>In 1911 Rutherford explained it: nearly all the mass and all the positive charge sit in a tiny nucleus, about a hundred thousand times smaller than the atom. The electrons orbit far outside. That picture is exactly the one Chapter 16 showed should collapse in a hundred-billionth of a second. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Bohr’s rules</h2>
+  <p>Bohr kept the orbits and simply forbade the collapse. He postulated that the electron’s angular momentum can only be a whole multiple of {{tex:\hbar = h/2\pi}}, that in those orbits it does not radiate, and that light is emitted only when it jumps between them, with {{tex:hf = E_\text{upper} - E_\text{lower}}}.</p>
+  <p>Balance the Coulomb pull against circular motion with {{tex:L = n\hbar}} and the allowed energies and radii follow:</p>
+  <div class="eq">{{texd:\begin{gathered}E_n = -\frac{13.6\ \text{eV}}{n^2}, \qquad r_n = n^2 a_0,\\ a_0 = 0.529\times10^{-10}\ \text{m}\end{gathered}}}</div>
+  <div class="note x-deep"><span class="mark">Deeper</span>Circular orbit: {{tex:m v^2/r = e^2/4\pi\varepsilon_0 r^2}}. Quantization: {{tex:mvr = n\hbar}}. Eliminate {{tex:v}}: {{tex:r_n = n^2\,4\pi\varepsilon_0\hbar^2/me^2}}. The energy {{tex:E = \tfrac12 mv^2 - e^2/4\pi\varepsilon_0 r = -e^2/8\pi\varepsilon_0 r}} then gives {{tex:E_n = -\frac{me^4}{2(4\pi\varepsilon_0)^2\hbar^2}\frac{1}{n^2}}}, with the constant equal to 13.6 eV.</div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Reading the barcode</h2>
+  <p>Drop the electron from level <span class="tangle" data-var="n" data-min="3" data-max="8" data-step="1" data-value="3" data-px="18"><button type="button" data-de="-1" aria-label="Lower level">‹</button><span class="num" role="slider" tabindex="0" aria-label="Upper level">3</span><button type="button" data-de="1" aria-label="Higher level">›</button></span> to level 2. The photon’s energy is the difference of the two levels, and its wavelength lands on the spectrum strip at <span class="live" id="wl">656.5 nm</span>. From 3, 4, 5 and 6 you get exactly the four visible lines: 656, 486, 434 and 410 nm. Jumps that end on level 1 give ultraviolet lines; jumps ending on level 3 give infrared ones.</p>
+  <p>All of them fit one formula, found from the data by Johannes Rydberg before anyone knew why: {{tex:1/\lambda = R\,(1/n_1^2 - 1/n_2^2)}}. Bohr derived {{tex:R}} from the electron’s mass and charge, Planck’s constant and the speed of light. It matched to within the accuracy of the time. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The nucleus moves too</h2>
+  <p>Strictly, the electron and nucleus both orbit their common centre of mass, so the electron’s mass should be replaced by the reduced mass {{tex:m_e M/(m_e + M)}}. For hydrogen this shifts the ground state from {{tex:-13.606}} to {{tex:-13.598}} eV. For heavy hydrogen, with a nucleus twice as massive, the lines move slightly towards the blue: the red line shifts by 0.18 nm.</p>
+  <p>In 1931–32 Harold Urey, Ferdinand Brickwedde and George Murphy concentrated hydrogen by evaporation and saw faint companion lines exactly there. That was the discovery of deuterium. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Energy levels without light</h2>
+  <p>In 1914 James Franck and Gustav Hertz fired electrons through mercury vapour and measured the current reaching a collector as they raised the voltage. The current rose, then dropped sharply at 4.9 volts, rose again, and dropped at 9.8, and again at 14.7. Electrons with 4.9 eV can give exactly that much to a mercury atom, lifting it to its first excited level, and lose almost all their energy; with less, they bounce off without losing any. The excited atoms then emit ultraviolet light at 254 nm, which is 4.9 eV. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Where Bohr fails</h2>
+  <p>The model cannot handle helium, with two electrons. It cannot say why some lines are bright and others faint. It predicts the wrong angular momentum for the ground state, which is really zero, not {{tex:\hbar}}. It misses the fine splitting of each line, and it cannot explain why atoms bind into molecules. And it gives no reason for its own rules.</p>
+  <p>The reason arrived in 1924, when Louis de Broglie suggested that the electron is a wave, and that an allowed orbit is one that fits a whole number of wavelengths around it. Chapter 25 tests that idea directly.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>The nuclear atom, Bohr’s quantized orbits and energy levels, the Rydberg formula, the reduced-mass correction, the Franck–Hertz confirmation, and a list of the model’s failures.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What did Geiger and Marsden see that revealed the nucleus?<span class="tap">tap</span></div><div class="a">A small fraction of alpha particles bounced back from thin gold foil, which needs a tiny, dense, positive centre.</div></div>
+  <div class="qa"><div class="q">What sets the wavelength of a hydrogen line?<span class="tap">tap</span></div><div class="a">The energy difference between the two levels: hc/λ = 13.6 eV × (1/n₁² − 1/n₂²).</div></div>
+  <div class="qa"><div class="q">What do the current drops in the Franck–Hertz experiment show?<span class="tap">tap</span></div><div class="a">That mercury atoms can only absorb energy in fixed amounts (4.9 eV), so atomic energy levels are discrete.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What wavelength, in nm, does hydrogen emit when the electron falls from level 4 to level 2? Use 13.6 eV and {{tex:hc = 1240}} eV nm.</p>
+    <form class="calc" data-answer="486.3" data-tol="1.5" data-ok="Yes: 13.6 × (1/4 − 1/16) = 2.55 eV, and 1240/2.55 ≈ 486 nm, the blue-green line." data-alt="2.55~That is the photon energy in eV. Convert with λ = 1240/E." data-hint="Find the energy difference, then λ = 1240 eV nm / E."><span>λ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Wavelength in nanometres"><span>nm</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H. Geiger and E. Marsden, Proc. R. Soc. A 82, 495 (1909). E. Rutherford, Phil. Mag. 21, 669 (1911). N. Bohr, Phil. Mag. 26, 1 (1913). J. Franck and G. Hertz, Verh. Dtsch. Phys. Ges. 16, 457 (1914). H. C. Urey, F. G. Brickwedde and G. M. Murphy, Phys. Rev. 39, 164 (1932). Checked by code (CODATA): E₁ = −13.598 eV (reduced mass); Hα 656.47 nm vacuum; D–H shift 0.179 nm.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 3 }, alphas = [], jumpT = 0;
+  function lam(n2, n1) { return 1 / (10967758.34 * (1 / (n1 * n1) - 1 / (n2 * n2))) * 1e9; }
+  function col(l) { if (l < 400) return "#b388ff"; if (l < 450) return "#7f6bff"; if (l < 495) return "#5fb0ff"; if (l < 570) return "#6fe08a"; if (l < 590) return "#f0e05a"; if (l < 620) return "#ffaa3c"; if (l < 750) return "#ff5a3c"; return "#7c766b"; }
+  Book.plate({
+    init: function (k, st) { for (var q in st.vals) V[q] = st.vals[q]; Book.text("wl", lam(V.n, 2).toFixed(1) + " nm"); jumpT = performance.now(); },
+    beat: function (i) { beat = i; if (i === 1) alphas = []; if (i === 3) jumpT = performance.now(); },
+    act: function (a) { if (a === "fire") for (var i = 0; i < 40; i++) alphas.push({ x: 0, y: Math.random(), t: performance.now() + i * 60, b: Math.random() }); },
+    set: function (n, v) { V[n] = v; Book.text("wl", lam(v, 2).toFixed(1) + " nm"); jumpT = performance.now(); },
+    caption: function () { return ["Hydrogen’s visible spectrum.", "Alpha particles on gold foil.", "Bohr’s orbits.", "A jump from level " + V.n + " to 2.", "Hydrogen and deuterium lines.", "Franck–Hertz: current against voltage.", "Hydrogen’s visible spectrum.", "Hydrogen’s visible spectrum."][beat]; },
+    readout: function () { if (beat === 3) { var E = 13.6 * (0.25 - 1 / (V.n * V.n)); return "photon " + E.toFixed(2) + " eV · λ " + lam(V.n, 2).toFixed(1) + " nm"; } if (beat === 4) return "Hα: H 656.47 nm · D 656.29 nm"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i;
+      function strip(y, h, lines, lo, hi) { var x0 = W * 0.06, w = W * 0.88; k.rr(x0, y, w, h, 3, "#0c0b0a", "#24211d"); lines.forEach(function (l) { var x = x0 + (l[0] - lo) / (hi - lo) * w; c.fillStyle = l[1] || col(l[0]); c.fillRect(x - 1.5, y + 2, 3, h - 4); }); for (var t = lo; t <= hi; t += 50) k.text(String(t), x0 + (t - lo) / (hi - lo) * w, y + h + 14, { mono: true, size: 10 }); }
+      if (beat === 0 || beat === 6 || beat === 7) { strip(H * 0.35, H * 0.25, [[656.47], [486.27], [434.17], [410.29]], 380, 700); k.text("wavelength (nm)", W / 2, H * 0.78, {}); return; }
+      if (beat === 1) {
+        var fx = W * 0.6; k.rr(fx - 3, H * 0.1, 6, H * 0.8, 1, "#b9b2a5");
+        alphas.forEach(function (a) { var u = (now - a.t) / 1600; if (u < 0) return; var y = H * 0.1 + a.y * H * 0.8, x; var back = a.b < 0.03, defl = a.b < 0.12; if (u < 0.5) x = u * 2 * fx; else { var v = (u - 0.5) * 2; if (back) { x = fx - v * fx; y += v * 30; } else { x = fx + v * W * 0.4; y += defl ? v * 60 * (a.b - 0.06) * 20 : 0; } } if (u < 1) k.circle(x, y, 3, back ? "#ffb547" : "#ece6da"); });
+        k.text("gold foil", fx, H * 0.95, {});
+        return;
+      }
+      if (beat === 2 || beat === 3) {
+        var cx = W * 0.3, cy = H * 0.5, s = Math.min(W * 0.28, H * 0.45) / 64;
+        k.glow(cx, cy, 12); k.circle(cx, cy, 4, "#ffb547");
+        for (var n = 1; n <= 8; n++) k.circle(cx, cy, Math.min(n * n * s * 0.9, H * 0.46), null, n === 2 ? "#ece6da" : "#2a2724");
+        if (beat === 3) {
+          var u = Math.min(1, (now - jumpT) / 900), rN = Math.min(V.n * V.n * s * 0.9, H * 0.46), r2 = 4 * s * 0.9, r = rN + (r2 - rN) * u, a = now / 1000 * 2; k.circle(cx + r * Math.cos(a), cy + r * Math.sin(a), 5, "#ece6da");
+          if (u >= 1) { var wl = lam(V.n, 2), d = ((now - jumpT - 900) / 1000) * W * 0.4; k.line(cx + d, cy - 20, cx + d + 30, cy - 20, col(wl), 3); }
+          var E0 = H * 0.15, ex = W * 0.65, ew = W * 0.3; for (var m = 1; m <= 8; m++) { var y = E0 + (1 - 1 / (m * m)) * H * 0.7 * 0 + (1 / (m * m)) * H * 0.7; k.line(ex, H * 0.88 - (1 - 1 / (m * m)) * H * 0.7, ex + ew, H * 0.88 - (1 - 1 / (m * m)) * H * 0.7, m === 2 || m === V.n ? "#ece6da" : "#3a3631"); }
+          var yA = H * 0.88 - (1 - 1 / (V.n * V.n)) * H * 0.7, yB = H * 0.88 - 0.75 * H * 0.7; k.line(ex + ew / 2, yA, ex + ew / 2, yB, col(lam(V.n, 2)), 3); k.text("energy levels", ex + ew / 2, H * 0.08, {});
+          strip(H * 0.9, H * 0.05, [[lam(V.n, 2)]], 380, 700);
+        }
+        return;
+      }
+      if (beat === 4) { strip(H * 0.25, H * 0.2, [[656.47, "#ff5a3c"]], 655.5, 657.5); strip(H * 0.6, H * 0.2, [[656.47, "#ff5a3c"], [656.29, "#ffb547"]], 655.5, 657.5); k.text("ordinary hydrogen", W / 2, H * 0.22, {}); k.text("enriched sample: faint deuterium line 0.18 nm bluer", W / 2, H * 0.57, { color: "#ffb547" }); return; }
+      if (beat === 5) {
+        var A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, 16], [0, 1.1], { xt: [0, 4.9, 9.8, 14.7], xl: "accelerating voltage (V)", yl: "current" });
+        k.plot(A, function (v) { var ph = v % 4.9; return (0.12 + 0.05 * v) * (ph / 4.9) * (1 - Math.exp(-ph * 2)) + 0.03 * v * 0.1 + 0.02; }, [0, 16], "#ffb547", 2.5, 800);
+      }
+    }
+  });
+})();
+</script>

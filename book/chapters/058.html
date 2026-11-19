@@ -1,0 +1,86 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Picture a mattress: a grid of springs, one at every point, each tied to its neighbours. Press one point and a ripple spreads. Now make the springs smaller and closer together, without limit. What is left is a field, a number at every point of space that wobbles and passes its wobble on. Every quantum field in the Standard Model starts as one of these, written down with a single line, its Lagrangian density.</p>
+  <p>On the plate: a chain of masses joined by springs. Increase the number of masses and the chain becomes a continuous string.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>From beads to a field</h2>
+  <p>Take {{tex:N}} beads of mass {{tex:M}} spaced {{tex:a}} apart, joined by springs of stiffness {{tex:\kappa}}. Each bead obeys Newton’s law with forces from its two neighbours. Let {{tex:a \to 0}} with the mass per length {{tex:\mu = M/a}} and the tension {{tex:T = \kappa a}} fixed. The bead displacements {{tex:q_i(t)}} become a field {{tex:\phi(x, t)}}, and the difference between neighbours becomes a derivative. The equation of motion becomes the wave equation of Chapter 5, with speed {{tex:\sqrt{T/\mu}}}.</p>
+  <p>Use <span class="tangle" data-var="N" data-min="6" data-max="120" data-step="2" data-value="16" data-px="2"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Beads">16</span><button type="button" data-de="1" aria-label="More">›</button></span> beads. With few beads the pulse breaks into jitter; with many it travels cleanly as a continuous wave.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Lagrangian density</h2>
+  <p>For the beads, the Lagrangian of Chapter 12 is a sum over beads of kinetic minus potential energy. In the limit the sum becomes an integral, {{tex:L = \int\mathcal L\,dx}}, and the action is {{tex:S = \int\mathcal L\,d^4x}}. For a relativistic scalar field the simplest choice is</p>
+  <div class="eq">{{texd:\mathcal L = \tfrac12\,\partial_\mu\phi\,\partial^\mu\phi - \tfrac12 m^2\phi^2}}</div>
+  <p>Demanding {{tex:\delta S = 0}} for all variations gives the field version of the Euler–Lagrange equation, {{tex:\partial_\mu\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} = \frac{\partial\mathcal L}{\partial\phi}}}, which here is Klein–Gordon, Chapter 56. The mass term is a spring tying each bead to the ground. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What the mass term does</h2>
+  <p>A wave of wavenumber {{tex:k}} on the bead chain has frequency {{tex:\omega^2 = \omega_0^2 + \frac{4\kappa}{M}\sin^2(ka/2)}}, where {{tex:\omega_0}} comes from the springs to the ground. Set {{tex:\omega_0 =}} <span class="tangle" data-var="w0" data-min="0" data-max="2" data-step="0.1" data-dec="1" data-value="1" data-px="10"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Ground spring frequency">1.0</span><button type="button" data-de="1" aria-label="More">›</button></span>. For small {{tex:k}} the curve becomes {{tex:\omega^2 = \omega_0^2 + c^2k^2}}: exactly {{tex:E^2 = m^2 + p^2}} with {{tex:E = \hbar\omega}}. The grid spacing shows only at wavenumbers near {{tex:\pi/a}}. Whether real space has a smallest spacing is unknown; Part Five returns to it.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Three Lagrangians for the whole Standard Model</h2>
+  <p>Every field you will meet is built from three kinds of term.</p>
+  <div class="eq">{{texd:\begin{gathered}\mathcal L_{\text{scalar}} = \tfrac12(\partial\phi)^2 - \tfrac12m^2\phi^2 \\ \mathcal L_{\text{Dirac}} = \bar\psi\,(i\gamma^\mu\partial_\mu - m)\,\psi \\ \mathcal L_{\text{Maxwell}} = -\tfrac14F_{\mu\nu}F^{\mu\nu} - j^\mu A_\mu\end{gathered}}}</div>
+  <p>Vary each and you recover Klein–Gordon, Dirac (Chapter 57) and Maxwell’s four equations (Chapter 15), with {{tex:F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu}} and {{tex:\bar\psi = \psi^\dagger\gamma^0}}. The plate shows a small change to a field configuration and the change in action it produces; on a solution, every small change leaves the action unchanged to first order. Interactions are extra products of fields, such as {{tex:\bar\psi\gamma^\mu\psi A_\mu}}, which couples electrons to light (Chapter 67).</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Why Lagrangians</h2>
+  <p>Writing equations of motion directly would also work. Lagrangians win for three reasons. Symmetry is visible: if {{tex:\mathcal L}} is unchanged by a transformation, so is the physics, and Noether’s theorem (next chapter) turns each symmetry into a conservation law. Relativity is automatic: if {{tex:\mathcal L}} is a Lorentz scalar, the equations are covariant. And quantization starts from it, through canonical momenta (Chapter 60) or the path integral of Chapter 53, where {{tex:e^{iS}}} weighs each field configuration.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Fields as limits of coupled oscillators, the Lagrangian density and the field Euler–Lagrange equation, the mass term as a spring to the ground, the scalar, Dirac and Maxwell Lagrangians, and why physics is written this way.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does the mass term correspond to on the bead chain?<span class="tap">tap</span></div><div class="a">A spring tying each bead to a fixed ground, giving a minimum frequency even at k = 0.</div></div>
+  <div class="qa"><div class="q">What equation does ½(∂φ)² − ½m²φ² produce?<span class="tap">tap</span></div><div class="a">The Klein–Gordon equation, (∂² + m²)φ = 0.</div></div>
+  <div class="qa"><div class="q">Where does the grid spacing show up in the dispersion?<span class="tap">tap</span></div><div class="a">Near k ≈ π/a, where the sine bends away from the straight relativistic curve.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A string has tension 100 N and mass per length 0.01 kg/m. What is its wave speed {{tex:\sqrt{T/\mu}}}, in m/s?</p>
+    <form class="calc" data-answer="100" data-tol="0.5" data-ok="Yes: √(100/0.01) = 100 m/s." data-hint="√(10⁴)."><span>v =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Speed in m/s"><span>m/s</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H. Goldstein, C. Poole and J. Safko, Classical Mechanics, ch. 13. D. Tong, Lectures on Quantum Field Theory, ch. 1. M. D. Schwartz, Quantum Field Theory and the Standard Model, ch. 3. Checked by code: bead-chain dispersion ω² = ω₀² + (4κ/M) sin²(ka/2) against direct normal-mode diagonalization; small-k limit ω² = ω₀² + c²k².</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { N: 16, w0: 1 }, q = null, v = null, lastN = 0, t0 = 0;
+  function reset(N) { q = new Float64Array(N); v = new Float64Array(N); lastN = N; for (var i = 0; i < N; i++) { var x = i / (N - 1); q[i] = Math.exp(-Math.pow((x - 0.25) / 0.06, 2)); v[i] = 0.25 * 2 * (x - 0.25) / (0.06 * 0.06) * q[i] * 0; } }
+  function step(N, dt) { var a = 1 / (N - 1), c2 = 0.0625 / (a * a), w = beat === 3 ? V.w0 * 2 : 0; for (var s = 0; s < 4; s++) { for (var i = 1; i < N - 1; i++) v[i] += dt * (c2 * (q[i + 1] - 2 * q[i] + q[i - 1]) - w * w * q[i]); for (i = 1; i < N - 1; i++) q[i] += dt * v[i]; } }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; lastN = 0; },
+    set: function (n, v2) { V[n] = v2; if (n === "N") lastN = 0; },
+    caption: function () { return ["A chain of beads becoming a string.", V.N + " beads carrying a pulse.", "Kinetic minus potential, summed over the chain.", "Dispersion: chain (amber) and continuum (white).", "Varying a field: δS = 0 on a solution.", "Lagrangians.", "Beads to fields."][beat]; },
+    readout: function () { if (beat === 3) return "ω₀ = " + V.w0.toFixed(1) + " (the mass) · grid shows near ka = π"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 3) {
+        A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, Math.PI], [0, 3.2], { xl: "ka", yl: "ω" });
+        k.plot(A, function (x) { return Math.sqrt(V.w0 * V.w0 + 4 * Math.pow(Math.sin(x / 2), 2)); }, [0, Math.PI], "#ffb547", 2.5);
+        k.plot(A, function (x) { return Math.min(3.2, Math.sqrt(V.w0 * V.w0 + x * x)); }, [0, Math.PI], "rgba(236,230,218,.6)", 1.5, 200);
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.06, H * 0.1, W * 0.88, H * 0.7, [0, 1], [-1.2, 1.2], { zeroY: true, xl: "x" });
+        var e = 0.25 * Math.sin(now / 700); k.plot(A, function (x) { return Math.sin(Math.PI * x); }, [0, 1], "#ffb547", 2.5); k.plot(A, function (x) { return Math.sin(Math.PI * x) + e * Math.sin(3 * Math.PI * x); }, [0, 1], "rgba(236,230,218,.6)", 1.5);
+        k.text("δS ∝ ε², not ε: the solution sits at a stationary point", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      var N = beat === 1 ? V.N : (beat === 2 ? 12 : 60); if (lastN !== N) { reset(N); t0 = now; }
+      step(N, 0.0025 * Math.min(1, 16 / N * 1.0) * (N > 40 ? 0.5 : 1)); if (now - t0 > 9000) { reset(N); t0 = now; }
+      var x0 = W * 0.06, x1 = W * 0.94, y0 = H * 0.5, amp = H * 0.25;
+      c.strokeStyle = "rgba(236,230,218,.35)"; c.lineWidth = 1; c.beginPath(); for (i = 0; i < N; i++) { var X = x0 + (x1 - x0) * i / (N - 1), Y = y0 - amp * q[i]; if (i) c.lineTo(X, Y); else c.moveTo(X, Y); } c.stroke();
+      for (i = 0; i < N; i++) k.circle(x0 + (x1 - x0) * i / (N - 1), y0 - amp * q[i], Math.max(2, 8 - N / 15), "#ffb547");
+      if (beat === 2) k.text("L = Σ ½M q̇ᵢ² − Σ ½κ(qᵢ₊₁ − qᵢ)²", W / 2, H * 0.12, { size: 14, color: "#ece6da" });
+    }
+  });
+})();
+</script>

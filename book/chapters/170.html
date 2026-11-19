@@ -1,0 +1,53 @@
+<section class="beat" data-beat="0">
+  <p class="drop">How do we tell one smell from another? The textbook answer is shape: odorant molecules fit receptors like keys in locks. In 1996 the biophysicist Luca Turin revived an old alternative: receptors might sense a molecule’s <em>vibrations</em>, through electrons tunnelling inelastically and losing a quantum of vibrational energy. The idea makes a crisp prediction. Replace an odorant’s hydrogens with deuterium: the shape is essentially unchanged, but C–H vibrations drop in frequency by a third. If vibration matters, the smell should change.</p>
+  <p>On the plate: the published isotope tests, and what each found.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The proposed mechanism</h2>
+  <p>In Turin’s model, an electron in the receptor tunnels from a donor site to an acceptor site whose energy is lower by {{tex:\hbar\omega}}. Elastic tunnelling is blocked by the energy mismatch; it can proceed only if the electron hands energy {{tex:\hbar\omega}} to a vibration of the bound odorant. The receptor would thus act as a tiny inelastic-tunnelling spectrometer, firing when an odorant has a vibration at the right frequency. Jennifer Brookes, Marshall Stoneham and colleagues showed in 2007 that the physics is not impossible for plausible parameters. The question is whether receptors actually work this way. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Isotope tests</h2>
+  <p>A C–H stretch near 2,900 cm⁻¹ (0.36 eV) becomes about 2,130 cm⁻¹ for C–D, by the reduced-mass ratio (Chapter 165). Choose a study: <button type="button" class="v" data-pick="s:kv">Keller & Vosshall 2004 (humans)</button> <button type="button" class="v" data-pick="s:fly">Franco et al. 2011 (fruit flies)</button> <button type="button" class="v" data-pick="s:gane">Gane et al. 2013 (humans)</button> <button type="button" class="v" data-pick="s:block">Block et al. 2015 (receptors)</button>. The results disagree. Human panels could not tell acetophenone from its deuterated form; flies could distinguish isotopomers and be trained to avoid one; humans in the 2013 study distinguished deuterated musks but not acetophenone. In 2015 Eric Block, Hiroaki Matsunami and colleagues tested the human musk receptor OR5AN1 and 25 other receptor–odorant pairs in cells and found no difference between isotopomers. Turin and colleagues replied that impurities and assay sensitivity could explain the null result; Block’s group replied that trace impurities could equally explain the positive behavioural results. <span class="tag">Speculative</span>, with strong evidence against.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What a decisive test needs</h2>
+  <p>Behavioural tests suffer from a confound: deuterated samples are made by different chemistry and can carry trace impurities that animals smell at parts per billion. A decisive experiment would use rigorously purified isotopomers verified by gas chromatography, measure single identified receptors with known ligands, include a positive control showing the assay can detect small differences, and test a quantitative prediction of the tunnelling model, for example the shift in response with the isotopic frequency change. As of 2026, receptor-level data do not support vibrational sensing, and structural studies of insect and mammalian olfactory receptors bound to odorants are consistent with shape-based, promiscuous binding. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The inelastic-tunnelling model of olfaction, the isotope-substitution test, the conflicting fly and human behavioural results, the null receptor-level result and its dispute, and the design of a decisive experiment.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does deuteration test the vibration theory?<span class="tap">tap</span></div><div class="a">It changes vibrational frequencies substantially while leaving shape almost unchanged.</div></div>
+  <div class="qa"><div class="q">What did Block et al. find?<span class="tap">tap</span></div><div class="a">No difference in receptor responses to isotopomers across 26 receptor–odorant pairs.</div></div>
+  <div class="qa"><div class="q">What confounds behavioural tests?<span class="tap">tap</span></div><div class="a">Trace impurities in the synthesized isotopomers.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A C–H stretch at 2,900 cm⁻¹ shifts by a factor of 1.363 on deuteration. What is the C–D frequency, in cm⁻¹?</p>
+    <form class="calc" data-answer="2128" data-tol="10" data-ok="Yes: about 2,130 cm⁻¹, a shift of 0.1 eV a receptor spectrometer would easily notice." data-hint="2900 ÷ 1.363."><span>ν ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Frequency"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: L. Turin, Chem. Senses 21, 773 (1996). A. Keller and L. B. Vosshall, Nat. Neurosci. 7, 337 (2004). J. C. Brookes et al., Phys. Rev. Lett. 98, 038101 (2007). M. I. Franco et al., Proc. Natl Acad. Sci. USA 108, 3797 (2011). S. Gane et al., PLoS One 8, e55780 (2013). E. Block et al., Proc. Natl Acad. Sci. USA 112, E2766 (2015), and the exchange of letters that followed.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, S = { kv: ["Keller & Vosshall 2004", "humans, acetophenone vs d8", "could not distinguish", 0], fly: ["Franco et al. 2011", "Drosophila, several odorants", "distinguished; trainable", 1], gane: ["Gane et al. 2013", "humans, musks and acetophenone", "musks yes, acetophenone no", 2], block: ["Block et al. 2015", "OR5AN1 + 25 receptor pairs in cells", "no isotope difference", 0] };
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Shape or vibration?", "Inelastic electron tunnelling across a receptor.", "Published isotope tests.", "Designing a decisive test.", "Olfaction."][beat]; },
+    readout: function () { if (beat === 2) { var s = S[Book.state.picks.s || "block"]; return s[0] + " · " + s[1] + " · " + s[2]; } return "C–H ≈ 2900 cm⁻¹ · C–D ≈ 2130 cm⁻¹"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { k.line(W * 0.2, H * 0.3, W * 0.2, H * 0.7, "#ece6da", 3); k.line(W * 0.8, H * 0.45, W * 0.8, H * 0.85, "#ece6da", 3); k.text("donor", W * 0.2, H * 0.25, { size: 12 }); k.text("acceptor", W * 0.8, H * 0.4, { size: 12 }); var t = (now / 2000) % 1; k.glow(W * (0.2 + 0.6 * t), H * (0.35 + 0.15 * t), 8, "rgba(255,181,71,.8)"); k.text("electron gives ħω to the odorant’s vibration", W / 2, H * 0.92, { size: 11, color: "#b9b2a5" }); k.circle(W / 2, H * 0.55, 18, "rgba(255,181,71,.25)", "#ffb547"); return; }
+      if (beat === 2) { var keys = ["kv", "fly", "gane", "block"], sel = Book.state.picks.s || "block"; keys.forEach(function (key, j) { var s = S[key], y = H * (0.12 + j * 0.21), on = key === sel, col = s[3] === 1 ? "#ffb547" : s[3] === 2 ? "rgba(236,230,218,.8)" : "rgba(224,90,70,.85)"; k.rr(W * 0.08, y, W * 0.84, H * 0.17, 8, on ? "#1a1713" : "#100e0c", on ? "#ffb547" : "rgba(185,178,165,.25)"); k.text(s[0], W * 0.12, y + H * 0.06, { size: 13, align: "left" }); k.text(s[2], W * 0.88, y + H * 0.06, { size: 12, color: col, align: "right" }); k.text(s[1], W * 0.12, y + H * 0.13, { size: 10, color: "#b9b2a5", align: "left" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [1000, 3400], [0, 1.1], { xl: "vibrational frequency (cm⁻¹)" }); k.rr(A.X(2900) - 6, A.Y(1), 12, A.Y(0) - A.Y(1), 2, "#ffb547"); k.text("C–H", A.X(2900), A.Y(1) - 8, { size: 12, color: "#ffb547" }); k.rr(A.X(2128) - 6, A.Y(1), 12, A.Y(0) - A.Y(1), 2, "rgba(236,230,218,.8)"); k.text("C–D", A.X(2128), A.Y(1) - 8, { size: 12 });
+    }
+  });
+})();
+</script>

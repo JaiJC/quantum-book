@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>171. DNA mutation and proton tunneling</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="171">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>171</b> &nbsp;·&nbsp; DNA mutation and proton tunneling</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">171</div><div class="part">Part Four · Quantum biology</div><h1>DNA mutation and proton tunneling</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">DNA’s bases pair through hydrogen bonds: guanine with cytosine, adenine with thymine. In 1963 Per-Olov Löwdin suggested that the protons in those bonds could tunnel across to the partner base, briefly turning each base into a rare <em>tautomer</em> that pairs with the wrong partner. If a replicating polymerase arrived at that moment, it could copy the mismatch: a spontaneous mutation, from quantum tunnelling. It is an arresting link between quantum physics, cancer and evolution. Sixty years on, the tautomers are known to exist; how much tunnelling contributes, and whether it matters for real mutation rates, is unsettled.</p>
+  <p>On the plate: a proton’s double well in a base pair.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Tautomers and mispairs</h2>
+  <p>In the G–C pair, two protons sit in hydrogen bonds between the bases. If both move across together, a <em>double proton transfer</em>, the result is G*–C*, both in their rare tautomeric forms. Normally the canonical form is lower in energy by a few tenths of an eV, so the tautomer is rare and short-lived. If the strands separate while the tautomer persists, G* can pair with thymine instead of cytosine, a transition mutation after the next round of copying. In 2015 Isaac Kimsey, Hashim Al-Hashimi and colleagues used NMR relaxation dispersion to detect rare, transient Watson–Crick-like mispairs in DNA, formed by tautomerization or ionization, at populations around 0.1–1% and lifetimes of milliseconds or less. <span class="tag">Established</span> that such mispairs occur.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>A double well with a bath</h2>
+  <p>Model the proton as a particle in an asymmetric double well, with energy offset <span class="tangle" data-var="dE" data-min="0.05" data-max="0.5" data-step="0.01" data-dec="2" data-value="0.30" data-px="40"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Offset eV">0.30</span><button type="button" data-de="1" aria-label="Larger">›</button></span> eV and barrier <span class="tangle" data-var="Eb" data-min="0.3" data-max="1.2" data-step="0.02" data-dec="2" data-value="0.60" data-px="30"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Barrier eV">0.60</span><button type="button" data-de="1" aria-label="Higher">›</button></span> eV, coupled to the thermal motion of the surrounding DNA and water at 310 K. Tunnelling: <button type="button" class="v" data-pick="tun:off">off (classical over-the-barrier)</button> <button type="button" class="v" data-pick="tun:on">on (rate enhanced ×100)</button>. Two quantities matter: the equilibrium tautomer fraction, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><msup><mi>e</mi><mrow><mo>−</mo><mi mathvariant="normal">Δ</mi><mi>E</mi><mi mathvariant="normal">/</mi><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\approx e^{-\Delta E/k_BT}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">Δ</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mtight">/</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0315em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></span>, which tunnelling does not change; and how quickly that equilibrium is reached, which it does. In 2022 Louie Slocombe, Marco Sacchi and Jim Al-Khalili, modelling the G–C pair as an open quantum system, found that tunnelling makes the tautomer form within picoseconds and populate it far more than classical estimates. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Does it cause mutations?</h2>
+  <p>For a tautomer to become a mutation it must survive until a polymerase reads it, and the tautomer is also short-lived: if it decays back in picoseconds while strand separation takes much longer, the polymerase meets the canonical form. Some modelling suggests tautomers can persist through strand separation in some cases; others find they revert first. Polymerases also check base-pair geometry, and repair enzymes fix many mismatches. Spontaneous mutation rates, about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">10</span></span></span></span></span></span></span></span></span></span></span></span> per base per replication in humans after proofreading and repair, have many contributing causes. Whether proton tunnelling contributes a measurable share is not known. <span class="tag">Speculative</span> for a role in real mutation rates.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Löwdin’s tautomer hypothesis, double proton transfer in G–C, the experimental detection of transient mispairs, an open-system double-well model separating equilibrium populations from rates, and the gap between tautomer formation and mutation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Does tunnelling change the equilibrium tautomer fraction?<span class="tap">tap</span></div><div class="a">No; it changes how fast equilibrium is reached, not the Boltzmann ratio.</div></div>
+  <div class="qa"><div class="q">What was detected experimentally in 2015?<span class="tap">tap</span></div><div class="a">Rare, transient Watson–Crick-like mispairs, by NMR relaxation dispersion.</div></div>
+  <div class="qa"><div class="q">Why might a tautomer not cause a mutation?<span class="tap">tap</span></div><div class="a">It may revert before the polymerase reads it, and proofreading and repair intervene.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With the tautomer 0.30 eV above the canonical form and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mo>=</mo><mn>0.0267</mn></mrow><annotation encoding="application/x-tex">k_BT = 0.0267</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.0267</span></span></span></span> eV, what is the equilibrium tautomer fraction?</p>
+    <form class="calc" data-answer="1.32e-5" data-tol="0.05e-5" data-ok="Yes: e^(−11.2) ≈ 1.3 × 10⁻⁵." data-hint="exp(−0.30/0.0267)."><span>fraction ≈</span><input inputmode="decimal" autocomplete="off" placeholder="1e-5" aria-label="Fraction"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P.-O. Löwdin, Rev. Mod. Phys. 35, 724 (1963). I. J. Kimsey et al., Nature 519, 315 (2015). L. Slocombe, M. Sacchi and J. Al-Khalili, Commun. Phys. 5, 109 (2022). Checked by code: e^(−0.30/0.02671) = 1.32 × 10⁻⁵.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 172</div><div class="t">Vision and single-photon detection in the retina</div><p style="text-align:left">Your eye can sometimes register a single photon, slightly but measurably above chance.</p><p style="text-align:left"><a class="v" href="172.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="170.html">← 170. Olfaction: the vibration theory and its tests</a><a href="../index.html">Contents</a><a href="172.html">172. Vision and single-photon detection in the retina →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { dE: 0.3, Eb: 0.6 }, kT = 0.02671, nu = 1e13;
+  function rates() { var F = (Book.state.picks.tun || "on") === "on" ? 100 : 1, kf = nu * F * Math.exp(-V.Eb / kT); return { kf: kf, kb: kf * Math.exp(V.dE / kT) }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Proton double well in a G–C pair.", "Canonical and tautomeric G–C.", "Tautomer fraction vs time (log time).", "From tautomer to mutation?", "DNA tautomers."][beat]; },
+    readout: function () { if (beat === 2) { var r = rates(), eq = r.kf / (r.kf + r.kb), tau = 1 / (r.kf + r.kb); return "equilibrium fraction " + eq.toExponential(2) + " · relaxation time " + (tau < 1e-9 ? (tau * 1e12).toFixed(1) + " ps" : tau < 1e-6 ? (tau * 1e9).toFixed(1) + " ns" : (tau * 1e6).toExponential(1) + " µs") + " · tautomer lifetime " + (1 / r.kb).toExponential(1) + " s"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 0 || beat === 4) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-1.5, 1.5], [-0.1, 1.0], { xl: "proton position", yl: "energy (eV)" }); k.plot(A, function (x) { var w = V.Eb * Math.pow(x * x - 1, 2) + V.dE * (x + 1) / 2; return Math.min(1, w); }, [-1.5, 1.5], "#ffb547", 2.5, 300); k.text("canonical", A.X(-1), A.Y(-0.06), { size: 11 }); k.text("tautomer", A.X(1), A.Y(V.dE) - 10, { size: 11 }); return; }
+      if (beat === 1) { ["G", "C"].forEach(function (b, j) { k.rr(W * (0.18 + j * 0.42), H * 0.3, W * 0.22, H * 0.4, 10, "#14120f", "rgba(236,230,218,.6)"); k.text(b, W * (0.29 + j * 0.42), H * 0.52, { size: 22 }); }); for (var i = 0; i < 2; i++) { var y = H * (0.42 + i * 0.16), t = (Math.sin(now / 700) + 1) / 2; k.line(W * 0.4, y, W * 0.6, y, "rgba(236,230,218,.3)", 1.5); k.circle(W * (0.44 + 0.12 * t), y, 6, "#ffb547"); } k.text("two protons shuttle together", W / 2, H * 0.85, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { ["tautomer forms (ps)", "strands separate", "polymerase reads", "proofreading and repair"].forEach(function (s, j) { var x = W * (0.13 + j * 0.25); k.rr(x - W * 0.11, H * 0.42, W * 0.22, H * 0.16, 8, "#14120f", j === 0 ? "#ffb547" : "rgba(236,230,218,.5)"); k.text(s, x, H * 0.51, { size: 10, color: j === 0 ? "#ffb547" : "#ece6da" }); }); k.text("each step can erase the error", W / 2, H * 0.75, { size: 12, color: "#b9b2a5" }); return; }
+      var r = rates(), eq = r.kf / (r.kf + r.kb), K = r.kf + r.kb; A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-15, 0], [0, 1.1], { xl: "log₁₀ time (s)", yl: "fraction / equilibrium" }); k.plot(A, function (lt) { return 1 - Math.exp(-K * Math.pow(10, lt)); }, [-15, 0], "#ffb547", 2.5, 300); k.line(A.X(-15), A.Y(1), A.X(0), A.Y(1), "rgba(236,230,218,.3)", 1);
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

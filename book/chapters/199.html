@@ -1,0 +1,60 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Designing a protein means choosing an amino acid for every position so that the chain folds into the desired shape and binds the desired target. The choices interact: whether a residue fits depends on its neighbours. Written down, that is an optimization over an enormous discrete space, and it can be phrased exactly in the Ising or QUBO form that quantum annealers accept (Chapter 125). Several groups have tried. This chapter builds a tiny design problem and solves it three ways.</p>
+  <p>On the plate: a six-position design problem.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Design as QUBO</h2>
+  <p>Give each position {{tex:i}} a set of allowed residues {{tex:a}}, and a binary variable {{tex:x_{ia}}} that is 1 if residue {{tex:a}} is placed at {{tex:i}}. The energy is a sum of single-residue terms {{tex:E_i(a)}} (fit to the backbone) and pair terms {{tex:E_{ij}(a,b)}} (interactions between neighbours), all quadratic in the {{tex:x}}’s; a penalty {{tex:P(\sum_a x_{ia} - 1)^2}} forces exactly one residue per position. That is a QUBO, mappable to an Ising Hamiltonian for an annealer or to QAOA. With 20 amino acids at {{tex:n}} positions there are {{tex:20^n}} sequences; real design also optimizes side-chain rotamers. Vikram Mulligan and colleagues mapped peptide design to an annealer in 2020; Tomáš Babej and colleagues mapped coarse-grained lattice folding to D-Wave hardware in 2018. <span class="tag">Established</span> as a formulation.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Solve it</h2>
+  <p>Six positions, three residue types each, random but fixed energies: {{tex:3^6 = 729}} sequences, 18 binary variables. The plate finds the exact optimum by enumeration, then runs simulated annealing, the classical analogue of quantum annealing, from 50 random starts with <span class="tangle" data-var="sw" data-min="1" data-max="200" data-step="1" data-value="20" data-px="1"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Sweeps">20</span><button type="button" data-de="1" aria-label="More">›</button></span> sweeps each, and <button type="button" class="v" data-act="run">reruns</button>. With 20 sweeps roughly a third of the runs land on the optimum and the rest in nearby local minima; with 200 sweeps most do, and taking the best of the 50 restarts finds it essentially always. That is how practical annealing is used: many cheap restarts. On real design problems with hundreds of positions, classical tools such as Rosetta’s packers, simulated annealing, integer programming and now deep-learning design methods are strong; published annealer studies match but do not beat them. <span class="tag">Established</span> for the classical results.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique</h2>
+  <p>No demonstrated quantum advantage exists for biological optimization. Annealers face limited connectivity, which forces embeddings that consume many physical qubits per variable; analogue control errors; and small gaps on hard instances (Chapter 125). Classical heuristics are excellent on the structured instances that real design produces, and machine-learning design (RFdiffusion, ProteinMPNN, from David Baker’s group) has transformed the field without any quantum component. Optimization is the least promising of the quantum-biology applications in this part. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Protein design as a QUBO with one-hot encoding and penalty terms, the size of sequence space, exact and simulated-annealing solutions of a small instance, published annealer studies, and why classical and machine-learning design dominate.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How is “one residue per position” enforced?<span class="tap">tap</span></div><div class="a">A quadratic penalty P(Σₐ x_ia − 1)².</div></div>
+  <div class="qa"><div class="q">Why does connectivity hurt annealers?<span class="tap">tap</span></div><div class="a">Dense interactions must be embedded with chains of physical qubits per variable.</div></div>
+  <div class="qa"><div class="q">What has transformed protein design recently?<span class="tap">tap</span></div><div class="a">Deep-learning methods such as RFdiffusion and ProteinMPNN.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With 20 amino acids at 10 positions, what is {{tex:\log_{10}}} of the number of sequences?</p>
+    <form class="calc" data-answer="13.0" data-tol="0.05" data-ok="Yes: 20¹⁰ ≈ 1.0 × 10¹³." data-hint="10 × log₁₀ 20 = 10 × 1.301."><span>log₁₀ ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="log10 sequences"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: V. K. Mulligan et al., bioRxiv 752485 (2020). T. Babej, M. Fingerhuth and C. Ing, arXiv:1811.00713 (2018). T. Albash and D. A. Lidar, Rev. Mod. Phys. 90, 015002 (2018). J. L. Watson et al., Nature 620, 1089 (2023) (RFdiffusion). Checked by the plate: exhaustive enumeration of 729 sequences.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { sw: 20 }, n = 6, A = 3, E1 = [], E2 = [], best = null, all = [], succ = 0, seed = 53;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  (function () { var s = 97; function r() { s = (s * 16807) % 2147483647; return s / 2147483647 - 0.5; } for (var i = 0; i < n; i++) { E1.push([r(), r(), r()]); E2.push([]); for (var a = 0; a < A; a++) { E2[i].push([r() * 2, r() * 2, r() * 2]); } } })();
+  function en(seq) { var e = 0; for (var i = 0; i < n; i++) { e += E1[i][seq[i]]; if (i < n - 1) e += E2[i][seq[i]][seq[i + 1]]; } if (n > 2) e += 0.5 * E2[n - 1][seq[n - 1]][seq[0]]; return e; }
+  (function () { best = { e: 1e9 }; for (var c = 0; c < Math.pow(A, n); c++) { var s = [], x = c; for (var i = 0; i < n; i++) { s.push(x % A); x = Math.floor(x / A); } var e = en(s); all.push(e); if (e < best.e) best = { e: e, s: s }; } })();
+  var bestRun = 1e9; function anneal() { succ = 0; bestRun = 1e9; for (var r = 0; r < 50; r++) { var s = []; for (var i = 0; i < n; i++) s.push(Math.floor(rnd() * A)); var e = en(s); for (var w = 0; w < V.sw; w++) { var T = 1.5 * Math.pow(0.002 / 1.5, w / Math.max(1, V.sw - 1)); for (i = 0; i < n; i++) { var old = s[i]; s[i] = Math.floor(rnd() * A); var e2 = en(s); if (e2 <= e || rnd() < Math.exp(-(e2 - e) / T)) e = e2; else s[i] = old; } } if (Math.abs(e - best.e) < 1e-9) succ++; bestRun = Math.min(bestRun, e); } }
+  Book.plate({
+    init: function (k, st) { for (var nn in st.vals) V[nn] = st.vals[nn]; anneal(); },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; anneal(); },
+    act: function () { anneal(); },
+    caption: function () { return ["Six positions, three residue types.", "One-hot binary variables per position.", "Energies of all 729 sequences; optimum in amber.", "Classical and ML design dominate.", "Annealing for design."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "optimum " + best.s.map(function (a) { return "ABC"[a]; }).join("") + " (E = " + best.e.toFixed(3) + ") · simulated annealing with " + V.sw + " sweeps found it in " + succ + "/50 runs · best of 50: " + (Math.abs(bestRun - best.e) < 1e-9 ? "optimum ✓" : "missed"); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, Ax, i;
+      if (beat === 1) { for (i = 0; i < n; i++) for (var a = 0; a < A; a++) { var on = best.s[i] === a; k.rr(W * (0.15 + i * 0.12), H * (0.3 + a * 0.13), W * 0.09, H * 0.1, 4, on ? "#ffb547" : "#14120f", "rgba(236,230,218,.4)"); k.text(on ? "1" : "0", W * (0.195 + i * 0.12), H * (0.365 + a * 0.13), { size: 13, color: on ? "#14120f" : "#7c766b" }); } k.text("x_ia: one 1 per column", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { ["Rosetta packers", "integer programming", "RFdiffusion / ProteinMPNN", "annealers: no advantage shown"].forEach(function (s, j) { k.text(s, W / 2, H * (0.22 + j * 0.17), { size: 14, color: j === 3 ? "#e05a46" : "#ece6da" }); }); return; }
+      var sorted = all.slice().sort(function (a, b) { return a - b; }); Ax = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 729], [sorted[0] - 0.2, sorted[728] + 0.2], { xl: "sequences, sorted", yl: "energy" }); var c = k.ctx; c.strokeStyle = "rgba(236,230,218,.7)"; c.lineWidth = 2; c.beginPath(); sorted.forEach(function (e, j) { if (j) c.lineTo(Ax.X(j), Ax.Y(e)); else c.moveTo(Ax.X(j), Ax.Y(e)); }); c.stroke(); k.circle(Ax.X(0), Ax.Y(sorted[0]), 7, "#ffb547");
+    }
+  });
+})();
+</script>

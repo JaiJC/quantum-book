@@ -1,0 +1,8 @@
+1-1/e = 0.6321205588285577
+radon-222 half-life 3.82 d -> decay const per day 0.1814521415078391
+euler energy after t=10: 1.352406914710763
+rk4 energy after t=10: 0.4999993064240872
+Euler per-step energy factor 1+h^2 = 1.01 ; after 100 steps 2.7048138294215285
+Q 2 peak A 2.065591114802842 FWHM(power) 0.54055 w0/Q 0.5
+Q 5 peak A 5.0251890762322935 FWHM(power) 0.20204999999999984 w0/Q 0.2
+Q 20 peak A 20.00624309028301 FWHM(power) 0.04999999999999982 w0/Q 0.05

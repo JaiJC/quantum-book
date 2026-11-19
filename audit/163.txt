@@ -1,0 +1,23 @@
+kT310 meV 26.713733112650054 kJ/mol 2.5774834116275045
+500nm eV 2.4797463510755455
+Debye 150mM nm 0.7849246248313698
+kBT/h 298 6209312498751.617 k(80kJ) 0.058859274938935065
+p T 1.8130733934101852e-07
+e T 0.6961048394459218
+Zeeman/kT 2.1668164053469108e-07
+Marcus decade A 1.64470363785289
+R 1.0 [np.float64(-1.066), np.float64(-1.07897), np.float64(0.79659)]
+R 1.4 [np.float64(-1.11672), np.float64(-1.13728), np.float64(0.65932)]
+R 2.0 [np.float64(-1.04917), np.float64(-1.0885), np.float64(0.46278)]
+R 3.0 [np.float64(-0.88528), np.float64(-0.98516), np.float64(0.22619)]
+R 5.0 [np.float64(-0.68642), np.float64(-0.93489), np.float64(0.03747)]
+ENAQT gamma 0.001 0.7416
+ENAQT gamma 0.1 0.752
+ENAQT gamma 0.5 0.7632
+ENAQT gamma 1 0.7516
+ENAQT gamma 2 0.7098
+ENAQT gamma 5 0.5874
+ENAQT gamma 20 0.3025
+ENAQT gamma 100 0.0824
+eps 0 [np.float64(0.75), np.float64(0.715), np.float64(0.644), np.float64(0.564), np.float64(0.452), np.float64(0.323), np.float64(0.126), np.float64(0.043)]
+eps 4 [np.float64(0.141), np.float64(0.188), np.float64(0.267), np.float64(0.32), np.float64(0.336), np.float64(0.286), np.float64(0.124), np.float64(0.043)]

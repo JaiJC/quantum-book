@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>150. Benchmarking and evaluating advantage claims</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="150">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>150</b> &nbsp;·&nbsp; Benchmarking and evaluating advantage claims</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">150</div><div class="part">Part Three · E · Hardware, simulation and practice</div><h1>Benchmarking and evaluating advantage claims</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Since 2019 quantum advantage has been announced many times, and classical computers have taken back several of those announcements within weeks. As a reader of press releases, a reviewer of grant applications, or someday an investor or policymaker, you need a way to tell a solid claim from a fragile one. This chapter gives you the metrics hardware makers quote, what each hides, and a ten-question checklist you can apply to any claim.</p>
+  <p>On the plate: four famous claims, scored against the checklist.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Metrics and what they hide</h2>
+  <p><strong>Quantum volume</strong> (IBM, 2019) is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> for the largest <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> at which random square circuits (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> qubits, depth <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>) pass a heavy-output test; it rewards fidelity and connectivity but saturates for large machines. <strong>Layer fidelity</strong> and <strong>EPLG</strong> (error per layered gate) measure full layers of two-qubit gates across a chain of qubits, catching crosstalk that isolated-gate numbers miss. <strong>CLOPS</strong> counts circuit layers per second, including classical overhead. For error-corrected machines, the number that matters is <strong>logical error per cycle</strong> and how it scales with distance (Chapter 139). Average gate fidelity alone hides coherent and correlated errors (Chapter 135). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Ten questions for any advantage claim</h2>
+  <p>(1) Is the task defined precisely? (2) Is the output verifiable, classically or by another quantum device? (3) Was the classical baseline the best available, run by experts in that method? (4) Is the classical cost estimate for exact or for approximate simulation at the device’s actual fidelity? (5) Have independent groups tried to simulate it? (6) Is the task useful, or a benchmark only? (7) Are error bars and raw data public? (8) Does the advantage grow with size, or is it a single point? (9) Is post-selection or error mitigation hiding a cost? (10) Who paid for the press release?</p>
+  <p>Choose a claim: <button type="button" class="v" data-pick="c:syc">Sycamore 2019</button> <button type="button" class="v" data-pick="c:ibm">IBM “utility” 2023</button> <button type="button" class="v" data-pick="c:dw">D-Wave 2025</button> <button type="button" class="v" data-pick="c:echo">Quantum Echoes 2025</button>. IBM’s June 2023 <em>Nature</em> paper by Youngseok Kim and colleagues simulated spin dynamics on 127 qubits with error mitigation. Within two weeks Joseph Tindall and colleagues reproduced it with tensor-network belief propagation, and Tomislav Begušić, Johnnie Gray and Garnet Chan with sparse Pauli dynamics, both on ordinary computers. That did not make the experiment worthless: it showed what error mitigation can do. It did show that the classical side had not been tried hard enough. The scores on the plate are this book’s judgement, shown so you can disagree. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Value against cost</h2>
+  <p>The US Defense Advanced Research Projects Agency asks a sharper question in its Quantum Benchmarking Initiative: will a given approach deliver computations whose value exceeds their cost, at utility scale, by 2033? In November 2025 it advanced eleven companies to Stage B, a year of detailed scrutiny of their designs by independent teams. That framing, value over cost, rather than speed on a contrived task, is the right one for anyone deciding where money and careers should go. <span class="tag">Established</span> for the programme; <span class="tag">Speculative</span> for its outcome.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Quantum volume, layer fidelity and EPLG, CLOPS, logical error per cycle, a ten-question checklist for advantage claims, the IBM 2023 case and its classical replies, and DARPA’s value-over-cost test.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why can quantum volume mislead for big machines?<span class="tap">tap</span></div><div class="a">It tests only square circuits, so it saturates and says little about large-scale performance.</div></div>
+  <div class="qa"><div class="q">What undid the 2023 utility claim’s classical-hardness argument?<span class="tap">tap</span></div><div class="a">Tensor-network and Pauli-propagation simulations by experts in those methods.</div></div>
+  <div class="qa"><div class="q">What is DARPA’s criterion?<span class="tap">tap</span></div><div class="a">Whether the computation’s value exceeds its cost at utility scale.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A machine passes the quantum-volume test for square circuits of width 20 but not 21. What is its quantum volume?</p>
+    <form class="calc" data-answer="1048576" data-tol="1" data-ok="Yes: 2²⁰ = 1,048,576." data-hint="QV = 2ⁿ."><span>QV =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Quantum volume"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. W. Cross et al., Phys. Rev. A 100, 032328 (2019). D. C. McKay et al., arXiv:2311.05933 (layer fidelity). Y. Kim et al., Nature 618, 500 (2023). J. Tindall et al., PRX Quantum 5, 010308 (2024). T. Begušić, J. Gray and G. K.-L. Chan, Sci. Adv. 10, eadk4321 (2024). DARPA Quantum Benchmarking Initiative, Stage B selection (November 2025). Last checked 18 November 2026.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 151</div><div class="t">Classical simulation: tensor networks, stabilizer methods, Pauli propagation</div><p style="text-align:left">The best way to test a quantum computer is to try hard to simulate it classically.</p><p style="text-align:left"><a class="v" href="151.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="149.html">← 149. Control systems, cryogenics, and scaling</a><a href="../index.html">Contents</a><a href="151.html">151. Classical simulation: tensor networks, stabilizer methods, Pauli propagation →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, Q = ["task defined", "verifiable", "best classical baseline", "approximate-sim cost", "independent attempts", "useful", "open data", "scales with size", "no hidden cost", "independent of PR"];
+  var S = { syc: [2, 1, 0, 0, 2, 0, 2, 1, 2, 1], ibm: [2, 1, 0, 0, 2, 1, 2, 1, 1, 1], dw: [2, 1, 1, 1, 2, 1, 2, 1, 2, 1], echo: [2, 2, 1, 1, 1, 1, 2, 1, 2, 1] }, N = { syc: "Sycamore 2019: random circuits, spoofed classically by 2022", ibm: "IBM 2023: utility experiment, simulated classically within weeks", dw: "D-Wave 2025: spin dynamics, tensor-network rebuttals contested", echo: "Quantum Echoes 2025: verifiable OTOC, independent checks pending" };
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Scoring advantage claims.", "What each metric captures.", "Amber: satisfied · white: partly · red: no.", "Value vs cost.", "Benchmarking."][beat]; },
+    readout: function () { var c = Book.state.picks.c || "ibm"; if (beat === 2 || beat === 0) { var t = S[c].reduce(function (a, b) { return a + b; }, 0); return N[c] + " · score " + t + "/20 (this book’s judgement)"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = Book.state.picks.c || "ibm";
+      if (beat === 1) { [["quantum volume", "fidelity × connectivity, small n"], ["layer fidelity / EPLG", "crosstalk across layers"], ["CLOPS", "throughput incl. classical"], ["logical error / cycle", "what matters after QEC"]].forEach(function (m, j) { var y = H * (0.18 + j * 0.18); k.text(m[0], W * 0.42, y, { size: 14, color: "#ffb547", align: "right" }); k.text(m[1], W * 0.46, y, { size: 12, color: "#b9b2a5", align: "left" }); }); return; }
+      if (beat === 3) { var t = (now / 4000) % 1; k.line(W * 0.2, H * 0.6, W * 0.8, H * 0.6, "#ece6da", 3); k.circle(W / 2, H * 0.62, 6, "#ece6da"); var tilt = 0.15 * Math.sin(t * 6.28); k.rr(W * 0.25, H * 0.6 - 40 - tilt * 100, 70, 40, 6, "rgba(255,181,71,.8)"); k.text("value", W * 0.25 + 35, H * 0.6 - 15 - tilt * 100, { size: 12, color: "#14120f" }); k.rr(W * 0.65, H * 0.6 - 40 + tilt * 100, 70, 40, 6, "rgba(224,90,70,.8)"); k.text("cost", W * 0.65 + 35, H * 0.6 - 15 + tilt * 100, { size: 12, color: "#14120f" }); k.text("DARPA QBI: by 2033?", W / 2, H * 0.85, { size: 13, color: "#b9b2a5" }); return; }
+      var rh = H * 0.8 / Q.length; Q.forEach(function (q, j) { var y = H * 0.08 + j * rh, v = S[c][j]; k.text((j + 1) + ". " + q, W * 0.5, y + rh * 0.65, { size: 12, color: "#ece6da", align: "right" }); k.rr(W * 0.54, y + 4, W * 0.3, rh - 8, 4, v === 2 ? "rgba(255,181,71,.8)" : v === 1 ? "rgba(236,230,218,.45)" : "rgba(224,90,70,.8)"); });
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

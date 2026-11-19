@@ -1,0 +1,72 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Give someone a filled-in Sudoku and they can check it in a minute. Give them a blank one of size 100 × 100 and, as far as anyone knows, no method can fill it before the Sun burns out. Is there a fast method nobody has found? That is the P versus NP question, worth a million dollars and still open. Quantum computers live inside this landscape of hard and easy problems, and to say exactly what they can and cannot do, you need its map. Part Three begins with that map.</p>
+  <p>On the plate: a Turing machine, adding one to a binary number, one step at a time.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The simplest computer</h2>
+  <p>Alan Turing in 1936 defined computation with a machine that reads and writes symbols on an endless tape, one cell at a time, following a finite table of rules: in state {{tex:q}}, reading symbol {{tex:a}}, write {{tex:b}}, move left or right, go to state {{tex:q'}}. Every algorithm anyone has found can be run on such a machine; the <em>Church–Turing thesis</em> says every effective procedure can. <button type="button" class="v" data-act="step">Step the machine</button> or <button type="button" class="v" data-act="reset">reset it</button>. It moves to the right end, then carries ones to zeros leftward until it can write a one. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>How fast is fast?</h2>
+  <p>Complexity theory counts steps as a function of input size {{tex:n}}. <em>Polynomial</em> time, {{tex:n^k}}, is considered efficient; <em>exponential</em>, {{tex:2^n}}, is not. Set {{tex:n =}} <span class="tangle" data-var="n" data-min="10" data-max="100" data-step="5" data-value="40" data-px="3"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Size">40</span><button type="button" data-de="1" aria-label="Larger">›</button></span> and compare, at a billion steps a second. At 40, {{tex:n^3}} takes 64 microseconds; {{tex:2^n}} takes 18 minutes. At 100, {{tex:2^n}} takes {{tex:4\times10^{13}}} years. No hardware improvement rescues an exponential.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The classes</h2>
+  <p><b>P</b>: problems solvable in polynomial time. <b>NP</b>: problems whose solutions can be <em>checked</em> in polynomial time. <b>BPP</b>: solvable in polynomial time by a randomized algorithm that is right with probability at least 2/3; repeating it and taking the majority makes the error exponentially small, by a Chernoff bound. <b>PSPACE</b>: solvable with polynomial memory, however long it takes. We know {{tex:\text{P}\subseteq\text{NP}\subseteq\text{PSPACE}}} and {{tex:\text{P}\subseteq\text{BPP}}}, but not whether any of these inclusions is strict.</p>
+  <p>Its quantum counterpart, <b>BQP</b>, appears in Chapter 128. It contains factoring, which is believed not to be in P, and is believed not to contain the NP-complete problems. Choose a class to highlight: <button type="button" class="v" data-pick="c:P">P</button> <button type="button" class="v" data-pick="c:NP">NP</button> <button type="button" class="v" data-pick="c:BQP">BQP</button> <button type="button" class="v" data-pick="c:PSPACE">PSPACE</button>. <span class="tag">Established</span> as definitions and proven inclusions; the separations are open.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>NP-completeness</h2>
+  <p>In 1971 Stephen Cook and, independently, Leonid Levin showed that Boolean satisfiability (SAT) is as hard as anything in NP: any NP problem can be translated, in polynomial time, into a SAT instance. Such problems are <em>NP-complete</em>. Richard Karp then showed 21 classic problems are NP-complete by such <em>reductions</em>, for example turning 3-SAT into finding a clique in a graph. Thousands are known now, including protein folding on lattice models and many scheduling problems. A fast algorithm for any one gives fast algorithms for all. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The extended Church–Turing thesis</h2>
+  <p>The strong form says that any physically reasonable computer can be simulated by a probabilistic Turing machine with at most polynomial slowdown. Quantum computers are the main challenge to it: if factoring is truly hard classically, Shor’s algorithm (Chapter 114) shows a physical device that beats every classical one exponentially. Whether large quantum computers can be built is the experimental question of Parts 3C–3E. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Turing machines and the Church–Turing thesis, polynomial versus exponential time, P, NP, BPP and PSPACE, NP-completeness and reductions, and the extended Church–Turing thesis that quantum computing challenges.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does it mean for a problem to be in NP?<span class="tap">tap</span></div><div class="a">A proposed solution can be verified in polynomial time.</div></div>
+  <div class="qa"><div class="q">Why is BPP considered efficient despite errors?<span class="tap">tap</span></div><div class="a">Repetition and majority vote shrink the error exponentially.</div></div>
+  <div class="qa"><div class="q">Is factoring NP-complete?<span class="tap">tap</span></div><div class="a">It is in NP but not believed NP-complete; it is in BQP.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An algorithm takes {{tex:2^n}} steps at {{tex:10^9}} steps per second. For {{tex:n = 60}}, how many years?</p>
+    <form class="calc" data-answer="36.6" data-tol="0.5" data-ok="Yes: 2⁶⁰ ≈ 1.15×10¹⁸ steps, 1.15×10⁹ s, about 36.6 years. Add ten to n and it becomes 37,000 years." data-hint="2⁶⁰ ≈ 1.153×10¹⁸; divide by 10⁹ and by 3.156×10⁷."><span>time ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Years"><span>years</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. M. Turing, Proc. London Math. Soc. 42, 230 (1936). S. A. Cook, Proc. 3rd ACM STOC, 151 (1971); L. Levin, Problems of Information Transmission 9, 265 (1973). R. M. Karp, in Complexity of Computer Computations (1972). M. Sipser, Introduction to the Theory of Computation. S. Arora and B. Barak, Computational Complexity. S. Aaronson, Quantum Computing Since Democritus. Checked by code: 2⁶⁰/10⁹ s = 36.6 years; binary-increment machine output verified on all 8-bit inputs.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 40 }, tape, head, state, steps, done;
+  function reset() { tape = "1011".split(""); head = 0; state = "R"; steps = 0; done = false; }
+  function step() { if (done) return; var a = head >= 0 && head < tape.length ? tape[head] : "_"; steps++;
+    if (state === "R") { if (a === "_") { state = "C"; head--; } else head++; }
+    else if (state === "C") { if (a === "1") { tape[head] = "0"; head--; } else if (a === "0") { tape[head] = "1"; done = true; } else { tape.unshift("1"); head = 0; done = true; } } }
+  function fmtT(s) { if (s < 1e-3) return (s * 1e6).toPrecision(3) + " µs"; if (s < 1) return (s * 1e3).toPrecision(3) + " ms"; if (s < 3600) return s.toPrecision(3) + " s"; if (s < 3.156e7) return (s / 3600).toPrecision(3) + " h"; return (s / 3.156e7).toExponential(1) + " yr"; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; reset(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    act: function (a) { if (a === "reset") reset(); else step(); },
+    caption: function () { return ["A Turing machine adding one in binary.", "State " + state + (done ? " (halted)" : "") + ", step " + steps + ".", "n³ against 2ⁿ, at 10⁹ steps per second.", "Complexity classes (believed relationships).", "Reductions: SAT at the centre.", "Classical and quantum.", "Computation."][beat]; },
+    readout: function () { if (beat === 2) return "n = " + V.n + " · n³: " + fmtT(Math.pow(V.n, 3) / 1e9) + " · 2ⁿ: " + fmtT(Math.pow(2, V.n) / 1e9); if (beat === 1 || beat === 0) return "tape " + tape.join("") + " · " + (done ? "done: 1011 + 1 = " + tape.join("") : "running"); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat <= 1 || beat === 6) { if (beat !== 1 && Math.floor(now / 600) % 1 === 0 && !done && now % 600 < 20) step(); var cw = Math.min(56, W * 0.1), n = Math.max(tape.length + 2, 7), x0 = (W - n * cw) / 2, y = H * 0.45; for (i = -1; i < n - 1; i++) { var x = x0 + (i + 1) * cw, ch = i >= 0 && i < tape.length ? tape[i] : "_"; k.rr(x + 2, y, cw - 4, cw, 4, "#14120f", "rgba(236,230,218,.35)"); k.text(ch, x + cw / 2, y + cw * 0.65, { size: 20, color: ch === "_" ? "#7c766b" : "#ece6da" }); } var hx = x0 + (head + 1) * cw + cw / 2; c.fillStyle = "#ffb547"; c.beginPath(); c.moveTo(hx, y - 6); c.lineTo(hx - 10, y - 24); c.lineTo(hx + 10, y - 24); c.fill(); k.text("state " + state, hx, y - 32, { size: 12, color: "#ffb547" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [10, 100], [-6, 22], { xl: "n", yl: "log₁₀ seconds" }); k.plot(A, function (x) { return Math.log10(Math.pow(x, 3) / 1e9); }, [10, 100], "#ece6da", 2); k.plot(A, function (x) { return x * Math.log10(2) - 9; }, [10, 100], "#ffb547", 2.5); k.line(A.X(10), A.Y(Math.log10(1.4e10 * 3.156e7)), A.X(100), A.Y(Math.log10(1.4e10 * 3.156e7)), "rgba(224,90,70,.6)", 1, [4, 4]); k.text("age of the universe", A.X(99), A.Y(Math.log10(1.4e10 * 3.156e7)) - 6, { size: 11, align: "right", color: "#e05a46" }); k.circle(A.X(V.n), A.Y(V.n * Math.log10(2) - 9), 6, "#ffb547"); return; }
+      if (beat === 3 || beat === 5) { var sel = Book.state.picks.c || "BQP", cx = W / 2, cy = H * 0.55; function el(x, y, rx, ry, name, col) { c.save(); c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, 6.283); c.strokeStyle = sel === name ? "#ffb547" : col; c.lineWidth = sel === name ? 3 : 1.5; c.stroke(); if (sel === name) { c.fillStyle = "rgba(255,181,71,.08)"; c.fill(); } c.restore(); } var R = Math.min(W, H); el(cx, cy, R * 0.46, R * 0.4, "PSPACE", "rgba(236,230,218,.4)"); el(cx - R * 0.08, cy + R * 0.05, R * 0.3, R * 0.26, "NP", "rgba(236,230,218,.5)"); el(cx + R * 0.1, cy + R * 0.08, R * 0.24, R * 0.2, "BQP", "rgba(224,90,70,.7)"); el(cx, cy + R * 0.14, R * 0.12, R * 0.08, "P", "rgba(236,230,218,.7)"); k.text("PSPACE", cx, cy - R * 0.33, { size: 13 }); k.text("NP", cx - R * 0.27, cy - R * 0.08, { size: 13 }); k.text("BQP", cx + R * 0.27, cy - R * 0.02, { size: 13, color: "#e05a46" }); k.text("P", cx, cy + R * 0.18, { size: 13 }); k.text("factoring", cx + R * 0.13, cy + R * 0.01, { size: 11, color: "#ffb547" }); return; }
+      if (beat === 4) { var cx2 = W / 2, cy2 = H / 2; k.circle(cx2, cy2, 30, "rgba(255,181,71,.2)", "#ffb547", 2); k.text("SAT", cx2, cy2 + 5, { size: 14, color: "#ffb547" }); ["3-SAT", "clique", "vertex cover", "Hamiltonian path", "subset sum", "graph colouring", "lattice protein folding"].forEach(function (s, j) { var a = j / 7 * 6.283, r = Math.min(W, H) * 0.36; k.line(cx2 + 34 * Math.cos(a), cy2 + 34 * Math.sin(a), cx2 + (r - 20) * Math.cos(a), cy2 + (r - 20) * Math.sin(a), "rgba(255,181,71,.4)", 1.5); k.text(s, cx2 + r * Math.cos(a), cy2 + r * Math.sin(a) + 4, { size: 12 }); }); }
+    }
+  });
+})();
+</script>

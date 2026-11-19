@@ -1,0 +1,2 @@
+== 075
+SU(N) gauge bosons N^2-1: SU(2)=3, SU(3)=8, SU(5)=24

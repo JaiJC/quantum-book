@@ -1,0 +1,82 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Every term in the Dyson series of Chapter 62 is the vacuum average of a product of many field operators. Computing such averages directly would be hopeless. In 1950 Gian-Carlo Wick found that they reduce to something a child could do: pair the fields up, two by two, in every possible way. Each pairing is one Feynman diagram, and each pair is one line.</p>
+  <p>On the plate: a row of fields joined in pairs. Step through every possible pairing.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Time ordering</h2>
+  <p>Field operators at different times don’t commute, so the order matters. The S-matrix needs the <em>time-ordered</em> product, which simply puts later fields to the left:</p>
+  <div class="eq">{{texd:T\{\phi(x)\phi(y)\} = \begin{cases}\phi(x)\phi(y) & x^0 > y^0\\ \phi(y)\phi(x) & y^0 > x^0\end{cases}}}</div>
+  <p>Its vacuum average defines the <em>Feynman propagator</em>, {{tex:D_F(x - y) = \langle0|T\{\phi(x)\phi(y)\}|0\rangle}}: the amplitude for a quantum created at the earlier point to be absorbed at the later one. Whichever comes first, the creation always happens before the absorption.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Pair everything</h2>
+  <p>Wick’s theorem says the time-ordered product of free fields equals the sum, over all ways of pairing some of them, of the propagators for the pairs times normal-ordered products of the rest (Chapter 60). In the vacuum, normal-ordered pieces vanish, so</p>
+  <div class="eq">{{texd:\langle0|T\{\phi_1\phi_2\cdots\phi_n\}|0\rangle = \sum_{\text{pairings}}\,\prod D_F(x_i - x_j)}}</div>
+  <p>For four fields there are three pairings: (12)(34), (13)(24), (14)(23). Choose <span class="tangle" data-var="n" data-min="2" data-max="8" data-step="2" data-value="4" data-px="18"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Number of fields">4</span><button type="button" data-de="1" aria-label="More">›</button></span> fields and <button type="button" class="v" data-act="next">step through the pairings</button>. The count is {{tex:(n-1)!! = 1\cdot3\cdot5\cdots(n-1)}}: 1, 3, 15, 105. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The propagator in momentum space</h2>
+  <p>Fourier transformed, the propagator is strikingly simple:</p>
+  <div class="eq">{{texd:D_F(p) = \frac{i}{p^2 - m^2 + i\epsilon}}}</div>
+  <p>It blows up when {{tex:p^2 = m^2}}, the condition for a real particle. The tiny {{tex:i\epsilon}} decides how to go around the two poles at {{tex:p^0 = \pm E}} when integrating over energy. The plate shows the complex {{tex:p^0}} plane: the {{tex:+i\epsilon}} pushes the positive pole just below the axis and the negative one just above. Closing the contour below for later times picks up the positive-energy pole, a particle moving forward; closing above for earlier times picks up the negative one, an antiparticle moving forward the other way (Chapter 56). The {{tex:i\epsilon}} is the mathematical form of causality.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Symmetry factors</h2>
+  <p>Pairings that give the same picture must be counted correctly. With one {{tex:\phi^4/4!}} vertex and nothing else, the four fields at the same point pair in 3 ways, each joining the point to itself twice; the {{tex:1/4!}} and the 3 combine into a factor {{tex:3/24 = 1/8}}. That {{tex:1/8}} is the diagram’s <em>symmetry factor</em>, one over the number of ways to rearrange its lines without changing it. The {{tex:1/4!}} in the Lagrangian is chosen precisely so that most diagrams come out with factor one.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Time ordering, the Feynman propagator, Wick’s theorem as complete pairings with {{tex:(n-1)!!}} terms, the momentum-space propagator and the {{tex:i\epsilon}} prescription, and symmetry factors.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How many complete pairings do 6 fields have?<span class="tap">tap</span></div><div class="a">5 × 3 × 1 = 15.</div></div>
+  <div class="qa"><div class="q">Where does the propagator blow up, and why?<span class="tap">tap</span></div><div class="a">At p² = m², where the internal line could be a real particle.</div></div>
+  <div class="qa"><div class="q">What does +iε encode?<span class="tap">tap</span></div><div class="a">Causality: positive energy propagates forward in time, negative energy backward (antiparticles forward).</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many complete pairings do 8 fields have?</p>
+    <form class="calc" data-answer="105" data-tol="0.1" data-ok="Yes: 7 × 5 × 3 × 1 = 105." data-alt="24~That is 4!. Count (n−1)!!." data-hint="(n − 1)!! with n = 8."><span>pairings =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Number of pairings"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. C. Wick, Phys. Rev. 80, 268 (1950). M. E. Peskin and D. V. Schroeder, ch. 4. Checked by code: complete pairings 1, 3, 15, 105 for 2, 4, 6, 8 fields; one-vertex vacuum bubble factor 3/4! = 1/8.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 4 }, idx = 0, cache = {};
+  function pairings(l) { if (!l.length) return [[]]; var a = l[0], out = []; for (var i = 1; i < l.length; i++) { var rest = l.slice(1, i).concat(l.slice(i + 1)); pairings(rest).forEach(function (p) { out.push([[a, l[i]]].concat(p)); }); } return out; }
+  function P(n) { if (!cache[n]) { var l = []; for (var i = 0; i < n; i++) l.push(i); cache[n] = pairings(l); } return cache[n]; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; idx = 0; },
+    act: function () { idx++; },
+    caption: function () { return ["Fields paired two by two.", "Time ordering: later to the left.", V.n + " fields: pairing " + (idx % P(V.n).length + 1) + " of " + P(V.n).length + ".", "Poles of the propagator in the complex p⁰ plane.", "A one-vertex bubble: symmetry factor 1/8.", "Pairings."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var ps = P(V.n), p = ps[(beat === 0 ? Math.floor(Date.now() / 1200) : idx) % ps.length]; return p.map(function (q) { return "(" + (q[0] + 1) + (q[1] + 1) + ")"; }).join(""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i;
+      if (beat === 0 || beat === 2 || beat === 5) {
+        var n = beat === 2 ? V.n : 6, ps = P(n), p = ps[(beat === 2 ? idx : Math.floor(now / 1200)) % ps.length], x0 = W * 0.12, dx = W * 0.76 / (n - 1), y = H * 0.68;
+        p.forEach(function (q) { var a = x0 + q[0] * dx, b = x0 + q[1] * dx, r = (b - a) / 2; c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.arc((a + b) / 2, y, r, Math.PI, 0); c.stroke(); });
+        for (i = 0; i < n; i++) { k.circle(x0 + i * dx, y, 9, "#14120f", "#ece6da", 2); k.text("φ" + (i + 1), x0 + i * dx, y + 30, { size: 13 }); }
+        return;
+      }
+      if (beat === 1) { var A = k.axes(W * 0.1, H * 0.15, W * 0.8, H * 0.6, [0, 10], [0, 1], { xl: "time" }); k.circle(A.X(3), A.Y(0.5), 8, "#ffb547"); k.circle(A.X(7), A.Y(0.5), 8, "#ece6da"); k.line(A.X(3), A.Y(0.5), A.X(7), A.Y(0.5), "rgba(255,181,71,.6)", 2); k.text("created", A.X(3), A.Y(0.5) - 18, { size: 12, color: "#ffb547" }); k.text("absorbed", A.X(7), A.Y(0.5) - 18, { size: 12 }); return; }
+      if (beat === 3) {
+        var cx = W / 2, cy = H / 2, E = W * 0.22;
+        k.line(W * 0.06, cy, W * 0.94, cy, "rgba(236,230,218,.35)", 1); k.line(cx, H * 0.1, cx, H * 0.9, "rgba(236,230,218,.35)", 1); k.text("Re p⁰", W * 0.92, cy - 8, { size: 11, align: "right", color: "#7c766b" }); k.text("Im p⁰", cx + 8, H * 0.12, { size: 11, align: "left", color: "#7c766b" });
+        k.text("×", cx + E, cy + 14, { size: 20, color: "#ffb547" }); k.text("×", cx - E, cy - 4, { size: 20, color: "#e05a46" }); k.text("+E − iε", cx + E, cy + 36, { size: 12, color: "#ffb547" }); k.text("−E + iε", cx - E, cy - 22, { size: 12, color: "#e05a46" });
+        c.strokeStyle = "#ece6da"; c.lineWidth = 2; c.beginPath(); c.moveTo(W * 0.08, cy); c.lineTo(W * 0.92, cy); c.stroke();
+        c.strokeStyle = "rgba(255,181,71,.5)"; c.setLineDash([5, 4]); c.beginPath(); c.arc(cx, cy, W * 0.42, 0, Math.PI); c.stroke(); c.setLineDash([]);
+        k.text("close below for t > 0: picks up +E", cx, H * 0.92, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) { var x = W / 2, yy = H / 2, r = Math.min(W, H) * 0.16; c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.arc(x - r, yy, r, 0, 2 * Math.PI); c.stroke(); c.beginPath(); c.arc(x + r, yy, r, 0, 2 * Math.PI); c.stroke(); k.circle(x, yy, 6, "#ece6da"); k.text("3 pairings × 1/4! = 1/8", x, yy + r + 34, { size: 13 }); }
+    }
+  });
+})();
+</script>

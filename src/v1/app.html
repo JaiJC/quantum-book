@@ -1,0 +1,405 @@
+<title>One Electron at a Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/*__KATEX_CSS__*/
+/* Layout: a reading column (lab notebook) with full-width instrument panels (detectors) breaking out of it. */
+:root {
+  /* dark-first: the lab with the lights off */
+  --bg: #0b0f1c; --surface: #121a2e; --surface-2: #18223b; --line: #263252;
+  --fg: #e7eaf4; --muted: #95a0bd; --accent: #8fa2ff; --accent-ink: #0b0f1c;
+  --hit: #ffb547; --good: #4fd18b; --bad: #ff7a6b;
+  --screen: #05070f; --screen-line: #1b2440; --screen-fg: #c7cee6;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --radius: 14px; --col: 42rem; --wide: 72rem;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #f3f5fa; --surface: #ffffff; --surface-2: #e9edf7; --line: #d3d9e8;
+  --fg: #141a2c; --muted: #58627d; --accent: #3446c9; --accent-ink: #ffffff;
+  --hit: #ffb547; --good: #17844b; --bad: #c43d2f;
+  --screen: #070a14; --screen-line: #1b2440; --screen-fg: #c7cee6; color-scheme: light } }
+:root[data-theme="light"] {
+  --bg: #f3f5fa; --surface: #ffffff; --surface-2: #e9edf7; --line: #d3d9e8;
+  --fg: #141a2c; --muted: #58627d; --accent: #3446c9; --accent-ink: #ffffff;
+  --hit: #ffb547; --good: #17844b; --bad: #c43d2f;
+  --screen: #070a14; --screen-line: #1b2440; --screen-fg: #c7cee6; color-scheme: light }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.col { max-width: var(--col); margin-inline: auto; }
+.wide { max-width: var(--wide); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin: 0; }
+.prose { display: grid; gap: 1.1rem; }
+.eyebrow { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+section.block { margin-top: 4.5rem; }
+
+/* ---------- top bar ---------- */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: 0.6rem max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar-in { max-width: var(--wide); margin-inline: auto; display: flex; align-items: center; gap: 0.75rem 1rem; flex-wrap: wrap; }
+.bar .where { min-width: 0; flex: 1 1 14rem; display: grid; gap: 0.15rem; }
+.bar .where b { font: 600 0.95rem/1.2 var(--font-display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dots { display: flex; gap: 6px; align-items: center; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--muted); display: block; transition: background .3s, border-color .3s; }
+.dots i.done { background: var(--hit); border-color: var(--hit); box-shadow: 0 0 10px var(--hit); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.seg button { min-height: 36px; border: 0; background: transparent; color: var(--muted); font: 500 0.82rem var(--font-body); padding: 0 0.85rem; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.icon-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); display: grid; place-items: center; cursor: pointer; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; margin-top: 1.5rem; border-radius: 22px; overflow: hidden; background: var(--screen); color: var(--screen-fg); min-height: 22rem; display: grid; align-items: end; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-in { position: relative; padding: clamp(1.4rem, 4vw, 3rem); display: grid; gap: 0.9rem; max-width: 46rem;
+  background: linear-gradient(to top, rgba(5,7,15,.92), rgba(5,7,15,.55) 70%, transparent); }
+.hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); font-weight: 700; letter-spacing: -0.02em; color: #f5f2ea; }
+.hero .lede { font-size: clamp(1.05rem, 2vw, 1.25rem); color: #cfd5ea; max-width: 34rem; }
+.hero .eyebrow { color: #ffcf85; }
+
+/* ---------- predict ---------- */
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.8rem; margin-top: 1.2rem; }
+.choice { text-align: left; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); border-radius: var(--radius); padding: 1rem; cursor: pointer; display: grid; gap: 0.7rem; font: inherit; min-height: 44px; transition: border-color .2s, transform .15s; }
+.choice:active { transform: scale(0.98); }
+.choice svg { width: 100%; height: 56px; display: block; }
+.choice[aria-checked="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+.choice.right { border-color: var(--good); }
+.choice.wrong { opacity: 0.55; }
+.choice[disabled] { cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.btn { min-height: 48px; padding: 0 1.3rem; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); font: 600 1rem var(--font-body); cursor: pointer; transition: transform .1s, opacity .2s; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.btn:active { transform: scale(0.97); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn[disabled] { opacity: 0.4; cursor: default; }
+.note { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1rem; }
+.status { font: 500 0.7rem/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.6rem; border-radius: 999px; border: 1px solid var(--good); color: var(--good); }
+
+/* ---------- instrument panel (lab) ---------- */
+/* layouts wrap by available space, not screen width, so narrow book pages stack them too */
+.lab { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.lab > .panel { flex: 999 1 26rem; }
+.lab > .missions { flex: 1 1 17rem; min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1rem; display: grid; gap: 0.9rem; min-width: 0; }
+.schematic { width: 100%; height: auto; display: block; color: var(--muted); }
+.screen-wrap { position: relative; background: var(--screen); border-radius: 14px; overflow: hidden; border: 1px solid var(--screen-line); }
+.screen-wrap canvas { display: block; width: 100%; height: clamp(180px, 34vw, 320px); touch-action: pan-y; }
+.screen-wrap #overlay { position: absolute; inset: 0; height: 100%; pointer-events: none; }
+.screen-label { position: absolute; left: 12px; top: 10px; font: 500 0.7rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: #8892b4; pointer-events: none; }
+.mission-now { display: flex; gap: .6rem; align-items: baseline; font-weight: 600; }
+.mission-now .eyebrow { color: var(--hit); flex: none; }
+@media (max-width: 520px) { .screen-label { display: none; } }
+.screen-count { position: absolute; right: 12px; top: 10px; font: 500 0.8rem var(--font-mono); color: #ffcf85; pointer-events: none; }
+.controls { display: grid; gap: 0.9rem; }
+.fire { min-height: 64px; font-size: 1.1rem; width: 100%; }
+.fire.on { box-shadow: 0 0 0 4px color-mix(in srgb, var(--hit) 40%, transparent); background: var(--hit); border-color: var(--hit); color: #1a1205; }
+.switch { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 48px; padding: 0 0.2rem; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.switch .track { width: 52px; height: 30px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); position: relative; flex: none; transition: background .2s; }
+.switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--fg); transition: transform .2s; }
+.switch input:checked + .track { background: var(--accent); }
+.switch input:checked + .track::after { transform: translateX(22px); background: var(--accent-ink); }
+.switch input:focus-visible + .track { outline: 3px solid var(--accent); outline-offset: 2px; }
+.dial { display: grid; gap: 0.35rem; }
+.dial .top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.dial output { font: 500 0.95rem var(--font-mono); color: var(--fg); }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; touch-action: pan-y; }
+input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--accent) var(--fill, 50%), var(--surface-2) var(--fill, 50%)); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; margin-top: -12px; background: var(--fg); border: 4px solid var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+input[type=range]::-moz-range-track { height: 6px; border-radius: 6px; background: var(--surface-2); }
+input[type=range]::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--accent); }
+input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--fg); border: 4px solid var(--accent); }
+
+/* missions */
+.missions { display: grid; gap: 0.6rem; align-content: start; }
+.mission { border: 1px solid var(--line); border-radius: 14px; padding: 0.85rem 0.9rem; display: grid; gap: 0.4rem; background: var(--surface); transition: border-color .3s, opacity .3s; }
+.mission .mhead { display: flex; gap: 0.6rem; align-items: center; }
+.mission .tick { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--muted); flex: none; display: grid; place-items: center; font-size: 0.8rem; color: var(--accent-ink); }
+.mission.active { border-color: var(--accent); }
+.mission.locked { opacity: 0.45; }
+.mission.done { border-color: color-mix(in srgb, var(--good) 60%, var(--line)); }
+.mission.done .tick { background: var(--good); border-color: var(--good); }
+.mission h4 { margin: 0; font: 600 0.98rem/1.3 var(--font-body); }
+.mission p { font-size: 0.9rem; color: var(--muted); }
+.mission .why { color: var(--fg); font-size: 0.9rem; border-top: 1px dashed var(--line); padding-top: 0.5rem; }
+.meter { height: 6px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--hit); transition: width .2s; }
+
+/* math & levels */
+.katex-display { margin: 0.4rem 0; overflow-x: auto; overflow-y: hidden; padding: 0.3rem 0; }
+.katex { font-size: 1.12em; }
+.eq { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem 1rem; }
+.deep { border: 1px dashed var(--accent); border-radius: var(--radius); padding: 1rem 1.1rem; display: grid; gap: 0.8rem; }
+.deep .eyebrow { color: var(--accent); }
+:root[data-level="intuition"] .lv-standard, :root[data-level="intuition"] .lv-deep, :root[data-level="standard"] .lv-deep { display: none !important; }
+.calc { display: grid; gap: 0.6rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; }
+.calc .big { font: 500 clamp(1.4rem, 3.5vw, 2rem) var(--font-mono); color: var(--hit); }
+.scale { position: relative; height: 34px; border-radius: 8px; background: var(--surface-2); overflow: hidden; }
+.scale .atom { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--muted); opacity: .6; }
+.scale .wave { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.steps { display: flex; gap: .5rem; align-items: center; margin-top: .5rem; }
+.step { flex: 1 1 0; min-height: 44px; border-radius: 12px; border: 1px solid var(--line, rgba(143,162,255,.35)); background: var(--surface-2); color: var(--fg); font: 600 .95rem var(--font-mono); cursor: pointer; touch-action: manipulation; }
+.step:active { background: var(--accent); color: #0b0f1c; }
+.steps-l { flex: 0 0 auto; font-size: .8rem; }
+/* Hands-on areas: a long press must never select text or open the copy menu. */
+.lab, .qubit, .choices, .flip, .steps { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+/* qubit */
+.qubit { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.qubit > * { flex: 1 1 18rem; min-width: 0; }
+.sphere-wrap { background: var(--screen); border-radius: 18px; border: 1px solid var(--screen-line); position: relative; aspect-ratio: 1 / 1; max-width: 100%; }
+.sphere-wrap canvas { width: 100%; height: 100%; display: block; touch-action: none; border-radius: 18px; cursor: grab; }
+.sphere-hint { position: absolute; left: 12px; top: 10px; max-width: 40%; font: 500 0.75rem var(--font-mono); color: #8892b4; pointer-events: none; }
+.bars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; height: 170px; }
+.bars .b { position: relative; height: 100%; }
+.bars .fill { position: absolute; left: 0; right: 0; bottom: 28px; height: 0; background: var(--accent); border-radius: 8px 8px 2px 2px; transition: height .6s cubic-bezier(.2,.8,.2,1); }
+.bars .fill.one { background: var(--hit); }
+.bars .pred { position: absolute; left: -6px; right: -6px; bottom: 28px; border-top: 2px dashed var(--fg); z-index: 1; transition: bottom .3s; }
+.bars .blab { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; }
+
+/* problem & recall */
+.answer { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.answer input { min-height: 48px; width: 9rem; font: 500 1.1rem var(--font-mono); padding: 0 0.9rem; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); }
+.feedback { min-height: 1.5rem; font-weight: 500; }
+.feedback.good { color: var(--good); } .feedback.bad { color: var(--bad); }
+.hints { display: grid; gap: 0.6rem; }
+.hint { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0.8rem 1rem; animation: rise .35s ease-out; }
+@keyframes rise { from { transform: translateY(6px); opacity: .4; } to { transform: none; opacity: 1; } }
+.card3d { perspective: 1200px; }
+.flip { position: relative; min-height: 12rem; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.8,.2,1); cursor: pointer; border: 0; background: none; padding: 0; width: 100%; font: inherit; color: inherit; text-align: left; }
+.flip.over { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 18px; padding: 1.4rem; display: grid; align-content: center; gap: 0.6rem; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid var(--line); background: var(--surface); }
+.face.back { transform: rotateY(180deg); background: var(--surface-2); }
+.face .q { font: 600 1.3rem/1.3 var(--font-display); }
+.next { margin-top: 5rem; border-radius: 22px; padding: clamp(1.4rem, 4vw, 2.5rem); background: var(--surface); border: 1px solid var(--line); display: grid; gap: 1rem; }
+.next h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
+.sources { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="bar" role="banner">
+  <div class="bar-in">
+    <div class="where"><span class="eyebrow">Part 1 · Chapter 25</span><b>de Broglie waves and the double slit</b></div>
+    <div class="dots" id="dots" aria-label="Missions completed"><i></i><i></i><i></i><i></i></div>
+    <div class="seg" role="group" aria-label="Reading level">
+      <button type="button" id="lv-intuition" data-lv="intuition" aria-pressed="false">Intuition</button>
+      <button type="button" id="lv-standard" data-lv="standard" aria-pressed="true">Standard</button>
+      <button type="button" id="lv-deep" data-lv="deep" aria-pressed="false">Deep</button>
+    </div>
+    <button type="button" class="icon-btn" id="theme" aria-label="Switch light or dark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wide" aria-label="Chapter opening">
+    <canvas id="hero-cv" aria-hidden="true"></canvas>
+    <div class="hero-in">
+      <span class="eyebrow">Hitachi lab, 1989 · electrons sent one by one</span>
+      <h1>One electron at a time</h1>
+      <p class="lede">Every electron lands as a single dot. Wait long enough and the dots draw stripes. By the end of this chapter you will know why, and you will have made the stripes appear and disappear yourself.</p>
+    </div>
+  </section>
+
+  <!-- PREDICT -->
+  <section class="block col" id="predict">
+    <span class="eyebrow">Before you touch anything</span>
+    <h2 style="margin-top:.5rem">Make a prediction</h2>
+    <p style="margin-top:.8rem">An electron gun fires at a wall with two narrow slits. Behind the wall is a screen that glows where an electron lands. Only one electron is in flight at any moment. After 2,000 electrons, what does the screen show?</p>
+    <div class="choices" role="radiogroup" aria-label="Your prediction">
+      <button type="button" class="choice" role="radio" aria-checked="false" data-p="two" id="p-two">
+        <svg viewBox="0 0 200 56" aria-hidden="true"><rect width="200" height="56" rx="8" fill="var(--screen)"/><rect x="62" y="6" width="22" height="44" rx="6" fill="var(--hit)" opacity=".85"/><rect x="116" y="6" width="22" height="44" rx="6" fill="var(--hit)" opacity=".85"/></svg>
+        <span><b>Two bright bands</b>, one behind each slit</span>
+      </button>
+      <button type="button" class="choice" role="radio" aria-checked="false" data-p="stripes" id="p-stripes">
+        <svg viewBox="0 0 200 56" aria-hidden="true"><rect width="200" height="56" rx="8" fill="var(--screen)"/><g fill="var(--hit)"><rect x="93" y="6" width="14" height="44" rx="5"/><rect x="66" y="6" width="12" height="44" rx="5" opacity=".7"/><rect x="122" y="6" width="12" height="44" rx="5" opacity=".7"/><rect x="40" y="6" width="9" height="44" rx="4" opacity=".4"/><rect x="151" y="6" width="9" height="44" rx="4" opacity=".4"/></g></svg>
+        <span><b>Many stripes</b>, bright and dark</span>
+      </button>
+      <button type="button" class="choice" role="radio" aria-checked="false" data-p="blob" id="p-blob">
+        <svg viewBox="0 0 200 56" aria-hidden="true"><defs><radialGradient id="gb"><stop offset="0" stop-color="var(--hit)"/><stop offset="1" stop-color="var(--hit)" stop-opacity="0"/></radialGradient></defs><rect width="200" height="56" rx="8" fill="var(--screen)"/><ellipse cx="100" cy="28" rx="60" ry="24" fill="url(#gb)"/></svg>
+        <span><b>One smooth glow</b> in the middle</span>
+      </button>
+    </div>
+    <div class="row" style="margin-top:1rem">
+      <button type="button" class="btn" id="lock" disabled>Lock in my prediction</button>
+      <span class="muted" id="lock-note">Pick one to continue.</span>
+    </div>
+  </section>
+
+  <!-- LAB -->
+  <section class="block wide" id="lab">
+    <div class="col">
+      <span class="eyebrow">The detector</span>
+      <h2 style="margin-top:.5rem">Run the experiment</h2>
+      <p style="margin-top:.8rem">Work through the four missions. Each one asks you to change one thing and watch what the screen does.</p>
+    </div>
+    <div class="lab">
+      <div class="panel">
+        <p class="mission-now" id="mission-now" aria-live="polite"></p>
+        <svg class="schematic" viewBox="0 0 600 70" role="img" aria-label="Electron gun, then a wall with two slits, then the screen">
+          <rect x="10" y="22" width="60" height="26" rx="6" fill="none" stroke="currentColor"/>
+          <text x="40" y="39" text-anchor="middle" font-size="12" fill="currentColor" font-family="Inter, sans-serif">gun</text>
+          <path d="M75 35 H300" stroke="var(--hit)" stroke-dasharray="4 6" stroke-width="2"/>
+          <rect x="300" y="6" width="8" height="21" fill="currentColor"/><rect x="300" y="31" width="8" height="8" fill="currentColor"/><rect x="300" y="43" width="8" height="21" fill="currentColor"/>
+          <text x="304" y="5" text-anchor="middle" font-size="11" fill="currentColor" font-family="Inter, sans-serif" dy="-1"> </text>
+          <g id="schem-eye" opacity="0"><circle cx="330" cy="29" r="7" fill="none" stroke="var(--accent)" stroke-width="2"/><circle cx="330" cy="29" r="2.5" fill="var(--accent)"/></g>
+          <path d="M310 29 L560 12 M310 41 L560 58" stroke="currentColor" stroke-opacity=".25"/>
+          <rect x="560" y="4" width="12" height="62" rx="3" fill="var(--screen)" stroke="currentColor"/>
+          <text x="540" y="68" text-anchor="end" font-size="11" fill="currentColor" font-family="Inter, sans-serif">screen</text>
+          <text x="304" y="68" text-anchor="middle" font-size="11" fill="currentColor" font-family="Inter, sans-serif">two slits</text>
+        </svg>
+        <div class="screen-wrap">
+          <canvas id="screen" aria-label="Detector screen showing where electrons landed"></canvas><canvas id="overlay" aria-hidden="true"></canvas>
+          <span class="screen-label">Screen · seen from the gun</span>
+          <span class="screen-count" id="count">0 electrons</span>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn fire" id="fire">Hold to fire electrons</button>
+          <div class="row">
+            <button type="button" class="btn ghost" id="burst">Fire 500 at once</button>
+            <button type="button" class="btn ghost" id="clear">Clear screen</button>
+          </div>
+          <div class="dial">
+            <div class="top"><label for="energy"><b>Electron energy</b></label><output id="energy-out" for="energy">120 eV · λ = 0.112 nm</output></div>
+            <input type="range" id="energy" min="10" max="200" step="1" value="120">
+            <div class="steps" role="group" aria-label="Adjust electron energy"><button type="button" class="step" data-de="-10">−10</button><button type="button" class="step" data-de="-1">−1</button><button type="button" class="step" data-de="1">+1</button><button type="button" class="step" data-de="10">+10</button></div>
+          </div>
+          <label class="switch" for="detector"><span><b>Watch which slit</b><br><span class="muted" style="font-size:.9rem">A detector notes the slit each electron used</span></span>
+            <input type="checkbox" id="detector"><span class="track" aria-hidden="true"></span></label>
+          <label class="switch" for="curve"><span><b>Show the prediction curve</b><br><span class="muted" style="font-size:.9rem">What quantum theory says the counts should be</span></span>
+            <input type="checkbox" id="curve"><span class="track" aria-hidden="true"></span></label>
+        </div>
+      </div>
+
+      <aside class="missions" aria-label="Missions">
+        <div class="mission active" id="m1"><div class="mhead"><span class="tick" aria-hidden="true"></span><h4>Mission 1 · Fill the screen</h4></div>
+          <p>Fire at least 2,000 electrons. Watch single dots turn into a pattern.</p>
+          <div class="meter" aria-hidden="true"><i id="m1-meter"></i></div>
+          <p class="why" hidden>Stripes. Each electron passed the wall as a wave through both slits, and the two parts cancelled in the dark bands. Scroll up: your prediction is now marked.</p></div>
+        <div class="mission locked" id="m2"><div class="mhead"><span class="tick" aria-hidden="true"></span><h4>Mission 2 · Erase the stripes</h4></div>
+          <p>Make the stripes disappear without closing either slit. Then fire again.</p>
+          <p class="why" hidden>Knowing which slit each electron used destroys the pattern. Only paths nobody can tell apart interfere.</p></div>
+        <div class="mission locked" id="m3"><div class="mhead"><span class="tick" aria-hidden="true"></span><h4>Mission 3 · Hit the marker</h4></div>
+          <p>Turn the detector off. Change the electron energy until the first dark band sits on the dashed marker.</p>
+          <p class="why" hidden>54 eV, wavelength 0.167 nm. That is the energy Davisson and Germer used in 1927 when they first saw electrons diffract off a nickel crystal.</p></div>
+        <div class="mission locked" id="m4"><div class="mhead"><span class="tick" aria-hidden="true"></span><h4>Mission 4 · Load the dice</h4></div>
+          <p>Further down: set a qubit so that it reads 0 three times out of four, then measure it 100 times.</p>
+          <p class="why" hidden>θ = 60° gives P(0) = cos²(30°) = 0.75. Quantum states set probabilities exactly; single outcomes stay random.</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- EXPLAIN -->
+  <section class="block col prose" id="explain">
+    <span class="eyebrow">What you just saw</span>
+    <h2>Electrons travel as waves and arrive as dots</h2>
+    <p>In 1924 Louis de Broglie proposed that every moving particle has a wavelength. The idea sounds strange until you look at the screen you just filled. A dot is where one electron was detected. The stripes are where electrons are more and less likely to land, and that pattern is the fingerprint of a wave going through both slits and overlapping with itself.</p>
+    <p>Change the energy and the stripes squeeze together or spread apart. Faster electrons have shorter waves, and shorter waves make tighter stripes.</p>
+    <div class="lv-standard prose">
+      <p>The rule de Broglie proposed links wavelength to momentum:</p>
+      <div class="eq">{{texd:\lambda = \frac{h}{p}}}</div>
+      <p>Here {{tex:h}} is Planck’s constant, {{tex:6.626 \times 10^{-34}\ \text{J s}}}, and {{tex:p}} is the momentum. For an electron with kinetic energy {{tex:E}} well below its rest energy, {{tex:p = \sqrt{2 m_e E}}}, so</p>
+      <div class="eq">{{texd:\lambda = \frac{h}{\sqrt{2 m_e E}} \approx \frac{1.226\ \text{nm}}{\sqrt{E / \text{eV}}}}}</div>
+      <div class="calc" aria-live="polite">
+        <span class="eyebrow">Try it · same dial as the lab</span>
+        <div class="row" style="justify-content:space-between"><span class="big" id="calc-l">0.112 nm</span><span class="mono muted" id="calc-e">120 eV</span></div>
+        <div class="scale" aria-hidden="true"><canvas class="wave" id="calc-wave"></canvas></div>
+        <p class="muted" style="font-size:.9rem">Grey dots are atoms about 0.2 nm apart, roughly the spacing in a metal crystal. Waves this short fit between atoms, which is why crystals can diffract electrons.</p>
+      </div>
+      <p>The stripe spacing on the screen is {{tex:\Delta y = \lambda L / d}}, where {{tex:L}} is the distance to the screen and {{tex:d}} is the gap between the slits. Double the energy and {{tex:\lambda}} shrinks by {{tex:\sqrt 2}}, so the stripes move closer by the same factor.</p>
+    </div>
+    <div class="deep lv-deep">
+      <span class="eyebrow">Deep · where the stripe spacing comes from</span>
+      <p>Take a point on the screen at height {{tex:y}}, far away ({{tex:L \gg d}}). The paths from the two slits differ in length by {{tex:d \sin\theta}}, with {{tex:\tan\theta = y/L}}. The two waves add up in step when that difference is a whole number of wavelengths:</p>
+      {{texd:d \sin\theta_m = m\lambda, \qquad m = 0, \pm1, \pm2, \dots}}
+      <p>For small angles {{tex:\sin\theta \approx \tan\theta = y/L}}, so the bright bands sit at {{tex:y_m = m\lambda L/d}} and are spaced {{tex:\lambda L/d}} apart. Dark bands fall halfway between, where the path difference is {{tex:(m+\tfrac12)\lambda}}. The full intensity is</p>
+      {{texd:I(y) \propto \cos^2\!\left(\frac{\pi d y}{\lambda L}\right)\,\operatorname{sinc}^2\!\left(\frac{\pi a y}{\lambda L}\right)}}
+      <p>where {{tex:a}} is the width of each slit and {{tex:\operatorname{sinc} x = \sin x / x}}. With the detector on, the cross term that makes the {{tex:\cos^2}} factor disappears, and only the single-slit envelope is left. The simulator above draws its dots from exactly this formula.</p>
+    </div>
+    <p class="note">This is not a thought experiment. Tonomura and colleagues at Hitachi recorded the build-up one electron at a time in 1989, using an electron biprism that splits each electron’s wave in two, the way two slits do. Molecules of about 2,000 atoms have since shown the same stripes. <span class="status">Established</span></p>
+  </section>
+
+  <!-- QUBIT -->
+  <section class="block wide" id="qubit-sec">
+    <div class="col prose">
+      <span class="eyebrow">Looking ahead to qubits</span>
+      <h2>Set the odds, then roll</h2>
+      <p>A qubit is the simplest quantum system: it reads 0 or 1. Its state is an arrow on a sphere. Point it up and it always reads 0. Point it down and it always reads 1. Anywhere in between, each reading is random, but the odds are fixed by the angle.</p>
+      <p><b>Mission 4:</b> drag the orange tip so the qubit reads 0 three times out of four. Then measure it 100 times.</p>
+    </div>
+    <div class="qubit" style="margin-top:1.4rem">
+      <div class="sphere-wrap"><canvas id="sphere" aria-label="Qubit state on a sphere. Drag the orange tip to change it."></canvas><span class="sphere-hint">Drag the orange tip. Drag anywhere else to turn the sphere.</span></div>
+      <div class="panel">
+        <div class="row" style="justify-content:space-between"><span class="eyebrow">Odds right now</span><span class="mono" id="angles">θ = 90° · φ = 30°</span></div>
+        <div class="row" style="gap:1.4rem"><span class="calc big" style="padding:0;border:0;background:none" id="p0">P(0) = 0.50</span><span class="mono muted" id="p1">P(1) = 0.50</span></div>
+        <div class="bars" aria-hidden="true">
+          <div class="b"><div class="pred" id="pred0"></div><div class="fill" id="bar0"></div><span class="mono blab">reads 0 · <b id="n0">0</b></span></div>
+          <div class="b"><div class="pred" id="pred1"></div><div class="fill one" id="bar1"></div><span class="mono blab">reads 1 · <b id="n1">0</b></span></div>
+        </div>
+        <div class="steps" role="group" aria-label="Tilt the qubit"><span class="mono muted steps-l">Tilt θ</span><button type="button" class="step" data-dt="-5">−5°</button><button type="button" class="step" data-dt="-1">−1°</button><button type="button" class="step" data-dt="1">+1°</button><button type="button" class="step" data-dt="5">+5°</button></div>
+        <button type="button" class="btn" id="measure">Measure 100 times</button>
+        <p class="muted" id="measure-note" aria-live="polite">Dashed lines show the predicted counts.</p>
+        <p class="lv-standard muted" style="font-size:.95rem">The rule: {{tex:P(0) = \cos^2(\theta/2)}}, where {{tex:\theta}} is the angle from the top.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="block col prose" id="problem">
+    <span class="eyebrow">Your turn · computational</span>
+    <h2>What wavelength does a 100 eV electron have?</h2>
+    <form class="answer" id="ans-form" autocomplete="off">
+      <label for="ans" class="muted">λ =</label>
+      <input id="ans" inputmode="decimal" placeholder="0.000" aria-describedby="ans-fb">
+      <span class="mono">nm</span>
+      <button type="submit" class="btn">Check</button>
+      <button type="button" class="btn ghost" id="hint-btn">Hint</button>
+    </form>
+    <p class="feedback" id="ans-fb" aria-live="polite"></p>
+    <div class="hints" id="hints"></div>
+  </section>
+
+  <!-- RECALL -->
+  <section class="block col prose" id="recall">
+    <span class="eyebrow">Recall · tap the card</span>
+    <div class="card3d">
+      <button type="button" class="flip" id="flip" aria-label="Flashcard. Tap to turn over.">
+        <span class="face"><span class="eyebrow">Question</span><span class="q">Why do the stripes disappear when you watch which slit the electron uses?</span></span>
+        <span class="face back"><span class="eyebrow">Answer</span><span class="q" style="font-size:1.1rem">Stripes need two paths that nobody can tell apart. Recording the slit makes the paths distinguishable, so their waves no longer add up.</span></span>
+      </button>
+    </div>
+    <div class="row" id="grade" hidden>
+      <span class="muted">How well did you know it?</span>
+      <button type="button" class="btn ghost" data-g="1">Missed it</button>
+      <button type="button" class="btn ghost" data-g="3">Got it</button>
+      <button type="button" class="btn ghost" data-g="6">Easy</button>
+    </div>
+    <p class="muted" id="card-next" aria-live="polite"></p>
+  </section>
+
+  <section class="next col">
+    <span class="eyebrow">Next chapter</span>
+    <h2>The wavefunction and probability</h2>
+    <p>You saw that something wave-like decides where each electron is likely to land. Next: what exactly is waving, why it is a complex number, and how a single equation turns it into the probabilities you just measured.</p>
+  </section>
+
+  <p class="sources col">Sources: L. de Broglie, thesis (1924). C. Davisson and L. H. Germer, Phys. Rev. 30, 705 (1927). A. Tonomura et al., Am. J. Phys. 57, 117 (1989). Y. Y. Fein et al., Nature Physics 15, 1242 (2019). Wavelengths computed from CODATA constants: λ(54 eV) = 0.1669 nm, λ(100 eV) = 0.1226 nm.</p>
+</main>
+
+<script>
+/*__APP_JS__*/
+</script>

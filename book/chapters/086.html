@@ -1,0 +1,66 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The LEP collider at CERN accelerated electrons to 104.5 GeV in a 27-kilometre ring. Every lap, each electron radiated away 3.4 GeV as X-rays, a thirtieth of its energy, which the accelerating cavities had to replace. The LHC, in the same tunnel, accelerates protons to 6.8 TeV, sixty-five times more energy, and each proton loses only about 6 keV per lap. The difference is a factor of nearly two thousand in mass, raised to the fourth power. That one law decides what the next collider will be.</p>
+  <p>On the plate: energy lost per turn as particles curve around a ring.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Steering and focusing</h2>
+  <p>A charged particle in a magnetic field {{tex:B}} curves with radius {{tex:\rho = p/(eB)}}; in practical units {{tex:p[\text{GeV}] = 0.3\,B[\text{T}]\,\rho[\text{m}]}}. The LHC’s 1,232 superconducting dipoles, at 8.3 T, keep 7 TeV protons on a 2.8 km radius. Quadrupole magnets focus the beam, but a quadrupole that focuses horizontally defocuses vertically. Alternating them, focusing–defocusing–focusing, focuses in both, as a pair of converging and diverging lenses does: <em>strong focusing</em>, invented in 1952. Particles then oscillate gently around the ideal orbit, <em>betatron motion</em>, many times per turn. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Synchrotron radiation</h2>
+  <p>An accelerated charge radiates, and a particle forced around a circle radiates in a narrow forward cone. The energy lost per turn is</p>
+  <div class="eq">{{texd:U_0 = \frac{e^2\gamma^4}{3\varepsilon_0\,\rho} \approx 88.5\ \text{keV}\,\frac{E^4}{\rho}}}</div>
+  <p>with {{tex:E}} in GeV and {{tex:\rho}} in metres, for electrons. Fourth power of the energy, fourth power of {{tex:1/m}} at fixed energy. Design a ring: choose <button type="button" class="v" data-pick="p:e">electrons</button>, <button type="button" class="v" data-pick="p:mu">muons</button> or <button type="button" class="v" data-pick="p:p">protons</button>, energy <span class="tangle" data-var="E" data-min="10" data-max="50000" data-step="10" data-unit=" GeV" data-value="104.5" data-px="0.2"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Energy">104.5 GeV</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and bending radius <span class="tangle" data-var="R" data-min="100" data-max="15000" data-step="50" data-unit=" m" data-value="3096" data-px="0.5"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Radius">3096 m</span><button type="button" data-de="1" aria-label="Larger">›</button></span>. Synchrotron light is a nuisance for colliders and a gift for science: dedicated rings produce intense X-rays for protein crystallography and medical imaging.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Luminosity</h2>
+  <p>Event rates are {{tex:\mathcal L\sigma}} (Chapter 65). For bunched beams colliding head-on,</p>
+  <div class="eq">{{texd:\mathcal L = \frac{f\,n_b\,N^2}{4\pi\sigma_x\sigma_y}}}</div>
+  <p>with revolution frequency {{tex:f}}, {{tex:n_b}} bunches of {{tex:N}} particles each, and beam sizes {{tex:\sigma}} at the collision point. LHC design values, 11,245 turns per second, 2,808 bunches of {{tex:1.15\times10^{11}}} protons squeezed to 17 µm, give about {{tex:10^{34}}} cm⁻² s⁻¹. Squeezing harder and adding protons is what the High-Luminosity LHC will do.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Circular or linear, and what is next</h2>
+  <p>Because synchrotron loss grows as {{tex:E^4}}, electron rings stop being practical somewhere above LEP’s energy; beyond that, electrons go in straight lines, at the cost of one pass per bunch. Protons can circle at far higher energy but collide as composite bags of quarks and gluons, so only part of the energy goes into each collision. Muons, 207 times heavier than electrons, would lose almost nothing, but they decay in 2.2 µs at rest.</p>
+  <p>The LHC’s Run 3 ended in mid-2026; the High-Luminosity upgrade is being installed, with beams expected around 2030. The 2026 update of the European Strategy for Particle Physics named the Future Circular Collider, a 91 km electron–positron ring operating first as a Higgs factory, as its preferred next machine, with a decision expected around 2028. <span class="tag">Established</span> as plans; their funding is not settled.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Bending and strong focusing, betatron motion, synchrotron radiation and its {{tex:E^4/m^4}} law, luminosity from bunch parameters, the circular-versus-linear choice, and the current plans for the LHC and beyond.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the LHC lose so little to synchrotron radiation?<span class="tap">tap</span></div><div class="a">Protons are 1836 times heavier than electrons; loss scales as 1/m⁴ at fixed energy.</div></div>
+  <div class="qa"><div class="q">How do alternating quadrupoles focus a beam?<span class="tap">tap</span></div><div class="a">Like alternating converging and diverging lenses, the net effect focuses in both planes.</div></div>
+  <div class="qa"><div class="q">What does luminosity depend on most strongly?<span class="tap">tap</span></div><div class="a">Bunch population squared and inversely on the beam area at the collision point.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:U_0 = 88.5\ \text{keV}\times E^4/\rho}}, what did LEP lose per turn at 45.6 GeV (the Z pole) with {{tex:\rho = 3096}} m, in MeV?</p>
+    <form class="calc" data-answer="123.5" data-tol="1.5" data-ok="Yes: about 124 MeV per turn, 28 times less than at 104.5 GeV." data-hint="45.6⁴ = 4.32×10⁶; times 88.5 keV, divided by 3096."><span>U₀ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Loss in MeV"><span>MeV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Wilson, An Introduction to Particle Accelerators (2001). E. D. Courant, M. S. Livingston and H. S. Snyder, Phys. Rev. 88, 1190 (1952) (strong focusing). LHC Design Report, CERN-2004-003. CERN, European Strategy for Particle Physics update (2026). Checked by code: LEP 3.41 GeV/turn at 104.5 GeV; 124 MeV at 45.6 GeV; LHC protons 5.9 keV/turn at 6.8 TeV; design luminosity 1.2×10³⁴ cm⁻² s⁻¹.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { E: 104.5, R: 3096 }, MASS = { e: 0.000511, mu: 0.10566, p: 0.938272 };
+  function U0(E, R, m) { return 88.46e-6 * Math.pow(E, 4) / R * Math.pow(0.000511 / m, 4); }
+  function fmt(g) { return g >= 1 ? g.toPrecision(3) + " GeV" : g >= 1e-3 ? (g * 1e3).toPrecision(3) + " MeV" : g >= 1e-6 ? (g * 1e6).toPrecision(3) + " keV" : (g * 1e9).toPrecision(3) + " eV"; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Energy lost per turn, by particle.", "Alternating quadrupoles: betatron oscillation.", "Synchrotron loss for your ring.", "Two bunches colliding.", "Electrons, muons, protons.", "Accelerators."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var p = Book.state.picks.p || "e", u = U0(V.E, V.R, MASS[p]); return ({ e: "electrons", mu: "muons", p: "protons" })[p] + " · U₀ = " + fmt(u) + " per turn · " + (100 * u / V.E).toPrecision(2) + "% of E"; } if (beat === 3) return "𝓛 ≈ 1.2×10³⁴ cm⁻² s⁻¹ (design)"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i, cx = W / 2, cy = H / 2;
+      if (beat === 0 || beat === 2 || beat === 4 || beat === 5) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [1, 5], [-9, 3], { xl: "log₁₀ beam energy, GeV", yl: "log₁₀ U₀ per turn, GeV" }); [["e", "#ffb547"], ["mu", "#ece6da"], ["p", "rgba(224,90,70,.9)"]].forEach(function (q) { k.plot(A, function (l) { return Math.max(-9, Math.log10(U0(Math.pow(10, l), V.R, MASS[q[0]]))); }, [1, 5], q[1], 2, 200); k.text(({ e: "electrons", mu: "muons", p: "protons" })[q[0]], A.X(4.9), A.Y(Math.max(-8.6, Math.log10(U0(Math.pow(10, 4.9), V.R, MASS[q[0]])))) - 6, { size: 11, align: "right", color: q[1] }); }); var p = Book.state.picks.p || "e"; k.circle(A.X(Math.log10(V.E)), A.Y(Math.max(-9, Math.log10(U0(V.E, V.R, MASS[p])))), 6, "#ece6da"); return; }
+      if (beat === 1) { A = k.axes(W * 0.06, H * 0.15, W * 0.88, H * 0.65, [0, 12], [-1.2, 1.2], { zeroY: true, xl: "position around the ring" }); for (i = 0; i < 12; i++) k.rr(A.X(i + 0.4), A.Y(i % 2 ? -0.95 : 1.15), A.X(0.2) - A.X(0), 14, 2, i % 2 ? "rgba(224,90,70,.7)" : "#ffb547"); k.plot(A, function (s) { return Math.cos(2 * Math.PI * s / 3.3 + now / 600) * (0.8 + 0.15 * Math.cos(2 * Math.PI * s)); }, [0, 12], "#ece6da", 2, 400); return; }
+      if (beat === 3) { var t = (now / 1500) % 1, x1 = W * 0.1 + t * W * 0.4, x2 = W * 0.9 - t * W * 0.4; k.glow(x1, cy, 22, "rgba(255,181,71,.5)"); k.glow(x2, cy, 22, "rgba(236,230,218,.4)"); if (t > 0.95) k.glow(cx, cy, 40, "rgba(255,181,71,.8)"); k.text("𝓛 = f n_b N² / (4π σx σy)", cx, H * 0.85, { size: 14 }); }
+    }
+  });
+})();
+</script>

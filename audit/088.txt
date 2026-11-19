@@ -1,0 +1,7 @@
+== 088
+1 sigma one-sided p 0.15865525393145707
+2 sigma one-sided p 0.022750131948179198
+3 sigma one-sided p 0.001349898031630093
+5 sigma one-sided p 2.8665157187919344e-07
+Asimov Z 3.882958037098818 s/sqrt b 5.0
+median max local sigma over 60 trials 2.276885091471355 P(max>3) 0.07875

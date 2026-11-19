@@ -1,0 +1,7 @@
+== 052
+exact rho01 0.40609970401197787 formula 0.40609970401197787
+cos^20(15deg) 0.4998912811261106
+CMB tau s (dx=1e-3 cm) 1.0
+sun tau s (dx=1e-3 cm) 1e-15
+vacuum tau s (dx=1e-3 cm) 1.0000000000000002e-17
+air tau s (dx=1e-3 cm) 9.999999999999999e-27

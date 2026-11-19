@@ -1,0 +1,4 @@
+Ising 2D Tc = 2/ln(1+sqrt2) = 2.269185314213022
+N2 most probable speed m/s 421.9974301339375  mean 476.17310873097915
+Einstein C/3Nk at T=thetaE: 0.9206735942077924
+two-state ratio at kT=dE 0.36787944117144233

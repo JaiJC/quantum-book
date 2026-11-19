@@ -1,0 +1,80 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Nothing teaches a quantum computer like building one, in software. This capstone asks you to write two simulators from scratch: a state-vector simulator that tracks all {{tex:2^n}} amplitudes, and a stabilizer simulator that handles Clifford circuits on thousands of qubits by tracking Pauli operators instead. Then you test both against each other and against Qiskit. The book’s own plates have used exactly such a simulator throughout.</p>
+  <p>On the plate: the book’s simulator running its own test suite.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>A state-vector simulator</h2>
+  <p>Store the state as a complex array of length {{tex:2^n}}, reshaped as an {{tex:n}}-dimensional tensor of 2s so that each qubit is an axis. A single-qubit gate contracts its 2 × 2 matrix with one axis; a CNOT flips the target axis on the slice where the control is 1. Twenty lines of Python suffice, with qubit 0 as the leftmost (most significant) bit, the convention of this book:</p>
+  <pre class="code">import numpy as np
+
+class StateVector:
+    def __init__(self, n):
+        self.n = n
+        self.psi = np.zeros(2**n, complex); self.psi[0] = 1
+    def apply1(self, U, q):
+        psi = self.psi.reshape([2] * self.n)
+        psi = np.moveaxis(np.tensordot(U, psi, axes=([1], [q])), 0, q)
+        self.psi = psi.reshape(-1)
+    def cnot(self, c, t):
+        psi = self.psi.reshape([2] * self.n).copy()
+        idx = [slice(None)] * self.n; idx[c] = 1
+        sub = psi[tuple(idx)]
+        t2 = t if t &lt; c else t - 1
+        psi[tuple(idx)] = np.flip(sub, axis=t2)
+        self.psi = psi.reshape(-1)
+    def probs(self):
+        return np.abs(self.psi) ** 2
+
+H = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+s = StateVector(2); s.apply1(H, 0); s.cnot(0, 1)
+assert np.allclose(s.probs(), [0.5, 0, 0, 0.5])   <span class="cm"># Bell state</span></pre>
+  <p>This book checked the code above with tests for Bell and GHZ states and for CNOTs in both directions. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The test suite</h2>
+  <p>Run the book’s simulator, Book.QSim, through <button type="button" class="v" data-act="run">the test suite</button>. Tests: a Bell state has probabilities ½, 0, 0, ½; a GHZ state on 3 qubits has ½ on 000 and 111; H applied twice is the identity; X on qubit 2 gives index 1 (qubit 2 is the rightmost bit); a CNOT with control 2 and target 0 maps 001 to 101; total probability is 1 after a random circuit. Your own simulator should pass the same tests. Then compare with Qiskit, remembering its bit strings are little-endian (Chapter 152): your index for X on qubit 0 of three is 4, Qiskit’s count key is “001”. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>A stabilizer simulator</h2>
+  <p>For Clifford circuits, track the {{tex:n}} stabilizer generators instead of amplitudes (Chapter 108). Scott Aaronson and Daniel Gottesman’s 2004 tableau stores each generator as {{tex:2n}} bits plus a sign; H, S and CNOT update columns by simple XOR rules, and measurement uses Gaussian elimination over bits, at a cost of {{tex:O(n^2)}} per measurement. Build it, and test: prepare GHZ on 1,000 qubits, measure qubit 0, and check that all the others agree. Cross-check small random Clifford circuits against your state-vector simulator, amplitude by amplitude. Craig Gidney’s Stim is the production-grade version used throughout error-correction research. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A working state-vector simulator, a test suite with an endianness check against Qiskit, the design of a stabilizer tableau simulator, and a plan to cross-check the two.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does a single-qubit gate act on the state tensor?<span class="tap">tap</span></div><div class="a">By contracting its 2 × 2 matrix with that qubit’s axis.</div></div>
+  <div class="qa"><div class="q">Why can a stabilizer simulator handle 1,000 qubits?<span class="tap">tap</span></div><div class="a">It stores n generators of 2n bits each, not 2ⁿ amplitudes.</div></div>
+  <div class="qa"><div class="q">What is the commonest bug when comparing with Qiskit?<span class="tap">tap</span></div><div class="a">Bit order: Qiskit writes qubit 0 as the rightmost character.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many complex amplitudes does a 20-qubit state vector hold?</p>
+    <form class="calc" data-answer="1048576" data-tol="1" data-ok="Yes: 2²⁰ = 1,048,576, 16 MB at 16 bytes each." data-hint="2²⁰."><span>=</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Amplitudes"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. Aaronson and D. Gottesman, Phys. Rev. A 70, 052328 (2004). C. Gidney, Quantum 5, 497 (2021) (Stim). Checked by code: the Python listing above passes Bell, GHZ and bidirectional CNOT tests.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, res = [];
+  function close(a, b) { return Math.abs(a - b) < 1e-9; }
+  function run() { res = []; var Q = Book.QSim; if (!Q) { res.push(["Book.QSim available", false]); return; } var s = Q(2); s.g("H", 0); s.cx(0, 1); var p = s.probs(); res.push(["Bell: ½, 0, 0, ½", close(p[0], 0.5) && close(p[3], 0.5) && close(p[1], 0) && close(p[2], 0)]); var g = Q(3); g.g("H", 0); g.cx(0, 1); g.cx(1, 2); p = g.probs(); res.push(["GHZ: ½ on 000 and 111", close(p[0], 0.5) && close(p[7], 0.5)]); var h = Q(1); h.g("H", 0); h.g("H", 0); p = h.probs(); res.push(["H·H = I", close(p[0], 1)]); var x = Q(3); x.g("X", 2); p = x.probs(); res.push(["X on qubit 2 → index 1", close(p[1], 1)]); var c = Q(3); c.g("X", 2); c.cx(2, 0); p = c.probs(); res.push(["CNOT(2→0): 001 → 101", close(p[5], 1)]); var r = Q(4), seed = 3; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; } for (var i = 0; i < 40; i++) { var q = Math.floor(rnd() * 4); r.g(["H", "S", "T", "X"][Math.floor(rnd() * 4)], q); if (rnd() < 0.4) r.cx(q, (q + 1) % 4); } p = r.probs(); res.push(["normalization after 40 random gates", close(p.reduce(function (a, b) { return a + b; }, 0), 1)]); }
+  Book.plate({
+    init: function () { run(); },
+    beat: function (i) { beat = i; },
+    act: function () { run(); },
+    caption: function () { return ["Testing the book’s simulator.", "State as a tensor of 2s.", "Test suite results.", "Stabilizer tableau: 2n bits per generator.", "Build a simulator."][beat]; },
+    readout: function () { var n = res.filter(function (r) { return r[1]; }).length; return n + " of " + res.length + " tests pass"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 1) { for (var i = 0; i < 8; i++) { var x = W * (0.15 + (i % 4) * 0.18), y = H * (0.3 + Math.floor(i / 4) * 0.25); k.rr(x, y, W * 0.14, H * 0.18, 6, "rgba(255,181,71," + (0.15 + 0.1 * i).toFixed(2) + ")", "rgba(236,230,218,.4)"); k.text(i.toString(2).padStart(3, "0"), x + W * 0.07, y + H * 0.1, { size: 12, color: "#14120f" }); } k.text("8 amplitudes = 2 × 2 × 2 tensor", W / 2, H * 0.88, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { for (var r = 0; r < 4; r++) for (var c = 0; c < 9; c++) { var on = ((r * 7 + c * 3) % 5) < 2; k.rr(W * (0.15 + c * 0.075), H * (0.25 + r * 0.12), W * 0.065, H * 0.1, 3, on ? "rgba(255,181,71,.8)" : "#14120f", "rgba(236,230,218,.3)"); } k.text("x bits | z bits | sign", W / 2, H * 0.8, { size: 12, color: "#b9b2a5" }); return; }
+      res.forEach(function (r, j) { var y = H * (0.12 + j * 0.13); k.circle(W * 0.15, y, 9, r[1] ? "#ffb547" : "#e05a46"); k.text(r[1] ? "✓" : "✗", W * 0.15, y + 5, { size: 12, color: "#14120f" }); k.text(r[0], W * 0.2, y + 5, { size: 13, align: "left" }); });
+    }
+  });
+})();
+</script>

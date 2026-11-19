@@ -1,0 +1,9 @@
+== 121
+best rank-3 rel err 0.149229251937452
+k 1 mean rel err 0.6871
+k 2 mean rel err 0.4414
+k 3 mean rel err 0.3034
+k 5 mean rel err 0.211
+k 8 mean rel err 0.1619
+k 12 mean rel err 0.1355
+row prob 4/100 0.04

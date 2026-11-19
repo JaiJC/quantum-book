@@ -1,0 +1,60 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Cool a metal slowly and its atoms settle into a near-perfect crystal; quench it and they freeze into a disordered glass. Annealing turns a slow change into a good answer. Quantum annealing applies the same idea to optimization: start in the easy ground state of a simple Hamiltonian, change it slowly into one whose ground state encodes the answer, and nature carries the system along. The question that decides everything is how slow is slow enough.</p>
+  <p>On the plate: two energy levels approaching each other, and whether a sweep stays on the lower one.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The adiabatic theorem</h2>
+  <p>Interpolate {{tex:H(s) = (1-s)H_0 + sH_1}} as {{tex:s}} goes from 0 to 1 over total time {{tex:T}}. The adiabatic theorem says the system stays in the instantaneous ground state if {{tex:T}} is large compared with {{tex:1/g_\text{min}^2}}, where {{tex:g_\text{min}}} is the smallest gap between ground and first excited state along the path. Edward Farhi and colleagues proposed adiabatic quantum computation in 2000–01, and Tadashi Kadowaki and Hidetoshi Nishimori proposed quantum annealing in 1998. Adiabatic computation is equivalent in power to the circuit model. Everything hinges on the gap: for hard problems it can shrink exponentially with size, and so the time grows exponentially. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Landau–Zener</h2>
+  <p>Near the minimum gap, two levels look like {{tex:H = \tfrac{vt}{2}Z + \tfrac{\Delta}{2}X}}. Clarence Zener and Lev Landau solved this in 1932: the probability of jumping to the upper level is</p>
+  <div class="eq">{{texd:P_\text{jump} = e^{-\pi\Delta^2/2v}}}</div>
+  <p>Set the gap {{tex:\Delta =}} <span class="tangle" data-var="D" data-min="0.2" data-max="2" data-step="0.1" data-dec="1" data-value="1.0" data-px="8"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gap">1.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span> and sweep rate {{tex:v =}} <span class="tangle" data-var="v" data-min="0.1" data-max="5" data-step="0.1" data-dec="1" data-value="1.0" data-px="6"><button type="button" data-de="-1" aria-label="Slower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Sweep rate">1.0</span><button type="button" data-de="1" aria-label="Faster">›</button></span>. The plate integrates the Schrödinger equation exactly and compares with the formula. Halve the gap and you must sweep four times more slowly for the same success: time scales as {{tex:1/\Delta^2}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Writing problems as Ising models</h2>
+  <p>Annealers accept problems in <em>Ising</em> or <em>QUBO</em> form: minimize {{tex:\sum J_{ij}z_iz_j + \sum h_iz_i}} with {{tex:z_i = \pm1}}. MaxCut becomes {{tex:\sum_{(ij)}z_iz_j}}: every cut edge contributes −1. The plate enumerates all 32 assignments for a 5-vertex graph containing a triangle. The best cut is 5 of 6 edges; a triangle can never be fully cut. The same form encodes scheduling, portfolio choice and, in Part 5, problems such as protein side-chain packing.</p>
+  <p>Does it help? D-Wave’s annealers have thousands of qubits, but no robust speedup on optimization over the best classical heuristics has been shown. In 2025 Andrew King and colleagues at D-Wave reported a simulation of quantum spin dynamics beyond classical reach; tensor-network groups produced classical simulations within days, and the dispute continues. The same year, Stephen Jordan and colleagues introduced Decoded Quantum Interferometry, with a superpolynomial speedup for a structured problem called optimal polynomial intersection, but none for generic sparse constraint problems. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The adiabatic theorem and its gap condition, the Landau–Zener formula, the Ising and QUBO encodings, and the current state of evidence for quantum speedups in optimization.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What controls adiabatic run time?<span class="tap">tap</span></div><div class="a">The minimum gap: T must exceed roughly 1/g_min².</div></div>
+  <div class="qa"><div class="q">How is MaxCut written as an Ising model?<span class="tap">tap</span></div><div class="a">Minimize Σ z_i z_j over edges; each cut edge contributes −1.</div></div>
+  <div class="qa"><div class="q">Has annealing shown optimization speedup?<span class="tap">tap</span></div><div class="a">Not robustly over the best classical heuristics; structured speedups exist for special problems.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:\Delta = 1}} and {{tex:v = 1}} (units with {{tex:\hbar = 1}}), what is the jump probability?</p>
+    <form class="calc" data-answer="0.208" data-tol="0.004" data-ok="Yes: e^(−π/2) ≈ 0.208. The plate’s exact integration gives 0.207." data-hint="exp(−π · 1 / 2)."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: L. Landau, Phys. Z. Sowjetunion 2, 46 (1932); C. Zener, Proc. R. Soc. A 137, 696 (1932). T. Kadowaki and H. Nishimori, Phys. Rev. E 58, 5355 (1998). E. Farhi et al., Science 292, 472 (2001). T. Albash and D. A. Lidar, Rev. Mod. Phys. 90, 015002 (2018). A. D. King et al., Science 388, 199 (2025). S. P. Jordan et al., Nature 646 (2025). Checked by code: exact integration gives 0.043, 0.210, 0.462, 0.670 for v = 0.5, 1, 2, 4, against the formula’s 0.043, 0.208, 0.456, 0.675.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { D: 1, v: 1 }, Pj = 0, traj = [], edges = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [0, 2]], en = [];
+  for (var x = 0; x < 32; x++) { var e = 0; edges.forEach(function (ed) { var a = (x >> ed[0]) & 1 ? 1 : -1, b = (x >> ed[1]) & 1 ? 1 : -1; e += a * b; }); en.push([e, x]); } en.sort(function (a, b) { return a[0] - b[0]; });
+  function run() { var D = V.D, v = V.v, T = 160 * Math.max(1, D) / v, N = 8000, dt = 2 * T / N, ar = 1, ai = 0, br = 0, bi = 0; traj = []; for (var i = 0; i < N; i++) { var t = -T + (i + 0.5) * dt, hz = v * t / 2, hx = D / 2, m = Math.sqrt(hz * hz + hx * hx), c = Math.cos(m * dt), s = Math.sin(m * dt) / m; var nar = c * ar + s * (hz * ai + hx * bi), nai = c * ai - s * (hz * ar + hx * br), nbr = c * br + s * (hx * ai - hz * bi), nbi = c * bi - s * (hx * ar - hz * br); ar = nar; ai = nai; br = nbr; bi = nbi; if (i % 80 === 0) traj.push([t, ar * ar + ai * ai]); } Pj = ar * ar + ai * ai; }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; run(); },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; run(); },
+    caption: function () { return ["Two levels, one avoided crossing.", "Time needed grows as 1 / gap².", "Energy levels (white); weight on the diabatic state (amber).", "All 32 cuts of a 5-vertex graph, by Ising energy.", "Annealing."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "Δ = " + V.D.toFixed(1) + ", v = " + V.v.toFixed(1) + " · jump: simulated " + Pj.toFixed(3) + ", formula " + Math.exp(-Math.PI * V.D * V.D / (2 * V.v)).toFixed(3) + " · success " + (1 - Pj).toFixed(3); if (beat === 3) return "lowest energy " + en[0][0] + " → cut " + (6 - en[0][0]) / 2 + " of 6 edges"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat <= 2 || beat === 4) { var D = beat === 2 ? V.D : 1, R = 4; A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [-R * 2, R * 2], [-R, R], { xl: "time", zeroY: true }); var vv = beat === 2 ? V.v : 1; k.plot(A, function (t) { return Math.sqrt(vv * vv * t * t / 4 + D * D / 4); }, [-2 * R, 2 * R], "rgba(236,230,218,.8)", 2, 300); k.plot(A, function (t) { return -Math.sqrt(vv * vv * t * t / 4 + D * D / 4); }, [-2 * R, 2 * R], "rgba(236,230,218,.8)", 2, 300); k.plot(A, function (t) { return vv * t / 2; }, [-2 * R, 2 * R], "rgba(185,178,165,.3)", 1, 50); k.plot(A, function (t) { return -vv * t / 2; }, [-2 * R, 2 * R], "rgba(185,178,165,.3)", 1, 50);
+        if (beat === 2) { var c = k.ctx; c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); var f = true; traj.forEach(function (p) { if (Math.abs(p[0]) > 2 * R) return; var y = A.Y(-R + 2 * R * p[1] * 0.98); if (f) { c.moveTo(A.X(p[0]), y); f = false; } else c.lineTo(A.X(p[0]), y); }); c.stroke(); k.text("amber: probability on the starting state (bottom = 0, top = 1)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); } return; }
+      if (beat === 3) { var gx = W * 0.25, gy = H * 0.45, r = Math.min(W, H) * 0.2, best = en[0][1], pos = []; for (var i = 0; i < 5; i++) { var a = -Math.PI / 2 + i * 2 * Math.PI / 5; pos.push([gx + r * Math.cos(a), gy + r * Math.sin(a)]); } edges.forEach(function (ed) { var cut = ((best >> ed[0]) & 1) !== ((best >> ed[1]) & 1); k.line(pos[ed[0]][0], pos[ed[0]][1], pos[ed[1]][0], pos[ed[1]][1], cut ? "#ffb547" : "rgba(224,90,70,.8)", cut ? 2.5 : 1.5); }); pos.forEach(function (p, i) { k.circle(p[0], p[1], 9, (best >> i) & 1 ? "#ffb547" : "#ece6da"); });
+        A = k.axes(W * 0.55, H * 0.1, W * 0.4, H * 0.72, [0, 32], [-5, 7], { xl: "assignments, sorted" }); en.forEach(function (q, j) { k.rr(A.X(j) + 1, A.Y(Math.max(0, q[0])), A.X(1) - A.X(0) - 2, Math.abs(A.Y(q[0]) - A.Y(0)), 1, j < 2 ? "#ffb547" : "rgba(236,230,218,.45)"); }); }
+    }
+  });
+})();
+</script>

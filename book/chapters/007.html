@@ -1,0 +1,151 @@
+<section class="beat" data-beat="0">
+  <p class="drop">No ruler has ever measured a length of {{tex:\sqrt{-1}}} metres, and no scale has ever read {{tex:i}} kilograms. Yet the central equation of quantum mechanics has an {{tex:i}} written into it, and every wavefunction is a complex number at every point. Why would nature need a number whose square is negative?</p>
+  <p>The short answer is that {{tex:i}} is not really a number for counting. It is a number for <em>turning</em>. Once you see that, the strangeness drains away, and you get a tool that makes waves, circuits and integrals far easier.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Multiplying by i is a quarter turn</h2>
+  <p>Draw the ordinary numbers along a line. Multiplying by −1 flips a number to the other side: a half turn. So what multiplied twice gives a half turn? A quarter turn. Put a second axis at right angles and call one step along it {{tex:i}}: then {{tex:i \times i}} is two quarter turns, which is {{tex:-1}}.</p>
+  <p>Every complex number {{tex:z = x + iy}} is a point in this plane. Multiplying two complex numbers multiplies their lengths and <em>adds their angles</em>. Turn the arrow to an angle of <span class="tangle" data-var="th" data-min="0" data-max="360" data-step="5" data-value="40" data-unit="°" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Angle">40 °</span><button type="button" data-de="1" aria-label="More">›</button></span> and watch its shadows on the two axes.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Euler’s formula</h2>
+  <p>The arrow of length one at angle {{tex:\theta}} has shadows {{tex:\cos\theta}} and {{tex:\sin\theta}}. Leonhard Euler found the compact way to write it:</p>
+  <div class="eq">{{texd:e^{i\theta} = \cos\theta + i\sin\theta}}</div>
+  <p>Put {{tex:\theta = \pi}} and you get {{tex:e^{i\pi} = -1}}: half a turn. Let {{tex:\theta = \omega t}} grow with time and the arrow spins steadily while its shadow traces a cosine wave. That spinning arrow is a <em>phasor</em>. Adding two waves of the same frequency becomes adding two arrows, which is far easier than adding two trigonometric functions. Electrical engineers design every circuit this way.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Compare Taylor series: {{tex:e^{x} = \sum x^n/n!}}. Put {{tex:x = i\theta}}; the even powers carry {{tex:i^{2k} = (-1)^k}} and give the series for {{tex:\cos\theta}}, the odd powers give {{tex:i\sin\theta}}.</div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Functions that bend the plane</h2>
+  <p>A complex function moves every point of the plane somewhere else. The plate draws a <em>phase portrait</em>: thin amber lines where the output points in the same direction, and pale rings where it has the same size. Look at <button type="button" class="v" data-pick="f:sq">{{tex:z^2}}</button>, <button type="button" class="v" data-pick="f:inv">{{tex:1/z}}</button> and <button type="button" class="v" data-pick="f:poles">{{tex:1/(1+z^2)}}</button>.</p>
+  <p>Where the phase lines all crowd into a point, the function is zero or infinite. Lines meeting and running the same way round mark a zero; the opposite way round, a <em>pole</em>, where the function blows up.</p>
+  <p>Functions that can be differentiated in the complex sense are called <em>analytic</em>, and they are astonishingly rigid: the real and imaginary parts must satisfy the Cauchy–Riemann equations {{tex:\partial u/\partial x = \partial v/\partial y}} and {{tex:\partial u/\partial y = -\partial v/\partial x}}. Know an analytic function along a tiny curve and you know it everywhere.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Integrals that only see the poles</h2>
+  <p>Integrate an analytic function around a closed loop and you get zero, unless the loop encloses a pole. Then you get {{tex:2\pi i}} times a number called the <em>residue</em>, which measures how strongly the function blows up there:</p>
+  <div class="eq">{{texd:\oint f(z)\,dz = 2\pi i \sum \text{residues inside}}}</div>
+  <p>The function {{tex:1/(1+z^2)}} has poles at {{tex:+i}} and {{tex:-i}}. Move the loop’s centre to height <span class="tangle" data-var="yc" data-min="-2" data-max="2" data-step="0.1" data-dec="1" data-value="0" data-px="6"><button type="button" data-de="-1" aria-label="Down">‹</button><span class="num" role="slider" tabindex="0" aria-label="Loop centre height">0.0</span><button type="button" data-de="1" aria-label="Up">›</button></span>. The integral is <span class="live" id="cint">0</span>: zero when the loop holds no pole, {{tex:\pi}} when it holds the pole at {{tex:+i}}, and {{tex:-\pi}} when it holds the one at {{tex:-i}}. Nothing else about the loop matters.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A real integral, done the easy way</h2>
+  <p>What is {{tex:\int_{-\infty}^{\infty} dx/(1+x^2)}}? Close the real line with a huge half-circle in the upper half of the plane. The half-circle contributes nothing as it grows, and the loop holds only the pole at {{tex:+i}}, whose residue is {{tex:1/(2i)}}. So the answer is {{tex:2\pi i \cdot 1/(2i) = \pi}}.</p>
+  <p>You can check it the ordinary way, with {{tex:\arctan}}, but contour integration does the same job for integrals that have no ordinary antiderivative. It will compute propagators in quantum field theory for us later.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Going round twice</h2>
+  <p>Some functions cannot make up their minds. Take the square root. Start at {{tex:z = 1}}, where {{tex:\sqrt z = 1}}, and <button type="button" class="v" data-act="walk">walk once around zero</button>, following the root continuously. You arrive back at {{tex:z = 1}} with {{tex:\sqrt z = -1}}. Go round again to get back to {{tex:+1}}.</p>
+  <p>To keep such a function single-valued we draw a <em>branch cut</em>, a line we agree not to cross. The cut is a bookkeeping choice; the doubling is real, and it will reappear when an electron needs a full 720° turn to return to itself.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>Does quantum mechanics really need i?</h2>
+  <p>In 2021 Marc-Olivier Renou and colleagues proposed an experiment, with three parties and two independent sources of entangled pairs, whose results no theory using only real numbers could reproduce, if systems are combined in the standard way. Experiments in 2022 agreed with the complex version. <span class="tag">Established</span></p>
+  <p>In 2025 Timothée Hoffreumon and Mischa Woods argued that a real-number theory with a different rule for combining systems reproduces every prediction of ordinary quantum mechanics, so no experiment can tell them apart. Whether {{tex:i}} is a fact about nature or just the most convenient bookkeeping is now an open argument. <span class="tag">Debated</span></p>
+  <p>Either way, the complex form is the natural language: the real versions still carry the fingerprints of complex arithmetic. This book will use {{tex:i}} freely.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Complex numbers as arrows that multiply by turning, Euler’s formula, phasors, analytic functions, residues and branch cuts.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does multiplying by i do geometrically?<span class="tap">tap</span></div><div class="a">It turns the arrow a quarter turn anticlockwise without changing its length.</div></div>
+  <div class="qa"><div class="q">Why is a loop integral of an analytic function zero unless it encloses a pole?<span class="tap">tap</span></div><div class="a">Cauchy’s theorem: analytic functions have no “sources” inside the loop; only the residues at poles contribute 2πi each.</div></div>
+  <div class="qa"><div class="q">What happens to √z as you walk once around zero?<span class="tap">tap</span></div><div class="a">It comes back with the opposite sign; it takes two turns to return to the start.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:i = e^{i\pi/2}}}, the number {{tex:i^i}} is real. What is it?</p>
+    <form class="calc" data-answer="0.2079" data-tol="0.002" data-ok="Yes: iⁱ = (e^{iπ/2})^i = e^{−π/2} ≈ 0.208. An imaginary power of an imaginary number is real." data-hint="(e^{iπ/2})^i = e^{i·i·π/2}. What is i·i?"><span>iⁱ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Value of i to the i"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: T. Needham, Visual Complex Analysis. M.-O. Renou et al., Nature 600, 625 (2021). T. Hoffreumon and M. P. Woods, arXiv:2504.02808 (2025). ∫dx/(1+x²) = π and iⁱ = e^(−π/2) checked by code.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { th: 40, yc: 0 }, walk = -1, field = null, fieldKind = "";
+  function fkind() { if (beat === 4 || beat === 5) return "poles"; return Book.state.picks.f || "poles"; }
+  function f(kind, x, y) {
+    if (kind === "sq") return [x * x - y * y, 2 * x * y];
+    if (kind === "inv") { var d = x * x + y * y + 1e-9; return [x / d, -y / d]; }
+    var re = 1 + x * x - y * y, im = 2 * x * y, d2 = re * re + im * im + 1e-12; return [re / d2, -im / d2];
+  }
+  function cint() { var r = 0.8, inUp = Math.abs(V.yc - 1) < r, inDn = Math.abs(V.yc + 1) < r; return (inUp ? Math.PI : 0) + (inDn ? -Math.PI : 0); }
+  function upd() { var v = cint(); Book.text("cint", v === 0 ? "0" : v > 0 ? "π ≈ 3.14" : "−π ≈ −3.14"); }
+  function buildField(k, kind) {
+    var W = Math.ceil(k.W / 3), H = Math.ceil(k.H / 3), cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    var cx = cv.getContext("2d"), im = cx.createImageData(W, H), d = im.data, s = Math.min(k.W, k.H) / 5;
+    for (var j = 0; j < H; j++) for (var i = 0; i < W; i++) {
+      var x = (i * 3 - k.W / 2) / s, y = -(j * 3 - k.H / 2) / s, w = f(kind, x, y), ph = Math.atan2(w[1], w[0]), m = Math.log(Math.hypot(w[0], w[1]) + 1e-12);
+      var pl = Math.pow(Math.abs(Math.cos(ph * 6)), 40), ml = Math.pow(Math.abs(Math.cos(m * Math.PI)), 30), o = (j * W + i) * 4;
+      d[o] = 255; d[o + 1] = Math.round(180 + 50 * ml); d[o + 2] = Math.round(80 + 140 * ml); d[o + 3] = Math.min(255, pl * 220 + ml * 45);
+    }
+    cx.putImageData(im, 0, 0); field = { cv: cv, s: s }; fieldKind = kind + k.W + "x" + k.H;
+  }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; upd(); },
+    beat: function (i) { beat = i; if (i === 6) walk = performance.now(); },
+    act: function (a) { if (a === "walk") walk = performance.now(); },
+    set: function (n, v) { V[n] = v; upd(); },
+    caption: function () { return ["The complex plane.", "z = e^(iθ) and its two shadows.", "A phasor and the wave it casts.", { sq: "Phase portrait of z².", inv: "Phase portrait of 1/z.", poles: "Phase portrait of 1/(1+z²)." }[fkind()], "A loop and the poles at ±i.", "Closing the real line in the upper half-plane.", "√z along a loop around 0.", "The complex plane.", "The complex plane."][beat]; },
+    readout: function () {
+      var t = V.th * Math.PI / 180;
+      if (beat === 1) return "cos " + Math.cos(t).toFixed(2) + " · sin " + Math.sin(t).toFixed(2);
+      if (beat === 4) { var v = cint(); return "∮ = " + (v === 0 ? "0" : v > 0 ? "π" : "−π"); }
+      if (beat === 5) return "∫ dx/(1+x²) = π";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, s = Math.min(W, H) / 5;
+      function P(x, y) { return [cx + x * s, cy - y * s]; }
+      if (beat === 3 || beat === 4 || beat === 5) {
+        var kind = fkind(); if (fieldKind !== kind + k.W + "x" + k.H) buildField(k, kind);
+        c.save(); c.globalAlpha = 0.9; c.imageSmoothingEnabled = true; c.drawImage(field.cv, 0, 0, Math.ceil(W / 3) * 3, Math.ceil(H / 3) * 3); c.restore();
+      }
+      k.line(0, cy, W, cy, "#3a3631"); k.line(cx, 0, cx, H, "#3a3631");
+      k.text("real", W - 10, cy - 8, { align: "right" }); k.text("imaginary", cx + 8, 18, { align: "left" });
+      if (beat === 0 || beat === 1 || beat === 7 || beat === 8) {
+        k.circle(cx, cy, s * 1.5, null, "#24211d");
+        var t = (beat === 1 ? V.th : 40 + now / 50) * Math.PI / 180, p = P(1.5 * Math.cos(t), 1.5 * Math.sin(t));
+        k.line(cx, cy, p[0], p[1], "#ffb547", 2.5); k.circle(p[0], p[1], 6, "#ffb547");
+        k.line(p[0], p[1], p[0], cy, "rgba(236,230,218,.4)", 1, [3, 4]); k.line(p[0], p[1], cx, p[1], "rgba(236,230,218,.4)", 1, [3, 4]);
+        k.circle(p[0], cy, 4, "#ece6da"); k.circle(cx, p[1], 4, "#ece6da");
+        [[1, 0, "1"], [0, 1, "i"], [-1, 0, "−1"], [0, -1, "−i"]].forEach(function (q) { var pp = P(1.5 * q[0], 1.5 * q[1]); k.text(q[2], pp[0] + (q[0] ? q[0] * 14 : 12), pp[1] + (q[1] ? -q[1] * 12 : 16), { color: "#b9b2a5", size: 15 }); });
+        return;
+      }
+      if (beat === 2) {
+        var ox = W * 0.22, R = Math.min(W * 0.14, H * 0.3), t2 = now / 1000 * 1.2, px = ox + R * Math.cos(t2), py = cy - R * Math.sin(t2);
+        k.circle(ox, cy, R, null, "#24211d"); k.line(ox, cy, px, py, "#ffb547", 2.5); k.circle(px, py, 6, "#ffb547");
+        var x0 = W * 0.42; k.line(px, py, x0, py, "rgba(255,181,71,.35)", 1, [2, 4]);
+        c.strokeStyle = "#ece6da"; c.lineWidth = 2; c.beginPath(); for (var i = 0; i < W * 0.55; i += 2) { var y = cy - R * Math.sin(t2 - i / 50); if (i) c.lineTo(x0 + i, y); else c.moveTo(x0, y); } c.stroke();
+        k.text("e^(iωt)", ox, cy + R + 22, { color: "#ffb547" }); k.text("its shadow: a wave", x0 + W * 0.25, cy + R + 22, {});
+        return;
+      }
+      if (beat === 4) {
+        [[0, 1], [0, -1]].forEach(function (q) { var pp = P(q[0], q[1]); k.glow(pp[0], pp[1], 16); k.circle(pp[0], pp[1], 4, "#ece6da"); });
+        var cc = P(0, V.yc); k.circle(cc[0], cc[1], 0.8 * s, null, "#ffb547", 2.5);
+        var a = now / 600; k.circle(cc[0] + 0.8 * s * Math.cos(a), cc[1] - 0.8 * s * Math.sin(a), 4, "#ffb547");
+        return;
+      }
+      if (beat === 5) {
+        var Rr = 1.9, pz = P(0, 1); k.glow(pz[0], pz[1], 16); k.circle(pz[0], pz[1], 4, "#ece6da");
+        k.line(cx - Rr * s, cy, cx + Rr * s, cy, "#ffb547", 2.5); c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.arc(cx, cy, Rr * s, 0, Math.PI, true); c.stroke();
+        return;
+      }
+      if (beat === 6) {
+        var tw = walk < 0 ? 0 : Math.min(4 * Math.PI, (now - walk) / 1000 * 1.6), r = 1.2;
+        var zp = P(r * Math.cos(tw), r * Math.sin(tw)), wv = [Math.sqrt(r) * Math.cos(tw / 2), Math.sqrt(r) * Math.sin(tw / 2)];
+        k.circle(cx, cy, r * s, null, "#3a3631"); k.circle(zp[0], zp[1], 6, "#ece6da"); k.text("z", zp[0] + 10, zp[1] - 8, { color: "#ece6da", size: 15 });
+        var wp = P(wv[0] * 0.9, wv[1] * 0.9); k.line(cx, cy, wp[0], wp[1], "#ffb547", 2.5); k.circle(wp[0], wp[1], 6, "#ffb547"); k.text("√z", wp[0] + 12, wp[1] + 4, { color: "#ffb547", size: 15 });
+        k.line(cx - 2.4 * s, cy, cx, cy, "rgba(236,230,218,.5)", 2, [6, 4]); k.text("branch cut", cx - 1.6 * s, cy + 18, {});
+        k.text("turns of z: " + (tw / (2 * Math.PI)).toFixed(2) + "   √z = " + (wv[0] / Math.sqrt(r)).toFixed(2) + (wv[1] >= 0 ? " + " : " − ") + Math.abs(wv[1] / Math.sqrt(r)).toFixed(2) + "i", W / 2, H - 14, { color: "#b9b2a5" });
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,2 @@
+== 074
+plaquette phase sum invariant under random site gauge transformations (checked in-page)

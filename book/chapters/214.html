@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The last capstone brings every tool in the book to bear on one claim. Pick a published quantum-for-biology result, such as the 2025 KRAS drug-discovery paper or the 2025 estimate that FeMoco could be simulated with about 99,000 cat qubits, and audit it fully: restate the claim, run the methods checklist of Chapter 180, re-derive its resource numbers yourself, find the best classical comparison, and write a verdict. When you can do this for any claim you meet, the book has done its job.</p>
+  <p>On the plate: re-deriving a resource estimate under different architectures.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The audit template</h2>
+  <p>(1) <strong>Claim</strong>, in the authors’ strongest form, with its date and status (peer-reviewed, preprint, company blog). (2) <strong>Checklist</strong>: the tests of Chapter 180 and the advantage questions of Chapter 150. (3) <strong>Re-derivation</strong>: logical counts, error model, code, distance, footprint and run time, with every assumption written down (Chapters 143, 189). (4) <strong>Classical comparison</strong>: the best classical method for the same question, its cost and accuracy, and its trend (Chapters 151, 183). (5) <strong>Verdict</strong>: a status label, the single most important uncertainty, and the observation that would change the verdict. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Re-derive the cat-qubit estimate</h2>
+  <p>Start from Lee and colleagues’ 2021 FeMoco logical counts: about 2,142 logical qubits and {{tex:5.3\times10^9}} Toffolis. Choose an architecture: <button type="button" class="v" data-pick="a:sc">surface code</button> or <button type="button" class="v" data-pick="a:cat">cat qubits with a repetition code</button>. Cat qubits suppress bit flips exponentially (Chapter 141), so only phase flips need correcting, by a one-dimensional repetition code of about {{tex:2d}} physical cat qubits per logical qubit instead of about {{tex:2(d+1)^2}}. Physical error 10^<span class="tangle" data-var="lp" data-min="-4" data-max="-2.3" data-step="0.1" data-dec="1" data-value="-3.0" data-px="10"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 p">-3.0</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. With the same failure budget as Chapter 189, this simplified model gives about four million surface-code qubits but on the order of {{tex:10^5}} cat qubits: the same order as the company’s preliminary 99,000, which also used newer algorithmic savings. What the model cannot check is the key assumption, that bit flips stay negligible at scale while gates run fast, which current cat-qubit chips, with a handful of qubits, have not yet shown. <span class="tag">Speculative</span> for the architecture at scale.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Write the verdict</h2>
+  <p>Your audit should end in a paragraph like this: “The estimate is internally consistent and reproducible within an order of magnitude from published logical counts. Its decisive assumption is X, demonstrated so far only at scale Y. The best classical method, Z, currently achieves W on related systems and is improving. Status: speculative; the observation that would change it is V.” For the KRAS paper, the same template leads to the ablation-and-power analysis of Chapter 200. Then publish your audit, to a study group, a journal club or a blog, and invite the strongest objection. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>A five-part audit template, a re-derivation of a recent resource claim under two architectures, the assumption that decides it, and the habit of ending every analysis with what would change your mind. That habit, more than any formula, is what this book has tried to teach.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do cat qubits need fewer physical qubits?<span class="tap">tap</span></div><div class="a">Bit flips are exponentially suppressed, so a 1D repetition code against phase flips suffices.</div></div>
+  <div class="qa"><div class="q">What is the decisive assumption in cat-qubit estimates?<span class="tap">tap</span></div><div class="a">That bit-flip suppression and fast gates hold at scale.</div></div>
+  <div class="qa"><div class="q">How should every audit end?<span class="tap">tap</span></div><div class="a">With a status label and the observation that would change it.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> 2,142 logical qubits, each a repetition code of {{tex:2d}} cat qubits at {{tex:d = 31}}. About how many cat qubits, before factories?</p>
+    <form class="calc" data-answer="132804" data-tol="2000" data-ok="Yes: about 133,000; the published 99,000 also used algorithmic improvements." data-hint="2142 × 62."><span>≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Cat qubits"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Lee et al., PRX Quantum 2, 030305 (2021). Alice & Bob, company blog (October 2025), preliminary. H. Putterman et al., Nature (February 2025) (Ocelot). J. Guillaud and M. Mirrahimi, Phys. Rev. X 9, 041053 (2019) (repetition cat codes). M. Ghazi Vakili et al., Nat. Biotechnol. (2025). The architecture model is this book’s simplification.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { lp: -3 }, Q = 2142, NT = 5.3e9;
+  function est(arch) { var p = Math.pow(10, V.lp), tau = 1e-6, tr = 10e-6, d, T, pL; for (d = 3; d < 200; d += 2) { T = NT * Math.max(tr, d * tau); pL = 0.1 * Math.pow(p / 0.01, (d + 1) / 2); if (Q * (T / tau) * pL <= 0.01) break; } var per = arch === "cat" ? 2 * d : 2 * (d + 1) * (d + 1), fac = arch === "cat" ? 8 * 4 * 2 * d : 8 * 4 * 2 * (d + 1) * (d + 1); return { d: d, n: Q * per + fac, days: T / 86400 }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Audit: claim, checklist, re-derivation, comparison, verdict.", "Five-part audit.", "Physical qubits: surface code vs cat qubits (log scale).", "The verdict paragraph.", "Feasibility critique."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var s = est("sc"), c = est("cat"); return "d = " + s.d + " · surface ≈ " + (s.n / 1e6).toFixed(2) + " M · cat ≈ " + (c.n / 1e3).toFixed(0) + " k · run ≈ " + s.days.toFixed(1) + " days (selected: " + ((Book.state.picks.a || "cat") === "cat" ? "cat" : "surface") + ")"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1 || beat === 3) { ["claim", "checklist", "re-derivation", "classical comparison", "verdict"].forEach(function (s, j) { k.rr(W * 0.2, H * (0.08 + j * 0.18), W * 0.6, H * 0.13, 8, "#14120f", j === 4 ? "#ffb547" : "rgba(236,230,218,.4)"); k.text((j + 1) + " · " + s, W / 2, H * (0.155 + j * 0.18), { size: 13, color: j === 4 ? "#ffb547" : "#ece6da" }); }); return; }
+      var s = est("sc"), c = est("cat"), sel = Book.state.picks.a || "cat"; A = k.axes(W * 0.2, H * 0.1, W * 0.72, H * 0.7, [0, 2], [4, 7.5], { yl: "log₁₀ physical qubits" }); [["surface", s.n, "sc"], ["cat", c.n, "cat"]].forEach(function (b, j) { var y = Math.log10(b[1]); k.rr(A.X(j + 0.25), A.Y(y), A.X(0.5) - A.X(0), A.Y(4) - A.Y(y), 4, b[2] === sel ? "#ffb547" : "rgba(236,230,218,.45)"); k.text(b[0], A.X(j + 0.5), A.Y(4) + 16, { size: 12 }); }); k.line(A.X(0), A.Y(Math.log10(99000)), A.X(2), A.Y(Math.log10(99000)), "rgba(224,90,70,.6)", 1); k.text("company claim ~99 k", A.X(1.98), A.Y(Math.log10(99000)) - 6, { size: 10, color: "#e05a46", align: "right" });
+    }
+  });
+})();
+</script>

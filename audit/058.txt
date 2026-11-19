@@ -1,0 +1,3 @@
+== 058
+max diff modes vs formula 1.3322676295501878e-15
+string speed 100.0

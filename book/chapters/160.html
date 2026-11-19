@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">An enzyme has thousands of atoms, but the chemistry happens among a few dozen in its active site. Treating every atom quantum mechanically is unaffordable; treating every atom classically cannot describe bonds breaking. In 1976 Arieh Warshel and Michael Levitt proposed the obvious compromise: quantum mechanics where the chemistry is, classical mechanics everywhere else. It took decades to become routine, and it won the 2013 Nobel Prize in Chemistry, shared with Martin Karplus. QM/MM is also the frame into which any future quantum-computer subroutine for biochemistry will slot.</p>
+  <p>On the plate: choose how much of an enzyme to treat quantum mechanically, and see the cost.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Splitting the system</h2>
+  <p>The energy is written</p>
+  <div class="eq">{{texd:\begin{aligned}E = {}&E_\text{QM}(\text{inner}) + E_\text{MM}(\text{outer})\\ &+ E_\text{QM/MM}(\text{coupling})\end{aligned}}}</div>
+  <p>The MM region uses a <em>force field</em>: springs for bonds and angles, torsion terms, Lennard-Jones contacts and fixed partial charges, cheap enough for hundreds of thousands of atoms. In <em>mechanical embedding</em> the regions interact only through classical terms; in <em>electrostatic embedding</em>, the standard choice, the MM partial charges enter the QM Hamiltonian, so the protein’s electric field polarizes the active site, which is often the main way enzymes catalyse. Hans Martin Senn and Walter Thiel reviewed the methods in 2009. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>How big a quantum region?</h2>
+  <p>Choose a QM radius around the active site of <span class="tangle" data-var="r" data-min="3" data-max="15" data-step="0.5" data-dec="1" data-value="6.0" data-px="6"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Radius Å">6.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span> Å and a method: <button type="button" class="v" data-pick="m:dft">DFT (∝ N³)</button> or <button type="button" class="v" data-pick="m:cc">CCSD(T) (∝ N⁷)</button>. Proteins contain about 0.1 atoms per cubic ångström, so the QM atom count grows as the cube of the radius, and the cost as a high power of that. Results also converge slowly with QM size; studies typically need a few hundred QM atoms for converged energetics, which is why cheaper QM methods and smart embedding matter. Where the bonds cut the boundary, a hydrogen <em>link atom</em> caps the dangling bond of the QM region. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Free energies, and the quantum subroutine</h2>
+  <p>Enzymes fluctuate, so a single structure is not enough. Reaction free energies need sampling: thousands of configurations along a reaction coordinate, each requiring a QM/MM energy and forces, with methods such as umbrella sampling or free-energy perturbation. That multiplies the cost again. In Part 5 this structure reappears: a quantum computer would compute the energy of a small, strongly correlated active region (an iron–sulfur cluster, say), embedded in DFT, embedded in molecular mechanics, sampled by classical dynamics. The quantum part only has to handle what nothing else can. <span class="tag">Established</span> for QM/MM; <span class="tag">Speculative</span> for the quantum subroutine.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The QM/MM energy partition, force fields, mechanical and electrostatic embedding, link atoms, how QM region size drives cost, the need for free-energy sampling, and the place a quantum subroutine could occupy.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does electrostatic embedding add?<span class="tap">tap</span></div><div class="a">The protein’s partial charges in the QM Hamiltonian, so its field polarizes the active site.</div></div>
+  <div class="qa"><div class="q">What is a link atom?<span class="tap">tap</span></div><div class="a">A hydrogen capping a covalent bond cut by the QM/MM boundary.</div></div>
+  <div class="qa"><div class="q">Why isn’t one structure enough?<span class="tap">tap</span></div><div class="a">Free energies need averaging over many thermally sampled configurations.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With CCSD(T) scaling as {{tex:N^7}}, by what factor does cost grow if the QM region doubles?</p>
+    <form class="calc" data-answer="128" data-tol="0.5" data-ok="Yes: 2⁷ = 128. With DFT (N³) it would be 8." data-hint="2⁷."><span>factor =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Warshel and M. Levitt, J. Mol. Biol. 103, 227 (1976). H. M. Senn and W. Thiel, Angew. Chem. Int. Ed. 48, 1198 (2009). Nobel Prize in Chemistry 2013 (Karplus, Levitt, Warshel). H. J. Kulik et al., J. Phys. Chem. B 120, 11381 (2016) (QM-region convergence).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { r: 6 }, pts = [], seed = 23;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  for (var i = 0; i < 1400; i++) { var a = rnd() * 6.283, rr = 30 * Math.sqrt(rnd()) * (0.85 + 0.15 * Math.sin(3 * a)); pts.push([rr * Math.cos(a), rr * Math.sin(a)]); }
+  function nQM() { return Math.round(4 / 3 * Math.PI * Math.pow(V.r, 3) * 0.1); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["An enzyme with a quantum active site (amber).", "QM inside, MM outside, coupled by electrostatics.", "QM radius " + V.r.toFixed(1) + " Å.", "Sampling along a reaction coordinate.", "QM/MM."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var n = nQM(), p = (Book.state.picks.m || "dft") === "cc" ? 7 : 3, rel = Math.pow(n / 50, p); return n + " QM atoms · cost relative to 50 atoms: " + (rel < 1e4 ? rel.toFixed(1) : rel.toExponential(1)) + "×"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, cx = W / 2, cy = H * 0.48, s = Math.min(W, H) * 0.42 / 32, rr = beat === 2 ? V.r : 6;
+      if (beat === 3) { var A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 1], [0, 20], { xl: "reaction coordinate", yl: "free energy (kcal/mol)" }); k.plot(A, function (x) { return 14 * Math.exp(-Math.pow((x - 0.5) / 0.15, 2)) - 4 * x; }, [0, 1], "#ffb547", 2.5); for (var j = 0; j < 12; j++) { var x = (j + 0.5) / 12; k.circle(A.X(x), A.Y(14 * Math.exp(-Math.pow((x - 0.5) / 0.15, 2)) - 4 * x) - 10, 3, "rgba(236,230,218,.6)"); } k.text("each window: thousands of QM/MM energies", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      pts.forEach(function (p) { var inside = Math.hypot(p[0] - 4, p[1] + 2) < rr * 1.6; k.circle(cx + p[0] * s, cy + p[1] * s, 1.6, inside ? "#ffb547" : "rgba(236,230,218,.35)"); });
+      k.circle(cx + 4 * s, cy - 2 * s, rr * 1.6 * s, null, "rgba(255,181,71,.7)");
+    }
+  });
+})();
+</script>

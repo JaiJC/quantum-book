@@ -1,0 +1,119 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Pin an electron down to within a nanometre and let go. Thirty femtoseconds later its wavefunction is twice as wide. Do the same to a speck of dust and you would wait about a year. Same equation, same physics; only the mass is different. This chapter is about why quantum objects refuse to stay put, and why you never notice.</p>
+  <p>On the plate, a free wave packet, launched with no forces on it at all, drifts and spreads.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>A plane wave is nowhere</h2>
+  <p>The simplest solution of the free Schrödinger equation is a plane wave, {{tex:e^{i(kx - \omega t)}}} with {{tex:\omega = \hbar k^2/2m}}. It has a perfectly definite momentum {{tex:\hbar k}} and is spread evenly over all of space, so it cannot describe a particle that is <em>here</em>. To build something localized you add plane waves with a spread of {{tex:k}}, exactly as Chapter 6 built a pulse from sines.</p>
+  <p>Add <span class="tangle" data-var="nw" data-min="1" data-max="40" data-step="1" data-value="5" data-px="8"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Number of waves">5</span><button type="button" data-de="1" aria-label="More">›</button></span> waves with nearby wavenumbers. With one wave, nothing is localized. With a few, lumps appear and repeat. With many, a single packet stands alone: the waves agree in one place and cancel everywhere else.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Two speeds</h2>
+  <p>Watch the packet move. The ripples inside it, marked by the small white dot, travel at the <em>phase velocity</em> {{tex:\omega/k = \hbar k/2m}}. The envelope, marked in amber, travels at the <em>group velocity</em> {{tex:d\omega/dk = \hbar k/m}}, which is twice as fast. The ripples are born at the back of the packet and die at the front.</p>
+  <p>Only the group velocity matches the classical {{tex:p/m}}. The phase velocity has no physical meaning on its own; you can change it by adding a constant to the potential energy, which shifts every frequency without changing anything you can measure. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How fast a packet spreads</h2>
+  <p>For a Gaussian packet that starts with width {{tex:\sigma_0}} and no internal chirp, the Schrödinger equation can be solved exactly:</p>
+  <div class="eq">{{texd:\sigma(t) = \sigma_0\sqrt{1 + \left(\frac{t}{\tau}\right)^{2}}, \qquad \tau = \frac{2m\sigma_0^2}{\hbar}}}</div>
+  <p>Start narrower and it spreads faster. Set the starting width to <span class="tangle" data-var="s0" data-min="0.5" data-max="3" data-step="0.1" data-dec="1" data-value="1" data-px="10"><button type="button" data-de="-1" aria-label="Narrower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Starting width">1.0</span><button type="button" data-de="1" aria-label="Wider">›</button></span>. The plate runs the solver and plots the measured width in amber against the formula. They lie on top of each other.</p>
+  <p>This is the uncertainty principle in motion. A narrow packet must contain a wide spread of momenta, {{tex:\sigma_p \ge \hbar/2\sigma_0}}, and the fast parts outrun the slow ones. At late times the width grows as {{tex:\sigma_p t/m}}, exactly like a cloud of classical particles flying apart at different speeds.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The momentum never changes</h2>
+  <p>Here is something that surprises people. While the packet spreads in position, its momentum distribution, the plate’s lower curve, does not change at all. With no force, each plane wave keeps its own momentum; only their relative phases change. The packet gets wider, but it is not getting more uncertain about its speed. It is becoming <em>correlated</em>: fast parts at the front, slow parts at the back.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Electron or dust grain</h2>
+  <p>The time to double in width is {{tex:\sqrt3\,\tau}}. Localize each of these to one nanometre and see how long it takes: <button type="button" class="v" data-pick="obj:e">an electron</button>, <button type="button" class="v" data-pick="obj:c60">a buckyball</button>, <button type="button" class="v" data-pick="obj:v">a virus</button>, <button type="button" class="v" data-pick="obj:d">a speck of dust</button>.</p>
+  <p>The electron doubles in 30 femtoseconds. A buckyball, the 60-carbon molecule that has been sent through double slits, takes 40 nanoseconds. A virus particle, about 30 milliseconds. A microgram of dust, about a year. Spreading is universal, but its rate falls with mass, and for anything you can see it is hopelessly slow.</p>
+  <div class="note x-std"><span class="mark">Note</span>This is not the whole reason everyday objects look classical. Even slow spreading would eventually make a dust grain delocalized; what stops it is that air molecules and light keep scattering off it, which destroys the coherence between distant parts of its wavefunction long before it can spread. That process, decoherence, is the subject of Part Two.</div>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Wave packets as sums of plane waves, phase and group velocity, the exact spreading law {{tex:\sigma(t)}} and its time scale {{tex:\tau = 2m\sigma_0^2/\hbar}}, the constant momentum distribution, and a feel for why heavy things do not spread noticeably.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Which velocity of a packet matches the classical p/m?<span class="tap">tap</span></div><div class="a">The group velocity, dω/dk = ħk/m; the phase velocity is half that and not measurable on its own.</div></div>
+  <div class="qa"><div class="q">Why does a narrower packet spread faster?<span class="tap">tap</span></div><div class="a">It contains a wider range of momenta (σ_p ≥ ħ/2σ₀), so its parts separate faster.</div></div>
+  <div class="qa"><div class="q">Does the momentum uncertainty grow as a free packet spreads?<span class="tap">tap</span></div><div class="a">No. The momentum distribution is unchanged; position and momentum become correlated instead.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An electron is localized to {{tex:\sigma_0 = 0.1}} nm, about an atom’s size. What is {{tex:\tau = 2m\sigma_0^2/\hbar}}, in femtoseconds? Use {{tex:m = 9.109\times10^{-31}}} kg and {{tex:\hbar = 1.0546\times10^{-34}}} J s.</p>
+    <form class="calc" data-answer="0.1728" data-tol="0.004" data-ok="Yes: τ ≈ 1.73×10⁻¹⁶ s, about 0.17 fs. Electrons freed from atoms spread almost at once." data-alt="17.28~That is for 1 nm. Square 0.1 nm: 10⁻²⁰ m².|1.728~Check the power of ten: σ₀² = 10⁻²⁰ m²." data-hint="τ = 2 × 9.109×10⁻³¹ × (10⁻¹⁰)² / 1.0546×10⁻³⁴ seconds."><span>τ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Tau in femtoseconds"><span>fs</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics, §2.4. M. Arndt et al., Nature 401, 680 (1999) (C₆₀ interference). Checked by code: τ for 1 nm localization: electron 1.73×10⁻¹⁴ s, C₆₀ 2.27×10⁻⁸ s, 1 fg virus 0.019 s, 1 µg dust 1.9×10⁷ s; doubling time √3τ.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { nw: 5, s0: 1 }, S = Book.Solver(1024, 80), meas = [];
+  var OBJ = { e: ["electron", 9.109e-31], c60: ["buckyball (C₆₀)", 1.196e-24], v: ["virus, 1 fg", 1e-18], d: ["dust, 1 µg", 1e-9] };
+  function fmtT(s) { var u = [[3.156e7, "years"], [86400, "days"], [1, "s"], [1e-3, "ms"], [1e-6, "µs"], [1e-9, "ns"], [1e-12, "ps"], [1e-15, "fs"]]; for (var i = 0; i < u.length; i++) if (s >= u[i][0] * 0.999) return (s / u[i][0]).toPrecision(2) + " " + u[i][1]; return s.toExponential(1) + " s"; }
+  function tdouble(m) { return Math.sqrt(3) * 2 * m * 1e-18 / 1.0546e-34; }
+  function launch() { meas = []; S.setV(function () { return 0; }); S.packet(beat === 3 ? 0 : -20, beat === 3 ? V.s0 : 1, beat === 3 ? 0 : 2); }
+  function tmax() { return beat === 3 ? Math.min(60, 2 * V.s0 * V.s0 * Math.sqrt(Math.pow(9 / V.s0, 2) - 1)) : 60; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; launch(); },
+    beat: function (i) { beat = i; launch(); },
+    set: function (n, v) { V[n] = v; if (n === "s0") launch(); },
+    pick: function () {},
+    caption: function () { return ["A free wave packet.", "Adding waves with nearby wavenumbers.", "Phase velocity and group velocity.", "Measured width (amber) against the exact formula.", "Position spreads; momentum does not.", "Time to double in width, from 1 nm.", "A free wave packet."][beat]; },
+    readout: function () {
+      if (beat === 5) { var o = OBJ[Book.state.picks.obj || "e"]; return o[0] + " · doubles in " + fmtT(tdouble(o[1])); }
+      if (beat === 3) { var m = S.mean(); return "t = " + S.t.toFixed(1) + " · σ = " + m[1].toFixed(3) + " · formula " + (V.s0 * Math.sqrt(1 + Math.pow(S.t / (2 * V.s0 * V.s0), 2))).toFixed(3); }
+      if (beat === 1) return V.nw + (V.nw === 1 ? " wave" : " waves");
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 1) {
+        A = k.axes(W * 0.04, H * 0.1, W * 0.92, H * 0.78, [-30, 30], [-1.1, 1.1], { zeroY: true });
+        var n = V.nw, dk = 0.12;
+        k.plot(A, function (x) { var s = 0; for (var j = 0; j < n; j++) { var kk = 2 + (j - (n - 1) / 2) * dk, wgt = Math.exp(-Math.pow((j - (n - 1) / 2) / (n / 4 + 0.5), 2)); s += wgt * Math.cos(kk * x); } var norm = 0; for (j = 0; j < n; j++) norm += Math.exp(-Math.pow((j - (n - 1) / 2) / (n / 4 + 0.5), 2)); return s / norm; }, [-30, 30], "#ffb547", 2, 900);
+        return;
+      }
+      if (beat === 2) {
+        A = k.axes(W * 0.04, H * 0.12, W * 0.92, H * 0.7, [-20, 20], [-1.1, 1.1], { zeroY: true });
+        var k0 = 3, t = (now / 1000) % 8, vg = 1.5 * 1.6, vp = vg / 2, xc = -12 + vg * t;
+        k.plot(A, function (x) { return Math.exp(-Math.pow(x - xc, 2) / 8); }, [-20, 20], "rgba(255,181,71,.45)", 1.5, 400);
+        k.plot(A, function (x) { return Math.exp(-Math.pow(x - xc, 2) / 8) * Math.cos(k0 * (x - (-12 + vp * t))); }, [-20, 20], "rgba(236,230,218,.75)", 1.5, 900);
+        k.circle(A.X(xc), A.Y(1), 7, "#ffb547");
+        var crest = -12 + vp * t; while (crest < xc - 3) crest += 2 * Math.PI / k0;
+        k.circle(A.X(crest), A.Y(Math.exp(-Math.pow(crest - xc, 2) / 8)), 5, "#ece6da");
+        k.text("amber: envelope at the group velocity · white: one crest at the phase velocity", W / 2, H * 0.94, {});
+        return;
+      }
+      if (beat === 5) {
+        var keys = ["e", "c60", "v", "d"], sel = Book.state.picks.obj || "e";
+        A = k.axes(W * 0.12, H * 0.1, W * 0.82, H * 0.72, [-15, 9], [0, 4], { xl: "doubling time, log₁₀ seconds" });
+        keys.forEach(function (kk, j) { var lg = Math.log10(tdouble(OBJ[kk][1])), y = A.Y(3.4 - j * 0.9); k.rr(A.X(-15), y - 9, A.X(lg) - A.X(-15), 18, 4, kk === sel ? "#ffb547" : "rgba(255,181,71,.25)"); k.text(OBJ[kk][0], A.X(-15) + 8, y - 13, { align: "left", size: 12, color: "#b9b2a5" }); });
+        [["1 s", 0], ["1 year", 7.5]].forEach(function (q) { k.line(A.X(q[1]), A.Y(0), A.X(q[1]), A.Y(4), "rgba(236,230,218,.25)", 1, [3, 4]); k.text(q[0], A.X(q[1]), A.Y(0) + 30, { size: 11, color: "#7c766b" }); });
+        return;
+      }
+      S.step(0.05, 2); if (S.t > tmax()) launch();
+      var top = beat === 4 ? 0.48 : 0.75;
+      A = k.axes(W * 0.04, H * 0.06, W * 0.92, H * top, [-40, 40], [0, 0.42], {});
+      c.beginPath(); c.moveTo(A.X(-40), A.Y(0)); for (i = 0; i < S.N; i++) c.lineTo(A.X(S.x[i]), A.Y(Math.min(0.42, S.prob(i)))); c.lineTo(A.X(40), A.Y(0)); c.fillStyle = "rgba(255,181,71,.3)"; c.fill();
+      c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.beginPath(); for (i = 0; i < S.N; i++) c.lineTo(A.X(S.x[i]), A.Y(Math.min(0.42, S.prob(i)))); c.stroke();
+      if (beat === 3) {
+        var m = S.mean(); meas.push([S.t, m[1]]);
+        var tm = tmax(), B = k.axes(W * 0.6, H * 0.08, W * 0.36, H * 0.3, [0, tm], [0, 9.5], { xl: "t", yl: "σ" });
+        k.plot(B, function (t) { return V.s0 * Math.sqrt(1 + Math.pow(t / (2 * V.s0 * V.s0), 2)); }, [0, tm], "rgba(236,230,218,.5)", 1.5);
+        c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); meas.forEach(function (q, j) { if (j) c.lineTo(B.X(q[0]), B.Y(q[1])); else c.moveTo(B.X(q[0]), B.Y(q[1])); }); c.stroke();
+      }
+      if (beat === 4) {
+        var C = k.axes(W * 0.04, H * 0.62, W * 0.92, H * 0.3, [0, 4], [0, 1.1], { xl: "momentum ħk" });
+        k.plot(C, function (p) { return Math.exp(-2 * Math.pow(p - 2, 2)); }, [0, 4], "#ffb547", 2);
+        k.text("momentum distribution: unchanged", W / 2, H * 0.6, { color: "#b9b2a5" });
+      }
+    }
+  });
+})();
+</script>

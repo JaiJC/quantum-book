@@ -1,0 +1,118 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Turn a cup once around and it is back where it started. Turn an electron once around, a full 360°, and its quantum state comes back with a minus sign. Only after a second full turn, 720° in all, is it truly back. This is not a quirk of the mathematics: neutron experiments in 1975 measured the sign flip directly. <span class="tag">Established</span></p>
+  <p>To see how a rotation can need two turns, we need the language of symmetry: group theory. It also explains why conservation laws exist, why molecules have handedness, and, in Part Two, why the forces of nature have the shapes they do.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>What a group is</h2>
+  <p>Take an equilateral triangle and list every move that leaves it looking the same: do nothing, rotate by 120° or 240°, or flip it across one of its three axes. Six moves. Doing one move then another is again one of the six. Every move can be undone. There is a do-nothing move. And grouping doesn’t matter: (A then B) then C equals A then (B then C). Those four facts are the definition of a <em>group</em>.</p>
+  <p>Try it on the plate: <button type="button" class="v" data-act="rot">rotate by 120°</button> or <button type="button" class="v" data-act="flip">flip</button>, in any order, and watch the corner labels. However many moves you make, you land on one of the six arrangements.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Order matters</h2>
+  <p>Rotate then flip, and compare with flip then rotate. The results differ: the group is <em>non-commutative</em>. The plate’s table shows every product, with the row move done first. That a rotation and a reflection do not commute is the same kind of fact as {{tex:\{L_x, L_y\} = L_z}} in Chapter 13: rotations about different axes interfere with each other.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Representations: groups as matrices</h2>
+  <p>A <em>representation</em> assigns a matrix to each move so that multiplying matrices matches combining moves. The triangle’s moves can be written as 2×2 rotation and reflection matrices acting on the plane. The same group can have many representations, and in quantum mechanics the states of a system form representations of its symmetry group. Energy levels that must be degenerate, such as the three {{tex:p}} orbitals of an atom, are degenerate because they carry one representation together.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Smooth symmetries and their generators</h2>
+  <p>Rotations in space form a continuous group, SO(3). Any rotation can be built from many tiny ones, and a tiny rotation by angle {{tex:\epsilon}} about an axis is almost the identity: {{tex:R \approx 1 - i\epsilon J}}. The three matrices {{tex:J_x, J_y, J_z}} are the <em>generators</em>, and they satisfy</p>
+  <div class="eq">{{texd:[J_x, J_y] = iJ_z \quad\text{and cyclic}}}</div>
+  <p>This is a <em>Lie algebra</em>, and it is the quantum version of the angular-momentum brackets. In quantum mechanics the generator of rotations <em>is</em> angular momentum (divided by {{tex:\hbar}}), just as the generator of translations is momentum and the generator of time shifts is energy. Noether’s theorem, seen from here, says the generator of a symmetry is conserved.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Two turns to come home</h2>
+  <p>The Lie algebra above has a smallest representation by 2×2 complex matrices: {{tex:J = \sigma/2}}, half the Pauli matrices of Chapter 8. Exponentiate to get finite rotations, {{tex:U = e^{-i\theta\,\sigma_z/2}}}. Because of the half, a turn of {{tex:\theta = 2\pi}} gives {{tex:U = -1}}, and only {{tex:\theta = 4\pi}} gives {{tex:+1}}. These 2×2 matrices form the group SU(2), and each rotation in space corresponds to two of them, {{tex:U}} and {{tex:-U}}: SU(2) <em>double covers</em> SO(3).</p>
+  <p>The plate shows an ordinary arrow and a spin-½ state turning together. <button type="button" class="v" data-act="turn1">Turn once</button>: the arrow is home, the spin state has flipped sign. <button type="button" class="v" data-act="turn2">Turn twice</button>: both are home.</p>
+  <p>You can feel the same topology with a belt: fix one end, attach the other to a book, and turn the book once. The belt has a twist you cannot remove without turning the book back. Turn it twice, and the twist can be undone by looping the belt around the book. This is Dirac’s belt trick.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Mirror images</h2>
+  <p>Some symmetries cannot be done by moving an object at all. A left hand and a right hand are mirror images, but no rotation turns one into the other. Molecules can be <em>chiral</em> in the same way, and life is strikingly one-handed: the amino acids in your proteins are almost all of the left-handed form, and the sugars of DNA are right-handed. <button type="button" class="v" data-act="mirror">Show the mirror image</button> of the molecule on the plate and try to rotate it back. You cannot.</p>
+  <p>The weak nuclear force, alone among the forces, also tells left from right, as you will see in Part Two.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>Groups and their axioms, non-commuting symmetries, representations, generators and Lie algebras, SU(2) and the double cover, and chirality.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How many symmetries does an equilateral triangle have?<span class="tap">tap</span></div><div class="a">Six: the identity, two rotations and three reflections.</div></div>
+  <div class="qa"><div class="q">What happens to a spin-½ state after a 360° rotation?<span class="tap">tap</span></div><div class="a">It returns multiplied by −1; it takes 720° to return exactly.</div></div>
+  <div class="qa"><div class="q">What does it mean that SU(2) double covers SO(3)?<span class="tap">tap</span></div><div class="a">Every rotation in space corresponds to exactly two SU(2) matrices, U and −U.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A spin-½ state is rotated by 1080°. By what number is it multiplied?</p>
+    <form class="calc" data-answer="-1" data-tol="0.001" data-ok="Yes: 1080° is three full turns, an odd number, so the sign flips: −1." data-alt="1~1080° is three turns, an odd number of 360° turns." data-hint="Each 360° multiplies by −1."><span>factor =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Factor"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Zee, Group Theory in a Nutshell for Physicists. H. Georgi, Lie Algebras in Particle Physics. H. Rauch et al., Phys. Lett. A 54, 425 (1975); S. A. Werner et al., Phys. Rev. Lett. 35, 1053 (1975). Checked by code: e^(−i2πσ_z/2) = −1; [J_x, J_y] = iJ_z for J = σ/2; |D₃| = 6.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, perm = [0, 1, 2], ang = 0, flipT = 0, target = 0, cur = 0, mir = false;
+  var names = ["e", "r", "r²", "s", "rs", "r²s"];
+  function compose(p, op) { return op === "r" ? [p[2], p[0], p[1]] : [p[0], p[2], p[1]]; }
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; if (i === 5) { target = 0; cur = 0; } },
+    act: function (a) {
+      if (a === "rot") { perm = compose(perm, "r"); ang += 2 * Math.PI / 3; }
+      if (a === "flip") { perm = compose(perm, "s"); flipT = performance.now(); }
+      if (a === "turn1") target += 2 * Math.PI; if (a === "turn2") target += 4 * Math.PI;
+      if (a === "mirror") mir = !mir;
+    },
+    caption: function () { return ["A spin-½ particle and an ordinary arrow.", "The six symmetries of a triangle.", "Group table of D₃.", "A representation: moves as matrices.", "Rotation generators.", "Arrow (white) and spin-½ state (amber).", "A chiral molecule and its mirror image.", "The six symmetries of a triangle."][beat]; },
+    readout: function () { if (beat === 1) return "corners now: " + perm.map(function (x) { return "ABC"[x]; }).join(""); if (beat === 5) { var turns = cur / (2 * Math.PI); return "turned " + Math.round(turns * 360) + "° · spin factor " + (Math.round(turns) % 2 === 0 ? "+1" : "−1"); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.3, i;
+      if (beat === 1 || beat === 3 || beat === 7) {
+        var pts = [0, 1, 2].map(function (j) { var a = -Math.PI / 2 + j * 2 * Math.PI / 3; return [cx + R * Math.cos(a), cy + R * Math.sin(a)]; });
+        c.beginPath(); pts.forEach(function (p, j) { if (j) c.lineTo(p[0], p[1]); else c.moveTo(p[0], p[1]); }); c.closePath(); c.fillStyle = "rgba(255,181,71,.12)"; c.fill(); c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.stroke();
+        for (i = 0; i < 3; i++) { var a2 = -Math.PI / 2 + i * 2 * Math.PI / 3; k.line(cx, cy, cx - R * 0.7 * Math.cos(a2), cy - R * 0.7 * Math.sin(a2), "rgba(236,230,218,.12)", 1, [3, 4]); }
+        pts.forEach(function (p, j) { k.circle(p[0], p[1], 14, "#ece6da"); k.text("ABC"[perm[j]], p[0], p[1] + 5, { color: "#000", italic: false, size: 15 }); });
+        if (beat === 3) k.text("r = (cos 120°  −sin 120° ; sin 120°  cos 120°)   ·   s = (1 0 ; 0 −1)", cx, H - 12, { mono: true, size: 11 });
+        return;
+      }
+      if (beat === 2) {
+        var els = [[0, 1, 2], [2, 0, 1], [1, 2, 0], [0, 2, 1], [1, 0, 2], [2, 1, 0]];
+        function idx(p) { for (var q = 0; q < 6; q++) if (els[q][0] === p[0] && els[q][1] === p[1] && els[q][2] === p[2]) return q; return -1; }
+        function apply(a, b) { return [a[b[0]], a[b[1]], a[b[2]]]; }
+        var cs = Math.min(W * 0.8 / 7, H * 0.85 / 7), x0 = (W - 7 * cs) / 2, y0 = (H - 7 * cs) / 2;
+        for (var r = 0; r < 6; r++) { k.text(names[r], x0 + cs / 2, y0 + (r + 1.6) * cs, { color: "#ffb547", size: 15 }); k.text(names[r], x0 + (r + 1.5) * cs, y0 + 0.6 * cs, { color: "#ffb547", size: 15 }); for (var q = 0; q < 6; q++) { var pr = idx(apply(els[q], els[r])), comm = idx(apply(els[r], els[q])) === pr; k.rr(x0 + (q + 1) * cs + 2, y0 + (r + 1) * cs + 2, cs - 4, cs - 4, 4, comm ? "#14120f" : "rgba(255,181,71,.12)"); k.text(names[pr], x0 + (q + 1.5) * cs, y0 + (r + 1.6) * cs, { color: "#ece6da", size: 14 }); } }
+        k.text("shaded cells: the two orders give different results", W / 2, H - 8, {});
+        return;
+      }
+      if (beat === 4) {
+        for (i = 0; i < 3; i++) { var a3 = now / 1000 * (0.4 + i * 0.25); c.save(); c.translate(cx, cy); c.scale(1, 0.35 + 0.3 * i); k.circle(0, 0, R * (1 - i * 0.18), null, "rgba(236,230,218,.25)"); k.circle(R * (1 - i * 0.18) * Math.cos(a3), R * (1 - i * 0.18) * Math.sin(a3), 6, ["#ffb547", "#ece6da", "#b9b2a5"][i]); c.restore(); }
+        k.text("J_x, J_y, J_z", cx, H - 14, { color: "#ffb547" });
+        return;
+      }
+      if (beat === 5 || beat === 0) {
+        if (beat === 0) { cur += 0.015; target = cur; } else cur += (target - cur) * 0.03;
+        var ax = cx - R * 0.9, sx = cx + R * 0.9;
+        k.circle(ax, cy, R * 0.8, null, "#24211d"); k.circle(sx, cy, R * 0.8, null, "#24211d");
+        k.line(ax, cy, ax + R * 0.75 * Math.cos(-Math.PI / 2 + cur), cy + R * 0.75 * Math.sin(-Math.PI / 2 + cur), "#ece6da", 3);
+        k.line(sx, cy, sx + R * 0.75 * Math.cos(-Math.PI / 2 + cur / 2), cy + R * 0.75 * Math.sin(-Math.PI / 2 + cur / 2), "#ffb547", 3);
+        k.circle(sx + R * 0.75 * Math.cos(-Math.PI / 2 + cur / 2), cy + R * 0.75 * Math.sin(-Math.PI / 2 + cur / 2), 6, "#ffb547");
+        k.text("ordinary vector", ax, cy + R + 22, {}); k.text("spin-½ phase (turns half as fast)", sx, cy + R + 22, { color: "#ffb547" });
+        return;
+      }
+      if (beat === 6) {
+        var sg = mir ? -1 : 1, spin2 = Math.sin(now / 1500) * 0.6;
+        function atom(dx, dy, col, rr, lab) { var x = cx + sg * (dx * Math.cos(spin2) - 0) * R, y = cy + dy * R; k.line(cx, cy, x, y, "#4a4540", 3); k.circle(x, y, rr, col); if (lab) k.text(lab, x, y + 5, { color: "#000", italic: false, size: 13 }); }
+        atom(0, -0.8, "#ece6da", 16, "N"); atom(0.75, 0.4, "#ffb547", 16, "C"); atom(-0.7, 0.45, "#b9b2a5", 12, "H"); atom(0.15, 0.2, "#e0735a", 10, "R");
+        k.circle(cx, cy, 14, "#7c766b"); k.text(mir ? "mirror image (D)" : "left-handed form (L)", cx, H - 12, { color: "#ffb547" });
+        k.line(W * 0.88, H * 0.1, W * 0.88, H * 0.9, "rgba(236,230,218,.3)", 1, [3, 4]); k.text("mirror", W * 0.88, H * 0.07, {});
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,57 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Finding the ground-state energy of a molecule or a material is the central problem of quantum chemistry and condensed-matter physics, and the most promising use of quantum computers. Yet in 1999 Alexei Kitaev proved that a version of this problem is as hard as anything a quantum computer can verify: <em>QMA-complete</em>. In the worst case, even a quantum computer is not expected to find ground energies efficiently. Understanding why, and why it does not doom chemistry, tells you a lot about what hardness means.</p>
+  <p>On the plate: a Hamiltonian whose ground state is the entire history of a computation.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The local Hamiltonian problem</h2>
+  <p>Given {{tex:H = \sum_j H_j}} on {{tex:n}} qubits, each term acting on at most {{tex:k}} qubits, and two thresholds {{tex:a < b}} separated by at least {{tex:1/\mathrm{poly}(n)}}, decide whether the ground energy is below {{tex:a}} or above {{tex:b}}. It is in QMA: the witness is the ground state itself, and the verifier estimates its energy with phase estimation. Kitaev proved it is QMA-hard for {{tex:k = 5}}; Julia Kempe, Kitaev and Oded Regev reduced it to {{tex:k = 2}} in 2006 using perturbation-theory “gadgets”, and later work brought it down to 2-local Hamiltonians on a 2D lattice. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The Feynman–Kitaev clock</h2>
+  <p>To encode a circuit {{tex:U_T\cdots U_1}} in a Hamiltonian, Kitaev borrowed an idea of Feynman’s: add a clock register, and define a <em>propagation</em> term that penalizes any state where step {{tex:t}} is not {{tex:U_t}} applied to step {{tex:t-1}} (h.c. is the Hermitian conjugate of the term before it, and {{tex:U_t}} acts on the computation register):</p>
+  <div class="eq">{{texd:\begin{aligned}H_\text{prop} &= \tfrac12\textstyle\sum_{t=1}^{T} h_t\\ h_t &= |t\rangle\langle t| + |t{-}1\rangle\langle t{-}1|\\ &\quad - U_t|t\rangle\langle t{-}1| - \text{h.c.}\end{aligned}}}</div>
+  <p>Its zero-energy ground state is the <em>history state</em> {{tex:\frac{1}{\sqrt{T+1}}\sum_t U_t\cdots U_1|\psi\rangle|t\rangle}}, an equal superposition of every step of the computation. Further terms check the input and penalize a “no” output. With {{tex:T =}} <span class="tangle" data-var="T" data-min="1" data-max="30" data-step="1" data-value="3" data-px="8"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Gates">3</span><button type="button" data-de="1" aria-label="More">›</button></span> gates, the plate shows the spectrum of {{tex:H_\text{prop}}}, which is a walk on a line of {{tex:T+1}} clock states with eigenvalues {{tex:1-\cos(\pi j/(T+1))}}. The gap is {{tex:1 - \cos(\pi/(T+1)) \approx \pi^2/2T^2}}: polynomially small, which is why the promise gap {{tex:b - a}} need only be {{tex:1/\mathrm{poly}}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What it means for chemistry, and quantum PCP</h2>
+  <p>Norbert Schuch and Frank Verstraete showed in 2009 that computing the exact universal functional of density functional theory is QMA-hard. These are worst-case statements about specially constructed Hamiltonians. Real molecules may be easier: nature finds their ground states by cooling, and good approximate starting states exist for most of chemistry (Part 5). The real question is whether quantum computers help for the molecules we care about, not in the worst case. <span class="tag">Debated</span></p>
+  <p>A deeper open problem is the <em>quantum PCP conjecture</em>: is it still QMA-hard to estimate the energy to within a constant fraction of the number of terms? A necessary step, the NLTS conjecture (no low-energy trivial states), asserting Hamiltonians whose every low-energy state needs deep circuits, was proved by Anurag Anshu, Nikolas Breuckmann and Chinmay Nirkhe in 2023 using good quantum LDPC codes (Chapter 141). Quantum PCP itself remains open. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The local Hamiltonian problem, its membership in QMA, the Feynman–Kitaev clock construction and its gap, reductions to 2-local, the meaning of worst-case hardness for chemistry, and the status of NLTS and quantum PCP.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What is the history state?<span class="tap">tap</span></div><div class="a">An equal superposition over clock times t of the computation’s state after t gates, tagged by |t⟩.</div></div>
+  <div class="qa"><div class="q">How does the clock Hamiltonian’s gap scale?<span class="tap">tap</span></div><div class="a">As about π²/2T², polynomially small in the number of gates.</div></div>
+  <div class="qa"><div class="q">Does QMA-hardness doom quantum chemistry?<span class="tap">tap</span></div><div class="a">No: it is a worst-case result; physical molecules may be far easier.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the gap of {{tex:H_\text{prop}}} for a 3-gate circuit?</p>
+    <form class="calc" data-answer="0.2929" data-tol="0.002" data-ok="Yes: 1 − cos(π/4) ≈ 0.293." data-hint="1 − cos(π/(T+1)) with T = 3."><span>gap =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Gap"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Kitaev, A. Shen and M. Vyalyi, Classical and Quantum Computation (AMS, 2002), ch. 14. J. Kempe, A. Kitaev and O. Regev, SIAM J. Comput. 35, 1070 (2006). N. Schuch and F. Verstraete, Nat. Phys. 5, 732 (2009). S. Gharibian, Y. Huang, Z. Landau and S. W. Shin, Found. Trends Theor. Comput. Sci. 10, 159 (2015). A. Anshu, N. P. Breuckmann and C. Nirkhe, Proc. 55th ACM STOC, 1090 (2023). Checked by code: gaps 1, 0.5, 0.293, 0.191 for T = 1–4; exact diagonalization agrees.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { T: 3 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["A computation’s history as a ground state.", "Local terms, promise gap.", "Spectrum of H_prop (left); history state over clock times (right).", "Worst-case hardness vs physical instances.", "QMA-completeness."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var T = beat === 2 ? V.T : 3, g = 1 - Math.cos(Math.PI / (T + 1)); return "T = " + T + " · gap " + g.toFixed(4) + " · π²/2(T+1)² = " + (Math.PI * Math.PI / (2 * (T + 1) * (T + 1))).toFixed(4); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, T = beat === 2 ? V.T : 3, j;
+      if (beat <= 2 || beat === 4) { A = k.axes(W * 0.1, H * 0.08, W * 0.3, H * 0.76, [0, 1], [0, 2.05], { yl: "energy" }); for (j = 0; j <= T; j++) { var e = 1 - Math.cos(Math.PI * j / (T + 1)); k.line(A.X(0.1), A.Y(e), A.X(0.9), A.Y(e), j === 0 ? "#ffb547" : j === 1 ? "#ece6da" : "rgba(236,230,218,.4)", j < 2 ? 2.5 : 1); } var e1 = 1 - Math.cos(Math.PI / (T + 1)); k.line(A.X(0.95), A.Y(0), A.X(0.95), A.Y(e1), "#e05a46", 2); k.text("gap", A.X(0.95) + 6, A.Y(e1 / 2) + 4, { size: 11, color: "#e05a46", align: "left" });
+        var bx = W * 0.52, bw = W * 0.42 / (T + 1), amp = 1 / Math.sqrt(T + 1), ph = now / 400; for (j = 0; j <= T; j++) { var h = amp * H * 0.6 * (0.85 + 0.15 * Math.sin(ph + j)); k.rr(bx + j * bw + 1, H * 0.84 - h, Math.max(2, bw - 2), h, 2, "rgba(255,181,71,.75)"); } k.text("clock time t = 0 … " + T, bx + W * 0.21, H * 0.93, { size: 11, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 10], [0, 1], { xl: "instances (schematic)", yl: "difficulty" }); for (var i = 0; i < 200; i++) { var x = (i * 0.618034 % 1) * 10, y = Math.pow((i * 0.414214) % 1, 3) * 0.6; k.circle(A.X(x), A.Y(y), 2.5, "rgba(236,230,218,.55)"); } k.circle(A.X(8.6), A.Y(0.93), 7, "#e05a46"); k.text("worst case (QMA-hard)", A.X(8.6), A.Y(0.93) - 14, { size: 11, color: "#e05a46" }); k.text("physical molecules: mostly here?", A.X(3), A.Y(0.75), { size: 12, color: "#ffb547" }); }
+    }
+  });
+})();
+</script>

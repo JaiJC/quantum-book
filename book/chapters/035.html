@@ -1,0 +1,136 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Cool helium to absolute zero and, at ordinary pressure, it never freezes. Its atoms are too light and too weakly attracted to settle into a crystal, because quantum mechanics will not let them stop moving. Every molecule in your body is the same: even at absolute zero, every chemical bond would still vibrate. This chapter is about the system behind that fact, the quantum harmonic oscillator, which is the most-used model in all of physics.</p>
+  <p>On the plate: a parabolic valley and the lowest state inside it. It is not at the bottom. It cannot be.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Everything is an oscillator</h2>
+  <p>Near the bottom of any smooth valley, the potential looks like a parabola. Taylor’s theorem (Chapter 2) says {{tex:V(x) \approx V(x_0) + \tfrac12 V''(x_0)(x - x_0)^2}}, because the first-derivative term vanishes at a minimum. So a chemical bond, a pendulum, a mode of the electromagnetic field and a vibration in a crystal all behave, for small motions, like a mass on a spring with {{tex:\omega = \sqrt{k/m}}}, where {{tex:k = V''(x_0)}}.</p>
+  <p>The plate shows a real bond’s potential, the Morse curve for hydrogen, with its parabola. Zoom out to <span class="tangle" data-var="zoom" data-min="0.1" data-max="1" data-step="0.05" data-dec="2" data-value="0.25" data-px="6"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Range">0.25</span><button type="button" data-de="1" aria-label="Farther">›</button></span> ångström either side of the minimum. Close in, they are the same curve.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Solving it</h2>
+  <p>Use the natural length {{tex:\sqrt{\hbar/m\omega}}} as the unit, so the equation becomes {{tex:\phi'' = (x^2 - 2\varepsilon)\phi}} with {{tex:\varepsilon = E/\hbar\omega}}. For large {{tex:x}}, {{tex:\phi \sim e^{-x^2/2}}}. Write {{tex:\phi = H(x)e^{-x^2/2}}} and you get Hermite’s equation, {{tex:H'' - 2xH' + (2\varepsilon - 1)H = 0}}.</p>
+  <p>Solve it as a power series (Chapter 4). The coefficients obey {{tex:a_{j+2} = \frac{2j + 1 - 2\varepsilon}{(j+1)(j+2)}a_j}}. Unless the series stops, it grows like {{tex:e^{x^2}}} and swamps the decaying factor, so the wavefunction could not be normalized. It stops only if {{tex:2\varepsilon - 1}} is an even integer {{tex:2n}}:</p>
+  <div class="eq">{{texd:E_n = \left(n + \tfrac12\right)\hbar\omega, \qquad n = 0, 1, 2, \dots}}</div>
+  <p>Step through the states, <span class="tangle" data-var="n" data-min="0" data-max="8" data-step="1" data-value="0" data-px="16"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Quantum number">0</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Each has {{tex:n}} nodes, and each spills a little past the classical turning points marked by the dashed walls. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>An evenly spaced ladder</h2>
+  <p>The levels are equally spaced, {{tex:\hbar\omega}} apart, unlike the box of Chapter 33 where they spread as {{tex:n^2}}. That is why a vibrating molecule absorbs infrared light at one main frequency, and why light itself, as you will see in the next chapter, comes in identical packets.</p>
+  <p>The bottom rung is not zero. The lowest energy is {{tex:\tfrac12\hbar\omega}}, the <em>zero-point energy</em>. A particle at rest at the bottom would have exact position and exact momentum, which the uncertainty principle forbids. The ground state is the compromise that minimizes total energy: {{tex:\sigma_x\sigma_p = \hbar/2}} exactly, the minimum allowed.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Where the classical world comes back</h2>
+  <p>A classical oscillator moves fastest at the centre and slowest at the ends, so it spends most of its time near the turning points. The ground state does the opposite; it is most likely at the centre. Raise the level to <span class="tangle" data-var="nc" data-min="0" data-max="60" data-step="1" data-value="2" data-px="4"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Quantum number">2</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and compare with the classical curve in white.</p>
+  <p>At high {{tex:n}} the quantum probability oscillates faster and faster around the classical one. Averaged over any small region, the two agree. This is the correspondence principle, made visible.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Reading molecules by their vibrations</h2>
+  <p>Each kind of bond is a spring with its own stiffness and masses, so it absorbs infrared light at its own wavenumber, {{tex:\tilde\nu = \frac{1}{2\pi c}\sqrt{k/\mu}}}, with {{tex:\mu}} the reduced mass. Choose a bond: <button type="button" class="v" data-pick="bond:CH">C–H</button>, <button type="button" class="v" data-pick="bond:OH">O–H</button>, <button type="button" class="v" data-pick="bond:CO2">C=O</button>, <button type="button" class="v" data-pick="bond:amide">amide I</button> or <button type="button" class="v" data-pick="bond:CD">C–D</button>.</p>
+  <p>Light atoms on stiff bonds sit high; heavy atoms on soft bonds sit low. This is how infrared spectroscopy identifies molecules. For a biomedical engineer, the most useful line is the amide I band near 1650 cm⁻¹, mostly the C=O stretch of the protein backbone: its exact position shifts with secondary structure, so infrared spectra can tell α-helix from β-sheet in a protein sample.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Heavy hydrogen vibrates less</h2>
+  <p>Replace hydrogen by deuterium, twice as heavy. The bond is the same spring, since the electrons do not care about the nucleus’s mass, but {{tex:\omega = \sqrt{k/\mu}}} falls by about {{tex:\sqrt2}}. So D₂’s zero-point energy is 0.193 eV against H₂’s 0.273 eV, and D₂ sits lower in its well, making it harder to break.</p>
+  <p>For a C–H bond against C–D, the zero-point difference is about 385 cm⁻¹, about 4.6 kJ/mol. If that bond breaks in the slowest step of a reaction, the deuterated version can be up to about six or seven times slower at room temperature. This <em>kinetic isotope effect</em> is a standard tool for working out how enzymes act, and Part Four will show that some enzymes exceed it, a sign that hydrogen may tunnel. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>When the spring stretches too far</h2>
+  <p>A real bond is not a parabola far from equilibrium; stretch it enough and it breaks. Philip Morse’s potential, {{tex:V = D_e(1 - e^{-a(r - r_e)})^2}}, captures this and is still exactly solvable. Its levels crowd together as they climb and stop at the dissociation energy. For H₂ the Morse model gives about seventeen bound levels and a bond energy of 4.48 eV from the ground state, which matches experiment; the real molecule has fifteen. The plate compares the two ladders.</p>
+  <p>Those uneven spacings are why overtones, the jumps by two or more rungs, appear at slightly less than twice the fundamental frequency.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Why every minimum is an oscillator, the series solution and why energy is quantized, {{tex:E_n = (n+\tfrac12)\hbar\omega}}, zero-point energy, the classical limit, infrared spectroscopy, isotope effects and the Morse potential.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why must the Hermite series terminate?<span class="tap">tap</span></div><div class="a">Otherwise it grows like e^(x²) and the wavefunction cannot be normalized.</div></div>
+  <div class="qa"><div class="q">Why is the ground-state energy ½ħω and not zero?<span class="tap">tap</span></div><div class="a">Zero energy needs exact position and momentum together, which the uncertainty principle forbids.</div></div>
+  <div class="qa"><div class="q">Why does deuterium slow some reactions?<span class="tap">tap</span></div><div class="a">Its heavier mass lowers the zero-point energy of its bonds, so more energy is needed to break them.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> H₂ vibrates at 4401 cm⁻¹. What is its zero-point energy, {{tex:\tfrac12 hc\tilde\nu}}, in eV? (1 cm⁻¹ corresponds to {{tex:1.2398\times10^{-4}}} eV.)</p>
+    <form class="calc" data-answer="0.2728" data-tol="0.003" data-ok="Yes: ½ × 4401 × 1.2398×10⁻⁴ ≈ 0.273 eV." data-alt="0.5457~That is the full quantum ħω. The zero-point energy is half of it." data-hint="Multiply 4401 by 1.2398×10⁻⁴, then halve."><span>E₀ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Energy in eV"><span>eV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics, §2.3. P. M. Morse, Phys. Rev. 34, 57 (1929). K. P. Huber and G. Herzberg, Constants of Diatomic Molecules (H₂ ωₑ = 4401.2 cm⁻¹, D₂ 3115.5 cm⁻¹). A. Barth, Biochim. Biophys. Acta 1767, 1073 (2007) (protein infrared). Checked by code: ZPE H₂ 0.273 eV, D₂ 0.193 eV; C–D 2129 cm⁻¹ from C–H 2900 cm⁻¹; ΔZPE 385 cm⁻¹ = 4.6 kJ/mol, maximum KIE ≈ 6.4 at 298 K; Morse H₂ De − E₀ = 4.478 eV; Hermite recursion error 10⁻¹⁶.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { zoom: 0.25, n: 0, nc: 2 };
+  var BONDS = { CH: ["C–H stretch", 2900, 461], OH: ["O–H stretch", 3400, 646], CO2: ["C=O stretch", 1715, 1188], amide: ["amide I (protein C=O)", 1650, null], CD: ["C–D stretch", 2129, 461] };
+  function psi(n, x) { var p0 = Math.pow(Math.PI, -0.25) * Math.exp(-x * x / 2); if (n === 0) return p0; var p1 = Math.SQRT2 * x * p0; for (var m = 1; m < n; m++) { var p2 = Math.sqrt(2 / (m + 1)) * x * p1 - Math.sqrt(m / (m + 1)) * p0; p0 = p1; p1 = p2; } return p1; }
+  var De = 4.7467, we = 0.54568, re = 0.7414, aM;
+  aM = Math.sqrt((0.5 * 1.008 * 1.6605e-27) / (2 * De * 1.602e-19)) * (we * 1.602e-19 / 1.0546e-34) * 1e-10;
+  function morse(r) { var q = 1 - Math.exp(-aM * (r - re)); return De * q * q; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["The ground state of a parabolic valley.", "Hydrogen’s bond (white) and its parabola (amber).", "Oscillator eigenstates and turning points.", "An evenly spaced ladder.", "Quantum (amber) against classical (white).", "Infrared absorption by bond.", "H₂ and D₂ in the same well.", "Morse ladder (amber) against harmonic (white).", "The ground state."][beat]; },
+    readout: function () {
+      if (beat === 2) return "E = " + (V.n + 0.5) + " ħω · " + V.n + " node" + (V.n === 1 ? "" : "s");
+      if (beat === 4) return "n = " + V.nc + " · turning points ±" + Math.sqrt(2 * V.nc + 1).toFixed(2);
+      if (beat === 5) { var b = BONDS[Book.state.picks.bond || "CH"]; return b[0] + " · " + b[1] + " cm⁻¹" + (b[2] ? " · k ≈ " + b[2] + " N/m" : "") + " · ZPE " + (0.5 * b[1] * 1.2398e-4).toFixed(3) + " eV"; }
+      if (beat === 6) return "ZPE: H₂ 0.273 eV · D₂ 0.193 eV";
+      if (beat === 1) return "parabola k = V″ ≈ 575 N/m";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat === 1 || beat === 7) {
+        var z = beat === 1 ? V.zoom : 1.6, xr = beat === 1 ? [re - z, re + z] : [0.35, 3.2];
+        var ymax = beat === 1 ? Math.max(0.05, morse(re - z) * 1.1) : 5.6;
+        A = k.axes(W * 0.1, H * 0.06, W * 0.84, H * 0.82, xr, [0, ymax], { xl: "bond length, Å", yl: "eV" });
+        var kk = 2 * De * aM * aM;
+        k.plot(A, function (r) { return 0.5 * kk * (r - re) * (r - re); }, xr, beat === 1 ? "#ffb547" : "rgba(236,230,218,.35)", 2, 400);
+        k.plot(A, morse, xr, beat === 1 ? "#ece6da" : "#ece6da", 2, 400);
+        if (beat === 7) {
+          for (var n = 0; n < 17; n++) { var Em = we * (n + 0.5) - Math.pow(we * (n + 0.5), 2) / (4 * De), Eh = we * (n + 0.5);
+            var r1 = re - Math.log(1 + Math.sqrt(Em / De)) / aM, r2 = re - Math.log(1 - Math.sqrt(Math.min(0.999, Em / De))) / aM;
+            k.line(A.X(Math.max(xr[0], r1)), A.Y(Em), A.X(Math.min(xr[1], r2)), A.Y(Em), "#ffb547", 1.5);
+            if (Eh < 5.6) { var hw = Math.sqrt(2 * Eh / kk); k.line(A.X(re - hw), A.Y(Eh), A.X(re - hw) + 10, A.Y(Eh), "rgba(236,230,218,.45)", 1); } }
+          k.line(A.X(xr[0]), A.Y(De), A.X(xr[1]), A.Y(De), "rgba(236,230,218,.25)", 1, [4, 4]); k.text("dissociation", A.X(xr[1]) - 4, A.Y(De) - 6, { align: "right", size: 11, color: "#7c766b" });
+        }
+        return;
+      }
+      if (beat === 5) {
+        var sel = Book.state.picks.bond || "CH";
+        A = k.axes(W * 0.06, H * 0.2, W * 0.88, H * 0.5, [4000, 1000], [0, 1], { xl: "wavenumber, cm⁻¹" });
+        Object.keys(BONDS).forEach(function (key, j) { var b = BONDS[key], x = A.X(b[1]), on = key === sel; k.line(x, A.Y(0), x, A.Y(on ? 0.95 : 0.6), on ? "#ffb547" : "rgba(255,181,71,.3)", on ? 4 : 2); k.text(b[0].split(" ")[0], x, A.Y(on ? 0.95 : 0.6) - 8 - (j % 2) * 14, { size: 11, color: on ? "#ece6da" : "#7c766b" }); });
+        var b2 = BONDS[sel], amp = 10 * Math.sin(now / (60000 / b2[1])), cy = H * 0.86;
+        k.circle(W / 2 - 50 - amp * 0.3, cy, 14, "#b9b2a5"); k.circle(W / 2 + 40 + amp, cy, sel === "CD" ? 10 : 8, "#ffb547"); k.line(W / 2 - 36, cy, W / 2 + 32 + amp, cy, "rgba(236,230,218,.5)", 2, [3, 3]);
+        return;
+      }
+      A = k.axes(W * 0.06, H * 0.05, W * 0.88, H * 0.88, [-7, 7], [0, beat === 3 || beat === 6 ? 6.5 : 10], {});
+      k.plot(A, function (x) { return x * x / 2; }, [-7, 7], "rgba(236,230,218,.55)", 2, 300);
+      if (beat === 3 || beat === 6) {
+        for (var n2 = 0; n2 < 6; n2++) { var E = n2 + 0.5, tp = Math.sqrt(2 * E); k.line(A.X(-tp), A.Y(E), A.X(tp), A.Y(E), n2 === 0 ? "#ffb547" : "rgba(255,181,71,.45)", n2 === 0 ? 2.5 : 1.5); }
+        if (beat === 6) { for (var n3 = 0; n3 < 8; n3++) { var E2 = (n3 + 0.5) / Math.SQRT2, tp2 = Math.sqrt(2 * E2); k.line(A.X(-tp2), A.Y(E2), A.X(tp2), A.Y(E2), "rgba(236,230,218,.6)", 1, [2, 3]); } k.text("amber: H₂ levels · dotted: D₂ levels, √2 closer", W / 2, H * 0.97, { size: 12, color: "#b9b2a5" }); }
+        else k.text("ħω between rungs · lowest rung ½ħω", W / 2, H * 0.97, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      var nn = beat === 4 ? V.nc : beat === 2 ? V.n : 0, En = nn + 0.5, tpn = Math.sqrt(2 * En), xr2 = [-Math.max(7, tpn + 2), Math.max(7, tpn + 2)];
+      if (beat === 4) {
+        A = k.axes(W * 0.06, H * 0.08, W * 0.88, H * 0.82, xr2, [0, 0.6], {});
+        k.plot(A, function (x) { return Math.abs(x) < tpn * 0.999 ? 1 / (Math.PI * Math.sqrt(tpn * tpn - x * x)) : NaN; }, xr2, "rgba(236,230,218,.7)", 2, 800);
+        k.plot(A, function (x) { var p = psi(nn, x); return Math.min(0.6, p * p); }, xr2, "#ffb547", 1.8, 1500);
+        return;
+      }
+      k.line(A.X(-tpn), A.Y(0), A.X(-tpn), A.Y(10), "rgba(236,230,218,.25)", 1, [3, 4]); k.line(A.X(tpn), A.Y(0), A.X(tpn), A.Y(10), "rgba(236,230,218,.25)", 1, [3, 4]);
+      k.line(A.X(-7), A.Y(En), A.X(7), A.Y(En), "rgba(255,181,71,.3)", 1, [3, 4]);
+      var wob = beat === 0 ? 0.25 * Math.sin(now / 300) : 0;
+      k.plot(A, function (x) { return En + 2.2 * psi(nn, x) * (beat === 0 ? psi(0, x) * 1.3 : 1); }, [-7, 7], "#ffb547", 2.2, 600);
+      if (beat === 0) k.glow(A.X(wob), A.Y(0.5), 30, "rgba(255,181,71,.35)");
+    }
+  });
+})();
+</script>

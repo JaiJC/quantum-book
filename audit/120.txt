@@ -1,0 +1,2 @@
+== 120
+readout of full x needs >= N samples; N=1e6 -> 1e6

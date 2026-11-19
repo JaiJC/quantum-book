@@ -1,0 +1,64 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In 1949 Richard Feynman began drawing little pictures: straight lines for electrons, wiggly ones for photons, meeting at points. Each picture is shorthand for one term in the Dyson series, one complete pairing from Wick’s theorem, and it can be translated line by line into an integral. Within a decade the pictures had spread through physics, carried, as the historian David Kaiser tells it, by young physicists who learned them in person. They are now the most successful calculating tool science has.</p>
+  <p>On the plate: a diagram, and beside it the integral it stands for.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The rules for φ⁴</h2>
+  <p>Draw every diagram with the right external lines, and for each one, multiply:</p>
+  <p>for each internal line of momentum {{tex:p}}, a propagator {{tex:\frac{i}{p^2 - m^2 + i\epsilon}}}; for each vertex, {{tex:-i\lambda}}; at each vertex, conservation of four-momentum; for each closed loop, an integral {{tex:\int\frac{d^4k}{(2\pi)^4}}} over the momentum that circulates freely; and the diagram’s symmetry factor (Chapter 63). Sum the diagrams, and the result is {{tex:i\mathcal M}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Build a diagram</h2>
+  <p>Choose: <button type="button" class="v" data-pick="d:tree">two in, two out, one vertex</button>, <button type="button" class="v" data-pick="d:s">a loop in the s-channel</button>, <button type="button" class="v" data-pick="d:t">a loop in the t-channel</button>, or, in a theory with a {{tex:\phi^3}} vertex, <button type="button" class="v" data-pick="d:x">a single exchanged particle</button>. The plate writes out its value.</p>
+  <p>The tree diagram gives {{tex:\mathcal M = -\lambda}}: no integral at all. One-loop diagrams carry one unconstrained momentum, and their integrals, as Chapter 69 will show, diverge. Exchange diagrams depend on the momentum transfer through {{tex:1/(q^2 - m^2)}}; in the low-energy limit this is exactly the Yukawa potential of Chapter 56, so a force is the exchange of a quantum.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Counting powers</h2>
+  <p>Every vertex brings a power of the coupling. Tree diagrams are the lowest order; each loop adds more vertices. For QED, with coupling {{tex:\alpha \approx 1/137}}, each loop costs about a factor of {{tex:\alpha/\pi \approx 0.002}}, so a handful of loops gives ten-digit accuracy (Chapter 72). For the strong force at low energies the coupling is near one, every loop matters as much as the last, and diagrams fail; Chapter 79 explains why.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What virtual particles are not</h2>
+  <p>An internal line has a four-momentum that does not satisfy {{tex:p^2 = m^2}}: it is “off shell”. It is called a virtual particle, and popular accounts say virtual particles pop in and out of existence, borrowing energy for a short time. That is a misleading picture. Internal lines are terms in a perturbative expansion of an amplitude; they are not objects that exist between the vertices, and no measurement detects one. A different choice of expansion gives different diagrams for the same physics. What is real is the amplitude, and the forces, shifts and rates it predicts. <span class="tag">Established</span>, though the language is still used loosely, including in this book.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Feynman rules for φ⁴, tree diagrams and loops, exchange diagrams and how they give forces, counting powers of the coupling, and an honest account of virtual particles.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does each closed loop contribute?<span class="tap">tap</span></div><div class="a">An integral over an unconstrained four-momentum, ∫d⁴k/(2π)⁴.</div></div>
+  <div class="qa"><div class="q">Why does perturbation theory work so well for QED?<span class="tap">tap</span></div><div class="a">Each extra loop costs a small factor of order α/π ≈ 0.002.</div></div>
+  <div class="qa"><div class="q">Are virtual particles real objects?<span class="tap">tap</span></div><div class="a">No; internal lines are terms in an expansion of the amplitude, off shell and unobservable.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The figure-eight vacuum bubble of Chapter 63 has symmetry factor {{tex:1/S}}. What is {{tex:S}}?</p>
+    <form class="calc" data-answer="8" data-tol="0.01" data-ok="Yes: S = 8. Swap the two loops (×2) and reverse each loop (×2 × 2)." data-hint="Count ways to rearrange the lines without changing the picture: swapping loops and flipping each loop."><span>S =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Symmetry number"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. P. Feynman, Phys. Rev. 76, 749 and 769 (1949). F. J. Dyson, Phys. Rev. 75, 486 (1949). D. Kaiser, Drawing Theories Apart (2005). M. E. Peskin and D. V. Schroeder, ch. 4. Checked by code: figure-eight symmetry factor 1/8 from Wick counting; tree φ⁴ amplitude −λ.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0;
+  var D = { tree: "i𝓜 = −iλ", s: "i𝓜 ⊃ ½(−iλ)² ∫ d⁴k/(2π)⁴ · i/(k² − m²) · i/((p₁+p₂−k)² − m²)", t: "same loop with p₁ − p₃ flowing through", x: "i𝓜 = (−ig)² · i/(q² − m² + iε),  q = p₁ − p₃" };
+  function leg(k, x1, y1, x2, y2) { k.line(x1, y1, x2, y2, "#ece6da", 2.5); }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    caption: function () { return ["A diagram and its integral.", "Feynman rules.", "Diagram builder.", "More loops, more powers of the coupling.", "An internal line is off shell.", "Diagrams."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return D[Book.state.picks.d || "tree"]; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H * 0.45, L = Math.min(W, H) * 0.3, d = beat === 1 || beat === 3 ? "s" : beat === 4 ? "x" : (Book.state.picks.d || "tree");
+      if (d === "tree") { leg(k, cx - L, cy - L * 0.7, cx, cy); leg(k, cx - L, cy + L * 0.7, cx, cy); leg(k, cx, cy, cx + L, cy - L * 0.7); leg(k, cx, cy, cx + L, cy + L * 0.7); k.circle(cx, cy, 6, "#ffb547"); }
+      else if (d === "s") { var r = L * 0.35; leg(k, cx - L, cy - L * 0.6, cx - r, cy); leg(k, cx - L, cy + L * 0.6, cx - r, cy); c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.arc(cx, cy, r, 0, 2 * Math.PI); c.stroke(); leg(k, cx + r, cy, cx + L, cy - L * 0.6); leg(k, cx + r, cy, cx + L, cy + L * 0.6); k.circle(cx - r, cy, 6, "#ece6da"); k.circle(cx + r, cy, 6, "#ece6da"); var a = now / 700; k.circle(cx + r * Math.cos(a), cy + r * Math.sin(a), 4, "#ffb547"); }
+      else if (d === "t") { var r2 = L * 0.35; leg(k, cx - L, cy - L * 0.7, cx, cy - r2); leg(k, cx, cy - r2, cx + L, cy - L * 0.7); leg(k, cx - L, cy + L * 0.7, cx, cy + r2); leg(k, cx, cy + r2, cx + L, cy + L * 0.7); c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); c.arc(cx, cy, r2, 0, 2 * Math.PI); c.stroke(); k.circle(cx, cy - r2, 6, "#ece6da"); k.circle(cx, cy + r2, 6, "#ece6da"); }
+      else { leg(k, cx - L, cy - L * 0.7, cx, cy - L * 0.4); leg(k, cx, cy - L * 0.4, cx + L, cy - L * 0.7); leg(k, cx - L, cy + L * 0.7, cx, cy + L * 0.4); leg(k, cx, cy + L * 0.4, cx + L, cy + L * 0.7); c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.setLineDash([6, 4]); c.beginPath(); c.moveTo(cx, cy - L * 0.4); c.lineTo(cx, cy + L * 0.4); c.stroke(); c.setLineDash([]); k.circle(cx, cy - L * 0.4, 6, "#ece6da"); k.circle(cx, cy + L * 0.4, 6, "#ece6da"); k.text("q² ≠ m²", cx + 12, cy + 4, { size: 12, align: "left", color: "#ffb547" }); }
+      k.text("time →", W * 0.88, H * 0.92, { size: 11, align: "right", color: "#7c766b" });
+      if (beat === 3) k.text("one loop: one more factor of the coupling squared", cx, H * 0.92, { size: 12, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>

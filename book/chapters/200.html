@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In January 2025 a paper in <em>Nature Biotechnology</em> reported cancer-drug candidates found with help from a quantum computer. The team, led by Mohammad Ghazi Vakili and Alán Aspuru-Guzik with Insilico Medicine and others, combined a 16-qubit quantum circuit with a classical generative model to propose molecules targeting KRAS, a protein mutated in many cancers and long considered “undruggable”. Of 15 molecules synthesized, two showed promising activity in the lab. It is a real result. The question this chapter teaches you to ask is: how much did the quantum part contribute?</p>
+  <p>On the plate: what it would take to detect a quantum contribution.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The general obstacles</h2>
+  <p>Everything from Chapter 124 applies to biological data. Loading a large dataset of sequences or images into quantum amplitudes costs as much as reading it (Chapter 120). Many proposed quantum speedups for linear algebra on such data were dequantized by sample-based classical algorithms (Chapter 121). Expressive quantum models suffer barren plateaus and kernel concentration (Chapters 123–124). And models that avoid these may be classically simulable, as Cerezo and colleagues argued in 2025. Genomics, imaging and screening data are classical, abundant and well served by GPUs. Quantum machine learning on such data has no established advantage. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Detecting a contribution</h2>
+  <p>In the KRAS study the quantum circuit, a quantum circuit Born machine, served as a prior distribution feeding a classical long short-term memory generator, which proposed molecules filtered by classical scoring. To show the quantum prior mattered, one needs an <em>ablation</em>: the same pipeline with a classical prior of comparable capacity, run side by side, with the same synthesis and testing. Suppose the classical pipeline’s hit rate is <span class="tangle" data-var="p0" data-min="0.02" data-max="0.4" data-step="0.01" data-dec="2" data-value="0.10" data-px="60"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Classical hit rate">0.10</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and the quantum-assisted rate <span class="tangle" data-var="p1" data-min="0.02" data-max="0.5" data-step="0.01" data-dec="2" data-value="0.15" data-px="60"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Quantum hit rate">0.15</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, with <span class="tangle" data-var="n" data-min="10" data-max="2000" data-step="10" data-value="15" data-px="0.3"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Molecules per arm">15</span><button type="button" data-de="1" aria-label="More">›</button></span> molecules synthesized per arm. The plate gives the statistical power to detect the difference. With 15 molecules, power is tiny: no study of that size can show the quantum part helped, whatever the truth. The paper’s own in-silico comparisons suggested a modest benefit from the quantum prior; independent ablations at scale have not been reported. <span class="tag">Speculative</span> for quantum contribution.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What would change the picture</h2>
+  <p>Three things would make a quantum-ML claim in biology convincing: a careful ablation against strong classical baselines with matched capacity; enough experimental validation to have statistical power; and a reason, grounded in complexity theory, why the quantum model captures structure a classical one cannot, ideally with quantum data, such as outputs of quantum chemistry or quantum sensors, where provable advantages exist (Chapter 124). For a reader with a machine-learning background, these are the same standards you would apply to any new architecture: baselines, ablations, power, and a mechanism. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why loading costs, dequantization, barren plateaus and simulability limit quantum ML on biological data, the 2025 KRAS study and its architecture, why ablations and statistical power decide whether a quantum component mattered, and the standards a convincing claim must meet.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What did the quantum circuit do in the KRAS study?<span class="tap">tap</span></div><div class="a">Served as a prior distribution for a classical generative model.</div></div>
+  <div class="qa"><div class="q">What experiment isolates the quantum contribution?<span class="tap">tap</span></div><div class="a">An ablation with a matched-capacity classical prior, everything else identical.</div></div>
+  <div class="qa"><div class="q">Why can’t 15 molecules settle it?<span class="tap">tap</span></div><div class="a">The statistical power to detect a modest difference in hit rates is very low at that size.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Two of 15 synthesized candidates were active. What is the hit rate?</p>
+    <form class="calc" data-answer="0.133" data-tol="0.003" data-ok="Yes: about 13%, comparable to good classical generative pipelines." data-hint="2 ÷ 15."><span>rate =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Hit rate"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Ghazi Vakili et al., Nat. Biotechnol. (January 2025). E. Tang, Proc. 51st ACM STOC, 217 (2019). M. Cerezo et al., Nat. Commun. 16, 7907 (2025). S. Thanasilp et al., Nat. Commun. 15, 5200 (2024). Power computed with the normal approximation for two proportions at α = 0.05, two-sided.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { p0: 0.1, p1: 0.15, n: 15 };
+  function Phi(z) { var t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2), p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - p : p; }
+  function power(n) { var se = Math.sqrt((V.p0 * (1 - V.p0) + V.p1 * (1 - V.p1)) / n), z = Math.abs(V.p1 - V.p0) / se; return Phi(z - 1.96) + Phi(-z - 1.96); }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["Statistical power vs molecules per arm.", "Loading, dequantization, plateaus, simulability.", "Power to detect a hit-rate difference.", "Baselines, ablations, power, mechanism.", "Quantum ML for biology."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var need = 10; while (need < 1e5 && power(need) < 0.8) need += 10; return "hit rates " + V.p0.toFixed(2) + " vs " + V.p1.toFixed(2) + " · power with " + V.n + " per arm: " + (power(V.n) * 100).toFixed(0) + "% · for 80% power need ≈ " + need + " per arm"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { ["data loading ~ N", "dequantization", "barren plateaus", "simulability"].forEach(function (s, j) { k.rr(W * 0.2, H * (0.12 + j * 0.2), W * 0.6, H * 0.14, 8, "#14120f", "rgba(224,90,70,.6)"); k.text(s, W / 2, H * (0.2 + j * 0.2), { size: 13 }); }); return; }
+      if (beat === 3) { ["strong classical baselines", "matched-capacity ablation", "adequate statistical power", "a mechanism (quantum data?)"].forEach(function (s, j) { k.rr(W * 0.2, H * (0.12 + j * 0.2), W * 0.6, H * 0.14, 8, "#14120f", "#ffb547"); k.text(s, W / 2, H * (0.2 + j * 0.2), { size: 13, color: "#ffb547" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [1, 3.3], [0, 1.02], { xl: "log₁₀ molecules per arm", yl: "power" }); k.plot(A, function (l) { return power(Math.pow(10, l)); }, [1, 3.3], "#ffb547", 2.5, 300); k.line(A.X(1), A.Y(0.8), A.X(3.3), A.Y(0.8), "rgba(236,230,218,.35)", 1); k.circle(A.X(Math.log10(V.n)), A.Y(power(V.n)), 6, "#ece6da");
+    }
+  });
+})();
+</script>

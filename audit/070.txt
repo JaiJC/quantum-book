@@ -1,0 +1,3 @@
+== 070
+leading-log 1/alpha(mZ) 127.80264308445919 PDG MSbar 127.95
+Landau pole (electron only) log10 Q/MeV 280.1614379377406

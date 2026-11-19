@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>131. Verification of quantum computation</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="131">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>131</b> &nbsp;·&nbsp; Verification of quantum computation</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">131</div><div class="part">Part Three · C · Complexity and cryptography</div><h1>Verification of quantum computation</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Suppose a company offers a quantum computer over the internet, and it returns an answer you cannot check yourself, because checking would need a quantum computer. How do you know it did the computation, rather than returning something plausible? For problems in NP, like factoring, you can verify the answer. For a general quantum computation, it is a genuine puzzle, and its solutions are among the most surprising results in the field.</p>
+  <p>On the plate: what a server sees when it computes for you blindly.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Interactive proofs with a quantum prover</h2>
+  <p>Classical complexity theory already knew that a weak verifier can check a powerful prover by asking questions: interactive proofs can certify everything in PSPACE, which includes BQP. But those protocols need the prover to have unbounded power, not just a quantum computer. The goal is a protocol in which an honest quantum computer can convince you, a dishonest one cannot, and you need little or no quantum ability. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Blind computation</h2>
+  <p>Anne Broadbent, Joseph Fitzsimons and Elham Kashefi gave universal blind quantum computation in 2009, built on measurement-based computing (Chapter 147). The client sends single qubits prepared at random angles <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>π</mi><mi mathvariant="normal">/</mi><mn>4</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mn>7</mn><mi>π</mi><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\theta\in\{0, \pi/4, \dots, 7\pi/4\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord">/4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">7</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord">/4</span><span class="mclose">}</span></span></span></span>, then asks the server to measure at angle <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>=</mo><mi>ϕ</mi><mo>+</mo><mi>θ</mi><mo>+</mo><mi>r</mi><mi>π</mi></mrow><annotation encoding="application/x-tex">\delta = \phi + \theta + r\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span> is the angle the client actually wants and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> a random bit. Choose the client’s secret angle: <button type="button" class="v" data-pick="phi:0">0</button> <button type="button" class="v" data-pick="phi:1">π/4</button> <button type="button" class="v" data-pick="phi:2">π/2</button> <button type="button" class="v" data-pick="phi:5">5π/4</button>, and <button type="button" class="v" data-act="run">run 400 rounds</button>. The server’s view is uniformly random whatever you choose: it learns nothing about the computation, the input or the output. Hide a few <em>trap</em> qubits with known outcomes among the real ones, and a server that deviates is caught with high probability. The client needs only to prepare single qubits. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>No quantum at all: two routes</h2>
+  <p><strong>Two entangled servers.</strong> Ben Reichardt, Falk Unger and Umesh Vazirani showed in 2013 that a purely classical verifier can control two non-communicating quantum servers sharing entanglement, using Bell-inequality tests (Chapter 51) to force them to behave honestly. The same line of work led, in 2020, to MIP* = RE by Zhengfeng Ji, Anand Natarajan, Thomas Vidick, John Wright and Henry Yuen: with entangled provers, a classical verifier can check answers to problems as hard as the halting problem. It also refuted a long-standing conjecture in operator algebras, Connes’ embedding problem.</p>
+  <p><strong>One server, plus cryptography.</strong> In 2018 Urmila Mahadev, then a graduate student at Berkeley, gave a protocol in which a classical verifier checks a single quantum computer, assuming that the learning-with-errors problem (Chapter 133) is hard for quantum computers. The key tool is a trapdoor claw-free function: the server can create a superposition over two preimages but cannot find both, while the verifier, holding the trapdoor, can. Some assumption is believed necessary: without one, efficient classical verification of BQP with a single prover would have unlikely complexity consequences. <span class="tag">Established</span></p>
+  <p>Trap tests compound: <span class="tangle" data-var="t" data-min="1" data-max="30" data-step="1" data-value="10" data-px="8"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Rounds">10</span><button type="button" data-de="1" aria-label="More">›</button></span> independent rounds, each catching a cheating server with probability 1/2.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why verification is a problem, blind computation with hidden angles and trap qubits, two-prover verification and MIP* = RE, and Mahadev’s classical verification under the learning-with-errors assumption.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the server learn nothing in blind computation?<span class="tap">tap</span></div><div class="a">Each measurement angle is shifted by a uniformly random secret θ + rπ, making the angles it sees uniformly random.</div></div>
+  <div class="qa"><div class="q">What forces two entangled servers to be honest?<span class="tap">tap</span></div><div class="a">Bell tests: only the intended measurements on maximally entangled states can win them near-optimally.</div></div>
+  <div class="qa"><div class="q">What assumption underlies Mahadev’s protocol?<span class="tap">tap</span></div><div class="a">That learning with errors is hard for quantum computers.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Each of 10 independent test rounds catches a cheater with probability 1/2. What is the probability a cheater escapes all ten?</p>
+    <form class="calc" data-answer="0.000977" data-tol="0.00003" data-ok="Yes: 2⁻¹⁰ ≈ 0.00098, about 1 in 1000." data-hint="(1/2)¹⁰."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Broadbent, J. Fitzsimons and E. Kashefi, Proc. 50th IEEE FOCS, 517 (2009). B. W. Reichardt, F. Unger and U. Vazirani, Nature 496, 456 (2013). U. Mahadev, SIAM J. Comput. 51, 1172 (2022) (FOCS 2018). A. Gheorghiu, T. Kapourniotis and E. Kashefi, Theory Comput. Syst. 63, 715 (2019). Z. Ji, A. Natarajan, T. Vidick, J. Wright and H. Yuen, arXiv:2001.04383; Commun. ACM 64, 131 (2021).</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 132</div><div class="t">Quantum key distribution: BB84, E91, security proofs, device independence</div><p style="text-align:left">A key whose secrecy is guaranteed by physics. Real systems have still been hacked, through their hardware rather than the physics.</p><p style="text-align:left"><a class="v" href="132.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="130.html">← 130. Lower bounds: polynomial and adversary methods</a><a href="../index.html">Contents</a><a href="132.html">132. Quantum key distribution: BB84, E91, security proofs, device independence →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { t: 10 }, hist = new Array(8).fill(0), rounds = 0, seed = 33;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function run() { var phi = +(Book.state.picks.phi || 0); hist = new Array(8).fill(0); for (var i = 0; i < 400; i++) { var th = Math.floor(rnd() * 8), r = rnd() < 0.5 ? 0 : 4; hist[(phi + th + r) % 8]++; } rounds = 400; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; run(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    pick: function () { run(); },
+    act: function () { run(); },
+    caption: function () { return ["The server’s view of a blind computation.", "Verifier and prover.", "Angles the server is asked to measure (histogram of δ).", "Probability a cheater survives the tests.", "Verification."][beat]; },
+    readout: function () { if (beat === 2) { var phi = +(Book.state.picks.phi || 0); return "secret φ = " + phi + "π/4 · " + rounds + " rounds · counts " + hist.join(" ") + " · expected 50 each"; } if (beat === 3) return V.t + " rounds · escape probability " + Math.pow(0.5, V.t).toExponential(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+
+      if (beat === 0 || beat === 2 || beat === 4) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.74, [0, 8], [0, 100], { xl: "δ (units of π/4)" }); for (i = 0; i < 8; i++) { k.rr(A.X(i) + 6, A.Y(hist[i]), A.X(1) - A.X(0) - 12, A.Y(0) - A.Y(hist[i]), 3, "rgba(255,181,71,.8)"); k.text(String(i), A.X(i + 0.5), A.Y(0) + 16, { size: 11, color: "#b9b2a5" }); } k.line(A.X(0), A.Y(50), A.X(8), A.Y(50), "rgba(236,230,218,.4)", 1); return; }
+      if (beat === 1) { k.rr(W * 0.08, H * 0.36, W * 0.24, H * 0.28, 10, "#14120f", "#ece6da"); k.text("verifier", W * 0.2, H * 0.48, { size: 14 }); k.text("weak", W * 0.2, H * 0.55, { size: 11, color: "#b9b2a5" }); k.rr(W * 0.66, H * 0.3, W * 0.26, H * 0.4, 10, "#14120f", "#ffb547"); k.text("quantum prover", W * 0.79, H * 0.48, { size: 14, color: "#ffb547" }); k.text("honest?", W * 0.79, H * 0.56, { size: 11, color: "#b9b2a5" }); var t = (now / 1500) % 1; k.line(W * 0.32, H * 0.45, W * 0.66, H * 0.45, "rgba(236,230,218,.4)", 1); k.line(W * 0.32, H * 0.55, W * 0.66, H * 0.55, "rgba(236,230,218,.4)", 1); k.circle(W * 0.32 + t * W * 0.34, H * 0.45, 4, "#ece6da"); k.circle(W * 0.66 - t * W * 0.34, H * 0.55, 4, "#ffb547"); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 30], [-10, 0], { xl: "test rounds", yl: "log₁₀ escape" }); k.plot(A, function (t) { return t * Math.log10(0.5); }, [0, 30], "#ffb547", 2.5); k.circle(A.X(V.t), A.Y(V.t * Math.log10(0.5)), 6, "#ece6da"); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

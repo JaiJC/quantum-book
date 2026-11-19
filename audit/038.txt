@@ -1,0 +1,15 @@
+== 038
+RH 10967758.340277294 Ry eV 13.605693122990514 H ground -13.598287264283272
+Balmer 3 vac nm 656.469606333245
+Balmer 4 vac nm 486.2737824690704
+Balmer 5 vac nm 434.17302006167006
+Balmer 6 vac nm 410.29350395827817
+Lyman a nm 121.5684456172676 Paschen a 1875.6274466664147
+1 0 norm 1.0 <r> 1.5 formula 1.5 most prob 1.0
+2 0 norm 1.0 <r> 6.0 formula 6.0 most prob 5.236
+2 1 norm 1.0 <r> 5.0 formula 5.0 most prob 4.0
+3 2 norm 1.0 <r> 10.5 formula 10.5 most prob 9.0
+4 3 norm 1.0 <r> 18.0 formula 18.0 most prob 16.0
+<1/r> 1s 1.0
+Li2+ ground eV -122.45123810691463
+2P fine splitting GHz 10.94332386344263

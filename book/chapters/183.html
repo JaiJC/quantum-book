@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The FeMo cofactor of nitrogenase, the iron–molybdenum cluster that lets bacteria turn air into fertilizer, has been modelled with an active space of 113 electrons in 76 orbitals. The exact wavefunction in that space would need about {{tex:4\times10^{35}}} numbers: more than all the computer memory that will ever exist. That is the exponential wall. Yet classical chemists have not given up, and their approximations keep improving. This chapter shows how high the wall is, where each method hits it, and why “exponential” does not automatically mean “quantum advantage”.</p>
+  <p>On the plate: the size of the exact problem as the active space grows.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Counting configurations</h2>
+  <p>Full configuration interaction (FCI) writes the wavefunction as a combination of every way to place the electrons in the chosen orbitals. With {{tex:M}} spatial orbitals, {{tex:N_\alpha}} spin-up and {{tex:N_\beta}} spin-down electrons, the number of determinants is</p>
+  <div class="eq">{{texd:D = \binom{M}{N_\alpha}\binom{M}{N_\beta}}}</div>
+  <p>For half filling this grows roughly as {{tex:4^M/M}}. A 54-electron, 54-orbital space gives {{tex:3.8\times10^{30}}}; FeMoco’s 113 electrons in 76 orbitals give {{tex:4.2\times10^{35}}}. The largest exact FCI calculations handle around a trillion determinants. Choose the active space size {{tex:M =}} <span class="tangle" data-var="M" data-min="4" data-max="80" data-step="2" data-value="24" data-px="2"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Orbitals">24</span><button type="button" data-de="1" aria-label="More">›</button></span> orbitals at half filling. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The methods and where they fail</h2>
+  <p>Hartree–Fock costs about {{tex:N^4}}, coupled cluster CCSD(T) about {{tex:N^7}}, both polynomial, both excellent when one configuration dominates (Chapter 158). For strongly correlated systems, three families push further. The <em>density matrix renormalization group</em> (DMRG), a matrix-product-state method (Chapter 151), handles active spaces of 50–100 orbitals when entanglement is limited, and has been applied to FeMoco-sized models. <em>Selected CI</em> methods pick out the important determinants. <em>Auxiliary-field quantum Monte Carlo</em> (AFQMC) samples the wavefunction stochastically, with errors controlled by a trial state. Each fails in characteristic ways: DMRG when entanglement is high in every orbital ordering, selected CI when important determinants are too many, QMC through the sign problem. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The critique: is there an exponential advantage?</h2>
+  <p>In 2023 Seunghoon Lee, Garnet Chan and colleagues examined the case for exponential quantum advantage in ground-state chemistry. Phase estimation needs an initial state with substantial overlap with the true ground state (Chapter 188). They argued that, for typical chemical systems, wherever such a state can be prepared efficiently, classical heuristics also tend to work; and where classical methods fail exponentially, preparing a good initial state may be hard too. They found no evidence of generic exponential speedup, while allowing that polynomial speedups, or advantages for specific systems, remain plausible. The wall is real; whether quantum computers climb it more cheaply than improving classical methods is open. <span class="tag">Established</span> for the wall; <span class="tag">Debated</span> for the advantage.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The FCI dimension formula and its exponential growth, the FeMoco and CAS(54,54) numbers, cost scalings of HF, CCSD(T), DMRG, selected CI and AFQMC with their failure modes, and Lee et al.’s critique of exponential advantage.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does the FCI dimension grow at half filling?<span class="tap">tap</span></div><div class="a">Roughly as 4^M / M for M orbitals.</div></div>
+  <div class="qa"><div class="q">When does DMRG fail?<span class="tap">tap</span></div><div class="a">When entanglement across every bipartition of the orbitals is high.</div></div>
+  <div class="qa"><div class="q">What is the core of Lee et al.’s critique?<span class="tap">tap</span></div><div class="a">Good initial states for phase estimation tend to exist where classical heuristics already succeed.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> CAS(54e, 54o) has {{tex:\binom{54}{27}^2 = 3.8\times10^{30}}} determinants. What is {{tex:\log_{10}}} of that?</p>
+    <form class="calc" data-answer="30.58" data-tol="0.03" data-ok="Yes: 30.6. Stored at 8 bytes each, that is 3 × 10¹⁹ terabytes." data-hint="log₁₀ 3.8 = 0.58."><span>log₁₀ D =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="log10 D"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Reiher et al., Proc. Natl Acad. Sci. USA 114, 7555 (2017). Z. Li et al., Nat. Chem. 11, 1026 (2019) (DMRG on iron–sulfur clusters). S. Lee et al., Nat. Commun. 14, 1952 (2023). M. Motta and S. Zhang, WIREs Comput. Mol. Sci. 8, e1364 (2018) (AFQMC). Checked by code: C(76,57)·C(76,56) = 4.17 × 10³⁵; C(54,27)² = 3.79 × 10³⁰.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { M: 24 };
+  function lgC(n, k) { var s = 0; for (var i = 1; i <= k; i++) s += Math.log10((n - k + i) / i); return s; }
+  function lD(M) { return 2 * lgC(M, Math.floor(M / 2)); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["FCI dimension vs active-space size.", "Determinants at half filling (log scale).", "Cost scaling of methods.", "Exponential wall ≠ automatic advantage.", "The exponential wall."][beat]; },
+    readout: function () { if (beat <= 1 || beat === 4) return "M = " + V.M + " orbitals · " + V.M + " electrons · log₁₀ D = " + lD(V.M).toFixed(1) + (lD(V.M) > 12 ? " · beyond exact FCI" : " · exact FCI feasible"); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [10, 100], [0, 16], { xl: "orbitals", yl: "log₁₀ cost" }); [[4, "HF N⁴", "rgba(236,230,218,.6)"], [7, "CCSD(T) N⁷", "rgba(236,230,218,.9)"]].forEach(function (s) { k.plot(A, function (n) { return s[0] * Math.log10(n); }, [10, 100], s[2], 2); k.text(s[1], A.X(98), A.Y(Math.min(15.5, s[0] * 2)) - 6, { size: 11, color: s[2], align: "right" }); }); k.plot(A, function (n) { return Math.min(16, lD(Math.round(n / 2) * 2)); }, [10, 100], "rgba(224,90,70,.85)", 2.2, 200); k.text("FCI", A.X(30), A.Y(15), { size: 11, color: "#e05a46" }); k.plot(A, function (n) { return Math.log10(n) * 3 + 3 * Math.log10(2000); }, [10, 100], "#ffb547", 2.2); k.text("DMRG, χ = 2000", A.X(60), A.Y(3 * Math.log10(60) + 9.9) + 14, { size: 11, color: "#ffb547" }); return; }
+      if (beat === 3) { k.text("hard for classical", W * 0.3, H * 0.35, { size: 14, color: "#e05a46" }); k.text("easy initial state", W * 0.7, H * 0.35, { size: 14, color: "#ffb547" }); k.circle(W * 0.5, H * 0.6, 60, "rgba(236,230,218,.1)", "rgba(236,230,218,.5)"); k.text("overlap?", W * 0.5, H * 0.6 + 5, { size: 13 }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [4, 80], [0, 50], { xl: "active orbitals M (half filling)", yl: "log₁₀ determinants" }); k.plot(A, function (m) { return lD(Math.round(m / 2) * 2); }, [4, 80], "#ffb547", 2.5, 200); [[9.3, "laptop memory"], [12, "largest exact FCI"], [35.6, "FeMoco CAS(113,76)"]].forEach(function (w) { k.line(A.X(4), A.Y(w[0]), A.X(80), A.Y(w[0]), "rgba(236,230,218,.3)", 1); k.text(w[1], A.X(5), A.Y(w[0]) - 5, { size: 10, color: "#b9b2a5", align: "left" }); }); k.circle(A.X(V.M), A.Y(lD(V.M)), 6, "#ece6da");
+    }
+  });
+})();
+</script>

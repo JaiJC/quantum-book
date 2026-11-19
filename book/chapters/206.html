@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Suppose that in 2032 you are given a fault-tolerant machine with 1,000 logical qubits and a week of run time. Which biological problem do you choose first, and why? Answering forces you to weigh what is feasible, what is valuable, and where classical methods will still be ahead. This chapter lays out the open problems at the intersection of quantum technology and biology, and gives you a tool to rank them by your own weights.</p>
+  <p>On the plate: a research-agenda builder.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The open problems</h2>
+  <p><strong>State preparation</strong>: can good initial states for phase estimation be prepared for strongly correlated active sites where classical methods fail (Chapters 183, 188)? <strong>Embedding</strong>: how to couple a quantum active-space calculation to DFT and a protein environment without losing accuracy at the boundaries (Chapter 160)? <strong>Dynamics</strong>: open-system and non-adiabatic dynamics, such as photochemistry and charge transfer, where quantum simulation’s advantage may be larger than for ground states (Chapters 195–197). <strong>Verified advantage</strong>: one convincing iron–sulfur or metalloenzyme calculation beyond the best classical method. <strong>Clinical quantum sensing</strong>: validated, affordable OPM-MEG and NV diagnostics (Chapter 202). <strong>Biological questions</strong>: the in-vivo radical-pair compass (Chapter 181). <span class="tag">Speculative</span> as an agenda.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Weigh and rank</h2>
+  <p>Set your weights: feasibility by 2032 <span class="tangle" data-var="wf" data-min="0" data-max="3" data-step="0.5" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Feasibility weight">1.0</span><button type="button" data-de="1" aria-label="More">›</button></span>, value if solved <span class="tangle" data-var="wv" data-min="0" data-max="3" data-step="0.5" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Value weight">1.0</span><button type="button" data-de="1" aria-label="More">›</button></span>, and freedom from classical competition <span class="tangle" data-var="wc" data-min="0" data-max="3" data-step="0.5" data-dec="1" data-value="1.0" data-px="20"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Competition weight">1.0</span><button type="button" data-de="1" aria-label="More">›</button></span>. The plate scores each problem (this book’s judgement, 1–5 on each axis) and ranks them by the weighted sum. Weight feasibility heavily and clinical sensing rises to the top; weight value and freedom from classical competition heavily and verified advantage on metalloenzymes rises to the top. There is no correct ranking; the point is to make your values explicit. <span class="tag">Debated</span> for the scores.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Argue it</h2>
+  <p>Write one page: the problem you would choose for 1,000 logical qubits in 2032, the specific calculation, the classical method it must beat and by how much, how the result would be verified, and what it would change in biology or medicine. Then write the strongest objection, for instance that by 2032 classical DMRG or AFQMC will have solved your problem, and answer it. A good answer names a problem where even a perfect classical extrapolation leaves an uncertainty that matters for a decision. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Six open problems at the intersection of quantum technology and biology, a weighted ranking tool, and a template for defending a research choice against its strongest objection.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is state preparation central?<span class="tap">tap</span></div><div class="a">Phase estimation’s cost scales with the inverse squared overlap of the initial state.</div></div>
+  <div class="qa"><div class="q">Why might dynamics favour quantum computers?<span class="tap">tap</span></div><div class="a">Classical methods for many-body quantum dynamics scale worse than for ground states.</div></div>
+  <div class="qa"><div class="q">What makes a research choice defensible?<span class="tap">tap</span></div><div class="a">A named classical baseline, a verification plan, and a decision the result would change.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A problem scores feasibility 2, value 5, competition-freedom 4. With weights 1, 1 and 2, what is its weighted score?</p>
+    <form class="calc" data-answer="15" data-tol="0.1" data-ok="Yes: 2 + 5 + 8 = 15." data-hint="1×2 + 1×5 + 2×4."><span>score =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Score"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. Santagati et al., Nat. Phys. 20, 549 (2024). S. Lee et al., Nat. Commun. 14, 1952 (2023). A. M. Dalzell et al. (CUP, 2025). A. Marais et al., J. R. Soc. Interface 15, 20180640 (2018). Scores are this book’s judgement.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { wf: 1, wv: 1, wc: 1 }, P = [["Clinical quantum sensing", 5, 4, 3], ["Verified advantage: Fe–S / metalloenzyme", 2, 5, 4], ["State preparation for active sites", 3, 4, 3], ["Embedding quantum cores in QM/MM", 3, 4, 3], ["Open-system and non-adiabatic dynamics", 2, 4, 4], ["In-vivo radical-pair compass", 4, 3, 5]];
+  function ranked() { return P.map(function (p) { return [p[0], V.wf * p[1] + V.wv * p[2] + V.wc * p[3], p]; }).sort(function (a, b) { return b[1] - a[1]; }); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Your research agenda.", "Six open problems.", "Ranked by weighted score (feasibility · value · competition).", "One page, one objection, one reply.", "Research frontier."][beat]; },
+    readout: function () { var r = ranked(); return "top: " + r[0][0] + " (" + r[0][1].toFixed(1) + ")"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, r = ranked(), mx = r[0][1] || 1;
+      if (beat === 3) { ["problem & calculation", "classical baseline to beat", "verification plan", "decision it changes", "strongest objection + reply"].forEach(function (s, j) { k.rr(W * 0.15, H * (0.1 + j * 0.17), W * 0.7, H * 0.12, 6, "#14120f", "rgba(236,230,218,.4)"); k.text(s, W / 2, H * (0.175 + j * 0.17), { size: 13 }); }); return; }
+      r.forEach(function (row, j) { var y = H * (0.08 + j * 0.145), w = W * 0.5 * row[1] / mx; k.text(row[0], W * 0.44, y + H * 0.06, { size: 11, align: "right" }); k.rr(W * 0.46, y + H * 0.02, w, H * 0.08, 4, j === 0 ? "#ffb547" : "rgba(255,181,71,.4)"); k.text(row[1].toFixed(1), W * 0.47 + w, y + H * 0.075, { size: 10, color: "#b9b2a5", align: "left" }); });
+    }
+  });
+})();
+</script>

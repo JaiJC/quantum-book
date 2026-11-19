@@ -1,0 +1,153 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Heat hydrogen gas and look at its glow through a prism: a red line, a blue-green one, two violet ones, at wavelengths measured in the nineteenth century to a few parts in a hundred thousand. Solve one equation, the Schrödinger equation with the Coulomb force, and those wavelengths come out to the same precision. Then look harder, and the lines turn out to be split by tiny amounts the equation does not predict. One of those splittings, measured in 1947, launched quantum electrodynamics.</p>
+  <p>On the plate: hydrogen’s electron, drawn as a cloud of points sampled from its probability.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The energies</h2>
+  <p>Put {{tex:V = -e^2/4\pi\varepsilon_0 r}} into the radial equation of Chapter 37. Use the Bohr radius {{tex:a_0 = 0.529}} Å as the unit of length. Far out, {{tex:u \sim e^{-\kappa r}}}; near the nucleus, {{tex:u \sim r^{\ell+1}}}. What is left is again a power series, and once more it must stop or the wavefunction cannot be normalized. It stops only when {{tex:\kappa a_0 = 1/n}} for a whole number {{tex:n > \ell}}:</p>
+  <div class="eq">{{texd:E_n = -\frac{13.6\ \text{eV}}{n^2}}}</div>
+  <p>with {{tex:\ell = 0, 1, \dots, n-1}} and {{tex:m = -\ell, \dots, \ell}}. That is Bohr’s formula of Chapter 24, now with a real wavefunction behind it. The energy depends only on {{tex:n}}. Counting {{tex:\ell}} and {{tex:m}}, level {{tex:n}} holds {{tex:n^2}} states, more than the {{tex:2\ell + 1}} rotation alone requires. The extra degeneracy comes from a hidden symmetry special to the {{tex:1/r}} force, the same one that keeps planetary orbits from precessing. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The orbitals</h2>
+  <p>Choose {{tex:n =}} <span class="tangle" data-var="n" data-min="1" data-max="4" data-step="1" data-value="2" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="n">2</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, {{tex:\ell =}} <span class="tangle" data-var="l" data-min="0" data-max="3" data-step="1" data-value="1" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="l">1</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and {{tex:m =}} <span class="tangle" data-var="m" data-min="-3" data-max="3" data-step="1" data-value="0" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="m">0</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Each dot is one possible place to find the electron, drawn at random with the true probability, so dense regions are likely ones.</p>
+  <p>The shape comes from the spherical harmonic; the layering comes from the radial function, which has {{tex:n - \ell - 1}} nodes, spherical shells where the electron is never found. A 2s orbital has one inside it; you can see the gap in the cloud.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How far out is the electron?</h2>
+  <p>The probability of finding the electron between {{tex:r}} and {{tex:r + dr}} is {{tex:r^2|R(r)|^2dr}}: the {{tex:r^2}} counts the area of the shell. The plate plots it for the state you chose. For the ground state the peak is at exactly {{tex:a_0}}, Bohr’s radius, but the average is {{tex:\tfrac32 a_0}}, because the tail reaches out.</p>
+  <p>In general {{tex:\langle r\rangle = \tfrac12[3n^2 - \ell(\ell+1)]\,a_0}}: atoms grow as {{tex:n^2}}. A hydrogen atom with {{tex:n = 100}}, a Rydberg atom, is about a micrometre across, the size of a bacterium, and such atoms are now used as sensitive detectors of electric fields and as qubits.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The virial theorem</h2>
+  <p>For any potential that goes as a power of {{tex:r}}, the averages of kinetic and potential energy are locked together. For {{tex:1/r}}, {{tex:2\langle T\rangle = -\langle V\rangle}}. So {{tex:\langle T\rangle = -E_n}} and {{tex:\langle V\rangle = 2E_n}}. In the ground state the electron has 13.6 eV of kinetic energy and −27.2 eV of potential energy. Binding an electron more tightly makes it move faster, not slower.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>From Chapter 31, {{tex:\frac{d}{dt}\langle \mathbf r\cdot\mathbf p\rangle = \langle 2T - \mathbf r\cdot\nabla V\rangle}}, which vanishes in a stationary state. For {{tex:V \propto r^k}}, {{tex:\mathbf r\cdot\nabla V = kV}}, so {{tex:2\langle T\rangle = k\langle V\rangle}}; {{tex:k = -1}} for Coulomb, {{tex:k = 2}} for the oscillator.</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The spectrum, predicted</h2>
+  <p>A jump from level {{tex:n_2}} down to {{tex:n_1}} emits a photon with {{tex:1/\lambda = R_H(1/n_1^2 - 1/n_2^2)}}. Choose the lower level: <button type="button" class="v" data-pick="ser:1">Lyman</button> (ultraviolet), <button type="button" class="v" data-pick="ser:2">Balmer</button> (visible) or <button type="button" class="v" data-pick="ser:3">Paschen</button> (infrared).</p>
+  <p>With the reduced mass of the electron and proton, the predicted red Balmer line is at 656.47 nm in vacuum; it is measured at 656.46 nm. They differ by about one part in fifty thousand, and that small remainder is real physics, the subject of the next passage.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The splitting that launched QED</h2>
+  <p>Looked at closely, the {{tex:n = 2}} level is not one level. Relativity and the electron’s spin, which Dirac’s equation of 1928 includes, split it: the {{tex:2P_{3/2}}} states sit about 11 GHz above the rest. Dirac’s theory says {{tex:2S_{1/2}}} and {{tex:2P_{1/2}}} should stay exactly together.</p>
+  <p>In 1947 Willis Lamb and Robert Retherford shone microwaves on hydrogen and found that they do not. {{tex:2S_{1/2}}} lies about 1058 MHz higher. Explaining that <em>Lamb shift</em>, which comes from the electron’s interaction with the fluctuating vacuum electromagnetic field, forced the development of quantum electrodynamics by Bethe, Feynman, Schwinger and Tomonaga. Part Five derives it. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>How big is a proton?</h2>
+  <p>Because s electrons reach the nucleus (Chapter 37), hydrogen’s levels depend slightly on the proton’s size. In 2010 Randolf Pohl’s team replaced the electron with a muon, 207 times heavier, which orbits 200 times closer and feels the proton’s size far more. They found a radius of 0.842 fm, against 0.877 fm from ordinary hydrogen and electron scattering: a gap of more than five standard deviations, later seven.</p>
+  <p>Since then, most new measurements on ordinary hydrogen and new electron-scattering experiments have found the smaller value, and CODATA now recommends 0.841 fm. A few older results still disagree, and some tension remains in the data. <span class="tag">Debated</span>, leaning toward resolved, with the smaller radius.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>The hydrogen energies and their {{tex:n^2}} degeneracy, orbitals and radial nodes, radial probabilities and {{tex:\langle r\rangle}}, the virial theorem, the spectral series, fine structure and the Lamb shift, and the proton-radius puzzle.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is the most probable radius of 1s equal to a₀ but ⟨r⟩ = 1.5 a₀?<span class="tap">tap</span></div><div class="a">The distribution r²|R|² is lopsided, with a long tail outwards that pulls the average beyond the peak.</div></div>
+  <div class="qa"><div class="q">What did the Lamb shift show?<span class="tap">tap</span></div><div class="a">That 2S₁/₂ and 2P₁/₂ are not degenerate, an effect of the quantized electromagnetic vacuum that Dirac’s theory misses.</div></div>
+  <div class="qa"><div class="q">Why does muonic hydrogen probe the proton’s size so well?<span class="tap">tap</span></div><div class="a">The heavy muon orbits about 200 times closer, so it spends far more time overlapping the proton.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A hydrogen-like ion with nuclear charge {{tex:Z}} has {{tex:E_n = -13.6\,Z^2/n^2}} eV. What is the ground-state energy of Li²⁺ ({{tex:Z = 3}}), in eV?</p>
+    <form class="calc" data-answer="-122.4" data-tol="0.6" data-ok="Yes: −13.6 × 9 ≈ −122.4 eV." data-alt="122.4~Bound states have negative energy.|-40.8~Energy scales as Z², not Z." data-hint="Multiply −13.6 eV by Z² = 9."><span>E₁ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Energy in eV"><span>eV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. E. Lamb and R. C. Retherford, Phys. Rev. 72, 241 (1947). H. A. Bethe and E. E. Salpeter, Quantum Mechanics of One- and Two-Electron Atoms. R. Pohl et al., Nature 466, 213 (2010). W. Xiong et al. (PRad), Nature 575, 147 (2019). N. Bezginov et al., Science 365, 1007 (2019). CODATA 2022 recommended values. Checked by code: R_H = 10 967 758 m⁻¹; Hα 656.47 nm, Hβ 486.27 nm, Lyman α 121.57 nm; all radial functions normalized; ⟨r⟩ = (3n² − ℓ(ℓ+1))/2; most probable r: 1s 1.0, 2p 4.0, 3d 9.0.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 2, l: 1, m: 0 }, cloud = null, ckey = "", RH = 10967758.34;
+  function fact(n) { var f = 1; for (var i = 2; i <= n; i++) f *= i; return f; }
+  function glag(k, a, x) { if (k === 0) return 1; var L0 = 1, L1 = 1 + a - x; for (var i = 1; i < k; i++) { var L2 = ((2 * i + 1 + a - x) * L1 - (i + a) * L0) / (i + 1); L0 = L1; L1 = L2; } return L1; }
+  function R(n, l, r) { return Math.sqrt(Math.pow(2 / n, 3) * fact(n - l - 1) / (2 * n * fact(n + l))) * Math.exp(-r / n) * Math.pow(2 * r / n, l) * glag(n - l - 1, 2 * l + 1, 2 * r / n); }
+  function Plm(l, m, x) { var pmm = 1, s = Math.sqrt(Math.max(0, 1 - x * x)), f = 1; for (var i = 1; i <= m; i++) { pmm *= -f * s; f += 2; } if (l === m) return pmm; var p1 = x * (2 * m + 1) * pmm; if (l === m + 1) return p1; var p2; for (var ll = m + 2; ll <= l; ll++) { p2 = ((2 * ll - 1) * x * p1 - (ll + m - 1) * pmm) / (ll - m); pmm = p1; p1 = p2; } return p1; }
+  function Yr(l, m, th, ph) { var am = Math.abs(m), P = Plm(l, am, Math.cos(th)); return m === 0 ? P : P * (m > 0 ? Math.cos(am * ph) : Math.sin(am * ph)); }
+  function q() { if (beat === 0 || beat === 1 || beat === 8) { var seq = [[1, 0, 0], [2, 0, 0], [2, 1, 0], [3, 2, 0], [3, 2, 2], [4, 3, 1]], s = seq[Math.floor(Date.now() / 4000) % seq.length]; return s; } var n = V.n, l = Math.min(V.l, n - 1), m = Math.max(-l, Math.min(l, V.m)); return [n, l, m]; }
+  function rnd(seed) { var s = seed; return function () { s = (s * 16807) % 2147483647; return s / 2147483647; }; }
+  function build(n, l, m) {
+    var key = n + "," + l + "," + m; if (key === ckey) return; ckey = key; cloud = [];
+    var rmax = 2 * n * n + 10, NR = 600, cdf = [0], s = 0, i; for (i = 1; i <= NR; i++) { var r = rmax * i / NR, v = r * r * Math.pow(R(n, l, r), 2); s += v; cdf.push(s); }
+    var ymax = 0; for (i = 0; i <= 60; i++) for (var j = 0; j < 60; j++) { var y = Yr(l, m, Math.PI * i / 60, 2 * Math.PI * j / 60); ymax = Math.max(ymax, y * y); }
+    var rand = rnd(12345 + n * 97 + l * 13 + m);
+    while (cloud.length < 3500) {
+      var u = rand() * s, lo = 0, hi = NR; while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (cdf[mid] < u) lo = mid; else hi = mid; } var rr = rmax * (lo + rand()) / NR;
+      var ct = 2 * rand() - 1, th = Math.acos(ct), ph = 2 * Math.PI * rand(), yv = Yr(l, m, th, ph); if (rand() * ymax > yv * yv) continue;
+      var st = Math.sin(th); cloud.push([rr * st * Math.cos(ph), rr * st * Math.sin(ph), rr * ct, yv * R(n, l, rr) >= 0]);
+    }
+  }
+  var LET = ["s", "p", "d", "f"];
+  function wl2rgb(l) { if (l < 380 || l > 700) return "rgba(236,230,218,.5)"; var r = 0, g = 0, b = 0; if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1; return "rgb(" + [r, g, b].map(function (v) { return Math.round(255 * v); }).join(",") + ")"; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var s = q(); if (beat === 1) return "Energy levels by n and ℓ: n² states each."; if (beat === 3) return "Radial probability r²|R|² for " + s[0] + LET[s[1]] + "."; if (beat === 4) return "Kinetic (amber) and potential (red) energy, per level."; if (beat === 5) return "Emission lines of hydrogen."; if (beat === 6) return "The n = 2 level, magnified."; if (beat === 7) return "Proton charge radius, by method."; return s[0] + LET[s[1]] + " orbital, m = " + s[2] + "."; },
+    readout: function () {
+      var s = q();
+      if (beat === 2) return s[0] + LET[s[1]] + " · m = " + s[2] + " · E = " + (-13.6057 / (s[0] * s[0])).toFixed(3) + " eV · radial nodes " + (s[0] - s[1] - 1) + (V.l !== s[1] || V.m !== s[2] ? " · (ℓ < n, |m| ≤ ℓ)" : "");
+      if (beat === 3) return "⟨r⟩ = " + ((3 * s[0] * s[0] - s[1] * (s[1] + 1)) / 2).toFixed(1) + " a₀";
+      if (beat === 5) { var n1 = +(Book.state.picks.ser || 2); return "n → " + n1 + " · first line " + (1e9 / (RH * (1 / (n1 * n1) - 1 / ((n1 + 1) * (n1 + 1))))).toFixed(2) + " nm · series limit " + (1e9 / (RH / (n1 * n1))).toFixed(1) + " nm"; }
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A, s = q();
+      if (beat === 1) {
+        A = k.axes(W * 0.14, H * 0.06, W * 0.8, H * 0.84, [0, 4], [-14.5, 0.5], { yl: "eV" });
+        for (var n = 1; n <= 5; n++) for (var l = 0; l < Math.min(n, 4); l++) { var y = A.Y(-13.6057 / (n * n)); k.line(A.X(l + 0.15), y, A.X(l + 0.85), y, "#ffb547", 2); for (var mm = 0; mm < 2 * l + 1; mm++) k.circle(A.X(l + 0.15) + (mm + 0.5) * (A.X(0.7) - A.X(0)) / (2 * l + 1), y - 6, 1.8, "rgba(255,181,71,.7)"); }
+        for (l = 0; l < 4; l++) k.text(LET[l], A.X(l + 0.5), A.Y(0.5) - 4, { color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 3) {
+        var rmax = 2 * s[0] * s[0] + 8; A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, rmax], [0, 0.6], { xl: "r / a₀" });
+        k.plot(A, function (r) { return r * r * Math.pow(R(s[0], s[1], r), 2); }, [0, rmax], "#ffb547", 2.5, 600);
+        var avg = (3 * s[0] * s[0] - s[1] * (s[1] + 1)) / 2; k.line(A.X(avg), A.Y(0), A.X(avg), A.Y(0.55), "rgba(236,230,218,.4)", 1, [3, 4]); k.text("⟨r⟩", A.X(avg) + 4, A.Y(0.55), { align: "left", size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.14, H * 0.06, W * 0.8, H * 0.84, [0.5, 4.5], [-28, 15], { yl: "eV", zeroY: true });
+        for (var n4 = 1; n4 <= 4; n4++) { var E = -13.6057 / (n4 * n4), w = A.X(0.3) - A.X(0); k.rr(A.X(n4) - w, A.Y(-E), w * 0.9, A.Y(0) - A.Y(-E), 2, "#ffb547"); k.rr(A.X(n4) + w * 0.1, A.Y(0), w * 0.9, A.Y(2 * E) - A.Y(0), 2, "rgba(224,90,70,.85)"); k.text("n=" + n4, A.X(n4), A.Y(-28) + 18, { size: 11, color: "#7c766b" }); }
+        return;
+      }
+      if (beat === 5) {
+        var n1 = +(Book.state.picks.ser || 2), lmin = 1e9 / (RH / (n1 * n1)), lmax = 1e9 / (RH * (1 / (n1 * n1) - 1 / ((n1 + 1) * (n1 + 1))));
+        A = k.axes(W * 0.06, H * 0.2, W * 0.88, H * 0.5, [lmin * 0.95, lmax * 1.05], [0, 1], { xl: "wavelength, nm" });
+        c.fillStyle = "#050505"; c.fillRect(A.X(lmin * 0.95), A.Y(1), A.X(lmax * 1.05) - A.X(lmin * 0.95), A.Y(0) - A.Y(1));
+        for (var n2 = n1 + 1; n2 < n1 + 25; n2++) { var lam = 1e9 / (RH * (1 / (n1 * n1) - 1 / (n2 * n2))), a = Math.max(0.25, 1 - (n2 - n1 - 1) * 0.12); c.globalAlpha = a; k.line(A.X(lam), A.Y(0), A.X(lam), A.Y(1), wl2rgb(lam), n2 - n1 < 4 ? 3 : 1.5); c.globalAlpha = 1; if (n2 - n1 <= 3) k.text(n2 + "→" + n1, A.X(lam), A.Y(1) - 8, { size: 11, color: "#b9b2a5" }); }
+        k.text(n1 === 2 ? "visible" : n1 === 1 ? "ultraviolet (lines drawn in white)" : "infrared (lines drawn in white)", W / 2, H * 0.9, { size: 12, color: "#7c766b" });
+        return;
+      }
+      if (beat === 6) {
+        var x0 = W * 0.1, y0 = H * 0.6;
+        k.line(x0, y0, x0 + W * 0.2, y0, "#ece6da", 2.5); k.text("n = 2 (Bohr, Schrödinger)", x0 + W * 0.1, y0 + 22, { size: 12, color: "#b9b2a5" });
+        var x1 = W * 0.42, yU = H * 0.25, yD = H * 0.7;
+        k.line(x0 + W * 0.2, y0, x1, yU, "rgba(236,230,218,.25)", 1, [3, 3]); k.line(x0 + W * 0.2, y0, x1, yD, "rgba(236,230,218,.25)", 1, [3, 3]);
+        k.line(x1, yU, x1 + W * 0.18, yU, "#ece6da", 2); k.line(x1, yD, x1 + W * 0.18, yD, "#ece6da", 2); k.text("Dirac", x1 + W * 0.09, H * 0.9, { size: 12, color: "#b9b2a5" });
+        var x2 = W * 0.7; k.line(x1 + W * 0.18, yU, x2, yU, "rgba(236,230,218,.25)", 1, [3, 3]); k.line(x2, yU, x2 + W * 0.18, yU, "#ece6da", 2); k.text("2P₃/₂", x2 + W * 0.19, yU + 4, { align: "left", size: 12 });
+        k.line(x1 + W * 0.18, yD, x2, yD - 22, "rgba(255,181,71,.4)", 1, [3, 3]); k.line(x1 + W * 0.18, yD, x2, yD, "rgba(236,230,218,.25)", 1, [3, 3]);
+        k.line(x2, yD - 22, x2 + W * 0.18, yD - 22, "#ffb547", 2.5); k.line(x2, yD, x2 + W * 0.18, yD, "#ece6da", 2);
+        k.text("2S₁/₂", x2 + W * 0.19, yD - 18, { align: "left", size: 12, color: "#ffb547" }); k.text("2P₁/₂", x2 + W * 0.19, yD + 4, { align: "left", size: 12 });
+        k.text("≈ 11 GHz", x1 + W * 0.09, (yU + yD) / 2, { size: 12, color: "#b9b2a5" }); k.text("Lamb shift ≈ 1058 MHz", x2 + W * 0.09, yD + 26, { size: 12, color: "#ffb547" });
+        return;
+      }
+      if (beat === 7) {
+        var D = [["H spectroscopy + e scattering (CODATA 2014)", 0.8751, 0.0061], ["muonic hydrogen (2013)", 0.84087, 0.00039], ["PRad e–p scattering (2019)", 0.831, 0.014], ["H Lamb shift, Bezginov (2019)", 0.833, 0.010], ["CODATA 2022", 0.84075, 0.00064]];
+        A = k.axes(W * 0.08, H * 0.08, W * 0.86, H * 0.8, [0.80, 0.90], [0, D.length + 0.5], { xl: "proton radius, fm" });
+        D.forEach(function (d, j) { var y = A.Y(D.length - j); k.line(A.X(d[1] - d[2]), y, A.X(d[1] + d[2]), y, j === 0 ? "rgba(236,230,218,.7)" : "#ffb547", 2); k.circle(A.X(d[1]), y, 4.5, j === 0 ? "#ece6da" : "#ffb547"); k.text(d[0], A.X(0.802), y - 9, { align: "left", size: 11, color: "#b9b2a5" }); });
+        return;
+      }
+      build(s[0], s[1], s[2]);
+      var rot = now / 3000, ct = Math.cos(rot), st = Math.sin(rot), tilt = 0.3, cT = Math.cos(tilt), sT = Math.sin(tilt), ext = 2 * s[0] * s[0] + 4, sc = Math.min(W, H) * 0.46 / ext, cx = W / 2, cy = H / 2;
+      for (i = 0; i < cloud.length; i++) { var p = cloud[i], x = p[0] * ct - p[1] * st, y = p[0] * st + p[1] * ct, y2 = y * cT - p[2] * sT, z2 = y * sT + p[2] * cT, a = (0.35 + 0.5 * (0.5 - y2 / (2 * ext))).toFixed(2); c.fillStyle = p[3] ? "rgba(255,181,71," + a + ")" : "rgba(224,90,70," + a + ")"; c.fillRect(cx + x * sc - 1, cy - z2 * sc - 1, 2, 2); }
+      k.circle(cx, cy, 2.5, "#ece6da");
+    }
+  });
+})();
+</script>

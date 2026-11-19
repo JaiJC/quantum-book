@@ -1,0 +1,8 @@
+== 049
+B 1.5 proton polarization ppm at 310K 4.943701665881668
+B 3 proton polarization ppm at 310K 9.887403331521687
+B 7 proton polarization ppm at 310K 23.070607770209268
+Bell reduced [[0.5 0. ]
+ [0.  0.5]]
+reduced z 0.6967067093471655 cos2th 0.6967067093471654 purity 0.7427001194246778 0.7427001194246778
+purity 0.625

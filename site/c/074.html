@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>74. Gauge symmetry</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="74">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>74</b> &nbsp;·&nbsp; Gauge symmetry</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">74</div><div class="part">Part Two · Quantum fields and particles</div><h1>Gauge symmetry</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Every force in the Standard Model comes from the same principle: gauge symmetry. It is usually called the deepest symmetry in physics. Strictly, it is not a symmetry at all. A true symmetry relates different physical situations that happen to behave alike, such as a ball here and the same ball over there. A gauge “symmetry” relates different descriptions of one and the same situation. It is a redundancy in the mathematics, and that redundancy is exactly what makes the forces consistent.</p>
+  <p>On the plate: a lattice with a phase at each site and on each link. Scramble them. What is physical does not change.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Global and local</h2>
+  <p>A <em>global</em> symmetry acts the same way everywhere: turning every electron field’s phase by the same angle. By Noether’s theorem (Chapter 59) it gives a conserved charge, and it is physical in the sense that it relates distinct states. A <em>local</em> transformation can differ from point to point. Chapter 67 showed that demanding local invariance forces a gauge field <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>μ</mi></msub></mrow><annotation encoding="application/x-tex">A_\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> and a covariant derivative <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>μ</mi></msub><mo>=</mo><msub><mi mathvariant="normal">∂</mi><mi>μ</mi></msub><mo>+</mo><mi>i</mi><mi>e</mi><msub><mi>A</mi><mi>μ</mi></msub></mrow><annotation encoding="application/x-tex">D_\mu = \partial_\mu + ieA_\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>, which compares the field at neighbouring points while correcting for the arbitrary local phase choices. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>A lattice picture</h2>
+  <p>Put the matter field on the sites of a lattice: a phase arrow at each. Put the gauge field on the links: a phase <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>i</mi><mi>e</mi><mi>a</mi><mi>A</mi></mrow></msup></mrow><annotation encoding="application/x-tex">U = e^{ieaA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">A</span></span></span></span></span></span></span></span></span></span></span></span> for each step between neighbours. A gauge transformation turns each site’s arrow by its own angle and adjusts each link to compensate. <button type="button" class="v" data-act="g">Apply a random gauge transformation</button>.</p>
+  <p>Every arrow and every link changes. But multiply the link phases around a closed loop, a <em>Wilson loop</em>, and the adjustments cancel in pairs. The plate prints the total phase around each small square, the <em>plaquette</em>: unchanged. Those loop phases encode the magnetic flux through each square (Chapter 42). They are physical; the individual link phases are not. Kenneth Wilson built lattice gauge theory on this in 1974, and it is how QCD is computed today.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Why it is a redundancy</h2>
+  <p>Two field configurations related by a gauge transformation describe the same physical state: no experiment can tell them apart. So the space of field values overcounts reality, and the gauge transformations are the overcounting. Three signs of this: the photon has two polarizations, not four (Chapter 66); Gauss’s law is a constraint, not an equation of motion; and Elitzur’s theorem (1975) proves that a local gauge symmetry cannot break spontaneously, because there is nothing physical to break. When people say “the Higgs breaks the gauge symmetry” (Chapter 77), they are using a convenient shorthand for something subtler. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Then why does it matter?</h2>
+  <p>Because the redundancy is the price of describing massless spin-1 particles with fields that behave simply under relativity. A spin-1 field naturally has four components; a massless particle has two states. Gauge invariance is what removes the extra two consistently, and in doing so it fixes how the field may couple to matter: through the covariant derivative, with a single universal charge. The structure of electromagnetism, the weak force and the strong force follows from asking which redundancy to build in. Hermann Weyl introduced the idea in 1929, in the form used here.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Global and local transformations, covariant derivatives, the lattice picture with site and link variables, Wilson loops as the gauge-invariant content, and why gauge symmetry is a redundancy that nevertheless determines the forces.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What is unchanged by a gauge transformation on a lattice?<span class="tap">tap</span></div><div class="a">The total phase around any closed loop: Wilson loops.</div></div>
+  <div class="qa"><div class="q">Why can’t a local gauge symmetry break spontaneously?<span class="tap">tap</span></div><div class="a">Elitzur’s theorem: gauge-variant quantities always average to zero; there is no physical order parameter.</div></div>
+  <div class="qa"><div class="q">What does gauge invariance buy?<span class="tap">tap</span></div><div class="a">A consistent description of massless spin-1 particles, with a universal coupling fixed by the covariant derivative.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Going around a plaquette, the link phases are 0.3, 0.5, −0.2 and −0.1 radians. What is the Wilson-loop phase?</p>
+    <form class="calc" data-answer="0.5" data-tol="0.01" data-ok="Yes: 0.5 rad, proportional to the magnetic flux through the square, and unchanged by any gauge transformation." data-hint="Add the four phases."><span>phase =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Phase"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H. Weyl, Z. Phys. 56, 330 (1929). K. G. Wilson, Phys. Rev. D 10, 2445 (1974). S. Elitzur, Phys. Rev. D 12, 3978 (1975). M. D. Schwartz, Quantum Field Theory and the Standard Model, ch. 25. Checked in the page: plaquette sums unchanged to machine precision under random site transformations.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 75</div><div class="t">Yang–Mills theory</div><p style="text-align:left">Make the phase a matrix and the force carriers start talking to each other.</p><p style="text-align:left"><a class="v" href="075.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="073.html">← 73. Lie groups and representations</a><a href="../index.html">Contents</a><a href="075.html">75. Yang–Mills theory →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, N = 6, site = [], hl = [], vl = [], seed = 21;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function init() { site = []; hl = []; vl = []; for (var i = 0; i < N * N; i++) { site.push(rnd() * 6.283); hl.push((rnd() - 0.5) * 1.2); vl.push((rnd() - 0.5) * 1.2); } }
+  function gauge() { for (var i = 0; i < N; i++) for (var j = 0; j < N; j++) { var a = (rnd() - 0.5) * 6.283, id = i * N + j; site[id] += a; if (j < N - 1) hl[id] -= a; if (j > 0) hl[id - 1] += a; if (i < N - 1) vl[id] -= a; if (i > 0) vl[id - N] += a; } }
+  function plaq(i, j) { var id = i * N + j; return hl[id] + vl[id + 1] - hl[id + N] - vl[id]; }
+  Book.plate({
+    init: function () { init(); },
+    beat: function (i) { beat = i; },
+    act: function () { gauge(); },
+    caption: function () { return ["Site phases, link phases, and plaquette totals.", "Global turn: the same everywhere.", "A lattice gauge field: plaquette phases printed in each square.", "Configurations differing by a gauge transformation: one physical state.", "Two of four components survive.", "Gauge redundancy."][beat]; },
+    readout: function () { var s = 0; for (var i = 0; i < N - 1; i++) for (var j = 0; j < N - 1; j++) s += Math.abs(plaq(i, j)); return "sum of |plaquette phases| = " + s.toFixed(4) + " (unchanged by gauge moves)"; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, S = Math.min(W, H) * 0.8, d = S / (N - 1), x0 = (W - S) / 2, y0 = (H - S) / 2, i, j;
+      if (beat === 1) { for (i = 0; i < N; i++) for (j = 0; j < N; j++) { var a = now / 900; k.line(x0 + j * d, y0 + i * d, x0 + j * d + 14 * Math.cos(a), y0 + i * d - 14 * Math.sin(a), "#ffb547", 2); } return; }
+      for (i = 0; i < N; i++) for (j = 0; j < N; j++) { var id = i * N + j, x = x0 + j * d, y = y0 + i * d;
+        if (j < N - 1) { var m = hl[id]; k.line(x + 8, y, x + d - 8, y, "rgba(236,230,218," + (0.25 + Math.min(0.6, Math.abs(m) / 2)).toFixed(2) + ")", 2); }
+        if (i < N - 1) { var m2 = vl[id]; k.line(x, y + 8, x, y + d - 8, "rgba(236,230,218," + (0.25 + Math.min(0.6, Math.abs(m2) / 2)).toFixed(2) + ")", 2); }
+        if (i < N - 1 && j < N - 1 && beat !== 4) { var p = plaq(i, j); k.text(p.toFixed(2), x + d / 2, y + d / 2 + 4, { size: Math.min(12, d * 0.22), color: "#ffb547" }); }
+        k.line(x, y, x + 10 * Math.cos(site[id]), y - 10 * Math.sin(site[id]), "#ece6da", 2); k.circle(x, y, 3, "#ece6da"); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

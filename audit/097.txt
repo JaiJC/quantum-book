@@ -1,0 +1,3 @@
+== 097
+HZH=X True T^2=S True T^4=Z True HXH=Z True
+H = phase * Ry(pi/2)Rz(pi): True

@@ -1,0 +1,53 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Quantum biology is young enough that a single good experiment could change it. Some of its questions are close to settled; some are open and testable with today’s tools; a few may never be testable. This last chapter of Part 4 picks five open questions, names for each the experiment that would settle it, and asks you to rank them and defend your ranking. It is the kind of thinking a research proposal needs.</p>
+  <p>On the plate: a board of open questions.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Five questions</h2>
+  <p><strong>1. Is the bird compass a cryptochrome radical pair, in the living bird?</strong> Decisive experiment: knock out or modify cryptochrome 4 in a migratory species, or alter its magnetic sensitivity (for example by changing tryptophans in the chain), and show that orientation changes accordingly. <strong>2. Do enzymes use evolved fast motions to promote tunnelling?</strong> Decisive experiment: targeted changes to specific vibrational modes with predicted, measured effects on isotope-effect temperature dependence. <strong>3. Does spin chemistry affect neurobiology or anaesthesia?</strong> Decisive experiment: independent, preregistered replication of the xenon isotope result, with measurement of the proposed radicals. <strong>4. Do vibronic effects, not long-lived electronic coherence, measurably aid light harvesting?</strong> Decisive experiment: compare natural and engineered complexes where specific vibrational modes are shifted. <strong>5. Did spin-selective chemistry set life’s handedness?</strong> Decisive experiment: show magnetite-driven enantioselection under plausible early-Earth conditions, and a geological record consistent with it. <span class="tag">Speculative</span> until tested.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Rank them</h2>
+  <p>Sort the board by <button type="button" class="v" data-pick="s:test">testability now</button> <button type="button" class="v" data-pick="s:imp">importance if true</button> <button type="button" class="v" data-pick="s:ev">current evidence</button>. The scores are this book’s judgement, out of 5; Adriana Marais and colleagues (2018) and Youngchan Kim and colleagues (2021) offer their own agendas. The bird compass scores high on all three: a clear question, a tractable organism, strong supporting evidence. The origin-of-life question scores high on importance and low on testability, because the early Earth cannot be rerun. Where you put the others depends on what you value, which is the point of the exercise. <span class="tag">Debated</span> for the scores.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Argue it</h2>
+  <p>Write one page: the open question you would work on, the experiment you would do first, the result that would support the quantum hypothesis, and the result that would refute it. Then write the strongest objection a sceptical reviewer would make, and answer it. A useful rule from Chapter 180: specify in advance the classical explanation your experiment must exclude, and how you will tell the two apart. For a biomedical engineer, questions 1 and 3 are especially reachable: they combine animal physiology, controlled electromagnetic environments and careful statistics, all within engineering practice. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Five open questions in quantum biology, the experiment that would settle each, a way to rank them by testability, importance and evidence, and a template for a one-page research proposal.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What would prove the radical-pair compass?<span class="tap">tap</span></div><div class="a">Altering cryptochrome 4’s radical-pair chemistry in a living migratory bird and showing orientation changes as predicted.</div></div>
+  <div class="qa"><div class="q">Why is the origin question hard to test?<span class="tap">tap</span></div><div class="a">The early Earth cannot be rerun; only plausibility and indirect records are available.</div></div>
+  <div class="qa"><div class="q">What makes a proposal persuasive?<span class="tap">tap</span></div><div class="a">A pre-specified result that would support it, one that would refute it, and a plan to exclude the classical alternative.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Twenty birds each choose a direction at random, with a 50% chance of “correct”. What is the probability that 15 or more are correct by chance? (Sum of {{tex:\binom{20}{k}}} for {{tex:k\ge15}} is 21,700, out of {{tex:2^{20}}}.)</p>
+    <form class="calc" data-answer="0.0207" data-tol="0.0005" data-ok="Yes: 21,700 / 1,048,576 ≈ 0.021. Small studies can look impressive by chance." data-hint="21700 ÷ 1048576."><span>p ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Marais et al., J. R. Soc. Interface 15, 20180640 (2018). Y. Kim et al., Quantum Rep. 3, 80 (2021). P. J. Hore and H. Mouritsen, Annu. Rev. Biophys. 45, 299 (2016). J. Cao et al., Sci. Adv. 6, eaaz4888 (2020).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, Q = [["Bird compass in vivo", 4, 4, 4], ["Promoting vibrations in enzymes", 3, 3, 3], ["Spin chemistry in anaesthesia", 3, 3, 1], ["Vibronic aid to light harvesting", 3, 2, 2], ["Spin-selected homochirality", 1, 5, 2]];
+  Book.plate({
+    init: function () {},
+    beat: function (i) { beat = i; },
+    caption: function () { return ["Five open questions.", "Each with its decisive experiment.", "Scores out of 5: testability · importance · evidence.", "Your one-page proposal.", "Open questions."][beat]; },
+    readout: function () { if (beat === 2) return "sorted by " + ({ test: "testability now", imp: "importance if true", ev: "current evidence" })[Book.state.picks.s || "test"] + " · scores are this book’s judgement"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, key = { test: 1, imp: 2, ev: 3 }[Book.state.picks.s || "test"], R = beat === 2 ? Q.slice().sort(function (a, b) { return b[key] - a[key]; }) : Q;
+      if (beat === 3) { ["question", "first experiment", "result that supports", "result that refutes", "strongest objection + reply"].forEach(function (s, j) { k.rr(W * 0.15, H * (0.1 + j * 0.17), W * 0.7, H * 0.12, 6, "#14120f", "rgba(236,230,218,.4)"); k.text(s, W / 2, H * (0.17 + j * 0.17), { size: 13, color: j === 0 ? "#ffb547" : "#ece6da" }); }); return; }
+      R.forEach(function (q, j) { var y = H * (0.08 + j * 0.18); k.text(q[0], W * 0.06, y + H * 0.06, { size: 13, align: "left" }); [1, 2, 3].forEach(function (m, c) { var x = W * (0.58 + c * 0.13); k.rr(x, y + H * 0.02, W * 0.11, H * 0.08, 4, "rgba(255,181,71," + (0.12 + 0.17 * q[m]).toFixed(2) + ")", m === key && beat === 2 ? "#ece6da" : null); k.text(String(q[m]), x + W * 0.055, y + H * 0.075, { size: 12, color: q[m] >= 3 ? "#14120f" : "#ece6da" }); }); });
+      ["test", "impact", "evidence"].forEach(function (s, c) { k.text(s, W * (0.635 + c * 0.13), H * 0.96, { size: 10, color: "#b9b2a5" }); });
+    }
+  });
+})();
+</script>

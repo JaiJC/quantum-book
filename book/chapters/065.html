@@ -1,0 +1,75 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A theorist writes {{tex:|\mathcal M|^2}} on a blackboard. Two years later, an experiment at the Large Hadron Collider reports a few hundred events in a narrow bump. Between the two lies a short chain of formulas: integrate over the ways the products can fly apart, divide by how fast the beams approach, and multiply by how many collisions the machine delivers. This chapter is that chain, and at the end of it you will predict how long a muon lives.</p>
+  <p>On the plate: collision rates at the LHC for processes from the commonplace to the rare.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Decay rates</h2>
+  <p>A particle of mass {{tex:M}} at rest decays at a rate given by Fermi’s golden rule (Chapter 45) dressed relativistically: {{tex:\Gamma = \frac{1}{2M}\int|\mathcal M|^2\,d\Phi}}, where {{tex:d\Phi}} counts final states consistent with energy and momentum conservation. For two products the integral is simple:</p>
+  <div class="eq">{{texd:\Gamma(A \to 1 + 2) = \frac{|\mathbf p|}{8\pi M^2}\,|\mathcal M|^2}}</div>
+  <p>with {{tex:|\mathbf p|}} the momentum of either product in the rest frame. The lifetime is {{tex:\tau = 1/\Gamma}}, and a resonance’s width in energy (Chapter 48) is the same {{tex:\Gamma}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The muon’s lifetime, predicted</h2>
+  <p>A muon decays to an electron and two neutrinos through the weak force. Treating the force as a contact interaction with Fermi’s constant {{tex:G_F = 1.166\times10^{-5}}} GeV⁻², the three-body phase space integral gives</p>
+  <div class="eq">{{texd:\Gamma_\mu = \frac{G_F^2\,m_\mu^5}{192\pi^3}}}</div>
+  <p>With {{tex:m_\mu = 105.66}} MeV this is {{tex:3.01\times10^{-19}}} GeV, a lifetime of 2.187 microseconds. The measured value is 2.197 µs. The half-percent gap is filled by QED corrections and the electron’s mass. The fifth power of the mass is worth noticing: a particle twice as heavy decays 32 times faster. The tau lepton, 17 times heavier, lives about {{tex:17^5}} times shorter, less a correction for its extra decay routes.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Cross sections and Mandelstam variables</h2>
+  <p>For two particles colliding, divide by their flux instead of by {{tex:2M}}: {{tex:\sigma = \frac{1}{4E_1E_2|v_1 - v_2|}\int|\mathcal M|^2d\Phi}}. For 2 → 2 in the centre-of-mass frame with light particles,</p>
+  <div class="eq">{{texd:\frac{d\sigma}{d\Omega} = \frac{|\mathcal M|^2}{64\pi^2 s}}}</div>
+  <p>Kinematics is best written with three Lorentz-invariant combinations: {{tex:s = (p_1 + p_2)^2}}, the total energy squared; {{tex:t = (p_1 - p_3)^2}}, the momentum transfer squared; {{tex:u = (p_1 - p_4)^2}}. They satisfy {{tex:s + t + u = \sum m_i^2}}. Amplitudes are functions of them, and diagrams are named for them: an s-channel diagram has energy {{tex:\sqrt s}} flowing through its internal line, as at a resonance.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>From cross section to events</h2>
+  <p>A collider is characterized by its <em>luminosity</em> {{tex:\mathcal L}}, collisions per unit area per second. The event rate is {{tex:R = \mathcal L\sigma}}. Set the LHC’s luminosity to <span class="tangle" data-var="L" data-min="0.1" data-max="5" data-step="0.1" data-dec="1" data-value="2" data-px="8"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Luminosity">2.0</span><button type="button" data-de="1" aria-label="More">›</button></span> × 10³⁴ cm⁻² s⁻¹ and choose a process: <button type="button" class="v" data-pick="p:inel">any inelastic collision</button>, <button type="button" class="v" data-pick="p:W">a W boson</button>, <button type="button" class="v" data-pick="p:Z">a Z decaying to leptons</button>, <button type="button" class="v" data-pick="p:tt">a top-quark pair</button>, <button type="button" class="v" data-pick="p:H">a Higgs boson</button>, <button type="button" class="v" data-pick="p:HH">a Higgs pair</button>.</p>
+  <p>Ordinary collisions happen a billion times a second; a Higgs boson about once a second; a pair of Higgs bosons a few times an hour. Cross sections span more than twelve orders of magnitude, which is why the detectors of Chapter 87 must throw almost everything away. <span class="tag">Established</span>, with cross sections approximate for 13.6 TeV collisions.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Decay rates and the two-body formula, the muon lifetime from {{tex:G_F}}, cross sections and {{tex:d\sigma/d\Omega = |\mathcal M|^2/64\pi^2s}}, Mandelstam variables, and luminosity with event rates.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the muon lifetime depend on m⁵?<span class="tap">tap</span></div><div class="a">G_F² has dimension mass⁻⁴, so the only way to make a rate is G_F² m⁵.</div></div>
+  <div class="qa"><div class="q">What is s?<span class="tap">tap</span></div><div class="a">The total centre-of-mass energy squared, (p₁ + p₂)².</div></div>
+  <div class="qa"><div class="q">How many Higgs bosons does the LHC make per second?<span class="tap">tap</span></div><div class="a">About one, at a luminosity of 2×10³⁴ cm⁻² s⁻¹.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A process has {{tex:\sigma = 1}} pb {{tex:= 10^{-36}}} cm². At {{tex:\mathcal L = 2\times10^{34}}} cm⁻² s⁻¹ for {{tex:10^7}} seconds (a typical year), how many events?</p>
+    <form class="calc" data-answer="200000" data-tol="1000" data-ok="Yes: 2×10³⁴ × 10⁻³⁶ × 10⁷ = 2×10⁵ events, an integrated luminosity of 200 fb⁻¹." data-hint="Multiply all three numbers."><span>N =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Events"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. Thomson, Modern Particle Physics (2013), ch. 3. Particle Data Group, Review of Particle Physics, kinematics and cross-section reviews. LHC Higgs Working Group cross sections (≈ 60 pb at 13.6 TeV). Checked by code: G_F² m_μ⁵/(192π³) = 3.009×10⁻¹⁹ GeV → τ = 2.187 µs (measured 2.197 µs); 2×10³⁴ × 1 pb × 10⁷ s = 2×10⁵.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { L: 2 };
+  var PR = { inel: ["inelastic pp", 80e9], W: ["W → ℓν", 2e4], Z: ["Z → ℓℓ", 2e3], tt: ["top pair", 9.2e2], H: ["Higgs", 60], HH: ["Higgs pair", 0.034] };
+  function fmt(x) { if (x >= 1) return x.toPrecision(3).replace(/e\+?(\d+)/, "×10^$1"); return x.toExponential(1).replace(/e([-+]\d+)/, "×10^$1"); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Event rates at the LHC.", "A two-body decay at rest.", "Muon decay rate ∝ m⁵.", "s, t and u for 2 → 2.", "Events per second, by process.", "From |𝓜|² to events."][beat]; },
+    readout: function () { if (beat === 4 || beat === 0) { var p = PR[Book.state.picks.p || "H"], r = V.L * 1e34 * p[1] * 1e-36; return p[0] + " · σ ≈ " + fmt(p[1]) + " pb · " + fmt(r) + " per second · " + fmt(r * 1e7) + " per year"; } if (beat === 2) return "τ_μ = 2.187 µs predicted · 2.197 µs measured"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, cx = W / 2, cy = H / 2;
+      if (beat === 0 || beat === 4 || beat === 5) {
+        A = k.axes(W * 0.28, H * 0.06, W * 0.66, H * 0.84, [-4, 10], [0, 6.5], { xl: "log₁₀ events per second" });
+        var keys = ["inel", "W", "Z", "tt", "H", "HH"], sel = Book.state.picks.p || "H";
+        keys.forEach(function (kk, j) { var r = Math.log10(V.L * 1e34 * PR[kk][1] * 1e-36), y = A.Y(6 - j), on = kk === sel; k.rr(A.X(-4), y - 11, A.X(r) - A.X(-4), 22, 4, on ? "#ffb547" : "rgba(255,181,71,.25)"); k.text(PR[kk][0], A.X(-4) - 8, y + 4, { size: 12, align: "right", color: on ? "#ece6da" : "#7c766b" }); });
+        k.line(A.X(0), A.Y(0), A.X(0), A.Y(6.5), "rgba(236,230,218,.3)", 1, [3, 4]); k.text("1 per second", A.X(0) + 4, A.Y(0) - 6, { size: 11, align: "left", color: "#7c766b" });
+        return;
+      }
+      if (beat === 1) { k.circle(cx, cy, 10, "#ffb547"); var t = (now / 1500) % 1, a = 0.7; k.circle(cx + t * W * 0.35 * Math.cos(a), cy - t * W * 0.35 * Math.sin(a), 6, "#ece6da"); k.circle(cx - t * W * 0.35 * Math.cos(a), cy + t * W * 0.35 * Math.sin(a), 6, "#ece6da"); k.text("equal and opposite momenta |p|", cx, H * 0.9, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [-1.5, 1], [-1, 6], { xl: "log₁₀ (mass / m_μ)", yl: "log₁₀ (Γ / Γ_μ)" }); k.plot(A, function (x) { return 5 * x; }, [-0.2, 1], "#ffb547", 2.5); k.circle(A.X(0), A.Y(0), 6, "#ece6da"); k.text("muon", A.X(0) + 8, A.Y(0) + 4, { size: 12, align: "left" }); k.circle(A.X(Math.log10(16.82)), A.Y(5 * Math.log10(16.82)), 6, "#ece6da"); k.text("tau (×17⁵, before its extra channels)", A.X(Math.log10(16.82)) - 8, A.Y(5 * Math.log10(16.82)) - 10, { size: 11, align: "right" }); return; }
+      if (beat === 3) { var L = Math.min(W, H) * 0.3; k.line(cx - L, cy - L * 0.6, cx, cy, "#ece6da", 2.5); k.line(cx - L, cy + L * 0.6, cx, cy, "#ece6da", 2.5); k.line(cx, cy, cx + L, cy - L * 0.6, "#ece6da", 2.5); k.line(cx, cy, cx + L, cy + L * 0.6, "#ece6da", 2.5); k.circle(cx, cy, 14, "rgba(255,181,71,.35)", "#ffb547"); k.text("p₁", cx - L - 14, cy - L * 0.6, { size: 13 }); k.text("p₂", cx - L - 14, cy + L * 0.6 + 8, { size: 13 }); k.text("p₃", cx + L + 14, cy - L * 0.6, { size: 13 }); k.text("p₄", cx + L + 14, cy + L * 0.6 + 8, { size: 13 }); k.text("s = (p₁+p₂)²  t = (p₁−p₃)²  u = (p₁−p₄)²", cx, H * 0.9, { size: 13, color: "#ffb547" }); }
+    }
+  });
+})();
+</script>

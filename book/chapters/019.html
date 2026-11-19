@@ -1,0 +1,148 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Heat an empty oven and its walls glow, filling the inside with light. Classical physics can predict how much light of each colour there should be, and its answer is absurd: an infinite amount of energy, piling up at ever shorter wavelengths, in every warm oven in the world. Physicists called it the ultraviolet catastrophe.</p>
+  <p>The prediction rested on a principle of statistical mechanics called equipartition. This chapter builds statistical mechanics from counting, shows where equipartition comes from, and shows exactly where it breaks. In 1900 Max Planck fixed the oven by assuming energy comes in lumps, and quantum physics was born.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Entropy is counting</h2>
+  <p>A solid can be pictured as many atoms, each jiggling as an oscillator that holds whole units of energy, as Einstein assumed in 1907. Share a fixed number of units among the oscillators at random and keep letting them pass units back and forth. <button type="button" class="v" data-act="shuffle">Let energy flow</button>.</p>
+  <p>Whatever the start, the system settles into the most likely kind of arrangement, the one that can happen in the most ways. Ludwig Boltzmann defined entropy as the logarithm of that count, {{tex:\Omega}}:</p>
+  <div class="eq">{{texd:S = k_B \ln\Omega}}</div>
+  <p>The histogram on the plate shows how many oscillators hold 0, 1, 2… units. It falls off exponentially, the fingerprint of thermal equilibrium.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The Boltzmann factor</h2>
+  <p>That exponential is general. A small system in contact with a large one at temperature {{tex:T}} is found in a state of energy {{tex:E}} with probability</p>
+  <div class="eq">{{texd:P(E) = \frac{e^{-E/k_BT}}{Z}, \qquad Z = \sum_{\text{states}} e^{-E/k_BT}}}</div>
+  <p>The normalizing sum {{tex:Z}}, the <em>partition function</em>, turns out to contain all of thermodynamics. For a system with just two levels a gap {{tex:\Delta E}} apart, set the temperature to <span class="tangle" data-var="kT" data-min="0.05" data-max="5" data-step="0.05" data-dec="2" data-value="1" data-px="4"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature in units of the gap">1.00</span><button type="button" data-de="1" aria-label="Hotter">›</button></span> times {{tex:\Delta E/k_B}}: the upper level holds <span class="live" id="up">27%</span>. Cold, everything sits at the bottom. Hot, the two levels approach equal shares, but never more up than down.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Why the exponential: the reservoir’s number of states is {{tex:\Omega_R(E_\text{tot} - E) = e^{S_R(E_\text{tot}-E)/k_B} \approx e^{S_R(E_\text{tot})/k_B}e^{-E/k_BT}}}, using {{tex:\partial S_R/\partial E = 1/T}}. Every microstate of the whole is equally likely, so the probability of the small system’s state is proportional to the reservoir’s count.</div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How fast molecules move</h2>
+  <p>Apply the Boltzmann factor to the kinetic energy of gas molecules and you get the Maxwell–Boltzmann distribution of speeds. At <span class="tangle" data-var="T" data-min="50" data-max="1500" data-step="10" data-value="300" data-unit="K" data-px="2"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Temperature">300 K</span><button type="button" data-de="1" aria-label="Hotter">›</button></span>, nitrogen molecules, most of the air around you, most often move at <span class="live" id="vp">422 m/s</span>: faster than a passenger jet, colliding billions of times a second.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Equipartition, and where it fails</h2>
+  <p>A consequence of the Boltzmann factor is <em>equipartition</em>: at temperature {{tex:T}}, every independent quadratic term in the energy, such as {{tex:\tfrac12 mv_x^2}} or {{tex:\tfrac12 kx^2}}, holds on average {{tex:\tfrac12 k_BT}}. It predicts that the heat capacity of a solid is {{tex:3Nk_B}}, which works well at room temperature.</p>
+  <p>But cold solids, and diamond even at room temperature, have heat capacities far below that. Einstein explained this in 1907 by letting each oscillator hold only whole quanta of energy: when {{tex:k_BT}} is smaller than one quantum, the oscillators cannot take any heat, and the heat capacity collapses. The plate compares the classical prediction with Einstein’s curve.</p>
+  <p>The oven is the same story. Light in a box has infinitely many modes of ever shorter wavelength; giving each one {{tex:k_BT}} gives infinite energy. Planck’s quanta freeze out the short-wavelength modes, and the catastrophe disappears. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A magnet that decides</h2>
+  <p>The Ising model is a grid of tiny magnets, each pointing up or down, each preferring to agree with its neighbours. The plate runs it with the Metropolis method: pick a magnet, flip it if that lowers the energy, and if it raises the energy, flip it anyway with probability {{tex:e^{-\Delta E/k_BT}}}.</p>
+  <p>Set the temperature to <span class="tangle" data-var="TI" data-min="0.5" data-max="5" data-step="0.05" data-dec="2" data-value="1.8" data-px="4"><button type="button" data-de="-1" aria-label="Colder">‹</button><span class="num" role="slider" tabindex="0" aria-label="Ising temperature">1.80</span><button type="button" data-de="1" aria-label="Hotter">›</button></span>. Below about 2.27 (Lars Onsager’s exact result for this grid) large domains form and the whole grid magnetizes; above it, order dissolves into noise. A sudden change like this, emerging from simple local rules, is a <em>phase transition</em>.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Seeing atoms jostle</h2>
+  <p>A pollen grain in water jiggles endlessly. In 1905 Einstein explained this <em>Brownian motion</em> as the grain being kicked at random by water molecules, and predicted that its typical distance from the start grows as the square root of time. The plate shows such a walker. In 1908–09 Jean Perrin measured the motion under a microscope, extracted Avogadro’s number from it, and convinced the remaining sceptics that atoms are real. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>A preview: quantum counting</h2>
+  <p>Quantum particles of the same kind are truly identical, and that changes the counting. Particles like electrons, <em>fermions</em>, cannot share a state, and fill levels according to the Fermi–Dirac distribution. Particles like photons, <em>bosons</em>, prefer to crowd into the same state, following Bose–Einstein. At high temperature both reduce to Boltzmann. These two rules explain metals, white dwarf stars, lasers and superfluids, and they are the subject of Part One.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Entropy as counting, the Boltzmann factor and partition function, the Maxwell–Boltzmann speeds, equipartition and its quantum failure, phase transitions, and Brownian motion.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do cold solids have small heat capacities?<span class="tap">tap</span></div><div class="a">Their oscillators can only take whole quanta; when k_BT is below one quantum, they cannot absorb heat.</div></div>
+  <div class="qa"><div class="q">What is the partition function?<span class="tap">tap</span></div><div class="a">The sum of Boltzmann factors e^(−E/k_BT) over all states; it normalizes the probabilities and encodes the thermodynamics.</div></div>
+  <div class="qa"><div class="q">How does a Brownian particle’s distance from its start grow?<span class="tap">tap</span></div><div class="a">As the square root of time.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For two levels with {{tex:k_BT = \Delta E}}, what is the ratio of upper to lower population?</p>
+    <form class="calc" data-answer="0.3679" data-tol="0.003" data-ok="Yes: e^(−1) ≈ 0.368." data-alt="0.269~That is the fraction in the upper level, 0.368/1.368. The ratio is e^(−1)." data-hint="The ratio is e^(−ΔE/k_BT)."><span>ratio =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Population ratio"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. V. Schroeder, An Introduction to Thermal Physics. A. Einstein, Ann. Phys. 17, 549 (1905) and 22, 180 (1907). J. Perrin, Ann. Chim. Phys. 18, 5 (1909). L. Onsager, Phys. Rev. 65, 117 (1944). Checked by code: Tc = 2.269; N₂ most probable speed 422 m/s at 300 K.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { kT: 1, T: 300, TI: 1.8 }, osc = [], spins = null, N = 64, walk = [[0, 0]];
+  function seedOsc() { osc = []; for (var i = 0; i < 400; i++) osc.push(i < 100 ? 4 : 0); }
+  function shuffle(n) { for (var s = 0; s < n; s++) { var a = Math.floor(Math.random() * osc.length), b = Math.floor(Math.random() * osc.length); if (osc[a] > 0) { osc[a]--; osc[b]++; } } }
+  function seedSpins() { spins = new Int8Array(N * N); for (var i = 0; i < N * N; i++) spins[i] = Math.random() < 0.5 ? 1 : -1; }
+  function sweep(T) { for (var s = 0; s < N * N; s++) { var i = Math.floor(Math.random() * N), j = Math.floor(Math.random() * N), x = spins[i * N + j], nb = spins[((i + 1) % N) * N + j] + spins[((i + N - 1) % N) * N + j] + spins[i * N + (j + 1) % N] + spins[i * N + (j + N - 1) % N], dE = 2 * x * nb; if (dE <= 0 || Math.random() < Math.exp(-dE / T)) spins[i * N + j] = -x; } }
+  function upd() { var r = Math.exp(-1 / V.kT); Book.text("up", Math.round(100 * r / (1 + r)) + "%"); Book.text("vp", Math.round(Math.sqrt(2 * 1.380649e-23 * V.T / (28.0134 * 1.66054e-27))) + " m/s"); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; upd(); seedOsc(); seedSpins(); },
+    beat: function (i) { beat = i; if (i === 1) seedOsc(); if (i === 6) walk = [[0, 0]]; },
+    act: function (a) { if (a === "shuffle") seedOsc(); },
+    set: function (n, v) { V[n] = v; upd(); },
+    caption: function () { return ["Light in a hot oven: classical (grey) and Planck (amber).", "400 oscillators sharing energy.", "Two levels at temperature T.", "Speeds of N₂ molecules.", "Heat capacity of a solid.", "Ising model, T = " + V.TI.toFixed(2) + ".", "A Brownian walker.", "Fermi–Dirac and Bose–Einstein.", "Light in a hot oven."][beat]; },
+    readout: function () {
+      if (beat === 5 && spins) { var m = 0; for (var i = 0; i < N * N; i++) m += spins[i]; return "magnetization " + (Math.abs(m) / (N * N)).toFixed(2); }
+      if (beat === 6) { var p = walk[walk.length - 1]; return "steps " + walk.length + " · distance " + Math.hypot(p[0], p[1]).toFixed(0) + " · expected ≈ " + (3 * Math.sqrt(walk.length)).toFixed(0); }
+      if (beat === 2) { var r = Math.exp(-1 / V.kT); return "upper " + (100 * r / (1 + r)).toFixed(1) + "%"; }
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 0 || beat === 8) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, 8], [0, 1.6], { xl: "frequency", yl: "energy per frequency" });
+        k.plot(A, function (x) { return 0.1 * x * x; }, [0, 8], "#7c766b", 2);
+        k.plot(A, function (x) { return 0.1 * x * x * x / (Math.exp(x) - 1) * 4.2; }, [0.01, 8], "#ffb547", 2.5);
+        k.text("classical: rises forever", A.X(3.6), A.Y(1.45), { color: "#b9b2a5" }); k.text("Planck: finite", A.X(2.8), A.Y(0.52), { color: "#ffb547" });
+        return;
+      }
+      if (beat === 1) {
+        shuffle(800);
+        var cols = 40, cs = Math.min(W * 0.45 / cols, H * 0.75 / 10); for (i = 0; i < 400; i++) { var e = Math.min(1, osc[i] / 6); k.rr(W * 0.04 + (i % cols) * cs, H * 0.1 + Math.floor(i / cols) * cs, cs - 1, cs - 1, 1, "rgba(255,181,71," + (0.06 + 0.94 * e) + ")"); }
+        var hist = new Array(12).fill(0); osc.forEach(function (o) { if (o < 12) hist[o]++; });
+        A = k.axes(W * 0.58, H * 0.1, W * 0.38, H * 0.7, [-0.5, 11.5], [0, 260], { xt: [0, 4, 8], xl: "units held" });
+        hist.forEach(function (h, j) { var x = A.X(j), y = A.Y(h); k.rr(x - 6, y, 12, A.Y(0) - y, 2, "#ffb547"); });
+        k.plot(A, function (x) { return 400 * 0.5 * Math.pow(0.5, x); }, [0, 11.5], "rgba(236,230,218,.6)", 1.5);
+        return;
+      }
+      if (beat === 2) {
+        var r = Math.exp(-1 / V.kT), up = r / (1 + r), lo = 1 / (1 + r), yU = H * 0.3, yL = H * 0.72, x0 = W * 0.25, w = W * 0.5;
+        k.line(x0, yU, x0 + w, yU, "#b9b2a5", 2); k.line(x0, yL, x0 + w, yL, "#b9b2a5", 2);
+        for (i = 0; i < 40; i++) { var isUp = i < Math.round(40 * up), xx = x0 + 10 + (i % 20) * (w - 20) / 19, yy = (isUp ? yU : yL) - 10 - Math.floor(i / 20) * 0; k.circle(xx + (isUp ? 0 : 0), (isUp ? yU : yL) - 9, 5, isUp ? "#ffb547" : "#ece6da"); }
+        k.text("upper level", x0 + w + 12, yU + 4, { align: "left" }); k.text("lower level", x0 + w + 12, yL + 4, { align: "left" });
+        return;
+      }
+      if (beat === 3) {
+        var m = 28.0134 * 1.66054e-27, kB = 1.380649e-23; A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, 2000], [0, 0.0045], { xt: [0, 500, 1000, 1500, 2000], xl: "speed (m/s)" });
+        function f(v, T) { var a = m / (2 * kB * T); return 4 * Math.PI * Math.pow(a / Math.PI, 1.5) * v * v * Math.exp(-a * v * v); }
+        k.plot(A, function (v) { return f(v, 300); }, [0, 2000], "rgba(236,230,218,.35)", 1.5);
+        k.plot(A, function (v) { return f(v, V.T); }, [0, 2000], "#ffb547", 2.5);
+        var vp = Math.sqrt(2 * kB * V.T / m); k.line(A.X(vp), A.Y(0), A.X(vp), A.Y(f(vp, V.T)), "rgba(255,181,71,.6)", 1, [3, 3]);
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [0, 2], [0, 1.15], { xt: [0, 0.5, 1, 1.5, 2], yt: [0, 0.5, 1], xl: "T / θ_E", yl: "C / 3Nk" });
+        k.plot(A, function () { return 1; }, [0, 2], "#7c766b", 2);
+        k.plot(A, function (T) { var x = 1 / Math.max(T, 1e-3); return x * x * Math.exp(x) / Math.pow(Math.exp(x) - 1, 2); }, [0.02, 2], "#ffb547", 2.5);
+        k.text("classical equipartition", A.X(1.5), A.Y(1.07), {}); k.text("Einstein 1907", A.X(0.8), A.Y(0.6), { color: "#ffb547" });
+        return;
+      }
+      if (beat === 5) {
+        sweep(V.TI); var cs2 = Math.min(W, H) * 0.9 / N, x0b = (W - N * cs2) / 2, y0b = (H - N * cs2) / 2;
+        for (i = 0; i < N * N; i++) if (spins[i] > 0) { c.fillStyle = "#ffb547"; c.fillRect(x0b + (i % N) * cs2, y0b + Math.floor(i / N) * cs2, cs2 + 0.3, cs2 + 0.3); }
+        return;
+      }
+      if (beat === 6) {
+        for (i = 0; i < 4; i++) { var p = walk[walk.length - 1], a = Math.random() * 2 * Math.PI; walk.push([p[0] + 3 * Math.cos(a), p[1] + 3 * Math.sin(a)]); }
+        if (walk.length > 6000) walk = [[0, 0]];
+        c.strokeStyle = "rgba(255,181,71,.6)"; c.lineWidth = 1; c.beginPath(); walk.forEach(function (q, j) { var x = W / 2 + q[0], y = H / 2 + q[1]; if (j) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke();
+        var last = walk[walk.length - 1]; k.circle(W / 2 + last[0], H / 2 + last[1], 6, "#ece6da"); k.circle(W / 2, H / 2, 3 * Math.sqrt(walk.length), null, "rgba(236,230,218,.25)");
+        return;
+      }
+      if (beat === 7) {
+        A = k.axes(W * 0.1, H * 0.1, W * 0.82, H * 0.72, [-3, 4], [0, 2.2], { xt: [-2, 0, 2, 4], xl: "(E − μ) / kT", yl: "average occupation" });
+        k.plot(A, function (x) { return 1 / (Math.exp(x) + 1); }, [-3, 4], "#ece6da", 2.5);
+        k.plot(A, function (x) { return x > 0.05 ? Math.min(2.2, 1 / (Math.exp(x) - 1)) : NaN; }, [0.05, 4], "#ffb547", 2.5);
+        k.plot(A, function (x) { return Math.min(2.2, Math.exp(-x)); }, [-3, 4], "rgba(185,178,165,.5)", 1.2);
+        k.text("Fermi–Dirac: never above 1", A.X(-2.2), A.Y(1.08), { color: "#ece6da", align: "left" }); k.text("Bose–Einstein", A.X(0.6), A.Y(1.9), { color: "#ffb547", align: "left" }); k.text("Boltzmann", A.X(2.2), A.Y(0.35), { align: "left" });
+      }
+    }
+  });
+})();
+</script>

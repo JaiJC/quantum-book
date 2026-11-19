@@ -1,0 +1,272 @@
+<title>One Electron at a Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/*__KATEX_CSS__*/
+:root {
+  --bg: #05070d; --panel-solid: #0e1226; --line: rgba(160, 175, 255, .16);
+  --fg: #eef1fb; --muted: #9aa3c2; --faint: #5f688a;
+  --amber: #ffb547; --amber-soft: rgba(255, 181, 71, .16); --blue: #8fa2ff; --blue-soft: rgba(143, 162, 255, .18);
+  --green: #6ee7a8; --red: #ff7a7a;
+  --font-display: "Fraunces", Georgia, serif; --font-body: "Inter", system-ui, sans-serif; --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font-body); -webkit-font-smoothing: antialiased; }
+body { height: 100dvh; overflow: hidden; }
+button { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+
+.app { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "bar" "stage" "card"; }
+@media (min-aspect-ratio: 11/10) and (min-width: 700px) {
+  .app { grid-template-columns: minmax(340px, 420px) minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); grid-template-areas: "bar bar" "card stage"; }
+}
+
+/* top bar */
+.bar { grid-area: bar; display: flex; align-items: center; gap: 14px; padding: 10px 18px; border-bottom: 1px solid var(--line); background: #05070d; z-index: 3; }
+.bar .ch { min-width: 0; }
+.bar .ch small { display: block; font: 500 .68rem var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.bar .ch b { font: 600 1.05rem var(--font-display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.progress { flex: 1; display: flex; gap: 5px; min-width: 80px; max-width: 420px; margin-left: auto; }
+.progress button { flex: 1; height: 22px; border: 0; padding: 0; background: transparent; cursor: pointer; position: relative; }
+.progress button::after { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.12); }
+.progress button.done::after { background: var(--blue); }
+.progress button.now::after { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+.progress button:disabled { cursor: default; }
+.depth { flex: 0 0 auto; border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 6px 12px; font: 500 .8rem var(--font-mono); color: var(--muted); cursor: pointer; }
+.depth b { color: var(--fg); font-weight: 500; }
+
+/* stage */
+.stage { grid-area: stage; position: relative; min-height: 0; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hud { position: absolute; right: 14px; top: 12px; font: 500 .8rem var(--font-mono); color: var(--amber); background: rgba(5,7,13,.7); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); pointer-events: none; }
+.toast { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--panel-solid); border: 1px solid var(--line); padding: 8px 14px; border-radius: 12px; font-size: .9rem; color: var(--fg); pointer-events: none; opacity: 0; transition: opacity .3s; max-width: 86%; text-align: center; }
+.toast.show { opacity: 1; }
+
+/* step card */
+.card { grid-area: card; position: relative; z-index: 2; background: var(--panel-solid); border-top: 1px solid var(--line); display: flex; flex-direction: column; max-height: 48dvh; min-height: 0; }
+@media (min-aspect-ratio: 11/10) and (min-width: 700px) { .card { max-height: none; border-top: 0; border-right: 1px solid var(--line); } }
+.card-body { overflow-y: auto; padding: 18px 22px 8px; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; overscroll-behavior: contain; }
+.step { display: none; }
+.step.on { display: block; animation: rise .35s ease; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.step .k { font: 500 .7rem var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.step h2 { font: 600 1.5rem/1.2 var(--font-display); margin: 6px 0 10px; }
+.step p { margin: 0 0 10px; color: #d6dbef; }
+.step .do { color: var(--fg); font-weight: 600; }
+.step .do::before { content: "→ "; color: var(--amber); }
+:root[data-level="intuition"] .x-std, :root[data-level="intuition"] .x-deep, :root[data-level="standard"] .x-deep { display: none !important; }
+.x-deep { border-left: 2px solid var(--blue); padding-left: 12px; color: #c9cfee; margin-bottom: 10px; }
+.x-deep .eq { overflow-x: auto; padding: 4px 0; }
+.after { display: none; margin-top: 8px; padding: 12px 14px; border-radius: 14px; background: var(--amber-soft); border: 1px solid rgba(255,181,71,.35); }
+.after > :last-child { margin-bottom: 0; }
+.step.met .after { display: block; animation: rise .4s ease; }
+.tag { display: inline-block; font: 500 .6rem var(--font-mono); letter-spacing: .12em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--green); color: var(--green); vertical-align: 2px; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 6px; }
+.btn { min-height: 52px; padding: 0 22px; border-radius: 999px; border: 1.5px solid var(--amber); background: var(--amber); color: #1b1203; font: 600 1rem var(--font-body); cursor: pointer; touch-action: manipulation; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; transition: transform .08s, background .2s; }
+.btn:active { transform: scale(.97); }
+.btn.ghost { background: transparent; color: var(--amber); }
+.btn.blue { background: transparent; border-color: var(--blue); color: var(--blue); }
+.btn.blue.on { background: var(--blue); color: #0a0f24; box-shadow: 0 0 22px rgba(143,162,255,.45); }
+.btn.hold.firing { background: #ffe0a8; box-shadow: 0 0 26px rgba(255,181,71,.6); }
+.status { font: 500 .85rem var(--font-mono); color: var(--muted); min-height: 1.4em; }
+.status b { color: var(--amber); font-weight: 500; }
+
+.choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+.choice { border: 1.5px solid var(--line); background: rgba(255,255,255,.03); border-radius: 14px; padding: 10px; cursor: pointer; text-align: left; font-size: .85rem; color: var(--muted); touch-action: manipulation; }
+.choice svg { width: 100%; height: 64px; display: block; border-radius: 8px; margin-bottom: 8px; }
+.choice b { color: var(--fg); display: block; }
+.choice[aria-pressed="true"] { border-color: var(--amber); background: var(--amber-soft); color: var(--fg); }
+
+.dial { margin: 14px 0 4px; }
+.dial .read { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-mono); }
+.dial .read big { font-size: 1.7rem; color: var(--amber); }
+.dial .read span { color: var(--muted); font-size: .9rem; }
+.track { position: relative; height: 54px; touch-action: none; cursor: pointer; margin: 0 18px; }
+.track .rail { position: absolute; left: 0; right: 0; top: 24px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.12); }
+.track .fill { position: absolute; left: 0; top: 24px; height: 6px; border-radius: 6px; background: var(--amber); }
+.track .thumb { position: absolute; top: 9px; width: 36px; height: 36px; margin-left: -18px; border-radius: 50%; background: var(--fg); border: 5px solid var(--amber); box-shadow: 0 2px 12px rgba(0,0,0,.6); }
+.nudge { display: flex; gap: 8px; }
+.nudge button { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.05); font: 500 .95rem var(--font-mono); cursor: pointer; touch-action: manipulation; }
+.nudge button:active { background: var(--amber-soft); }
+
+.recall { display: grid; gap: 10px; margin: 12px 0; }
+.flip { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: rgba(255,255,255,.03); cursor: pointer; text-align: left; width: 100%; touch-action: manipulation; }
+.flip .q { font-weight: 600; }
+.flip .a { display: none; color: #d6dbef; margin-top: 6px; }
+.flip.open .a { display: block; }
+.flip.open .hint { display: none; }
+.flip .hint { font: 500 .7rem var(--font-mono); color: var(--faint); letter-spacing: .1em; margin-top: 4px; }
+.calc { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+.calc input { width: 8rem; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--fg); font: 500 1.1rem var(--font-mono); padding: 0 12px; }
+.fb { font-size: .95rem; min-height: 1.4em; }
+.fb.ok { color: var(--green); } .fb.no { color: var(--red); }
+
+.nav { display: flex; gap: 10px; padding: 12px 22px 12px; border-top: 1px solid var(--line); }
+.nav .back { background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; min-height: 48px; padding: 0 18px; cursor: pointer; }
+.nav .back:disabled { opacity: .35; }
+.nav .next { flex: 1; min-height: 48px; border-radius: 999px; border: 0; background: rgba(255,255,255,.07); color: var(--faint); font-weight: 600; cursor: pointer; transition: background .3s, color .3s; }
+.nav .next.ready { background: var(--blue); color: #0a0f24; animation: ready 1.6s ease-in-out infinite; }
+@keyframes ready { 50% { box-shadow: 0 0 0 6px var(--blue-soft); } }
+.sources { font-size: .78rem; color: var(--faint); margin-top: 14px; }
+.katex { font-size: 1.05em; }
+@media (prefers-reduced-motion: reduce) { .step.on, .step.met .after { animation: none; } .nav .next.ready { animation: none; } }
+</style>
+
+<div class="app">
+<header class="bar" role="banner">
+  <div class="ch"><small>Part 1 · Chapter 25</small><b>One electron at a time</b></div>
+  <nav class="progress" id="progress" aria-label="Steps"></nav>
+  <button type="button" class="depth" id="depth" aria-label="Change how deep the explanations go">Depth <b id="depth-name">Standard</b></button>
+</header>
+
+<main class="stage" id="stage" aria-label="The two-slit experiment">
+  <canvas id="cv" aria-hidden="true"></canvas>
+  <div class="hud" id="hud">0 electrons</div>
+  <div class="toast" id="toast"></div>
+</main>
+
+<section class="card">
+  <div class="card-body" id="card-body" aria-live="polite">
+
+    <article class="step" data-step="0">
+      <span class="k">Step 1 of 10 · The setup</span>
+      <h2>A gun, a wall, a screen</h2>
+      <p>On the left, a gun shoots electrons, one at a time. In the middle, a wall with two narrow slits. On the right, a screen that glows wherever an electron hits it.</p>
+      <p>The tall panel at the far right is that same screen seen face on, so you can watch the hits pile up.</p>
+      <p class="x-std">This is the double-slit experiment. Richard Feynman said it holds the whole mystery of quantum mechanics.</p>
+      <p class="do">Find the gun, the two slits and the screen, then tap Next.</p>
+    </article>
+
+    <article class="step" data-step="1">
+      <span class="k">Step 2 of 10 · One electron</span>
+      <h2>Fire a single electron</h2>
+      <p class="do">Tap “Fire one” and watch where it goes.</p>
+      <div class="controls"><button type="button" class="btn" data-act="fire1">Fire one</button></div>
+      <div class="status" data-status></div>
+      <div class="after"><p>It hit the screen in <b>one</b> spot and left <b>one</b> dot. Whatever an electron is, it arrives like a tiny particle.</p></div>
+    </article>
+
+    <article class="step" data-step="2">
+      <span class="k">Step 3 of 10 · A few more</span>
+      <h2>Fire ten</h2>
+      <p class="do">Keep tapping “Fire one” until there are 10 dots.</p>
+      <div class="controls"><button type="button" class="btn" data-act="fire1">Fire one</button></div>
+      <div class="status" data-status></div>
+      <div class="after"><p>Each one lands somewhere different, and you can’t tell in advance where the next will go. So far it looks random.</p></div>
+    </article>
+
+    <article class="step" data-step="3">
+      <span class="k">Step 4 of 10 · Predict</span>
+      <h2>What will 2,000 electrons draw?</h2>
+      <p>If electrons are tiny bullets, each one goes through the top slit or the bottom slit. Make your guess before you look.</p>
+      <div class="choices" role="group" aria-label="Your prediction">
+        <button type="button" class="choice" data-pred="two" aria-pressed="false"><svg viewBox="0 0 60 80" preserveAspectRatio="none" aria-hidden="true"><rect width="60" height="80" fill="#0b0e1a"/><rect x="4" y="16" width="52" height="14" rx="6" fill="#ffb547"/><rect x="4" y="50" width="52" height="14" rx="6" fill="#ffb547"/></svg><b>Two bands</b>one behind each slit</button>
+        <button type="button" class="choice" data-pred="stripes" aria-pressed="false"><svg viewBox="0 0 60 80" preserveAspectRatio="none" aria-hidden="true"><rect width="60" height="80" fill="#0b0e1a"/><g fill="#ffb547"><rect x="4" y="36" width="52" height="8" rx="4"/><rect x="4" y="22" width="52" height="7" rx="3.5" opacity=".75"/><rect x="4" y="51" width="52" height="7" rx="3.5" opacity=".75"/><rect x="4" y="9" width="52" height="6" rx="3" opacity=".4"/><rect x="4" y="65" width="52" height="6" rx="3" opacity=".4"/></g></svg><b>Many stripes</b>bright, dark, bright</button>
+        <button type="button" class="choice" data-pred="blob" aria-pressed="false"><svg viewBox="0 0 60 80" preserveAspectRatio="none" aria-hidden="true"><defs><radialGradient id="g1"><stop offset="0" stop-color="#ffb547"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient></defs><rect width="60" height="80" fill="#0b0e1a"/><ellipse cx="30" cy="40" rx="30" ry="28" fill="url(#g1)"/></svg><b>One glow</b>brightest in the middle</button>
+      </div>
+      <div class="after"><p>Locked in. Now let’s find out.</p></div>
+    </article>
+
+    <article class="step" data-step="4">
+      <span class="k">Step 5 of 10 · Find out</span>
+      <h2>Fire 2,000 electrons</h2>
+      <p class="do">Press and hold “Hold to fire”, or tap “Fire 500” a few times. Watch the face-on screen.</p>
+      <div class="controls"><button type="button" class="btn hold" data-act="hold">Hold to fire</button><button type="button" class="btn ghost" data-act="burst">Fire 500</button></div>
+      <div class="status" data-status></div>
+      <div class="after">
+        <p data-pred-msg="two">You guessed two bands, the bullet answer. The screen shows <b>stripes</b> instead: bright, dark, bright, dark.</p>
+        <p data-pred-msg="stripes">You guessed stripes, and stripes it is. Most people guess two bands.</p>
+        <p data-pred-msg="blob">You guessed one glow. The screen shows <b>stripes</b> instead: bright, dark, bright, dark.</p>
+        <p>Every electron still landed as a single dot. The stripes only appear when thousands are added up.</p>
+      </div>
+    </article>
+
+    <article class="step" data-step="5">
+      <span class="k">Step 6 of 10 · The strange part</span>
+      <h2>Close one slit</h2>
+      <p class="do">Tap “Close top slit”, then hold to fire.</p>
+      <div class="controls"><button type="button" class="btn blue" data-act="slit">Close top slit</button><button type="button" class="btn hold" data-act="hold">Hold to fire</button></div>
+      <div class="status" data-status></div>
+      <div class="after">
+        <p>With one slit, the stripes are gone: one smooth band.</p>
+        <p>Now think about a <b>dark</b> stripe from before. With one slit open, electrons land there. Open a <b>second</b> slit and <b>fewer</b> land there. More ways through, fewer hits. Bullets can’t do that. Waves can.</p>
+      </div>
+    </article>
+
+    <article class="step" data-step="6">
+      <span class="k">Step 7 of 10 · Why</span>
+      <h2>See the wave</h2>
+      <p>Both slits are open again.</p>
+      <p class="do">Tap “Show the wave”.</p>
+      <div class="controls"><button type="button" class="btn blue" data-act="wave">Show the wave</button><button type="button" class="btn ghost" data-act="burst">Fire 500</button></div>
+      <div class="status" data-status></div>
+      <div class="after">
+        <p>Each electron travels as a wave that passes through <b>both</b> slits. Behind the wall the two parts overlap.</p>
+        <p>Where crest meets crest, the wave is strong: a <b>bright</b> stripe. Where crest meets trough, they cancel: a <b>dark</b> stripe. The bright rays land on the bright stripes.</p>
+        <p>The wave only sets the <b>odds</b> of where the electron lands. When it reaches the screen, it still makes one dot.</p>
+        <p class="x-std">Physicists call this wave the wavefunction. The chance of a hit at a spot is the square of the wave’s size there. <span class="tag">ESTABLISHED</span></p>
+      </div>
+    </article>
+
+    <article class="step" data-step="7">
+      <span class="k">Step 8 of 10 · Peek</span>
+      <h2>Watch which slit it uses</h2>
+      <p>A detector at each slit flashes when an electron passes, so you know which way it went.</p>
+      <p class="do">Tap “Watch the slits”, then hold to fire.</p>
+      <div class="controls"><button type="button" class="btn blue" data-act="detector">Watch the slits</button><button type="button" class="btn hold" data-act="hold">Hold to fire</button></div>
+      <div class="status" data-status></div>
+      <div class="after">
+        <p>Each electron now flashes at one slit, and the stripes are gone. You get the bullet answer: two blurred bands, overlapping.</p>
+        <p>Knowing the path destroys the stripes. You can have one or the other, never both.</p>
+        <div class="x-deep"><p>No human needs to look. Any physical record of the path entangles the electron with the detector, and the two parts of its wave can no longer interfere. This is called decoherence. <span class="tag">ESTABLISHED</span></p></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="8">
+      <span class="k">Step 9 of 10 · Your turn</span>
+      <h2>Tune the wavelength</h2>
+      <p>Faster electrons have shorter waves, and shorter waves make tighter stripes. The green marks on the screen show where the dark stripes fall at one special energy.</p>
+      <p class="do">Change the energy until the waves’ dark lanes hit the green marks. Then fire to check.</p>
+      <div class="dial">
+        <div class="read"><big id="e-read">90 eV</big><span id="l-read">λ = 0.129 nm</span></div>
+        <div class="track" id="track" role="slider" aria-label="Electron energy in electronvolts" aria-valuemin="10" aria-valuemax="200" tabindex="0"><div class="rail"></div><div class="fill" id="fill"></div><div class="thumb" id="thumb"></div></div>
+        <div class="nudge"><button type="button" data-de="-10">−10</button><button type="button" data-de="-1">−1</button><button type="button" data-de="1">+1</button><button type="button" data-de="10">+10</button></div>
+      </div>
+      <div class="controls"><button type="button" class="btn ghost" data-act="burst">Fire 500</button></div>
+      <div class="status" data-status></div>
+      <div class="after">
+        <p>Spot on: <b>54 eV</b>, a wavelength of 0.167 nm. That is the energy Davisson and Germer used in 1927, when they first saw electrons behave as waves. <span class="tag">ESTABLISHED</span></p>
+        <p class="x-std">De Broglie’s rule links wavelength to momentum: {{tex:\lambda = h/p}}. More energy means more momentum, so a shorter wave.</p>
+        <div class="x-deep">
+          <p>For an electron with kinetic energy {{tex:E}} far below its rest energy, {{tex:p = \sqrt{2 m_e E}}}, so</p>
+          <div class="eq">{{texd:\lambda = \frac{h}{\sqrt{2 m_e E}} \approx \frac{1.226\ \text{nm}}{\sqrt{E/\text{eV}}}}}</div>
+          <p>The stripe spacing is {{tex:\Delta y \approx \lambda L / d}}, where {{tex:L}} is the distance to the screen and {{tex:d}} the gap between the slits.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="step" data-step="9">
+      <span class="k">Step 10 of 10 · What you found</span>
+      <h2>Waves going in, dots coming out</h2>
+      <p>An electron travels as a wave through both slits and lands as a single dot. The wave sets the odds. Watching the path wipes out the stripes.</p>
+      <div class="recall">
+        <button type="button" class="flip"><div class="q">Why does a dark stripe get fewer hits with two slits open than with one?</div><div class="a">The waves from the two slits arrive there crest-to-trough and cancel, so the chance of landing there drops.</div><div class="hint">TAP TO CHECK</div></button>
+        <button type="button" class="flip"><div class="q">What happened when you watched which slit each electron used?</div><div class="a">The stripes vanished, leaving two blurred bands. Path information destroys the interference.</div><div class="hint">TAP TO CHECK</div></button>
+        <button type="button" class="flip"><div class="q">You raise the electron energy. What do the stripes do?</div><div class="a">They squeeze closer together: more energy, shorter wavelength, tighter stripes.</div><div class="hint">TAP TO CHECK</div></button>
+      </div>
+      <div class="x-std">
+        <p><b>Try it:</b> what wavelength does a 100 eV electron have? Use {{tex:\lambda \approx 1.226\ \text{nm} / \sqrt{E/\text{eV}}}}.</p>
+        <form class="calc" id="calc"><span>λ =</span><input id="ans" inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Wavelength in nanometres"><span>nm</span><button class="btn ghost" type="submit">Check</button></form>
+        <div class="fb" id="fb" aria-live="polite"></div>
+      </div>
+      <p class="sources">Sources: L. de Broglie, thesis (1924). C. Davisson &amp; L. H. Germer, Phys. Rev. 30, 705 (1927). A. Tonomura et al., Am. J. Phys. 57, 117 (1989). Wavelengths from CODATA constants: λ(54 eV) = 0.1669 nm, λ(100 eV) = 0.1226 nm.</p>
+    </article>
+
+  </div>
+  <div class="nav"><button type="button" class="back" id="back">Back</button><button type="button" class="next" id="next">Next</button></div>
+</section>
+</div>
+<script>/*__APP_JS__*/</script>

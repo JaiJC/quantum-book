@@ -1,0 +1,133 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Guess any wavefunction at all, compute its average energy, and you have an upper bound on the true ground-state energy. A bad guess gives a high number; a better guess gives a lower one; nothing you guess can ever go below the truth. This one fact powers most of quantum chemistry, and it is the idea behind the algorithm that quantum computers are expected to use first on molecules.</p>
+  <p>On the plate: the energy of a family of guesses, and the true ground state beneath it, which no guess can cross.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why every guess is too high</h2>
+  <p>Expand any normalized trial state in the true energy eigenstates, {{tex:|\psi\rangle = \sum_n c_n|n\rangle}} (Chapter 9). Its average energy is</p>
+  <div class="eq">{{texd:\langle H\rangle = \sum_n |c_n|^2E_n \;\ge\; \sum_n|c_n|^2E_0 = E_0}}</div>
+  <p>because every {{tex:E_n \ge E_0}} and the weights {{tex:|c_n|^2}} add to one. Equality holds only if the guess is the ground state itself. The plate shows a guess as a set of weights on the levels; its energy is their weighted average, which can only sit above the bottom. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Hydrogen with the wrong shape</h2>
+  <p>Pretend you don’t know hydrogen’s answer and guess a Gaussian, {{tex:\psi \propto e^{-\alpha r^2}}}, which has the wrong shape both at the nucleus and far away. Its energy, in hartrees, is {{tex:E(\alpha) = \tfrac32\alpha - 2\sqrt{2\alpha/\pi}}}. Vary <span class="tangle" data-var="al" data-min="0.05" data-max="1" data-step="0.01" data-dec="2" data-value="0.6" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Alpha">0.60</span><button type="button" data-de="1" aria-label="More">›</button></span> and find the bottom.</p>
+  <p>The best Gaussian, at {{tex:\alpha = 8/9\pi}}, gives {{tex:-4/3\pi = -0.424}} hartree against the exact {{tex:-0.5}}: 85% of the binding energy from a function that is wrong everywhere. Energies are forgiving; an error of size {{tex:\epsilon}} in the wavefunction gives an error of size {{tex:\epsilon^2}} in the energy.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Helium</h2>
+  <p>Helium has two electrons that repel each other, and its Schrödinger equation has no exact solution. Try two hydrogen-like 1s orbitals with an adjustable nuclear charge {{tex:Z_{\text{eff}}}}, to let each electron partly hide the nucleus from the other. The energy is {{tex:E = Z_{\text{eff}}^2 - \tfrac{27}{8}Z_{\text{eff}}}} hartree. Set {{tex:Z_{\text{eff}} =}} <span class="tangle" data-var="Z" data-min="1.2" data-max="2.2" data-step="0.01" data-dec="2" data-value="2" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Effective charge">2.00</span><button type="button" data-de="1" aria-label="More">›</button></span>.</p>
+  <p>At {{tex:Z_{\text{eff}} = 2}}, the true charge, you get the first-order perturbation result, −74.8 eV. The minimum, at {{tex:Z_{\text{eff}} = 27/16 \approx 1.69}}, gives −77.5 eV. The measured value is −79.0 eV. Egil Hylleraas, in 1929, added the distance between the electrons to the trial function and got within a fraction of a percent; modern calculations of this kind agree with experiment to more than ten digits.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Let the computer choose</h2>
+  <p>Instead of one adjustable number, take a combination of fixed functions, {{tex:\psi = \sum_i c_i\chi_i}}, and choose all the {{tex:c_i}} at once. Minimizing the energy turns into a matrix eigenvalue problem, {{tex:H\mathbf c = E\,S\mathbf c}}, where {{tex:S}} holds the overlaps of the basis functions. This is the <em>Rayleigh–Ritz</em> method, and it is how almost all quantum chemistry software works.</p>
+  <p>Use <span class="tangle" data-var="N" data-min="1" data-max="8" data-step="1" data-value="3" data-px="16"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Basis size">3</span><button type="button" data-de="1" aria-label="More">›</button></span> Gaussians of different widths for hydrogen. Each added function can only lower the energy, and by eight the error is under 0.04%. The plate shows the energy falling toward the exact value, the dashed line.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The simplest chemical bond</h2>
+  <p>H₂⁺ is one electron and two protons. Guess a combination of a 1s orbital on each proton, the <em>linear combination of atomic orbitals</em>. The sum piles electron density between the nuclei and binds; the difference has a node there and does not. Move the protons to <span class="tangle" data-var="R" data-min="1" data-max="6" data-step="0.1" data-dec="1" data-value="2.5" data-px="8"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Separation">2.5</span><button type="button" data-de="1" aria-label="Farther">›</button></span> Bohr radii.</p>
+  <p>The bonding curve has a minimum near 2.5 {{tex:a_0}}, with a binding energy of 1.76 eV. The exact values are 2.0 {{tex:a_0}} and 2.79 eV. The crude guess already explains why a bond exists; better guesses make it quantitative. This is the molecular-orbital picture used for every molecule you will meet in Part Four.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The same idea on a quantum computer</h2>
+  <p>For large molecules, the trial wavefunction itself becomes too big to store on any ordinary computer. The <em>variational quantum eigensolver</em> prepares the trial state on a quantum processor, controlled by adjustable settings, measures its energy, and lets an ordinary computer adjust the settings downhill. Alberto Peruzzo and colleagues ran it first in 2014 on the molecule HeH⁺.</p>
+  <p>Whether it will beat classical methods for molecules that matter, drug targets and enzymes included, is unsettled: noise in today’s hardware and the difficulty of optimizing many settings are serious obstacles. Part Three examines the evidence. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>The variational bound and its proof, the Gaussian guess for hydrogen, helium with an effective charge, the Rayleigh–Ritz method, the LCAO picture of H₂⁺, and VQE.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why can’t a trial energy fall below E₀?<span class="tap">tap</span></div><div class="a">It is a weighted average of eigenvalues, each at least E₀.</div></div>
+  <div class="qa"><div class="q">Why is Z_eff for helium less than 2?<span class="tap">tap</span></div><div class="a">Each electron partly screens the nucleus from the other.</div></div>
+  <div class="qa"><div class="q">Why does the bonding orbital bind?<span class="tap">tap</span></div><div class="a">It concentrates electron density between the nuclei, where it is attracted by both.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:Z_{\text{eff}} = 27/16}}, helium’s variational energy is {{tex:-(27/16)^2}} hartree. In eV (1 hartree = 27.211 eV)?</p>
+    <form class="calc" data-answer="-77.49" data-tol="0.1" data-ok="Yes: −2.848 × 27.211 ≈ −77.5 eV, against −79.0 eV measured." data-alt="77.49~Bound energies are negative." data-hint="(27/16)² = 2.8477."><span>E =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Energy in eV"><span>eV</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. Ritz, J. reine angew. Math. 135, 1 (1909). E. A. Hylleraas, Z. Phys. 54, 347 (1929). A. Szabo and N. S. Ostlund, Modern Quantum Chemistry. A. Peruzzo et al., Nat. Commun. 5, 4213 (2014). Checked by code: Gaussian hydrogen −0.42441 Ha at α = 0.2829; helium −77.49 eV (variational), −74.83 eV (first order), −79.01 eV (exact); Ritz with 1–8 Gaussians −0.231 … −0.49985 Ha; LCAO H₂⁺ R = 2.49 a₀, D = 1.76 eV.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { al: 0.6, Z: 2, N: 3, R: 2.5 }, Ha = 27.211386;
+  var RITZ = [-0.231395, -0.360748, -0.453807, -0.489011, -0.497916, -0.499525, -0.499802, -0.499845];
+  function Eg(a) { return 1.5 * a - 2 * Math.sqrt(2 * a / Math.PI); }
+  function EH2(R, s) { var S = Math.exp(-R) * (1 + R + R * R / 3), J = 1 / R - Math.exp(-2 * R) * (1 + 1 / R), K = Math.exp(-R) * (1 + R); return -0.5 + 1 / R - (J + s * K) / (1 + s * S); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Energy of a family of guesses; the floor is the true E₀.", "A guess as weights on the levels.", "Gaussian guess for hydrogen.", "Helium energy against effective charge.", "Rayleigh–Ritz: hydrogen with N Gaussians.", "H₂⁺: bonding (amber) and antibonding (red).", "The variational quantum eigensolver loop.", "Guesses above the floor."][beat]; },
+    readout: function () {
+      if (beat === 2) return "α = " + V.al.toFixed(2) + " · E = " + Eg(V.al).toFixed(4) + " Ha · exact −0.5";
+      if (beat === 3) { var E = V.Z * V.Z - 27 * V.Z / 8; return "Z_eff = " + V.Z.toFixed(2) + " · E = " + (E * Ha).toFixed(2) + " eV · measured −79.01"; }
+      if (beat === 4) return "N = " + V.N + " · E = " + RITZ[V.N - 1].toFixed(6) + " Ha · error " + (100 * (RITZ[V.N - 1] + 0.5) / 0.5).toFixed(3) + "%";
+      if (beat === 5) return "R = " + V.R.toFixed(1) + " a₀ · bonding " + ((EH2(V.R, 1) + 0.5) * Ha).toFixed(2) + " eV · antibonding " + ((EH2(V.R, -1) + 0.5) * Ha).toFixed(2) + " eV";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat === 0 || beat === 7) {
+        A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0.02, 1.2], [-0.55, 0.3], { xl: "trial parameter α", yl: "energy, Ha" });
+        k.line(A.X(0.02), A.Y(-0.5), A.X(1.2), A.Y(-0.5), "#ece6da", 1.5, [5, 4]); k.text("true ground state", A.X(1.18), A.Y(-0.5) + 16, { size: 12, align: "right" });
+        k.plot(A, Eg, [0.02, 1.2], "#ffb547", 2.5, 300);
+        var a = 0.28 + 0.5 * Math.cos(now / 1500) * Math.exp(-((now / 1500) % 6.28) / 3); a = Math.max(0.03, Math.min(1.15, a)); k.circle(A.X(a), A.Y(Eg(a)) - 7, 7, "#ece6da");
+        return;
+      }
+      if (beat === 1) {
+        var w = [0.55, 0.25, 0.12, 0.05, 0.03], En = [0, 1, 2, 3, 4], Et = 0; w.forEach(function (x, j) { Et += x * En[j]; });
+        A = k.axes(W * 0.14, H * 0.06, W * 0.8, H * 0.84, [0, 1], [-0.3, 4.4], { yl: "energy" });
+        En.forEach(function (e, j) { k.line(A.X(0.05), A.Y(e), A.X(0.05 + 0.6 * w[j] / 0.55), A.Y(e), "#ffb547", 8); k.line(A.X(0.05), A.Y(e), A.X(0.95), A.Y(e), "rgba(236,230,218,.2)", 1); k.text("|c|² = " + w[j].toFixed(2), A.X(0.95), A.Y(e) - 6, { size: 11, align: "right", color: "#b9b2a5" }); });
+        k.line(A.X(0.05), A.Y(Et), A.X(0.95), A.Y(Et), "#ece6da", 2, [5, 4]); k.text("⟨H⟩ = " + Et.toFixed(2) + " ≥ E₀ = 0", A.X(0.5), A.Y(Et) - 8, { size: 12 });
+        return;
+      }
+      if (beat === 2) {
+        A = k.axes(W * 0.08, H * 0.06, W * 0.4, H * 0.8, [0, 5], [0, 1.1], { xl: "r / a₀" });
+        var al = V.al, nG = Math.pow(2 * al / Math.PI, 0.75), nE = 1 / Math.sqrt(Math.PI);
+        k.plot(A, function (r) { return Math.exp(-r) / 1; }, [0, 5], "rgba(236,230,218,.6)", 1.5); k.plot(A, function (r) { return nG / nE * Math.exp(-al * r * r); }, [0, 5], "#ffb547", 2.5);
+        var B = k.axes(W * 0.58, H * 0.06, W * 0.38, H * 0.8, [0.05, 1], [-0.52, -0.2], { xl: "α", yl: "E, Ha" });
+        k.plot(B, Eg, [0.05, 1], "#ffb547", 2); k.line(B.X(0.05), B.Y(-0.5), B.X(1), B.Y(-0.5), "#ece6da", 1, [4, 4]); k.circle(B.X(al), B.Y(Eg(al)), 5, "#ece6da");
+        return;
+      }
+      if (beat === 3) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.82, H * 0.8, [1.2, 2.2], [-80, -70], { xl: "Z_eff", yl: "E, eV" });
+        k.plot(A, function (z) { return (z * z - 27 * z / 8) * Ha; }, [1.2, 2.2], "#ffb547", 2.5);
+        k.line(A.X(1.2), A.Y(-79.01), A.X(2.2), A.Y(-79.01), "#ece6da", 1.5, [5, 4]); k.text("measured −79.0", A.X(2.18), A.Y(-79.01) - 6, { size: 12, align: "right" });
+        k.circle(A.X(2), A.Y(-74.83), 4, "rgba(236,230,218,.7)"); k.text("first order", A.X(2) - 6, A.Y(-74.83) - 6, { size: 11, align: "right", color: "#b9b2a5" });
+        k.circle(A.X(V.Z), A.Y((V.Z * V.Z - 27 * V.Z / 8) * Ha), 6, "#ece6da");
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.82, H * 0.8, [0.5, 8.5], [-0.52, -0.2], { xl: "number of Gaussians", yl: "E, Ha" });
+        k.line(A.X(0.5), A.Y(-0.5), A.X(8.5), A.Y(-0.5), "#ece6da", 1.5, [5, 4]);
+        RITZ.forEach(function (e, j) { var on = j < V.N; k.rr(A.X(j + 1) - 10, A.Y(-0.2), 20, A.Y(e) - A.Y(-0.2), 3, on ? "#ffb547" : "rgba(255,181,71,.15)"); });
+        return;
+      }
+      if (beat === 5) {
+        A = k.axes(W * 0.1, H * 0.06, W * 0.5, H * 0.8, [1, 6], [-2.5, 6], { xl: "R / a₀", yl: "eV", zeroY: true });
+        k.plot(A, function (R) { return (EH2(R, 1) + 0.5) * Ha; }, [1, 6], "#ffb547", 2.5); k.plot(A, function (R) { return Math.min(6, (EH2(R, -1) + 0.5) * Ha); }, [1, 6], "rgba(224,90,70,.9)", 2.5);
+        k.line(A.X(V.R), A.Y(-2.5), A.X(V.R), A.Y(6), "rgba(236,230,218,.25)", 1, [3, 4]);
+        var B5 = k.axes(W * 0.66, H * 0.2, W * 0.3, H * 0.5, [-5, 5], [-1.1, 1.1], { zeroY: true }), h = V.R / 2;
+        k.plot(B5, function (x) { return (Math.exp(-Math.abs(x - h)) + Math.exp(-Math.abs(x + h))) / 1.3; }, [-5, 5], "#ffb547", 2); k.plot(B5, function (x) { return (Math.exp(-Math.abs(x + h)) - Math.exp(-Math.abs(x - h))) / 1.3; }, [-5, 5], "rgba(224,90,70,.9)", 2);
+        k.circle(B5.X(-h), B5.Y(0), 4, "#ece6da"); k.circle(B5.X(h), B5.Y(0), 4, "#ece6da"); k.text("orbitals along the axis", B5.X(0), B5.Y(-1.1) + 18, { size: 11, color: "#7c766b" });
+        return;
+      }
+      if (beat === 6) {
+        var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.3, steps = ["prepare |ψ(θ)⟩ on qubits", "measure ⟨H⟩", "classical optimizer", "update θ"], ph = (now / 1200) % 4;
+        for (i = 0; i < 4; i++) { var a = -Math.PI / 2 + i * Math.PI / 2, x = cx + R * Math.cos(a), y = cy + R * Math.sin(a), on = Math.floor(ph) === i; k.rr(x - 80, y - 18, 160, 36, 8, on ? "rgba(255,181,71,.25)" : "#14120f", on ? "#ffb547" : "rgba(236,230,218,.35)"); k.text(steps[i], x, y + 5, { size: 12, color: on ? "#ffb547" : "#b9b2a5" }); }
+        c.strokeStyle = "rgba(236,230,218,.25)"; c.beginPath(); c.arc(cx, cy, R * 0.75, 0, 2 * Math.PI); c.stroke();
+        var t = ph / 4 * 2 * Math.PI - Math.PI / 2; k.circle(cx + R * 0.75 * Math.cos(t), cy + R * 0.75 * Math.sin(t), 5, "#ffb547");
+      }
+    }
+  });
+})();
+</script>

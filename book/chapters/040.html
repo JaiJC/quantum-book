@@ -1,0 +1,139 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In Frankfurt in February 1922, Otto Stern and Walther Gerlach sent a beam of silver atoms between the poles of a specially shaped magnet. Each atom is a tiny magnet, and classically its orientation should be random, so the beam should have smeared into a continuous band. On the glass plate where the atoms landed they found two separate marks. Not a smear. Two.</p>
+  <p>On the plate: the experiment. Silver atoms enter from the left; the magnet sorts each one up or down.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Two spots</h2>
+  <p>The deposit was so thin that it was invisible until Stern breathed on it. He smoked cheap cigars, and the sulphur in his breath turned the silver into black silver sulphide, making the two marks appear. That, at least, is how Stern told it, and Bretislav Friedrich and Dudley Herschbach later reproduced the effect.</p>
+  <p>Toggle the expectation: <button type="button" class="v" data-pick="sg:classical">classical smear</button> or <button type="button" class="v" data-pick="sg:quantum">what they saw</button>. At the time, the split was read as Bohr’s orbits lining up. The right explanation came in 1925: the electron itself carries an intrinsic angular momentum, spin, with {{tex:s = \tfrac12}}, and the outer electron of silver has no orbital angular momentum to confuse things. Spin-½ has two states, so there are two spots. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Spinors and the Pauli matrices</h2>
+  <p>A spin-½ state is a two-component vector, a <em>spinor</em>: {{tex:|\psi\rangle = \alpha|{\uparrow}\rangle + \beta|{\downarrow}\rangle}}. Its spin operators are {{tex:\mathbf S = \tfrac\hbar2\boldsymbol\sigma}}, with the Pauli matrices of Chapter 8:</p>
+  <div class="eq">{{texd:\sigma_x = \begin{pmatrix}0&1\\1&0\end{pmatrix},\ \sigma_y = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\ \sigma_z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}}}</div>
+  <p>A magnet tilted at angle {{tex:\theta}} from {{tex:z}} measures {{tex:\hat n\cdot\boldsymbol\sigma}}, whose “up” state is {{tex:\cos\tfrac\theta2|{\uparrow}\rangle + \sin\tfrac\theta2|{\downarrow}\rangle}}. Prepare atoms spin-up along {{tex:z}}, then send them through a second magnet tilted by <span class="tangle" data-var="th" data-min="0" data-max="180" data-step="5" data-unit="°" data-value="60" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Tilt">60°</span><button type="button" data-de="1" aria-label="More">›</button></span>. The fraction going up is {{tex:\cos^2(\theta/2)}}: all of them at 0°, half at 90°, none at 180°.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>A chain of magnets</h2>
+  <p>Build a sequence: <button type="button" class="v" data-pick="chain:zz">z then z</button>, <button type="button" class="v" data-pick="chain:zx">z then x</button>, or <button type="button" class="v" data-pick="chain:zxz">z, then x, then z</button>. After each magnet the lower beam is blocked.</p>
+  <p>Two z magnets in a row: everything that passed the first passes the second. Insert an x magnet between them and half of what comes out of the last one is spin-down along z again, although every one of those atoms was spin-up along z before. Measuring {{tex:S_x}} erased the {{tex:S_z}} information, because the two do not commute. This three-magnet experiment is the shortest demonstration there is that quantum measurement changes the state.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The Bloch sphere</h2>
+  <p>Any spin-½ state, up to an overall phase, can be written {{tex:\cos\tfrac\theta2|{\uparrow}\rangle + e^{i\phi}\sin\tfrac\theta2|{\downarrow}\rangle}}, so it is a point on a sphere with polar angle {{tex:\theta}} and azimuth {{tex:\phi}}. Set {{tex:\theta =}} <span class="tangle" data-var="bt" data-min="0" data-max="180" data-step="5" data-unit="°" data-value="60" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Theta">60°</span><button type="button" data-de="1" aria-label="More">›</button></span> and {{tex:\phi =}} <span class="tangle" data-var="bp" data-min="0" data-max="360" data-step="15" data-unit="°" data-value="45" data-px="2"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Phi">45°</span><button type="button" data-de="1" aria-label="More">›</button></span>.</p>
+  <p>The arrow points along the direction in which a magnet would find spin-up with certainty, and {{tex:\langle\boldsymbol\sigma\rangle}} is exactly that arrow. Opposite points on the sphere are orthogonal states: up and down are 180° apart here, though they are perpendicular in Hilbert space. That halving of angles is the same one you met in Chapter 39. Part Three uses this sphere for every qubit.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Precession, and how MRI works</h2>
+  <p>In a magnetic field {{tex:\mathbf B}} along {{tex:z}}, a magnetic moment {{tex:\boldsymbol\mu = \gamma\mathbf S}} has energy {{tex:H = -\gamma B S_z}}. The up and down parts pick up opposite phases, so the Bloch arrow turns around {{tex:z}} at the <em>Larmor frequency</em> {{tex:\omega = \gamma B}}, without changing its tilt. Ehrenfest’s theorem (Chapter 31) says the average spin obeys the classical gyroscope equation.</p>
+  <p>For protons, {{tex:\gamma/2\pi = 42.577}} MHz per tesla. Set the scanner field to <span class="tangle" data-var="B" data-min="0.5" data-max="7" data-step="0.5" data-dec="1" data-unit=" T" data-value="3" data-px="10"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="Field">3.0 T</span><button type="button" data-de="1" aria-label="Stronger">›</button></span>. An MRI scanner listens for exactly this radio-frequency signal from the hydrogen in water and fat, and uses field gradients to tell which part of the body it came from. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Rabi oscillations</h2>
+  <p>To flip a spin, add a small field rotating at frequency {{tex:\omega}} near the Larmor frequency {{tex:\omega_0}}. Seen from a frame rotating with it, the spin precesses about a tilted axis, and the probability of finding it flipped oscillates:</p>
+  <div class="eq">{{texd:P_\downarrow(t) = \frac{\Omega^2}{\Omega^2 + \Delta^2}\,\sin^2\!\left(\frac{\sqrt{\Omega^2+\Delta^2}}{2}\,t\right)}}</div>
+  <p>Here {{tex:\Omega}} is the strength of the drive and {{tex:\Delta = \omega - \omega_0}} the detuning. Set {{tex:\Delta/\Omega =}} <span class="tangle" data-var="det" data-min="0" data-max="3" data-step="0.25" data-dec="2" data-value="0" data-px="10"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Detuning">0.00</span><button type="button" data-de="1" aria-label="More">›</button></span>. On resonance the spin flips completely; off resonance it flips partly and faster. Isidor Rabi used this in 1938 to measure nuclear magnetic moments, and won the 1944 Nobel Prize. MRI pulses, atomic clocks and every gate on a qubit are Rabi rotations.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>What you now have</h2>
+  <p>The Stern–Gerlach experiment, spinors and Pauli matrices, the {{tex:\cos^2(\theta/2)}} rule, sequential measurements, the Bloch sphere, Larmor precession and MRI, and Rabi oscillations.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why did z, x, z magnets give spin-down atoms again?<span class="tap">tap</span></div><div class="a">Measuring S_x leaves the atom in an S_x eigenstate, which is an equal superposition of z-up and z-down.</div></div>
+  <div class="qa"><div class="q">How far apart are orthogonal states on the Bloch sphere?<span class="tap">tap</span></div><div class="a">180°: diametrically opposite.</div></div>
+  <div class="qa"><div class="q">What sets the MRI signal frequency?<span class="tap">tap</span></div><div class="a">The Larmor frequency γB: 42.577 MHz per tesla for protons.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the proton Larmor frequency in a 1.5 T scanner, in MHz?</p>
+    <form class="calc" data-answer="63.87" data-tol="0.1" data-ok="Yes: 42.577 × 1.5 ≈ 63.9 MHz." data-alt="401.3~That is the angular frequency ω in millions of radians per second; MRI quotes f = ω/2π." data-hint="Multiply 42.577 MHz/T by 1.5 T."><span>f =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Frequency in MHz"><span>MHz</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. Gerlach and O. Stern, Z. Phys. 9, 349 (1922). B. Friedrich and D. Herschbach, Physics Today 56(12), 53 (2003). G. E. Uhlenbeck and S. Goudsmit, Naturwissenschaften 13, 953 (1925). I. I. Rabi et al., Phys. Rev. 53, 318 (1938). CODATA 2022: γ_p/2π = 42.577 MHz T⁻¹. Checked by code: P(up) = cos²(θ/2); z–x–z output 12.5% each way of the input; Larmor 127.7 MHz at 3 T, 63.87 MHz at 1.5 T; Rabi formula against direct integration.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { th: 60, bt: 60, bp: 45, B: 3, det: 0 };
+  function bloch(k, cx, cy, R, th, ph, trail) {
+    var c = k.ctx, tilt = 0.28;
+    k.circle(cx, cy, R, null, "rgba(236,230,218,.3)", 1.2);
+    c.save(); c.translate(cx, cy); c.scale(1, tilt); c.strokeStyle = "rgba(236,230,218,.2)"; c.beginPath(); c.arc(0, 0, R, 0, 2 * Math.PI); c.stroke(); c.restore();
+    k.line(cx, cy - R * 1.15, cx, cy + R * 1.15, "rgba(236,230,218,.25)", 1, [3, 4]);
+    k.text("|↑⟩", cx, cy - R * 1.2, { size: 12, color: "#b9b2a5" }); k.text("|↓⟩", cx, cy + R * 1.2 + 12, { size: 12, color: "#b9b2a5" });
+    function P(t, p) { var x = Math.sin(t) * Math.cos(p), y = Math.sin(t) * Math.sin(p), z = Math.cos(t); return [cx + R * (x * 0.9 - y * 0.45), cy - R * (z * 0.96 - y * tilt * 0.9)]; }
+    if (trail) { c.strokeStyle = "rgba(255,181,71,.35)"; c.lineWidth = 1.5; c.beginPath(); trail.forEach(function (q, i) { var s = P(q[0], q[1]); if (i) c.lineTo(s[0], s[1]); else c.moveTo(s[0], s[1]); }); c.stroke(); }
+    var e = P(th, ph); k.line(cx, cy, e[0], e[1], "#ffb547", 3); k.glow(e[0], e[1], 16, "rgba(255,181,71,.5)"); k.circle(e[0], e[1], 5.5, "#ffb547");
+  }
+  function sg(k, x, y, w, h, ang, label) { var c = k.ctx; c.save(); c.translate(x + w / 2, y); c.rotate(-ang * Math.PI / 180 * 0.25); k.rr(-w / 2, -h / 2, w, h, 6, "#14120f", "rgba(236,230,218,.45)"); c.restore(); k.text(label, x + w / 2, y + h / 2 + 18, { size: 12, color: "#b9b2a5" }); }
+  var trail = [];
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; trail = []; },
+    set: function (n, v) { V[n] = v; trail = []; },
+    caption: function () { return ["A Stern–Gerlach magnet sorting silver atoms.", "The glass plate.", "z-up atoms through a magnet tilted by " + V.th + "°.", "A chain of magnets; lower beams blocked.", "The Bloch sphere.", "Larmor precession about the field.", "Rabi oscillation: probability of a flip.", "The Bloch sphere."][beat]; },
+    readout: function () {
+      if (beat === 2) { var p = Math.pow(Math.cos(V.th * Math.PI / 360), 2); return "up " + (100 * p).toFixed(1) + "% · down " + (100 * (1 - p)).toFixed(1) + "%"; }
+      if (beat === 3) { var ch = Book.state.picks.chain || "zxz"; return ch === "zz" ? "z+ then z: 100% up, 0% down" : ch === "zx" ? "z+ then x: 50% x-up, 50% x-down" : "z+, x+, then z: 50% up, 50% down (of what entered the last magnet)"; }
+      if (beat === 4) { var t = V.bt * Math.PI / 180, ph = V.bp; return "α = " + Math.cos(t / 2).toFixed(3) + " · β = " + Math.sin(t / 2).toFixed(3) + " e^(i" + ph + "°) · P(up) = " + Math.pow(Math.cos(t / 2), 2).toFixed(3); }
+      if (beat === 5) return "B = " + V.B.toFixed(1) + " T · f = " + (42.577 * V.B).toFixed(1) + " MHz";
+      if (beat === 6) return "Δ/Ω = " + V.det.toFixed(2) + " · max flip " + (100 / (1 + V.det * V.det)).toFixed(1) + "%";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i;
+      if (beat === 0 || beat === 1) {
+        var classical = beat === 1 && Book.state.picks.sg === "classical", x0 = W * 0.06, xm = W * 0.32, xs = W * 0.86, cy = H * 0.5, sp = H * 0.22;
+        k.rr(x0 - 8, cy - 10, 18, 20, 3, "#7c766b"); k.rr(xm, cy - H * 0.12, W * 0.24, H * 0.24, 6, "#14120f", "rgba(236,230,218,.45)"); k.text("N", xm + W * 0.12, cy - H * 0.04, { size: 12, color: "#7c766b" }); k.text("S", xm + W * 0.12, cy + H * 0.08, { size: 12, color: "#7c766b" });
+        k.line(xs, H * 0.12, xs, H * 0.88, "rgba(236,230,218,.4)", 2);
+        for (i = 0; i < 26; i++) { var ph = ((now / 1600) + i / 26) % 1, seed = Math.sin(i * 12.9898) * 43758.5453, r = seed - Math.floor(seed), dir = classical ? (2 * r - 1) : (r < 0.5 ? -1 : 1), x = x0 + ph * (xs - x0), dx = Math.max(0, (x - xm) / (xs - xm)), y = cy + dir * sp * dx * dx; k.circle(x, y, 2.6, "#ffb547"); }
+        if (classical) { c.fillStyle = "rgba(255,181,71,.3)"; c.fillRect(xs - 4, cy - sp, 8, 2 * sp); }
+        else { k.glow(xs, cy - sp, 18, "rgba(255,181,71,.6)"); k.glow(xs, cy + sp, 18, "rgba(255,181,71,.6)"); }
+        return;
+      }
+      if (beat === 2 || beat === 3) {
+        var stages = beat === 2 ? [["z", 0], [V.th + "°", V.th]] : (function () { var ch = Book.state.picks.chain || "zxz"; return ch === "zz" ? [["z", 0], ["z", 0]] : ch === "zx" ? [["z", 0], ["x", 90]] : [["z", 0], ["x", 90], ["z", 0]]; })();
+        var n = stages.length, bw = W * 0.14, gap = (W * 0.86 - n * bw) / n, y0 = H * 0.5, flux = 1, x = W * 0.05, prevAng = null;
+        k.text("unpolarized", x, y0 - 14, { size: 11, color: "#7c766b", align: "left" });
+        for (i = 0; i < n; i++) {
+          var a = stages[i][1], pUp = prevAng === null ? 0.5 : Math.pow(Math.cos((a - prevAng) * Math.PI / 360), 2), xin = x + gap * 0.6;
+          k.line(x, y0, xin, y0, "rgba(255,181,71," + (0.25 + 0.75 * flux) + ")", 1 + 6 * flux);
+          sg(k, xin, y0, bw, H * 0.18, a, stages[i][0]);
+          var up = flux * pUp, dn = flux * (1 - pUp), xo = xin + bw;
+          k.line(xo, y0, xo + gap * 0.35, y0 - H * 0.12, "rgba(255,181,71," + (0.15 + 0.85 * up) + ")", 0.5 + 6 * up);
+          k.line(xo, y0, xo + gap * 0.35, y0 + H * 0.12, "rgba(255,181,71," + (0.15 + 0.85 * dn) + ")", 0.5 + 6 * dn);
+          k.text((100 * up).toFixed(1) + "%", xo + gap * 0.35, y0 - H * 0.15, { size: 11, color: "#ece6da" });
+          k.text((100 * dn).toFixed(1) + "%", xo + gap * 0.35, y0 + H * 0.12 + 18, { size: 11, color: "#7c766b" });
+          if (i < n - 1) { k.rr(xo + gap * 0.35 - 3, y0 + H * 0.1, 6, 14, 2, "rgba(224,90,70,.8)"); k.line(xo + gap * 0.35, y0 - H * 0.12, xo + gap * 0.6, y0, "rgba(255,181,71," + (0.25 + 0.75 * up) + ")", 1 + 6 * up); }
+          flux = up; prevAng = a; x = xo + gap * 0.4;
+        }
+        k.text("percentages of the original beam · red: blocked", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      var R = Math.min(W, H) * 0.32, cx = W * (beat === 6 ? 0.3 : 0.5), cy = H * 0.5;
+      if (beat === 4 || beat === 7) { bloch(k, cx, cy, R, V.bt * Math.PI / 180, V.bp * Math.PI / 180); return; }
+      if (beat === 5) {
+        var w = now / 900, th5 = 1.0; trail.push([th5, w]); if (trail.length > 80) trail.shift();
+        bloch(k, cx, cy, R, th5, w, trail); k.line(cx + R * 1.25, cy + R * 0.6, cx + R * 1.25, cy - R * 0.6, "#ece6da", 2); k.text("B", cx + R * 1.25 + 10, cy - R * 0.6, { size: 13, align: "left" });
+        return;
+      }
+      if (beat === 6) {
+        var d = V.det, Om = 1, Oe = Math.sqrt(Om * Om + d * d), t = (now / 700) % 14;
+        var nx = Om / Oe, nz = d / Oe, ca = Math.cos(Oe * t), sa = Math.sin(Oe * t);
+        var vx = nx * nz * (1 - ca), vy = -nx * sa * 1, vz = nz * nz + (1 - nz * nz) * ca;
+        vy = -nx * sa; var thv = Math.acos(Math.max(-1, Math.min(1, vz))), phv = Math.atan2(vy, vx);
+        trail.push([thv, phv]); if (trail.length > 120) trail.shift();
+        bloch(k, cx, cy, R * 0.85, thv, phv, trail);
+        var A = k.axes(W * 0.58, H * 0.15, W * 0.38, H * 0.6, [0, 14], [0, 1.05], { xl: "time · Ω", yl: "P↓" });
+        k.plot(A, function (s) { return Om * Om / (Oe * Oe) * Math.pow(Math.sin(Oe * s / 2), 2); }, [0, 14], "#ffb547", 2.2, 400);
+        k.circle(A.X(t), A.Y(Om * Om / (Oe * Oe) * Math.pow(Math.sin(Oe * t / 2), 2)), 5, "#ece6da");
+      }
+    }
+  });
+})();
+</script>

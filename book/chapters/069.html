@@ -1,0 +1,68 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In the late 1930s, physicists computed the first correction to the electron’s properties from QED and got infinity. Not a large number: infinity. For a decade it looked as if quantum field theory was broken. It wasn’t. The infinities turned out to sit only in quantities that can never be measured on their own, and to cancel in every prediction that can. Learning to see that was the hardest step in twentieth-century physics, and it starts with one loop.</p>
+  <p>On the plate: two predictions that each depend on an arbitrary cutoff. Move the cutoff. Their difference does not move.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Where infinity comes from</h2>
+  <p>A closed loop in a Feynman diagram carries a momentum {{tex:k}} that nothing fixes, so it is integrated over all values (Chapter 64). At large {{tex:k}}, propagators fall like {{tex:1/k^2}} or {{tex:1/k}}, while the integral {{tex:\int d^4k}} grows like {{tex:k^4}}. If the powers don’t win, the integral diverges at high momentum: an <em>ultraviolet divergence</em>, from arbitrarily short distances.</p>
+  <p>Count powers and you get the <em>superficial degree of divergence</em> {{tex:D}}. In QED, {{tex:D = 4 - E_\gamma - \tfrac32E_e}}, where {{tex:E_\gamma}} and {{tex:E_e}} count external photons and electrons. Only diagrams with few external lines can diverge: the photon’s self-energy ({{tex:D = 2}}), the electron’s ({{tex:D = 1}}), and the vertex ({{tex:D = 0}}). Three kinds of infinity, no more, however many loops you draw. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Taming the integrals</h2>
+  <p>To handle a divergent integral, first make it finite, then see what survives. One way is a cutoff {{tex:\Lambda}}: stop at momenta above it. The modern way, introduced by Gerard ’t Hooft and Martinus Veltman in 1972, is <em>dimensional regularization</em>: compute in {{tex:d = 4 - 2\epsilon}} dimensions, where the integral converges, and watch the answer as {{tex:\epsilon \to 0}}. Divergences appear as poles, from the Gamma function’s {{tex:\Gamma(\epsilon) \approx 1/\epsilon - \gamma}}. It respects gauge symmetry, which a crude cutoff does not.</p>
+  <p>Two tools do most of the work. <em>Feynman parameters</em> combine denominators, {{tex:\frac{1}{AB} = \int_0^1\frac{dx}{[xA + (1-x)B]^2}}}, and a shift of {{tex:k}} then makes the integral spherically symmetric, and doable.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The vacuum polarization loop</h2>
+  <p>A photon can briefly become an electron–positron pair and back. That loop, {{tex:\Pi(q^2)}}, diverges logarithmically. With a cutoff it reads, roughly, {{tex:\Pi(q^2) \approx \frac{\alpha}{3\pi}\ln\frac{\Lambda^2}{m^2}}} plus a finite function of {{tex:q^2}}. Move the cutoff to <span class="tangle" data-var="L" data-min="2" data-max="40" data-step="1" data-value="10" data-px="4"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 cutoff">10</span><button type="button" data-de="1" aria-label="Higher">›</button></span> (log₁₀ of {{tex:\Lambda/m}}).</p>
+  <p>The plate shows {{tex:\Pi}} at two momenta, {{tex:Q = 10m}} and {{tex:Q = 1000m}}. Both slide with the cutoff. Their <em>difference</em> stays fixed, at {{tex:\frac{\alpha}{3\pi}\ln(10^4) = 0.0071}} for large {{tex:Q}}. Measurable things, like how the strength of the force changes between two distances, are differences of this kind. The infinity is the same at every momentum, so it never enters a comparison.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The clue in the infinity</h2>
+  <p>The divergent part of the photon loop has exactly the form of a term already in the Lagrangian, {{tex:F_{\mu\nu}F^{\mu\nu}}}. So it can be absorbed into a redefinition of the electron’s charge. The divergent parts of the electron loops absorb into its mass and the normalization of its field. Nothing new is needed. The charge you write in the Lagrangian, the “bare” charge, is not the charge you measure, and only the measured one appears in predictions. That is renormalization, the next chapter. The infinity was telling us that the bare parameters were never observable.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Ultraviolet divergences from loops, the superficial degree of divergence and QED’s three divergent functions, cutoffs and dimensional regularization, Feynman parameters, and the vacuum polarization loop with its cutoff-independent differences.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do loop integrals diverge?<span class="tap">tap</span></div><div class="a">The loop momentum is unconstrained, and at large k the integrand does not fall fast enough to beat d⁴k.</div></div>
+  <div class="qa"><div class="q">Why is dimensional regularization preferred?<span class="tap">tap</span></div><div class="a">It keeps gauge symmetry, which simple cutoffs break.</div></div>
+  <div class="qa"><div class="q">Why doesn’t the cutoff affect predictions?<span class="tap">tap</span></div><div class="a">It enters only as a constant that is the same at every momentum, absorbed into the measured charge, mass and field normalization.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Using {{tex:D = 4 - E_\gamma - \tfrac32E_e}}, what is the superficial degree of divergence of the electron self-energy (two external electrons, no external photons)?</p>
+    <form class="calc" data-answer="1" data-tol="0.01" data-ok="Yes: 4 − 0 − 3 = 1, linearly divergent by power counting (gauge symmetry softens it to logarithmic)." data-hint="E_e = 2, E_γ = 0."><span>D =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Degree"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. ’t Hooft and M. Veltman, Nucl. Phys. B 44, 189 (1972). M. D. Schwartz, Quantum Field Theory and the Standard Model, ch. 16. M. E. Peskin and D. V. Schroeder, ch. 7. Checked by code: renormalized one-loop vacuum polarization at Q = 10, 100, 1000 m equals (α/3π)(ln Q²/m² − 5/3) to 10⁻⁶ at large Q; difference between Q = 10m and 1000m fixed.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { L: 10 }, a = 1 / 137.036;
+  function Pi(lQ, lL) { return a / (3 * Math.PI) * (2 * lL * Math.LN10) - a / (3 * Math.PI) * (2 * lQ * Math.LN10 - 5 / 3) * 0 + a / (3 * Math.PI) * (2 * lQ * Math.LN10 - 5 / 3) * -1; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Two cutoff-dependent values and their fixed difference.", "A loop: one momentum, unconstrained.", "Feynman parameters combine denominators.", "Π at Q = 10m (white) and 1000m (amber) against the cutoff.", "The infinity has the shape of a term already there.", "Loops."][beat]; },
+    readout: function () { if (beat === 3 || beat === 0) { var p1 = Pi(1, V.L), p2 = Pi(3, V.L); return "Π(10m) = " + p1.toFixed(4) + " · Π(1000m) = " + p2.toFixed(4) + " · difference " + (p1 - p2).toFixed(4); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A;
+      if (beat === 0 || beat === 3 || beat === 5) {
+        A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [2, 40], [-0.02, 0.45], { xl: "log₁₀ cutoff Λ/m", yl: "Π" });
+        k.plot(A, function (l) { return Pi(1, l); }, [2, 40], "#ece6da", 2); k.plot(A, function (l) { return Pi(3, l); }, [2, 40], "#ffb547", 2.5);
+        var x = A.X(V.L); k.line(x, A.Y(Pi(1, V.L)), x, A.Y(Pi(3, V.L)), "#e05a46", 3); k.text("fixed gap", x + 6, (A.Y(Pi(1, V.L)) + A.Y(Pi(3, V.L))) / 2, { size: 12, align: "left", color: "#e05a46" });
+        return;
+      }
+      if (beat === 1 || beat === 4) { var cx = W / 2, cy = H / 2, r = Math.min(W, H) * 0.18; c.strokeStyle = "#ffcc33"; c.lineWidth = 2; c.beginPath(); for (var i = 0; i <= 30; i++) c.lineTo(cx - r * 2.4 + i * (r * 1.4) / 30, cy + 6 * Math.sin(i * 1.6)); c.stroke(); c.beginPath(); for (i = 0; i <= 30; i++) c.lineTo(cx + r + i * (r * 1.4) / 30, cy + 6 * Math.sin(i * 1.6)); c.stroke(); c.strokeStyle = "#ece6da"; c.lineWidth = 2.5; c.beginPath(); c.arc(cx, cy, r, 0, 2 * Math.PI); c.stroke(); var t = now / 600; k.circle(cx + r * Math.cos(t), cy + r * Math.sin(t), 5, "#ffb547"); k.text(beat === 1 ? "k: any value, −∞ to ∞" : "divergent part ∝ F_μν F^μν: absorbed into the charge", cx, cy + r + 34, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 1], [0, 1.1], { xl: "Feynman parameter x" }); k.plot(A, function (x) { return 4 * x * (1 - x); }, [0, 1], "#ffb547", 2.5); k.text("weight x(1 − x) in the photon loop", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

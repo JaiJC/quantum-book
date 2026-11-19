@@ -1,0 +1,6 @@
+Earth period days 365.2513758445099
+Mars a=1.524 AU period yr 1.8813840182163768
+rocket ve=4.4 km/s, ratio 10: dv km/s 10.131374409173803
+escape/circular 1.4142135623730951
+Foucault Paris lat 48.85: precession hours 31.87295705707878
+Cavendish density 5.448 vs modern mean density Earth 5.5132587385890925

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>172. Vision and single-photon detection in the retina</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="172">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>172</b> &nbsp;·&nbsp; Vision and single-photon detection in the retina</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">172</div><div class="part">Part Four · Quantum biology</div><h1>Vision and single-photon detection in the retina</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">In a dark room, after half an hour of adaptation, your eye is a photon detector close to the physical limit. A single rod cell responds to a single photon, and you can see a flash containing only a handful. In 2016 an experiment using a true single-photon source suggested people can sometimes detect even one photon, slightly but measurably above chance. The photochemistry is among the fastest reactions in biology; the perception claim is subtle and statistical. This chapter separates the two.</p>
+  <p>On the plate: how often a flash is seen, as its brightness changes.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Rhodopsin and amplification</h2>
+  <p>A photon absorbed by rhodopsin isomerizes its retinal chromophore from 11-cis to all-trans in about 200 femtoseconds, as Robert Schoenlein, Charles Shank and colleagues measured in 1991, one of the fastest reactions known, with a quantum yield about 0.67. The excited state’s shape is set by quantum chemistry: a trivial effect in Lambert’s sense, but an exquisitely tuned one. The activated rhodopsin then triggers a biochemical cascade: one molecule activates hundreds of transducin proteins, each turning on an enzyme that destroys thousands of cGMP molecules, closing ion channels and producing a current pulse of about a picoampere. Denis Baylor, Trevor Lamb and King-Wai Yau recorded these single-photon responses in toad rods in 1979. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Counting photons at the threshold</h2>
+  <p>In 1942 Selig Hecht, Simon Shlaer and Maurice Pirenne flashed dim lights at observers and recorded how often they saw them. Because photons arrive randomly, the number absorbed follows a Poisson distribution; if seeing requires at least <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> absorptions, the frequency-of-seeing curve has a shape fixed by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> alone. Their curves fit <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> between 5 and 7. Set the threshold <span class="tangle" data-var="k" data-min="1" data-max="12" data-step="1" data-value="6" data-px="14"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Threshold">6</span><button type="button" data-de="1" aria-label="More">›</button></span> photons and compare the curves: the higher <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>, the steeper. The limit is not the rods, which respond to single photons, but downstream processing that must reject false alarms from spontaneous rhodopsin activations, about one per rod every few minutes. Fred Rieke and Baylor reviewed this in 1998. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>One photon?</h2>
+  <p>Classical light sources cannot deliver exactly one photon. In 2016 Jonathan Tinsley, Alipasha Vaziri and colleagues used a heralded single-photon source, spontaneous parametric down-conversion, in a two-alternative forced-choice design: in each trial a photon went into one of two time windows, and observers guessed which. Across more than 30,000 trials, observers were right about 51.6% of the time on single-photon trials, slightly above the 50% of guessing, with higher accuracy when the previous trial had also succeeded. With a correct rate of <span class="tangle" data-var="p" data-min="0.5" data-max="0.56" data-step="0.002" data-dec="3" data-value="0.516" data-px="200"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Correct rate">0.516</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and <span class="tangle" data-var="N" data-min="500" data-max="30000" data-step="500" data-value="2500" data-px="0.05"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Trials">2500</span><button type="button" data-de="1" aria-label="More">›</button></span> analysed trials, the plate computes how many standard errors above chance the result is. Small effects need many trials, and independent replication. <span class="tag">Established</span> for the photochemistry; <span class="tag">Debated</span>, leaning supported, for single-photon perception.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Rhodopsin’s 200 fs isomerization, the amplification cascade in rods, single-photon rod currents, Poisson frequency-of-seeing analysis, the role of false alarms in setting the perceptual threshold, and the statistics of the 2016 single-photon experiment.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How fast is the primary event of vision?<span class="tap">tap</span></div><div class="a">About 200 femtoseconds for retinal’s cis–trans isomerization.</div></div>
+  <div class="qa"><div class="q">Why does the HSP curve shape reveal the threshold?<span class="tap">tap</span></div><div class="a">Poisson statistics fix the curve’s steepness for a given minimum number of absorbed photons.</div></div>
+  <div class="qa"><div class="q">Why is a single-photon source needed?<span class="tap">tap</span></div><div class="a">Classical light always has Poisson-distributed photon numbers, never exactly one.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> In a two-choice task at chance, the standard error of the proportion correct is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mn>0.25</mn><mi mathvariant="normal">/</mi><mi>N</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{0.25/N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.305em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord">0.25/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-2.895em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span></span>. What is it for 2,500 trials?</p>
+    <form class="calc" data-answer="0.01" data-tol="0.0005" data-ok="Yes: 0.01, so 51.6% is 1.6 standard errors above chance with 2,500 trials; more trials sharpen it." data-hint="√(0.25/2500)."><span>SE =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Standard error"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. Hecht, S. Shlaer and M. H. Pirenne, J. Gen. Physiol. 25, 819 (1942). D. A. Baylor, T. D. Lamb and K.-W. Yau, J. Physiol. 288, 613 (1979). R. W. Schoenlein et al., Science 254, 412 (1991). F. Rieke and D. A. Baylor, Rev. Mod. Phys. 70, 1027 (1998). J. N. Tinsley et al., Nat. Commun. 7, 12172 (2016).</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 173</div><div class="t">Quantum effects in ion channels</div><p style="text-align:left">A potassium channel passes 10⁸ ions per second and rejects sodium. Some suggest quantum coherence helps. Here is why most doubt it.</p><p style="text-align:left"><a class="v" href="173.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="171.html">← 171. DNA mutation and proton tunneling</a><a href="../index.html">Contents</a><a href="173.html">173. Quantum effects in ion channels →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { k: 6, p: 0.516, N: 2500 };
+  function seen(mu, k) { var s = 0, t = Math.exp(-mu); for (var n = 0; n < k; n++) { s += t; t *= mu / (n + 1); } return 1 - s; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Probability of seeing vs flash strength.", "One photon → hundreds of transducins → a current.", "Frequency-of-seeing curves for thresholds 1–12.", "Two-alternative forced choice: how far above chance?", "Vision."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "threshold " + V.k + " photons · seen 50% at mean ≈ " + (function () { var lo = 0, hi = 50; for (var i = 0; i < 50; i++) { var m = (lo + hi) / 2; if (seen(m, V.k) < 0.5) lo = m; else hi = m; } return lo.toFixed(1); })() + " absorbed photons"; if (beat === 3) { var se = Math.sqrt(0.25 / V.N), z = (V.p - 0.5) / se; return V.N + " trials · " + (V.p * 100).toFixed(1) + "% correct · SE " + se.toFixed(4) + " · z = " + z.toFixed(2); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { var stages = [["1 rhodopsin", 1], ["~100s transducin", 2.3], ["~10⁴ cGMP destroyed", 4], ["~1 pA current", 3]]; stages.forEach(function (s, j) { var x = W * (0.14 + j * 0.24), h = s[1] / 4 * H * 0.5; k.rr(x - W * 0.08, H * 0.75 - h, W * 0.16, h, 4, "rgba(255,181,71," + (0.4 + j * 0.15).toFixed(2) + ")"); k.text(s[0], x, H * 0.82, { size: 10, color: "#b9b2a5" }); }); return; }
+      if (beat === 3) { var se = Math.sqrt(0.25 / V.N); A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.76, [0.47, 0.57], [0, 1.05], { xl: "proportion correct" }); k.plot(A, function (x) { return Math.exp(-Math.pow((x - 0.5) / se, 2) / 2); }, [0.47, 0.57], "rgba(236,230,218,.7)", 2, 400); k.line(A.X(V.p), A.Y(0), A.X(V.p), A.Y(1), "#ffb547", 3); k.text("chance distribution (white); observed (amber)", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-0.5, 1.6], [0, 1.05], { xl: "log₁₀ mean photons absorbed", yl: "probability seen" }); [1, 3, 9, 12].forEach(function (kk) { k.plot(A, function (lx) { return seen(Math.pow(10, lx), kk); }, [-0.5, 1.6], "rgba(236,230,218,.3)", 1.2, 200); }); k.plot(A, function (lx) { return seen(Math.pow(10, lx), V.k); }, [-0.5, 1.6], "#ffb547", 2.6, 300);
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

@@ -1,0 +1,85 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Sooner or later you will write a quantum program, for a course, a project, or to run on real hardware through the cloud. Three open-source frameworks dominate: IBM’s Qiskit, Google’s Cirq, and Xanadu’s PennyLane. They describe the same mathematics with different conventions, and the most common beginner’s bug, getting qubit order backwards, comes from exactly those differences. This chapter writes one circuit three ways and checks each against the book’s own simulator.</p>
+  <p>On the plate: the Bell state, sampled by the book’s simulator.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>One circuit, three frameworks</h2>
+  <p>A Hadamard on qubit 0, then a CNOT from 0 to 1, then measure: the Bell state of Chapter 99. In Qiskit 2.x:</p>
+  <pre class="code">from qiskit import QuantumCircuit
+from qiskit.primitives import StatevectorSampler
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+res = StatevectorSampler().run([qc], shots=1000).result()
+print(res[0].data.meas.get_counts())   <span class="cm"># about 500 '00', 500 '11'</span></pre>
+  <p>In Cirq:</p>
+  <pre class="code">import cirq
+
+q0, q1 = cirq.LineQubit.range(2)
+c = cirq.Circuit(cirq.H(q0), cirq.CNOT(q0, q1), cirq.measure(q0, q1, key="m"))
+print(cirq.Simulator().run(c, repetitions=1000).histogram(key="m"))</pre>
+  <p>In PennyLane:</p>
+  <pre class="code">import pennylane as qml
+
+dev = qml.device("default.qubit", wires=2)
+
+@qml.qnode(dev)
+def bell():
+    qml.Hadamard(wires=0)
+    qml.CNOT(wires=[0, 1])
+    return qml.probs(wires=[0, 1])
+
+print(bell())   <span class="cm"># [0.5, 0, 0, 0.5]</span></pre>
+  <p>All three agree with the plate: half 00, half 11, never 01 or 10. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The qubit-order bug</h2>
+  <p>Now apply X to qubit 0 only, and read the output as each framework prints it. Choose: <button type="button" class="v" data-pick="fw:qiskit">Qiskit</button> <button type="button" class="v" data-pick="fw:cirq">Cirq</button> <button type="button" class="v" data-pick="fw:penny">PennyLane</button>, with X on qubit <button type="button" class="v" data-pick="q:0">0</button> or <button type="button" class="v" data-pick="q:1">1</button>. Qiskit writes bit strings <em>little-endian</em>: qubit 0 is the <em>rightmost</em> character, so X on qubit 0 prints “01”. Cirq and PennyLane, like this book (Chapter 98), put qubit 0 first: “10”, or index 2 in a probability vector. Neither convention is wrong. Mixing them silently swaps qubits and gives answers that look plausible. Always test with a circuit whose answer you know. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Transpiling, hardware, and error mitigation</h2>
+  <p>Before running on a device, a <em>transpiler</em> rewrites the circuit into the backend’s native gates and routes it onto its connectivity (Chapter 142); in Qiskit, <code>generate_preset_pass_manager(optimization_level=3, backend=backend)</code> does this, and the gate count can grow several-fold. On today’s noisy hardware, <em>error mitigation</em> estimates noise-free expectation values without full error correction. <em>Zero-noise extrapolation</em> (ZNE) deliberately amplifies noise, for example by repeating gates, measures at several noise levels, and extrapolates to zero: with values {{tex:E_1}} at the normal noise and {{tex:E_3}} at triple the noise, a linear fit gives {{tex:E_0 = (3E_1 - E_3)/2}}. <em>Probabilistic error cancellation</em> (PEC) inverts a learned noise model by sampling, unbiased but with a sampling cost that grows exponentially with circuit size. Kristan Temme, Sergey Bravyi and Jay Gambetta introduced both in 2017. Mitigation is a bridge, not a substitute for error correction. <span class="tag">Established</span></p>
+  <p>Frameworks change fast; the code here was checked against Qiskit 2.x, Cirq 1.6 and PennyLane 0.45 in November 2026.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The same circuit in Qiskit, Cirq and PennyLane, the little-endian versus big-endian qubit-order trap, transpilation, and zero-noise extrapolation and probabilistic error cancellation with their costs.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does Qiskit print X on qubit 0 of two?<span class="tap">tap</span></div><div class="a">“01”: qubit 0 is the rightmost character.</div></div>
+  <div class="qa"><div class="q">What does ZNE assume?<span class="tap">tap</span></div><div class="a">That the expectation value varies smoothly with noise strength, so it can be extrapolated to zero.</div></div>
+  <div class="qa"><div class="q">Why doesn’t PEC scale?<span class="tap">tap</span></div><div class="a">Its sampling overhead grows exponentially with the total noise in the circuit.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An expectation value is 0.80 at normal noise and 0.50 at triple noise. What does linear ZNE estimate?</p>
+    <form class="calc" data-answer="0.95" data-tol="0.005" data-ok="Yes: (3 × 0.80 − 0.50)/2 = 0.95." data-hint="E₀ = (3E₁ − E₃)/2."><span>E₀ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Estimate"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Qiskit 2.x documentation (IBM, 2026). Cirq 1.6 documentation (Google). PennyLane 0.45 release notes (Xanadu, May 2026). K. Temme, S. Bravyi and J. M. Gambetta, Phys. Rev. Lett. 119, 180509 (2017). Last checked 18 November 2026. Checked by the plate: Bell-state sampling with the book’s state-vector simulator.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, seed = 11, counts = [0, 0, 0, 0];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function sample() { var p = [0.5, 0, 0, 0.5]; if (Book.QSim) { var s = Book.QSim(2); s.g("H", 0); s.cx(0, 1); p = s.probs(); } counts = [0, 0, 0, 0]; for (var t = 0; t < 1000; t++) { var u = rnd(), i = 0; while (i < 3 && u > p[i]) { u -= p[i]; i++; } counts[i]++; } }
+  function shown() { var fw = Book.state.picks.fw || "qiskit", q = +(Book.state.picks.q || 0), b = q === 0 ? "10" : "01"; if (fw === "qiskit") return { s: b.split("").reverse().join(""), note: "little-endian: qubit 0 rightmost" }; if (fw === "cirq") return { s: b + " (histogram key " + parseInt(b, 2) + ")", note: "qubit 0 first" }; return { s: "probs index " + parseInt(b, 2), note: "qubit 0 first" }; }
+  Book.plate({
+    init: function () { sample(); },
+    beat: function (i) { beat = i; if (i <= 1) sample(); },
+    caption: function () { return ["Bell state, 1000 shots.", "Counts from the book’s simulator.", "How each framework prints X on one qubit.", "ZNE: extrapolate to zero noise.", "Programming."][beat]; },
+    readout: function () { if (beat <= 1 || beat === 4) return "00: " + counts[0] + " · 01: " + counts[1] + " · 10: " + counts[2] + " · 11: " + counts[3]; if (beat === 2) { var r = shown(); return (Book.state.picks.fw || "qiskit") + " prints " + r.s + " · " + r.note; } if (beat === 3) return "E(1) = 0.80, E(3) = 0.50 → E(0) = 0.95"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat <= 1 || beat === 4) { A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.74, [0, 4], [0, 600], { yl: "counts" }); ["00", "01", "10", "11"].forEach(function (lab, j) { k.rr(A.X(j + 0.2), A.Y(counts[j]), A.X(0.6) - A.X(0), A.Y(0) - A.Y(counts[j]), 3, "rgba(255,181,71,.85)"); k.text(lab, A.X(j + 0.5), A.Y(0) + 18, { size: 13 }); }); return; }
+      if (beat === 2) { var q = +(Book.state.picks.q || 0), r = shown(); for (i = 0; i < 2; i++) { var y = H * (0.25 + i * 0.18); k.text("qubit " + i, W * 0.2, y + 5, { size: 13, color: "#b9b2a5", align: "right" }); k.line(W * 0.24, y, W * 0.7, y, "rgba(236,230,218,.5)", 1.5); if (i === q) { k.rr(W * 0.4 - 16, y - 16, 32, 32, 4, "#14120f", "#ffb547"); k.text("X", W * 0.4, y + 5, { size: 14, color: "#ffb547" }); } } k.text(r.s, W / 2, H * 0.72, { size: 22, color: "#ffb547" }); k.text(r.note, W / 2, H * 0.82, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 3.5], [0.3, 1.05], { xl: "noise scale", yl: "expectation value" }); k.plot(A, function (x) { return 0.95 - 0.15 * x; }, [0, 3.5], "rgba(255,181,71,.5)", 1.5); k.circle(A.X(1), A.Y(0.8), 6, "#ece6da"); k.circle(A.X(3), A.Y(0.5), 6, "#ece6da"); k.circle(A.X(0), A.Y(0.95), 7, "#ffb547"); k.text("extrapolated 0.95", A.X(0) + 10, A.Y(0.95) - 8, { size: 11, color: "#ffb547", align: "left" }); }
+    }
+  });
+})();
+</script>

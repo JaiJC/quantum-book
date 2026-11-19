@@ -1,0 +1,7 @@
+Compton wavelength pm 2.42631023538
+laser 5 mW 532 nm photons/s 1.3390750069663608e+16
+h/e V s 4.135667696923859e-15
+cesium threshold nm 579.3654112149532
+sodium threshold nm 525.3567711864407
+zinc threshold nm 286.33763972286374
+UV 250nm photon eV 4.95936792  K on zinc 0.62936792

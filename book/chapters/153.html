@@ -1,0 +1,57 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Send a photon down 1,000 km of the best optical fibre and the odds it arrives are one in {{tex:10^{20}}}. Classical networks solve this with amplifiers every hundred kilometres. A quantum signal cannot be amplified, because an amplifier would have to copy an unknown state, which no-cloning forbids (Chapter 102). The way through is a <em>quantum repeater</em>: create entanglement over short links, store it, and stitch the links together by teleportation.</p>
+  <p>On the plate: entanglement rate against distance, with and without repeaters.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Entanglement swapping and purification</h2>
+  <p>If A shares a Bell pair with B, and B shares another with C, then a Bell measurement at B teleports the entanglement, leaving A and C entangled though they never interacted: <em>entanglement swapping</em> (Chapter 103). Errors accumulate with each swap, so Hans Briegel, Wolfgang Dür, Ignacio Cirac and Peter Zoller proposed in 1998 to interleave swapping with <em>purification</em>: consume two noisy pairs to make one better pair (Chapter 106). Lu-Ming Duan, Mikhail Lukin, Cirac and Zoller (DLCZ, 2001) showed how to do it with atomic ensembles and linear optics. Links are <em>heralded</em>: a detector click tells both ends that entanglement succeeded, so they keep it in a quantum memory and wait for neighbouring links. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Plan a repeater chain</h2>
+  <p>Distance <span class="tangle" data-var="L" data-min="50" data-max="2000" data-step="50" data-value="1000" data-px="0.3"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Distance km">1000</span><button type="button" data-de="1" aria-label="Longer">›</button></span> km, split into <span class="tangle" data-var="n" data-min="1" data-max="64" data-step="1" data-value="16" data-px="3"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Segments">16</span><button type="button" data-de="1" aria-label="More">›</button></span> segments. The plate uses an idealized model: 0.2 dB/km fibre, a source of 10⁹ attempts per second for direct transmission, heralded links that succeed with probability (half the segment transmission), each attempt waiting a light-travel time for the herald, perfect memories, and deterministic swapping, with the standard factor {{tex:(3/2)}} per nesting level for waiting on neighbours. Direct transmission falls exponentially with distance; the repeater falls only polynomially. Real memories decohere and real swaps fail, so practical rates are far lower, and the race is to build memories that last long enough. <span class="tag">Established</span> for the scaling; the numbers are a model.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Distributed computing, and India’s network</h2>
+  <p>Linking quantum processors lets a computation span modules. In February 2025 Dougal Main and colleagues at Oxford ran Grover’s search across two trapped-ion modules two metres apart, teleporting a controlled-Z gate between them through a photonic link with 86% fidelity. Satellite links avoid fibre loss over continental distances; China’s Micius satellite distributed entanglement over 1,200 km in 2017. India’s National Quantum Mission reported in April 2026 a 1,000 km secure-communication network built with QNu Labs, using trusted nodes, not yet entanglement-based repeaters. <span class="tag">Established</span> for the experiments.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Why quantum signals cannot be amplified, entanglement swapping, purification, heralded links and memories, the DLCZ scheme, repeater scaling, distributed gates, and the current networks.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why can’t quantum signals be amplified?<span class="tap">tap</span></div><div class="a">Amplification would copy an unknown quantum state, forbidden by no-cloning.</div></div>
+  <div class="qa"><div class="q">What does a herald do?<span class="tap">tap</span></div><div class="a">Tells both ends a link succeeded, so they store it and wait for the rest of the chain.</div></div>
+  <div class="qa"><div class="q">What limits real repeaters most?<span class="tap">tap</span></div><div class="a">Quantum memory lifetime and efficiency.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> At 0.2 dB/km, transmission through 1,000 km is {{tex:10^x}}. What is {{tex:x}}?</p>
+    <form class="calc" data-answer="-20" data-tol="0.1" data-ok="Yes: 200 dB is 10⁻²⁰. At 10⁹ photons a second, one arrives every three thousand years." data-hint="Divide the dB loss by 10."><span>x =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Exponent"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H.-J. Briegel, W. Dür, J. I. Cirac and P. Zoller, Phys. Rev. Lett. 81, 5932 (1998). L.-M. Duan, M. D. Lukin, J. I. Cirac and P. Zoller, Nature 414, 413 (2001). N. Sangouard et al., Rev. Mod. Phys. 83, 33 (2011). J. Yin et al., Science 356, 1140 (2017). D. Main et al., Nature 638, 383 (2025). National Quantum Mission, India, 1,000 km network announcement (April 2026). Last checked 18 November 2026.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { L: 1000, n: 16 };
+  function eta(L) { return Math.pow(10, -0.02 * L); }
+  function direct(L) { return 1e9 * eta(L); }
+  function rep(L, n) { var L0 = L / n, p = eta(L0) / 2, tau = L0 / 2e5, lev = Math.log2(Math.max(1, n)); return 1 / (tau / p * Math.pow(1.5, lev)); }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["Rate vs distance: direct (white) and repeater (amber).", "Swapping joins two links into one.", "Model: perfect memories, 0.2 dB/km.", "Two modules, one teleported gate.", "Quantum networks."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return V.L + " km · direct " + direct(V.L).toExponential(1) + " pairs/s · repeater (" + V.n + " segments) " + rep(V.L, V.n).toExponential(1) + " pairs/s"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { var xs = [0.15, 0.5, 0.85].map(function (f) { return W * f; }), cy = H * 0.5, t = (now / 3000) % 1; xs.forEach(function (x, j) { k.circle(x, cy, 14, "#ece6da"); k.text("ABC"[j], x, cy + 5, { size: 13, color: "#14120f" }); }); if (t < 0.5) { k.line(xs[0] + 14, cy, xs[1] - 14, cy, "rgba(255,181,71,.8)", 3); k.line(xs[1] + 14, cy, xs[2] - 14, cy, "rgba(255,181,71,.8)", 3); k.text("A–B and B–C entangled", W / 2, H * 0.75, { size: 12, color: "#b9b2a5" }); } else { k.ctx.strokeStyle = "rgba(255,181,71,.9)"; k.ctx.lineWidth = 3; k.ctx.beginPath(); k.ctx.moveTo(xs[0], cy - 16); k.ctx.quadraticCurveTo(W / 2, cy - 110, xs[2], cy - 16); k.ctx.stroke(); k.text("Bell measurement at B → A–C entangled", W / 2, H * 0.75, { size: 12, color: "#ffb547" }); } return; }
+      if (beat === 3) { [0.25, 0.75].forEach(function (f, j) { k.rr(W * f - W * 0.12, H * 0.35, W * 0.24, H * 0.3, 10, "#14120f", "rgba(236,230,218,.6)"); k.text("ion module " + (j + 1), W * f, H * 0.32, { size: 12, color: "#b9b2a5" }); }); var t2 = (now / 1500) % 1; k.line(W * 0.37, H * 0.5, W * 0.63, H * 0.5, "rgba(255,181,71,.4)", 2); k.glow(W * 0.37 + t2 * W * 0.26, H * 0.5, 8, "rgba(255,181,71,.8)"); k.text("teleported CZ, 86% fidelity", W / 2, H * 0.78, { size: 12, color: "#ffb547" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 2000], [-15, 10], { xl: "distance (km)", yl: "log₁₀ pairs per second" }); k.plot(A, function (L) { return Math.max(-15, Math.log10(direct(L))); }, [0, 2000], "rgba(236,230,218,.75)", 2.2, 300); k.plot(A, function (L) { return Math.max(-15, Math.log10(rep(L, V.n))); }, [20, 2000], "#ffb547", 2.5, 300); k.line(A.X(V.L), A.Y(-15), A.X(V.L), A.Y(10), "rgba(236,230,218,.25)", 1);
+    }
+  });
+})();
+</script>

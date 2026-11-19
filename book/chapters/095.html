@@ -1,0 +1,68 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A human genome is about 3.1 billion letters, each A, C, G or T: at two bits per letter, about 780 megabytes. Specialized compressors squeeze it to well under two bits per letter, because the sequence is not random: some letters and patterns are more common than others. How far can compression go? In 1948 Claude Shannon, at Bell Labs, answered that question for any source of data with a single number, its entropy, and in the same paper found the maximum rate at which information can cross a noisy channel. Quantum information theory is built on his foundations.</p>
+  <p>On the plate: the measured entropy of a sample of text, a sample of DNA, and random letters.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Entropy</h2>
+  <p>A source emits symbol {{tex:x}} with probability {{tex:p(x)}}. Shannon’s entropy is</p>
+  <div class="eq">{{texd:H(X) = -\sum_x p(x)\log_2p(x)\ \ \text{bits}}}</div>
+  <p>It is the average surprise per symbol. A fair coin has 1 bit; a coin that lands heads 99% of the time, 0.08 bits; four equally likely DNA bases, 2 bits. Choose a sample: <button type="button" class="v" data-pick="s:en">English text</button>, <button type="button" class="v" data-pick="s:dna">DNA</button>, <button type="button" class="v" data-pick="s:rnd">random letters</button>. The plate counts each symbol and computes the entropy of the single-letter frequencies. English letters carry about 4.1 bits each by frequency alone, well below the {{tex:\log_227 = 4.75}} of uniform letters and space; using context, Shannon estimated about 1 bit. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The compression limit</h2>
+  <p>Shannon’s <em>source coding theorem</em>: a long message of {{tex:n}} symbols can be compressed to about {{tex:nH}} bits and no fewer without loss. The reason is <em>typical sequences</em>: of all {{tex:|X|^n}} possible messages, almost all the probability falls on about {{tex:2^{nH}}} of them, each with probability near {{tex:2^{-nH}}}. Number those and you need only {{tex:nH}} bits. A <em>Huffman code</em>, giving frequent symbols short codewords and rare ones long, comes within one bit per symbol of the limit. The same idea, quantized, is Schumacher compression (Chapter 105), where qubits replace bits.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Mutual information and capacity</h2>
+  <p>How much does knowing {{tex:Y}} tell you about {{tex:X}}? The <em>mutual information</em> {{tex:I(X;Y) = H(X) - H(X|Y)}}. A noisy channel turns inputs into uncertain outputs, and its <em>capacity</em> is the largest mutual information any input distribution can achieve. For the binary symmetric channel, which flips each bit with probability {{tex:p}},</p>
+  <div class="eq">{{texd:C = 1 - H(p)}}</div>
+  <p>Set the flip probability to <span class="tangle" data-var="p" data-min="0" data-max="0.5" data-step="0.01" data-dec="2" data-value="0.11" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Flip probability">0.11</span><button type="button" data-de="1" aria-label="More">›</button></span>. Shannon’s <em>noisy channel coding theorem</em> says that at any rate below {{tex:C}}, codes exist that make errors as rare as you like; above it, none do. Remarkably, a channel that flips 11% of bits can still carry half a bit per use, reliably. It took until the 1990s, with turbo and LDPC codes, to get close to his limit in practice; your phone does so now. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Why this matters for what comes</h2>
+  <p>Quantum information inherits Shannon’s questions and changes the answers. A qubit can hold a continuum of states but yields at most one bit when read (Chapter 96). Quantum channels can carry classical information, quantum information, or private information, each with its own capacity, and entanglement can double some of them (Chapter 103). Quantum entropy (Chapter 105) reduces to Shannon’s for classical states. And in Part Four, the entropy of DNA sequences and of neural spike trains will reappear in biology.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Shannon entropy, the compression limit and typical sequences, Huffman coding, mutual information, channel capacity and the binary symmetric channel, and the noisy channel coding theorem.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What is the entropy of four equally likely DNA bases?<span class="tap">tap</span></div><div class="a">2 bits per base.</div></div>
+  <div class="qa"><div class="q">What does channel capacity guarantee?<span class="tap">tap</span></div><div class="a">That reliable communication is possible at any rate below C and impossible above it.</div></div>
+  <div class="qa"><div class="q">Why can compression approach nH bits?<span class="tap">tap</span></div><div class="a">Almost all probability falls on about 2^(nH) typical sequences.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the capacity of a binary symmetric channel that flips 11% of bits, {{tex:1 - H(0.11)}}?</p>
+    <form class="calc" data-answer="0.500" data-tol="0.005" data-ok="Yes: H(0.11) ≈ 0.4999, so C ≈ 0.500 bits per use." data-hint="H(p) = −p log₂p − (1−p) log₂(1−p)."><span>C =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Capacity"><span>bits</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: C. E. Shannon, Bell Syst. Tech. J. 27, 379 and 623 (1948); Bell Syst. Tech. J. 30, 50 (1951) (entropy of English). D. A. Huffman, Proc. IRE 40, 1098 (1952). T. M. Cover and J. A. Thomas, Elements of Information Theory. D. J. C. MacKay, Information Theory, Inference, and Learning Algorithms. Checked by code: C(0.11) = 0.5001, C(0.01) = 0.919; entropies of the plate’s samples computed from their letter counts.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { p: 0.11 };
+  var S = { en: "the quick study of physics rewards patience because every equation hides a story about how the world behaves and learning to read those stories takes time attention and many small surprises along the way", dna: "ATGGCGTACGATTACGGCTAGCTAGGCTTACGATCGATCGGATCCTAGGCTAAGCTTAGCGCGATATCGGATTACAGGCATTCGATGGCAATTGCGATCAGGCTAATGCCGATTACGGATCAAGCT", rnd: "" };
+  (function () { var seed = 7, a = "abcdefghijklmnopqrstuvwxyz "; for (var i = 0; i < 200; i++) { seed = (seed * 16807) % 2147483647; S.rnd += a[seed % 27]; } })();
+  function stats(t) { var c = {}; for (var i = 0; i < t.length; i++) c[t[i]] = (c[t[i]] || 0) + 1; var H = 0, n = t.length; Object.keys(c).forEach(function (k) { var p = c[k] / n; H -= p * Math.log2(p); }); return { c: c, H: H, n: n }; }
+  function Hb(p) { return p <= 0 || p >= 1 ? 0 : -(p * Math.log2(p) + (1 - p) * Math.log2(1 - p)); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var s = Book.state.picks.s || "en"; return ["Letter frequencies and entropy.", ({ en: "English", dna: "DNA", rnd: "random letters" })[s] + ": symbol frequencies.", "Typical sequences.", "Binary symmetric channel capacity.", "From Shannon to quantum.", "Information."][beat]; },
+    readout: function () { if (beat <= 1) { var st = stats(S[Book.state.picks.s || "en"]); return st.n + " symbols · " + Object.keys(st.c).length + " distinct · H = " + st.H.toFixed(2) + " bits/symbol"; } if (beat === 3) return "p = " + V.p.toFixed(2) + " · C = 1 − H(p) = " + (1 - Hb(V.p)).toFixed(3) + " bits"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, c = k.ctx;
+      if (beat <= 1 || beat === 5) { var st = stats(S[Book.state.picks.s || "en"]), keys = Object.keys(st.c).sort(function (a, b) { return st.c[b] - st.c[a]; }), mx = st.c[keys[0]] / st.n; A = k.axes(W * 0.08, H * 0.08, W * 0.86, H * 0.76, [0, keys.length], [0, mx * 1.1], { yl: "frequency" }); keys.forEach(function (ch, j) { var f = st.c[ch] / st.n; k.rr(A.X(j) + 1, A.Y(f), A.X(1) - A.X(0) - 2, A.Y(0) - A.Y(f), 2, "#ffb547"); k.text(ch === " " ? "␣" : ch, A.X(j + 0.5), A.Y(0) + 14, { size: Math.min(12, (A.X(1) - A.X(0)) * 0.8), color: "#b9b2a5" }); }); return; }
+      if (beat === 2) { var n = 20, p = 0.2; A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, n], [0, 0.25], { xl: "number of 1s in 20 flips (p = 0.2)", yl: "probability" }); var f = 1; for (var j = 0; j <= n; j++) { var cb = 1; for (var q = 0; q < j; q++) cb = cb * (n - q) / (q + 1); var pr = cb * Math.pow(p, j) * Math.pow(1 - p, n - j); k.rr(A.X(j) + 2, A.Y(pr), A.X(1) - A.X(0) - 4, A.Y(0) - A.Y(pr), 2, Math.abs(j - 4) <= 2 ? "#ffb547" : "rgba(255,181,71,.3)"); } k.text("typical set: sequences near the expected count carry almost all probability", W / 2, H * 0.95, { size: 11, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 0.5], [0, 1.05], { xl: "flip probability p", yl: "capacity, bits" }); k.plot(A, function (p) { return 1 - Hb(p); }, [0, 0.5], "#ffb547", 2.5, 300); k.circle(A.X(V.p), A.Y(1 - Hb(V.p)), 6, "#ece6da"); return; }
+      if (beat === 4) { [["bits", "Shannon entropy H", "#ece6da"], ["qubits", "von Neumann entropy S", "#ffb547"]].forEach(function (q, j) { var x = W * (0.3 + j * 0.4); k.rr(x - W * 0.15, H * 0.38, W * 0.3, H * 0.2, 10, "#14120f", q[2]); k.text(q[0], x, H * 0.46, { size: 16, color: q[2] }); k.text(q[1], x, H * 0.53, { size: 12, color: "#b9b2a5" }); }); }
+    }
+  });
+})();
+</script>

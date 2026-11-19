@@ -1,0 +1,3 @@
+== 099
+concurrence after losing qubit: GHZ 0 W 0.6666666666666667
+Bell reduced entropy 1.0

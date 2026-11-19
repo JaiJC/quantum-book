@@ -1,0 +1,56 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A leaf is a light-harvesting machine of astonishing efficiency. Hundreds of chlorophyll molecules act as antennas; when one absorbs a photon, the excitation hops from pigment to pigment until it reaches a reaction centre, where it separates charge. Under low light, nearly every absorbed photon makes it, with a quantum efficiency close to 100%. The machinery that achieves this is quantum chemistry: excited states, dipole couplings, excitons. It is beautiful, well understood, and entirely established. The controversy in the next chapter is about something narrower.</p>
+  <p>On the plate: energy transfer between two pigments as their distance changes.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Antennas</h2>
+  <p>Purple bacteria use ring-shaped complexes called LH2, whose structure Gerry McDermott and colleagues solved in 1995: two concentric rings of bacteriochlorophylls, nine absorbing at 800 nm (B800) and eighteen tightly packed ones absorbing at 850 nm (B850), held in place by proteins. Green sulfur bacteria use the Fenna–Matthews–Olson (FMO) complex, seven bacteriochlorophylls that funnel energy from a large antenna to the reaction centre. Plants use LHCII trimers. In all of them, the protein scaffold sets each pigment’s position, orientation and energy, tuning a downhill energy landscape toward the reaction centre. Robert Blankenship’s <em>Molecular Mechanisms of Photosynthesis</em> covers them in detail. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Förster transfer</h2>
+  <p>Theodor Förster showed in 1948 that an excited donor can pass its energy to an acceptor through the interaction of their transition dipoles, without emitting a photon. The rate falls with the sixth power of distance:</p>
+  <div class="eq">{{texd:k_\text{FRET} = \frac{1}{\tau_D}\Big(\frac{R_0}{R}\Big)^6,\qquad E = \frac{1}{1 + (R/R_0)^6}}}</div>
+  <p>where {{tex:\tau_D}} is the donor’s lifetime and {{tex:R_0}}, the Förster radius, depends on spectral overlap and orientation, typically 2–10 nm. Set {{tex:R_0 =}} <span class="tangle" data-var="R0" data-min="2" data-max="10" data-step="0.1" data-dec="1" data-value="5.0" data-px="6"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="R0 nm">5.0</span><button type="button" data-de="1" aria-label="Larger">›</button></span> nm and distance <span class="tangle" data-var="R" data-min="1" data-max="15" data-step="0.1" data-dec="1" data-value="5.0" data-px="5"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="R nm">5.0</span><button type="button" data-de="1" aria-label="Farther">›</button></span> nm. The steep switch near {{tex:R_0}} makes FRET a “molecular ruler”, used throughout biomedical research to measure distances inside proteins and between them. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Excitons</h2>
+  <p>When pigments are packed so closely that their coupling {{tex:J}} is comparable to or larger than the differences in their energies {{tex:\Delta}} and the disorder from the protein, the excitation no longer hops: it is shared. Two coupled pigments form two exciton states, split by {{tex:\sqrt{\Delta^2 + 4J^2}}}, each a superposition of excitation on both. Set {{tex:J =}} <span class="tangle" data-var="J" data-min="0" data-max="300" data-step="10" data-value="100" data-px="0.5"><button type="button" data-de="-1" aria-label="Weaker">‹</button><span class="num" role="slider" tabindex="0" aria-label="J cm-1">100</span><button type="button" data-de="1" aria-label="Stronger">›</button></span> cm⁻¹ and {{tex:\Delta =}} <span class="tangle" data-var="D" data-min="0" data-max="600" data-step="10" data-value="200" data-px="0.3"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Delta cm-1">200</span><button type="button" data-de="1" aria-label="Larger">›</button></span> cm⁻¹. In LH2’s B850 ring, couplings of a few hundred cm⁻¹ delocalize excitons over several pigments, shifting absorption to the red and speeding transfer. This is ordinary, “trivial” quantum mechanics in Lambert’s sense, and it is essential. Whether long-lived <em>coherent dynamics</em> among these states also matters is the next chapter’s question. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Antenna complexes (LH2, FMO, LHCII), Förster transfer and its sixth-power law, FRET as a ruler, exciton states and delocalization, and why near-unity efficiency follows from a tuned energy landscape.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">How does Förster transfer depend on distance?<span class="tap">tap</span></div><div class="a">As 1/R⁶.</div></div>
+  <div class="qa"><div class="q">When do excitons delocalize?<span class="tap">tap</span></div><div class="a">When the coupling J is comparable to or larger than energy differences and disorder.</div></div>
+  <div class="qa"><div class="q">Is excitonic structure a non-trivial quantum effect?<span class="tap">tap</span></div><div class="a">No: it is ordinary molecular quantum mechanics, though essential to function.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is the FRET efficiency at {{tex:R = 1.5R_0}}?</p>
+    <form class="calc" data-answer="0.0807" data-tol="0.002" data-ok="Yes: 1/(1 + 1.5⁶) = 1/12.4 ≈ 0.081." data-hint="1.5⁶ ≈ 11.39."><span>E ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Efficiency"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: T. Förster, Ann. Phys. 437, 55 (1948). G. McDermott et al., Nature 374, 517 (1995). R. E. Fenna and B. W. Matthews, Nature 258, 573 (1975). R. E. Blankenship, Molecular Mechanisms of Photosynthesis, 2nd ed. (Wiley, 2014). G. D. Scholes et al., Nat. Chem. 3, 763 (2011). Checked by code: E(1.5R₀) = 0.0807, E(2R₀) = 0.0154.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { R0: 5, R: 5, J: 100, D: 200 };
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Transfer efficiency vs distance.", "LH2: B800 (white) and B850 (amber) rings.", "FRET efficiency vs R / R₀.", "Two coupled pigments: exciton levels and mixing.", "Light harvesting."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var E = 1 / (1 + Math.pow(V.R / V.R0, 6)); return "R = " + V.R.toFixed(1) + " nm · R₀ = " + V.R0.toFixed(1) + " nm · efficiency " + E.toFixed(3); } if (beat === 3) { var th = 0.5 * Math.atan2(2 * V.J, V.D), c = Math.cos(th), s = Math.sin(th); return "splitting " + Math.sqrt(V.D * V.D + 4 * V.J * V.J).toFixed(0) + " cm⁻¹ · lower exciton: " + (c * c * 100).toFixed(0) + "% / " + (s * s * 100).toFixed(0) + "% on the two pigments"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat === 1) { var cx = W / 2, cy = H / 2, R1 = Math.min(W, H) * 0.34, R2 = R1 * 0.72; for (i = 0; i < 9; i++) { var a = i * 2 * Math.PI / 9; k.circle(cx + R1 * Math.cos(a), cy + R1 * Math.sin(a), 6, "rgba(236,230,218,.8)"); } for (i = 0; i < 18; i++) { var b = i * 2 * Math.PI / 18 + 0.1, lit = Math.cos(b - now / 600) > 0.6; k.circle(cx + R2 * Math.cos(b), cy + R2 * Math.sin(b), 5, lit ? "#ffb547" : "rgba(255,181,71,.35)"); } return; }
+      if (beat === 3) { var mid = H * 0.5, sc = H * 0.35 / 400, sp = Math.sqrt(V.D * V.D + 4 * V.J * V.J) / 2; k.line(W * 0.1, mid - V.D / 2 * sc, W * 0.28, mid - V.D / 2 * sc, "rgba(236,230,218,.8)", 2.5); k.line(W * 0.1, mid + V.D / 2 * sc, W * 0.28, mid + V.D / 2 * sc, "rgba(236,230,218,.8)", 2.5); k.text("pigments", W * 0.19, H * 0.92, { size: 11, color: "#b9b2a5" }); k.line(W * 0.45, mid - sp * sc, W * 0.63, mid - sp * sc, "#ffb547", 2.5); k.line(W * 0.45, mid + sp * sc, W * 0.63, mid + sp * sc, "#ffb547", 2.5); k.text("excitons", W * 0.54, H * 0.92, { size: 11, color: "#b9b2a5" }); var th = 0.5 * Math.atan2(2 * V.J, V.D), c = Math.cos(th) * Math.cos(th); k.rr(W * 0.75, H * 0.3, W * 0.06, H * 0.4 * c, 3, "#ffb547"); k.rr(W * 0.84, H * 0.3, W * 0.06, H * 0.4 * (1 - c), 3, "#ffb547"); k.text("lower exciton weights", W * 0.82, H * 0.25, { size: 10, color: "#b9b2a5" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 3], [0, 1.05], { xl: "R / R₀", yl: "transfer efficiency" }); k.plot(A, function (x) { return 1 / (1 + Math.pow(x, 6)); }, [0, 3], "#ffb547", 2.5, 300); var x = V.R / V.R0; k.circle(A.X(Math.min(3, x)), A.Y(1 / (1 + Math.pow(x, 6))), 6, "#ece6da");
+    }
+  });
+})();
+</script>

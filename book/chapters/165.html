@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Swap a hydrogen atom for deuterium, which has the same chemistry but twice the mass, and a reaction that breaks that bond slows down. The ratio of rates, the <em>kinetic isotope effect</em> (KIE), is one of chemistry’s sharpest tools. Classical theory, corrected for zero-point energy, caps it at about 6–7 at room temperature. Soybean lipoxygenase, an enzyme that oxidizes fatty acids, shows about 80, almost independent of temperature. Engineered mutants reach several hundred. Only tunnelling explains numbers like these.</p>
+  <p>On the plate: a KIE calculator.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The zero-point limit</h2>
+  <p>A C–H bond vibrates at about 2,900 cm⁻¹; even at absolute zero it keeps half a quantum of vibrational energy, its zero-point energy (Chapter 35). The heavier C–D bond vibrates at a frequency lower by the square root of the reduced-mass ratio, about 2,130 cm⁻¹, so it sits lower in its well. If the bond is fully broken at the transition state, the zero-point difference, about 386 cm⁻¹, adds to deuterium’s barrier:</p>
+  <div class="eq">{{texd:\text{KIE}_\text{max}\approx\exp\Big(\frac{hc\,\Delta\tilde\nu_\text{ZPE}}{k_BT}\Big)\approx 6.4\ \text{at 298 K}}}</div>
+  <p>This semiclassical picture also predicts that ln KIE is proportional to {{tex:1/T}}, and that the ratio of Arrhenius prefactors {{tex:A_H/A_D}} is close to 1, and it fixes the <em>Swain–Schaad</em> relation between H, D and T effects: {{tex:\ln(k_H/k_T)/\ln(k_D/k_T)\approx3.3}}. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Tunnelling signatures</h2>
+  <p>Set the C–H frequency <span class="tangle" data-var="nu" data-min="2600" data-max="3200" data-step="20" data-value="2900" data-px="0.3"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Frequency">2900</span><button type="button" data-de="1" aria-label="Higher">›</button></span> cm⁻¹ and a tunnelling contribution <span class="tangle" data-var="tun" data-min="0" data-max="1" data-step="0.05" data-dec="2" data-value="0.00" data-px="40"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Tunnelling share">0.00</span><button type="button" data-de="1" aria-label="More">›</button></span> (0 classical over-the-barrier, 1 pure tunnelling from a well-tuned geometry). The plate shows KIE against temperature. Over-the-barrier, the KIE falls as temperature rises; deep tunnelling from a preorganized geometry gives a large KIE that barely changes with temperature, because the hydrogen’s transfer is not thermally activated; only the protein’s gating motion is. Three experimental signatures point to tunnelling: KIEs well above 7, Arrhenius prefactor ratios far from 1, and temperature-independent KIEs. Soybean lipoxygenase shows all three, with KIE ≈ 80 at room temperature, and mutants that loosen the active site raise it to about 660, as Klinman’s group reported. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>How to read the numbers</h2>
+  <p>A large KIE alone is not proof: tunnelling also contributes in modest amounts to many reactions with ordinary KIEs. The strongest evidence is a combination: magnitude, temperature dependence, prefactor ratios and Swain–Schaad deviations, interpreted with models that include tunnelling explicitly. R. P. Bell’s <em>The Tunnel Effect in Chemistry</em> remains the classic treatment. The broader lesson for quantum biology: tunnelling is a robust, measurable quantum effect with a clear biochemical role, the best-established non-trivial quantum effect in biology. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Zero-point energies and the semiclassical KIE limit, Arrhenius prefactor ratios, Swain–Schaad relations, the temperature-independent KIE as a tunnelling signature, and soybean lipoxygenase as the benchmark case.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Where does the classical KIE limit come from?<span class="tap">tap</span></div><div class="a">The zero-point energy difference between C–H and C–D bonds, lost at the transition state.</div></div>
+  <div class="qa"><div class="q">Why would a tunnelling KIE be temperature-independent?<span class="tap">tap</span></div><div class="a">The hydrogen transfer itself is not thermally activated; only the protein’s gating motion is.</div></div>
+  <div class="qa"><div class="q">What KIE does soybean lipoxygenase show?<span class="tap">tap</span></div><div class="a">About 80 at room temperature, nearly independent of temperature.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> The zero-point difference is 386 cm⁻¹, and {{tex:hc/k_B = 1.4388}} cm K. What is the semiclassical KIE at 298 K?</p>
+    <form class="calc" data-answer="6.45" data-tol="0.1" data-ok="Yes: exp(386 × 1.4388 / 298) = e^1.86 ≈ 6.4." data-hint="386 × 1.4388 / 298 ≈ 1.86."><span>KIE ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="KIE"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. P. Bell, The Tunnel Effect in Chemistry (Chapman and Hall, 1980). C. G. Swain et al., J. Am. Chem. Soc. 80, 5885 (1958). M. J. Knapp, K. Rickert and J. P. Klinman, J. Am. Chem. Soc. 124, 3865 (2002). S. Hu et al., J. Am. Chem. Soc. 136, 8157 (2014). Checked by code: reduced-mass ratio gives ν_D = 2128 cm⁻¹, ΔZPE = 386 cm⁻¹, KIE(298 K) = 6.45.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { nu: 2900, tun: 0 }, muH = 12 / 13, muD = 24 / 14;
+  function sc(T) { var nD = V.nu / Math.sqrt(muD / muH), dz = 0.5 * (V.nu - nD); return Math.exp(dz * 1.4388 / T); }
+  function kie(T) { var a = V.tun; return Math.exp((1 - a) * Math.log(sc(T)) + a * Math.log(80 * Math.exp(0.002 * (298 - T) / 10))); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["KIE vs temperature.", "Zero-point levels of C–H and C–D.", "KIE vs temperature (log scale).", "Signatures of tunnelling.", "Kinetic isotope effects."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "ν_CH = " + V.nu + " cm⁻¹ · semiclassical KIE(298 K) = " + sc(298).toFixed(2) + " · with tunnelling share " + V.tun.toFixed(2) + ": " + kie(298).toFixed(1); if (beat === 1) return "ΔZPE = " + (0.5 * (V.nu - V.nu / Math.sqrt(muD / muH))).toFixed(0) + " cm⁻¹"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-1.2, 2.5], [0, 10], { xl: "C–H stretch coordinate", yl: "energy (×1000 cm⁻¹)" }); k.plot(A, function (x) { return Math.min(10, 9 * Math.pow(1 - Math.exp(-1.2 * x), 2)); }, [-1.2, 2.5], "rgba(236,230,218,.7)", 2, 300); k.line(A.X(-0.45), A.Y(1.45), A.X(0.6), A.Y(1.45), "#ffb547", 2.5); k.text("C–H ZPE", A.X(0.65), A.Y(1.45) + 4, { size: 11, color: "#ffb547", align: "left" }); k.line(A.X(-0.38), A.Y(1.06), A.X(0.48), A.Y(1.06), "rgba(224,90,70,.9)", 2.5); k.text("C–D ZPE", A.X(0.53), A.Y(1.06) + 4, { size: 11, color: "#e05a46", align: "left" }); return; }
+      if (beat === 3) { ["KIE ≫ 7", "A_H / A_D far from 1", "KIE nearly independent of T", "Swain–Schaad exponent ≠ 3.3"].forEach(function (s, j) { k.circle(W * 0.2, H * (0.25 + j * 0.15), 6, "#ffb547"); k.text(s, W * 0.25, H * (0.25 + j * 0.15) + 5, { size: 14, align: "left" }); }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [260, 340], [0, 2.3], { xl: "temperature (K)", yl: "log₁₀ KIE" }); k.plot(A, function (T) { return Math.log10(sc(T)); }, [260, 340], "rgba(236,230,218,.7)", 2); k.plot(A, function (T) { return Math.log10(kie(T)); }, [260, 340], "#ffb547", 2.6); k.line(A.X(260), A.Y(Math.log10(80)), A.X(340), A.Y(Math.log10(80)), "rgba(224,90,70,.4)", 1); k.text("soybean lipoxygenase ≈ 80", A.X(338), A.Y(Math.log10(80)) - 6, { size: 10, color: "#e05a46", align: "right" });
+    }
+  });
+})();
+</script>

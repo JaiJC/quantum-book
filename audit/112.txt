@@ -1,0 +1,4 @@
+== 112
+QFT unitary True
+period 4 peaks [0, 4, 8, 12]
+gates n=10 55

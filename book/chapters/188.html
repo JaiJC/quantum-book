@@ -1,0 +1,54 @@
+<section class="beat" data-beat="0">
+  <p class="drop">With an error-corrected quantum computer, the method of choice for chemistry is not VQE but phase estimation (Chapter 113): it measures an energy eigenvalue directly, to precision limited only by run time, with no variational optimization. It has a catch that is easy to miss. Phase estimation returns the ground-state energy only with probability equal to the squared overlap between your starting state and the true ground state. If that overlap is tiny, you will mostly measure something else.</p>
+  <p>On the plate: how the starting overlap decides the cost.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Qubitization and factorized Hamiltonians</h2>
+  <p>Modern chemistry algorithms do not Trotterize. They <em>block-encode</em> the Hamiltonian (Chapter 119) as a linear combination of unitaries, {{tex:H = \sum_\ell c_\ell U_\ell}}, and build a “qubitized” walk operator whose eigenphases are {{tex:\arccos(E_k/\lambda)}}, where {{tex:\lambda = \sum|c_\ell|}} is the Hamiltonian’s 1-norm. Phase estimation on the walk needs about {{tex:\pi\lambda/(2\varepsilon)}} steps for energy precision {{tex:\varepsilon}}. So the cost is driven by {{tex:\lambda}}, and much of the progress since 2017 came from rewriting the Coulomb tensor to shrink it: single factorization, double factorization (Mario Motta, Joonho Lee and colleagues; Vera von Burg and colleagues, 2021) and tensor hypercontraction (Joonho Lee, Dominic Berry and colleagues, 2021). <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The overlap problem</h2>
+  <p>Prepare a trial state {{tex:|\phi\rangle = \sum_k\gamma_k|E_k\rangle}}. Each run of phase estimation projects onto {{tex:|E_0\rangle}} with probability {{tex:|\gamma_0|^2}}, so you need about {{tex:1/|\gamma_0|^2}} runs to see the ground state once. For a molecule built from fragments, a product of good local approximations has overlap that shrinks exponentially with size: {{tex:|\gamma_0|\approx\gamma_1^{\,n}}}, the <em>orthogonality catastrophe</em>. Set the per-fragment overlap <span class="tangle" data-var="g1" data-min="0.5" data-max="0.999" data-step="0.005" data-dec="3" data-value="0.950" data-px="200"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Fragment overlap">0.950</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and the number of fragments <span class="tangle" data-var="n" data-min="1" data-max="200" data-step="1" data-value="20" data-px="1"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Fragments">20</span><button type="button" data-de="1" aria-label="More">›</button></span>. For many molecules of interest, a well-chosen multi-configurational state from DMRG or selected CI gives a usable overlap; the question is whether that remains true precisely where classical methods fail (Chapter 183). <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Cost comparison</h2>
+  <p>For FeMoco, the published logical cost fell as factorizations improved: Markus Reiher and colleagues’ 2017 Trotter-based estimate needed of order {{tex:10^{14}}} T gates; Lee and colleagues’ 2021 tensor-hypercontraction estimate needed about {{tex:5.3\times10^9}} Toffoli gates and 2,142 logical qubits. Chapter 189 traces these numbers and turns them into physical hardware. The algorithmic side is mature; state preparation and hardware are the open pieces. <span class="tag">Established</span> for the algorithm; <span class="tag">Debated</span> for state preparation at scale.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Block encodings and qubitized phase estimation, the role of the 1-norm λ, single, double and tensor-hypercontraction factorizations, the ground-state overlap requirement, the orthogonality catastrophe, and how logical costs for FeMoco have fallen.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What sets qubitized phase-estimation cost?<span class="tap">tap</span></div><div class="a">About πλ/2ε walk steps, where λ is the Hamiltonian’s 1-norm.</div></div>
+  <div class="qa"><div class="q">How many runs does an overlap γ₀ require?<span class="tap">tap</span></div><div class="a">About 1/|γ₀|².</div></div>
+  <div class="qa"><div class="q">What is the orthogonality catastrophe?<span class="tap">tap</span></div><div class="a">Overlaps of approximate product states with the true ground state shrink exponentially with system size.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With a ground-state overlap {{tex:|\gamma_0| = 0.3}}, about how many phase-estimation runs are needed to see the ground state once on average?</p>
+    <form class="calc" data-answer="11.1" data-tol="0.2" data-ok="Yes: 1/0.09 ≈ 11." data-hint="1 / 0.3²."><span>runs ≈</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Runs"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. H. Low and I. L. Chuang, Quantum 3, 163 (2019). D. W. Berry et al., Quantum 3, 208 (2019). V. von Burg et al., Phys. Rev. Research 3, 033055 (2021). J. Lee et al., PRX Quantum 2, 030305 (2021). M. Reiher et al., Proc. Natl Acad. Sci. USA 114, 7555 (2017). S. Lee et al., Nat. Commun. 14, 1952 (2023).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { g1: 0.95, n: 20 };
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; },
+    caption: function () { return ["Ground-state overlap vs system size.", "Walk eigenphases arccos(E/λ).", "log₁₀ overlap² and runs needed.", "Published FeMoco logical costs.", "Phase estimation for chemistry."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var g = Math.pow(V.g1, V.n); return "|γ₀| = " + V.g1.toFixed(3) + "^" + V.n + " = " + g.toExponential(2) + " · runs ≈ " + (1 / (g * g)).toExponential(2); } if (beat === 3) return "Reiher 2017 ~10¹⁴ T · Lee 2021 THC 5.3 × 10⁹ Toffoli, 2,142 logical qubits"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.35; k.circle(cx, cy, R, null, "rgba(236,230,218,.35)"); [-0.9, -0.5, 0.1, 0.6].forEach(function (e, j) { var a = Math.acos(e); k.circle(cx + R * Math.cos(a), cy - R * Math.sin(a), 6, j ? "rgba(236,230,218,.7)" : "#ffb547"); k.circle(cx + R * Math.cos(a), cy + R * Math.sin(a), 6, j ? "rgba(236,230,218,.4)" : "rgba(255,181,71,.5)"); }); k.text("E₀/λ", cx - R * 0.9 - 30, cy - R * 0.45, { size: 12, color: "#ffb547" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.14, H * 0.08, W * 0.8, H * 0.76, [2016, 2023], [8, 15], { xl: "year", yl: "log₁₀ non-Clifford gates" }); [[2017, 14, "Reiher (Trotter)"], [2021.5, Math.log10(5.3e9), "Lee (THC)"]].forEach(function (p, j) { k.circle(A.X(p[0]), A.Y(p[1]), 7, "#ffb547"); k.text(p[2], A.X(p[0]) + 10, A.Y(p[1]) - 8, { size: 12, align: "left" }); }); k.line(A.X(2017), A.Y(14), A.X(2021.5), A.Y(Math.log10(5.3e9)), "rgba(255,181,71,.5)", 2); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [1, 200], [-20, 0], { xl: "fragments n", yl: "log₁₀ |γ₀|²" }); k.plot(A, function (n) { return Math.max(-20, 2 * n * Math.log10(V.g1)); }, [1, 200], "#ffb547", 2.5, 300); k.circle(A.X(V.n), A.Y(Math.max(-20, 2 * V.n * Math.log10(V.g1))), 6, "#ece6da");
+    }
+  });
+})();
+</script>

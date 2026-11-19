@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>134. Quantum money, certified randomness, secure computation</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="134">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>134</b> &nbsp;·&nbsp; Quantum money, certified randomness, secure computation</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">134</div><div class="part">Part Three · C · Complexity and cryptography</div><h1>Quantum money, certified randomness, secure computation</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">Around 1970 Stephen Wiesner, a graduate student at Columbia, had the first idea in quantum cryptography: banknotes that cannot be forged, because they carry quantum states that cannot be copied. His paper was rejected and only published in 1983, after it had inspired BB84. Fifty years later, in 2025, a quantum computer accessed over the internet produced random numbers that a classical computer could not have faked, under stated assumptions. Between those two events lies a set of tasks only quantum mechanics can do, and some it provably cannot.</p>
+  <p>On the plate: you are a counterfeiter.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Wiesner money</h2>
+  <p>The bank prints a serial number and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> qubits, each randomly one of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mn>0</mn><mo stretchy="false">⟩</mo><mo separator="true">,</mo><mi mathvariant="normal">∣</mi><mn>1</mn><mo stretchy="false">⟩</mo><mo separator="true">,</mo><mi mathvariant="normal">∣</mi><mo>+</mo><mo stretchy="false">⟩</mo><mo separator="true">,</mo><mi mathvariant="normal">∣</mi><mo>−</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">|0\rangle, |1\rangle, |+\rangle, |-\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣0</span><span class="mclose">⟩</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣1</span><span class="mclose">⟩</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mord">+</span><span class="mclose">⟩</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mord">−</span><span class="mclose">⟩</span></span></span></span>, and secretly records which. To verify, the bank measures each qubit in its recorded basis. A forger who does not know the bases cannot copy the note, by no-cloning (Chapter 102). The simplest attack measures each qubit in the standard basis and prepares two copies of the result. A qubit that was <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mn>0</mn><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">|0\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣0</span><span class="mclose">⟩</span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mn>1</mn><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">|1\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣1</span><span class="mclose">⟩</span></span></span></span> passes; one that was <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mo>±</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">|\pm\rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord">±</span><span class="mclose">⟩</span></span></span></span> passes half the time. Each qubit passes with probability 3/4, so a forged note passes with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">(3/4)^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3/4</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>. Abel Molina, Thomas Vidick and John Watrous proved in 2012 that no attack does better at producing two notes that both pass. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Try to forge</h2>
+  <p>Use <span class="tangle" data-var="n" data-min="1" data-max="30" data-step="1" data-value="8" data-px="8"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Qubits">8</span><button type="button" data-de="1" aria-label="More">›</button></span> qubits per note and <button type="button" class="v" data-act="forge">attempt 1000 forgeries</button>. The plate runs the measure-and-copy attack against random notes. Wiesner’s scheme has a weakness: only the bank can verify, and if the bank returns notes that fail verification, an attacker can learn the states adaptively. <em>Public-key</em> quantum money, which anyone can verify, needs computational assumptions. Scott Aaronson and Paul Christiano proposed a scheme in 2012, and Mark Zhandry introduced “quantum lightning” in 2019, which even the bank cannot copy. Secure public-key schemes from standard assumptions remain an open goal. <span class="tag">Debated</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Certified randomness, and what is impossible</h2>
+  <p>In 2025 Minzhao Liu and colleagues at JPMorganChase, Quantinuum and US national laboratories sent challenge circuits to Quantinuum’s 56-qubit H2 trapped-ion computer over the internet. It returned samples within about two seconds each, faster than any known classical simulation. Supercomputers then checked a subset with the cross-entropy test (Chapter 127), certifying 71,313 bits of entropy, which an extractor turns into near-perfect random bits. The guarantee assumes the server’s classical rival is limited in compute, a model the authors call practical security against restricted adversaries. <span class="tag">Debated</span></p>
+  <p>Some tasks are impossible even quantumly. <em>Bit commitment</em>: lock a bit in a box now and reveal it later, so the receiver cannot learn it early and the sender cannot change it. Dominic Mayers, and independently Hoi-Kwong Lo and Hoi Fung Chau, proved in 1997 that no quantum protocol achieves both: if the receiver learns nothing, the two commitments look identical to the receiver, so the sender can switch between them by a local unitary. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Wiesner money and its 3/4-per-qubit forgery bound, the case for public-key money and quantum lightning, the 2025 certified-randomness experiment and its assumptions, and the impossibility of unconditional bit commitment.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does each forged qubit pass with probability 3/4?<span class="tap">tap</span></div><div class="a">It passes surely in the standard basis, and half the time in the diagonal basis.</div></div>
+  <div class="qa"><div class="q">What makes randomness “certified”?<span class="tap">tap</span></div><div class="a">The samples pass a cross-entropy test faster than any classical simulation could have produced them.</div></div>
+  <div class="qa"><div class="q">Why is bit commitment impossible?<span class="tap">tap</span></div><div class="a">If the receiver’s states for 0 and 1 are identical, the sender can switch between commitments with a local unitary.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With 20 qubits per note, what is the probability that a measure-and-copy forgery passes?</p>
+    <form class="calc" data-answer="0.00317" data-tol="0.0001" data-ok="Yes: (3/4)²⁰ ≈ 0.0032. A note with 100 qubits brings it below 10⁻¹²." data-hint="0.75²⁰."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: S. Wiesner, SIGACT News 15, 78 (1983). A. Molina, T. Vidick and J. Watrous, TQC 2012, LNCS 7582, 45 (2013). S. Aaronson and P. Christiano, Proc. 44th ACM STOC, 41 (2012). M. Zhandry, Eurocrypt 2019, 408. D. Mayers, Phys. Rev. Lett. 78, 3414 (1997). H.-K. Lo and H. F. Chau, Phys. Rev. Lett. 78, 3410 (1997). M. Liu et al., Nature 640, 343 (2025). Checked by code: (3/4)²⁰ = 0.00317.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 135</div><div class="t">Noise models, T₁ and T₂, and noise characterization (randomized benchmarking, gate set tomography)</div><p style="text-align:left">&quot;99.9% fidelity&quot; can hide errors that pile up coherently and ruin a computation.</p><p style="text-align:left"><a class="v" href="135.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="133.html">← 133. Post-quantum cryptography: lattice, code, and hash-based schemes, plus standardization</a><a href="../index.html">Contents</a><a href="135.html">135. Noise models, T₁ and T₂, and noise characterization (randomized benchmarking, gate set tomography) →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { n: 8 }, seed = 61, passed = 0, tried = 0, note = [];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function forge() { passed = 0; tried = 1000; for (var t = 0; t < 1000; t++) { var ok = true; for (var i = 0; i < V.n && ok; i++) { var basis = rnd() < 0.5 ? 0 : 1; if (basis === 1 && rnd() < 0.5) ok = false; } if (ok) passed++; } note = []; for (var j = 0; j < Math.min(V.n, 16); j++) { var b2 = rnd() < 0.5 ? 0 : 1; note.push([b2, rnd() < 0.5 ? 0 : 1, b2 === 0 || rnd() < 0.5]); } }
+  Book.plate({
+    init: function (k, s) { for (var nn in s.vals) V[nn] = s.vals[nn]; forge(); },
+    beat: function (i) { beat = i; },
+    set: function (nn, v) { V[nn] = v; forge(); },
+    act: function () { forge(); },
+    caption: function () { return ["A quantum banknote.", "Each qubit: one of four states, basis secret.", "Forged note (first 16 qubits): amber passes, red fails.", "Challenge → fast samples → verify → extract.", "Quantum money and randomness."][beat]; },
+    readout: function () { if (beat === 2) return V.n + " qubits · " + passed + " of " + tried + " forgeries passed · expected " + (1000 * Math.pow(0.75, V.n)).toFixed(1); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, i;
+      if (beat <= 2 || beat === 4) { k.rr(W * 0.06, H * 0.2, W * 0.88, H * 0.6, 14, "#14120f", "rgba(236,230,218,.5)"); k.text("BANK OF HILBERT · No. 0x3F7A", W / 2, H * 0.3, { size: 14, color: "#ece6da" }); var cnt = beat === 2 ? note.length : 8, cw = W * 0.8 / Math.max(cnt, 8); for (i = 0; i < cnt; i++) { var x = W * 0.1 + (i + 0.5) * cw, y = H * 0.55, st = beat === 2 ? note[i] : [i % 2, (i >> 1) % 2, true], lab = st[0] === 0 ? (st[1] ? "|1⟩" : "|0⟩") : (st[1] ? "|−⟩" : "|+⟩"), col = beat === 2 ? (st[2] ? "#ffb547" : "#e05a46") : "#ffb547"; k.circle(x, y, Math.min(16, cw * 0.4), "rgba(0,0,0,0)", col); k.text(lab, x, y + 5, { size: 12, color: col }); } return; }
+      if (beat === 3) { var steps = ["challenge circuits", "H2: samples in ~2 s", "XEB check on supercomputers", "extractor → 71,313 bits"]; steps.forEach(function (s, j) { var x = W * (0.13 + j * 0.25); k.rr(x - W * 0.11, H * 0.4, W * 0.22, H * 0.2, 8, "#14120f", j === 1 ? "#ffb547" : "rgba(236,230,218,.6)"); k.text(s, x, H * 0.51, { size: 11, color: j === 1 ? "#ffb547" : "#ece6da" }); if (j < 3) k.line(x + W * 0.11, H * 0.5, x + W * 0.14, H * 0.5, "#b9b2a5", 1.5); }); var t = (now / 2500) % 1; k.glow(W * (0.13 + t * 0.75), H * 0.68, 10, "rgba(255,181,71,.6)"); }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

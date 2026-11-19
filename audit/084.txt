@@ -1,0 +1,7 @@
+== 084 (corrected dm = 5.293 /ns)
+t ns 0.2 P(K0->K0bar) 0.1958
+t ns 0.6 P(K0->K0bar) 0.2648
+t ns 1.0 P(K0->K0bar) 0.2441
+t ns 2 P(K0->K0bar) 0.2404
+t ns 5 P(K0->K0bar) 0.2267
+dm*tauS 0.47393522 eta_B 6.1e-10; epsilon_K 2.228e-3

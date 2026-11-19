@@ -1,0 +1,60 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A chemist draws a molecule as letters and lines. A quantum computer needs a Hamiltonian: a list of numbers multiplying operators. Between them lies a translation that every quantum chemistry calculation performs, classical or quantum, and that is usually hidden inside software. This chapter does it by hand for the hydrogen molecule, in six steps, computing every number exactly. The same steps, with bigger tables, give the Hamiltonian of any molecule.</p>
+  <p>On the plate: each translation step for H₂, with its numbers.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Six steps</h2>
+  <p>(1) <strong>Geometry</strong>: fix the nuclei (Born–Oppenheimer, Chapter 158). (2) <strong>Basis set</strong>: choose atomic orbitals, here STO-3G, three Gaussians fitted to each hydrogen 1s orbital. (3) <strong>One-electron integrals</strong>: overlap {{tex:S_{\mu\nu}}}, kinetic energy {{tex:T_{\mu\nu}}} and nuclear attraction {{tex:V_{\mu\nu}}}, combined into the core Hamiltonian {{tex:h_{\mu\nu}}}. (4) <strong>Two-electron integrals</strong> {{tex:(\mu\nu|\lambda\sigma)}}: the repulsion between electron densities. (5) <strong>Orbitals</strong>: transform to molecular orbitals, here {{tex:\sigma_g}} and {{tex:\sigma_u}} fixed by symmetry, usually from Hartree–Fock. (6) <strong>Hamiltonian</strong>: assemble the second-quantized Hamiltonian of Chapter 185, with these {{tex:h_{pq}}} and {{tex:(pq|rs)}} as its coefficients. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Run the translation</h2>
+  <p>Bond length {{tex:R =}} <span class="tangle" data-var="R" data-min="0.8" data-max="4" data-step="0.05" data-dec="2" data-value="1.40" data-px="4"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Bond length bohr">1.40</span><button type="button" data-de="1" aria-label="Longer">›</button></span> bohr. Show step <button type="button" class="v" data-pick="st:3">3: one-electron</button> <button type="button" class="v" data-pick="st:4">4: two-electron</button> <button type="button" class="v" data-pick="st:5">5: MO integrals</button> <button type="button" class="v" data-pick="st:6">6: energies</button>. At 1.4 bohr the plate reproduces the textbook values of Attila Szabo and Neil Ostlund: overlap 0.6593, {{tex:h_{11} = -1.1204}}, {{tex:(11|11) = 0.7746}} hartree, and so on, computed live from the Gaussian formulas with the Boys function. For larger molecules, programs such as PySCF compute millions of such integrals the same way. LiH in STO-3G has 6 basis functions, so 12 spin orbitals and 12 qubits; water has 7 and 14 qubits. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Units and accuracy</h2>
+  <p>Quantum chemistry works in <em>atomic units</em>: lengths in bohr (0.529 Å), energies in hartree (27.21 eV, or 627.5 kcal/mol). Chemistry cares about energy <em>differences</em>, reaction energies and barriers, to about 1 kcal/mol, called <em>chemical accuracy</em>: 1.6 millihartree. The total electronic energy of even a small drug is thousands of hartree, so chemical accuracy in a difference requires errors to cancel or to be controlled to a part in a million. And the basis set itself has an error: STO-3G is far too small for real chemistry, and larger basis sets add orbitals, and so qubits, quickly. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The six-step translation from molecule to Hamiltonian, the exact STO-3G integrals for H₂, the molecular-orbital transformation, qubit counts for small molecules, atomic units, and the meaning of chemical accuracy.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What are the one-electron integrals?<span class="tap">tap</span></div><div class="a">Overlap, kinetic energy and nuclear attraction between basis functions.</div></div>
+  <div class="qa"><div class="q">How many qubits does LiH need in STO-3G?<span class="tap">tap</span></div><div class="a">12: six spatial orbitals, two spins each, before symmetry reductions.</div></div>
+  <div class="qa"><div class="q">What is chemical accuracy?<span class="tap">tap</span></div><div class="a">About 1 kcal/mol, or 1.6 millihartree, in energy differences.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With 1 hartree = 627.5 kcal/mol, what is 1.6 millihartree in kcal/mol?</p>
+    <form class="calc" data-answer="1.004" data-tol="0.01" data-ok="Yes: 1.0 kcal/mol." data-hint="0.0016 × 627.5."><span>≈</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="kcal/mol"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Szabo and N. S. Ostlund, Modern Quantum Chemistry (Dover, 1996), ch. 3. Q. Sun et al., J. Chem. Phys. 153, 024109 (2020) (PySCF). Checked by code: the shared Book.H2 engine reproduces Szabo and Ostlund’s Table 3.5 values (S = 0.6593, T₁₁ = 0.7600, h₁₁ = −1.1204, h₁₂ = −0.9584, (11|11) = 0.7746, (11|22) = 0.5697, (21|11) = 0.4441, (21|21) = 0.2970).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { R: 1.4 }, r = null;
+  function comp() { r = Book.H2(V.R); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; comp(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; comp(); },
+    caption: function () { return ["Molecule → Hamiltonian, in six steps.", "Geometry, basis, integrals, orbitals, Hamiltonian.", "Step " + (Book.state.picks.st || "3") + " at R = " + V.R.toFixed(2) + " bohr (hartree).", "Atomic units and chemical accuracy.", "The translation."][beat]; },
+    readout: function () { return "E_HF = " + r.Ehf.toFixed(5) + " · E_FCI = " + r.Efci.toFixed(5) + " Ha · E_nuc = " + r.Enuc.toFixed(4); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 1 || beat === 0) { ["geometry", "basis", "1-e integrals", "2-e integrals", "orbitals", "Hamiltonian"].forEach(function (s, j) { var x = W * (0.1 + (j % 3) * 0.3), y = H * (0.25 + Math.floor(j / 3) * 0.35); k.rr(x, y, W * 0.22, H * 0.18, 8, "#14120f", j === 5 ? "#ffb547" : "rgba(236,230,218,.5)"); k.text((j + 1) + " · " + s, x + W * 0.11, y + H * 0.1, { size: 12, color: j === 5 ? "#ffb547" : "#ece6da" }); }); return; }
+      if (beat === 3) { [["1 bohr", "0.529 Å"], ["1 hartree", "27.21 eV = 627.5 kcal/mol"], ["chemical accuracy", "1.6 mHa ≈ 1.0 kcal/mol"], ["k_BT at 310 K", "0.98 mHa"]].forEach(function (p, j) { k.text(p[0], W * 0.45, H * (0.22 + j * 0.17), { size: 14, color: "#ffb547", align: "right" }); k.text(p[1], W * 0.5, H * (0.22 + j * 0.17), { size: 13, align: "left" }); }); return; }
+      var st = Book.state.picks.st || "3", rows = [];
+      if (st === "3") rows = [["S₁₂", r.S[0][1]], ["T₁₁", r.T[0][0]], ["T₁₂", r.T[0][1]], ["V₁₁ (both nuclei)", r.V[0][0]], ["V₁₂", r.V[0][1]], ["h₁₁", r.H[0][0]], ["h₁₂", r.H[0][1]]];
+      if (st === "4") rows = [["(11|11)", r.eri(0, 0, 0, 0)], ["(11|22)", r.eri(0, 0, 1, 1)], ["(21|11)", r.eri(1, 0, 0, 0)], ["(21|21)", r.eri(1, 0, 1, 0)]];
+      if (st === "5") rows = [["h_gg", r.hg], ["h_uu", r.hu], ["J_gg", r.Jgg], ["J_uu", r.Juu], ["J_gu", r.Jgu], ["K_gu", r.Kgu]];
+      if (st === "6") rows = [["E_nuc = 1/R", r.Enuc], ["E(σg²) = HF", r.Ehf], ["E(σu²)", r.E2], ["coupling K_gu", r.Kgu], ["E_FCI", r.Efci], ["correlation (mHa)", (r.Efci - r.Ehf) * 1000]];
+      rows.forEach(function (row, j) { var y = H * (0.12 + j * 0.11); k.text(row[0], W * 0.45, y, { size: 14, align: "right" }); k.text(row[1].toFixed(4), W * 0.52, y, { size: 14, color: "#ffb547", align: "left" }); });
+    }
+  });
+})();
+</script>

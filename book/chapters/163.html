@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Every breath you take ends in electron transfer: electrons hop, one at a time, along chains of metal centres and cofactors in mitochondria, tunnelling distances of 10–20 Å through protein. In 1956 Rudolph Marcus derived a rate law for such transfers with a strange prediction: make a reaction more favourable and, past a point, it gets <em>slower</em>. Chemists doubted it for nearly thirty years, until John Miller, Lawrence Calcaterra and Gerhard Closs observed this “inverted region” in 1984. Marcus received the 1992 Nobel Prize in Chemistry. Electron tunnelling in proteins is the clearest non-trivial quantum effect in biology.</p>
+  <p>On the plate: two energy parabolas and the rate they imply.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Deriving the Marcus rate</h2>
+  <p>Electron transfer couples two states: electron on the donor, or on the acceptor. Each has a free-energy parabola in a collective nuclear coordinate, the arrangement of surrounding atoms and solvent. Their minima differ by the driving force {{tex:\Delta G^\circ}}; the energy needed to rearrange the surroundings to the product’s geometry without moving the electron is the <em>reorganization energy</em> {{tex:\lambda}}. The electron can only jump where the parabolas cross, conserving energy (Franck–Condon principle). Fermi’s golden rule (Chapter 45), averaged thermally over the crossing, gives</p>
+  <div class="eq">{{texd:k = \frac{2\pi}{\hbar}|H_{DA}|^2\frac{1}{\sqrt{4\pi\lambda k_BT}}\exp\Big[-\frac{(\Delta G^\circ+\lambda)^2}{4\lambda k_BT}\Big]}}</div>
+  <p>where {{tex:H_{DA}}} is the electronic coupling between donor and acceptor. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The inverted region</h2>
+  <p>Set {{tex:\Delta G^\circ =}} <span class="tangle" data-var="G" data-min="-2" data-max="0.4" data-step="0.05" data-dec="2" data-value="-0.40" data-px="20"><button type="button" data-de="-1" aria-label="More favourable">‹</button><span class="num" role="slider" tabindex="0" aria-label="Delta G eV">-0.40</span><button type="button" data-de="1" aria-label="Less favourable">›</button></span> eV and {{tex:\lambda =}} <span class="tangle" data-var="L" data-min="0.2" data-max="1.6" data-step="0.05" data-dec="2" data-value="0.80" data-px="20"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Lambda eV">0.80</span><button type="button" data-de="1" aria-label="Larger">›</button></span> eV. As the driving force increases, the crossing point descends to the bottom of the reactant parabola: the barrier vanishes at {{tex:\Delta G^\circ = -\lambda}}, and the rate peaks. Beyond that, the crossing climbs the far side, the barrier returns, and the rate falls again, symmetric about {{tex:-\lambda}} in this classical form. Photosynthetic reaction centres exploit this: the forward charge separation sits near the peak, while the wasteful back-reaction, with much larger driving force, lies deep in the inverted region and is slow. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Tunnelling through protein</h2>
+  <p>The coupling {{tex:H_{DA}}} comes from the electron tunnelling through the protein between donor and acceptor, so it decays exponentially with distance. Christopher Moser, Leslie Dutton and colleagues compiled rates across many proteins in 1992 into a simple ruler:</p>
+  <div class="eq">{{texd:\log_{10}k = 13 - 0.6(R - 3.6) - 3.1\frac{(\Delta G^\circ + \lambda)^2}{\lambda}}}</div>
+  <p>with {{tex:R}} the edge-to-edge distance in ångströms and energies in eV. The rate falls tenfold every 1.7 Å. Distance <span class="tangle" data-var="R" data-min="3.6" data-max="25" data-step="0.2" data-dec="1" data-value="10.0" data-px="4"><button type="button" data-de="-1" aria-label="Closer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Distance Å">10.0</span><button type="button" data-de="1" aria-label="Farther">›</button></span> Å. Beyond about 14 Å, single hops become too slow for biology, which is why respiratory and photosynthetic chains space their cofactors within that range. Harry Gray and Jay Winkler showed with ruthenium-labelled proteins that the protein’s structure, β-sheet or α-helix, tunes the decay. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Marcus parabolas, the reorganization energy, the golden-rule rate law, the inverted region and its use in photosynthesis, electron tunnelling through proteins, and the Moser–Dutton distance ruler.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Where does the rate peak?<span class="tap">tap</span></div><div class="a">At ΔG° = −λ, where the barrier vanishes.</div></div>
+  <div class="qa"><div class="q">What is the reorganization energy?<span class="tap">tap</span></div><div class="a">The energy to distort the surroundings to the product geometry without transferring the electron.</div></div>
+  <div class="qa"><div class="q">How fast does the rate fall with distance?<span class="tap">tap</span></div><div class="a">About tenfold per 1.7 Å.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With the Moser–Dutton ruler, at {{tex:R = 10}} Å and {{tex:\Delta G^\circ = -\lambda}}, what is {{tex:\log_{10}k}}?</p>
+    <form class="calc" data-answer="9.16" data-tol="0.03" data-ok="Yes: 13 − 0.6 × 6.4 = 9.16, a transfer in under a nanosecond." data-hint="R − 3.6 = 6.4; the last term is zero."><span>log₁₀ k =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="log10 k"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: R. A. Marcus, J. Chem. Phys. 24, 966 (1956). J. R. Miller, L. T. Calcaterra and G. L. Closs, J. Am. Chem. Soc. 106, 3047 (1984). C. C. Moser et al., Nature 355, 796 (1992). H. B. Gray and J. R. Winkler, Proc. Natl Acad. Sci. USA 102, 3534 (2005). Checked by code: the rate peaks at ΔG° = −λ and is symmetric about it; 0.6 per Å gives a decade per 1.67 Å.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { G: -0.4, L: 0.8, R: 10 }, kT = 0.0267;
+  function lr(G, L) { return -(G + L) * (G + L) / (4 * L * kT) / Math.LN10; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Reactant and product free-energy parabolas.", "Electron jumps at the crossing.", "Parabolas (left) and log rate vs ΔG° (right).", "Moser–Dutton: log rate vs distance.", "Marcus theory."][beat]; },
+    readout: function () { if (beat <= 2) { var b = (V.G + V.L) * (V.G + V.L) / (4 * V.L); return "ΔG° = " + V.G.toFixed(2) + " eV · λ = " + V.L.toFixed(2) + " eV · barrier " + b.toFixed(3) + " eV · " + (V.G < -V.L ? "inverted region" : V.G > -V.L ? "normal region" : "optimal"); } if (beat === 3) return "R = " + V.R.toFixed(1) + " Å · log₁₀ k = " + (13 - 0.6 * (V.R - 3.6)).toFixed(2) + " (at ΔG° = −λ)"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, B;
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [3.6, 25], [0, 14], { xl: "edge-to-edge distance (Å)", yl: "log₁₀ k (s⁻¹)" }); k.plot(A, function (R) { return 13 - 0.6 * (R - 3.6); }, [3.6, 25], "#ffb547", 2.5); k.line(A.X(14), A.Y(0), A.X(14), A.Y(14), "rgba(224,90,70,.5)", 1); k.text("~14 Å biological limit", A.X(14) + 4, A.Y(13), { size: 11, color: "#e05a46", align: "left" }); k.circle(A.X(V.R), A.Y(13 - 0.6 * (V.R - 3.6)), 6, "#ece6da"); return; }
+      var wl = beat === 2 ? 0.5 : 0.84; A = k.axes(W * 0.08, H * 0.08, W * wl - W * 0.04, H * 0.76, [-1.5, 2.5], [-2.2, 2.5], { xl: "nuclear coordinate" }); var x0 = 0, x1 = 1; k.plot(A, function (x) { return V.L * (x - x0) * (x - x0); }, [-1.5, 2.5], "rgba(236,230,218,.85)", 2.2, 200); k.plot(A, function (x) { return V.L * (x - x1) * (x - x1) + V.G; }, [-1.5, 2.5], "#ffb547", 2.2, 200); var xc = (V.G + V.L) / (2 * V.L), yc = V.L * xc * xc; k.circle(A.X(xc), A.Y(yc), 5, "#e05a46");
+      if (beat === 2) { B = k.axes(W * 0.6, H * 0.08, W * 0.36, H * 0.76, [-2, 0.4], [-14, 0.5], { xl: "ΔG° (eV)", yl: "log₁₀ relative rate" }); k.plot(B, function (G) { return Math.max(-14, lr(G, V.L)); }, [-2, 0.4], "#ffb547", 2.2, 300); k.circle(B.X(V.G), B.Y(Math.max(-14, lr(V.G, V.L))), 5, "#ece6da"); k.line(B.X(-V.L), B.Y(-14), B.X(-V.L), B.Y(0.5), "rgba(236,230,218,.3)", 1); }
+    }
+  });
+})();
+</script>

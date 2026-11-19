@@ -1,0 +1,132 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Cosmic rays strike the top of the atmosphere and make muons, heavy cousins of the electron that live, on average, 2.2 millionths of a second before decaying. Even at nearly the speed of light, that is time to cover only about 660 metres. Yet muons rain down on sea level by the thousand, after a journey of tens of kilometres.</p>
+  <p>They survive because their clocks run slow. This chapter shows why, starting from two simple statements, and ends at the formula that lets CERN make new particles out of energy.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Two postulates and a light clock</h2>
+  <p>Einstein started in 1905 from two claims. The laws of physics are the same for everyone moving steadily. And the speed of light is the same for all of them, whatever the motion of the source. Michelson and Morley had already looked in 1887 for a change in light’s speed as the Earth moves, and found none. <span class="tag">Established</span></p>
+  <p>Build a clock from a pulse of light bouncing between two mirrors. Moving at <span class="tangle" data-var="b" data-min="0" data-max="0.99" data-step="0.01" data-dec="2" data-value="0.6" data-px="3"><button type="button" data-de="-1" aria-label="Slower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Speed as a fraction of c">0.60</span><button type="button" data-de="1" aria-label="Faster">›</button></span> of the speed of light, its pulse must travel along a longer diagonal path, as seen from outside. Light’s speed is fixed, so each tick takes longer. The stretch factor is</p>
+  <div class="eq">{{texd:\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}}}</div>
+  <p>which is <span class="live" id="gam">1.25</span> at your setting. Moving clocks run slow by {{tex:\gamma}}. Not because of anything mechanical: time itself runs slower for them, as seen by you.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The muons again</h2>
+  <p>In 1963 David Frisch and James Smith counted muons on the summit of Mount Washington, then at sea level, 1,910 metres lower, selecting muons moving at about 0.995 of the speed of light. The trip takes 6.4 microseconds of our time, nearly three muon lifetimes. Without time dilation only about 1 in 18 should survive. They found about three-quarters, just what a slowdown factor near 10 predicts. <span class="tag">Established</span></p>
+  <p>Set the muon’s speed to <span class="tangle" data-var="mb" data-min="0.5" data-max="0.999" data-step="0.001" data-dec="3" data-value="0.995" data-px="2"><button type="button" data-de="-1" aria-label="Slower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Muon speed">0.995</span><button type="button" data-de="1" aria-label="Faster">›</button></span>: the fraction surviving the 1,910-metre drop is <span class="live" id="surv">75%</span>, against <span class="live" id="surv0">5%</span> if their clocks did not slow.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Spacetime diagrams</h2>
+  <p>Draw time upward and space across, with light moving along the 45° lines. A rocket moving at the speed you set above has its own time and space axes, which tilt towards the light line like closing scissors. The plate shows both.</p>
+  <p>Events on a horizontal line happen at the same time for you. Events on the rocket’s tilted line happen at the same time for the rocket. They are different events. Two observers moving relative to each other disagree about which distant events are simultaneous: the <em>relativity of simultaneity</em>, the idea that unlocks every paradox in this subject.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The Lorentz transformation</h2>
+  <p>Combine the two postulates and the coordinates of an event, as measured by someone moving at speed {{tex:v}} along {{tex:x}}, must be</p>
+  <div class="eq">{{texd:t' = \gamma\left(t - \frac{vx}{c^2}\right), \qquad x' = \gamma\,(x - vt)}}</div>
+  <p>The {{tex:vx/c^2}} term is simultaneity changing with position. Length contraction follows too: a rod of length {{tex:L}} moving along its length measures {{tex:L/\gamma}}. From the muon’s own point of view its clock is fine; it is the atmosphere that is squashed to a tenth of its depth.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The transformation must be linear (a steady motion stays steady) and must keep the speed of light the same, so it must keep {{tex:c^2t^2 - x^2}} unchanged. Writing {{tex:ct = \cosh\eta\,ct' + \sinh\eta\,x'}} and {{tex:x = \sinh\eta\,ct' + \cosh\eta\,x'}} satisfies this for any {{tex:\eta}}, the <em>rapidity</em>, with {{tex:\tanh\eta = v/c}} and {{tex:\cosh\eta = \gamma}}. A boost is a hyperbolic rotation.</div>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Clocks on aeroplanes</h2>
+  <p>In 1971 Joseph Hafele and Richard Keating flew four atomic clocks around the world on ordinary airliners, once eastward and once westward, and compared them with clocks left on the ground. Eastward, moving with the Earth’s spin, the flying clocks lost 59 ± 10 nanoseconds; westward they gained 273 ± 7. Theory, including the gravitational effect of altitude from general relativity, predicted −40 ± 23 and +275 ± 21. <span class="tag">Established</span></p>
+  <p>Your phone’s GPS corrects for both effects every second; without the corrections its position would drift by about 10 kilometres a day.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The twin who travels</h2>
+  <p>One twin stays home; the other flies to a star at high speed and back. Each sees the other’s clock running slow during the steady parts of the trip. Yet when they meet, the traveller is younger. The two are not equivalent: only the traveller changes direction, switching from one set of simultaneity lines to another at the turnaround. On a spacetime diagram the traveller’s bent path is simply shorter in elapsed time. There is no contradiction, only an unfamiliar geometry.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>Energy, momentum and mass</h2>
+  <p>Time and space mix under a boost; so do energy and momentum. They form a four-vector whose length every observer agrees on:</p>
+  <div class="eq">{{texd:E^2 = (pc)^2 + (mc^2)^2}}</div>
+  <p>At rest, {{tex:E = mc^2}}. For a collection of particles, the same combination of total energy and total momentum gives the <em>invariant mass</em>, which is how physicists recognize a Higgs boson from the particles it decays into.</p>
+  <p>It also says how much energy you need to make new particles. To create an antiproton by firing a proton at a proton at rest, {{tex:p + p \to p + p + p + \bar p}}, the beam needs at least {{tex:6m_pc^2 \approx 5.6}} GeV of kinetic energy, far more than the 1.9 GeV of rest energy being created, because momentum must also be conserved. Berkeley’s Bevatron was built to reach about 6 GeV, and found the antiproton in 1955. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>The two postulates, time dilation, length contraction, the relativity of simultaneity, the Lorentz transformation, four-vectors and {{tex:E^2 = p^2c^2 + m^2c^4}}.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do more muons reach sea level than their lifetime suggests?<span class="tap">tap</span></div><div class="a">Their clocks run slow by γ ≈ 10 in our frame; equivalently, in their frame the atmosphere is contracted.</div></div>
+  <div class="qa"><div class="q">What breaks the symmetry between the twins?<span class="tap">tap</span></div><div class="a">Only the travelling twin turns around, changing inertial frame and with it the lines of simultaneity.</div></div>
+  <div class="qa"><div class="q">Why does making an antiproton need more than its rest energy?<span class="tap">tap</span></div><div class="a">Momentum must be conserved too, so the products must keep moving and carry kinetic energy; for a fixed target the threshold is 6 m_p c².</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> What is {{tex:\gamma}} for a speed of {{tex:0.8c}}?</p>
+    <form class="calc" data-answer="1.6667" data-tol="0.005" data-ok="Yes: 1/√(1 − 0.64) = 1/0.6 = 5/3." data-alt="0.6~That is √(1 − v²/c²). γ is its reciprocal." data-hint="γ = 1/√(1 − 0.8²)."><span>γ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.000" aria-label="Gamma"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Einstein, Ann. Phys. 17, 891 (1905). A. A. Michelson and E. W. Morley, Am. J. Sci. 34, 333 (1887). D. H. Frisch and J. H. Smith, Am. J. Phys. 31, 342 (1963). J. C. Hafele and R. E. Keating, Science 177, 166 and 168 (1972). O. Chamberlain et al., Phys. Rev. 100, 947 (1955). Checked by code: muon survival 5.4% without dilation, 75% with; antiproton threshold 5.63 GeV.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { b: 0.6, mb: 0.995 };
+  function gam(b) { return 1 / Math.sqrt(1 - b * b); }
+  function upd() {
+    Book.text("gam", gam(V.b).toFixed(2));
+    var t = 1910 / (V.mb * 299792458), tau = 2.197e-6;
+    Book.text("surv", Math.round(100 * Math.exp(-t / (gam(V.mb) * tau))) + "%"); Book.text("surv0", (100 * Math.exp(-t / tau)).toFixed(1) + "%");
+  }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; upd(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; upd(); },
+    caption: function () { return ["Muons falling through the atmosphere.", "A light clock at rest and moving.", "Muons: survival over 1,910 m.", "Spacetime diagram.", "Spacetime diagram.", "Clocks flown east and west.", "The twins’ paths in spacetime.", "E² = (pc)² + (mc²)².", "A light clock at rest and moving."][beat]; },
+    readout: function () { if (beat === 1) return "γ = " + gam(V.b).toFixed(3); if (beat === 2) { var t = 1910 / (V.mb * 299792458); return "γ = " + gam(V.mb).toFixed(1) + " · trip " + (t * 1e6).toFixed(2) + " µs"; } if (beat === 3 || beat === 4) return "β = " + V.b.toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, t = now / 1000, i;
+      if (beat === 0 || beat === 2) {
+        var top = H * 0.08, bot = H * 0.9; k.line(0, bot, W, bot, "#4a4540"); k.text(beat === 2 ? "summit, 1,910 m" : "top of the atmosphere", W * 0.05, top + 4, { align: "left" }); k.text("sea level", W * 0.05, bot - 8, { align: "left" });
+        var surv = beat === 2 ? Math.exp(-1910 / (V.mb * 299792458) / (gam(V.mb) * 2.197e-6)) : 0.75;
+        for (i = 0; i < 40; i++) { var x = W * (0.2 + 0.75 * ((i * 0.618) % 1)), ph = (t * 0.35 + i * 0.137) % 1, alive = ((i * 0.37) % 1) < surv || ph < 0.25; var y = top + ph * (bot - top); if (alive) { k.line(x, y - 18, x, y, "rgba(255,181,71,.35)", 1.5); k.circle(x, y, 3, "#ffb547"); } else if (ph < 0.6) k.circle(x, y, 2, "rgba(236,230,218,.25)"); }
+        return;
+      }
+      if (beat === 1 || beat === 8) {
+        var b = beat === 1 ? V.b : 0.6, g = gam(b), hgt = H * 0.5, y0 = H * 0.8, x0 = W * 0.2, per = 1.6, ph = (t % (per * g)) / (per * g);
+        k.rr(x0 - 30, y0 - hgt - 6, 60, 6, 2, "#b9b2a5"); k.rr(x0 - 30, y0, 60, 6, 2, "#b9b2a5");
+        var ph0 = (t % per) / per, yy = ph0 < 0.5 ? y0 - ph0 * 2 * hgt : y0 - (1 - ph0) * 2 * hgt; k.circle(x0, yy, 5, "#ece6da"); k.text("at rest", x0, y0 + 26, {});
+        var sx = W * 0.42, run = W * 0.5, mx = sx + ph * b * run, py = ph < 0.5 ? y0 - ph * 2 * hgt : y0 - (1 - ph) * 2 * hgt;
+        k.rr(mx - 30, y0 - hgt - 6, 60, 6, 2, "#ffb547"); k.rr(mx - 30, y0, 60, 6, 2, "#ffb547");
+        c.strokeStyle = "rgba(255,181,71,.4)"; c.beginPath(); c.moveTo(sx, y0); c.lineTo(sx + 0.5 * b * run, y0 - hgt); c.lineTo(sx + b * run, y0); c.stroke();
+        k.circle(mx, py, 5, "#ffb547"); k.text("moving: each tick ×" + g.toFixed(2), sx + 0.5 * b * run, y0 + 26, { color: "#ffb547" });
+        return;
+      }
+      if (beat === 3 || beat === 4) {
+        var cx = W / 2, cy = H * 0.55, s = Math.min(W, H) * 0.4, b2 = V.b;
+        k.line(cx - s, cy, cx + s, cy, "#7c766b"); k.line(cx, cy + s * 0.4, cx, cy - s, "#7c766b"); k.text("x", cx + s + 8, cy + 4, { align: "left" }); k.text("ct", cx, cy - s - 8, {});
+        k.line(cx - s * 0.4, cy + s * 0.4, cx + s, cy - s, "rgba(236,230,218,.25)", 1, [4, 4]); k.line(cx + s * 0.4, cy + s * 0.4, cx - s, cy - s, "rgba(236,230,218,.25)", 1, [4, 4]);
+        k.line(cx, cy, cx + b2 * s, cy - s, "#ffb547", 2); k.line(cx, cy, cx + s, cy - b2 * s, "#ffb547", 2); k.text("ct′", cx + b2 * s + 6, cy - s, { color: "#ffb547", align: "left" }); k.text("x′", cx + s + 6, cy - b2 * s, { color: "#ffb547", align: "left" });
+        for (i = 1; i <= 3; i++) { var u = i * 0.25, yv = cy - u * s; k.line(cx - s, yv, cx + s, yv, "rgba(236,230,218,.12)"); var Lx = 0.9; k.line(cx + (b2 * u - Lx) * s, cy - (u - b2 * Lx) * s, cx + (b2 * u + Lx) * s, cy - (u + b2 * Lx) * s, "rgba(255,181,71,.25)"); }
+        k.text("same time for you: horizontal · for the rocket: amber lines", W / 2, H - 12, {});
+        return;
+      }
+      if (beat === 5) {
+        var R = Math.min(W, H) * 0.32, cx2 = W / 2, cy2 = H / 2;
+        k.circle(cx2, cy2, R, "#0c0b0a", "#4a4540"); var spin = t * 0.4;
+        k.circle(cx2 + (R + 26) * Math.cos(spin * 1.6), cy2 + (R + 26) * Math.sin(spin * 1.6), 6, "#ffb547"); k.circle(cx2 + (R + 50) * Math.cos(-spin * 0.6), cy2 + (R + 50) * Math.sin(-spin * 0.6), 6, "#ece6da");
+        k.text("east: −59 ± 10 ns", cx2, cy2 - 10, { color: "#ffb547", size: 15 }); k.text("west: +273 ± 7 ns", cx2, cy2 + 16, { color: "#ece6da", size: 15 });
+        return;
+      }
+      if (beat === 6) {
+        var cx3 = W / 2, y0b = H * 0.9, ytop = H * 0.08;
+        k.line(cx3, y0b, cx3, ytop, "#ece6da", 2.5); k.line(cx3, y0b, cx3 + W * 0.28, (y0b + ytop) / 2, "#ffb547", 2.5); k.line(cx3 + W * 0.28, (y0b + ytop) / 2, cx3, ytop, "#ffb547", 2.5);
+        k.text("stay-at-home: longest time", cx3 - 10, (y0b + ytop) / 2, { align: "right", color: "#ece6da" }); k.text("traveller: less time elapses", cx3 + W * 0.3, (y0b + ytop) / 2 + 4, { align: "left", color: "#ffb547" });
+        return;
+      }
+      if (beat === 7) {
+        var ox = W * 0.25, oy = H * 0.8, s2 = Math.min(W, H) * 0.5, m = 0.5, p = 0.6 + 0.4 * Math.sin(t * 0.5);
+        k.line(ox, oy, ox + p * s2, oy, "#ece6da", 3); k.line(ox + p * s2, oy, ox + p * s2, oy - m * s2, "#b9b2a5", 3); k.line(ox, oy, ox + p * s2, oy - m * s2, "#ffb547", 3);
+        k.text("pc", ox + p * s2 / 2, oy + 20, { color: "#ece6da", size: 15 }); k.text("mc²", ox + p * s2 + 10, oy - m * s2 / 2, { align: "left", size: 15 }); k.text("E", ox + p * s2 / 2 - 14, oy - m * s2 / 2 - 8, { color: "#ffb547", size: 18 });
+      }
+    }
+  });
+})();
+</script>

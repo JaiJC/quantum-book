@@ -1,0 +1,4 @@
+== 082
+grav sum Y 0 Y^3 0 SU2^2 Y 0 SU3^2 Y 0
+Weyl fermions per generation 15
+parameters: 6+3+4+3+2+1 = 19

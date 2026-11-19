@@ -1,0 +1,9 @@
+== 068
+Thomson barn 0.6652458732150248
+E keV 1 sigma_KN b 0.6627
+E keV 30 sigma_KN b 0.5975
+E keV 140 sigma_KN b 0.4523
+E keV 511 sigma_KN b 0.2865
+E keV 1000 sigma_KN b 0.2112
+E keV 10000 sigma_KN b 0.051
+E prime at 90 deg for 511 keV 255.5

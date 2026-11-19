@@ -1,0 +1,103 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Over the Christmas holiday of 1925, in a villa in the Swiss Alps, Erwin Schrödinger guessed the equation that bears his name. He did not derive it from anything deeper; there is nothing deeper to derive it from. But the guess was not a wild one. Given de Broglie’s waves and two facts about energy and momentum, it is almost the only possible equation, and this chapter shows why.</p>
+  <p>The plate is the workhorse of the rest of Part One: an exact solver for a wave packet in one dimension, in any potential you choose.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Why the guess had to be right</h2>
+  <p>Start with a free particle as a plane wave, {{tex:\psi = e^{i(kx-\omega t)}}}, with de Broglie’s {{tex:p = \hbar k}} and Planck’s {{tex:E = \hbar\omega}}. A time derivative pulls down {{tex:-i\omega}}; two space derivatives pull down {{tex:-k^2}}. So {{tex:i\hbar\,\partial_t\psi = E\psi}} and {{tex:-\hbar^2\partial_x^2\psi = p^2\psi}}. The classical rule {{tex:E = p^2/2m + V}} then becomes a wave equation:</p>
+  <div class="eq">{{texd:i\hbar\frac{\partial\psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2} + V(x)\,\psi}}</div>
+  <p>It must be first order in time, so that the present state fixes the future, and linear, so that waves superpose as the double slit demands. The {{tex:i}} is unavoidable: without it, the equation would be the heat equation of Chapter 5, and wavefunctions would decay instead of oscillating. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The solver</h2>
+  <p>Pick a landscape: <button type="button" class="v" data-pick="pot:free">empty space</button>, <button type="button" class="v" data-pick="pot:wall">a hard wall</button>, <button type="button" class="v" data-pick="pot:ho">a parabolic valley</button>, <button type="button" class="v" data-pick="pot:bar">a thin barrier</button> or <button type="button" class="v" data-pick="pot:dw">a double well</button>. Then <button type="button" class="v" data-act="launch">launch a wave packet</button>.</p>
+  <p>The amber area is {{tex:|\psi|^2}}; the pale line is the real part, showing the oscillation inside. Watch it reflect from the wall in a burst of interference, slosh in the valley, split at the barrier. This is quantum dynamics, exactly, in units where {{tex:\hbar = m = 1}}.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The solver uses the split-step Fourier method: over a short time {{tex:\Delta t}}, it applies half a step of the potential as a phase {{tex:e^{-iV\Delta t/2\hbar}}} in position space, a full step of kinetic energy as {{tex:e^{-i\hbar k^2\Delta t/2m}}} in momentum space, and another half step of potential. Each factor is unitary, so the norm is kept exactly; the error from splitting is of order {{tex:\Delta t^3}} per step, by BCH (Chapter 29). It reproduces the exact spreading of a free Gaussian to four decimal places.</div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>States that do not change</h2>
+  <p>Try a solution where space and time separate: {{tex:\psi(x,t) = \phi(x)\,e^{-iEt/\hbar}}}. Substituting gives the <em>time-independent</em> Schrödinger equation, an eigenvalue problem:</p>
+  <div class="eq">{{texd:-\frac{\hbar^2}{2m}\phi'' + V\phi = E\,\phi}}</div>
+  <p>Its solutions are the <em>stationary states</em>. Their phase turns, but {{tex:|\psi|^2}} never changes: nothing moves. The plate puts the lowest state of the parabolic valley in; watch the real part shimmer while the amber area stays perfectly still. Atoms in their ground state are like this, which is why they do not radiate.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Beats between two states</h2>
+  <p>Now mix the two lowest stationary states equally. Each turns at its own rate, {{tex:E_1/\hbar}} and {{tex:E_2/\hbar}}, so their sum keeps changing: the probability sloshes back and forth at the difference frequency {{tex:(E_2 - E_1)/h}}. Motion in quantum mechanics is always interference between states of different energy. <button type="button" class="v" data-act="mix">Mix the two states</button>.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Probability is never lost</h2>
+  <p>The total probability {{tex:\int|\psi|^2dx}} stays exactly one for all time. The readout shows it to six decimal places while the packet moves. This is <em>unitarity</em>: the evolution {{tex:\psi(t) = e^{-iHt/\hbar}\psi(0)}} is a rotation in Hilbert space, because {{tex:H}} is Hermitian (Chapter 29).</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>The classical limit, built in</h2>
+  <p>Paul Ehrenfest showed in 1927 that averages obey Newton-like laws: {{tex:\frac{d}{dt}\langle x\rangle = \langle p\rangle/m}} and {{tex:\frac{d}{dt}\langle p\rangle = -\langle V'(x)\rangle}}. In the parabolic valley, {{tex:V'}} is linear, so {{tex:\langle V'(x)\rangle = V'(\langle x\rangle)}} and the average position follows the classical path <em>exactly</em>. The plate traces {{tex:\langle x\rangle}} against time, in amber, over the classical cosine. They are the same curve. In other potentials they agree only while the packet is narrow compared with how fast the force changes.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Use {{tex:\frac{d}{dt}\langle A\rangle = \frac{i}{\hbar}\langle[H, A]\rangle}}. With {{tex:H = p^2/2m + V}}: {{tex:[H, x] = -i\hbar p/m}} and {{tex:[H, p] = i\hbar V'(x)}}.</div>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>Two pictures of the same physics</h2>
+  <p>So far the state changes and the operators stay fixed: the <em>Schrödinger picture</em>. You can instead freeze the state and let the operators evolve, {{tex:\hat A(t) = e^{iHt/\hbar}\hat A\,e^{-iHt/\hbar}}}, which obey {{tex:\frac{d\hat A}{dt} = \frac{i}{\hbar}[H,\hat A]}}. This is the <em>Heisenberg picture</em>, and it is Hamilton’s equation of Chapter 13 with Dirac’s replacement. Every prediction is identical in the two pictures; you use whichever makes the calculation easier.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>The Schrödinger equation and why it must look the way it does, stationary states, beats, unitarity, Ehrenfest’s theorem, the two pictures, and an exact solver you will use again and again.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does the Schrödinger equation need i?<span class="tap">tap</span></div><div class="a">Without it the equation is a diffusion equation and wavefunctions would decay; with it they oscillate and probability is conserved.</div></div>
+  <div class="qa"><div class="q">Why does nothing move in a stationary state?<span class="tap">tap</span></div><div class="a">Its time dependence is a single global phase e^(−iEt/ħ), which leaves |ψ|² unchanged.</div></div>
+  <div class="qa"><div class="q">When does ⟨x⟩ follow the classical path exactly?<span class="tap">tap</span></div><div class="a">When the force is linear in x (constant force or harmonic potential); otherwise only approximately, for narrow packets.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Two states differ in energy by 2 eV. What is the period of the beating, in femtoseconds? Use {{tex:h = 4.136\times10^{-15}}} eV s.</p>
+    <form class="calc" data-answer="2.068" data-tol="0.02" data-ok="Yes: T = h/ΔE = 4.136×10⁻¹⁵/2 s ≈ 2.07 fs." data-hint="The beat frequency is ΔE/h; the period is h/ΔE."><span>T =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Period in femtoseconds"><span>fs</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Schrödinger, Ann. Phys. 79, 361 (1926). P. Ehrenfest, Z. Phys. 45, 455 (1927). D. J. Tannor, Introduction to Quantum Mechanics: A Time-Dependent Perspective. Solver checked in code: free Gaussian width 2.6926 at t = 5 (exact 2.6926); norm 1.000000; harmonic half-period ⟨x⟩ = −3.000.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, S = Book.Solver(512, 40), trace = [], hoGround = false;
+  function pot() { if (beat === 3 || beat === 4 || beat === 6) return "ho"; return Book.state.picks.pot || "wall"; }
+  var POT = { free: function () { return 0; }, wall: function (x) { return x > 6 ? 60 : 0; }, ho: function (x) { return 0.5 * 0.25 * x * x; }, bar: function (x) { return Math.abs(x - 2) < 0.25 ? 3.2 : 0; }, dw: function (x) { return 0.02 * Math.pow(x * x - 16, 2) / 4; } };
+  function absorbing() { var p = pot(); return beat !== 5 && (p === "free" || p === "bar"); }
+  function launch() {
+    var p = pot(); S.setV(POT[p]); trace = [];
+    if (beat === 3) { S.setPsi(function (x) { var w = 0.5, g = Math.exp(-w * x * x / 2); return [g, 0]; }); return; }
+    if (beat === 4) { S.setPsi(function (x) { var w = 0.5, g = Math.exp(-w * x * x / 2); return [g + Math.sqrt(2 * w) * x * g, 0]; }); return; }
+    if (beat === 6) { S.packet(-6, Math.SQRT1_2 / Math.sqrt(0.5), 0); return; }
+    if (p === "ho") S.packet(-6, 1.414, 0); else if (p === "dw") S.packet(-4, 0.9, 0); else S.packet(-10, 1.2, 2.5);
+  }
+  Book.plate({
+    init: function () { launch(); },
+    beat: function (i) { beat = i; launch(); },
+    pick: function () { launch(); },
+    act: function () { launch(); },
+    caption: function () { var p = pot(); return ({ free: "Empty space.", wall: "A hard wall.", ho: "A parabolic valley.", bar: "A thin barrier.", dw: "A double well." })[p] + (beat === 3 ? " Lowest stationary state." : beat === 4 ? " Two states mixed." : ""); },
+    readout: function () { var m = S.mean(); return "t = " + S.t.toFixed(1) + (absorbing() ? " · edges absorb outgoing waves" : " · norm " + S.norm().toFixed(6)) + " · ⟨x⟩ = " + m[0].toFixed(2); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, p = pot();
+      if (beat !== 1) { S.step(0.02, 3); if (absorbing()) S.absorb(0.04); }
+      var xr = [-16, 16], A = k.axes(W * 0.04, H * 0.06, W * 0.92, H * (beat === 6 ? 0.5 : 0.78), xr, [-0.6, 1.0], {});
+      function X(x) { return A.X(x); }
+      var vmax = 4; c.strokeStyle = "rgba(236,230,218,.35)"; c.lineWidth = 1.5; c.beginPath(); for (i = 0; i < S.N; i++) { var x = S.x[i]; if (x < xr[0] || x > xr[1]) continue; var y = A.Y(Math.min(1, S.V[i] / vmax) * 0.95 - 0.5); if (i) c.lineTo(X(x), y); else c.moveTo(X(x), y); } c.stroke();
+      var sc = 1.6; c.beginPath(); c.moveTo(X(xr[0]), A.Y(0)); for (i = 0; i < S.N; i++) { var x2 = S.x[i]; if (x2 < xr[0] || x2 > xr[1]) continue; c.lineTo(X(x2), A.Y(Math.min(1, S.prob(i) * sc))); } c.lineTo(X(xr[1]), A.Y(0)); c.closePath(); c.fillStyle = "rgba(255,181,71,.35)"; c.fill();
+      c.strokeStyle = "#ffb547"; c.lineWidth = 2; c.beginPath(); for (i = 0; i < S.N; i++) { var x3 = S.x[i]; if (x3 < xr[0] || x3 > xr[1]) continue; c.lineTo(X(x3), A.Y(Math.min(1, S.prob(i) * sc))); } c.stroke();
+      c.strokeStyle = "rgba(236,230,218,.5)"; c.lineWidth = 1; c.beginPath(); for (i = 0; i < S.N; i++) { var x4 = S.x[i]; if (x4 < xr[0] || x4 > xr[1]) continue; c.lineTo(X(x4), A.Y(S.re[i] * 0.9)); } c.stroke();
+      if (beat === 6) {
+        trace.push([S.t, S.mean()[0]]); if (S.t > 40) { launch(); }
+        var B = k.axes(W * 0.08, H * 0.66, W * 0.86, H * 0.26, [0, 40], [-7, 7], { zeroY: true, xl: "time" });
+        k.plot(B, function (t) { return -6 * Math.cos(0.5 * t); }, [0, 40], "rgba(236,230,218,.4)", 1.5);
+        c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); trace.forEach(function (q, j) { if (j) c.lineTo(B.X(q[0]), B.Y(q[1])); else c.moveTo(B.X(q[0]), B.Y(q[1])); }); c.stroke();
+        k.text("⟨x⟩(t) in amber over the classical path", W / 2, H * 0.64, {});
+      }
+    }
+  });
+})();
+</script>

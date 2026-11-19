@@ -1,0 +1,102 @@
+<section class="beat" data-beat="0">
+  <p class="drop">The dumbbell of a p orbital, the cloverleaf of a d orbital, the round s: chemistry students learn these shapes as facts to memorize. They are not separate facts. Every one of them follows from a single property of the atom, that the force on the electron points straight at the nucleus and is the same in every direction. This chapter derives the shapes from that symmetry alone.</p>
+  <p>On the plate, the angular shapes turn slowly in space. Amber and red mark the two signs of the wavefunction.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Separating the directions</h2>
+  <p>When {{tex:V}} depends only on the distance {{tex:r}}, use spherical coordinates. The kinetic-energy operator splits into a radial part and an angular part, and the angular part is exactly {{tex:\hat L^2/2mr^2}}, the squared angular momentum. So try</p>
+  <div class="eq">{{texd:\psi(r, \theta, \phi) = R(r)\,Y(\theta, \phi)}}</div>
+  <p>The angular factor must be an eigenfunction of {{tex:\hat L^2}} and, without loss, of {{tex:\hat L_z}}. Those are the <em>spherical harmonics</em> {{tex:Y_\ell^m}}, with {{tex:\hat L^2 Y = \hbar^2\ell(\ell+1)Y}} and {{tex:\hat L_z Y = \hbar m Y}}. They are the same for every central potential: the hydrogen atom, a nucleus, a spherical quantum dot. Only {{tex:R(r)}} knows what the potential is. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The shapes</h2>
+  <p>Choose {{tex:\ell =}} <span class="tangle" data-var="l" data-min="0" data-max="3" data-step="1" data-value="1" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="l">1</span><button type="button" data-de="1" aria-label="Higher">›</button></span> and {{tex:m =}} <span class="tangle" data-var="m" data-min="-3" data-max="3" data-step="1" data-value="0" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="m">0</span><button type="button" data-de="1" aria-label="Higher">›</button></span>, and view them as <button type="button" class="v" data-pick="form:real">real orbitals</button> or <button type="button" class="v" data-pick="form:complex">complex states</button>.</p>
+  <p>The letters s, p, d, f stand for {{tex:\ell = 0, 1, 2, 3}}. The {{tex:\phi}} dependence of a true {{tex:\hat L_z}} eigenstate is {{tex:e^{im\phi}}}, so its magnitude is the same all the way round the {{tex:z}}-axis: a doughnut, with the phase winding {{tex:m}} times. Chemists add {{tex:+m}} and {{tex:-m}} states to make real functions with lobes, {{tex:\cos m\phi}} and {{tex:\sin m\phi}}. Both sets are correct; they are different bases for the same space (Chapter 8), and the real one is better for bonds.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The {{tex:\theta}} equation is Legendre’s: with {{tex:x = \cos\theta}}, {{tex:(1-x^2)P'' - 2xP' + [\ell(\ell+1) - m^2/(1-x^2)]P = 0}}. As with Hermite in Chapter 35, its series solutions blow up at the poles unless {{tex:\ell}} is a whole number with {{tex:|m| \le \ell}}.</div>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The radial equation</h2>
+  <p>Writing {{tex:u(r) = rR(r)}} turns the radial part into a one-dimensional problem, like Chapters 31 to 35:</p>
+  <div class="eq">{{texd:-\frac{\hbar^2}{2m}u'' + \left[V(r) + \frac{\hbar^2\ell(\ell+1)}{2mr^2}\right]u = Eu}}</div>
+  <p>The extra term is the <em>centrifugal barrier</em>: angular momentum keeps the particle away from the centre. The plate shows the effective potential for an electron around a proton with {{tex:\ell =}} <span class="tangle" data-var="le" data-min="0" data-max="4" data-step="1" data-value="1" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="l">1</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. For {{tex:\ell = 0}} the electron can reach the nucleus; that is why s electrons, and only s electrons, feel the nucleus directly, which matters for hyperfine structure and for electron capture in radioactive decay.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Counting states</h2>
+  <p>Since the energy depends on {{tex:\ell}} but not on {{tex:m}}, each level is at least {{tex:(2\ell + 1)}}-fold degenerate: rotating a state cannot change its energy when the potential is round. Some potentials have more. The three-dimensional harmonic oscillator has levels {{tex:(N + \tfrac32)\hbar\omega}} with degeneracy {{tex:(N+1)(N+2)/2}}: 1, 3, 6, 10. The plate draws them. Each level holds several {{tex:\ell}} values at once. Extra degeneracy like this always signals a hidden symmetry beyond rotation; hydrogen, next chapter, has one too.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A particle in a sphere</h2>
+  <p>Inside a hard sphere of radius {{tex:R}} with no potential, the radial solutions are spherical Bessel functions {{tex:j_\ell(kr)}}, and the wall forces {{tex:j_\ell(kR) = 0}}. The energies are {{tex:E = \hbar^2 x_{n\ell}^2/2mR^2}}, where {{tex:x_{n\ell}}} are the zeros: 3.14 for 1s, 4.49 for 1p, 5.76 for 1d, 6.28 for 2s. This is the better model of the spherical quantum dots of Chapter 33, and the same ordering, with corrections, gives the shell structure of atomic nuclei and of metal clusters.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Separation into radial and angular parts, spherical harmonics and why {{tex:\ell}} is a whole number, real and complex orbitals, the radial equation and the centrifugal barrier, {{tex:(2\ell+1)}}-fold degeneracy, and spherical boxes.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why are orbital shapes the same for every atom?<span class="tap">tap</span></div><div class="a">The angular part depends only on rotational symmetry; only the radial part depends on the potential.</div></div>
+  <div class="qa"><div class="q">Why do only s electrons reach the nucleus?<span class="tap">tap</span></div><div class="a">For ℓ ≥ 1 the centrifugal term ℓ(ℓ+1)/r² keeps the wavefunction at zero at r = 0.</div></div>
+  <div class="qa"><div class="q">What does extra degeneracy beyond 2ℓ+1 signal?<span class="tap">tap</span></div><div class="a">A hidden symmetry beyond ordinary rotations.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many states share the {{tex:N = 3}} level of the three-dimensional harmonic oscillator?</p>
+    <form class="calc" data-answer="10" data-tol="0.01" data-ok="Yes: (3+1)(3+2)/2 = 10, made of ℓ = 3 (7 states) and ℓ = 1 (3 states)." data-alt="7~That is only ℓ = 3. N = 3 also contains ℓ = 1." data-hint="Use (N+1)(N+2)/2, or count ways to write 3 = nx + ny + nz."><span>degeneracy =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Degeneracy"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. J. Griffiths and D. F. Schroeter, Introduction to Quantum Mechanics, ch. 4. J. J. Sakurai and J. Napolitano, Modern Quantum Mechanics, ch. 3. Checked by code: Y₂¹ normalized; spherical Bessel zeros 3.1416, 4.4934, 5.7635, 6.2832; oscillator degeneracies 1, 3, 6, 10, 15.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { l: 1, m: 0, le: 1 }, pts = null, key = "";
+  function fact(n) { var f = 1; for (var i = 2; i <= n; i++) f *= i; return f; }
+  function Plm(l, m, x) { var pmm = 1, s = Math.sqrt(Math.max(0, 1 - x * x)), f = 1; for (var i = 1; i <= m; i++) { pmm *= -f * s; f += 2; } if (l === m) return pmm; var p1 = x * (2 * m + 1) * pmm; if (l === m + 1) return p1; var p2; for (var ll = m + 2; ll <= l; ll++) { p2 = ((2 * ll - 1) * x * p1 - (ll + m - 1) * pmm) / (ll - m); pmm = p1; p1 = p2; } return p1; }
+  function Y(l, m, th, ph, complex) { var am = Math.abs(m), N = Math.sqrt((2 * l + 1) / (4 * Math.PI) * fact(l - am) / fact(l + am)), P = N * Plm(l, am, Math.cos(th)); if (complex) return [Math.abs(P), Math.cos(m * ph)]; if (m === 0) return [Math.abs(P), P]; var a = Math.SQRT2 * P * (m > 0 ? Math.cos(am * ph) : Math.sin(am * ph)); return [Math.abs(a), a]; }
+  function build(l, m, complex) {
+    var k2 = l + "," + m + "," + complex; if (k2 === key) return; key = k2; pts = [];
+    for (var i = 0; i <= 40; i++) for (var j = 0; j < 80; j++) { var th = Math.PI * i / 40, ph = 2 * Math.PI * j / 80, y = Y(l, m, th, ph, complex); pts.push([y[0] * Math.sin(th) * Math.cos(ph), y[0] * Math.sin(th) * Math.sin(ph), y[0] * Math.cos(th), y[1]]); }
+  }
+  function cur() { if (beat === 0 || beat === 1 || beat === 6) { var seq = [[0, 0], [1, 0], [1, 1], [2, 0], [2, 2], [2, -1], [3, 0], [3, 2]], s = seq[Math.floor(Date.now() / 3500) % seq.length]; return [s[0], s[1], false]; } var l = V.l, m = Math.max(-l, Math.min(l, V.m)); return [l, m, Book.state.picks.form === "complex"]; }
+  var NAMES = ["s", "p", "d", "f"];
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { var c = cur(); if (beat === 3) return "Effective potential for hydrogen, ℓ = " + V.le + "."; if (beat === 4) return "3D oscillator levels and their ℓ content."; if (beat === 5) return "Levels in a hard sphere: zeros of j_ℓ."; return NAMES[c[0]] + " shape: ℓ = " + c[0] + ", m = " + c[1] + (c[2] ? " (complex: |Y| with phase stripes)" : ""); },
+    readout: function () { if (beat === 2) { var c = cur(); return "ℓ = " + c[0] + " · m = " + c[1] + (V.m !== c[1] ? " (|m| ≤ ℓ)" : "") + " · L² = " + c[0] * (c[0] + 1) + "ħ² · Lz = " + c[1] + "ħ"; } if (beat === 3) return "barrier ℓ(ℓ+1)ħ²/2mr² with ℓ(ℓ+1) = " + V.le * (V.le + 1); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      if (beat === 3) {
+        A = k.axes(W * 0.1, H * 0.06, W * 0.84, H * 0.84, [0, 12], [-1.2, 0.6], { xl: "r / a₀", yl: "energy, hartree", zeroY: true });
+        var L = V.le * (V.le + 1);
+        k.plot(A, function (r) { return -1 / r; }, [0.05, 12], "rgba(236,230,218,.35)", 1.5, 400);
+        k.plot(A, function (r) { return L / (2 * r * r); }, [0.05, 12], "rgba(236,230,218,.35)", 1, 400);
+        k.plot(A, function (r) { return -1 / r + L / (2 * r * r); }, [0.05, 12], "#ffb547", 2.5, 600);
+        k.text("amber: total · faint: Coulomb and centrifugal parts", W / 2, H * 0.97, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.8, H * 0.84, [0, 16], [0, 5.2], { yl: "E / ħω" });
+        for (var N = 0; N < 4; N++) { var y = A.Y(N + 1.5), deg = (N + 1) * (N + 2) / 2, x = A.X(0.5); for (var d = 0; d < deg; d++) k.rr(x + d * (A.X(1.4) - A.X(0)), y - 4, A.X(1.1) - A.X(0), 8, 3, "#ffb547"); var ls = []; for (var l2 = N; l2 >= 0; l2 -= 2) ls.push(NAMES[l2]); k.text("N = " + N + " · " + deg + " states · " + ls.join(" + "), A.X(15.5), y + 4, { align: "right", size: 12, color: "#b9b2a5" }); }
+        return;
+      }
+      if (beat === 5) {
+        A = k.axes(W * 0.12, H * 0.06, W * 0.8, H * 0.84, [0, 10], [0, 90], { yl: "E in units of ħ²/2mR²" });
+        [["1s", 3.1416], ["1p", 4.4934], ["1d", 5.7635], ["2s", 6.2832], ["1f", 6.9879], ["2p", 7.7253]].forEach(function (q, j) { var e = q[1] * q[1]; k.line(A.X(1), A.Y(e), A.X(6), A.Y(e), "#ffb547", 2); k.text(q[0] + "  x = " + q[1].toFixed(2), A.X(6.3), A.Y(e) + 4, { align: "left", size: 12, color: "#b9b2a5" }); });
+        return;
+      }
+      var cs = cur(); build(cs[0], cs[1], cs[2]);
+      var rot = now / 2600, ct = Math.cos(rot), st = Math.sin(rot), tilt = 0.35, cT = Math.cos(tilt), sT = Math.sin(tilt), sc = Math.min(W, H) * 0.42 / (cs[0] === 0 ? 0.28 : 0.6), cx = W / 2, cy = H / 2;
+      var proj = pts.map(function (p) { var x = p[0] * ct - p[1] * st, y = p[0] * st + p[1] * ct, z = p[2]; var y2 = y * cT - z * sT, z2 = y * sT + z * cT; return [cx + x * sc, cy - z2 * sc, y2, p[3]]; });
+      proj.sort(function (a, b) { return b[2] - a[2]; });
+      k.line(cx, cy - Math.min(W, H) * 0.46, cx, cy + Math.min(W, H) * 0.46, "rgba(236,230,218,.12)", 1, [3, 4]);
+      for (i = 0; i < proj.length; i++) { var q = proj[i], depth = 0.45 + 0.55 * (1 - (q[2] * sc / (Math.min(W, H) * 0.42) + 1) / 2); c.fillStyle = q[3] >= 0 ? "rgba(255,181,71," + depth.toFixed(2) + ")" : "rgba(224,90,70," + depth.toFixed(2) + ")"; c.fillRect(q[0] - 1.3, q[1] - 1.3, 2.6, 2.6); }
+      k.text("z", cx + 8, cy - Math.min(W, H) * 0.44, { size: 11, color: "#7c766b" });
+    }
+  });
+})();
+</script>

@@ -1,0 +1,64 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In 1994 Daniel Simon, then at the Université de Montréal, found a problem that a quantum computer solves with about {{tex:n}} queries and any classical computer, even one allowed to guess, needs about {{tex:2^{n/2}}}. It was the first exponential separation against randomized classical algorithms, and its structure, a hidden period revealed by Fourier sampling, was exactly what Peter Shor needed. Weeks after reading Simon’s paper, Shor had his factoring algorithm.</p>
+  <p>On the plate: equations collected from quantum queries, solved by Gaussian elimination.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The problem</h2>
+  <p>A function {{tex:f}} on {{tex:n}}-bit strings is promised to satisfy {{tex:f(x) = f(y)}} if and only if {{tex:y = x}} or {{tex:y = x\oplus s}}, for some unknown nonzero {{tex:s}}. Find {{tex:s}}. Classically you must find a collision, two inputs with the same output, and by the birthday paradox that takes about {{tex:2^{n/2}}} queries. Simon proved no classical algorithm does fundamentally better. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The quantum algorithm</h2>
+  <p>Prepare the uniform superposition, compute {{tex:f}} into a second register, and measure that register. The first register collapses to {{tex:(|x_0\rangle + |x_0\oplus s\rangle)/\sqrt2}} for a random {{tex:x_0}}. Apply Hadamards and measure: you get a random {{tex:y}} with {{tex:y\cdot s = 0 \pmod 2}}, every such {{tex:y}} equally likely. Each run gives one linear equation for {{tex:s}}. Hide <span class="tangle" data-var="s" data-min="1" data-max="15" data-step="1" data-value="11" data-px="10"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Hidden s">11</span><button type="button" data-de="1" aria-label="More">›</button></span> (four bits) and <button type="button" class="v" data-act="sample">run once</button> a few times, or <button type="button" class="v" data-act="clear">start over</button>. Once you have {{tex:n - 1}} independent equations, Gaussian elimination over GF(2) leaves a single nonzero solution: {{tex:s}}. About {{tex:n}} runs suffice on average.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The hidden subgroup problem</h2>
+  <p>Simon’s, Deutsch–Jozsa’s and Shor’s problems are all instances of one pattern: a function is constant on the cosets of a hidden subgroup {{tex:H}} of a group {{tex:G}} and different on different cosets; find {{tex:H}}. For Simon, {{tex:G}} is bit strings under XOR and {{tex:H = \{0, s\}}}. For Shor, {{tex:G}} is the integers and {{tex:H}} the multiples of a period. Whenever {{tex:G}} is <em>abelian</em>, the Fourier transform over {{tex:G}} solves the problem efficiently, as Alexei Kitaev showed in 1995. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Where it gets hard</h2>
+  <p>For non-abelian groups the story changes. The symmetric group’s HSP would solve graph isomorphism; the dihedral group’s HSP is closely related, as Oded Regev showed in 2002, to finding short vectors in lattices, the problem behind post-quantum cryptography (Chapter 133). Greg Kuperberg found a subexponential quantum algorithm for the dihedral case in 2003, but no polynomial one is known. That gap is part of why lattice cryptography is trusted to resist quantum computers. <span class="tag">Debated</span> whether efficient algorithms exist.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>Simon’s problem and its {{tex:2^{n/2}}} classical lower bound, the quantum algorithm and GF(2) elimination, the hidden subgroup framework that unites Simon and Shor, and why non-abelian cases connect to lattice cryptography.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does each quantum run of Simon’s algorithm give?<span class="tap">tap</span></div><div class="a">A random y with y · s = 0 mod 2: one linear equation.</div></div>
+  <div class="qa"><div class="q">Why does classical search need about 2^(n/2) queries?<span class="tap">tap</span></div><div class="a">It must find a collision, which by the birthday paradox takes about the square root of the space.</div></div>
+  <div class="qa"><div class="q">Which HSP relates to lattice problems?<span class="tap">tap</span></div><div class="a">The dihedral hidden subgroup problem.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:n = 40}}, about how many classical queries does finding a collision take, {{tex:2^{n/2}}}?</p>
+    <form class="calc" data-answer="1048576" data-tol="2000" data-ok="Yes: 2²⁰ ≈ 10⁶. The quantum algorithm needs about 40 runs." data-hint="2^20."><span>queries ≈</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Queries"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: D. R. Simon, SIAM J. Comput. 26, 1474 (1997) (FOCS 1994). P. W. Shor, SIAM J. Comput. 26, 1484 (1997). A. Yu. Kitaev, arXiv:quant-ph/9511026 (1995). O. Regev, FOCS 2002, 520. G. Kuperberg, SIAM J. Comput. 35, 170 (2005). A. M. Childs and W. van Dam, Rev. Mod. Phys. 82, 1 (2010). Checked by code: for n = 4, exactly 2^(n−1) strings y satisfy y·s = 0; elimination recovers s from n − 1 independent samples.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { s: 11 }, eqs = [], seed = 61;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function dot(a, b) { var c = a & b, p = 0; while (c) { p ^= c & 1; c >>= 1; } return p; }
+  function sample() { var ys = []; for (var y = 0; y < 16; y++) if (!dot(y, V.s)) ys.push(y); eqs.push(ys[Math.floor(rnd() * ys.length)]); }
+  function solve() { var rows = eqs.slice(), basis = []; rows.forEach(function (r) { basis.forEach(function (b) { if (r & (1 << (31 - Math.clz32(b)))) r ^= b; }); if (r) { basis.push(r); basis.sort(function (a, b) { return b - a; }); } }); var rank = basis.length, cands = []; for (var s = 1; s < 16; s++) { var ok = true; for (var i = 0; i < eqs.length; i++) if (dot(eqs[i], s)) { ok = false; break; } if (ok) cands.push(s); } return { rank: rank, cands: cands }; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; eqs = []; },
+    act: function (a) { if (a === "clear") eqs = []; else sample(); },
+    caption: function () { return ["Equations from quantum runs.", "Collisions: f(x) = f(x ⊕ s).", "Collected equations y · s = 0.", "Hidden subgroups.", "Abelian easy, non-abelian hard.", "Simon."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var r = solve(); return eqs.length + " runs · rank " + r.rank + " · candidates: " + (r.cands.length ? r.cands.map(function (c) { return c.toString(2).padStart(4, "0"); }).join(", ") : "—") + (r.cands.length === 1 ? " ✓ s found" : ""); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, i;
+      if (beat === 2 || beat === 0 || beat === 5) { eqs.slice(-8).forEach(function (y, j) { var bits = y.toString(2).padStart(4, "0"); k.text(bits.split("").join(" ") + "  ·  s  =  0", W / 2, H * (0.12 + j * 0.09), { size: 16, color: "#ffb547", mono: true }); }); if (!eqs.length) k.text("run the algorithm to collect equations", W / 2, H / 2, { size: 13, color: "#7c766b" }); return; }
+      if (beat === 1) { for (i = 0; i < 16; i++) { var x = W * (0.08 + (i % 8) * 0.12), y = H * (0.3 + Math.floor(i / 8) * 0.3), pair = i ^ V.s, col = Math.min(i, pair) % 5; k.circle(x, y, 14, ["#ffb547", "#e05a46", "#ece6da", "rgba(255,181,71,.5)", "rgba(224,90,70,.5)"][col]); k.text(i.toString(2).padStart(4, "0"), x, y + 30, { size: 9, color: "#7c766b" }); } k.text("same colour: same f value (pairs x, x ⊕ s)", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3 || beat === 4) { [["Simon: bit strings, {0, s}", "#ffb547"], ["Shor: integers, multiples of r", "#ffb547"], ["dihedral: lattices (hard)", "#e05a46"], ["symmetric: graph isomorphism (hard)", "#e05a46"]].forEach(function (q, j) { k.text(q[0], W / 2, H * (0.22 + j * 0.17), { size: 14, color: q[1] }); }); }
+    }
+  });
+})();
+</script>

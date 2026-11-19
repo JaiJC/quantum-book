@@ -1,0 +1,73 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In December 2015 both ATLAS and CMS showed a small excess of photon pairs with combined mass near 750 GeV. Within months, theorists had written more than five hundred papers explaining it. In August 2016, with more data, it was gone: a fluctuation. Particle physicists demand five standard deviations before claiming a discovery, a chance of about one in 3.5 million that background alone would do it, precisely because smaller excesses, three sigma and below, have come and gone many times. This chapter is about the statistics that decide when a bump is real.</p>
+  <p>On the plate: a falling mass spectrum with nothing in it but noise. Look for bumps.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>From σ to p</h2>
+  <p>A <em>p-value</em> is the probability, if only background were present, of seeing a result at least as extreme as the one observed. Physicists quote it as a number of standard deviations of a Gaussian, one-sided: 3σ is {{tex:p = 1.35\times10^{-3}}}, “evidence”; 5σ is {{tex:p = 2.87\times10^{-7}}}, “observation”. Neither is the probability that the signal is false; that would need prior beliefs (Chapter 10). Five sigma is a convention, chosen to protect against systematic errors and the multiple-testing problem below as much as against chance. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Likelihoods</h2>
+  <p>Given a model with signal strength {{tex:\mu}} and nuisance parameters {{tex:\theta}} (background normalization, energy scale, and so on), the <em>likelihood</em> {{tex:L(\mu, \theta)}} is the probability of the observed data. To test {{tex:\mu = 0}}, compare the best fit with {{tex:\mu}} free against the best fit with {{tex:\mu = 0}}, each time adjusting {{tex:\theta}} to its best value: the <em>profile likelihood ratio</em>. By Wilks’ theorem its logarithm follows a known distribution, giving the significance directly. For a simple count with expected background {{tex:b}} and signal {{tex:s}}, the median significance is</p>
+  <div class="eq">{{texd:Z = \sqrt{2\left[(s+b)\ln(1 + s/b) - s\right]}}}</div>
+  <p>the “Asimov” formula of Glen Cowan, Kyle Cranmer, Eilam Gross and Ofer Vitells; it reduces to {{tex:s/\sqrt b}} when {{tex:s \ll b}}. For setting upper limits, experiments use a modified method called CLs, which avoids excluding signals they have no sensitivity to.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The look-elsewhere effect</h2>
+  <p>If you search a spectrum at many masses, some bin will fluctuate high by chance. <button type="button" class="v" data-act="new">Generate a new background-only spectrum</button> a few times and watch the largest local excess. In 60 independent bins, the biggest fluctuation is typically above 2σ, and one time in thirteen above 3σ. A 3σ <em>local</em> excess found by scanning is far less significant <em>globally</em>. Eilam Gross and Ofer Vitells gave a practical correction in 2010, counting how often the significance curve crosses a threshold. The 750 GeV excess was 3.9σ local in ATLAS but about 2σ global.</p>
+  <p>Now add a real signal of <span class="tangle" data-var="s" data-min="0" data-max="120" data-step="5" data-value="0" data-px="2"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Signal events">0</span><button type="button" data-de="1" aria-label="More">›</button></span> events at bin 30, and regenerate. A real signal stays at the same place every time; noise moves.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Blinding</h2>
+  <p>The most dangerous bias is the analyst’s own: stopping when the answer looks right, choosing cuts that enhance a bump. So analyses are <em>blinded</em>: the selection, background model and uncertainties are fixed using simulation and control regions, and only then is the signal region opened. The Higgs search of 2012 was blinded this way. Machine-learning classifiers, now used in most analyses to separate signal from background, must also be trained and validated without looking at the data they will be applied to. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>p-values and their σ equivalents, what 5σ does and does not mean, likelihoods and profile likelihoods, the Asimov significance formula, CLs limits, the look-elsewhere effect, and blinding.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Is p = 2.87×10⁻⁷ the probability that the signal is fake?<span class="tap">tap</span></div><div class="a">No. It is the probability of data this extreme if only background were present.</div></div>
+  <div class="qa"><div class="q">Why is a local 3σ bump often unremarkable?<span class="tap">tap</span></div><div class="a">Searching many places makes some fluctuation that large likely; the global significance is much lower.</div></div>
+  <div class="qa"><div class="q">Why blind an analysis?<span class="tap">tap</span></div><div class="a">To prevent choices from being tuned, consciously or not, toward the desired result.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> With {{tex:s = 10}} signal and {{tex:b = 4}} background events, what is the Asimov significance {{tex:Z}}?</p>
+    <form class="calc" data-answer="3.88" data-tol="0.03" data-ok="Yes: √(2[14 ln 3.5 − 10]) ≈ 3.9σ; the naive s/√b = 5 overstates it." data-alt="5~That is s/√b, which overstates significance when s is not small compared with b." data-hint="14 × ln 3.5 = 17.54."><span>Z =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Significance"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. Cowan, K. Cranmer, E. Gross and O. Vitells, Eur. Phys. J. C 71, 1554 (2011). E. Gross and O. Vitells, Eur. Phys. J. C 70, 525 (2010). A. L. Read, J. Phys. G 28, 2693 (2002) (CLs). Particle Data Group, statistics review. ATLAS, JHEP 09, 001 (2016) and CMS, Phys. Rev. Lett. 117, 051802 (2016) (750 GeV diphoton). Checked by code: one-sided p for 3σ and 5σ; Asimov Z = 3.88 for s = 10, b = 4; in 60 bins the median maximum local significance is 2.28σ and P(max > 3σ) = 0.079.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { s: 0 }, NB = 60, data = null, seed = 17;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function pois(l) { if (l > 50) { var u = rnd(), v = rnd(); return Math.max(0, Math.round(l + Math.sqrt(l) * Math.sqrt(-2 * Math.log(u + 1e-12)) * Math.cos(6.283 * v))); } var L = Math.exp(-l), k = 0, p = 1; do { k++; p *= rnd(); } while (p > L); return k - 1; }
+  function bkg(i) { return 400 * Math.exp(-i / 18) + 15; }
+  function gen() { data = []; for (var i = 0; i < NB; i++) { var mu = bkg(i) + V.s * Math.exp(-Math.pow((i - 30) / 1.5, 2) / 2) / 3.76; data.push(pois(mu)); } }
+  function zloc(n, b) { if (n <= b) return 0; return Math.sqrt(2 * (n * Math.log(n / b) - (n - b))); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; gen(); },
+    beat: function (i) { beat = i; if (!data) gen(); },
+    set: function (n, v) { V[n] = v; gen(); },
+    act: function () { gen(); },
+    caption: function () { return ["A falling spectrum: background only.", "σ and p.", "Likelihood ratio.", "Biggest local excess (red) in this pseudo-experiment.", "Blinded signal region.", "Statistics."][beat]; },
+    readout: function () { if (!data) return ""; var best = 0, bi = 0; for (var i = 0; i < NB; i++) { var z = zloc(data[i], bkg(i)); if (z > best) { best = z; bi = i; } } if (beat === 3 || beat === 0) return "largest local excess: " + best.toFixed(2) + "σ at bin " + bi + (V.s ? " · signal injected at bin 30" : ""); if (beat === 1) return "3σ: p = 1.35×10⁻³ · 5σ: p = 2.87×10⁻⁷"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i;
+      if (beat === 1) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [-4, 6], [0, 0.42], { xl: "standard deviations" }); k.plot(A, function (x) { return Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI); }, [-4, 6], "#ece6da", 2, 300); c.fillStyle = "rgba(255,181,71,.5)"; c.beginPath(); c.moveTo(A.X(3), A.Y(0)); for (var x = 3; x <= 6; x += 0.05) c.lineTo(A.X(x), A.Y(Math.exp(-x * x / 2) / 2.5066)); c.lineTo(A.X(6), A.Y(0)); c.fill(); k.line(A.X(5), A.Y(0), A.X(5), A.Y(0.1), "#e05a46", 2); k.text("5σ", A.X(5), A.Y(0.1) - 6, { size: 12, color: "#e05a46" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, 3], [0, 6], { xl: "signal strength μ", yl: "−2 ln λ(μ)" }); k.plot(A, function (m) { return Math.pow((m - 1.1) / 0.35, 2); }, [0, 3], "#ffb547", 2.5); k.line(A.X(0), A.Y(1), A.X(3), A.Y(1), "rgba(236,230,218,.35)", 1, [4, 4]); k.text("1σ interval", A.X(2.9), A.Y(1) - 6, { size: 11, align: "right" }); return; }
+      if (!data) gen();
+      A = k.axes(W * 0.1, H * 0.08, W * 0.84, H * 0.78, [0, NB], [0, 460], { xl: "mass bin", yl: "events" });
+      k.plot(A, bkg, [0, NB], "rgba(236,230,218,.5)", 1.5, 200);
+      var best = 0, bi = 0; for (i = 0; i < NB; i++) { var z = zloc(data[i], bkg(i)); if (z > best) { best = z; bi = i; } }
+      for (i = 0; i < NB; i++) { if (beat === 4 && i > 25 && i < 35) { k.rr(A.X(i) + 1, A.Y(460), A.X(1) - A.X(0) - 2, A.Y(0) - A.Y(460), 1, "#14120f"); continue; } k.circle(A.X(i + 0.5), A.Y(data[i]), 3, i === bi && beat !== 4 ? "#e05a46" : "#ffb547"); }
+      if (beat === 4) k.text("signal region hidden until the analysis is frozen", A.X(30), A.Y(430), { size: 12, color: "#b9b2a5" });
+    }
+  });
+})();
+</script>

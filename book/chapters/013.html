@@ -1,0 +1,124 @@
+<section class="beat" data-beat="0">
+  <p class="drop">In the autumn of 1925 a young Paul Dirac was reading a paper by Werner Heisenberg in which quantities no longer multiplied in either order to give the same answer. On a Sunday walk he recalled an old piece of classical mechanics, the Poisson bracket, and saw that quantum mechanics could be written by changing that one bracket and almost nothing else. <span class="tag">Established</span></p>
+  <p>This chapter builds the Hamiltonian form of mechanics, in which a system’s state is a point in phase space and its motion is a flow. It is the form quantum mechanics grew out of.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>From velocity to momentum</h2>
+  <p>Lagrange describes a system by positions and velocities. Hamilton swaps velocity for momentum, defined from the Lagrangian as {{tex:p = \partial L/\partial\dot q}}. The swap is a <em>Legendre transform</em>, and it produces a new function, the <em>Hamiltonian</em>:</p>
+  <div class="eq">{{texd:H(q,p) = p\,\dot q - L}}</div>
+  <p>For ordinary systems this is simply the total energy, {{tex:H = T + V}}. Written in terms of momentum, a mass on a spring has {{tex:H = p^2/2m + \tfrac12 kq^2}}.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Hamilton’s equations</h2>
+  <p>Motion now comes from two first-order equations with a striking symmetry:</p>
+  <div class="eq">{{texd:\dot q = \frac{\partial H}{\partial p}, \qquad \dot p = -\frac{\partial H}{\partial q}}}</div>
+  <p>Because energy is conserved, the state moves along a contour of {{tex:H}} in the plane of position and momentum, the phase plane. The plate shows a pendulum, {{tex:H = p^2/2 - \cos q}}. Give it an energy of <span class="tangle" data-var="E" data-min="-0.95" data-max="2" data-step="0.05" data-dec="2" data-value="0" data-px="4"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Energy">0.00</span><button type="button" data-de="1" aria-label="More">›</button></span>. Below 1 it swings back and forth on a closed loop; above 1 it goes right over the top and keeps rotating. The curve at exactly 1, the <em>separatrix</em>, divides the two.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>A flow that never compresses</h2>
+  <p>Take not one starting state but a small blob of them, and let every point follow Hamilton’s equations. <button type="button" class="v" data-act="blob">Release the blob</button>. It stretches and twists, and near the separatrix it smears out into a long thin streak, yet its area never changes. That is <em>Liouville’s theorem</em>: Hamiltonian flow behaves like an incompressible fluid in phase space.</p>
+  <p>It is the foundation of statistical mechanics, because a probability spread over phase space can move but never pile up. Its quantum twin says that time evolution preserves probability.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>The phase-space velocity is {{tex:(\dot q,\dot p) = (\partial H/\partial p, -\partial H/\partial q)}}. Its divergence is {{tex:\partial^2 H/\partial q\partial p - \partial^2 H/\partial p\partial q = 0}}. A flow with zero divergence preserves volume (Chapter 3).</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Integrators that respect the flow</h2>
+  <p>Simulate the pendulum with Euler’s method and the blob slowly inflates: Euler does not preserve phase-space area, so it invents energy. After 500 time units with a step of 0.1, the energy has drifted by 24, more than ten times the pendulum’s whole range. The <em>leapfrog</em> method updates momentum by half a step, position by a full step, then momentum again. It preserves area exactly, and its energy error stays below a thousandth forever. Methods built this way are called <em>symplectic</em>, and they are how planetary orbits and molecules are simulated for long times.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The Poisson bracket</h2>
+  <p>For any two quantities {{tex:f}} and {{tex:g}} defined on phase space, define</p>
+  <div class="eq">{{texd:\{f, g\} = \frac{\partial f}{\partial q}\frac{\partial g}{\partial p} - \frac{\partial f}{\partial p}\frac{\partial g}{\partial q}}}</div>
+  <p>Then the rate of change of any quantity is its bracket with the Hamiltonian: {{tex:\dot f = \{f, H\}}}. A quantity whose bracket with {{tex:H}} is zero is conserved. The most basic bracket of all is {{tex:\{q, p\} = 1}}. For angular momentum, {{tex:\{L_x, L_y\} = L_z}} and its cyclic partners: the components do not “commute”, a hint of the quantum spin that cannot point along two axes at once.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Changing coordinates without breaking anything</h2>
+  <p>A change of variables {{tex:(q,p)\to(Q,P)}} is <em>canonical</em> if it keeps {{tex:\{Q, P\} = 1}}; then Hamilton’s equations keep their form in the new variables. Some are surprising: {{tex:Q = p}}, {{tex:P = -q}} swaps the roles of position and momentum entirely and is perfectly canonical. In quantum mechanics this swap becomes the Fourier transform of Chapter 6.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>Dirac’s step</h2>
+  <p>Dirac’s proposal was to keep every equation of Hamiltonian mechanics but replace the Poisson bracket of two quantities with the <em>commutator</em> of two operators, divided by {{tex:i\hbar}}:</p>
+  <div class="eq">{{texd:\{f, g\}\;\longrightarrow\;\frac{1}{i\hbar}\,[\hat f, \hat g], \qquad [\hat x, \hat p] = i\hbar}}</div>
+  <p>The equation of motion {{tex:\dot f = \{f,H\}}} becomes Heisenberg’s {{tex:d\hat f/dt = \tfrac{1}{i\hbar}[\hat f, \hat H]}}. The single fact {{tex:[\hat x,\hat p] = i\hbar}} will give the uncertainty principle, the spacing of atomic energy levels and the stability of matter. That is the bracket quantum mechanics changed.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Momentum as a coordinate, Hamilton’s equations, phase space as an incompressible flow, symplectic simulation, Poisson brackets and the bridge to quantum commutators.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does Liouville’s theorem say?<span class="tap">tap</span></div><div class="a">Hamiltonian flow preserves area (volume) in phase space: a blob of states can deform but not compress.</div></div>
+  <div class="qa"><div class="q">How do you test whether a quantity is conserved, using brackets?<span class="tap">tap</span></div><div class="a">Compute its Poisson bracket with H. If it is zero, the quantity is constant in time.</div></div>
+  <div class="qa"><div class="q">What did Dirac replace the Poisson bracket with?<span class="tap">tap</span></div><div class="a">The commutator divided by iħ, so that {q, p} = 1 becomes [x, p] = iħ.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> For {{tex:H = p^2/2m + \tfrac12 kq^2}} with {{tex:k = 4}}, what is {{tex:\dot p}} when {{tex:q = 0.5}}?</p>
+    <form class="calc" data-answer="-2" data-tol="0.01" data-ok="Yes: ṗ = −∂H/∂q = −kq = −2. The spring pulls back." data-alt="2~Check the sign: ṗ = −∂H/∂q." data-hint="Use ṗ = −∂H/∂q."><span>ṗ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Rate of change of momentum"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: H. Goldstein, C. Poole and J. Safko, Classical Mechanics. P. A. M. Dirac, Proc. R. Soc. A 109, 642 (1925). Checked by code: leapfrog preserves blob area to 5×10⁻⁵; Euler energy drift 24.3 vs leapfrog 6×10⁻⁴ over 500 time units.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { E: 0 }, pt = null, blob = [], eu = [], area0 = 0;
+  function newPt() { var q = Math.acos(Math.max(-1, Math.min(1, -V.E))); pt = V.E < 1 ? { q: 0, p: Math.sqrt(2 * (V.E + 1)) } : { q: 0, p: Math.sqrt(2 * (V.E + 1)) }; }
+  function newBlob() { blob = []; eu = []; for (var i = 0; i < 240; i++) { var a = i / 240 * 2 * Math.PI; var q = 1.6 + 0.3 * Math.cos(a), p = 0.3 * Math.sin(a); blob.push([q, p]); eu.push([q, p]); } area0 = Math.PI * 0.09; }
+  function area(b) { var s = 0; for (var i = 0; i < b.length; i++) { var j = (i + 1) % b.length; s += b[i][0] * b[j][1] - b[j][0] * b[i][1]; } return Math.abs(s) / 2; }
+  function leap(s, h) { s[1] -= h / 2 * Math.sin(s[0]); s[0] += h * s[1]; s[1] -= h / 2 * Math.sin(s[0]); }
+  function eul(s, h) { var q = s[0], p = s[1]; s[0] = q + h * p; s[1] = p - h * Math.sin(q); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; newPt(); newBlob(); },
+    beat: function (i) { beat = i; if (i === 3 || i === 4) newBlob(); if (i === 2) newPt(); },
+    act: function (a) { if (a === "blob") newBlob(); },
+    set: function (n, v) { V[n] = v; newPt(); },
+    caption: function () { return ["Phase space of a pendulum.", "H = p²/2m + kq²/2.", "Pendulum: contours of H.", "A blob of states flowing.", "Leapfrog (amber) and Euler (grey).", "Contours of H.", "Swapping q and p.", "[x, p] = iħ.", "Phase space of a pendulum."][beat]; },
+    readout: function () {
+      if (beat === 2) return V.E < 1 ? "swinging (E < 1)" : V.E > 1 ? "rotating over the top (E > 1)" : "on the separatrix";
+      if (beat === 3) return "area " + area(blob).toFixed(4) + " · start " + area0.toFixed(4);
+      if (beat === 4) return "area: leapfrog " + area(blob).toFixed(3) + " · Euler " + area(eu).toFixed(3);
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, cx = W / 2, cy = H / 2, sx = W / (2 * Math.PI + 1.2), sy = H / 6.4;
+      function P(q, p) { var qq = ((q + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI; return [cx + qq * sx, cy - p * sy]; }
+      if (beat === 7) {
+        k.text("{ q , p } = 1", W / 2, H * 0.36, { size: 30, color: "#b9b2a5", italic: false });
+        k.text("↓", W / 2, H * 0.5, { size: 28, color: "#ffb547" });
+        k.text("[ x̂ , p̂ ] = iħ", W / 2, H * 0.68, { size: 34, color: "#ffb547", italic: false });
+        return;
+      }
+      if (beat === 6) {
+        var t = (Math.sin(now / 1200) + 1) / 2, ang = t * Math.PI / 2;
+        for (var r = 0.5; r <= 2.5; r += 0.5) { c.save(); c.translate(cx, cy); c.rotate(-ang); c.scale(1, 1); k.circle(0, 0, r * sy, null, "rgba(236,230,218,.25)"); c.restore(); }
+        var e = [Math.cos(ang), Math.sin(ang)]; k.line(cx, cy, cx + e[0] * 2 * sy, cy - e[1] * 2 * sy, "#ffb547", 2.5); k.text("q → p", W / 2, H - 12, { color: "#ffb547" });
+        k.line(0, cy, W, cy, "#3a3631"); k.line(cx, 0, cx, H, "#3a3631");
+        return;
+      }
+      // contours of the pendulum Hamiltonian
+      for (var Ev = -0.8; Ev <= 2.4; Ev += 0.3) {
+        c.strokeStyle = Math.abs(Ev - 1) < 0.01 ? "#7c766b" : "#24211d"; c.lineWidth = 1;
+        [1, -1].forEach(function (sg) { c.beginPath(); var started = false; for (var i = 0; i <= 400; i++) { var q = -Math.PI + 2 * Math.PI * i / 400, p2 = 2 * (Ev + Math.cos(q)); if (p2 < 0) { started = false; continue; } var pp = P(q, sg * Math.sqrt(p2)); if (!started) { c.moveTo(pp[0], pp[1]); started = true; } else c.lineTo(pp[0], pp[1]); } c.stroke(); });
+      }
+      [1].forEach(function () { [1, -1].forEach(function (sg) { c.strokeStyle = "#7c766b"; c.setLineDash([4, 4]); c.beginPath(); for (var i = 0; i <= 400; i++) { var q = -Math.PI + 2 * Math.PI * i / 400, pp = P(q, sg * Math.sqrt(2 * (1 + Math.cos(q)))); if (i) c.lineTo(pp[0], pp[1]); else c.moveTo(pp[0], pp[1]); } c.stroke(); c.setLineDash([]); }); });
+      k.line(0, cy, W, cy, "#3a3631"); k.line(cx, 0, cx, H, "#3a3631");
+      k.text("position q", W - 8, cy - 8, { align: "right" }); k.text("momentum p", cx + 8, 16, { align: "left" });
+      if (beat === 3 || beat === 4) {
+        for (var s = 0; s < 3; s++) { blob.forEach(function (b) { leap(b, 0.02); }); if (beat === 4) eu.forEach(function (b) { eul(b, 0.02); }); }
+        if (beat === 4) { c.fillStyle = "rgba(185,178,165,.25)"; c.beginPath(); eu.forEach(function (b, i) { var pp = P(b[0], b[1]); if (i) c.lineTo(pp[0], pp[1]); else c.moveTo(pp[0], pp[1]); }); c.closePath(); c.fill(); }
+        blob.forEach(function (b) { var pp = P(b[0], b[1]); k.circle(pp[0], pp[1], 1.6, "#ffb547"); });
+        return;
+      }
+      if (beat === 2 || beat === 0 || beat === 1 || beat === 5 || beat === 8) {
+        if (!pt) newPt(); var st2 = [pt.q, pt.p]; for (var s2 = 0; s2 < 3; s2++) leap(st2, 0.02); pt.q = st2[0]; pt.p = st2[1];
+        var pp2 = P(pt.q, pt.p); k.glow(pp2[0], pp2[1], 18); k.circle(pp2[0], pp2[1], 6, "#ffb547");
+      }
+    }
+  });
+})();
+</script>

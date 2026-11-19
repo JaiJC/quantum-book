@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>121. Dequantization: what survived and what didn't</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="121">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>121</b> &nbsp;·&nbsp; Dequantization: what survived and what didn't</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">121</div><div class="part">Part Three · B · Algorithms</div><h1>Dequantization: what survived and what didn't</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">In 2016 Iordanis Kerenidis and Anupam Prakash published a quantum algorithm for recommendation systems, the kind that suggests films and products, that ran exponentially faster than any known classical method. It was widely cited as one of the clearest exponential quantum speedups for a practical machine-learning task. Two years later Ewin Tang, an 18-year-old undergraduate at the University of Texas working with Scott Aaronson, found a classical algorithm that matched it up to polynomial factors. The exponential speedup was gone. The lesson was not that quantum machine learning is hopeless, but that the classical competitor must be given the same assumptions.</p>
+  <p>On the plate: approximating a large matrix from a handful of its rows, sampled by their size.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The hidden assumption</h2>
+  <p>Quantum linear-algebra algorithms need the data loaded so that you can prepare states whose amplitudes are proportional to the entries, typically through a data structure that also stores partial sums of squared entries. Tang’s insight: give a classical computer the same data structure, and it can <em>sample</em> an index with probability proportional to the square of its entry, and <em>query</em> any entry. This <em>sample-and-query access</em> is the classical analogue of quantum state preparation, and it is surprisingly powerful. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Length-squared sampling</h2>
+  <p>Alan Frieze, Ravi Kannan and Santosh Vempala showed in 1998 that if a matrix is close to low rank, sampling rows with probability proportional to their squared length, then working only with those rows, gives a good low-rank approximation. Sample <span class="tangle" data-var="k" data-min="1" data-max="15" data-step="1" data-value="3" data-px="12"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Rows">3</span><button type="button" data-de="1" aria-label="More">›</button></span> rows of a 40 × 40 matrix that is rank 3 plus noise, and <button type="button" class="v" data-act="resample">resample</button>. The error of projecting onto the sampled rows falls quickly toward the best possible rank-3 error, computed here exactly by SVD, without ever touching most of the matrix. Recommendation systems rest on exactly such low-rank structure.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>What fell, and what survived</h2>
+  <p>After Tang, Nai-Hui Chia and colleagues built a general framework in 2020: any quantum algorithm that applies a smooth function to the singular values of a low-rank, sample-accessible matrix (Chapter 119) can be matched classically with polynomial overhead. Proposed exponential speedups for recommendation, principal component analysis, low-rank regression and supervised clustering were dequantized. Sevag Gharibian and François Le Gall showed in 2022 that some quantum algorithms for estimating properties of sparse Hamiltonians can also be dequantized in certain regimes, but not all.</p>
+  <p>What survives: problems where the matrix is <em>sparse and high-rank</em>, given implicitly by a formula rather than as stored data; and Hamiltonian simulation, where the input is a physical system, not a dataset. Those are where to look for exponential advantage. <span class="tag">Established</span> for the dequantized results; <span class="tag">Debated</span> where the boundary finally lies.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The Kerenidis–Prakash algorithm and Tang’s dequantization, sample-and-query access, length-squared sampling for low-rank approximation, the general dequantization framework, and which kinds of speedup survive.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What did Tang give the classical computer?<span class="tap">tap</span></div><div class="a">Sample-and-query access: the same data structure the quantum algorithm assumes.</div></div>
+  <div class="qa"><div class="q">Which property made recommendation dequantizable?<span class="tap">tap</span></div><div class="a">Low rank: a few sampled rows capture most of the matrix.</div></div>
+  <div class="qa"><div class="q">Where might exponential speedups survive?<span class="tap">tap</span></div><div class="a">Sparse, high-rank, implicitly defined problems, and simulation of physical systems.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A row has squared length 4; the whole matrix has squared Frobenius norm 100. With what probability is that row sampled?</p>
+    <form class="calc" data-answer="0.04" data-tol="0.001" data-ok="Yes: 4/100 = 0.04." data-hint="Probability ∝ squared row length over the total."><span>p =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: I. Kerenidis and A. Prakash, Proc. ITCS 2017, 49. E. Tang, Proc. 51st ACM STOC, 217 (2019). A. Frieze, R. Kannan and S. Vempala, J. ACM 51, 1025 (2004) (FOCS 1998). N.-H. Chia et al., Proc. 52nd ACM STOC, 387 (2020). S. Gharibian and F. Le Gall, Proc. 54th ACM STOC (2022). Checked by code: for a 40 × 40 rank-3 + noise matrix, mean projection error falls from 0.69 (1 row) to 0.30 (3 rows) to 0.16 (8 rows), against a best rank-3 error of 0.149.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 122</div><div class="t">Variational algorithms: VQE and QAOA</div><p style="text-align:left">Hybrid algorithms built for today's noisy chips. Do they beat a laptop?</p><p style="text-align:left"><a class="v" href="122.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="120.html">← 120. HHL and quantum linear algebra, with input/output caveats</a><a href="../index.html">Contents</a><a href="122.html">122. Variational algorithms: VQE and QAOA →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { k: 3 }, n = 40, A = null, best = 0, seed = 71, samp = [];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function gauss() { return Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(6.283 * rnd()); }
+  function orth(cols) { var Q = []; cols.forEach(function (v) { v = v.slice(); Q.forEach(function (q) { var d = 0; for (var i = 0; i < n; i++) d += q[i] * v[i]; for (i = 0; i < n; i++) v[i] -= d * q[i]; }); var nr = Math.sqrt(v.reduce(function (a, x) { return a + x * x; }, 0)); if (nr > 1e-9) Q.push(v.map(function (x) { return x / nr; })); }); return Q; }
+  function build() { var U = orth([0, 1, 2].map(function () { return Array.from({ length: n }, gauss); })), Vv = orth([0, 1, 2].map(function () { return Array.from({ length: n }, gauss); })), sv = [10, 6, 3]; A = []; for (var i = 0; i < n; i++) { var row = []; for (var j = 0; j < n; j++) { var s = 0; for (var q = 0; q < 3; q++) s += U[q][i] * sv[q] * Vv[q][j]; row.push(s + 0.05 * gauss()); } A.push(row); } var tot = 0; A.forEach(function (r) { r.forEach(function (x) { tot += x * x; }); }); var B = A.map(function (r) { return r.slice(); }); var cap = 0; for (var t = 0; t < 3; t++) { var v = Array.from({ length: n }, gauss); for (var it = 0; it < 60; it++) { var u = B.map(function (r) { return r.reduce(function (a, x, j) { return a + x * v[j]; }, 0); }); var w = new Array(n).fill(0); for (var i2 = 0; i2 < n; i2++) for (var j2 = 0; j2 < n; j2++) w[j2] += B[i2][j2] * u[i2]; var nr = Math.sqrt(w.reduce(function (a, x) { return a + x * x; }, 0)); v = w.map(function (x) { return x / nr; }); } var u2 = B.map(function (r) { return r.reduce(function (a, x, j) { return a + x * v[j]; }, 0); }), sg2 = u2.reduce(function (a, x) { return a + x * x; }, 0); cap += sg2; for (i2 = 0; i2 < n; i2++) for (j2 = 0; j2 < n; j2++) B[i2][j2] -= u2[i2] * v[j2]; } best = Math.sqrt(Math.max(0, tot - cap) / tot); }
+  function sample() { var w = A.map(function (r) { return r.reduce(function (a, x) { return a + x * x; }, 0); }), tot = w.reduce(function (a, b) { return a + b; }, 0); samp = []; for (var t = 0; t < V.k; t++) { var u = rnd() * tot, i = 0; while (u > w[i]) { u -= w[i]; i++; } samp.push(Math.min(i, n - 1)); } }
+  function err() { var Q = orth(samp.map(function (i) { return A[i]; })), tot = 0, res = 0; A.forEach(function (r) { var p = r.slice(); Q.forEach(function (q) { var d = 0; for (var j = 0; j < n; j++) d += q[j] * r[j]; for (j = 0; j < n; j++) p[j] -= d * q[j]; }); r.forEach(function (x, j) { tot += x * x; res += p[j] * p[j]; }); }); return Math.sqrt(res / tot); }
+  Book.plate({
+    init: function (k, s) { for (var n2 in s.vals) V[n2] = s.vals[n2]; build(); sample(); },
+    beat: function (i) { beat = i; },
+    set: function (n2, v) { V[n2] = v; sample(); },
+    act: function () { sample(); },
+    caption: function () { return ["A 40 × 40 matrix, rank 3 plus noise.", "Sample by squared row length; query entries.", "Rows sampled (amber) and approximation error.", "Dequantized and surviving speedups.", "Dequantization."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return V.k + " rows · relative error " + err().toFixed(3) + " · best rank-3 (SVD) " + best.toFixed(3); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, i, j;
+      if (beat === 3) { [["recommendation systems", false], ["low-rank regression, PCA", false], ["supervised clustering", false], ["sparse high-rank problems", true], ["Hamiltonian simulation", true]].forEach(function (q, j2) { k.text((q[1] ? "survives: " : "dequantized: ") + q[0], W / 2, H * (0.18 + j2 * 0.15), { size: 14, color: q[1] ? "#ffb547" : "#e05a46" }); }); return; }
+      var S = Math.min(W * 0.6, H * 0.8), c = S / n, x0 = (W - S) / 2, y0 = (H - S) / 2, mx = 0; A.forEach(function (r) { r.forEach(function (x) { mx = Math.max(mx, Math.abs(x)); }); });
+      for (i = 0; i < n; i++) { var sel = samp.indexOf(i) >= 0; for (j = 0; j < n; j++) { var v = A[i][j] / mx; k.ctx.fillStyle = sel && beat !== 1 ? "rgba(255,181,71," + (0.25 + 0.75 * Math.abs(v)).toFixed(2) + ")" : "rgba(236,230,218," + (0.05 + 0.45 * Math.abs(v)).toFixed(2) + ")"; k.ctx.fillRect(x0 + j * c, y0 + i * c, c + 0.3, c + 0.3); } }
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

@@ -1,0 +1,59 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Textbook quantum mechanics describes isolated systems. A molecule in a protein is never isolated: it is coupled to thousands of vibrating atoms and water molecules, which constantly measure it, jostle it and drain its energy. The theory of <em>open quantum systems</em> describes a small quantum system plus a large environment that you cannot track. Its surprising lesson for biology: the environment is not only noise to be overcome. Sometimes it helps.</p>
+  <p>On the plate: energy moving between two molecules, with and without environmental noise.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>System, bath, and master equations</h2>
+  <p>Write {{tex:H = H_S + H_B + H_{SB}}}: system, bath (often modelled as many harmonic oscillators), and their coupling. The bath is summarized by a <em>spectral density</em> {{tex:J(\omega)}}, how strongly it couples at each frequency. Trace out the bath (Chapter 104). If the coupling is weak (Born approximation) and the bath forgets quickly compared with the system’s dynamics (Markov approximation), the system’s density matrix obeys the Redfield equation, and with one more approximation the <em>Lindblad</em> form, which Göran Lindblad proved in 1976 is the most general Markovian evolution preserving positivity:</p>
+  <div class="eq">{{texd:\dot\rho = -\tfrac{i}{\hbar}[H,\rho] + \sum_k\Big(L_k\rho L_k^\dagger - \tfrac12\{L_k^\dagger L_k,\rho\}\Big)}}</div>
+  <p>Each jump operator {{tex:L_k}} is a channel: decay, dephasing, transfer to a sink. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Noise-assisted transport</h2>
+  <p>Two sites: an excitation starts on site 1, and site 2 delivers it to a “sink” (a reaction centre, say) at rate 1; everywhere it can also be lost at rate 0.1. The sites are coupled with strength 0.5 but their energies differ by <span class="tangle" data-var="eps" data-min="0" data-max="6" data-step="0.5" data-dec="1" data-value="4.0" data-px="8"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Detuning">4.0</span><button type="button" data-de="1" aria-label="More">›</button></span>. Add pure dephasing at rate {{tex:\gamma = 10^x}}, {{tex:x =}} <span class="tangle" data-var="lg" data-min="-2" data-max="2" data-step="0.1" data-dec="1" data-value="0.6" data-px="10"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 gamma">0.6</span><button type="button" data-de="1" aria-label="More">›</button></span>. With a large detuning and no noise, the excitation stays stuck on site 1 (efficiency 0.14); moderate dephasing broadens the levels until they overlap, and efficiency more than doubles, to about 0.34 near {{tex:\gamma\approx4}}; strong dephasing freezes motion (the quantum Zeno effect) and efficiency falls. Martin Plenio and Susana Huelga, Masoud Mohseni and colleagues, and Patrick Rebentrost and colleagues described this <em>environment-assisted quantum transport</em> in 2008–09. With zero detuning, noise only hurts. <span class="tag">Established</span> as theory; its biological importance is <span class="tag">Debated</span> (Chapter 167).</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>When Markov fails</h2>
+  <p>In photosynthetic complexes, the protein’s vibrations have memory times comparable to the transfer itself, and the coupling is neither weak nor strong. Neither Redfield theory (weak coupling) nor Förster hopping theory (strong) applies. Yoshitaka Tanimura and Ryogo Kubo’s 1989 <em>hierarchical equations of motion</em> (HEOM) treat a harmonic bath exactly by tracking a hierarchy of auxiliary density matrices; Akihito Ishizaki and Graham Fleming used it in 2009 to model the Fenna–Matthews–Olson complex. Heinz-Peter Breuer and Francesco Petruccione’s textbook is the standard reference for the whole field. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>System–bath models and spectral densities, Born–Markov and Redfield equations, the Lindblad form, environment-assisted quantum transport and its optimum, and non-Markovian methods such as HEOM.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does the Markov approximation assume?<span class="tap">tap</span></div><div class="a">The bath forgets its interaction with the system faster than the system evolves.</div></div>
+  <div class="qa"><div class="q">How can dephasing help transport?<span class="tap">tap</span></div><div class="a">It broadens mismatched energy levels so they overlap, unblocking transfer.</div></div>
+  <div class="qa"><div class="q">Why does very strong dephasing hurt?<span class="tap">tap</span></div><div class="a">Constant effective measurement freezes the excitation in place: the Zeno effect.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Coherence decays as {{tex:e^{-\gamma t}}}. With {{tex:\gamma = 10}} ps⁻¹, what fraction remains after 0.23 ps?</p>
+    <form class="calc" data-answer="0.100" data-tol="0.004" data-ok="Yes: e^(−2.3) ≈ 0.10. Room-temperature electronic coherences in proteins typically last tens to hundreds of femtoseconds." data-hint="γt = 2.3."><span>fraction =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Fraction"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: G. Lindblad, Commun. Math. Phys. 48, 119 (1976). H.-P. Breuer and F. Petruccione, The Theory of Open Quantum Systems (OUP, 2002). Y. Tanimura and R. Kubo, J. Phys. Soc. Jpn. 58, 101 (1989). M. B. Plenio and S. F. Huelga, New J. Phys. 10, 113019 (2008). M. Mohseni et al., J. Chem. Phys. 129, 174106 (2008). P. Rebentrost et al., New J. Phys. 11, 033003 (2009). A. Ishizaki and G. R. Fleming, Proc. Natl Acad. Sci. USA 106, 17255 (2009). Checked by code: efficiency 0.141 → 0.336 → 0.043 for γ = 0.01, 4, 100 at detuning 4.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { eps: 4, lg: 0.6 }, curve = [], traj = [];
+  function run(gam, keep) { var e = V.eps, J = 0.5, kap = 1, G = 0.1, r = [1, 0, 0, 0, 0, 0], dt = 0.02, out = 0, tr = []; function f(s) { var p11 = s[0], p22 = s[1], cr = s[2], ci = s[3], d11 = 2 * J * ci - G * p11, d22 = -2 * J * ci - (G + kap) * p22, dcr = e * ci - (gam + G + kap / 2) * cr, dci = -e * cr - J * (p11 - p22) - (gam + G + kap / 2) * ci; return [d11, d22, dcr, dci]; } var s = [1, 0, 0, 0]; for (var i = 0; i < 4000; i++) { var k1 = f(s), s2 = s.map(function (x, j) { return x + dt / 2 * k1[j]; }), k2 = f(s2), s3 = s.map(function (x, j) { return x + dt / 2 * k2[j]; }), k3 = f(s3), s4 = s.map(function (x, j) { return x + dt * k3[j]; }), k4 = f(s4); out += kap * s[1] * dt; s = s.map(function (x, j) { return x + dt / 6 * (k1[j] + 2 * k2[j] + 2 * k3[j] + k4[j]); }); if (keep && i % 20 === 0) tr.push([i * dt, s[0], s[1]]); } if (keep) traj = tr; return out; }
+  function compute() { curve = []; for (var x = -2; x <= 2.001; x += 0.1) curve.push([x, run(Math.pow(10, x))]); run(Math.pow(10, V.lg), true); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; compute(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; if (n === "eps") compute(); else run(Math.pow(10, V.lg), true); },
+    caption: function () { return ["Transfer efficiency vs dephasing.", "System, bath, and what is traced out.", "Efficiency vs log₁₀ γ (amber); populations at your γ (inset).", "Hierarchy of auxiliary density matrices.", "Open quantum systems."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var best = curve.reduce(function (a, b) { return b[1] > a[1] ? b : a; }); return "detuning " + V.eps.toFixed(1) + " · γ = " + Math.pow(10, V.lg).toFixed(2) + " · efficiency " + run(Math.pow(10, V.lg)).toFixed(3) + " · best " + best[1].toFixed(3) + " at γ ≈ " + Math.pow(10, best[0]).toFixed(1); } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A;
+      if (beat === 1) { k.circle(W / 2, H / 2, 40, "rgba(255,181,71,.25)", "#ffb547"); k.text("system", W / 2, H / 2 + 5, { size: 13, color: "#ffb547" }); for (var j = 0; j < 40; j++) { var a = j * 2.4 + now / 3000, rr = 90 + 60 * ((j * 0.37) % 1); k.circle(W / 2 + rr * Math.cos(a), H / 2 + rr * Math.sin(a) * 0.8, 3, "rgba(236,230,218,.4)"); } k.text("bath: many oscillators, J(ω)", W / 2, H * 0.92, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { for (var l = 0; l < 4; l++) { var n = l + 1; for (var m = 0; m < n; m++) k.rr(W * (0.5 - n * 0.06 + m * 0.12) - 18, H * (0.15 + l * 0.2), 36, 26, 4, l === 0 ? "#ffb547" : "rgba(236,230,218," + (0.5 - l * 0.1).toFixed(2) + ")"); } k.text("ρ (top) and auxiliary matrices", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-2, 2], [0, 0.8], { xl: "log₁₀ dephasing γ", yl: "efficiency" }); var c = k.ctx; c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); curve.forEach(function (p, i) { if (i) c.lineTo(A.X(p[0]), A.Y(p[1])); else c.moveTo(A.X(p[0]), A.Y(p[1])); }); c.stroke(); k.circle(A.X(V.lg), A.Y(run(Math.pow(10, V.lg))), 6, "#ece6da");
+      if (beat === 2 && traj.length) { var x0 = W * 0.62, y0 = H * 0.12, w = W * 0.3, h = H * 0.22; k.rr(x0 - 4, y0 - 4, w + 8, h + 8, 4, "#0d0c0a", "rgba(185,178,165,.3)"); [1, 2].forEach(function (col) { c.strokeStyle = col === 1 ? "rgba(236,230,218,.8)" : "#ffb547"; c.lineWidth = 1.5; c.beginPath(); traj.forEach(function (p, i) { var x = x0 + w * p[0] / 80, y = y0 + h * (1 - p[col]); if (i) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke(); }); k.text("site 1 (white), site 2 (amber)", x0 + w / 2, y0 + h + 16, { size: 10, color: "#b9b2a5" }); }
+    }
+  });
+})();
+</script>

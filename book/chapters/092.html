@@ -1,0 +1,70 @@
+<section class="beat" data-beat="0">
+  <p class="drop">General relativity describes gravity as the curvature of spacetime, and it has passed every test: the bending of starlight, the timing of binary pulsars, the ripples of colliding black holes picked up by LIGO in 2015, the shadow of a black hole photographed in 2019. Quantum field theory describes everything else, equally well. Inside a black hole, or at the first instant of the Big Bang, both should apply at once, and they disagree. This last chapter of Part Two is about that disagreement, what is known for sure, and the candidate theories that try to resolve it.</p>
+  <p>On the plate: orbits around a black hole. Close in, Newton’s ellipses stop closing, and below a certain radius no stable orbit exists.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Gravity as geometry</h2>
+  <p>Einstein’s equations, {{tex:G_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4}}, say that energy and momentum, the stress tensor of Chapter 59, curve spacetime, and free bodies follow the straightest possible paths, <em>geodesics</em>, through it. Around a non-rotating mass the solution, found by Karl Schwarzschild in 1916, has a horizon at {{tex:r_s = 2GM/c^2}}: 3 km for the Sun, if it were squeezed that small. Give a test body angular momentum <span class="tangle" data-var="Lm" data-min="3.2" data-max="6" data-step="0.05" data-dec="2" data-value="4.2" data-px="8"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Angular momentum">4.20</span><button type="button" data-de="1" aria-label="More">›</button></span> (units of {{tex:GM/c}}). Its orbit precesses; below {{tex:L = \sqrt{12}}} there is no stable circular orbit, and inside {{tex:3r_s}} matter spirals in. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Why gravity resists quantization</h2>
+  <p>Newton’s constant has dimensions: in natural units {{tex:G = 1/M_{\text{Pl}}^2}}, with the Planck mass {{tex:M_{\text{Pl}} = 1.22\times10^{19}}} GeV. Each graviton loop brings more powers of energy over {{tex:M_{\text{Pl}}}}, and new infinities appear at every order that cannot be absorbed into a finite number of constants. By Chapter 70’s criterion, gravity is non-renormalizable. That does not make it useless: as an effective field theory (Chapter 70), quantum general relativity gives reliable, tiny corrections below the Planck scale, such as the quantum correction to Newton’s potential. It fails near {{tex:M_{\text{Pl}}}}, where a more complete theory is needed. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Black holes are hot</h2>
+  <p>In 1974 Stephen Hawking applied quantum field theory near a horizon and found that a black hole emits thermal radiation at temperature</p>
+  <div class="eq">{{texd:T_H = \frac{\hbar c^3}{8\pi GMk_B}}}</div>
+  <p>Jacob Bekenstein had argued it must carry entropy proportional to its horizon area, {{tex:S = k_Bc^3A/4G\hbar}}. Set the mass to <span class="tangle" data-var="lM" data-min="-19" data-max="10" data-step="0.5" data-dec="1" data-value="0" data-px="4"><button type="button" data-de="-1" aria-label="Lighter">‹</button><span class="num" role="slider" tabindex="0" aria-label="log10 mass in solar masses">0.0</span><button type="button" data-de="1" aria-label="Heavier">›</button></span> (log₁₀ solar masses). A solar-mass black hole is at 62 nanokelvin, colder than the cosmic background, and would take {{tex:10^{67}}} years to evaporate. Small ones are hot and short-lived. Hawking radiation has never been observed from an astrophysical black hole; analogues in fluids and optics show the same mathematics. <span class="tag">Established</span> as theory; unobserved directly.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The information paradox</h2>
+  <p>If a black hole formed from a pure quantum state evaporates into exactly thermal radiation, the final state is mixed: information is lost, contradicting unitarity (Chapter 31). Don Page showed in 1993 that if evaporation is unitary, the entanglement entropy of the radiation must rise and then fall, the <em>Page curve</em>, turning over halfway through. In 2019 calculations using semiclassical gravity with new saddle points, “islands”, reproduced the Page curve. Whether that resolves the paradox, and what it says about the interior, is debated. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Candidate theories</h2>
+  <p><em>String theory</em> replaces point particles with strings; one vibration is a graviton, and its loops are finite. It has produced deep results, such as the counting of black-hole entropy for special black holes and the <em>AdS/CFT correspondence</em> (Juan Maldacena, 1997), in which a gravitational theory in a curved space is exactly equivalent to a non-gravitational field theory on its boundary. It has made no confirmed prediction about our universe. <em>Loop quantum gravity</em> quantizes geometry directly, giving discrete areas and volumes, but has difficulty recovering smooth spacetime and has no confirmed predictions either. Other approaches, asymptotic safety, causal sets and more, each have advocates. <span class="tag">Speculative</span>, all of them.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Spacetime curvature and geodesics, the Schwarzschild horizon and orbits, why gravity is non-renormalizable and how it works as an effective theory, Hawking temperature and Bekenstein entropy, the information paradox and Page curve, and the status of string theory, loop gravity and holography. Part Three turns from fundamental physics to the use of quantum mechanics as a technology: quantum information and computing.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why is general relativity non-renormalizable?<span class="tap">tap</span></div><div class="a">G has dimension of inverse mass squared, so higher loops need ever more counterterms.</div></div>
+  <div class="qa"><div class="q">Why do small black holes evaporate faster?<span class="tap">tap</span></div><div class="a">T_H ∝ 1/M, and evaporation time ∝ M³.</div></div>
+  <div class="qa"><div class="q">What does the Page curve represent?<span class="tap">tap</span></div><div class="a">The entanglement entropy of Hawking radiation if evaporation is unitary: rising, then falling to zero.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> {{tex:T_H = 6.17\times10^{-8}}} K for one solar mass. What is it for a black hole of {{tex:10^{-8}}} solar masses (about a quarter of the Moon’s mass)?</p>
+    <form class="calc" data-answer="6.17" data-tol="0.05" data-ok="Yes: T ∝ 1/M, so 6.17 K, hotter than the 2.7 K microwave background, so it would slowly evaporate." data-hint="Multiply 6.17×10⁻⁸ K by 10⁸."><span>T_H =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Temperature in K"><span>K</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Einstein, Sitzungsber. Preuss. Akad. Wiss. 844 (1915). K. Schwarzschild, Sitzungsber. Preuss. Akad. Wiss. 189 (1916). B. P. Abbott et al. (LIGO/Virgo), Phys. Rev. Lett. 116, 061102 (2016). Event Horizon Telescope, Astrophys. J. Lett. 875, L1 (2019). J. D. Bekenstein, Phys. Rev. D 7, 2333 (1973). S. W. Hawking, Nature 248, 30 (1974). D. N. Page, Phys. Rev. Lett. 71, 3743 (1993). J. Maldacena, Adv. Theor. Math. Phys. 2, 231 (1998). S. M. Carroll, Spacetime and Geometry. Checked by code: r_s(Sun) = 2.95 km; T_H = 6.17×10⁻⁸ K; evaporation 2.1×10⁶⁷ yr; S/k = 1.05×10⁷⁷; M_Pl = 1.22×10¹⁹ GeV.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Lm: 4.2, lM: 0 }, st = null, trail = [];
+  function reset() { st = { u: 1 / 14, du: 0, phi: 0 }; trail = []; }
+  function step(L) { for (var s = 0; s < 40; s++) { var dphi = 0.005, a = 1 / (L * L) - st.u + 3 * st.u * st.u; st.du += a * dphi; st.u += st.du * dphi; st.phi += dphi; if (st.u > 0.5 || st.u < 0) { reset(); return; } } var r = 1 / st.u; trail.push([r * Math.cos(st.phi), r * Math.sin(st.phi)]); if (trail.length > 1500) trail.shift(); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; reset(); },
+    beat: function (i) { beat = i; reset(); },
+    set: function (n, v) { V[n] = v; reset(); },
+    caption: function () { return ["An orbit around a black hole (units GM/c²).", "Effective potential and orbit, L = " + V.Lm.toFixed(2) + ".", "Graviton loops: more powers of E/M_Pl.", "Hawking temperature and lifetime.", "The Page curve.", "Candidate theories.", "Gravity and quanta."][beat]; },
+    readout: function () { if (beat === 3) { var M = Math.pow(10, V.lM), T = 6.17e-8 / M, t = 2.1e67 * M * M * M; return "M = 10^" + V.lM.toFixed(1) + " M☉ · T = " + T.toExponential(2) + " K · lifetime ≈ 10^" + Math.log10(t).toFixed(1) + " yr"; } if (beat === 1) return V.Lm < Math.sqrt(12) ? "L < √12: no stable orbit, it plunges" : "precessing bound orbit"; return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, A, i, cx = W / 2, cy = H / 2;
+      if (beat <= 1 || beat === 6) { var L = beat === 1 ? V.Lm : 4.2; step(L); var sc = Math.min(W, H) * 0.45 / 22; k.circle(cx, cy, 2 * sc, "#000", "rgba(224,90,70,.9)", 2); k.circle(cx, cy, 6 * sc, null, "rgba(236,230,218,.2)", 1); c.strokeStyle = "rgba(255,181,71,.6)"; c.lineWidth = 1.2; c.beginPath(); trail.forEach(function (p, j) { if (j) c.lineTo(cx + p[0] * sc, cy - p[1] * sc); else c.moveTo(cx + p[0] * sc, cy - p[1] * sc); }); c.stroke(); var r = 1 / st.u; k.circle(cx + r * Math.cos(st.phi) * sc, cy - r * Math.sin(st.phi) * sc, 5, "#ffb547"); k.text("horizon r = 2", cx, cy + 2 * sc + 14, { size: 10, color: "#e05a46" }); return; }
+      if (beat === 2) { A = k.axes(W * 0.12, H * 0.1, W * 0.8, H * 0.72, [0, 1.2], [0, 1.2], { xl: "E / M_Pl", yl: "size of loop correction" }); [1, 2, 3].forEach(function (n) { k.plot(A, function (x) { return Math.min(1.2, Math.pow(x, 2 * n)); }, [0, 1.2], n === 1 ? "#ffb547" : "rgba(255,181,71," + (0.7 - n * 0.15) + ")", 2); }); k.text("fine far below M_Pl, out of control near it", W / 2, H * 0.93, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [-19, 10], [-18, 12], { xl: "log₁₀ mass, solar masses", yl: "log₁₀ T, K" }); k.plot(A, function (l) { return Math.log10(6.17e-8) - l; }, [-19, 10], "#ffb547", 2.5); k.line(A.X(-19), A.Y(Math.log10(2.725)), A.X(10), A.Y(Math.log10(2.725)), "rgba(236,230,218,.35)", 1, [4, 4]); k.text("CMB 2.7 K", A.X(9.5), A.Y(Math.log10(2.725)) - 6, { size: 11, align: "right" }); k.circle(A.X(V.lM), A.Y(Math.log10(6.17e-8) - V.lM), 6, "#ece6da"); return; }
+      if (beat === 4) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.78, [0, 1], [0, 0.6], { xl: "fraction of time to evaporation", yl: "entropy of radiation" }); k.plot(A, function (t) { return 0.5 * (1 - Math.pow(1 - t, 2 / 3)); }, [0, 1], "rgba(236,230,218,.5)", 1.5); k.plot(A, function (t) { var hawk = 0.5 * (1 - Math.pow(1 - t, 2 / 3)), bh = 0.5 * Math.pow(1 - t, 2 / 3); return Math.min(hawk, bh); }, [0, 1], "#ffb547", 2.5); k.text("Hawking (white) vs Page curve (amber)", W / 2, H * 0.94, { size: 12, color: "#b9b2a5" }); return; }
+      if (beat === 5) { [["string theory", "finite loops, AdS/CFT; no tested prediction"], ["loop quantum gravity", "discrete geometry; no tested prediction"], ["asymptotic safety, causal sets …", "active, unconfirmed"]].forEach(function (q, j) { var y = H * (0.28 + j * 0.2); k.text(q[0], W / 2, y, { size: 15, color: "#ffb547" }); k.text(q[1], W / 2, y + 22, { size: 12, color: "#b9b2a5" }); }); }
+    }
+  });
+})();
+</script>

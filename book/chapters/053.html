@@ -1,0 +1,120 @@
+<section class="beat" data-beat="0">
+  <p class="drop">A thrown ball follows one path. Quantum mechanics, as Richard Feynman reformulated it in 1948, says something stranger: to get from here to there, a particle takes every path at once, straight, curved, looping, absurd. Each path contributes a little arrow whose angle is its action divided by {{tex:\hbar}}. Add all the arrows and you get the quantum amplitude. And when {{tex:\hbar}} is small compared with the action, almost all the arrows cancel, except those near one special path: Newton’s.</p>
+  <p>On the plate: many paths between two points, each carrying a spinning arrow.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Slicing time</h2>
+  <p>Start from the propagator {{tex:K(x_b, t_b; x_a, t_a) = \langle x_b|e^{-iH(t_b - t_a)/\hbar}|x_a\rangle}}, the amplitude to go from {{tex:x_a}} to {{tex:x_b}}. Chop the time into {{tex:N}} short steps and insert a complete set of positions between each pair (Chapter 28). For a short step, the exponential splits into kinetic and potential parts, as in the solver of Chapter 31, and each piece contributes {{tex:e^{iL\,\Delta t/\hbar}}}, with {{tex:L}} the Lagrangian of Chapter 12. Multiply them all:</p>
+  <div class="eq">{{texd:K = \int\mathcal{D}[x(t)]\;e^{iS[x]/\hbar}, \qquad S = \int L\,dt}}</div>
+  <p>The integral is over every function {{tex:x(t)}} joining the endpoints. Paul Dirac noticed in 1933 that the short-time amplitude goes as {{tex:e^{iS/\hbar}}}; Feynman made it a complete formulation. Slice the time into <span class="tangle" data-var="Ns" data-min="2" data-max="40" data-step="1" data-value="8" data-px="6"><button type="button" data-de="-1" aria-label="Fewer">‹</button><span class="num" role="slider" tabindex="0" aria-label="Slices">8</span><button type="button" data-de="1" aria-label="More">›</button></span> steps: each path becomes a zigzag, and the path integral becomes an ordinary integral over the intermediate positions. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Adding the arrows</h2>
+  <p>Take a ball thrown upward and consider a family of paths: the classical arc plus a bulge of size {{tex:a}}. Each has action {{tex:S(a) = S_{\text{cl}} + c\,a^2}}: the classical path is where the action is stationary. Add their arrows one by one, from large negative {{tex:a}} to large positive, head to tail. The plate draws the chain, which curls into a double spiral, the Cornu spiral of optics.</p>
+  <p>Set {{tex:\hbar}} to <span class="tangle" data-var="h" data-min="0.02" data-max="1" data-step="0.02" data-dec="2" data-value="0.3" data-px="5"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Planck constant">0.30</span><button type="button" data-de="1" aria-label="Larger">›</button></span> (in units of the action’s curvature). Far from {{tex:a = 0}}, neighbouring paths differ in phase by a lot and their arrows wind in tight circles that go nowhere. Near {{tex:a = 0}} the phase hardly changes, the arrows line up, and they make the whole length of the chain. The paths that matter, highlighted on the left, are those within about {{tex:\sqrt{\hbar/c}}} of the classical one. Shrink {{tex:\hbar}}, and the band closes onto Newton’s path.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Newton, from stationary phase</h2>
+  <p>This is the <em>stationary-phase</em> argument. As {{tex:\hbar \to 0}}, the only paths that survive are those where small changes do not change {{tex:S}} to first order: {{tex:\delta S = 0}}. That is exactly the principle of least action of Chapter 12, whose solutions obey the Euler–Lagrange equations, Newton’s laws. Classical mechanics is not replaced by quantum mechanics; it is the part of it where one path dominates the sum.</p>
+  <p>The next correction, the spread of nearby paths around the classical one, gives the WKB approximation of Chapter 47. Every semiclassical formula is a path integral evaluated near its stationary points.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>The free particle, exactly</h2>
+  <p>For a free particle every slice is a Gaussian integral, and the path integral can be done exactly:</p>
+  <div class="eq">{{texd:K(x, T; 0, 0) = \sqrt{\frac{m}{2\pi i\hbar T}}\;\exp\!\left(\frac{imx^2}{2\hbar T}\right)}}</div>
+  <p>The exponent is {{tex:iS_{\text{cl}}/\hbar}}, the classical action of the straight path. The plate shows the real part of {{tex:K}} at time <span class="tangle" data-var="T" data-min="0.2" data-max="3" data-step="0.1" data-dec="1" data-value="1" data-px="10"><button type="button" data-de="-1" aria-label="Earlier">‹</button><span class="num" role="slider" tabindex="0" aria-label="Time">1.0</span><button type="button" data-de="1" aria-label="Later">›</button></span>: fringes that get closer together farther out, because reaching a distant point in a fixed time needs high momentum and short wavelength. Integrating {{tex:K}} against a Gaussian start reproduces the spreading packet of Chapter 32 exactly. The harmonic oscillator can be done exactly too, and every packet in it returns after one period, as Chapter 31’s solver showed.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Imaginary time</h2>
+  <p>Replace time {{tex:t}} by {{tex:-i\tau}}. The oscillating {{tex:e^{iS/\hbar}}} becomes a real, decaying weight {{tex:e^{-S_E/\hbar}}}, and the free path integral becomes the mathematics of diffusion (Chapter 5): random walks, as on the plate. Paths that return to their start after imaginary time {{tex:\beta\hbar}} add up to</p>
+  <div class="eq">{{texd:Z = \mathrm{Tr}\,e^{-\beta H} = \oint\mathcal D[x]\;e^{-S_E[x]/\hbar}}}</div>
+  <p>the partition function of statistical mechanics (Chapter 19), with {{tex:\beta = 1/k_BT}}. Quantum mechanics in imaginary time is statistical mechanics in one more dimension. Because the weights are real and positive, computers can sample them at random, and this is how lattice QCD computes the proton’s mass from the theory of quarks and gluons, in Part Five. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>The path integral from time-slicing, the sum of phasors and the Cornu spiral, stationary phase and the principle of least action, the exact free propagator, and the link between imaginary time and statistical mechanics. In Part Five, fields replace paths and the same sum becomes the starting point for quantum field theory and Feynman diagrams.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why do far-from-classical paths contribute little?<span class="tap">tap</span></div><div class="a">Their neighbours have very different phases, so their arrows cancel.</div></div>
+  <div class="qa"><div class="q">How does classical mechanics emerge?<span class="tap">tap</span></div><div class="a">As ħ → 0, only paths with δS = 0 survive the cancellation: the principle of least action.</div></div>
+  <div class="qa"><div class="q">What does imaginary time turn the path integral into?<span class="tap">tap</span></div><div class="a">A real, positive sum over random walks: the partition function of statistical mechanics.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> An electron travels freely 0.1 mm in 1 µs, at 100 m/s. Its classical action divided by {{tex:\hbar}} is {{tex:m\,\Delta x^2/(2\hbar T)}}. What is it, in radians? ({{tex:m = 9.109\times10^{-31}}} kg, {{tex:\hbar = 1.0546\times10^{-34}}} J s.)</p>
+    <form class="calc" data-answer="43.2" data-tol="0.4" data-ok="Yes: about 43 radians, only about seven turns, so paths well away from the straight line still matter. For a 1 g ball it would be about 10²⁸ radians." data-hint="9.109×10⁻³¹ × (10⁻⁴)² / (2 × 1.0546×10⁻³⁴ × 10⁻⁶)."><span>S/ħ =</span><input inputmode="decimal" autocomplete="off" placeholder="0.0" aria-label="Phase in radians"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: P. A. M. Dirac, Phys. Z. Sowjetunion 3, 64 (1933). R. P. Feynman, Rev. Mod. Phys. 20, 367 (1948). R. P. Feynman and A. R. Hibbs, Quantum Mechanics and Path Integrals, emended edition by D. F. Styer (2010). L. S. Schulman, Techniques and Applications of Path Integration. Checked by code: Cornu sums for S = c a² converge to √(πħ/c)·e^(iπ/4); free-propagator convolution reproduces σ(t) of Chapter 32; S/ħ for the electron example (0.1 mm in 1 µs) = 43.2; a 1 g ball on the same trip, 4.7×10²⁸.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { Ns: 8, h: 0.3, T: 1 }, seed = 3, paths = null;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647 - 0.5; }
+  function cl(t) { return 4 * t * (1 - t); }
+  function mk() { if (paths) return; paths = []; for (var i = 0; i < 40; i++) { var co = []; for (var m = 1; m <= 4; m++) co.push(rnd() * 1.6 / m); paths.push(co); } }
+  function px(co, t) { var s = cl(t); for (var m = 0; m < co.length; m++) s += co[m] * Math.sin((m + 1) * Math.PI * t); return s; }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; mk(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Many paths from A to B, each with a phase arrow.", "A path sliced into " + V.Ns + " steps.", "Paths (left) and the chain of their arrows (right).", "δS = 0: the classical arc.", "Real part of the free propagator.", "Imaginary time: random walks.", "Paths."][beat]; },
+    readout: function () {
+      if (beat === 2) return "ħ = " + V.h.toFixed(2) + " · contributing band |a| ≲ " + Math.sqrt(V.h).toFixed(2);
+      if (beat === 4) return "T = " + V.T.toFixed(1) + " · fringe spacing at x: 2πħT/(m x)";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, i, A;
+      mk();
+      if (beat === 0 || beat === 3 || beat === 6) {
+        A = k.axes(W * 0.08, H * 0.08, W * 0.84, H * 0.8, [0, 1], [-1.2, 1.6], {});
+        paths.forEach(function (co, j) { if (beat === 3) return; c.strokeStyle = "rgba(236,230,218,.18)"; c.lineWidth = 1; c.beginPath(); for (var s = 0; s <= 60; s++) { var t = s / 60; c.lineTo(A.X(t), A.Y(px(co, t))); } c.stroke();
+          var tt = ((now / 2000) + j * 0.025) % 1, x = A.X(tt), y = A.Y(px(co, tt)), ph = now / 300 * (1 + j % 5) + j; k.line(x, y, x + 9 * Math.cos(ph), y - 9 * Math.sin(ph), "rgba(255,181,71,.7)", 1.5); });
+        k.plot(A, cl, [0, 1], "#ffb547", 3, 100);
+        k.circle(A.X(0), A.Y(0), 5, "#ece6da"); k.circle(A.X(1), A.Y(0), 5, "#ece6da"); k.text("A", A.X(0) - 10, A.Y(0) + 4, { size: 12, align: "right" }); k.text("B", A.X(1) + 10, A.Y(0) + 4, { size: 12, align: "left" });
+        if (beat === 3) k.text("the path where small changes leave S unchanged", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 1) {
+        A = k.axes(W * 0.08, H * 0.08, W * 0.84, H * 0.8, [0, 1], [-1.2, 1.6], { xl: "time" });
+        var n = V.Ns, co = paths[3];
+        for (i = 1; i < n; i++) k.line(A.X(i / n), A.Y(-1.2), A.X(i / n), A.Y(1.6), "rgba(236,230,218,.12)", 1);
+        c.strokeStyle = "#ffb547"; c.lineWidth = 2.5; c.beginPath(); for (i = 0; i <= n; i++) { var t = i / n, y = i === 0 || i === n ? 0 : px(co, t); if (i) c.lineTo(A.X(t), A.Y(y)); else c.moveTo(A.X(t), A.Y(y)); } c.stroke();
+        for (i = 1; i < n; i++) k.circle(A.X(i / n), A.Y(px(co, i / n)), 4, "#ece6da");
+        k.text("integrate over each white point’s position", W / 2, H * 0.95, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 2) {
+        var h = V.h, band = Math.sqrt(h);
+        A = k.axes(W * 0.04, H * 0.12, W * 0.42, H * 0.7, [0, 1], [-1.2, 2.4], {});
+        for (var a = -1.2; a <= 1.2001; a += 0.1) { var on = Math.abs(a) < band; k.plot(A, function (t) { return cl(t) + a * Math.sin(Math.PI * t); }, [0, 1], on ? "rgba(255,181,71,.8)" : "rgba(236,230,218,.12)", on ? 1.5 : 1, 60); }
+        var cx = W * 0.73, cy = H * 0.5, sc = Math.min(W * 0.24, H * 0.4) / (Math.sqrt(Math.PI * h) * 1.15 + 0.01), x = cx - sc * 0.5 * Math.sqrt(Math.PI * h) * Math.SQRT1_2 * 1.0, y = cy, da = 0.01, A0 = 3;
+        var sx = 0, sy = 0; for (a = -A0; a <= A0; a += da) { sx += Math.cos(a * a / h) * da; sy += Math.sin(a * a / h) * da; }
+        var ox = cx - sx * sc / 2, oy = cy + sy * sc / 2, X = ox, Y = oy;
+        c.lineWidth = 1.8; c.beginPath(); c.moveTo(X, Y);
+        for (a = -A0; a <= A0; a += da) { var on2 = Math.abs(a) < band; X += Math.cos(a * a / h) * da * sc; Y -= Math.sin(a * a / h) * da * sc; c.lineTo(X, Y); if (Math.abs(a - Math.round(a / 0.5) * 0.5) < da / 2) { c.strokeStyle = on2 ? "#ffb547" : "rgba(236,230,218,.45)"; c.stroke(); c.beginPath(); c.moveTo(X, Y); } }
+        c.strokeStyle = "rgba(236,230,218,.45)"; c.stroke();
+        k.line(ox, oy, ox + sx * sc, oy - sy * sc, "rgba(255,181,71,.35)", 1, [4, 4]);
+        k.text("total amplitude (dashed)", cx, H * 0.92, { size: 12, color: "#b9b2a5" });
+        return;
+      }
+      if (beat === 4) {
+        A = k.axes(W * 0.06, H * 0.1, W * 0.88, H * 0.75, [-6, 6], [-1.1, 1.1], { xl: "x", zeroY: true });
+        var T = V.T; k.plot(A, function (x) { return Math.cos(x * x / (2 * T) - Math.PI / 4) / Math.sqrt(T) * 0.8; }, [-6, 6], "#ffb547", 2, 1500);
+        return;
+      }
+      if (beat === 5) {
+        A = k.axes(W * 0.08, H * 0.08, W * 0.84, H * 0.8, [0, 1], [-3, 3], { xl: "imaginary time τ" });
+        var s5 = 101 + Math.floor(now / 1500);
+        for (var p = 0; p < 18; p++) { var sd = s5 * 31 + p * 977, yv = 0; c.strokeStyle = p === 0 ? "#ffb547" : "rgba(236,230,218,.25)"; c.lineWidth = p === 0 ? 2 : 1; c.beginPath(); c.moveTo(A.X(0), A.Y(0)); for (i = 1; i <= 80; i++) { sd = (sd * 16807) % 2147483647; yv += (sd / 2147483647 - 0.5) * 0.6; c.lineTo(A.X(i / 80), A.Y(Math.max(-3, Math.min(3, yv)))); } c.stroke(); }
+      }
+    }
+  });
+})();
+</script>

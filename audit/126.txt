@@ -1,0 +1,6 @@
+U 0 double occ at t=1,2,4,8 [np.float64(0.255), np.float64(0.197), np.float64(0.247), np.float64(0.181)]
+U 2 double occ at t=1,2,4,8 [np.float64(0.41), np.float64(0.45), np.float64(0.452), np.float64(0.426)]
+U 8 double occ at t=1,2,4,8 [np.float64(0.89), np.float64(0.902), np.float64(0.941), np.float64(0.899)]
+mem n=30 GB 17.179869184 n=50 PB 18.014398509481985
+ideal XEB 0.9663416642187197
+noisy f=0.3 XEB 0.297069975550889

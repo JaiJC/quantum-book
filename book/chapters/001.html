@@ -1,0 +1,189 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Stand on the Moon with a geologist’s hammer in one hand and a falcon feather in the other. Hold them at the same height and let go of both at once. Before you watch, decide what happens. I think <button type="button" class="v" data-pick="drop:hammer">the hammer lands first</button>, or <button type="button" class="v" data-pick="drop:same">they land together</button>, or <button type="button" class="v" data-pick="drop:feather">the feather lands first</button>.</p>
+  <p class="hint" data-if-nopick="drop">Choose one before you look. It matters more than it seems.</p>
+  <p>Now <button type="button" class="v" data-act="drop">let go of both</button>.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>What happened</h2>
+  <p>They land together. Commander David Scott did exactly this on the Moon on 2 August 1971, during Apollo 15, live on television. <span class="tag">Established</span></p>
+  <p><span data-if-pick="drop:same">You called it. </span><span data-if-pick="drop:hammer">You expected the hammer to win, as almost everyone’s instinct says. </span><span data-if-pick="drop:feather">You expected the feather to win, which is a brave guess. </span>On Earth the feather drifts down because air pushes back on it. Try it: <button type="button" class="v" data-act="earth">drop them on Earth</button>, then <button type="button" class="v" data-act="drop">on the Moon again</button>.</p>
+  <p>Notice what the guess did. Because you had committed to an answer, the result either confirmed something or surprised you, and a surprise is something you remember. That minute contains the method of this whole book: <em>predict, then play, then explain</em>.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Why rereading fails</h2>
+  <p>The most popular way to study is to read the material again. It feels like learning, because the words become familiar. Familiar is not the same as remembered.</p>
+  <p>In 2013 John Dunlosky and colleagues reviewed hundreds of studies of ten common study techniques. Two came out on top: <em>practice testing</em>, meaning pulling an answer out of your own memory, and <em>distributed practice</em>, meaning spreading reviews out over days. Rereading and highlighting came near the bottom. <span class="tag">Established</span></p>
+  <p>Henry Roediger and Jeffrey Karpicke showed the effect cleanly in 2006. Students who tested themselves on a passage remembered more of it a week later than students who spent the same time rereading it, even though the rereaders felt more confident. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Spacing, in a picture</h2>
+  <p>The plate shows a simple model of memory. Each time you recall something, it fades more slowly afterwards. Compare <button type="button" class="v" data-pick="sched:cram">three reviews crammed into the first evening</button> with <button type="button" class="v" data-pick="sched:spaced">four reviews on days 1, 3, 7 and 14</button>. Look at what is left on day 30.</p>
+  <p>Cramming keeps you sharp for a day or two. Spacing keeps you sharp for a month, with only one extra review.</p>
+  <div class="note"><span class="mark">A model, not a law</span>Here memory decays exponentially, and each review makes it last two and a half times longer. Real forgetting is messier. The model is only here to show the direction the studies point in.</div>
+  <p>That is why every chapter ends with a few questions to carry, and why later chapters ask you about earlier ones.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Thinking with units</h2>
+  <p>The second tool in this book costs nothing and catches most mistakes. Every physical quantity carries units, and an equation is only possible if the units on both sides match.</p>
+  <p>Take a pendulum. Its period, the time for one full swing, can only depend on things you could change: the length of the string {{tex:L}}, the strength of gravity {{tex:g}}, and the mass of the bob {{tex:m}}. Suppose {{tex:T \propto L^{a}\, g^{b}\, m^{c}}}. A period is measured in seconds, so the powers must cancel every unit except seconds.</p>
+  <p>Find the powers. Length to the power <span class="tangle" data-var="a" data-min="-2" data-max="2" data-step="0.5" data-dec="1" data-value="1" data-px="18"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Power of length">1.0</span><button type="button" data-de="1" aria-label="Raise">›</button></span>, gravity to the power <span class="tangle" data-var="b" data-min="-2" data-max="2" data-step="0.5" data-dec="1" data-value="1" data-px="18"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Power of gravity">1.0</span><button type="button" data-de="1" aria-label="Raise">›</button></span>, mass to the power <span class="tangle" data-var="c" data-min="-2" data-max="2" data-step="0.5" data-dec="1" data-value="1" data-px="18"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Power of mass">1.0</span><button type="button" data-de="1" aria-label="Raise">›</button></span>.</p>
+  <p class="hint" id="dim-hint">The plate shows each unit’s leftover power. Make metres and kilograms vanish, and leave seconds to the first power.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>The answer, and a surprise</h2>
+  <p>The only choice that works is {{tex:a = \tfrac12}}, {{tex:b = -\tfrac12}}, {{tex:c = 0}}, so {{tex:T \propto \sqrt{L/g}}}. The full calculation adds a factor of {{tex:2\pi}} that units alone cannot give you:</p>
+  <div class="eq">{{texd:T = 2\pi\sqrt{\frac{L}{g}}}}</div>
+  <p>Set the string to <span class="tangle" data-var="L" data-min="0.1" data-max="10" data-step="0.05" data-dec="2" data-value="1" data-unit="m" data-px="3"><button type="button" data-de="-1" aria-label="Shorter">‹</button><span class="num" role="slider" tabindex="0" aria-label="Pendulum length">1.00 m</span><button type="button" data-de="1" aria-label="Longer">›</button></span> and it swings once every <span class="live" id="period">2.01 s</span>. A metre-long pendulum ticks almost exactly every two seconds, which is why grandfather clocks are about that tall.</p>
+  <p>Look at the mass: its power is zero. The period does not care how heavy the bob is, for the same reason the hammer and the feather fell together. Units told you something true about nature before you did any physics.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Estimating anything</h2>
+  <p>The third tool is the Fermi estimate, named after Enrico Fermi, who liked to ask questions such as how many piano tuners work in Chicago. You will rarely know the answer, but you can almost always get within a factor of ten.</p>
+  <p>How many atoms are in one of your cells? A typical cell is about <span class="tangle" data-var="d" data-min="1" data-max="100" data-step="1" data-value="10" data-unit="µm" data-px="5"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Cell width">10 µm</span><button type="button" data-de="1" aria-label="Larger">›</button></span> across. Treat it as a cube of water: volume {{tex:d^3}}, a thousand kilograms per cubic metre, eighteen grams per mole of water, three atoms per molecule, and {{tex:6\times10^{23}}} molecules per mole.</p>
+  <p>The answer comes out at about <span class="live" id="atoms">10^14</span> atoms: a hundred trillion. The plate puts it on a ladder of powers of ten, beside the number of people on Earth and the stars in our galaxy.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>The smallest length</h2>
+  <p>Units can also point at physics nobody has reached. Quantum mechanics brings in Planck’s constant {{tex:\hbar}}, gravity brings Newton’s {{tex:G}}, and relativity brings the speed of light {{tex:c}}. There is exactly one way to combine them into a length:</p>
+  <div class="eq">{{texd:\ell_P = \sqrt{\frac{\hbar G}{c^{3}}} \approx 1.6\times10^{-35}\ \text{m}}}</div>
+  <p>That is the Planck length, about twenty powers of ten smaller than a proton. The number itself is certain. What it means is not: many physicists expect space and time to stop behaving smoothly near this scale, but no experiment has come close to testing that. <span class="tag">Debated</span></p>
+  <div class="note x-deep"><span class="mark">Deeper</span>Check the units yourself. {{tex:\hbar}} is in joule-seconds, {{tex:G}} in {{tex:\text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}}}, and {{tex:c}} in metres per second. Writing a joule as {{tex:\text{kg}\,\text{m}^2\,\text{s}^{-2}}}, the product {{tex:\hbar G/c^3}} comes out in square metres.</div>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>How to read this book</h2>
+  <p>Every chapter works the way this one did. Words printed <button type="button" class="v" data-act="none">like this</button> do something on the plate when you tap them. Numbers on an amber background can be dragged. As you read, the plate changes by itself, so you are never stuck waiting.</p>
+  <p>The <em>Aa</em> at the top changes how deep the text goes. <em>Intuition</em> keeps only the story, <em>Standard</em> adds the main equations, and <em>Deep</em> adds full derivations. Claims carry a label: <span class="tag">Established</span> for settled results, <span class="tag">Debated</span> for open arguments, and <span class="tag">Speculative</span> for ideas that are not yet tested.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does rereading feel effective even when it is not?<span class="tap">tap</span></div><div class="a">Rereading makes the words familiar, and familiarity feels like knowing. Recalling without looking is what actually strengthens memory.</div></div>
+  <div class="qa"><div class="q">Why does a pendulum’s period not depend on the mass of the bob?<span class="tap">tap</span></div><div class="a">No other quantity in the problem carries kilograms, so mass cannot appear in a formula for a time. Physically, a heavier bob feels a larger pull but is just as much harder to move.</div></div>
+  <div class="qa"><div class="q">What is a Fermi estimate for?<span class="tap">tap</span></div><div class="a">Getting the right power of ten from rough, honest guesses, so you know whether an answer is plausible before you calculate it exactly.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A pendulum is 0.25 m long. How many seconds does one swing take? Use {{tex:g = 9.81\ \text{m/s}^2}}.</p>
+    <form class="calc" data-answer="1.003" data-tol="0.01" data-ok="Yes: 2π√(0.25/9.81) ≈ 1.00 s. A quarter of the length gives half the period." data-alt="0.159~That is √(L/g). Multiply by 2π." data-hint="Use T = 2π√(L/g)."><span>T =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Period in seconds"><span>s</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. Dunlosky et al., Psychol. Sci. Public Interest 14, 4 (2013). H. L. Roediger and J. D. Karpicke, Psychol. Sci. 17, 249 (2006). S. Freeman et al., PNAS 111, 8410 (2014). NASA, Apollo 15 hammer–feather drop (1971). Planck length from CODATA constants: 1.616×10⁻³⁵ m.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var K, beat = 0, scene = "moon", picks = {}, V = { a: 1, b: 1, c: 1, L: 1, d: 10 };
+  var drop = { t0: -1, earth: false };
+  function doDrop(earth) { drop = { t0: performance.now(), earth: !!earth }; }
+  var autoT = 0;
+  function sched() { return Book.state.picks.sched || "both"; }
+  // toy memory model: R = exp(-(t - last)/S), S *= 2.5 at each review
+  function memCurve(reviews, t) {
+    var S = 1, last = 0;
+    for (var i = 0; i < reviews.length; i++) { if (reviews[i] <= t) { S *= 2.5; last = reviews[i]; } }
+    return Math.exp(-(t - last) / S);
+  }
+  var CRAM = [0, 0, 0], SPACED = [1, 3, 7, 14];
+  function atoms(dum) { var d = dum * 1e-6; return d * d * d * 1000 / 18.015e-3 * 6.02214076e23 * 3; }
+  function sup(x) { return String(x).replace(/-/g, "⁻").replace(/\d/g, function (q) { return "⁰¹²³⁴⁵⁶⁷⁸⁹"[+q]; }); }
+  function fmtPow(x) { var e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e); return (m >= 9.95 ? "1" : m.toFixed(1).replace(/\.0$/, "")) + (m >= 9.95 ? "" : "×") + "10" + sup(m >= 9.95 ? e + 1 : e); }
+  function dimHint() {
+    var mm = V.a + V.b, ss = -2 * V.b, kg = V.c, ok = Math.abs(mm) < 1e-9 && Math.abs(ss - 1) < 1e-9 && Math.abs(kg) < 1e-9;
+    Book.text("dim-hint", ok ? "Balanced: only seconds remain. Read on." : "Leftover: metres to the " + mm + ", seconds to the " + ss + ", kilograms to the " + kg + ". You want 0, 1, 0.");
+  }
+  Book.plate({
+    init: function (k, st) { K = k; for (var n in st.vals) V[n] = st.vals[n]; },
+    beat: function (i) {
+      beat = i; clearTimeout(autoT);
+      scene = i <= 1 ? "moon" : i <= 3 ? "memory" : i <= 5 ? "pendulum" : i === 6 ? "fermi" : i === 7 ? "planck" : "moon";
+      if (i === 0) autoT = setTimeout(function () { if (drop.t0 < 0) doDrop(false); }, 6000);
+      if (i === 1 && drop.t0 < 0) doDrop(false);
+      if (i === 8) doDrop(false);
+    },
+    act: function (a) { if (a === "drop") doDrop(false); else if (a === "earth") doDrop(true); },
+    pick: function () {},
+    set: function (n, v) {
+      V[n] = v;
+      if (n === "a" || n === "b" || n === "c") dimHint();
+      if (n === "L") Book.text("period", (2 * Math.PI * Math.sqrt(v / 9.81)).toFixed(2) + " s");
+      if (n === "d") Book.text("atoms", fmtPow(atoms(v)));
+    },
+    caption: function () {
+      return { moon: drop.earth ? "On Earth, with air." : "On the Moon: no air.", memory: "A toy model of memory over 30 days.", pendulum: beat === 4 ? "Units left over in L^a g^b m^c." : "A pendulum of length " + V.L.toFixed(2) + " m.", fermi: "Powers of ten.", planck: "Lengths, from you down to the Planck length." }[scene];
+    },
+    readout: function () {
+      if (scene === "memory") { var s = sched(); var c = Math.round(memCurve(CRAM, 30) * 100), p = Math.round(memCurve(SPACED, 30) * 100); return s === "cram" ? "day 30: " + c + "% left" : s === "spaced" ? "day 30: " + p + "% left" : "day 30: " + c + "% vs " + p + "%"; }
+      if (scene === "pendulum") return beat === 4 ? "T ∝ L^" + V.a + " g^" + V.b + " m^" + V.c : "T = " + (2 * Math.PI * Math.sqrt(V.L / 9.81)).toFixed(2) + " s";
+      if (scene === "fermi") return fmtPow(atoms(V.d)) + " atoms";
+      if (scene === "planck") return "ℓP = 1.6×10⁻³⁵ m";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx;
+      if (scene === "moon") {
+        var gy = H * 0.82, top = H * 0.16, x1 = W * 0.42, x2 = W * 0.58;
+        // ground
+        var gg = c.createLinearGradient(0, gy, 0, H); gg.addColorStop(0, "#2a2724"); gg.addColorStop(1, "#000"); c.fillStyle = gg; c.fillRect(0, gy, W, H - gy);
+        k.line(0, gy, W, gy, "#4a4540");
+        if (!drop.earth) for (var i = 0; i < 40; i++) { var sx = (i * 97.3) % W, sy = (i * 53.7) % (gy - 20); k.circle(sx, sy, 0.7, "rgba(236,230,218,.35)"); }
+        var dist = gy - top - 30, tt = drop.t0 < 0 ? 0 : (now - drop.t0) / 1000;
+        // Moon: g = 1.62 m/s^2 over 1.6 m shown in real time (≈1.4 s); Earth: hammer ~0.57 s, feather drifts at ~0.3 m/s
+        var hFall = drop.earth ? 0.5 * 9.81 * tt * tt : 0.5 * 1.62 * tt * tt, fFall = drop.earth ? Math.min(hFall, 0.3 * tt + 0.02 * Math.sin(tt * 5)) : hFall;
+        var hy = top + Math.min(1, hFall / 1.6) * dist, fy = top + Math.min(1, fFall / 1.6) * dist, fx = x2 + (drop.earth ? 18 * Math.sin(tt * 3) : 0);
+        // hammer
+        c.save(); c.translate(x1, hy); k.rr(-3, -2, 6, 30, 2, "#8a7a62"); k.rr(-16, -8, 32, 12, 3, "#9a9488"); c.restore();
+        // feather
+        c.save(); c.translate(fx, fy + 10); c.rotate(drop.earth ? 0.4 * Math.sin(tt * 3) : 0); c.strokeStyle = "#ece6da"; c.lineWidth = 1.2; c.beginPath(); c.moveTo(0, 22); c.quadraticCurveTo(2, 0, 0, -22); c.stroke();
+        for (var j = -18; j < 20; j += 3) { c.beginPath(); c.moveTo(0.5, j); c.lineTo(9 - Math.abs(j) / 3, j - 5); c.moveTo(0, j); c.lineTo(-9 + Math.abs(j) / 3, j - 5); c.strokeStyle = "rgba(236,230,218,.55)"; c.stroke(); }
+        c.restore();
+        k.text("hammer", x1, gy + 22, {}); k.text("feather", x2, gy + 22, {});
+        if (drop.t0 < 0) k.text("tap “let go of both”", W / 2, top - 10, { color: "#ffb547" });
+        return;
+      }
+      if (scene === "memory") {
+        var A = k.axes(W * 0.12, H * 0.12, W * 0.78, H * 0.68, [0, 30], [0, 1], { xt: [0, 7, 14, 21, 30], yt: [0, 0.5, 1], xl: "days", yl: "how much you still remember" });
+        var s = sched();
+        function curve(rev, col, w) { k.plot(A, function (t) { return memCurve(rev, t); }, [0, 30], col, w, 600); rev.forEach(function (r) { k.circle(A.X(r), A.Y(memCurve(rev, r + 1e-6)), 3.5, col); }); }
+        curve(CRAM, s === "spaced" ? "#3a3631" : "#b9b2a5", s === "cram" ? 2.5 : 1.5);
+        curve(SPACED, s === "cram" ? "#3a3631" : "#ffb547", s === "spaced" ? 2.5 : 1.8);
+        k.text("cramming", A.X(3.5), A.Y(memCurve(CRAM, 3.5)) - 8, { color: "#b9b2a5", align: "left" });
+        k.text("spaced reviews", A.X(16), A.Y(memCurve(SPACED, 16)) - 10, { color: "#ffb547", align: "left" });
+        k.line(A.X(30), A.y0, A.X(30), A.y0 + A.h, "rgba(236,230,218,.2)", 1, [3, 4]);
+        return;
+      }
+      if (scene === "pendulum") {
+        var px = W * 0.3, py = H * 0.12, Lpx = beat === 5 ? Math.min(H * 0.7, 60 + Math.sqrt(V.L) * H * 0.22) : H * 0.5;
+        var T = 2 * Math.PI * Math.sqrt((beat === 5 ? V.L : 1) / 9.81), th = 0.32 * Math.cos(2 * Math.PI * (now / 1000) / T);
+        var bx = px + Lpx * Math.sin(th), by = py + Lpx * Math.cos(th);
+        k.line(px - 40, py, px + 40, py, "#4a4540", 2); k.line(px, py, bx, by, "#b9b2a5", 1.2); k.glow(bx, by, 22, "rgba(255,190,100,.35)"); k.circle(bx, by, 11, "#ffb547");
+        if (beat === 5) { k.text("L = " + V.L.toFixed(2) + " m", px, by + 34, {}); return; }
+        // unit balance
+        var rows = [["metres", V.a + V.b, 0], ["seconds", -2 * V.b, 1], ["kilograms", V.c, 0]], x0 = W * 0.55, w = W * 0.38, cx = x0 + w / 2;
+        k.text("leftover power of each unit", cx, H * 0.16, { color: "#7c766b" });
+        rows.forEach(function (r, i) {
+          var y = H * 0.3 + i * H * 0.18, sc = w / 8, ok = Math.abs(r[1] - r[2]) < 1e-9;
+          k.line(x0, y, x0 + w, y, "#24211d", 6); k.line(cx, y - 10, cx, y + 10, "#3a3631");
+          k.line(cx + r[2] * sc, y - 14, cx + r[2] * sc, y + 14, "#ece6da", 1.5);
+          k.circle(cx + Math.max(-4, Math.min(4, r[1])) * sc, y, 8, ok ? "#ffb547" : "#7c766b");
+          k.text(r[0] + "  " + (r[1] > 0 ? "+" : "") + r[1], x0, y - 16, { align: "left", color: ok ? "#ffb547" : "#b9b2a5" });
+        });
+        return;
+      }
+      if (scene === "fermi" || scene === "planck") {
+        var lo = scene === "fermi" ? 0 : -36, hi = scene === "fermi" ? 30 : 2, x = W * 0.38, y0 = H * 0.08, y1 = H * 0.9;
+        function Y(e) { return y1 - (e - lo) / (hi - lo) * (y1 - y0); }
+        k.line(x, y0, x, y1, "#3a3631", 2);
+        for (var e = lo; e <= hi; e++) if (e % (scene === "fermi" ? 5 : 5) === 0) { k.line(x - 6, Y(e), x, Y(e), "#7c766b"); k.text("10" + sup(e), x - 12, Y(e) + 4, { align: "right", mono: true, size: 11 }); }
+        var marks = scene === "fermi"
+          ? [[Math.log10(8.1e9), "people on Earth"], [11, "stars in the Milky Way, roughly"], [Math.log10(atoms(V.d)), "atoms in one cell", 1], [Math.log10(7e27), "atoms in a human body, roughly"]]
+          : [[0, "you, about a metre"], [-5, "a cell"], [-10, "an atom"], [-15, "a proton"], [Math.log10(1.616e-35), "the Planck length", 1]];
+        marks.forEach(function (m) { var y = Y(m[0]); k.line(x, y, x + 24, y, m[2] ? "#ffb547" : "#b9b2a5", m[2] ? 2 : 1); if (m[2]) k.glow(x, y, 16); k.text(m[1], x + 32, y + 4, { align: "left", color: m[2] ? "#ffb547" : "#b9b2a5", size: 14 }); });
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,5 @@
+collapse time a0^3/(4 r0^2 c) = 1.5561774625857193e-11
+c = 1/sqrt(mu0 eps0) 299792457.9998211
+sunlight pressure absorb uPa 4.53980733564685 reflect 9.0796146712937
+force on 1 km^2 reflecting sail N 9.0796146712937
+E field amplitude of sunlight V/m 1012.649945986431

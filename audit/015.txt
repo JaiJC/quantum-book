@@ -1,0 +1,6 @@
+E of 1 uC at 1 m 8987.551786170798
+electron radius v=1e6 m/s B=1e-3 T (mm) 5.685630111305193
+proton gyromagnetic gamma/2pi MHz/T (CODATA 42.577) 42.577478
+MRI 3T proton frequency MHz 127.732434
+c from mu0 eps0 299792457.9998211
+B of straight wire 10 A at 1 cm (uT) 199.99999997359342

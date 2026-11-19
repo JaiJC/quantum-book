@@ -1,0 +1,115 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Pluck a guitar string and it sings a note, plus a handful of quieter notes above it, and nothing in between. Why only those? The string could, in principle, wobble at any rate it likes.</p>
+  <p>The answer comes from an equation for something spread out in space, a <em>partial differential equation</em>, and from the fact that the string is pinned at both ends. Keep this chapter in mind: in Part One the very same mathematics will tell an electron trapped in a box which energies it is allowed to have.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The wave equation</h2>
+  <p>Cut the string into tiny pieces. Each piece is pulled by its neighbours, and the net pull depends on how sharply the string bends there, its second derivative in space. Newton’s law then gives</p>
+  <div class="eq">{{texd:\frac{\partial^2 y}{\partial t^2} = v^2\,\frac{\partial^2 y}{\partial x^2}}}</div>
+  <p>where {{tex:v}} is the speed of waves on the string, set by its tension and mass per length. Any shape you give the string obeys this rule from then on.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>A piece of length {{tex:dx}} and mass {{tex:\mu\,dx}} under tension {{tex:T}} feels a vertical force {{tex:T\,[y'(x+dx) - y'(x)] \approx T\,y''\,dx}} for small slopes. So {{tex:\mu\,\ddot y = T\,y''}}, giving {{tex:v = \sqrt{T/\mu}}}.</div>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Separating the variables</h2>
+  <p>Guess a solution in which the shape and the timing are separate: {{tex:y(x,t) = X(x)\,T(t)}}. Substituting splits the equation into one for space and one for time, linked by a single constant. The space part, with the ends pinned at {{tex:x = 0}} and {{tex:x = L}}, only has solutions for special values of that constant:</p>
+  <div class="eq">{{texd:X_n(x) = \sin\frac{n\pi x}{L}, \qquad f_n = \frac{n\,v}{2L}, \quad n = 1, 2, 3, \dots}}</div>
+  <p>These are the <em>normal modes</em>. Each one fits a whole number of half-waves between the ends. Show mode <span class="tangle" data-var="n" data-min="1" data-max="8" data-step="1" data-value="1" data-px="22"><button type="button" data-de="-1" aria-label="Lower mode">‹</button><span class="num" role="slider" tabindex="0" aria-label="Mode number">1</span><button type="button" data-de="1" aria-label="Higher mode">›</button></span>. The points that never move are the <em>nodes</em>.</p>
+  <p>This is the answer to the opening question. The boundary conditions allow only whole numbers of half-waves, so only frequencies {{tex:f_1, 2f_1, 3f_1, \dots}} can sound. On a guitar’s low E string they are 82.4, 164.8, 247.2 Hz and so on.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Plucking anywhere</h2>
+  <p>A real pluck is not one clean mode. It is a triangle, and every triangle is a sum of modes with particular strengths. Pluck the string at <span class="tangle" data-var="p" data-min="0.05" data-max="0.95" data-step="0.01" data-dec="2" data-value="0.2" data-px="3"><button type="button" data-de="-1" aria-label="Left">‹</button><span class="num" role="slider" tabindex="0" aria-label="Pluck position as a fraction of the length">0.20</span><button type="button" data-de="1" aria-label="Right">›</button></span> of its length and <button type="button" class="v" data-act="pluck">let it go</button>. The bars show how much of each mode is present.</p>
+  <p>Pluck exactly in the middle and every even mode vanishes, because the middle is a node of all of them: you cannot excite a mode by pushing where it never moves. Pluck near the end and the high modes get stronger, which is why guitarists pick near the bridge for a brighter sound.</p>
+  <div class="note x-deep"><span class="mark">Deeper</span>For a triangle of height {{tex:h}} peaked at {{tex:x = p}}, the mode strengths are {{tex:b_n = \dfrac{2hL^2}{n^2\pi^2\,p(L-p)}\sin\dfrac{n\pi p}{L}}}. The {{tex:1/n^2}} is why high notes are quiet; the sine is why plucking at a node kills a mode. Checked numerically against the integral {{tex:b_n = \tfrac{2}{L}\int_0^L y\sin(n\pi x/L)\,dx}}.</div>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Heat: the same modes, dying away</h2>
+  <p>Heat along a metal rod follows a different equation, with one time derivative instead of two: {{tex:\partial u/\partial t = \alpha\,\partial^2 u/\partial x^2}}. Keep both ends in ice and separate the variables again. You get the same sine shapes, but instead of oscillating, each one fades:</p>
+  <div class="eq">{{texd:u_n(x,t) = \sin\frac{n\pi x}{L}\;e^{-\alpha (n\pi/L)^2 t}}}</div>
+  <p>Mode {{tex:n}} decays {{tex:n^2}} times faster than the first. Watch a hot spot in the plate: <button type="button" class="v" data-act="heat">heat the rod</button>. The sharp bumps vanish almost at once and the temperature relaxes into a smooth single arch before fading away.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>A preview of quantum mechanics</h2>
+  <p>Twenty chapters from now, an electron confined to a box will obey Schrödinger’s equation, which is another of these partial differential equations. Pinned at the walls, it will have the same sine-shaped modes, and its allowed energies will go as {{tex:n^2}}: 1, 4, 9, 16. The discreteness that gave quantum mechanics its name is, in this case, the discreteness of a guitar string. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>What you now have</h2>
+  <p>Two equations of physics, the wave equation and the heat equation, and one method that cracks both on simple shapes (it works for Laplace’s equation too): separate the variables, apply the boundary conditions, and add up the modes.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">Why does a string only play certain frequencies?<span class="tap">tap</span></div><div class="a">Its ends are pinned, so only shapes with a whole number of half-waves fit, giving frequencies f₁, 2f₁, 3f₁ and so on.</div></div>
+  <div class="qa"><div class="q">Why does plucking in the middle remove the even harmonics?<span class="tap">tap</span></div><div class="a">The middle is a node of every even mode, and a mode cannot be excited by pushing where it does not move.</div></div>
+  <div class="qa"><div class="q">In the heat equation, why do sharp features disappear first?<span class="tap">tap</span></div><div class="a">Sharp features are made of high modes, and mode n decays n² times faster than the first.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A string’s fundamental is 110 Hz. What is the frequency of its fourth mode?</p>
+    <form class="calc" data-answer="440" data-tol="0.5" data-ok="Yes: 4 × 110 = 440 Hz, the A above middle C." data-hint="Mode n has frequency n times the fundamental."><span>f₄ =</span><input inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Frequency in hertz"><span>Hz</span><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: W. A. Strauss, Partial Differential Equations: An Introduction. S. J. Farlow, Partial Differential Equations for Scientists and Engineers. Mode strengths checked numerically (audit 005).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { n: 1, p: 0.2 }, t0 = 0, heat0 = 0, NM = 16;
+  function bn(n, p) { return 2 * Math.sin(n * Math.PI * p) / (n * n * Math.PI * Math.PI * p * (1 - p)); }
+  Book.plate({
+    init: function (k, s) { for (var q in s.vals) V[q] = s.vals[q]; t0 = performance.now(); heat0 = performance.now(); },
+    beat: function (i) { beat = i; t0 = performance.now(); if (i === 4) heat0 = performance.now(); },
+    act: function (a) { if (a === "pluck") t0 = performance.now(); if (a === "heat") heat0 = performance.now(); },
+    set: function (n, v) { V[n] = v; if (n === "p") t0 = performance.now(); },
+    caption: function () { return ["A plucked string.", "A string under tension.", "Normal mode " + V.n + ".", "A pluck and its modes.", "Heat in a rod, ends in ice.", "Particle in a box: the same shapes.", "A plucked string."][beat]; },
+    readout: function () {
+      if (beat === 2) return "f = " + V.n + " × f₁ · " + (V.n - 1) + " node" + (V.n === 2 ? "" : "s") + " inside";
+      if (beat === 3) return "pluck at " + V.p.toFixed(2) + " L";
+      if (beat === 5) return "energies ∝ 1, 4, 9, 16 …";
+      return "";
+    },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, c = k.ctx, x0 = W * 0.08, x1 = W * 0.92, L = x1 - x0, t = (now - t0) / 1000;
+      function pegs(y) { k.rr(x0 - 8, y - 14, 8, 28, 2, "#4a4540"); k.rr(x1, y - 14, 8, 28, 2, "#4a4540"); }
+      function path(fn, y, col, w) { c.strokeStyle = col; c.lineWidth = w; c.beginPath(); for (var i = 0; i <= 300; i++) { var u = i / 300, py = y - fn(u); if (i) c.lineTo(x0 + u * L, py); else c.moveTo(x0 + u * L, py); } c.stroke(); }
+      if (beat === 2 || beat === 5) {
+        var y = H * 0.48, A = H * 0.25, n = beat === 5 ? 0 : V.n;
+        if (beat === 5) {
+          [1, 2, 3].forEach(function (m, j) { var yy = H * (0.25 + j * 0.25); k.line(x0, yy, x1, yy, "#24211d"); path(function (u) { return H * 0.09 * Math.sin(m * Math.PI * u) * Math.cos(m * m * t * 1.2); }, yy, "#ffb547", 2); k.text("n = " + m + "   E ∝ " + m * m, x1, yy - H * 0.1, { align: "right", color: "#ffb547" }); });
+          k.rr(x0 - 6, H * 0.12, 6, H * 0.76, 2, "#4a4540"); k.rr(x1, H * 0.12, 6, H * 0.76, 2, "#4a4540");
+          return;
+        }
+        pegs(y); k.line(x0, y, x1, y, "#24211d");
+        path(function (u) { return A * Math.sin(n * Math.PI * u); }, y, "rgba(236,230,218,.15)", 1);
+        path(function (u) { return -A * Math.sin(n * Math.PI * u); }, y, "rgba(236,230,218,.15)", 1);
+        path(function (u) { return A * Math.sin(n * Math.PI * u) * Math.cos(n * t * 3); }, y, "#ffb547", 2.5);
+        for (var j = 1; j < n; j++) k.circle(x0 + L * j / n, y, 4, "#ece6da");
+        return;
+      }
+      if (beat === 4) {
+        var th = (now - heat0) / 1000, y2 = H * 0.7, A2 = H * 0.5;
+        var u0 = function (u) { return Math.exp(-Math.pow((u - 0.3) / 0.04, 2)) + 0.6 * Math.exp(-Math.pow((u - 0.72) / 0.03, 2)); };
+        var coef = []; for (var m = 1; m <= 40; m++) { var s = 0; for (var i2 = 0; i2 <= 400; i2++) { var uu = i2 / 400; s += u0(uu) * Math.sin(m * Math.PI * uu); } coef.push(2 * s / 400); }
+        var temp = function (u) { var s2 = 0; for (var m2 = 1; m2 <= 40; m2++) s2 += coef[m2 - 1] * Math.sin(m2 * Math.PI * u) * Math.exp(-0.004 * m2 * m2 * th * 8); return s2; };
+        for (var i3 = 0; i3 < 140; i3++) { var u3 = i3 / 140, T = Math.max(0, Math.min(1, temp(u3))); c.fillStyle = "rgba(255," + Math.round(120 + 100 * T) + ",60," + (0.08 + 0.9 * T) + ")"; c.fillRect(x0 + u3 * L, y2 + 20, L / 140 + 1, 22); }
+        k.rr(x0 - 14, y2 + 14, 14, 34, 3, "#b9b2a5"); k.rr(x1, y2 + 14, 14, 34, 3, "#b9b2a5");
+        path(function (u) { return A2 * temp(u); }, y2, "#ffb547", 2.5);
+        k.text("ice", x0 - 7, y2 + 66, {}); k.text("ice", x1 + 7, y2 + 66, {}); k.text("temperature along the rod", W / 2, H * 0.12, {});
+        return;
+      }
+      // plucked string: sum of modes, each oscillating at its own frequency
+      var y4 = beat === 3 ? H * 0.36 : H * 0.48, A4 = H * 0.2, p = beat === 3 ? V.p : 0.2;
+      pegs(y4);
+      path(function (u) { var s = 0; for (var m = 1; m <= NM; m++) s += bn(m, p) * Math.sin(m * Math.PI * u) * Math.cos(m * t * 2.4) * Math.exp(-0.15 * m * t); return A4 * s; }, y4, "#ffb547", 2.5);
+      if (beat === 3) {
+        var base = H * 0.92, bw = L / NM, max = 0; for (var m3 = 1; m3 <= NM; m3++) max = Math.max(max, Math.abs(bn(m3, p)));
+        for (var m4 = 1; m4 <= NM; m4++) { var hgt = Math.abs(bn(m4, p)) / max * H * 0.3; k.rr(x0 + (m4 - 1) * bw + bw * 0.2, base - hgt, bw * 0.6, Math.max(1, hgt), 2, "rgba(255,181,71,.75)"); if (m4 <= 8) k.text(String(m4), x0 + (m4 - 0.5) * bw, base + 16, { mono: true, size: 10 }); }
+        k.text("strength of each mode", x0, base - H * 0.33, { align: "left" });
+        k.circle(x0 + p * L, y4 - A4 * 1.25, 4, "#ece6da"); k.text("pluck", x0 + p * L, y4 - A4 * 1.25 - 10, { color: "#ece6da" });
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,70 @@
+<section class="beat" data-beat="0">
+  <p class="drop">For thirty years, every quantum error-correction experiment faced the same embarrassment: adding qubits to a code added more ways to fail than it removed. In 2024 Google’s Willow chip crossed the line. Growing a surface code from distance 3 to 5 to 7 cut the logical error rate by a factor of 2.14 at each step, and the distance-7 logical qubit outlived the best physical qubit on the chip by a factor of 2.4. This chapter explains the code that did it, and lets you run its decoder.</p>
+  <p>On the plate: a surface code on a torus. Tap edges to put errors on qubits; then decode.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The toric and surface codes</h2>
+  <p>Alexei Kitaev proposed in 1997 to put qubits on the edges of a square lattice wrapped onto a torus. Each <em>vertex</em> check is the product of Z on its four edges, each <em>plaquette</em> check the product of X around its square. All checks are local and involve only four qubits, which suits a flat chip. An X error on one edge flips the two vertex checks at its ends: errors appear as pairs of <em>defects</em>, like particle–antiparticle pairs, and a chain of errors shows only its two endpoints. A logical error is a chain that wraps all the way around the torus, which no local check can see. The <em>surface code</em>, with boundaries instead of a torus, is what chips build: a distance-{{tex:d}} patch uses {{tex:d^2}} data and {{tex:d^2-1}} measure qubits. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Decode by matching</h2>
+  <p>On an {{tex:L\times L}} torus with {{tex:L =}} <span class="tangle" data-var="L" data-min="3" data-max="8" data-step="1" data-value="5" data-px="20"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="L">5</span><button type="button" data-de="1" aria-label="Larger">›</button></span>, tap edges to flip qubits, or <button type="button" class="v" data-act="rand">add random errors</button> at rate <span class="tangle" data-var="p" data-min="0.01" data-max="0.2" data-step="0.01" data-dec="2" data-value="0.06" data-px="20"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Error rate">0.06</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. Then <button type="button" class="v" data-act="dec">decode</button> or <button type="button" class="v" data-act="clr">clear</button>.</p>
+  <p>The decoder sees only the defects. Minimum-weight perfect matching (MWPM), suggested by Eric Dennis, Kitaev, Andrew Landahl and John Preskill in 2002, pairs them so that the total length of connecting paths is smallest, assuming the likeliest explanation is the fewest errors. The plate solves it exactly for up to 16 defects. Correction plus error then forms closed loops; if a loop wraps around the torus, the decoder has caused a logical error. Try placing three errors in a row across a 5 × 5 torus. Nicolas Delfosse and Naomi Nickerson’s 2021 <em>union-find</em> decoder is nearly as accurate and runs in almost linear time. Speed matters: syndromes arrive every microsecond and must be decoded as fast as they come. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Threshold, and Willow</h2>
+  <p>The plate’s Monte Carlo (from this book’s own MWPM decoder) shows logical failure against physical error rate for {{tex:L}} = 4 to 10. Below about 10% the curves fan downward as {{tex:L}} grows; above it they rise. That crossing is the <em>threshold</em>, about 10.3% for this idealized noise. With realistic circuit noise, including faulty measurements, the threshold is near 1%. Below threshold, each increase of the distance by 2 divides the logical error by a factor {{tex:\Lambda}}.</p>
+  <p>Google’s 2025 <em>Nature</em> paper reported {{tex:\Lambda = 2.14\pm0.02}} and 0.143% error per cycle at distance 7, with a real-time decoder latency of 63 µs. Extrapolate to distance <span class="tangle" data-var="d" data-min="7" data-max="31" data-step="2" data-value="27" data-px="10"><button type="button" data-de="-1" aria-label="Smaller">‹</button><span class="num" role="slider" tabindex="0" aria-label="Distance">27</span><button type="button" data-de="1" aria-label="Larger">›</button></span>. In 2024 Google DeepMind’s AlphaQubit, a transformer network, decoded Google’s data with 6% fewer errors than tensor-network decoding and 30% fewer than correlated matching, but not yet fast enough for real time. <span class="tag">Established</span> for the measurements; <span class="tag">Speculative</span> for the extrapolation.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>The toric and surface codes, errors as defect pairs, logical errors as wrapping chains, minimum-weight matching and union-find, the threshold, Λ and the 2024–25 below-threshold experiment, and neural decoders.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does a decoder actually see?<span class="tap">tap</span></div><div class="a">Only the defects, the endpoints of error chains.</div></div>
+  <div class="qa"><div class="q">When does matching cause a logical error?<span class="tap">tap</span></div><div class="a">When the error and the correction together form a loop that wraps around the code.</div></div>
+  <div class="qa"><div class="q">What is Λ?<span class="tap">tap</span></div><div class="a">The factor by which logical error falls when the distance increases by 2.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A distance-27 surface code uses {{tex:2d^2 - 1}} physical qubits. How many?</p>
+    <form class="calc" data-answer="1457" data-tol="0.5" data-ok="Yes: 1457 qubits for one logical qubit at about 7 × 10⁻⁷ error per cycle, if Λ = 2.14 holds." data-hint="2 × 729 − 1."><span>qubits =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Qubits"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: A. Yu. Kitaev, Ann. Phys. 303, 2 (2003) (arXiv 1997). E. Dennis, A. Kitaev, A. Landahl and J. Preskill, J. Math. Phys. 43, 4452 (2002). A. G. Fowler et al., Phys. Rev. A 86, 032324 (2012). N. Delfosse and N. H. Nickerson, Quantum 5, 595 (2021). O. Higgott, ACM Trans. Quantum Comput. 3, 16 (2022) (PyMatching). Google Quantum AI and collaborators, Nature 638, 920 (2025). J. Bausch et al., Nature 635, 834 (2024). Checked by code: toric-code MWPM Monte Carlo with crossing near 10%; 0.143% / 2.14¹⁰ = 7.1 × 10⁻⁷.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { L: 5, p: 0.06, d: 27 }, L = 5, h = [], v = [], ch = [], cv = [], decoded = false, fail = false, method = "", seed = 77, geo = null;
+  var mc = { 4: [0.108, 0.172, 0.247, 0.297, 0.34, 0.368, 0.455], 6: [0.068, 0.148, 0.223, 0.277, 0.338, 0.413, 0.482], 8: [0.032, 0.108, 0.19, 0.265, 0.315, 0.422, 0.557], 10: [0.022, 0.115, 0.17, 0.25, 0.358, 0.44, 0.61] }, ps = [0.06, 0.08, 0.09, 0.10, 0.11, 0.12, 0.14];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function grid(n) { var a = []; for (var i = 0; i < L; i++) { a.push(new Array(L).fill(n)); } return a; }
+  function reset() { L = V.L; h = grid(0); v = grid(0); ch = grid(0); cv = grid(0); decoded = false; fail = false; method = ""; }
+  function defects() { var s = grid(0), out = []; for (var x = 0; x < L; x++) for (var y = 0; y < L; y++) { if (h[x][y]) { s[x][y] ^= 1; s[(x + 1) % L][y] ^= 1; } if (v[x][y]) { s[x][y] ^= 1; s[x][(y + 1) % L] ^= 1; } } for (x = 0; x < L; x++) for (y = 0; y < L; y++) if (s[x][y]) out.push([x, y]); return out; }
+  function dist(a, b) { var dx = Math.abs(a[0] - b[0]), dy = Math.abs(a[1] - b[1]); return Math.min(dx, L - dx) + Math.min(dy, L - dy); }
+  function match(D) { var n = D.length; if (n <= 16) { method = "exact"; var M = 1 << n, best = new Float64Array(M).fill(Infinity), ch2 = new Int32Array(M).fill(-1); best[0] = 0; for (var m = 1; m < M; m++) { var i = 0; while (!((m >> i) & 1)) i++; for (var j = i + 1; j < n; j++) if ((m >> j) & 1) { var r = m & ~(1 << i) & ~(1 << j), c = best[r] + dist(D[i], D[j]); if (c < best[m]) { best[m] = c; ch2[m] = j; } } } var pairs = [], mm = M - 1; while (mm) { var i2 = 0; while (!((mm >> i2) & 1)) i2++; var j2 = ch2[mm]; pairs.push([i2, j2]); mm &= ~(1 << i2) & ~(1 << j2); } return pairs; } method = "greedy"; var left = D.map(function (_, i) { return i; }), out = []; while (left.length) { var bi = 0, bj = 1, bd = 1e9; for (var a = 0; a < left.length; a++) for (var b = a + 1; b < left.length; b++) { var dd = dist(D[left[a]], D[left[b]]); if (dd < bd) { bd = dd; bi = a; bj = b; } } out.push([left[bi], left[bj]]); left.splice(bj, 1); left.splice(bi, 1); } return out; }
+  function decode() { ch = grid(0); cv = grid(0); var D = defects(); match(D).forEach(function (pr) { var a = D[pr[0]], b = D[pr[1]], x = a[0], y = a[1], dx = (b[0] - x + L) % L, sx = dx <= L - dx ? 1 : -1; while (x !== b[0]) { if (sx === 1) { ch[x][y] ^= 1; x = (x + 1) % L; } else { x = (x - 1 + L) % L; ch[x][y] ^= 1; } } var dy = (b[1] - y + L) % L, sy = dy <= L - dy ? 1 : -1; while (y !== b[1]) { if (sy === 1) { cv[x][y] ^= 1; y = (y + 1) % L; } else { y = (y - 1 + L) % L; cv[x][y] ^= 1; } } }); var px = 0, py = 0; for (var y2 = 0; y2 < L; y2++) px ^= h[0][y2] ^ ch[0][y2]; for (var x2 = 0; x2 < L; x2++) py ^= v[x2][0] ^ cv[x2][0]; fail = !!(px || py); decoded = true; }
+  function layout(k) { var S = Math.min(k.W * 0.86, k.H * 0.8), c = S / L; return { x0: (k.W - S) / 2 + c / 2, y0: (k.H - S) / 2 + c / 2, c: c }; }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; reset(); h[1][2] = 1; h[2][2] = 1; v[3][0] = 1; },
+    beat: function (i) { beat = i; },
+    set: function (n, vv) { V[n] = vv; if (n === "L" && vv !== L) reset(); },
+    act: function (a) { if (a === "clr") reset(); else if (a === "rand") { decoded = false; ch = grid(0); cv = grid(0); for (var x = 0; x < L; x++) for (var y = 0; y < L; y++) { if (rnd() < V.p) h[x][y] ^= 1; if (rnd() < V.p) v[x][y] ^= 1; } } else if (a === "dec") decode(); },
+    tap: function (px, py, k) { if (beat !== 2 && beat !== 0) return; var g = layout(k), best = null, bd = g.c * 0.35; for (var x = 0; x < L; x++) for (var y = 0; y < L; y++) { var hx = g.x0 + (x + 0.5) * g.c, hy = g.y0 + y * g.c, vx = g.x0 + x * g.c, vy = g.y0 + (y + 0.5) * g.c, d1 = Math.hypot(px - hx, py - hy), d2 = Math.hypot(px - vx, py - vy); if (d1 < bd) { bd = d1; best = ["h", x, y]; } if (d2 < bd) { bd = d2; best = ["v", x, y]; } } if (best) { (best[0] === "h" ? h : v)[best[1]][best[2]] ^= 1; decoded = false; ch = grid(0); cv = grid(0); } },
+    caption: function () { return ["Tap an edge to flip a qubit.", "Vertex checks (Z), plaquette checks (X).", "Errors red · defects amber · correction amber lines.", "Logical failure vs physical error, L = 4–10.", "The surface code."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var D = defects(), ne = 0; for (var x = 0; x < L; x++) for (var y = 0; y < L; y++) ne += h[x][y] + v[x][y]; return ne + " errors · " + D.length + " defects" + (decoded ? " · decoded (" + method + ") · " + (fail ? "LOGICAL ERROR: loop wraps the torus" : "success: only trivial loops") : ""); } if (beat === 3) { var e = 0.00143 / Math.pow(2.14, (V.d - 7) / 2); return "d = " + V.d + " · predicted " + e.toExponential(2) + " per cycle · " + (2 * V.d * V.d - 1) + " qubits"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, x, y;
+      if (beat === 3) { A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0.05, 0.15], [0, 0.65], { xl: "physical error rate p", yl: "logical failure" }); [4, 6, 8, 10].forEach(function (Lq, j) { var col = ["rgba(236,230,218,.45)", "rgba(236,230,218,.75)", "rgba(255,181,71,.65)", "#ffb547"][j], pts = mc[Lq].map(function (f, i) { return [A.X(ps[i]), A.Y(f)]; }); for (var i = 1; i < pts.length; i++) k.line(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], col, 2); pts.forEach(function (p) { k.circle(p[0], p[1], 3.5, col); }); k.text("L=" + Lq, pts[pts.length - 1][0] + 4, pts[pts.length - 1][1] + 4, { size: 10, color: col, align: "left" }); }); k.line(A.X(0.103), A.Y(0), A.X(0.103), A.Y(0.65), "rgba(224,90,70,.6)", 1); return; }
+      if (beat === 1) { L = V.L; }
+      var g = layout(k), c = g.c, D = defects();
+      for (x = 0; x < L; x++) for (y = 0; y < L; y++) { var X0 = g.x0 + x * c, Y0 = g.y0 + y * c; k.line(X0, Y0, X0 + c, Y0, h[x][y] ? "rgba(224,90,70,.95)" : "rgba(236,230,218,.25)", h[x][y] ? 4 : 1.2); k.line(X0, Y0, X0, Y0 + c, v[x][y] ? "rgba(224,90,70,.95)" : "rgba(236,230,218,.25)", v[x][y] ? 4 : 1.2); if (decoded) { if (ch[x][y]) k.line(X0, Y0 + 3, X0 + c, Y0 + 3, "#ffb547", 2.5); if (cv[x][y]) k.line(X0 + 3, Y0, X0 + 3, Y0 + c, "#ffb547", 2.5); } k.circle(X0, Y0, 2.5, "rgba(236,230,218,.5)"); }
+      D.forEach(function (d) { var X1 = g.x0 + d[0] * c, Y1 = g.y0 + d[1] * c; k.glow(X1, Y1, 14, "rgba(255,181,71,.55)"); k.circle(X1, Y1, 6, "#ffb547"); });
+      if (decoded) k.text(fail ? "logical error" : "corrected", W / 2, H * 0.97, { size: 13, color: fail ? "#e05a46" : "#ffb547" });
+    }
+  });
+})();
+</script>

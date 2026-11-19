@@ -1,0 +1,6 @@
+== 106
+Werner p 0.2 concurrence 0 negativity 0
+Werner p 0.333 concurrence 0 negativity 0
+Werner p 0.6 concurrence 0.3999999999999999 negativity 0.19999999999999996
+Werner p 1 concurrence 1.0 negativity 0.5
+BBPSSW from 0.75: [0.75, 0.7885, 0.827, 0.8635, 0.8959, 0.9231, 0.9446]

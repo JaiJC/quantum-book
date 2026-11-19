@@ -1,0 +1,98 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Quantum mechanics can be written on half a page. Six rules say what a state is, what can be measured, what the odds are, what happens to a state when it is measured, how it changes in time, and how to describe several systems at once. Every quantum experiment ever performed, from atomic clocks to quantum computers, fits these six rules.</p>
+  <p>This chapter states them plainly and tests each on the simplest system there is: the spin of an electron, which can only ever be found “up” or “down” along whatever axis you measure.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Rule one: states are vectors</h2>
+  <p>The state of a system is a unit vector {{tex:|\psi\rangle}} in a complex Hilbert space (Chapter 9), with vectors differing only by a global phase describing the same state. For a spin it is two-dimensional: {{tex:|\psi\rangle = \alpha|{\uparrow}\rangle + \beta|{\downarrow}\rangle}} with {{tex:|\alpha|^2 + |\beta|^2 = 1}}.</p>
+  <p>Prepare a spin pointing at an angle of <span class="tangle" data-var="a" data-min="0" data-max="180" data-step="5" data-value="0" data-unit="°" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Preparation angle">0 °</span><button type="button" data-de="1" aria-label="More">›</button></span> from the vertical. The plate shows it as an arrow.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Rule two: observables are Hermitian operators</h2>
+  <p>Every measurable quantity corresponds to a Hermitian operator, and the only possible results are its eigenvalues (Chapters 8 and 9). For spin along an axis at angle {{tex:\theta}} in the x–z plane, the operator is {{tex:\cos\theta\,\sigma_z + \sin\theta\,\sigma_x}}, with eigenvalues {{tex:+1}} and {{tex:-1}}. Whatever the axis, the answer is always one of two values. Set the measuring axis to <span class="tangle" data-var="b" data-min="0" data-max="180" data-step="5" data-value="60" data-unit="°" data-px="3"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Measurement angle">60 °</span><button type="button" data-de="1" aria-label="More">›</button></span>.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Rule three: the Born rule</h2>
+  <p>The probability of a result is the squared size of the state’s component along the matching eigenvector: {{tex:P(a) = |\langle a|\psi\rangle|^2}}. For a spin prepared at angle {{tex:\alpha}} and measured along {{tex:\beta}}, the chance of “up” is</p>
+  <div class="eq">{{texd:P(+) = \cos^2\!\frac{\beta - \alpha}{2}}}</div>
+  <p>which is <span class="live" id="pp">75%</span> for your settings. <button type="button" class="v" data-act="m100">Measure a hundred spins</button> prepared the same way and watch the counts approach it. Each single result is random; only the odds are predicted. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Rule four: measurement changes the state</h2>
+  <p>Right after a measurement gives result {{tex:a}}, the state is the projection of {{tex:|\psi\rangle}} onto that eigenvector, renormalized. This is the projection rule, written precisely by Gerhart Lüders in 1951. Measure again along the same axis and you get the same answer every time.</p>
+  <p>Try a chain: measure along the vertical, keep only “up”, then along 90°, keep only “up”, then along the vertical again. A quarter of the spins come out “up” at the end, not all of them, and a quarter come out “down”. The middle measurement erased the first one. <button type="button" class="v" data-act="chain">Run the chain on a thousand spins</button>. It is the three-polarizer puzzle of Chapter 14, one particle at a time.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>Rule five: smooth, reversible evolution</h2>
+  <p>Between measurements, the state changes by a unitary operator, a rotation in Hilbert space that preserves total probability: {{tex:|\psi(t)\rangle = U(t)|\psi(0)\rangle}}, with {{tex:U = e^{-iHt/\hbar}}} for a Hamiltonian {{tex:H}} (Chapter 31). For a spin in a magnetic field, this makes the arrow precess steadily, exactly like the protons in an MRI scanner. <button type="button" class="v" data-act="field">Switch on a field</button>.</p>
+</section>
+
+<section class="beat" data-beat="6">
+  <h2>Rule six: combining systems</h2>
+  <p>The state space of two systems together is the tensor product of their spaces (Chapter 9). Two spins live in four dimensions, with basis {{tex:|{\uparrow\uparrow}\rangle, |{\uparrow\downarrow}\rangle, |{\downarrow\uparrow}\rangle, |{\downarrow\downarrow}\rangle}}. Most vectors in that space cannot be written as one spin’s state times the other’s; those are <em>entangled</em> states, the subject of Part Three.</p>
+</section>
+
+<section class="beat" data-beat="7">
+  <h2>Rules versus meaning</h2>
+  <p>These six rules are the operational core of quantum mechanics, and they are not in dispute: they predict results to as many decimal places as anyone has measured. <span class="tag">Established</span></p>
+  <p>What the rules <em>mean</em> is another matter. Is the state a physical thing or a summary of knowledge? Does the projection rule describe a real physical change, or only an update? Physicists disagree, sometimes sharply, and Chapter 54 sets out the main positions and the evidence. <span class="tag">Debated</span> You can use the rules perfectly well without settling that, and this book will.</p>
+</section>
+
+<section class="beat" data-beat="8">
+  <h2>What you now have</h2>
+  <p>Six postulates: states, observables, the Born rule, projection, unitary evolution and tensor products, and the line between rules and interpretation.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What are the possible results of measuring an observable?<span class="tap">tap</span></div><div class="a">Only the eigenvalues of its Hermitian operator.</div></div>
+  <div class="qa"><div class="q">Spin measured up along z, then up along x. What are the odds of up along z next?<span class="tap">tap</span></div><div class="a">One half: the x measurement left the spin in an x eigenstate, which is an equal mixture of up and down along z.</div></div>
+  <div class="qa"><div class="q">Which parts of quantum mechanics are debated?<span class="tap">tap</span></div><div class="a">Not the rules or predictions, which are established, but their interpretation: what the state and measurement really are.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A spin is prepared up along z and measured along an axis at 120°. What is the probability of “up”?</p>
+    <form class="calc" data-answer="0.25" data-tol="0.005" data-ok="Yes: cos²(60°) = 0.25." data-alt="0.75~That would be the probability of “down”, or an angle of 60°. Use cos²(θ/2) with θ = 120°." data-hint="P(+) = cos²(θ/2)."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: J. von Neumann, Mathematische Grundlagen der Quantenmechanik (1932). P. A. M. Dirac, The Principles of Quantum Mechanics. G. Lüders, Ann. Phys. 8, 322 (1951). M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information, ch. 2. Checked by code: P(+) = cos²(θ/2) for θ = 60°, 90°, 120° gives 0.75, 0.5, 0.25.</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { a: 0, b: 60 }, up = 0, dn = 0, chain = null, fieldT = -1;
+  function pUp() { return Math.pow(Math.cos((V.b - V.a) * Math.PI / 360), 2); }
+  Book.plate({
+    init: function (k, st) { for (var n in st.vals) V[n] = st.vals[n]; Book.text("pp", Math.round(pUp() * 100) + "%"); },
+    beat: function (i) { beat = i; up = dn = 0; chain = null; if (i === 5) fieldT = performance.now(); },
+    act: function (a) {
+      if (a === "m100") for (var i = 0; i < 100; i++) { if (Math.random() < pUp()) up++; else dn++; }
+      if (a === "chain") { var c = { n: 1000, z1: 0, x: 0, z2u: 0, z2d: 0 }; for (var j = 0; j < 1000; j++) { c.z1++; if (Math.random() < 0.5) { c.x++; if (Math.random() < 0.5) c.z2u++; else c.z2d++; } } chain = c; }
+      if (a === "field") fieldT = performance.now();
+    },
+    set: function (n, v) { V[n] = v; up = dn = 0; Book.text("pp", Math.round(pUp() * 100) + "%"); },
+    caption: function () { return ["A spin and a measuring axis.", "A spin prepared at " + V.a + "°.", "Measuring along " + V.b + "°.", "The Born rule in counts.", "Measure z, then x, then z.", "A spin precessing in a field.", "Two spins: four basis states.", "A spin and a measuring axis.", "A spin and a measuring axis."][beat]; },
+    readout: function () { if (beat === 3) return "up " + up + " · down " + dn + (up + dn ? " · " + Math.round(100 * up / (up + dn)) + "% up" : ""); if (beat === 4 && chain) return "z↑ " + chain.z1 + " → x↑ " + chain.x + " → z↑ " + chain.z2u + " / z↓ " + chain.z2d; return "P(up) = " + pUp().toFixed(2); },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, cx = W * 0.4, cy = H * 0.5, R = Math.min(W, H) * 0.34, i;
+      if (beat === 6) {
+        var lab = ["↑↑", "↑↓", "↓↑", "↓↓"]; for (i = 0; i < 4; i++) { var x = W * (0.16 + i * 0.22), amp = i === 1 || i === 2 ? 0.7 : 0.1; k.rr(x - 30, H * 0.75 - amp * H * 0.5, 60, amp * H * 0.5, 4, i === 1 || i === 2 ? "#ffb547" : "#3a3631"); k.text(lab[i], x, H * 0.82, { size: 20, color: "#ece6da", italic: false }); }
+        k.text("(|↑↓⟩ − |↓↑⟩)/√2: cannot be split into one spin times the other", W / 2, H * 0.12, { color: "#ffb547" });
+        return;
+      }
+      k.circle(cx, cy, R, null, "#24211d");
+      var a = (beat === 5 && fieldT > 0 ? 90 : V.a) * Math.PI / 180, ph = beat === 5 ? (now - fieldT) / 1000 * 1.5 : 0;
+      var ax = cx + R * Math.sin(a) * Math.cos(ph), ay = cy - R * Math.cos(a);
+      if (beat === 5) { var ex = R * Math.sin(a), ey = R * 0.25; k.ctx.strokeStyle = "rgba(255,181,71,.3)"; k.ctx.beginPath(); k.ctx.ellipse(cx, cy - R * Math.cos(a), ex, ey, 0, 0, 2 * Math.PI); k.ctx.stroke(); ay = cy - R * Math.cos(a) + ey * Math.sin(ph); k.line(cx, cy + R, cx, cy - R - 20, "#7c766b", 1, [4, 4]); k.text("B", cx + 8, cy - R - 16, { align: "left" }); }
+      k.line(cx, cy, ax, ay, "#ffb547", 3); k.circle(ax, ay, 6, "#ffb547");
+      if (beat !== 5) {
+        var b = V.b * Math.PI / 180; k.line(cx - R * 1.1 * Math.sin(b), cy + R * 1.1 * Math.cos(b), cx + R * 1.1 * Math.sin(b), cy - R * 1.1 * Math.cos(b), "rgba(236,230,218,.5)", 1.5, [5, 4]);
+        k.text("measuring axis", cx + R * 1.15 * Math.sin(b), cy - R * 1.15 * Math.cos(b) - 6, {});
+        var bx = W * 0.8, base = H * 0.85, hU = (beat === 3 && up + dn ? up / (up + dn) : pUp()) * H * 0.6, hD = (beat === 3 && up + dn ? dn / (up + dn) : 1 - pUp()) * H * 0.6;
+        k.rr(bx - 34, base - hU, 28, hU, 3, "#ffb547"); k.rr(bx + 6, base - hD, 28, hD, 3, "#b9b2a5"); k.text("up", bx - 20, base + 16, {}); k.text("down", bx + 20, base + 16, {});
+      }
+    }
+  });
+})();
+</script>

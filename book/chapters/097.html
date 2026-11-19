@@ -1,0 +1,62 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Every operation you can perform on a single qubit, every gate in every quantum algorithm acting on one qubit at a time, is a rotation of the Bloch sphere. Nothing more. The Pauli X gate is a half turn about the x-axis; the Hadamard is a half turn about the diagonal between x and z; the T gate is an eighth of a turn about z. Learn to see gates as rotations and single-qubit circuits become geometry you can do in your head.</p>
+  <p>On the plate: the Bloch sphere. Apply gates with the buttons in the text and watch the state turn.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>The standard gates</h2>
+  <p>The Pauli matrices of Chapter 40 are gates: X flips {{tex:|0\rangle\leftrightarrow|1\rangle}}, Z flips the sign of {{tex:|1\rangle}}, Y does both with a factor {{tex:i}}. The Hadamard {{tex:H = (X + Z)/\sqrt2}} turns {{tex:|0\rangle}} into {{tex:|+\rangle = (|0\rangle + |1\rangle)/\sqrt2}}. The phase gates {{tex:S = \mathrm{diag}(1, i)}} and {{tex:T = \mathrm{diag}(1, e^{i\pi/4})}} turn about z by 90° and 45°.</p>
+  <p>Apply: <button type="button" class="v" data-act="H">H</button> <button type="button" class="v" data-act="X">X</button> <button type="button" class="v" data-act="Y">Y</button> <button type="button" class="v" data-act="Z">Z</button> <button type="button" class="v" data-act="S">S</button> <button type="button" class="v" data-act="T">T</button>, or <button type="button" class="v" data-act="reset">reset to |0⟩</button>. <span class="tag">Established</span></p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Every gate is a rotation</h2>
+  <p>Any 2 × 2 unitary is, up to a global phase, a rotation by angle {{tex:\theta}} about some axis {{tex:\hat n}}:</p>
+  <div class="eq">{{texd:R_{\hat n}(\theta) = e^{-i\theta\,\hat n\cdot\boldsymbol\sigma/2} = \cos\tfrac\theta2\,\mathbb 1 - i\sin\tfrac\theta2\,\hat n\cdot\boldsymbol\sigma}}</div>
+  <p>The half-angle is the spinor sign of Chapter 39: a {{tex:2\pi}} rotation gives {{tex:-\mathbb 1}}, invisible as a global phase but visible when the gate is controlled by another qubit. Any rotation can be built from rotations about just z and y, the <em>ZYZ decomposition</em>: {{tex:U = e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)}}. The Hadamard, for example, is {{tex:R_y(\pi/2)R_z(\pi)}} up to phase.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Puzzles</h2>
+  <p>Reach the target with as few gates as you can. Choose a target: <button type="button" class="v" data-pick="goal:p">|+⟩</button>, <button type="button" class="v" data-pick="goal:pi">|+i⟩</button>, <button type="button" class="v" data-pick="goal:one">|1⟩</button>, <button type="button" class="v" data-pick="goal:t">T|+⟩</button>. Then use the gate buttons in the previous passage, or these: <button type="button" class="v" data-act="H">H</button> <button type="button" class="v" data-act="S">S</button> <button type="button" class="v" data-act="T">T</button> <button type="button" class="v" data-act="X">X</button> <button type="button" class="v" data-act="reset">reset</button>. The plate shows the target as a white dot and tells you when you have arrived. Identities to discover: {{tex:HZH = X}}, {{tex:HXH = Z}}, {{tex:T^2 = S}}, {{tex:S^2 = Z}}.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>Why these gates</h2>
+  <p>H, S and the two-qubit CNOT generate the <em>Clifford</em> gates, which turn out to be easy to simulate classically (Chapter 108). Adding T, a rotation by an angle that is not a multiple of 90°, makes the set <em>universal</em>: any rotation can be approximated arbitrarily well by sequences of H and T (Chapter 100). In fault-tolerant machines, T gates are the expensive ones, needing “magic states” (Chapter 140), so algorithms are often costed by their T count.</p>
+</section>
+
+<section class="beat" data-beat="5">
+  <h2>What you now have</h2>
+  <p>The Pauli, Hadamard, S and T gates, every single-qubit gate as a rotation {{tex:R_{\hat n}(\theta)}}, the half-angle sign, the ZYZ decomposition, gate identities, and why T is special.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What rotation is the Hadamard gate?<span class="tap">tap</span></div><div class="a">A half turn about the axis halfway between x and z.</div></div>
+  <div class="qa"><div class="q">Why does R(2π) = −𝟙 matter?<span class="tap">tap</span></div><div class="a">The sign is a global phase alone, but becomes a relative phase when the rotation is controlled.</div></div>
+  <div class="qa"><div class="q">Which gate makes {H, S, CNOT} universal?<span class="tap">tap</span></div><div class="a">T, the π/4 phase gate.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> How many T gates in a row equal one Z gate?</p>
+    <form class="calc" data-answer="4" data-tol="0.01" data-ok="Yes: T⁴ = diag(1, e^(iπ)) = Z." data-hint="T = diag(1, e^(iπ/4)); Z = diag(1, −1) = diag(1, e^(iπ))."><span>n =</span><input inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Number"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: M. A. Nielsen and I. L. Chuang, §4.2. A. Barenco et al., Phys. Rev. A 52, 3457 (1995). Checked by code: HZH = X, HXH = Z, T² = S, T⁴ = Z; H = (phase) R_y(π/2) R_z(π).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, S = Book.QSim(1), hist = [];
+  var GOAL = { p: [1, 0, 0], pi: [0, 1, 0], one: [0, 0, -1], t: [Math.SQRT1_2, Math.SQRT1_2, 0] };
+  function bloch(k, cx, cy, R, r, g) { var c = k.ctx, tilt = 0.28; k.circle(cx, cy, R, null, "rgba(236,230,218,.3)", 1.2); c.save(); c.translate(cx, cy); c.scale(1, tilt); c.strokeStyle = "rgba(236,230,218,.2)"; c.beginPath(); c.arc(0, 0, R, 0, 6.283); c.stroke(); c.restore(); k.line(cx, cy - R * 1.12, cx, cy + R * 1.12, "rgba(236,230,218,.25)", 1, [3, 4]); k.line(cx - R * 1.1, cy, cx + R * 1.1, cy, "rgba(236,230,218,.15)", 1, [3, 4]); k.text("|0⟩", cx, cy - R * 1.18, { size: 12, color: "#b9b2a5" }); k.text("|1⟩", cx, cy + R * 1.18 + 12, { size: 12, color: "#b9b2a5" }); k.text("x", cx + R * 1.14, cy + 4, { size: 11, align: "left", color: "#7c766b" });
+    function P(v) { return [cx + R * (v[0] * 0.9 - v[1] * 0.45), cy - R * (v[2] * 0.96 - v[1] * tilt * 0.9)]; }
+    if (g) { var gp = P(g); k.circle(gp[0], gp[1], 8, null, "#ece6da", 2); }
+    var e = P(r); k.line(cx, cy, e[0], e[1], "#ffb547", 3); k.glow(e[0], e[1], 14, "rgba(255,181,71,.5)"); k.circle(e[0], e[1], 5, "#ffb547"); }
+  Book.plate({
+    beat: function (i) { beat = i; },
+    act: function (a) { if (a === "reset") { S.reset(); hist = []; return; } S.g(a, 0); hist.push(a); if (hist.length > 12) hist.shift(); },
+    pick: function () { S.reset(); hist = []; },
+    caption: function () { return ["The Bloch sphere; gates rotate it.", "Gates applied: " + (hist.join(" ") || "none") + ".", "Rotations R_n(θ).", "Reach the white dot.", "Clifford + T.", "Gates as rotations."][beat]; },
+    readout: function () { var r = S.bloch(0); var s = "r = (" + r.map(function (x) { return x.toFixed(2); }).join(", ") + ")"; if (beat === 3) { var g = GOAL[Book.state.picks.goal || "pi"], d = Math.hypot(r[0] - g[0], r[1] - g[1], r[2] - g[2]); s += d < 0.02 ? " · reached in " + hist.length + " gates ✓" : " · distance " + d.toFixed(2); } return s; },
+    draw: function (k, now) { var W = k.W, H = k.H; bloch(k, W / 2, H / 2, Math.min(W, H) * 0.32, S.bloch(0), beat === 3 ? GOAL[Book.state.picks.goal || "pi"] : null); if (hist.length) k.text(hist.join(" → "), W / 2, H * 0.95, { size: 12, color: "#b9b2a5" }); }
+  });
+})();
+</script>

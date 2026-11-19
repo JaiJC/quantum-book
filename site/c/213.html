@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Quantum">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<title>213. Debate: quantum advantage and quantum biology</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../katex.css"><link rel="stylesheet" href="../book.css">
+<style>body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}</style></head>
+<body data-ch="213">
+<header class="run" role="banner"><a class="home" href="../index.html" aria-label="Contents">☰</a><div class="t"><b>213</b> &nbsp;·&nbsp; Debate: quantum advantage and quantum biology</div><button type="button" class="aa" id="depth" aria-label="Change how deep the text goes">Aa<span id="depth-name">standard</span></button><div class="prog" id="bar"></div></header>
+<div class="book">
+<figure class="plate" id="stage"><canvas id="cv" aria-hidden="true"></canvas><figcaption><span id="cap"></span><b id="count"></b></figcaption></figure>
+<article class="text">
+<header class="opener"><div class="num">213</div><div class="part">Capstones · Prove it</div><h1>Debate: quantum advantage and quantum biology</h1></header>
+<section class="beat" data-beat="0">
+  <p class="drop">The second debate puts four live controversies from this book on trial: Google’s 2025 “Quantum Echoes” advantage claim, D-Wave’s 2025 beyond-classical simulation claim, long-lived coherence in photosynthesis, and the robin’s quantum compass. For each you argue for and against, then weigh the evidence explicitly. The tool is simple Bayesian bookkeeping: start from a prior, multiply by how much more likely each piece of evidence is if the claim is true than if it is false, and see where you end up.</p>
+  <p>On the plate: an evidence-weighing ledger for each case.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Weighing evidence</h2>
+  <p>Write the claim’s odds as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P/(1-P)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span></span></span></span>. Each piece of evidence <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> has a <em>likelihood ratio</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">R</mi></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mtext>true</mtext><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mtext>false</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{LR} = P(E\mid\text{true})/P(E\mid\text{false})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">LR</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">true</span></span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">false</span></span><span class="mclose">)</span></span></span></span>: above 1 supports the claim, below 1 opposes it. Posterior odds are prior odds times the product of the likelihood ratios, assuming the pieces are independent. Independent replication is worth far more than a second result from the same group, because it removes shared errors; a classical simulation that reproduces a claimed quantum result is strong evidence against advantage. Assigning likelihood ratios is a judgement, which is the point: it makes your judgement visible and arguable. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>The four cases</h2>
+  <p>Case: <button type="button" class="v" data-pick="c:echo">Quantum Echoes (2025)</button> <button type="button" class="v" data-pick="c:dw">D-Wave simulation (2025)</button> <button type="button" class="v" data-pick="c:fmo">FMO coherence</button> <button type="button" class="v" data-pick="c:robin">robin compass</button>; prior probability <span class="tangle" data-var="p" data-min="0.05" data-max="0.95" data-step="0.05" data-dec="2" data-value="0.50" data-px="80"><button type="button" data-de="-1" aria-label="Lower">‹</button><span class="num" role="slider" tabindex="0" aria-label="Prior">0.50</span><button type="button" data-de="1" aria-label="Higher">›</button></span>. The plate lists the main pieces of evidence for each claim with this book’s likelihood ratios (from Chapters 125, 126, 150, 167 and 169) and computes the posterior. The FMO claim (long-lived electronic coherence plays a functional role) ends low; the robin compass (a radical-pair mechanism) ends high but short of proof; the two 2025 advantage claims sit in between, pending independent classical attempts. Change the prior and watch how much the evidence, rather than your starting belief, decides. <span class="tag">Debated</span> for every likelihood ratio.</p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>The debate</h2>
+  <p>For one case, write 400 words for the claim and 400 against, each citing specific evidence, then a 200-word verdict that states your likelihood ratios and why. Graded on: whether each side uses the strongest evidence available to it, whether the likelihood ratios are justified, whether independence between pieces of evidence is respected, and whether the verdict says what new evidence would change it. <span class="tag">Established</span> as method.</p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Likelihood ratios and posterior odds as a way to weigh evidence, why independent replication and classical reproductions carry so much weight, four worked cases, and a debate format with a verdict that names what would change it.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What does a likelihood ratio below 1 mean?<span class="tap">tap</span></div><div class="a">The evidence is more likely if the claim is false: it counts against.</div></div>
+  <div class="qa"><div class="q">Why does independence matter?<span class="tap">tap</span></div><div class="a">Correlated evidence shares errors; multiplying its ratios double-counts.</div></div>
+  <div class="qa"><div class="q">Why is a classical reproduction strong evidence?<span class="tap">tap</span></div><div class="a">It directly shows the task does not need a quantum computer.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> Prior probability 0.5, then evidence with likelihood ratio 4. What is the posterior probability?</p>
+    <form class="calc" data-answer="0.8" data-tol="0.005" data-ok="Yes: odds 1 × 4 = 4, probability 4/5 = 0.8." data-hint="Posterior odds = prior odds × LR."><span>P =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Probability"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: Chapters 125, 126, 150, 167 and 169 and their sources. E. T. Jaynes, Probability Theory: The Logic of Science (CUP, 2003). Likelihood ratios are this book’s judgements, offered to be argued with.</p>
+</section>
+
+
+
+<div class="next-ch"><div class="k">Next · Chapter 214</div><div class="t">Feasibility critique of a published quantum-for-biology claim</div><p style="text-align:left">Full audit of one claim (for example the KRAS paper ✓ or the cat-qubit FeMoco estimate ✓) with re-derived resource numbers and the best classical comparison</p><p style="text-align:left"><a class="v" href="214.html">Turn the page</a></p></div>
+<nav class="chnav"><a href="212.html">← 212. Debate: interpretations of quantum mechanics</a><a href="../index.html">Contents</a><a href="214.html">214. Feasibility critique of a published quantum-for-biology claim →</a></nav>
+</article></div>
+<script src="../engine.js"></script>
+<script>
+(function () {
+  var beat = 0, V = { p: 0.5 }, C = { echo: [["verifiable OTOC signal on 65 qubits", 3], ["classical cost estimates by the authors", 2], ["independent classical attempts pending", 1], ["history of retracted advantage claims", 0.6]], dw: [["dynamics on thousands of qubits", 2], ["tensor-network simulations within days", 0.3], ["authors’ rebuttal of those simulations", 1.5], ["no independent confirmation", 0.8]], fmo: [["2007 long-lived beats", 3], ["beats explained as vibrational (2017)", 0.15], ["electronic dephasing < 240 fs even at 77 K", 0.2], ["2020 joint review: no functional role", 0.3]], robin: [["inclination compass, light dependence", 3], ["RF disruption near Larmor frequency", 4], ["Oldenburg electrosmog experiment", 2], ["CRY4 magnetic sensitivity in vitro", 2], ["no in-vivo mechanism proof yet", 0.7]] };
+  function post() { var c = C[Book.state.picks.c || "robin"], o = V.p / (1 - V.p); c.forEach(function (e) { o *= e[1]; }); return o / (1 + o); }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; },
+    caption: function () { return ["Evidence ledgers.", "Prior odds × likelihood ratios = posterior odds.", "Evidence and likelihood ratios (this book’s).", "For, against, verdict.", "Advantage and biology debate."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) return "prior " + V.p.toFixed(2) + " → posterior " + post().toFixed(2); return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H;
+      if (beat === 1) { var A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [-2, 2], [0, 1], { xl: "log₁₀ likelihood ratio", yl: "posterior (prior 0.5)" }); k.plot(A, function (l) { var o = Math.pow(10, l); return o / (1 + o); }, [-2, 2], "#ffb547", 2.5); return; }
+      if (beat === 3) { ["400 words for", "400 words against", "200-word verdict with LRs"].forEach(function (s, j) { k.rr(W * 0.15, H * (0.15 + j * 0.25), W * 0.7, H * 0.17, 8, "#14120f", j === 2 ? "#ffb547" : "rgba(236,230,218,.4)"); k.text(s, W / 2, H * (0.25 + j * 0.25), { size: 13, color: j === 2 ? "#ffb547" : "#ece6da" }); }); return; }
+      var c = C[Book.state.picks.c || "robin"], o = V.p / (1 - V.p); c.forEach(function (e, j) { var y = H * (0.1 + j * 0.13); o *= e[1]; k.text(e[0], W * 0.62, y + 4, { size: 11, align: "right" }); k.text("×" + e[1], W * 0.66, y + 4, { size: 12, color: e[1] >= 1 ? "#ffb547" : "#e05a46", align: "left" }); k.text((o / (1 + o)).toFixed(2), W * 0.85, y + 4, { size: 12, color: "#b9b2a5" }); }); k.text("running posterior", W * 0.85, H * 0.05, { size: 10, color: "#7c766b" }); var p = post(); k.rr(W * 0.1, H * 0.85, W * 0.8 * p, H * 0.05, 3, "#ffb547"); k.rr(W * 0.1, H * 0.85, W * 0.8, H * 0.05, 3, null, "rgba(236,230,218,.4)");
+    }
+  });
+})();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});</script>
+</body></html>

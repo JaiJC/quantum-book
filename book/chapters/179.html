@@ -1,0 +1,58 @@
+<section class="beat" data-beat="0">
+  <p class="drop">Life’s molecules are handed. Proteins are built from left-handed amino acids, DNA and RNA from right-handed sugars, in every organism on Earth. Ordinary chemistry makes both hands in equal amounts. How did life choose one? Many proposals invoke ordinary chemistry and chance; some invoke quantum effects, from tunnelling in prebiotic reactions to the way electrons’ spins interact with chiral molecules. All are speculative. This chapter asks which ideas are testable.</p>
+  <p>On the plate: a toy model in which a tiny bias decides which hand wins.</p>
+</section>
+
+<section class="beat" data-beat="1">
+  <h2>Schrödinger’s question</h2>
+  <p>In <em>What Is Life?</em> (1944), Schrödinger argued that heredity must be carried by an “aperiodic crystal”, a molecule stable enough to store information against thermal noise, and that its stability is a quantum effect: chemical bonds hold because energy levels are discrete. Watson and Crick’s DNA, nine years later, fit his description. This is quantum mechanics in Lambert’s trivial sense, the basis of all chemistry. Questions about the <em>origin</em> of life ask something harder: whether quantum effects selected particular outcomes during prebiotic chemistry. <span class="tag">Established</span> for Schrödinger’s point; the rest is open.</p>
+</section>
+
+<section class="beat" data-beat="2">
+  <h2>Amplifying a small bias</h2>
+  <p>Charles Frank showed in 1953 that a reaction in which each hand catalyses its own formation and inhibits the other amplifies any initial imbalance until one hand takes over; Kenso Soai found a real reaction that does this in 1995. In such systems, an extremely small systematic bias can decide the winner across many independent “pools”. Set the bias to <span class="tangle" data-var="eps" data-min="0" data-max="0.05" data-step="0.001" data-dec="3" data-value="0.020" data-px="400"><button type="button" data-de="-1" aria-label="Less">‹</button><span class="num" role="slider" tabindex="0" aria-label="Bias">0.020</span><button type="button" data-de="1" aria-label="More">›</button></span> (relative to random fluctuations of 0.05) and <button type="button" class="v" data-act="run">run 40 pools</button>. With no bias, about half end left-handed; a bias of 0.005 tips about 70% of pools, and 0.02, less than half the size of the early fluctuations, makes nearly all choose the favoured hand. The question is where such a bias could come from. Proposals include circularly polarized starlight, the parity-violating weak interaction (energy differences around {{tex:10^{-17}}} {{tex:k_BT}}, probably too small), and spin effects. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="3">
+  <h2>Chiral-induced spin selectivity</h2>
+  <p>In 1999 Ron Naaman and colleagues found that electrons passing through films of chiral molecules come out spin-polarized, the preferred spin set by the molecules’ handedness: <em>chiral-induced spin selectivity</em> (CISS). The size of the effect is larger than simple theories predict, and its mechanism is still debated. Turned around, spin-polarized electrons, for example from a magnetized surface, could favour one handedness. In 2023 S. Furkan Ozturk, Dimitar Sasselov and colleagues reported that a prebiotic RNA precursor crystallized on magnetite surfaces formed one enantiomer preferentially, the magnetic surface’s spin polarization supplying the bias, which the crystals then amplified. It is a testable, quantum-mechanical mechanism, but showing it operated on the early Earth is a far harder task. <span class="tag">Speculative</span></p>
+</section>
+
+<section class="beat" data-beat="4">
+  <h2>What you now have</h2>
+  <p>Schrödinger’s 1944 argument, biological homochirality, autocatalytic amplification of small biases, candidate sources of bias, chiral-induced spin selectivity, and the 2023 magnetite experiment.</p>
+  <p class="ornament">· · ·</p>
+  <p><em>Three questions to carry with you.</em></p>
+  <div class="qa"><div class="q">What did Frank’s model show?<span class="tap">tap</span></div><div class="a">Autocatalysis plus mutual inhibition amplifies any initial imbalance to homochirality.</div></div>
+  <div class="qa"><div class="q">What is CISS?<span class="tap">tap</span></div><div class="a">Spin polarization of electrons transmitted through chiral molecules, set by handedness.</div></div>
+  <div class="qa"><div class="q">Why is parity violation a weak candidate?<span class="tap">tap</span></div><div class="a">Its energy differences between enantiomers are about 10⁻¹⁷ k_BT, likely swamped by other biases.</div></div>
+  <div class="x-std" style="margin-top:1.4rem">
+    <p><em>And one to work out.</em> A sample has 55% left- and 45% right-handed molecules. What is its enantiomeric excess, {{tex:(L-R)/(L+R)}}?</p>
+    <form class="calc" data-answer="0.10" data-tol="0.005" data-ok="Yes: 0.10, or 10% ee." data-hint="(55 − 45)/100."><span>ee =</span><input inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Enantiomeric excess"><button type="submit">check</button></form>
+    <div class="fb" aria-live="polite"></div>
+  </div>
+  <p class="sources">Sources: E. Schrödinger, What Is Life? (CUP, 1944). F. C. Frank, Biochim. Biophys. Acta 11, 459 (1953). K. Soai et al., Nature 378, 767 (1995). K. Ray et al., Science 283, 814 (1999). R. Naaman and D. H. Waldeck, Annu. Rev. Phys. Chem. 66, 263 (2015). S. F. Ozturk et al., Sci. Adv. 9, eadg8274 (2023).</p>
+</section>
+
+<script type="plate">
+(function () {
+  var beat = 0, V = { eps: 0.02 }, seed = 37, runs = [];
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function gauss() { return Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(6.283 * rnd()); }
+  function run() { runs = []; for (var p = 0; p < 40; p++) { var x = 0, tr = []; for (var t = 0; t < 200; t++) { x += 0.08 * (x * (1 - x * x)) + 0.08 * V.eps * 4 + (t < 30 ? 0.05 * gauss() * 0.3 : 0.002 * gauss()); x = Math.max(-1, Math.min(1, x)); if (t % 4 === 0) tr.push(x); } runs.push(tr); } }
+  Book.plate({
+    init: function (k, s) { for (var n in s.vals) V[n] = s.vals[n]; run(); },
+    beat: function (i) { beat = i; },
+    set: function (n, v) { V[n] = v; run(); },
+    act: function () { run(); },
+    caption: function () { return ["Enantiomeric excess over time in 40 pools.", "An aperiodic crystal.", "Each line a pool: up = left-handed, down = right-handed.", "Spin-polarized electrons through a chiral helix.", "Origin of life."][beat]; },
+    readout: function () { if (beat === 2 || beat === 0) { var L = runs.filter(function (r) { return r[r.length - 1] > 0; }).length; return "bias " + V.eps.toFixed(3) + " · " + L + " of 40 pools end left-handed"; } return ""; },
+    draw: function (k, now) {
+      var W = k.W, H = k.H, A, i;
+      if (beat === 1) { for (i = 0; i < 24; i++) { var y = H * (0.1 + i * 0.033), a = i * 0.6 + now / 1500; k.line(W / 2 + 60 * Math.cos(a), y, W / 2 - 60 * Math.cos(a), y, "rgba(255,181,71," + (0.3 + 0.5 * ((i * 7) % 4) / 4).toFixed(2) + ")", 3); } return; }
+      if (beat === 3) { for (i = 0; i < 60; i++) { var t = i / 60, x = W * (0.15 + 0.7 * t), y = H / 2 + 40 * Math.sin(t * 20); k.circle(x, y, 3, "rgba(236,230,218,.5)"); } var p = (now / 2000) % 1; k.glow(W * (0.15 + 0.7 * p), H / 2 + 40 * Math.sin(p * 20), 9, "rgba(255,181,71,.8)"); k.text("spin ↑ favoured", W * 0.85, H * 0.3, { size: 12, color: "#ffb547", align: "right" }); return; }
+      A = k.axes(W * 0.12, H * 0.08, W * 0.82, H * 0.76, [0, 50], [-1.05, 1.05], { xl: "time", yl: "enantiomeric excess", zeroY: true }); runs.forEach(function (r) { var c = k.ctx, end = r[r.length - 1]; c.strokeStyle = end > 0 ? "rgba(255,181,71,.55)" : "rgba(236,230,218,.45)"; c.lineWidth = 1.2; c.beginPath(); r.forEach(function (v, j) { if (j) c.lineTo(A.X(j), A.Y(v)); else c.moveTo(A.X(j), A.Y(v)); }); c.stroke(); });
+    }
+  });
+})();
+</script>
