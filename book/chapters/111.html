@@ -6,6 +6,7 @@
 <section class="beat" data-beat="1">
   <h2>The problem</h2>
   <p>A function {{tex:f}} on {{tex:n}}-bit strings is promised to satisfy {{tex:f(x) = f(y)}} if and only if {{tex:y = x}} or {{tex:y = x\oplus s}}, for some unknown nonzero {{tex:s}}. Find {{tex:s}}. Classically you must find a collision, two inputs with the same output, and by the birthday paradox that takes about {{tex:2^{n/2}}} queries. Simon proved no classical algorithm does fundamentally better. <span class="tag">Established</span></p>
+  <!--predict--><div class="predict"><span class="pk">Predict first</span><p>Each run of Simon’s quantum algorithm gives you: <button type="button" class="v" data-pick="pr:a">the secret string s directly</button>, <button type="button" class="v" data-pick="pr:b">one linear equation for s</button> or <button type="button" class="v" data-pick="pr:c">nothing until all runs are done</button></p><p class="hint" data-if-nopick="pr">Choose before you scroll on.</p><p class="pfb" data-if-pick="pr:a" hidden><span class="no">Not quite.</span> It gives something weaker, and more useful. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:b" hidden><span class="ok">Right.</span> A random y with y · s = 0 mod 2; about n runs pin s down. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:c" hidden><span class="no">Not quite.</span> Every run gives a usable equation. Now check it on the plate.</p></div><!--/predict-->
 </section>
 
 <section class="beat" data-beat="2">

@@ -6,6 +6,7 @@
 <section class="beat" data-beat="1">
   <h2>The circuit</h2>
   <p>Prepare {{tex:t}} counting qubits in {{tex:|+\rangle}} and the target in {{tex:|u\rangle}}. Counting qubit {{tex:j}} controls {{tex:U^{2^j}}}; by phase kickback (Chapter 110) it picks up the phase {{tex:e^{2\pi i\,2^j\varphi}}}. The counting register is now exactly the QFT of a state encoding {{tex:\varphi}}; the inverse QFT (Chapter 112) turns it into a basis state close to {{tex:2^t\varphi}}, which you measure. <span class="tag">Established</span></p>
+  <!--predict--><div class="predict"><span class="pk">Predict first</span><p>If the phase is not exactly a t-bit number, phase estimation spreads its outcomes. The chance of getting the nearest t-bit value is at least: <button type="button" class="v" data-pick="pr:a">100%</button>, <button type="button" class="v" data-pick="pr:b">about 40%</button> or <button type="button" class="v" data-pick="pr:c">1 in 2ᵗ</button></p><p class="hint" data-if-nopick="pr">Choose before you scroll on.</p><p class="pfb" data-if-pick="pr:a" hidden><span class="no">Not quite.</span> Only when the phase is exactly representable. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:b" hidden><span class="ok">Right.</span> At least 4/π² ≈ 0.405. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:c" hidden><span class="no">Not quite.</span> That would be no better than guessing. Now check it on the plate.</p></div><!--/predict-->
 </section>
 
 <section class="beat" data-beat="2">

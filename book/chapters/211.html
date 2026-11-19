@@ -30,6 +30,7 @@ H = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
 s = StateVector(2); s.apply1(H, 0); s.cnot(0, 1)
 assert np.allclose(s.probs(), [0.5, 0, 0, 0.5])   <span class="cm"># Bell state</span></pre>
   <p>This book checked the code above with tests for Bell and GHZ states and for CNOTs in both directions. <span class="tag">Established</span></p>
+  <!--predict--><div class="predict"><span class="pk">Predict first</span><p>In this book’s convention, with qubit 0 as the leftmost bit, apply X to qubit 2 of three. Which basis-state index lights up? <button type="button" class="v" data-pick="pr:a">4</button>, <button type="button" class="v" data-pick="pr:b">1</button> or <button type="button" class="v" data-pick="pr:c">2</button></p><p class="hint" data-if-nopick="pr">Choose before you scroll on.</p><p class="pfb" data-if-pick="pr:a" hidden><span class="no">Not quite.</span> That is X on qubit 0. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:b" hidden><span class="ok">Right.</span> Qubit 2 is the rightmost bit: |001⟩ is index 1. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:c" hidden><span class="no">Not quite.</span> That would be qubit 1. Now check it on the plate.</p></div><!--/predict-->
 </section>
 
 <section class="beat" data-beat="2">

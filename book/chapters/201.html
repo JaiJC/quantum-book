@@ -1,6 +1,7 @@
 <section class="beat" data-beat="0">
   <p class="drop">Your genome is about three billion letters long. Sequencing machines read it in short fragments that must be aligned to a reference and assembled, and comparing sequences across species, patients or tumours is the daily work of genomics. These are classical string problems, and they are expensive at scale. Could Grover-style speedups or quantum annealing help? Here the honest answer is short, and instructive.</p>
   <p>On the plate: aligning two sequences by dynamic programming.</p>
+  <!--predict--><div class="predict"><span class="pk">Predict first</span><p>How does the cost of the best exact classical alignment of two sequences grow with their length? <button type="button" class="v" data-pick="pr:a">linearly</button>, <button type="button" class="v" data-pick="pr:b">quadratically, and that is likely optimal</button> or <button type="button" class="v" data-pick="pr:c">exponentially</button></p><p class="hint" data-if-nopick="pr">Choose before you scroll on.</p><p class="pfb" data-if-pick="pr:a" hidden><span class="no">Not quite.</span> Heuristics are fast, but exact alignment is not. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:b" hidden><span class="ok">Right.</span> Faster would refute the strong exponential time hypothesis. Now check it on the plate.</p><p class="pfb" data-if-pick="pr:c" hidden><span class="no">Not quite.</span> Dynamic programming avoids that. Now check it on the plate.</p></div><!--/predict-->
 </section>
 
 <section class="beat" data-beat="1">
