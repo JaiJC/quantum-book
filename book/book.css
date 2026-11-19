@@ -160,3 +160,8 @@ pre.code .cm { color: #7c766b; }
 .predict .v[data-pick] { display: inline-block; font-style: italic; border: 1px solid var(--amber-line); border-radius: 999px; padding: .12em .8em; margin: .2em .1em; text-decoration: none; background: transparent; line-height: 1.5; }
 .predict .v[data-pick].pick { background: var(--amber); color: #000; }
 .predict .pfb { margin-top: .5rem; text-indent: 0; }
+/* phones: when a live readout is showing, give it the full caption line */
+@media (max-width: 700px) {
+  .plate figcaption:has(b:not(:empty)) #cap { display: none; }
+  .plate figcaption b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+}
