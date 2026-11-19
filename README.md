@@ -281,4 +281,17 @@ Typos, confusing explanations and broken simulations are all worth reporting.
 
 ## Licence
 
-No licence has been chosen yet, so by default all rights are reserved by the author. You're welcome to read, link to and share the website. Please ask (open an issue) before reusing the text, code or simulations elsewhere.
+The book uses two licences, one for its content and one for its code.
+
+- **Content: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).** This covers the text, questions, exercises and explanations (`book/chapters/`, `toc.json`, `audit/`, and the chapter pages in `site/c/`). You may share, translate and adapt it for free if you:
+  - **credit** the book and link to it;
+  - **don't use it commercially**;
+  - **release adaptations under the same licence**.
+
+  Full text: [LICENSE-CONTENT](LICENSE-CONTENT).
+- **Code: [MIT](LICENSE).** This covers the engine, styles, build script, landing-page simulation and the simulation scripts inside each chapter. You can reuse it for anything, as long as you keep the copyright notice.
+
+**Contributions** are accepted under the same terms: code under MIT, content under CC BY-NC-SA 4.0. By opening a pull request you agree to this.
+
+For commercial use of the content, such as a paid course or a print edition, please [open an issue](https://github.com/JaiJC/quantum-book/issues) to ask.
+

@@ -97,6 +97,7 @@ ${p.chapters.map(c => written.has(c.n)
   ? `<li class="ready" data-n="${c.n}"><a href="c/${pad(c.n)}.html"><span class="n">${c.n}</span><span class="tt">${inl(c.title)}</span><span class="hk">${inl(c.hook)}</span></a></li>`
   : `<li data-n="${c.n}"><span class="n">${c.n}</span><span class="tt">${inl(c.title)}</span><span class="hk">${inl(c.hook)}</span></li>`).join("\n")}
 </ol></section>`).join("\n")}
+<footer class="lic">Text and exercises: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license">CC BY-NC-SA 4.0</a> · Code: MIT · <a href="https://github.com/JaiJC/quantum-book">Source on GitHub</a></footer>
 </main>
 <script>
 (function(){var last=null,ready=[].slice.call(document.querySelectorAll("li.ready"));
