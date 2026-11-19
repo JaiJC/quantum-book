@@ -7,7 +7,8 @@ const OUT = "site";
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT + "/c", { recursive: true });
 fs.mkdirSync(OUT + "/icons", { recursive: true });
-for (const f of fs.readdirSync("pwa-out/icons")) fs.copyFileSync("pwa-out/icons/" + f, OUT + "/icons/" + f);
+for (const f of fs.readdirSync("book/icons")) fs.copyFileSync("book/icons/" + f, OUT + "/icons/" + f);
+fs.writeFileSync(OUT + "/.gitignore", ".vercel\n");
 
 const toc = JSON.parse(fs.readFileSync("toc.json", "utf8"));
 const flat = toc.flatMap(p => p.chapters.map(c => ({ ...c, part: p })));

@@ -116,6 +116,7 @@ book/
   engine.js                       ← shared runtime: scrolling, plates, controls, simulators
   book.css                        ← all styling (black background, amber accents)
   hero.html                       ← the live double-slit experiment on the landing page
+  icons/                          ← app icons for the home screen
 toc.json                          ← parts, chapter titles, one-line hooks
 build-book.mjs                    ← builds book/ into site/
 site/                             ← the built app that gets deployed (generated, don't edit)
