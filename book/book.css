@@ -140,3 +140,23 @@ pre.code .cm { color: #7c766b; }
 .who h3 { font: 400 .7rem var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--amber); margin: 1.2rem 0 .4rem; }
 .who h3:first-child { margin-top: 0; }
 .who p { margin: 0 0 .6rem; text-align: left; }
+
+/* landing hero: live double slit */
+.hero { margin: 1.6rem 0 1.4rem; position: relative; }
+.hero canvas { width: 100%; height: 240px; display: block; border: 1px solid var(--rule); border-radius: 10px; background: #000; touch-action: pan-y; cursor: ew-resize; }
+.hero-q { position: absolute; left: 0; right: 0; top: 0; height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1.2rem; background: rgba(0,0,0,.62); border-radius: 10px; }
+.hero-q p { margin: 0 0 .8rem; color: var(--ink); font-size: 1.05rem; text-align: center; max-width: 26rem; }
+.hero-b { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+.hb { font: italic 500 1rem var(--serif); color: var(--ink); background: transparent; border: 1px solid var(--amber-line); border-radius: 999px; padding: .4em 1.1em; cursor: pointer; }
+.hb:hover, .hb.on { background: var(--amber); color: #000; }
+.hero-ctl { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; margin-top: .7rem; }
+.hero-ctl[hidden], .hero-q[hidden] { display: none; }
+.hero-tip { font: 400 .72rem var(--mono); color: var(--muted); letter-spacing: .04em; }
+.hero-r { margin: .7rem 0 0; color: var(--ink2); font-size: 1rem; text-align: left; min-height: 1.2em; }
+.hero-r a { color: var(--amber); }
+/* predict cards: choices as tappable pills */
+.predict { background: rgba(255,181,71,.045); border: 1px solid rgba(255,181,71,.28); border-left-width: 3px; border-radius: 8px; padding: .9rem 1.1rem .7rem; }
+.predict p { text-align: left; }
+.predict .v[data-pick] { display: inline-block; font-style: italic; border: 1px solid var(--amber-line); border-radius: 999px; padding: .12em .8em; margin: .2em .1em; text-decoration: none; background: transparent; line-height: 1.5; }
+.predict .v[data-pick].pick { background: var(--amber); color: #000; }
+.predict .pfb { margin-top: .5rem; text-indent: 0; }

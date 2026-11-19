@@ -1,0 +1,77 @@
+<div class="hero" id="hero">
+<canvas id="hcv" aria-label="Electrons fired one at a time through two slits build up a pattern on a screen"></canvas>
+<div class="hero-q" id="hq"><p>One electron at a time goes through two slits. After a thousand, what is on the screen?</p>
+<p class="hero-b"><button type="button" class="hb" data-g="bands">Two bands</button><button type="button" class="hb" data-g="stripes">Many stripes</button></p></div>
+<div class="hero-ctl" id="hc" hidden><button type="button" class="hb" id="hw">Watch which slit</button><span class="hero-tip">Drag across the picture to move the slits apart.</span></div>
+<p class="hero-r" id="hr" aria-live="polite"></p>
+</div>
+<script>
+(function () {
+  var cv = document.getElementById("hcv"), q = document.getElementById("hq"), ctl = document.getElementById("hc"), res = document.getElementById("hr"), wb = document.getElementById("hw");
+  var c = cv.getContext("2d"), W = 0, H = 0, dpr = 1, hits = [], guess = null, watch = false, sep = 0.55, running = false, t0 = 0, last = 0, flying = [];
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size() { dpr = Math.min(2, window.devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  function sample() {
+    // y in [-1,1] on the screen; fringes from cos^2, envelope from single-slit width
+    for (;;) {
+      var y = Math.random() * 2 - 1, env = Math.exp(-y * y / 0.22), p;
+      if (watch) p = 0.5 * (Math.exp(-Math.pow(y - sep * 0.75, 2) / 0.035) + Math.exp(-Math.pow(y + sep * 0.75, 2) / 0.035));
+      else p = env * Math.pow(Math.cos(Math.PI * y * sep * 6), 2);
+      if (Math.random() < p) return y;
+    }
+  }
+  function verdict() {
+    if (watch) { res.innerHTML = "Watching the slits destroys the stripes: two plain bands. Knowing the path removes the interference. <a href=\"c/025.html\">Chapter 25 explains why →</a>"; return; }
+    var lead = guess === "stripes" ? "You called it." : guess === "bands" ? "Not two bands." : "";
+    res.innerHTML = lead + " Stripes. Each electron lands as one dot, yet the dots avoid the dark lanes: every electron went through both slits as a wave. <a href=\"c/025.html\">Run the full experiment in Chapter 25 →</a>";
+  }
+  function draw(now) {
+    var sx = W * 0.32, scr = W * 0.86, mid = H / 2, half = H * 0.42;
+    c.fillStyle = "#000"; c.fillRect(0, 0, W, H);
+    // gun
+    c.fillStyle = "rgba(236,230,218,.35)"; c.fillRect(W * 0.04, mid - 6, W * 0.05, 12);
+    // wall with two slits
+    var s1 = mid - sep * half * 0.45, s2 = mid + sep * half * 0.45, g = 5;
+    c.fillStyle = "rgba(236,230,218,.55)";
+    c.fillRect(sx - 2, 0, 4, s1 - g); c.fillRect(sx - 2, s1 + g, 4, s2 - s1 - 2 * g); c.fillRect(sx - 2, s2 + g, 4, H - s2 - g);
+    if (watch) { c.fillStyle = "#ffb547"; c.beginPath(); c.arc(sx + 10, s1, 3, 0, 7); c.arc(sx + 10, s2, 3, 0, 7); c.fill(); }
+    // faint wavefronts
+    if (!watch && running && !reduce) {
+      c.strokeStyle = "rgba(255,181,71,.10)"; c.lineWidth = 1;
+      for (var k = 0; k < 7; k++) { var r = ((now / 18 + k * 26) % 180); [s1, s2].forEach(function (s) { c.beginPath(); c.arc(sx, s, r, -1.2, 1.2); c.stroke(); }); }
+    }
+    // screen
+    c.fillStyle = "rgba(236,230,218,.25)"; c.fillRect(scr, mid - half, 2, half * 2);
+    // flying electrons
+    flying.forEach(function (f) { var u = Math.min(1, (now - f.t) / 520), x = W * 0.09 + (scr - W * 0.09) * u, y = u < 0.5 ? mid : mid + (f.y * half) * ((u - 0.5) / 0.5); c.fillStyle = "#ece6da"; c.beginPath(); c.arc(x, y, 2, 0, 7); c.fill(); });
+    // hits on the screen
+    c.fillStyle = "rgba(255,181,71,.75)";
+    for (var i = 0; i < hits.length; i++) c.fillRect(scr - 3 - hits[i].x * W * 0.09, mid + hits[i].y * half - 1, 2.5, 2.5);
+    // running histogram beyond the screen
+    if (hits.length > 20) { var B = 60, hb = new Array(B).fill(0), mx = 1; hits.forEach(function (h) { var j = Math.min(B - 1, Math.floor((h.y + 1) / 2 * B)); hb[j]++; }); hb.forEach(function (v) { if (v > mx) mx = v; });
+      c.fillStyle = "rgba(255,181,71,.55)"; for (var j = 0; j < B; j++) { var bw = (W - scr - 10) * hb[j] / mx; c.fillRect(scr + 6, mid - half + j * (2 * half / B), bw, 2 * half / B - 1); } }
+    // count
+    c.font = "500 11px 'JetBrains Mono', monospace"; c.fillStyle = "rgba(236,230,218,.55)"; c.textAlign = "left";
+    c.fillText(hits.length ? hits.length + " electrons" : "", W * 0.04, H - 10);
+  }
+  function loop(now) {
+    if (running) {
+      var rate = reduce ? 40 : 6, n = 0;
+      while (now - last > rate && n < 30) { last += rate; n++; if (hits.length < 2400) { var y = sample(); flying.push({ t: now, y: y }); } }
+      flying = flying.filter(function (f) { if (now - f.t >= 520) { hits.push({ y: f.y, x: Math.random() }); return false; } return true; });
+      if (hits.length > 450 && !res.innerHTML) verdict();
+    }
+    draw(now); requestAnimationFrame(loop);
+  }
+  window.__heroTick = function (now) { if (running) { var rate = 6, n = 0; while (now - last > rate && n < 30) { last += rate; n++; if (hits.length < 2400) flying.push({ t: now, y: sample() }); } flying = flying.filter(function (f) { if (now - f.t >= 520) { hits.push({ y: f.y, x: Math.random() }); return false; } return true; }); if (hits.length > 450 && !res.innerHTML) verdict(); } draw(now); return hits.length; };
+  function start(g) { guess = g; q.hidden = true; ctl.hidden = false; running = true; last = performance.now(); }
+  q.addEventListener("click", function (e) { var b = e.target.closest("[data-g]"); if (b) start(b.getAttribute("data-g")); });
+  wb.addEventListener("click", function () { watch = !watch; wb.textContent = watch ? "Stop watching" : "Watch which slit"; wb.classList.toggle("on", watch); hits = []; flying = []; res.innerHTML = ""; });
+  var drag = false;
+  function setSep(e) { var r = cv.getBoundingClientRect(), x = ((e.touches ? e.touches[0].clientX : e.clientX) - r.left) / r.width; sep = Math.max(0.25, Math.min(1, 0.25 + x * 0.8)); hits = []; flying = []; res.innerHTML = ""; }
+  cv.addEventListener("pointerdown", function (e) { if (!running) return; drag = true; setSep(e); });
+  addEventListener("pointermove", function (e) { if (drag) setSep(e); });
+  addEventListener("pointerup", function () { drag = false; });
+  addEventListener("resize", size); size(); requestAnimationFrame(loop);
+})();
+</script>
