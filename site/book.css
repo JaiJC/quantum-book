@@ -116,7 +116,7 @@ body.library .lib { max-width: 46rem; margin: 0 auto; padding: calc(var(--head) 
 .part ol { list-style: none; margin: 0; padding: 0; }
 .part li { border-top: 1px solid var(--rule); }
 .part li > a, .part li > span:first-child { }
-.part li a, .part li { display: grid; grid-template-columns: 3.2rem 1fr; column-gap: .6rem; padding: .7rem 0; text-decoration: none; color: inherit; }
+.part li a, .part li:not(.ready) { display: grid; grid-template-columns: 3.2rem 1fr; column-gap: .6rem; padding: .7rem 0; text-decoration: none; color: inherit; }
 .part li.ready { padding: 0; }
 .part li .n { grid-row: span 2; font: 400 .85rem var(--mono); color: var(--faint, #4a463f); padding-top: .25rem; }
 .part li .tt { font-size: 1.08rem; color: var(--muted); }
