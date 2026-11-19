@@ -51,6 +51,8 @@ All 214 chapters were reviewed in November 2026:
 - the numbers each simulation shows were re-run independently;
 - recent claims were checked against primary sources.
 
+**How it was made:** the text, simulations and code were written with an AI model (Anthropic's Claude), directed, checked and edited by the author. That is why the checking described above matters, and why corrections are so valuable.
+
 It has not yet had a review by a professional physicist. Corrections are very welcome (see [Reporting an error](#reporting-an-error)).
 
 ## Who it's for
