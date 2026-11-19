@@ -1,0 +1,13 @@
+{
+  "name": "quantum-book",
+  "private": true,
+  "description": "An interactive 214-chapter book on quantum mechanics, QFT, quantum computing and quantum biology.",
+  "type": "module",
+  "scripts": {
+    "build": "node build-book.mjs",
+    "serve": "cd site && python3 -m http.server 8804"
+  },
+  "dependencies": {
+    "katex": "0.16.11"
+  }
+}
