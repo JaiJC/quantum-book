@@ -128,3 +128,15 @@ body.library .lib { max-width: 46rem; margin: 0 auto; padding: calc(var(--head) 
 pre.code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.78rem; line-height: 1.5; color: #ece6da; background: #12100d; border-left: 2px solid #ffb547; padding: 0.7rem 0.9rem; margin: 1rem 0; overflow-x: auto; max-width: 100%; white-space: pre; border-radius: 2px; }
 pre.code .cm { color: #7c766b; }
 .katex .text { width: auto; max-width: none; min-width: 0; margin: 0; padding: 0; box-sizing: content-box; }
+
+/* predict-first prompts */
+.predict { border-left: 2px solid var(--amber); padding: .2rem 0 .2rem 1rem; margin: 1.6rem 0 .4rem; }
+.predict .pk { font: 400 .7rem var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: .3rem; }
+.predict .pfb { color: var(--ink2); }
+.predict .pfb .ok { color: var(--amber); font-style: normal; }
+.predict .pfb .no { color: #e05a46; font-style: normal; }
+/* who this is for */
+.who { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); color: var(--ink2); font-size: .98rem; }
+.who h3 { font: 400 .7rem var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--amber); margin: 1.2rem 0 .4rem; }
+.who h3:first-child { margin-top: 0; }
+.who p { margin: 0 0 .6rem; text-align: left; }

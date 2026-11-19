@@ -213,7 +213,7 @@
     });
     all("[data-pick]").forEach(function (b) {
       var parts = b.getAttribute("data-pick").split(":"), g = parts[0], v = parts[1];
-      b.addEventListener("click", function () { S.picks[g] = v; save(); showPicks(); if (P && P.pick) P.pick(g, v, kit); });
+      b.addEventListener("click", function () { S.picks[g] = v; save(); showPicks(); if (P && P.pick && g !== "pr") P.pick(g, v, kit); });
     });
     function showPicks() {
       all("[data-pick]").forEach(function (b) { var p = b.getAttribute("data-pick").split(":"); var on = S.picks[p[0]] === p[1]; b.classList.toggle("pick", on); b.setAttribute("aria-pressed", String(on)); });
